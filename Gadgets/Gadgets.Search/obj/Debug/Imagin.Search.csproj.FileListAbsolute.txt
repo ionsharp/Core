@@ -1,0 +1,16 @@
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\bin\Debug\Imagin.Search.exe.config
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\bin\Debug\Imagin.Search.exe
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\bin\Debug\Imagin.Search.pdb
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\Imagin.Search.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\MainWindow.g.cs
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\App.g.cs
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\Imagin.Search_MarkupCompile.cache
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\Imagin.Search_MarkupCompile.lref
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\MainWindow.baml
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\Imagin.Search.g.resources
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\Imagin.Search.Properties.Resources.resources
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\Imagin.Search.csproj.GenerateResource.Cache
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\Imagin.Search.exe
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\Imagin.Search.pdb
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\App.baml
+C:\Users\Alex\Software Development\Projects\Gadgets\Imagin.Search\Imagin.Search\obj\Debug\GeneratedInternalTypeHelper.g.cs

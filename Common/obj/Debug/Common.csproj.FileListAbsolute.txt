@@ -1,0 +1,5 @@
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.pdb

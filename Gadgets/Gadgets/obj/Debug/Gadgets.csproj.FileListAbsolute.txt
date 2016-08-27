@@ -1,0 +1,10 @@
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\obj\Debug\Themes\Generic.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\bin\Debug\Imagin.Gadgets.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\bin\Debug\Imagin.Gadgets.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\obj\Debug\Imagin.Gadgets_MarkupCompile.cache
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\obj\Debug\Imagin.Gadgets_MarkupCompile.lref
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\obj\Debug\Imagin.Gadgets.g.resources
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\obj\Debug\Imagin.Gadgets.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\obj\Debug\Imagin.Gadgets.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets\obj\Debug\Gadgets.csprojResolveAssemblyReference.cache

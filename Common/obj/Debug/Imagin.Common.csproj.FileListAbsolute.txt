@@ -1,0 +1,8 @@
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.Common\Imagin.Common\bin\Debug\Imagin.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.Common\Imagin.Common\bin\Debug\Imagin.Common.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.Common\Imagin.Common\obj\Debug\Imagin.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.Common\Imagin.Common\obj\Debug\Imagin.Common.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.Common\bin\Debug\Imagin.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.Common\bin\Debug\Imagin.Common.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.Common\obj\Debug\Imagin.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.Common\obj\Debug\Imagin.Common.pdb
