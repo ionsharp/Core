@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Imagin.Common">
-      <HintPath>..\..\Imagin.Common\Imagin.Common\bin\Debug\Imagin.Common.dll</HintPath>
+    <Reference Include="Imagin.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\bin\Debug\Imagin.Common.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -48,16 +49,49 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorImage.cs" />
-    <Compile Include="ImageButton.cs" />
-    <Compile Include="ImageToggleButton.cs" />
+    <Compile Include="DoubleTextBox.cs" />
+    <Compile Include="FileBox.xaml.cs">
+      <DependentUpon>FileBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Image\AdvancedImageDropDownButton.cs" />
+    <Compile Include="Image\DropDownButton.cs" />
+    <Compile Include="Image\ImageDropDownButton.cs" />
+    <Compile Include="Image\ColorImage.cs" />
+    <Compile Include="Image\ImageButton.cs" />
+    <Compile Include="Image\ImageToggleButton.cs" />
+    <Compile Include="IntTextBox.cs" />
+    <Compile Include="LongTextBox.cs" />
+    <Compile Include="PasswordBox.xaml.cs">
+      <DependentUpon>PasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="FileBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PasswordBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NextArrow.png" />
+    <Resource Include="Images\Toggle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ArrowDown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

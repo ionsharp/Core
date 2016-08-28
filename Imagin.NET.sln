@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadgets.Search", "Gadgets\G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadgets", "Gadgets\Gadgets\Gadgets.csproj", "{958EBA31-9D49-4FE6-A489-D53A5D5A9E4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controls.Extended", "Controls.Extended\Controls.Extended.csproj", "{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{958EBA31-9D49-4FE6-A489-D53A5D5A9E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{958EBA31-9D49-4FE6-A489-D53A5D5A9E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{958EBA31-9D49-4FE6-A489-D53A5D5A9E4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

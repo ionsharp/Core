@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System;
+using System.Diagnostics;
 
 namespace Imagin.Gadgets.Search
 {
@@ -12,6 +14,8 @@ namespace Imagin.Gadgets.Search
 
     public class SearchEngine : INotifyPropertyChanged
     {
+        public event EventHandler<EventArgs> Queried; 
+
         string name = string.Empty;
         public string Name
         {
@@ -62,7 +66,7 @@ namespace Imagin.Gadgets.Search
                     break;
             }
             if (!string.IsNullOrEmpty(BaseQuery))
-                System.Diagnostics.Process.Start(string.Concat(BaseQuery, Query));
+                Process.Start(string.Concat(BaseQuery, Query));
         }
 
         #region INotifyPropertyChanged

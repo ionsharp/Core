@@ -17,13 +17,11 @@
     MaxWidth="1200"
     SizeToContent="Height"
     WindowStartupLocation="CenterScreen"
-    Foreground="#666"
-    BorderBrush="#007acc"
-    BorderThickness="1">
+    Foreground="#666">
     <Gadgets:Gadget.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Offset="0" Color="#AAF0F0F0"/>
-            <GradientStop Offset="1" Color="#AAEAEAEA"/>
+            <GradientStop Offset="0" Color="#CCF0F0F0"/>
+            <GradientStop Offset="1" Color="#CCEAEAEA"/>
         </LinearGradientBrush>
     </Gadgets:Gadget.Background>
     <Gadgets:Gadget.Resources>

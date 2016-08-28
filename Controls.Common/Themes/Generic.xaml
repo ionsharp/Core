@@ -9,6 +9,9 @@
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
     <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
     <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+    <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+    <System:Double x:Key="DisabledOpacity">0.4</System:Double>
 
     <Style x:Key="{x:Type local:ColorImage}" TargetType="{x:Type local:ColorImage}">
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -230,5 +233,225 @@
                 <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type local:DropDownButton}" TargetType="{x:Type local:DropDownButton}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:DropDownButton">
+                    <Border Padding="{TemplateBinding Padding}"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding Content}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type local:ImageDropDownButton}" TargetType="{x:Type local:ImageDropDownButton}">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ImageDropDownButton}">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Margin="{TemplateBinding Margin}" Padding="{TemplateBinding Padding}">
+                        <Grid Margin="{TemplateBinding Margin}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <local:ColorImage
+                                x:Name="PART_Rectangle" 
+                                Source="{TemplateBinding Source}"
+                                ImageWidth="{TemplateBinding ImageWidth}" 
+                                ImageHeight="{TemplateBinding ImageHeight}"
+                                ImageColor="{TemplateBinding ImageColor}"
+                                VerticalAlignment="Center"
+                                Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                            <Label 
+                                Grid.Column="1" 
+                                x:Name="PART_Label"
+                                Content="{TemplateBinding Text}" 
+                                Margin="{TemplateBinding TextMargin}" 
+                                VerticalAlignment="Center"
+                                Visibility="{TemplateBinding Text, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TextPlacement" Value="Top">
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="1"/>
+                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="TextPlacement" Value="Bottom">
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="1"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="TextPlacement" Value="Left">
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="2"/>
+                        </Trigger>
+                        <Trigger Property="TextPlacement" Value="Right">
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource ImageHoverBrush}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False"/>
+                    <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource ImageBrush}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource ImagePressedBrush}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource ImagePressedBrush}"/>
+            </MultiTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type local:AdvancedImageDropDownButton}" TargetType="{x:Type local:AdvancedImageDropDownButton}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:AdvancedImageDropDownButton">
+                    <Border Margin="{TemplateBinding Margin}" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <local:ImageButton 
+                                x:Name="PART_Icon" 
+                                Source="{TemplateBinding Source}" 
+                                Text="{TemplateBinding Text}" 
+                                ImageWidth="{TemplateBinding ImageWidth}" 
+                                ImageHeight="{TemplateBinding ImageHeight}"
+                                ToolTip="{TemplateBinding ButtonToolTip}"
+                                VerticalAlignment="Center"
+                                TextMargin="{TemplateBinding TextMargin}"/>
+                            <ContentControl 
+                                Grid.Column="1" 
+                                x:Name="PART_Dropdown" 
+                                Margin="5,0,0,0"
+                                Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:AdvancedImageDropDownButton}}}" 
+                                ToolTip="{TemplateBinding DropDownToolTip}" 
+                                VerticalAlignment="Center"
+                                Visibility="{TemplateBinding ShowDropDown, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <ContentControl.Style>
+                                    <Style TargetType="{x:Type ContentControl}">
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ContentControl}">
+                                                    <Rectangle x:Name="PART_Rectangle" Width="12" Height="12" RenderTransformOrigin="0.5,0.5">
+                                                        <Rectangle.OpacityMask>
+                                                            <ImageBrush ImageSource="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
+                                                        </Rectangle.OpacityMask>
+                                                        <Rectangle.RenderTransform>
+                                                            <RotateTransform Angle="-90"/>
+                                                        </Rectangle.RenderTransform>
+                                                    </Rectangle>
+                                                    <ControlTemplate.Triggers>
+                                                        <DataTrigger Binding="{Binding DropDown.IsOpen, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="True">
+                                                            <DataTrigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Duration="0:0:0.25" Storyboard.TargetName="PART_Rectangle" Storyboard.TargetProperty="RenderTransform.Angle" From="-90" To="0"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </DataTrigger.EnterActions>
+                                                            <DataTrigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Duration="0:0:0.25" Storyboard.TargetName="PART_Rectangle" Storyboard.TargetProperty="RenderTransform.Angle" From="0" To="-90"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </DataTrigger.ExitActions>
+                                                            <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImagePressedBrush}"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding DropDown.IsOpen, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="False">
+                                                            <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageBrush}"/>
+                                                        </DataTrigger>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageHoverBrush}"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

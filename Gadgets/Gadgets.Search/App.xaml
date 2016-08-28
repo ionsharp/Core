@@ -11,8 +11,8 @@
     <Application.Resources>
         <System:Double x:Key="DisabledOpacity">0.4</System:Double>
         
-        <SolidColorBrush x:Key="ImageBrush" Color="#BBB"/>
-        <SolidColorBrush x:Key="ImageHoverBrush" Color="#FF349ADE"/>
+        <SolidColorBrush x:Key="ImageBrush" Color="#AAA"/>
+        <SolidColorBrush x:Key="ImageHoverBrush" Color="#FF007acc"/>
         <SolidColorBrush x:Key="ImagePressedBrush" Color="#FF70B6E4"/>
 
         <SolidColorBrush x:Key="TextBoxBackground" Color="Transparent"/>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Diagnostics;
 
 namespace Imagin.Gadgets.Search
 {
@@ -58,7 +59,8 @@ namespace Imagin.Gadgets.Search
 
         void ExecuteQuery()
         {
-            this.SearchEngine.Query(this.Query);
+            string Query = this.Query;
+            this.SearchEngine.Query(Query);
             this.Query = string.Empty;
         }
 
