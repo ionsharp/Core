@@ -1,8 +1,6 @@
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets.Search\bin\Debug\Imagin.Gadgets.Search.exe.config
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets.Search\bin\Debug\Imagin.Gadgets.Search.exe
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets.Search\bin\Debug\Imagin.Gadgets.Search.pdb
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets.Search\bin\Debug\Imagin.Common.pdb
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets.Search\bin\Debug\Imagin.Controls.Common.pdb
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets.Search\obj\Debug\Gadgets.Search.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets.Search\obj\Debug\App.g.cs
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets.Search\obj\Debug\GeneratedInternalTypeHelper.g.cs

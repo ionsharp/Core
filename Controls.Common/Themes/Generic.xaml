@@ -454,4 +454,132 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////-->
+    
+    <Style x:Key="{x:Type local:DragSelection}" TargetType="{x:Type local:DragSelection}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DragSelection}">
+                    <Canvas x:Name="PART_Canvas">
+                        <Border 
+                            x:Name="PART_Rectangle" 
+                            DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                            BorderThickness="1" 
+                            BorderBrush="{DynamicResource ListBoxSelectionBorderBrush}" 
+                            Background="{DynamicResource ListBoxSelectionBackground}" 
+                            CornerRadius="1" 
+                            Opacity="0.5" 
+                            Width="{Binding Selection.Width}" 
+                            Height="{Binding Selection.Height}">
+                            <Border.RenderTransform>
+                                <TranslateTransform 
+                                    X="{Binding Selection.X}" 
+                                    Y="{Binding Selection.Y}"/>
+                            </Border.RenderTransform>
+                        </Border>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type local:CustomDataGrid}" TargetType="{x:Type local:CustomDataGrid}">
+        <Setter Property="Background" Value="{DynamicResource DataGridBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorderBrush}" />
+        <Setter Property="AlternationCount" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CustomDataGrid}">
+                    <Border 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        Background="{TemplateBinding Background}" 
+                        Padding="{TemplateBinding Padding}" 
+                        SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ScrollViewer" Panel.ZIndex="1" Focusable="false">
+                            <ScrollViewer.Template>
+                                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="{Binding ElementName=PART_VerticalScrollBar, Path=ActualWidth, Mode=OneWay}"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="{Binding ElementName=PART_HorizontalScrollBar, Path=ActualHeight, Mode=OneWay}"/>
+                                        </Grid.RowDefinitions>
+                                        <Button 
+                                            Command="{x:Static DataGrid.SelectAllCommand}" 
+                                            Focusable="False" 
+                                            Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" 
+                                            Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                            Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                        <DataGridColumnHeadersPresenter 
+                                            Panel.ZIndex="0" Grid.ColumnSpan="3" x:Name="PART_ColumnHeadersPresenter" Grid.Column="1" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                        <ScrollContentPresenter 
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="3" 
+                                            Grid.RowSpan="2" 
+                                            x:Name="PART_ScrollContentPresenter" 
+                                            CanContentScroll="{TemplateBinding CanContentScroll}"/>
+                                        <ScrollBar 
+                                            Grid.Row="1" 
+                                            Grid.Column="2" 
+                                            Grid.RowSpan="1" 
+                                            x:Name="PART_VerticalScrollBar" 
+                                            Maximum="{TemplateBinding ScrollableHeight}" 
+                                            HorizontalAlignment="Right" 
+                                            Margin="0,0,-5,0"
+                                            Orientation="Vertical" 
+                                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" 
+                                            Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                            ViewportSize="{TemplateBinding ViewportHeight}"/>
+                                        <ScrollBar 
+                                            Grid.Row="2"
+                                            Grid.ColumnSpan="2" 
+                                            x:Name="PART_HorizontalScrollBar" 
+                                            VerticalAlignment="Bottom" 
+                                            Margin="0,0,0,-5"
+                                            Maximum="{TemplateBinding ScrollableWidth}" 
+                                            Orientation="Horizontal" 
+                                            Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" 
+                                            Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                            ViewportSize="{TemplateBinding ViewportWidth}"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </ScrollViewer.Template>
+                            <Grid x:Name="PART_Grid" Background="Transparent" ClipToBounds="True" Margin="{TemplateBinding Padding}">
+                                <ItemsPresenter x:Name="PART_Items" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <local:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding Selection}"/>
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDragSelectionEnabled" Value="True">
+                            <Setter TargetName="PART_Items" Property="Margin" Value="10,0,0,0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type local:CustomListView}" TargetType="{x:Type local:CustomListView}">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CustomListView}">
+                    <ScrollViewer x:Name="PART_ScrollViewer" Margin="{TemplateBinding Margin}">
+                        <Grid x:Name="PART_Grid" Background="Transparent" ClipToBounds="True" Margin="{TemplateBinding Padding}">
+                            <ItemsPresenter/>
+                            <local:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding Selection}"/>
+                        </Grid>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

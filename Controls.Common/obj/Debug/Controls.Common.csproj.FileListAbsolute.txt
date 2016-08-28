@@ -7,7 +7,6 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.g.resources
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.dll
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.pdb
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.dll
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.pdb
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\PasswordBox.g.cs
