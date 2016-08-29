@@ -71,6 +71,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selection.cs" />
+    <Compile Include="UpDown\UpDown.cs" />
+    <Compile Include="UpDown\DoubleUpDown.cs" />
+    <Compile Include="UpDown\IntUpDown.cs" />
+    <Compile Include="UpDown\LongUpDown.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="FileBox.xaml">
@@ -98,6 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ArrowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ArrowUp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -456,6 +456,75 @@
     </Style>
 
     <!--///////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <Style x:Key="{x:Type local:UpDown}" TargetType="{x:Type local:UpDown}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:UpDown}">
+                    <Border 
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                        Width="{TemplateBinding Width}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border 
+                                Grid.RowSpan="2" 
+                                x:Name="border"
+                                MinHeight="{TemplateBinding MinHeight}" 
+                                Height="{TemplateBinding Height}"
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                Padding="{TemplateBinding Padding}">
+                                <Grid>
+                                    <TextBlock 
+                                        Foreground="{DynamicResource PlaceholderForeground}" 
+                                        FontSize="{TemplateBinding FontSize}"
+                                        FontFamily="{TemplateBinding FontFamily}"
+                                        Text="{TemplateBinding Placeholder}" 
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                    <ScrollViewer 
+                                        x:Name="PART_ContentHost" 
+                                        HorizontalAlignment="Stretch" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                        MinHeight="{TemplateBinding MinHeight}" 
+                                        Height="{TemplateBinding Height}"/>
+                                </Grid>
+                            </Border>
+                            <local:ImageButton 
+                                Grid.Column="1" 
+                                x:Name="PART_Up"
+                                ImageWidth="10" 
+                                ImageHeight="10" 
+                                Margin="5,0,0,0"
+                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowUp.png"/>
+                            <local:ImageButton 
+                                Grid.Row="1" 
+                                Grid.Column="1" 
+                                x:Name="PART_Down"
+                                ImageWidth="10" 
+                                ImageHeight="10" 
+                                Margin="5,0,0,0"
+                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////-->
     
     <Style x:Key="{x:Type local:DragSelection}" TargetType="{x:Type local:DragSelection}">
         <Setter Property="Template">

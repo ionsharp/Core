@@ -229,9 +229,5 @@ namespace Imagin.Controls.Extended
         }
 
         #endregion
-
-        #region Events
-
-        #endregion
     }
 }

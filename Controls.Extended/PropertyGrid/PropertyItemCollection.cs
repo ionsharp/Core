@@ -1,13 +1,14 @@
 ﻿using Imagin.Common.Attributes;
+using Imagin.Common.Collections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using Imagin.Common.Collections;
 
 namespace Imagin.Controls.Extended
 {
@@ -62,16 +63,6 @@ namespace Imagin.Controls.Extended
         /// <param name="Callback">What to do afterwards.</param>
         public void FromResourceDictionary(ResourceDictionary Dictionary, Action Callback = null)
         {
-            BackgroundWorker Worker = new BackgroundWorker();
-            Worker.DoWork += (s, e) =>
-            {
-            };
-            Worker.RunWorkerCompleted += (s, e) =>
-            {
-                if (Callback != null)
-                    Callback.Invoke();
-            };
-            Worker.RunWorkerAsync(Dictionary);
             this.Clear();
             ResourceDictionary r = Dictionary;
             foreach (DictionaryEntry Entry in r)
@@ -81,6 +72,8 @@ namespace Imagin.Controls.Extended
                 else if (Entry.Value is SolidColorBrush)
                     this.Add(new SolidColorPropertyItem(null, Entry.Key.ToString(), Entry.Value, "Brushes", false));
             }
+            if (Callback != null)
+                Callback.Invoke();
         }
 
         /// <summary>
@@ -162,6 +155,18 @@ namespace Imagin.Controls.Extended
                     Callback.Invoke(e.Result as PropertyItem);
             };
             Worker.RunWorkerAsync(this.Object);
+        }
+
+        public async void BeginFromUnknown(Func<object, IEnumerable<PropertyItem>> Source)
+        {
+            await Task.Run(new Action(() =>
+            {
+                IEnumerable<PropertyItem> Properties = Source(new object());
+                if (Properties == null)
+                    return;
+                foreach (PropertyItem p in Properties)
+                    this.Add(p);
+            }));
         }
 
         public PropertyItemCollection() : base()
