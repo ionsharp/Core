@@ -104,6 +104,7 @@
     <Compile Include="Extensions\UIElement.cs" />
     <Compile Include="IEditable.cs" />
     <Compile Include="INamable.cs" />
+    <Compile Include="Mvvm\BindingProxy.cs" />
     <Compile Include="NamedEntry.cs" />
     <Compile Include="NamedObject.cs" />
     <Compile Include="NativeMethods.cs" />

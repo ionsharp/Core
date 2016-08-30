@@ -2,7 +2,7 @@
 using System;
 using System.Timers;
 
-namespace Imagin.Mvvm
+namespace Imagin.Common
 {
     [Serializable]
     ///<summary>
