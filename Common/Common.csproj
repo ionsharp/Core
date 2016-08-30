@@ -83,6 +83,7 @@
     <Compile Include="Data\Converters\EmptyStringToVisibilityConverter.cs" />
     <Compile Include="Data\Converters\StringToCamelCaseConverter.cs" />
     <Compile Include="DialogProvider.cs" />
+    <Compile Include="Entry.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Events\ObjectEventArgs.cs" />
     <Compile Include="Exceptions\InvalidResultException.cs" />
@@ -102,6 +103,8 @@
     <Compile Include="Extensions\TimeSpan.cs" />
     <Compile Include="Extensions\UIElement.cs" />
     <Compile Include="IEditable.cs" />
+    <Compile Include="INamable.cs" />
+    <Compile Include="NamedEntry.cs" />
     <Compile Include="NamedObject.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace Imagin.Common
 {
     [Serializable]
-    public class NamedObject : AbstractObject, IEditable
+    public class NamedObject : AbstractObject, IEditable, INamable
     {
         string name = string.Empty;
         [Category("General")]

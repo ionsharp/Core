@@ -14,3 +14,10 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FileBox.g.cs
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FileBox.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.g.cs
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.xml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.g.cs
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.baml

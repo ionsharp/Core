@@ -1,5 +1,8 @@
 ﻿namespace Imagin.Common
 {
+    /// <summary>
+    /// Represents a successful result.
+    /// </summary>
     public class Success : Result
     {
         public object Result

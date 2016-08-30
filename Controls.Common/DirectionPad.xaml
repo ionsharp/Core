@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Imagin.Controls.Common.DirectionPad"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:Imagin.Controls.Common"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" 
+    d:DesignWidth="300">
+    <Grid x:Name="Grid" ClipToBounds="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="24"/>
+            <ColumnDefinition Width="24"/>
+            <ColumnDefinition Width="24"/>
+            <ColumnDefinition Width="0"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="0"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type local:ImageButton}">
+                <EventSetter Event="Click" Handler="OnClick"/>
+            </Style>
+        </Grid.Resources>
+        <local:ImageButton 
+            Grid.Row="1" 
+            Grid.Column="1"  
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowNW.png" 
+            Tag="NW"
+            ToolTip="Top Left"/>
+        <local:ImageButton 
+            Grid.Row="1" 
+            Grid.Column="2"  
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowN.png" 
+            Tag="N"
+            ToolTip="Top"/>
+        <local:ImageButton 
+            Grid.Row="1" 
+            Grid.Column="3"  
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowNE.png" 
+            Tag="NE"
+            ToolTip="Top Right"/>
+        <local:ImageButton 
+            Grid.Row="2" 
+            Grid.Column="1"  
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowW.png" 
+            Tag="W"
+            ToolTip="Left"/>
+        <local:ImageButton 
+            Grid.Row="2" 
+            Grid.Column="2"  
+            x:Name="PART_OriginButton"
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowP.png" 
+            Tag="Origin"
+            ToolTip="Center"/>
+        <local:ImageButton 
+            Grid.Row="2" 
+            Grid.Column="3"  
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowE.png" 
+            Tag="E"
+            ToolTip="Right"/>
+        <local:ImageButton 
+            Grid.Row="3" 
+            Grid.Column="1"  
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowSW.png" 
+            Tag="SW"
+            ToolTip="Bottom Left"/>
+        <local:ImageButton 
+            Grid.Row="3" 
+            Grid.Column="2"  
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowS.png" 
+            Tag="S"
+            ToolTip="Bottom"/>
+        <local:ImageButton 
+            Grid.Row="3" 
+            Grid.Column="3"  
+            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowSE.png" 
+            Tag="SE"
+            ToolTip="Bottom Right"/>
+    </Grid>
+</UserControl>

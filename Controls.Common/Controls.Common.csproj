@@ -47,15 +47,29 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WPFLocalizeExtension, Version=2.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfLocalizeExtension.2.3.2\lib\net35\WPFLocalizeExtension.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XAMLMarkupExtensions, Version=1.2.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAMLMarkupExtensions.1.2.1.3\lib\net40\XAMLMarkupExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomDataGrid.cs" />
     <Compile Include="CustomListView.cs" />
+    <Compile Include="DirectionPad.xaml.cs">
+      <DependentUpon>DirectionPad.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DoubleTextBox.cs" />
     <Compile Include="DragSelection.cs" />
     <Compile Include="DragSelector.cs" />
     <Compile Include="FileBox.xaml.cs">
       <DependentUpon>FileBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FontFamilyBox.xaml.cs">
+      <DependentUpon>FontFamilyBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Link.cs" />
     <Compile Include="IDragSelector.cs" />
@@ -81,9 +95,17 @@
     <Compile Include="UpDown\LongUpDown.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="DirectionPad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FileBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FontFamilyBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PasswordBox.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +131,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ArrowUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ArrowE.png" />
+    <Resource Include="Images\ArrowN.png" />
+    <Resource Include="Images\ArrowNE.png" />
+    <Resource Include="Images\ArrowNW.png" />
+    <Resource Include="Images\ArrowP.png" />
+    <Resource Include="Images\ArrowS.png" />
+    <Resource Include="Images\ArrowSE.png" />
+    <Resource Include="Images\ArrowSW.png" />
+    <Resource Include="Images\ArrowW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

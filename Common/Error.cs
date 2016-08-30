@@ -1,5 +1,8 @@
 ﻿namespace Imagin.Common
 {
+    /// <summary>
+    /// Represents a failed result.
+    /// </summary>
     public class Error : Result
     {
         string message = default(string);
