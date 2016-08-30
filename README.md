@@ -7,7 +7,7 @@ Imagin.NET is a library written in C# that provides common WPF controls and util
 ###Common
 
      .       |         .         |        .         |         .           |             .              | 
--------------------------------------------------------------------------------------------------------|
+-------------|-------------------|------------------|---------------------|----------------------------|
 Line         | Link              | TreeViewComboBox | RadioGroup          | ColorImage                 |
 ImageButton  | ImageToggleButton | DropDownButton   | ImageDropDownButton | AdvancedImageDropDownButton|
 IntTextBox   | LongTextBox       | DoubleTextBox    | IntUpDown           | LongUpDown                 |
@@ -15,8 +15,8 @@ DoubleUpDown | CustomDataGrid    | CustomListView   | FontFamilyBox       | Dire
 
 ###Extended
 
-     .       |     .      | 
---------------------------|
+     .       |      .     | 
+-------------|------------|
 PropertyGrid | TabbedTree |
 
 ##Desktop Gadgets
