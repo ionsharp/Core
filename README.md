@@ -12,6 +12,7 @@ Line         | Link              | TreeViewComboBox | RadioGroup          | Colo
 ImageButton  | ImageToggleButton | DropDownButton   | ImageDropDownButton | AdvancedImageDropDownButton|
 IntTextBox   | LongTextBox       | DoubleTextBox    | IntUpDown           | LongUpDown                 |
 DoubleUpDown | CustomDataGrid    | CustomListView   | FontFamilyBox       | DirectionPad               |
+Spacer       | 
 
 ###Extended
 
