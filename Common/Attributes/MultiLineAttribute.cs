@@ -4,14 +4,14 @@ namespace Imagin.Common.Attributes
 {
     [Serializable]
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
-    public class MultiLine : Attribute
+    public class MultiLineAttribute : Attribute
     {
         public bool IsMultiLine
         {
             get; set;
         }
 
-        public MultiLine(bool IsMultiLine)
+        public MultiLineAttribute(bool IsMultiLine)
         {
             this.IsMultiLine = IsMultiLine;
         }

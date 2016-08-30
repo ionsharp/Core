@@ -112,9 +112,9 @@ namespace Imagin.Controls.Extended
                     object[] Attributes = Property.GetCustomAttributes(true);
                     foreach (object Attribute in Attributes)
                     {
-                        if (Attribute is Hide)
+                        if (Attribute is HideAttribute)
                         {
-                            bool IsHidden = (Attribute as Hide).Value;
+                            bool IsHidden = (Attribute as HideAttribute).Value;
                             if (IsHidden)
                             {
                                 Skip = true;
@@ -122,16 +122,16 @@ namespace Imagin.Controls.Extended
                             }
                             FoundAttributes["IsHidden"] = IsHidden;
                         }
-                        if (Attribute is Category)
-                            FoundAttributes["Category"] = (Attribute as Category).Name;
-                        if (Attribute is Password)
-                            FoundAttributes["IsPassword"] = (Attribute as Password).Value;
-                        if (Attribute is File)
-                            FoundAttributes["IsFile"] = (Attribute as File).Value;
-                        if (Attribute is Primary)
-                            FoundAttributes["IsPrimary"] = (Attribute as Primary).IsPrimary;
-                        if (Attribute is MultiLine)
-                            FoundAttributes["IsMultiLine"] = (Attribute as MultiLine).IsMultiLine;
+                        if (Attribute is CategoryAttribute)
+                            FoundAttributes["Category"] = (Attribute as CategoryAttribute).Category;
+                        if (Attribute is PasswordAttribute)
+                            FoundAttributes["IsPassword"] = (Attribute as PasswordAttribute).Value;
+                        if (Attribute is FileAttribute)
+                            FoundAttributes["IsFile"] = (Attribute as FileAttribute).Value;
+                        if (Attribute is PrimaryAttribute)
+                            FoundAttributes["IsPrimary"] = (Attribute as PrimaryAttribute).IsPrimary;
+                        if (Attribute is MultiLineAttribute)
+                            FoundAttributes["IsMultiLine"] = (Attribute as MultiLineAttribute).IsMultiLine;
                         if (Attribute is ReadOnlyAttribute)
                             FoundAttributes["IsReadOnly"] = (Attribute as ReadOnlyAttribute).IsReadOnly;
                     }

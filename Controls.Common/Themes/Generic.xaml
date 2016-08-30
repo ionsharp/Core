@@ -13,6 +13,150 @@
 
     <System:Double x:Key="DisabledOpacity">0.4</System:Double>
 
+    <Style TargetType="{x:Type local:Line}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Line}">
+                    <Rectangle x:Name="PART_Rectangle" Fill="{TemplateBinding Color}"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Horizontal">
+                            <Setter TargetName="PART_Rectangle" Property="Width" Value="Auto"/>
+                            <Setter TargetName="PART_Rectangle" Property="Height" Value="{Binding Stroke, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter TargetName="PART_Rectangle" Property="Width" Value="{Binding Stroke, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter TargetName="PART_Rectangle" Property="Height" Value="Auto"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:Link}">
+        <Setter Property="Foreground" Value="{DynamicResource LinkBrush}" />
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Link">
+                    <Border 
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        Margin="{TemplateBinding Margin}" 
+                        Padding="{TemplateBinding Padding}" 
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                        <TextBlock 
+                            TextDecorations="{TemplateBinding TextDecorations}"
+                            Foreground="{TemplateBinding Foreground}" 
+                            FontFamily="{TemplateBinding FontFamily}" 
+                            FontSize="{TemplateBinding FontSize}" 
+                            FontStretch="{TemplateBinding FontStretch}" 
+                            FontStyle="{TemplateBinding FontStyle}" 
+                            FontWeight="{TemplateBinding FontWeight}">
+                            <Run Text="{TemplateBinding Content}"/>
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextDecorations" Value="Underline" />
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="TextDecorations" Value="Underline" />
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False"/>
+                    <Condition Property="IsPressed" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="TextDecorations" Value="None" />
+                <Setter Property="Background" Value="Transparent"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="local:TreeViewComboBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:TreeViewComboBox}">
+                    <Grid>
+                        <ToggleButton x:Name="ToggleButton" Template="{StaticResource ComboBoxToggleButton}" Grid.Column="2" Focusable="false" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
+                        <TextBlock Text="{TemplateBinding Text}" Margin="8,0,21,0" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <!--<ContentPresenter Margin="8,0,21,0"  x:Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>-->
+                        <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                            <Grid x:Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}">
+                                <Border x:Name="DropDownBorder" Background="{DynamicResource ComboBoxDropDownBackground}" BorderThickness="1" BorderBrush="{DynamicResource ComboBoxDropDownBorderBrush}">
+                                    <TreeView x:Name="PART_TreeView" ItemsSource="{TemplateBinding Items}" BorderThickness="0" Margin="10,5"/>
+                                </Border>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="50" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:RadioGroup">
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type RadioButton}">
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type RadioButton}">
+                                <BulletDecorator Background="Transparent" Cursor="Hand">
+                                    <Border Background="{TemplateBinding Background}" Margin="0,0,-1,0" Style="{DynamicResource BorderRightStyle}">
+                                        <TextBlock Margin="7,2" Foreground="{TemplateBinding Foreground}" FontSize="12"><InlineUIContainer><ContentPresenter /></InlineUIContainer></TextBlock>
+                                    </Border>
+                                </BulletDecorator>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#11000000" />
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BorderBrush}" />
+                                        <Setter Property="Foreground" Value="#FFF" />
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:RadioGroup}">
+                    <Grid>
+                        <Border CornerRadius="4" BorderBrush="{DynamicResource BorderBrush}"  BorderThickness="1">
+                            <StackPanel IsItemsHost="True" Orientation="Horizontal" ClipToBounds="True"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="{x:Type local:ColorImage}" TargetType="{x:Type local:ColorImage}">
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="ImageColor" Value="{DynamicResource ImageBrush}"/>

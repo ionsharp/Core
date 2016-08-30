@@ -4,14 +4,14 @@ namespace Imagin.Common.Attributes
 {
     [Serializable]
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
-    public class Hide : Attribute
+    public class HideAttribute : Attribute
     {
         public bool Value
         {
             get; set;
         }
 
-        public Hide(bool Value)
+        public HideAttribute(bool Value)
         {
             this.Value = Value;
         }
