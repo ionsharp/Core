@@ -1,14 +1,24 @@
-﻿using System.Windows;
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Common
 {
     public class LongUpDown : UpDown
     {
-        public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(long), typeof(DoubleUpDown), new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public long Value
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.Text))
+                    return 0L;
+                else return this.Text.ToLong();
+            }
+        }
+
+        public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(long), typeof(LongUpDown), new FrameworkPropertyMetadata(0L, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public long Minimum
         {
             get
@@ -21,7 +31,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(long), typeof(DoubleUpDown), new FrameworkPropertyMetadata(100d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(long), typeof(LongUpDown), new FrameworkPropertyMetadata(1000000L, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public long Maximum
         {
             get
@@ -49,14 +59,24 @@ namespace Imagin.Controls.Common
         {
             if (string.IsNullOrEmpty(this.Text))
                 this.Text = 0L.ToString();
-            else this.Text = (Convert.ToInt64(this.Text) + 1L).ToString();
+            else this.Text = (this.Text.ToLong() + 1L).ToString();
         }
 
         protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(this.Text))
                 this.Text = 0L.ToString();
-            else this.Text = (Convert.ToInt64(this.Text) - 1L).ToString();
+            else this.Text = (this.Text.ToLong() - 1L).ToString();
+        }
+
+        protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.Value < this.Maximum;
+        }
+
+        protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.Value > this.Minimum;
         }
     }
 }

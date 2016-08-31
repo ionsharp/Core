@@ -12,7 +12,7 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
-        bool Switch = false;
+        bool IgnoreSelectedItemChange = false;
 
         public event EventHandler<ObjectEventArgs> SelectedItemChanged;
 
@@ -20,20 +20,7 @@ namespace Imagin.Controls.Common
         {
             get; set;
         }
-
-        public static DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ConcurrentObservableCollection<NamedObject>), typeof(TreeViewComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public new ConcurrentObservableCollection<NamedObject> Items
-        {
-            get
-            {
-                return (ConcurrentObservableCollection<NamedObject>)GetValue(ItemsProperty);
-            }
-            set
-            {
-                SetValue(ItemsProperty, value);
-            }
-        }
-
+        
         public new static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int), typeof(TreeViewComboBox), new FrameworkPropertyMetadata(-1, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedIndexChanged));
         public new int SelectedIndex
         {
@@ -50,16 +37,16 @@ namespace Imagin.Controls.Common
         {
         }
 
-        public new static DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(TreeViewComboBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public new string Text
+        public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TreeViewComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate ContentTemplate
         {
             get
             {
-                return (string)GetValue(TextProperty);
+                return (DataTemplate)GetValue(ContentTemplateProperty);
             }
             set
             {
-                SetValue(TextProperty, value);
+                SetValue(ContentTemplateProperty, value);
             }
         }
 
@@ -78,11 +65,9 @@ namespace Imagin.Controls.Common
         private static void OnSelectedItemChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             TreeViewComboBox TreeViewComboBox = Object as TreeViewComboBox;
-            if (TreeViewComboBox.SelectedItem is NamedObject)
-                TreeViewComboBox.Text = (TreeViewComboBox.SelectedItem as NamedObject).Name;
-            if (TreeViewComboBox.Switch)
+            if (TreeViewComboBox.IgnoreSelectedItemChange)
             {
-                TreeViewComboBox.Switch = false;
+                TreeViewComboBox.IgnoreSelectedItemChange = false;
                 return;
             }
             TreeViewComboBox.Select(TreeViewComboBox.SelectedItem);
@@ -95,15 +80,6 @@ namespace Imagin.Controls.Common
         public TreeViewComboBox() : base()
         {
             this.DefaultStyleKey = typeof(TreeViewComboBox);
-            this.Loaded += TreeViewComboBox_Loaded;
-        }
-
-        private void TreeViewComboBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Item is usually set before the template has a chance to load.
-            //Because of this, initial set will always fail and so
-            //we attempt again once everything loads.
-            this.Select(this.SelectedItem);
         }
 
         #endregion
@@ -121,12 +97,14 @@ namespace Imagin.Controls.Common
             {
                 this.TreeView = TreeView;
                 this.TreeView.Resources = this.Resources;
-                this.TreeView.SelectedItemChanged += TreeView_SelectedItemChanged;
+                this.TreeView.SelectedItemChanged += OnSelectedItemChanged;
             }
 
             Popup Popup = this.Template.FindName("PART_Popup", this) as Popup;
             if (Popup != null)
-                Popup.LostFocus += Popup_LostFocus;
+                Popup.LostFocus += (s, e) => this.IsDropDownOpen = false;
+
+            this.Select(this.SelectedItem);
         }
 
         #endregion
@@ -146,16 +124,12 @@ namespace Imagin.Controls.Common
 
         #region Events
 
-        void Popup_LostFocus(object sender, RoutedEventArgs e)
+        void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            this.IsDropDownOpen = false;
-        }
-
-        void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            object Item = (sender as TreeView).SelectedItem;
-            this.Switch = true;
-            this.SelectedItem = Item;
+            if (this.TreeView == null)
+                return;
+            this.IgnoreSelectedItemChange = true;
+            this.SelectedItem = e.NewValue;
             if (this.SelectedItemChanged != null)
                 this.SelectedItemChanged(this, new ObjectEventArgs(this.SelectedItem));
         }

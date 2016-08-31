@@ -30,10 +30,6 @@ namespace Imagin.Common
 
         #region Methods
         
-        protected override void OnInitialized()
-        {
-        }
-
         public override string ToString()
         {
             return this.Name;
@@ -43,20 +39,23 @@ namespace Imagin.Common
 
         #region NamedEntry
 
-        public NamedEntry()
+        public NamedEntry() : base()
         {
         }
 
-        public NamedEntry(string Name)
-        {
-            this.Name = Name;
-        }
-
-        public NamedEntry(string Name, int NotifyEvery) : base(NotifyEvery)
+        public NamedEntry(string Name, int NotifyEvery = 1000) : base(NotifyEvery)
         {
             this.Name = Name;
         }
 
+        public NamedEntry(string Name, DateTime Date, int NotifyEvery = 1000) : base(Date, NotifyEvery)
+        {
+            this.Name = Name;
+        }
+
+        public NamedEntry(DateTime Date, int NotifyEvery = 1000) : base(Date, NotifyEvery)
+        {
+        }
         #endregion
     }
 }

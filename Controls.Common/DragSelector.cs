@@ -178,7 +178,7 @@ namespace Imagin.Controls.Common
                 if (Element is ScrollContentPresenter)
                 {
                     this.ScrollContent = Element as ScrollContentPresenter;
-                    this.Hash = this.ScrollViewer.Style.GetHashCode();
+                    this.Hash = this.ScrollContent.GetHashCode();
                     Console.WriteLine(this.Hash.ToString());
                     break;
                 }
@@ -345,7 +345,7 @@ namespace Imagin.Controls.Common
         /// </summary>
         void OnScrollViewerLayoutUpdated(object sender, EventArgs e)
         {
-            if (this.Hash == null || this.ScrollViewer.Style.GetHashCode() != this.Hash.Value)
+            if (this.Hash == null || this.ScrollContent.GetHashCode() != this.Hash.Value)
                 this.FindScrollContent();
         }
 

@@ -7,10 +7,12 @@
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
+    <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
     <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
     <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
     <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-
+    <Common.Data.Converters:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
+    
     <System:Double x:Key="DisabledOpacity">0.4</System:Double>
 
     <Style TargetType="{x:Type local:Line}">
@@ -82,18 +84,128 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="{x:Type local:AdvancedTreeView}">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AdvancedTreeView}">
+                    <ScrollViewer 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        Background="{TemplateBinding Background}" 
+                        Padding="{TemplateBinding Padding}" 
+                        Focusable="False" 
+                        CanContentScroll="True">
+                        <ItemsPresenter HorizontalAlignment="Stretch"/>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+        <Border 
+            Padding="{TemplateBinding Padding}"
+            BorderThickness="{TemplateBinding BorderThickness}" 
+            Background="{TemplateBinding Background}" 
+            BorderBrush="{TemplateBinding BorderBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border 
+                    Grid.Column="1" 
+                    Background="{DynamicResource ComboBoxToggleButtonBackground}"/>
+                <Path 
+                    Grid.Column="1" 
+                    Fill="{DynamicResource ComboBoxToggleButtonArrowFill}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z" />
+            </Grid>
+        </Border>
+    </ControlTemplate>
+    
     <Style TargetType="local:TreeViewComboBox">
+        <Setter Property="Background" Value="{DynamicResource ComboBoxBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TreeViewComboBox}">
-                    <Grid>
-                        <ToggleButton x:Name="ToggleButton" Template="{StaticResource ComboBoxToggleButton}" Grid.Column="2" Focusable="false" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
-                        <TextBlock Text="{TemplateBinding Text}" Margin="8,0,21,0" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <!--<ContentPresenter Margin="8,0,21,0"  x:Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>-->
+                    <Grid
+                        MinWidth="{TemplateBinding MinWidth}"
+                        MaxWidth="{TemplateBinding MaxWidth}"
+                        MinHeight="{TemplateBinding MinHeight}"
+                        MaxHeight="{TemplateBinding MaxHeight}"
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}">
+                        <ToggleButton 
+                            Grid.Column="2" 
+                            x:Name="ToggleButton" 
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            Template="{StaticResource ComboBoxToggleButton}" 
+                            Focusable="false" 
+                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                            ClickMode="Press"/>
+                        <ContentControl 
+                            Content="{TemplateBinding SelectedItem}"
+                            Margin="8,0,21,0"
+                            IsHitTestVisible="False" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Left">
+                            <ContentControl.Resources>
+                                <DataTemplate x:Key="DefaultContentTemplate">
+                                    <TextBlock Text="{Binding Header}"/>
+                                </DataTemplate>
+                            </ContentControl.Resources>
+                            <ContentControl.Style>
+                                <Style TargetType="ContentControl">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TreeViewComboBox}}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="True">
+                                            <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TreeViewComboBox}}}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TreeViewComboBox}}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="False">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource DefaultContentTemplate}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
                         <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
                             <Grid x:Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}">
                                 <Border x:Name="DropDownBorder" Background="{DynamicResource ComboBoxDropDownBackground}" BorderThickness="1" BorderBrush="{DynamicResource ComboBoxDropDownBorderBrush}">
-                                    <TreeView x:Name="PART_TreeView" ItemsSource="{TemplateBinding Items}" BorderThickness="0" Margin="10,5"/>
+                                    <local:AdvancedTreeView 
+                                        x:Name="PART_TreeView" 
+                                        ItemBindingGroup="{TemplateBinding ItemBindingGroup}"
+                                        ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
+                                        ItemContainerStyleSelector="{TemplateBinding ItemContainerStyleSelector}"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}"
+                                        ItemsSource="{TemplateBinding ItemsSource}"
+                                        ItemStringFormat="{TemplateBinding ItemStringFormat}"
+                                        ItemTemplate="{TemplateBinding ItemTemplate}"
+                                        ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                        ExpandOnClick="False"
+                                        CollapseSiblings="False"
+                                        BorderThickness="0" 
+                                        Margin="10,5"/>
                                 </Border>
                             </Grid>
                         </Popup>
@@ -109,17 +221,28 @@
     </Style>
 
     <Style TargetType="local:RadioGroup">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type RadioButton}">
                     <Setter Property="Cursor" Value="Hand" />
                     <Setter Property="FontSize" Value="13" />
+                    <Setter Property="Background" Value="Transparent" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type RadioButton}">
                                 <BulletDecorator Background="Transparent" Cursor="Hand">
-                                    <Border Background="{TemplateBinding Background}" Margin="0,0,-1,0" Style="{DynamicResource BorderRightStyle}">
-                                        <TextBlock Margin="7,2" Foreground="{TemplateBinding Foreground}" FontSize="12"><InlineUIContainer><ContentPresenter /></InlineUIContainer></TextBlock>
+                                    <Border 
+                                        Background="{TemplateBinding Background}" 
+                                        Margin="0,0,-1,0" 
+                                        BorderThickness="0,0,1,0"
+                                        BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:RadioGroup}}}">
+                                        <TextBlock 
+                                            Margin="7,2" 
+                                            Foreground="{TemplateBinding Foreground}" 
+                                            FontSize="12"><InlineUIContainer><ContentPresenter /></InlineUIContainer></TextBlock>
                                     </Border>
                                 </BulletDecorator>
                                 <ControlTemplate.Triggers>
@@ -127,12 +250,12 @@
                                         <Setter Property="Background" Value="#11000000" />
                                     </Trigger>
                                     <Trigger Property="IsChecked" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource BorderBrush}" />
+                                        <Setter Property="Background" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:RadioGroup}}}" />
                                         <Setter Property="Foreground" Value="#FFF" />
                                     </Trigger>
                                     <Trigger Property="IsChecked" Value="False">
                                         <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:RadioGroup}}}" />
                                     </Trigger>
                                     <Trigger Property="IsEnabled" Value="False">
                                         <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
@@ -148,8 +271,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RadioGroup}">
                     <Grid>
-                        <Border CornerRadius="4" BorderBrush="{DynamicResource BorderBrush}"  BorderThickness="1">
-                            <StackPanel IsItemsHost="True" Orientation="Horizontal" ClipToBounds="True"/>
+                        <Border 
+                            CornerRadius="4" 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"  
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Padding="{TemplateBinding Padding}" 
+                            Margin="{TemplateBinding Margin}">
+                            <StackPanel 
+                                IsItemsHost="True" 
+                                Orientation="Horizontal" 
+                                ClipToBounds="True"/>
                         </Border>
                     </Grid>
                 </ControlTemplate>
@@ -163,7 +295,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorImage}">
-                    <Rectangle Width="{TemplateBinding ImageWidth}" Height="{TemplateBinding ImageHeight}" Fill="{TemplateBinding ImageColor}" OpacityMask="{TemplateBinding ImageBrush}"/>
+                    <Rectangle 
+                        Width="{TemplateBinding ImageWidth}" 
+                        Height="{TemplateBinding ImageHeight}" 
+                        Fill="{TemplateBinding ImageColor}" 
+                        OpacityMask="{TemplateBinding ImageBrush}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -209,55 +345,55 @@
                                 Margin="0"
                                 Padding="0"
                                 Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
-                            <Label 
-                                x:Name="PART_Label"
+                            <ContentControl 
                                 Grid.Column="1" 
-                                Content="{TemplateBinding Text}" 
-                                Margin="{TemplateBinding TextMargin}" 
-                                VerticalAlignment="Center" 
-                                Visibility="{TemplateBinding Text, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                                x:Name="PART_Content"
+                                Content="{TemplateBinding Content}" 
+                                Margin="{TemplateBinding ContentMargin}" 
+                                VerticalAlignment="Center"
+                                Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="TextPlacement" Value="Top">
+                        <Trigger Property="ContentPlacement" Value="Top">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="2"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="1"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Bottom">
+                        <Trigger Property="ContentPlacement" Value="Bottom">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="2"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="1"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Left">
+                        <Trigger Property="ContentPlacement" Value="Left">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="2"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Right">
+                        <Trigger Property="ContentPlacement" Value="Right">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -310,55 +446,55 @@
                                 ImageHeight="{TemplateBinding ImageHeight}"
                                 ImageColor="{TemplateBinding ImageColor}"
                                 VerticalAlignment="Center"/>
-                            <Label 
+                            <ContentControl 
                                 Grid.Column="1" 
-                                x:Name="PART_Label"
-                                Content="{TemplateBinding Text}" 
-                                Margin="{TemplateBinding TextMargin}" 
-                                VerticalAlignment="Center" 
-                                Visibility="{TemplateBinding Text, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                                x:Name="PART_Content"
+                                Content="{TemplateBinding Content}" 
+                                Margin="{TemplateBinding ContentMargin}" 
+                                VerticalAlignment="Center"
+                                Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="TextPlacement" Value="Top">
+                        <Trigger Property="ContentPlacement" Value="Top">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="2"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="1"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Bottom">
+                        <Trigger Property="ContentPlacement" Value="Bottom">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="2"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="1"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Left">
+                        <Trigger Property="ContentPlacement" Value="Left">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="2"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Right">
+                        <Trigger Property="ContentPlacement" Value="Right">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -379,30 +515,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{x:Type local:DropDownButton}" TargetType="{x:Type local:DropDownButton}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:DropDownButton">
-                    <Border Padding="{TemplateBinding Padding}"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
-                        <ContentPresenter Content="{TemplateBinding Content}"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent"/>
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
     <Style x:Key="{x:Type local:ImageDropDownButton}" TargetType="{x:Type local:ImageDropDownButton}">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -411,8 +523,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ImageDropDownButton}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Margin="{TemplateBinding Margin}" Padding="{TemplateBinding Padding}">
-                        <Grid Margin="{TemplateBinding Margin}">
+                    <Border 
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        Margin="{TemplateBinding Margin}" 
+                        Padding="{TemplateBinding Padding}">
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -427,57 +544,56 @@
                                 ImageWidth="{TemplateBinding ImageWidth}" 
                                 ImageHeight="{TemplateBinding ImageHeight}"
                                 ImageColor="{TemplateBinding ImageColor}"
-                                VerticalAlignment="Center"
-                                Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
-                            <Label 
+                                VerticalAlignment="Center"/>
+                            <ContentControl 
                                 Grid.Column="1" 
-                                x:Name="PART_Label"
-                                Content="{TemplateBinding Text}" 
-                                Margin="{TemplateBinding TextMargin}" 
+                                x:Name="PART_Content"
+                                Content="{TemplateBinding Content}" 
+                                Margin="{TemplateBinding ContentMargin}" 
                                 VerticalAlignment="Center"
-                                Visibility="{TemplateBinding Text, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                                Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="TextPlacement" Value="Top">
+                        <Trigger Property="ContentPlacement" Value="Top">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="2"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="1"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Bottom">
+                        <Trigger Property="ContentPlacement" Value="Bottom">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="2"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="1"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Left">
+                        <Trigger Property="ContentPlacement" Value="Left">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="2"/>
                         </Trigger>
-                        <Trigger Property="TextPlacement" Value="Right">
+                        <Trigger Property="ContentPlacement" Value="Right">
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
-                            <Setter TargetName="PART_Label" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
-                            <Setter TargetName="PART_Label" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
-                            <Setter TargetName="PART_Label" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -524,7 +640,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AdvancedImageDropDownButton">
-                    <Border Margin="{TemplateBinding Margin}" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                    <Border 
+                        Margin="{TemplateBinding Margin}" 
+                        Padding="{TemplateBinding Padding}" 
+                        Background="{TemplateBinding Background}"  
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -533,12 +654,12 @@
                             <local:ImageButton 
                                 x:Name="PART_Icon" 
                                 Source="{TemplateBinding Source}" 
-                                Text="{TemplateBinding Text}" 
+                                Content="{TemplateBinding Content}" 
+                                ContentMargin="{TemplateBinding ContentMargin}"
                                 ImageWidth="{TemplateBinding ImageWidth}" 
                                 ImageHeight="{TemplateBinding ImageHeight}"
                                 ToolTip="{TemplateBinding ButtonToolTip}"
-                                VerticalAlignment="Center"
-                                TextMargin="{TemplateBinding TextMargin}"/>
+                                VerticalAlignment="Center"/>
                             <ContentControl 
                                 Grid.Column="1" 
                                 x:Name="PART_Dropdown" 
@@ -562,24 +683,34 @@
                                                         </Rectangle.RenderTransform>
                                                     </Rectangle>
                                                     <ControlTemplate.Triggers>
-                                                        <DataTrigger Binding="{Binding DropDown.IsOpen, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="True">
+                                                        <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:AdvancedImageDropDownButton}}}" Value="True">
                                                             <DataTrigger.EnterActions>
                                                                 <BeginStoryboard>
                                                                     <Storyboard>
-                                                                        <DoubleAnimation Duration="0:0:0.25" Storyboard.TargetName="PART_Rectangle" Storyboard.TargetProperty="RenderTransform.Angle" From="-90" To="0"/>
+                                                                        <DoubleAnimation 
+                                                                            Duration="0:0:0.25" 
+                                                                            Storyboard.TargetName="PART_Rectangle" 
+                                                                            Storyboard.TargetProperty="RenderTransform.Angle" 
+                                                                            From="-90" 
+                                                                            To="0"/>
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
                                                             </DataTrigger.EnterActions>
                                                             <DataTrigger.ExitActions>
                                                                 <BeginStoryboard>
                                                                     <Storyboard>
-                                                                        <DoubleAnimation Duration="0:0:0.25" Storyboard.TargetName="PART_Rectangle" Storyboard.TargetProperty="RenderTransform.Angle" From="0" To="-90"/>
+                                                                        <DoubleAnimation 
+                                                                            Duration="0:0:0.25" 
+                                                                            Storyboard.TargetName="PART_Rectangle" 
+                                                                            Storyboard.TargetProperty="RenderTransform.Angle" 
+                                                                            From="0" 
+                                                                            To="-90"/>
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
                                                             </DataTrigger.ExitActions>
                                                             <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImagePressedBrush}"/>
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding DropDown.IsOpen, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="False">
+                                                        <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:AdvancedImageDropDownButton}}}" Value="False">
                                                             <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageBrush}"/>
                                                         </DataTrigger>
                                                         <Trigger Property="IsMouseOver" Value="True">
@@ -616,18 +747,14 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
                             <Border 
                                 Grid.RowSpan="2" 
                                 x:Name="border"
                                 MinHeight="{TemplateBinding MinHeight}" 
                                 Height="{TemplateBinding Height}"
+                                Padding="{TemplateBinding Padding}"
                                 HorizontalAlignment="Stretch" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                Padding="{TemplateBinding Padding}">
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid>
                                     <TextBlock 
                                         Foreground="{DynamicResource PlaceholderForeground}" 
@@ -646,21 +773,29 @@
                                         Height="{TemplateBinding Height}"/>
                                 </Grid>
                             </Border>
-                            <local:ImageButton 
-                                Grid.Column="1" 
-                                x:Name="PART_Up"
-                                ImageWidth="10" 
-                                ImageHeight="10" 
-                                Margin="5,0,0,0"
-                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowUp.png"/>
-                            <local:ImageButton 
-                                Grid.Row="1" 
-                                Grid.Column="1" 
-                                x:Name="PART_Down"
-                                ImageWidth="10" 
-                                ImageHeight="10" 
-                                Margin="5,0,0,0"
-                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
+                            <Grid Grid.Column="1" Margin="0,0,5,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <local:ImageButton 
+                                    x:Name="PART_Up"
+                                    ImageWidth="10" 
+                                    ImageHeight="10" 
+                                    Margin="5,0,0,0"
+                                    Command="{x:Static local:UpDown.Up}"
+                                    CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
+                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowUp.png"/>
+                                <local:ImageButton 
+                                    Grid.Row="1" 
+                                    x:Name="PART_Down"
+                                    ImageWidth="10" 
+                                    ImageHeight="10" 
+                                    Margin="5,0,0,0"
+                                    Command="{x:Static local:UpDown.Down}"
+                                    CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
+                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
+                            </Grid>
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -671,6 +806,9 @@
     <!--///////////////////////////////////////////////////////////////////////////////////////////////////-->
     
     <Style x:Key="{x:Type local:DragSelection}" TargetType="{x:Type local:DragSelection}">
+        <Setter Property="Background" Value="#349ADE"/>
+        <Setter Property="BorderBrush" Value="#FF2B97E0"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:DragSelection}">
@@ -678,9 +816,9 @@
                         <Border 
                             x:Name="PART_Rectangle" 
                             DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                            BorderThickness="1" 
-                            BorderBrush="{DynamicResource ListBoxSelectionBorderBrush}" 
-                            Background="{DynamicResource ListBoxSelectionBackground}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            Background="{TemplateBinding Background}" 
                             CornerRadius="1" 
                             Opacity="0.5" 
                             Width="{Binding Selection.Width}" 
@@ -697,13 +835,13 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{x:Type local:CustomDataGrid}" TargetType="{x:Type local:CustomDataGrid}">
+    <Style x:Key="{x:Type local:AdvancedDataGrid}" TargetType="{x:Type local:AdvancedDataGrid}">
         <Setter Property="Background" Value="{DynamicResource DataGridBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorderBrush}" />
         <Setter Property="AlternationCount" Value="2" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CustomDataGrid}">
+                <ControlTemplate TargetType="{x:Type local:AdvancedDataGrid}">
                     <Border 
                         BorderBrush="{TemplateBinding BorderBrush}" 
                         BorderThickness="{TemplateBinding BorderThickness}" 
@@ -780,19 +918,88 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{x:Type local:CustomListView}" TargetType="{x:Type local:CustomListView}">
+    <Style x:Key="{x:Type local:AdvancedListView}" TargetType="{x:Type local:AdvancedListView}">
+        <Setter Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="True"/>
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CustomListView}">
+                <ControlTemplate TargetType="{x:Type local:AdvancedListView}">
+                    <ControlTemplate.Resources>
+                        <Style x:Key="GridViewStyle" TargetType="{x:Type ScrollViewer}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ScrollViewer">
+                                        <Border Padding="{TemplateBinding Padding}">
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Border Grid.ColumnSpan="2" Background="#11000000">
+                                                    <GridViewHeaderRowPresenter 
+                                                        HorizontalAlignment="Stretch"
+                                                        Columns="{Binding TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        ColumnHeaderContainerStyle="{Binding TemplatedParent.View.ColumnHeaderContainerStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        ColumnHeaderTemplate="{Binding TemplatedParent.View.ColumnHeaderTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        ColumnHeaderTemplateSelector="{Binding TemplatedParent.View.ColumnHeaderTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        AllowsColumnReorder="{Binding TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        ColumnHeaderContextMenu="{Binding TemplatedParent.View.ColumnHeaderContextMenu, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        ColumnHeaderToolTip="{Binding TemplatedParent.View.ColumnHeaderToolTip, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                </Border>
+                                                <ScrollContentPresenter 
+                                                    Grid.Row="1" 
+                                                    Grid.ColumnSpan="2" 
+                                                    Name="PART_ScrollContentPresenter" 
+                                                    KeyboardNavigation.DirectionalNavigation="Local"/>
+                                                <ScrollBar 
+                                                    Name="PART_HorizontalScrollBar"
+                                                    Orientation="Horizontal"
+                                                    Grid.Row="2"
+                                                    Maximum="{TemplateBinding ScrollableWidth}"
+                                                    ViewportSize="{TemplateBinding ViewportWidth}"
+                                                    Value="{TemplateBinding HorizontalOffset}"
+                                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                                                <ScrollBar 
+                                                    Name="PART_VerticalScrollBar"
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Maximum="{TemplateBinding ScrollableHeight}"
+                                                    ViewportSize="{TemplateBinding ViewportHeight}"
+                                                    Value="{TemplateBinding VerticalOffset}"
+                                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ControlTemplate.Resources>
                     <ScrollViewer x:Name="PART_ScrollViewer" Margin="{TemplateBinding Margin}">
                         <Grid x:Name="PART_Grid" Background="Transparent" ClipToBounds="True" Margin="{TemplateBinding Padding}">
                             <ItemsPresenter/>
                             <local:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding Selection}"/>
                         </Grid>
                     </ScrollViewer>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding View, Converter={StaticResource ObjectToTypeConverter}, RelativeSource={RelativeSource AncestorType={x:Type local:AdvancedListView}}}" Value="{x:Type GridView}">
+                            <Setter TargetName="PART_ScrollViewer" Property="Style" Value="{StaticResource GridViewStyle}"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

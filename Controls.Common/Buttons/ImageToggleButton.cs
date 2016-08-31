@@ -182,29 +182,29 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty TextMarginProperty = DependencyProperty.Register("TextMargin", typeof(Thickness), typeof(ImageToggleButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Thickness TextMargin
+        public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(ImageToggleButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Thickness ContentMargin
         {
             get
             {
-                return (Thickness)GetValue(TextMarginProperty);
+                return (Thickness)GetValue(ContentMarginProperty);
             }
             set
             {
-                SetValue(TextMarginProperty, value);
+                SetValue(ContentMarginProperty, value);
             }
         }
 
-        public static DependencyProperty TextPlacementProperty = DependencyProperty.Register("TextPlacement", typeof(Side), typeof(ImageToggleButton), new FrameworkPropertyMetadata(Side.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Side TextPlacement
+        public static DependencyProperty ContentPlacementProperty = DependencyProperty.Register("ContentPlacement", typeof(Side), typeof(ImageToggleButton), new FrameworkPropertyMetadata(Side.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Side ContentPlacement
         {
             get
             {
-                return (Side)GetValue(TextPlacementProperty);
+                return (Side)GetValue(ContentPlacementProperty);
             }
             set
             {
-                SetValue(TextPlacementProperty, value);
+                SetValue(ContentPlacementProperty, value);
             }
         }
 
@@ -224,9 +224,7 @@ namespace Imagin.Controls.Common
         {
         }
 
-        #endregion
-
-        #region Override Methods
+        #region Overrides
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
@@ -236,12 +234,14 @@ namespace Imagin.Controls.Common
 
         #endregion
 
+        #endregion
+
         #region ImageToggleButton
 
         public ImageToggleButton()
         {
-            this.TextMargin = new Thickness(5, 0, 0, 0);
             this.DefaultStyleKey = typeof(ImageToggleButton);
+            this.ContentMargin = new Thickness(5, 0, 0, 0);
         }
 
         public override void OnApplyTemplate()

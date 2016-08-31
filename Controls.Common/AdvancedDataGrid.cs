@@ -6,11 +6,11 @@ using System.Windows.Data;
 
 namespace Imagin.Controls.Common
 {
-    public class CustomDataGrid : DataGrid, IDragSelector
+    public class AdvancedDataGrid : DataGrid, IDragSelector
     {
         #region DependencyProperties
 
-        public static DependencyProperty AutoSizeColumnsProperty = DependencyProperty.Register("AutoSizeColumns", typeof(bool), typeof(CustomDataGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnAutoSizeColumnsChanged));
+        public static DependencyProperty AutoSizeColumnsProperty = DependencyProperty.Register("AutoSizeColumns", typeof(bool), typeof(AdvancedDataGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnAutoSizeColumnsChanged));
         public bool AutoSizeColumns
         {
             get
@@ -24,10 +24,10 @@ namespace Imagin.Controls.Common
         }
         private static void OnAutoSizeColumnsChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            (Object as CustomDataGrid).SetColumnWidth();
+            (Object as AdvancedDataGrid).SetColumnWidth();
         }
 
-        public static DependencyProperty DragSelectorProperty = DependencyProperty.Register("DragSelector", typeof(DragSelector), typeof(CustomDataGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty DragSelectorProperty = DependencyProperty.Register("DragSelector", typeof(DragSelector), typeof(AdvancedDataGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public DragSelector DragSelector
         {
             get
@@ -40,7 +40,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty IsDragSelectionEnabledProperty = DependencyProperty.Register("IsDragSelectionEnabled", typeof(bool), typeof(CustomDataGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty IsDragSelectionEnabledProperty = DependencyProperty.Register("IsDragSelectionEnabled", typeof(bool), typeof(AdvancedDataGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Enables selecting items while dragging with a rectangular selector.
         /// </summary>
@@ -56,7 +56,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ScrollOffsetProperty = DependencyProperty.Register("ScrollOffset", typeof(double), typeof(CustomDataGrid), new FrameworkPropertyMetadata(10.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ScrollOffsetProperty = DependencyProperty.Register("ScrollOffset", typeof(double), typeof(AdvancedDataGrid), new FrameworkPropertyMetadata(10.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Indicates offset to apply when automatically scrolling.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ScrollToleranceProperty = DependencyProperty.Register("ScrollTolerance", typeof(double), typeof(CustomDataGrid), new FrameworkPropertyMetadata(5.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ScrollToleranceProperty = DependencyProperty.Register("ScrollTolerance", typeof(double), typeof(AdvancedDataGrid), new FrameworkPropertyMetadata(5.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Indicates how far from outer width/height to allow offset application when automatically scrolling.
         /// </summary>
@@ -88,7 +88,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty SelectionProperty = DependencyProperty.Register("Selection", typeof(Selection), typeof(CustomDataGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty SelectionProperty = DependencyProperty.Register("Selection", typeof(Selection), typeof(AdvancedDataGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Selection Selection
         {
             get
@@ -101,7 +101,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ScrollAddedIntoViewProperty = DependencyProperty.Register("ScrollAddedIntoView", typeof(bool), typeof(CustomDataGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ScrollAddedIntoViewProperty = DependencyProperty.Register("ScrollAddedIntoView", typeof(bool), typeof(AdvancedDataGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool ScrollAddedIntoView
         {
             get
@@ -131,9 +131,18 @@ namespace Imagin.Controls.Common
                 ColumnHeaderContextMenu.Items.Add(Item);
                 if (this.AutoSizeColumns) Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-            Style ColumnHeaderStyle = new Style(typeof(DataGridColumnHeader), (Style)FindResource("BaseDataGridColumnHeader"));
-            ColumnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.ContextMenuProperty, ColumnHeaderContextMenu));
-            return ColumnHeaderStyle;
+            Style NewStyle = null;
+            try
+            {
+                var BaseStyle = this.ColumnHeaderStyle;
+                NewStyle = new Style(typeof(DataGridColumnHeader), (Style)BaseStyle);
+            }
+            catch
+            {
+                NewStyle = new Style(typeof(DataGridColumnHeader));
+            }
+            NewStyle.Setters.Add(new Setter(DataGridColumnHeader.ContextMenuProperty, ColumnHeaderContextMenu));
+            return NewStyle;
         }
 
         MenuItem GenerateMenuItem(string Header)
@@ -172,8 +181,8 @@ namespace Imagin.Controls.Common
         void SetStyle()
         {
             if (this.Columns == null || this.Columns.Count == 0) return;
-            Style DataGridStyle = new Style(typeof(CustomDataGrid), (Style)FindResource(typeof(CustomDataGrid)));
-            DataGridStyle.Setters.Add(new Setter(CustomDataGrid.ColumnHeaderStyleProperty, this.GetColumnHeaderStyle()));
+            Style DataGridStyle = new Style(typeof(AdvancedDataGrid), (Style)FindResource(typeof(AdvancedDataGrid)));
+            DataGridStyle.Setters.Add(new Setter(AdvancedDataGrid.ColumnHeaderStyleProperty, this.GetColumnHeaderStyle()));
             this.Style = DataGridStyle;
         }
 
@@ -197,9 +206,9 @@ namespace Imagin.Controls.Common
 
         #region CustomDataGrid
 
-        public CustomDataGrid() : base()
+        public AdvancedDataGrid() : base()
         {
-            this.DefaultStyleKey = typeof(CustomDataGrid);
+            this.DefaultStyleKey = typeof(AdvancedDataGrid);
             this.Loaded += CustomDataGrid_Loaded;
         }
 

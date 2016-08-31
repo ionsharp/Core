@@ -52,13 +52,15 @@ namespace Imagin.Common
 
         #region Entry
 
-        public Entry()
+        public Entry(int NotifyEvery = 1000)
         {
+            this.NotifyEvery = NotifyEvery;
             this.OnInitialized();
         }
 
-        public Entry(int NotifyEvery)
+        public Entry(DateTime Date, int NotifyEvery = 1000)
         {
+            this.Date = Date;
             this.NotifyEvery = NotifyEvery;
             this.OnInitialized();
         }

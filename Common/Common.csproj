@@ -81,6 +81,8 @@
     <Compile Include="Data\Converters\NullObjectToBooleanConverter.cs" />
     <Compile Include="Data\Converters\NullObjectToVisibilityConverter.cs" />
     <Compile Include="Data\Converters\EmptyStringToVisibilityConverter.cs" />
+    <Compile Include="Data\Converters\ObjectToTypeConverter.cs" />
+    <Compile Include="Data\Converters\RelativeTimeConverter.cs" />
     <Compile Include="Data\Converters\StringToCamelCaseConverter.cs" />
     <Compile Include="DialogProvider.cs" />
     <Compile Include="Entry.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Extensions\Int32.cs" />
     <Compile Include="Extensions\Int64.cs" />
     <Compile Include="Extensions\IntPtr.cs" />
+    <Compile Include="Extensions\TreeView.cs" />
     <Compile Include="Extensions\MenuItem.cs" />
     <Compile Include="Extensions\Object.cs" />
     <Compile Include="Extensions\String.cs" />

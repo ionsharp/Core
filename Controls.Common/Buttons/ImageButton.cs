@@ -8,17 +8,30 @@ namespace Imagin.Controls.Common
     public class ImageButton : Button
     {
         #region DependencyProperties
-        
-        public static DependencyProperty TextPlacementProperty = DependencyProperty.Register("TextPlacement", typeof(Side), typeof(ImageButton), new FrameworkPropertyMetadata(Side.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Side TextPlacement
+
+        public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(ImageButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Thickness ContentMargin
         {
             get
             {
-                return (Side)GetValue(TextPlacementProperty);
+                return (Thickness)GetValue(ContentMarginProperty);
             }
             set
             {
-                SetValue(TextPlacementProperty, value);
+                SetValue(ContentMarginProperty, value);
+            }
+        }
+
+        public static DependencyProperty ContentPlacementProperty = DependencyProperty.Register("ContentPlacement", typeof(Side), typeof(ImageButton), new FrameworkPropertyMetadata(Side.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Side ContentPlacement
+        {
+            get
+            {
+                return (Side)GetValue(ContentPlacementProperty);
+            }
+            set
+            {
+                SetValue(ContentPlacementProperty, value);
             }
         }
 
@@ -92,40 +105,14 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(object), typeof(ImageButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public object Text
-        {
-            get
-            {
-                return (object)GetValue(TextProperty);
-            }
-            set
-            {
-                SetValue(TextProperty, value);
-            }
-        }
-
-        public static DependencyProperty TextMarginProperty = DependencyProperty.Register("TextMargin", typeof(Thickness), typeof(ImageButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Thickness TextMargin
-        {
-            get
-            {
-                return (Thickness)GetValue(TextMarginProperty);
-            }
-            set
-            {
-                SetValue(TextMarginProperty, value);
-            }
-        }
-        
         #endregion
 
         #region ImageButton
 
         public ImageButton()
         {
-            this.TextMargin = new Thickness(5, 0, 0, 0);
             this.DefaultStyleKey = typeof(ImageButton);
+            this.ContentMargin = new Thickness(5, 0, 0, 0);
         }
 
         public override void OnApplyTemplate()

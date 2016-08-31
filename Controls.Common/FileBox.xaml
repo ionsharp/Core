@@ -18,8 +18,18 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid x:Name="PART_Text">
-            <TextBox x:Name="PART_TextBox" IsReadOnly="True" Style="{DynamicResource BlankTextBox}" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Foreground="{DynamicResource PlaceholderForeground}" Text="{Binding Placeholder}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+            <TextBox 
+                x:Name="PART_TextBox" 
+                IsReadOnly="True" 
+                BorderThickness="0"
+                Background="Transparent"
+                Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock 
+                Foreground="{DynamicResource PlaceholderForeground}" 
+                Text="{Binding Placeholder}" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Visibility="{Binding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>

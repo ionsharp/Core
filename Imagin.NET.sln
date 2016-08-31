@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadgets", "Gadgets\Gadgets\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controls.Extended", "Controls.Extended\Controls.Extended.csproj", "{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imagin.NET.Demo", "Imagin.NET.Demo\Imagin.NET.Demo.csproj", "{7DA64D63-4035-49F7-879F-09005373414F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{487E78EB-A4E8-4264-AAAE-6E12E5A2A5D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DA64D63-4035-49F7-879F-09005373414F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA64D63-4035-49F7-879F-09005373414F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA64D63-4035-49F7-879F-09005373414F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA64D63-4035-49F7-879F-09005373414F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,11 +5,11 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class CustomListView : ListView, IDragSelector
+    public class AdvancedListView : ListView, IDragSelector
     {
         #region Properties
 
-        public static DependencyProperty DragSelectorProperty = DependencyProperty.Register("DragSelector", typeof(DragSelector), typeof(CustomListView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty DragSelectorProperty = DependencyProperty.Register("DragSelector", typeof(DragSelector), typeof(AdvancedListView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public DragSelector DragSelector
         {
             get
@@ -22,7 +22,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty IsDragSelectionEnabledProperty = DependencyProperty.Register("IsDragSelectionEnabled", typeof(bool), typeof(CustomListView), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty IsDragSelectionEnabledProperty = DependencyProperty.Register("IsDragSelectionEnabled", typeof(bool), typeof(AdvancedListView), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Enables selecting items while dragging with a rectangular selector.
         /// </summary>
@@ -38,7 +38,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ScrollWrapProperty = DependencyProperty.Register("ScrollWrap", typeof(bool), typeof(CustomListView), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ScrollWrapProperty = DependencyProperty.Register("ScrollWrap", typeof(bool), typeof(AdvancedListView), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Determines whether or not selections should "wrap" to beginning or end.
         /// </summary>
@@ -54,7 +54,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ScrollOffsetProperty = DependencyProperty.Register("ScrollOffset", typeof(double), typeof(CustomListView), new FrameworkPropertyMetadata(10.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ScrollOffsetProperty = DependencyProperty.Register("ScrollOffset", typeof(double), typeof(AdvancedListView), new FrameworkPropertyMetadata(10.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Indicates offset to apply when automatically scrolling.
         /// </summary>
@@ -70,7 +70,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ScrollToleranceProperty = DependencyProperty.Register("ScrollTolerance", typeof(double), typeof(CustomListView), new FrameworkPropertyMetadata(5.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ScrollToleranceProperty = DependencyProperty.Register("ScrollTolerance", typeof(double), typeof(AdvancedListView), new FrameworkPropertyMetadata(5.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Indicates how far from outer width/height to allow offset application when automatically scrolling.
         /// </summary>
@@ -86,7 +86,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty SelectionProperty = DependencyProperty.Register("Selection", typeof(Selection), typeof(CustomListView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty SelectionProperty = DependencyProperty.Register("Selection", typeof(Selection), typeof(AdvancedListView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Selection Selection
         {
             get
@@ -201,7 +201,7 @@ namespace Imagin.Controls.Common
         /// If last is selected and clicking right or down, 
         /// select first.
         /// </summary>
-        public static readonly RoutedUICommand MakeSelection = new RoutedUICommand("MakeSelection", "MakeSelection", typeof(CustomListView));
+        public static readonly RoutedUICommand MakeSelection = new RoutedUICommand("MakeSelection", "MakeSelection", typeof(AdvancedListView));
         void MakeSelection_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             //Can't select nothing so do nothing.
@@ -244,9 +244,9 @@ namespace Imagin.Controls.Common
 
         #region CustomListView
 
-        public CustomListView() : base()
+        public AdvancedListView() : base()
         {
-            this.DefaultStyleKey = typeof(CustomListView);
+            this.DefaultStyleKey = typeof(AdvancedListView);
 
             //Enables moving current selection around
             this.IsSynchronizedWithCurrentItem = true;

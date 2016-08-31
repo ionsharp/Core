@@ -5,6 +5,12 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// A rectangular control that enables specifying a 
+    /// direction by clicking a directional arrow. Directional 
+    /// arrows make all arrows shift in corresponding direction
+   ///  when clicked.
+    /// </summary>
     public partial class DirectionPad : UserControl
     {
         #region Dependency Properties

@@ -1,0 +1,449 @@
+﻿<Window 
+    x:Class="Imagin.NET.Demo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Imagin.NET.Demo"
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended"
+    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
+    mc:Ignorable="d"
+    Title="MainWindow" 
+    Height="500" 
+    Width="825"
+    WindowStartupLocation="CenterScreen"
+    x:Name="PART_MainWindow">
+    <Window.Resources>
+        <Common.Data.Converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
+
+        <Controls.Common:AbstractView x:Key="ListView" x:Shared="False">
+            <Controls.Common:AbstractView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Ellipse/>
+                        <TextBlock Text="{Binding Name}"/>
+                    </Grid>
+                </DataTemplate>
+            </Controls.Common:AbstractView.ItemTemplate>
+        </Controls.Common:AbstractView>
+
+        <GridView x:Key="DetailsView" x:Shared="False">
+            <GridViewColumn Header="Name">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="Message">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Message}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="Date">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Date, Converter={StaticResource RelativeTimeConverter}}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+        </GridView>
+
+        <Style x:Key="DefaultItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="0,0,10,10"/>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        </Style>
+
+        <Style x:Key="ListItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource DefaultItemStyle}">
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="Padding" Value="7,5" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style x:Key="DetailsItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource DefaultItemStyle}">
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border 
+                            Name="PART_Border" 
+                            Padding="{TemplateBinding Padding}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            Background="{TemplateBinding Background}" 
+                            HorizontalAlignment="Stretch"
+                            SnapsToDevicePixels="true">
+                            <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#33000000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False"/>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="#11000000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="AdvancedListViewStyle" TargetType="{x:Type Controls.Common:AdvancedListView}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedListView}}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="List">
+                    <Setter Property="View" Value="{DynamicResource ListView}"/>
+                    <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
+                    <Setter Property="ItemContainerStyle" Value="{StaticResource ListItemStyle}"/>
+                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="Details">
+                    <Setter Property="View" Value="{DynamicResource DetailsView}"/>
+                    <Setter Property="ItemContainerStyle" Value="{StaticResource DetailsItemStyle}"/>
+                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#F0F0F0"/>
+            <GradientStop Offset="1" Color="#EAEAEA"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid 
+        DataContext="{Binding ElementName=PART_MainWindow}"
+        Margin="10">
+        <TabControl Background="Transparent">
+            <TabItem Header="AdvancedDataGrid">
+                <Controls.Common:AdvancedDataGrid
+                    CanUserResizeColumns="True"
+                    CanUserAddRows="False"
+                    GridLinesVisibility="None"
+                    HeadersVisibility="Column"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding DataGridSource, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource {x:Type Controls.Common:AdvancedDataGrid}}">
+                    <Controls.Common:AdvancedDataGrid.Columns>
+                        <DataGridTemplateColumn Width="30*" Header="Name" SortMemberPath="Name">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="40*" Header="Message" SortMemberPath="Message">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Message}" TextTrimming="CharacterEllipsis"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="30*" Header="Date" SortMemberPath="Date">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Date, Converter={StaticResource RelativeTimeConverter}}" TextTrimming="CharacterEllipsis"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </Controls.Common:AdvancedDataGrid.Columns>
+                </Controls.Common:AdvancedDataGrid>
+            </TabItem>
+            <TabItem Header="AdvancedListView">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Controls.Common:RadioGroup HorizontalAlignment="Center" Margin="0,10">
+                        <RadioButton Content="Details" IsChecked="True" Checked="OnViewChanged" GroupName="View"/>
+                        <RadioButton Content="List" Checked="OnViewChanged" GroupName="View"/>
+                    </Controls.Common:RadioGroup>
+                    <Controls.Common:AdvancedListView 
+                        Grid.Row="1"
+                        ItemsSource="{Binding ListViewSource}"
+                        Style="{StaticResource AdvancedListViewStyle}">
+                        <Controls.Common:AdvancedListView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True">
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander IsExpanded="True" HorizontalAlignment="Stretch">
+                                                        <Expander.Header>
+                                                            <TextBlock FontSize="15">
+                                                            <Run Text="{Binding Name, Mode=OneWay}" Foreground="#007acc"/>
+                                                            <Run Text="{Binding ItemCount, Mode=OneWay, StringFormat= ({0})}"/>
+                                                            </TextBlock>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter/>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </Controls.Common:AdvancedListView.GroupStyle>
+                    </Controls.Common:AdvancedListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="AdvancedTreeView">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,10,0" TrimLast="True" HorizontalAlignment="Center" Margin="0,10">
+                        <CheckBox Content="Expand on click" IsChecked="{Binding ExpandOnClick, ElementName=PART_AdvancedTreeView}"/>
+                        <CheckBox Content="Collapse siblings" IsChecked="{Binding CollapseSiblings, ElementName=PART_AdvancedTreeView}"/>
+                    </Controls.Common:Spacer>
+                    <Controls.Common:AdvancedTreeView 
+                        Grid.Row="1"
+                        x:Name="PART_AdvancedTreeView"
+                        ItemsSource="{Binding TreeViewSource, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="10,0,0,0">
+                        <Controls.Common:AdvancedTreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </HierarchicalDataTemplate>
+                        </Controls.Common:AdvancedTreeView.ItemTemplate>
+                    </Controls.Common:AdvancedTreeView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Buttons">
+                <ScrollViewer Margin="10">
+                    <Grid VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </Grid.Resources>
+                        <TextBlock Text="ColorImage"/>
+                        <TextBlock Grid.Column="1" Text="ImageButton"/>
+                        <TextBlock Grid.Column="2" Text="ImageToggleButton"/>
+                        <TextBlock Grid.Column="3" Text="ImageDropDownButton"/>
+                        <TextBlock Grid.Column="4" Text="AdvancedImageDropDownButton"/>
+                        <Controls.Common:ColorImage 
+                            Grid.Row="1"
+                            ImageWidth="24"
+                            ImageHeight="24"
+                            Source="/Images/Gear.png" 
+                            HorizontalAlignment="Left"/>
+                        <Controls.Common:ImageButton 
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            ImageWidth="24"
+                            ImageHeight="24"
+                            Source="/Images/Gear.png" 
+                            Content="Options"/>
+                        <Controls.Common:ImageToggleButton 
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            ImageWidth="24"
+                            ImageHeight="24"
+                            Source="/Images/Gear.png" 
+                            Content="Options"
+                            CheckedToolTip="Options are checked"
+                            UncheckedToolTip="Options are not checked"/>
+                        <Controls.Common:ImageDropDownButton 
+                            Grid.Row="1"
+                            Grid.Column="3"
+                            ImageWidth="24"
+                            ImageHeight="24"
+                            Source="/Images/Gear.png" 
+                            Content="Options">
+                            <Controls.Common:ImageDropDownButton.DropDown>
+                                <ContextMenu>
+                                    <MenuItem Header="Option 1"/>
+                                    <MenuItem Header="Option 2"/>
+                                    <MenuItem Header="Option 3"/>
+                                    <MenuItem Header="Option 4"/>
+                                    <MenuItem Header="Option 5"/>
+                                </ContextMenu>
+                            </Controls.Common:ImageDropDownButton.DropDown>
+                        </Controls.Common:ImageDropDownButton>
+                        <Controls.Common:AdvancedImageDropDownButton 
+                            Grid.Row="1"
+                            Grid.Column="4"
+                            ImageWidth="24"
+                            ImageHeight="24"
+                            Source="/Images/Gear.png" 
+                            Content="Options">
+                            <Controls.Common:AdvancedImageDropDownButton.DropDown>
+                                <ContextMenu>
+                                    <MenuItem Header="Option 1"/>
+                                    <MenuItem Header="Option 2"/>
+                                    <MenuItem Header="Option 3"/>
+                                    <MenuItem Header="Option 4"/>
+                                    <MenuItem Header="Option 5"/>
+                                </ContextMenu>
+                            </Controls.Common:AdvancedImageDropDownButton.DropDown>
+                        </Controls.Common:AdvancedImageDropDownButton>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="DirectionPad">
+                <StackPanel Margin="10">
+                    <Controls.Common:DirectionPad 
+                        x:Name="PART_DirectionPad"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top"/>
+                    <TextBlock 
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Text="{Binding CompassDirection, ElementName=PART_DirectionPad, StringFormat={}Direction: {0}}"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="FileBox">
+                <Grid Margin="10">
+                    <Controls.Common:FileBox Padding="0,0,3,0" VerticalAlignment="Top" BorderThickness="1" BorderBrush="DarkGray"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="FontFamilyBox">
+                <StackPanel Margin="10">
+                    <Controls.Common:FontFamilyBox x:Name="PART_FontFamilyBox"/>
+                    <TextBlock 
+                        Margin="0,10,0,0"
+                        Text="{Binding SelectedValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_FontFamilyBox, StringFormat={}Font Family: {0}}"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Line">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Controls.Common:Line Color="Red"/>
+                    <Controls.Common:Line Grid.Column="1" Color="Green" Orientation="Vertical"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Link">
+                <Grid Margin="10">
+                    <Controls.Common:Link Uri="http://www.google.com" Content="Click to open Google" Foreground="Blue" Click="Link_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Numeric">
+                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
+                    <TextBlock Text="IntTextBox"/>
+                    <Controls.Common:IntTextBox Text="1000000"/>
+                    <TextBlock Text="LongTextBox"/>
+                    <Controls.Common:LongTextBox Text="1000000000000000000000000000"/>
+                    <TextBlock Text="DoubleTextBox"/>
+                    <Controls.Common:DoubleTextBox Text="1000000.0000001"/>
+                    <TextBlock Text="IntUpDown"/>
+                    <Controls.Common:IntUpDown Text="99" Maximum="100"/>
+                    <TextBlock Text="LongUpDown"/>
+                    <Controls.Common:LongUpDown Text="1000000" Maximum="1000000"/>
+                    <TextBlock Text="DoubleUpDown"/>
+                    <Controls.Common:DoubleUpDown Text="999.25" Maximum="1000"/>
+                </Controls.Common:Spacer>
+            </TabItem>
+            <TabItem Header="PasswordBox">
+                <Grid Margin="10">
+                    <Controls.Common:PasswordBox Padding="5,5,1,5" VerticalAlignment="Top" BorderThickness="1" BorderBrush="DarkGray" ShowEnterButton="True" ShowHint="True" Hint="What do you think it is? ;("/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="RadioGroup">
+                <Grid Margin="10" VerticalAlignment="Top">
+                    <Controls.Common:RadioGroup>
+                        <RadioButton Content="First" IsChecked="True" GroupName="Numbers"/>
+                        <RadioButton Content="Second" GroupName="Numbers"/>
+                        <RadioButton Content="Third" GroupName="Numbers"/>
+                        <RadioButton Content="Fourth" GroupName="Numbers"/>
+                        <RadioButton Content="Fifth" GroupName="Numbers"/>
+                    </Controls.Common:RadioGroup>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Spacer">
+                <StackPanel Margin="10">
+                    <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,10,0">
+                        <Button Content="First"/>
+                        <Button Content="Second"/>
+                        <Button Content="Third"/>
+                        <Button Content="Fourth"/>
+                    </Controls.Common:Spacer>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="TabbedTree">
+                <StackPanel Margin="10">
+                    <Controls.Extended:TabbedTree 
+                        MaxHeight="300" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                        ItemsSource="{Binding TreeViewSource, UpdateSourceTrigger=PropertyChanged}" 
+                        MenuWidth="30*" 
+                        ContentWidth="70*" 
+                        ContentBorderThickness="1" 
+                        ContentBorderBrush="DarkGray">
+                        <Controls.Extended:TabbedTree.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="IsExpanded" Value="True"/>
+                            </Style>
+                        </Controls.Extended:TabbedTree.ItemContainerStyle>
+                        <Controls.Extended:TabbedTree.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </HierarchicalDataTemplate>
+                        </Controls.Extended:TabbedTree.ItemTemplate>
+                        <Controls.Extended:TabbedTree.ContentTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Message}"/>
+                            </DataTemplate>
+                        </Controls.Extended:TabbedTree.ContentTemplate>
+                    </Controls.Extended:TabbedTree>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="TreeViewComboBox">
+                <StackPanel Margin="10">
+                    <Controls.Common:TreeViewComboBox ItemsSource="{Binding TreeViewSource}">
+                        <Controls.Common:TreeViewComboBox.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </HierarchicalDataTemplate>
+                        </Controls.Common:TreeViewComboBox.ItemTemplate>
+                        <Controls.Common:TreeViewComboBox.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </Controls.Common:TreeViewComboBox.ContentTemplate>
+                    </Controls.Common:TreeViewComboBox>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

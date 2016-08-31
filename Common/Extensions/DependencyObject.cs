@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls.Primitives;
+using System.Windows.Controls;
 
 namespace Imagin.Common.Extensions
 {
@@ -132,6 +133,39 @@ namespace Imagin.Common.Extensions
             }
             while (Child != null);
             return null;
+        }
+
+        /// <summary>
+        /// Imagin.Common: Sets IsExpanded property to specified value on all TreeViewItems found.
+        /// </summary>
+        public static void ToggleAll(this DependencyObject Object, bool IsExpanded)
+        {
+            if (Object.Is<TreeViewItem>())
+            {
+                ((TreeViewItem)Object).IsExpanded = IsExpanded;
+                foreach (DependencyObject d in ((TreeViewItem)Object).Items)
+                    d.ToggleAll(IsExpanded);
+            }
+            else if (Object.Is<ItemsControl>())
+            {
+                foreach (var i in Object.As<ItemsControl>().Items)
+                {
+                    if (i != null)
+                    {
+                        Object.As<ItemsControl>().ItemContainerGenerator.ContainerFromItem(i).ToggleAll(IsExpanded);
+                        TreeViewItem t = i.As<TreeViewItem>();
+                        if (t != null)
+                            t.IsExpanded = IsExpanded;
+                    }
+                }
+            }
+        }
+
+        public static TreeViewItem VisualUpwardSearch(this DependencyObject Source)
+        {
+            while (Source != null && !Source.Is<TreeViewItem>())
+                Source = VisualTreeHelper.GetParent(Source);
+            return Source.As<TreeViewItem>();
         }
     }
 }

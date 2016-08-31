@@ -2,13 +2,6 @@
 {
     public static class ObjectExtensions
     {
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
-        public static bool Is<T>(this object ToEvaluate)
-        {
-            return ToEvaluate is T;
-        }
 
         /// <summary>
         /// Imagin.Common
@@ -18,6 +11,14 @@
             if (ToCast is T)
                 return (T)ToCast;
             return default(T);
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static bool Is<T>(this object ToEvaluate)
+        {
+            return ToEvaluate is T;
         }
     }
 }

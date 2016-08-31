@@ -7,7 +7,11 @@
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
 
+    <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
+    
     <Style x:Key="{x:Type local:TabbedTree}" TargetType="{x:Type local:TabbedTree}">
+        <Setter Property="ExpandOnClick" Value="False"/>
+        <Setter Property="CollapseSiblings" Value="False"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Padding" Value="10,0,0,0"/>
@@ -54,9 +58,27 @@
                                 BorderThickness="{TemplateBinding ContentBorderThickness}" 
                                 Background="{TemplateBinding ContentBackground}" 
                                 BorderBrush="{TemplateBinding ContentBorderBrush}">
-                                <ContentControl 
-                                    DataContext="{TemplateBinding SelectedItem}" 
-                                    Content="{Binding Tag}"/>
+                                <ContentControl
+                                    Content="{TemplateBinding SelectedItem}"
+                                    IsHitTestVisible="False">
+                                    <ContentControl.Resources>
+                                        <DataTemplate x:Key="DefaultContentTemplate">
+                                            <ContentPresenter Content="{Binding Tag}"/>
+                                        </DataTemplate>
+                                    </ContentControl.Resources>
+                                    <ContentControl.Style>
+                                        <Style TargetType="ContentControl">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TabbedTree}}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="True">
+                                                    <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TabbedTree}}}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TabbedTree}}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="False">
+                                                    <Setter Property="ContentTemplate" Value="{StaticResource DefaultContentTemplate}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
                             </Border>
                         </Grid>
                     </Border>

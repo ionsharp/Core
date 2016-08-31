@@ -4,6 +4,9 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    ///  A flexible separator.
+    /// </summary>
     public class Line : UserControl
     {
         public static DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(Brush), typeof(Line), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));

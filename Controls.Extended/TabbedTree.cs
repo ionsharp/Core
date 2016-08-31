@@ -1,17 +1,29 @@
-﻿using System;
+﻿using Imagin.Controls.Common;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
-    public class TabbedTree : TreeView
+    public class TabbedTree : AdvancedTreeView
     {
         #region DependencyProperties
+
+        public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate ContentTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(ContentTemplateProperty);
+            }
+            set
+            {
+                SetValue(ContentTemplateProperty, value);
+            }
+        }
 
         public static DependencyProperty ContentBackgroundProperty = DependencyProperty.Register("ContentBackground", typeof(Brush), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Brush ContentBackground

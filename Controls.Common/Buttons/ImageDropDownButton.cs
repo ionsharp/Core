@@ -1,13 +1,55 @@
-﻿using System;
+﻿using Imagin.Common;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
-using Imagin.Common;
 
 namespace Imagin.Controls.Common
 {
-    public class ImageDropDownButton : DropDownButton, ICloneable
+    public class ImageDropDownButton : Button
     {
-        #region DependencyProperties
+        #region Properties
+
+        public static readonly DependencyProperty DropDownProperty = DependencyProperty.Register("DropDown", typeof(ContextMenu), typeof(ImageDropDownButton), new UIPropertyMetadata(null));
+        public ContextMenu DropDown
+        {
+            get
+            {
+                return (ContextMenu)GetValue(DropDownProperty);
+            }
+            set
+            {
+                SetValue(DropDownProperty, value);
+            }
+        }
+
+        public static DependencyProperty IsCheckedProperty = DependencyProperty.Register("IsChecked", typeof(bool), typeof(ImageDropDownButton), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool IsChecked
+        {
+            get
+            {
+                return (bool)GetValue(IsCheckedProperty);
+            }
+            set
+            {
+                SetValue(IsCheckedProperty, value);
+            }
+        }
+
+        public static DependencyProperty DropDownDataContextProperty = DependencyProperty.Register("DropDownDataContext", typeof(object), typeof(ImageDropDownButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public object DropDownDataContext
+        {
+            get
+            {
+                return (object)GetValue(DropDownDataContextProperty);
+            }
+            set
+            {
+                SetValue(DropDownDataContextProperty, value);
+            }
+        }
 
         public static DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(ImageSource), typeof(ImageDropDownButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSourceChanged));
         public ImageSource Source
@@ -79,42 +121,29 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(object), typeof(ImageDropDownButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public object Text
+        public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(ImageDropDownButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Thickness ContentMargin
         {
             get
             {
-                return (object)GetValue(TextProperty);
+                return (Thickness)GetValue(ContentMarginProperty);
             }
             set
             {
-                SetValue(TextProperty, value);
+                SetValue(ContentMarginProperty, value);
             }
         }
 
-        public static DependencyProperty TextMarginProperty = DependencyProperty.Register("TextMargin", typeof(Thickness), typeof(ImageDropDownButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Thickness TextMargin
+        public static DependencyProperty ContentPlacementProperty = DependencyProperty.Register("ContentPlacement", typeof(Side), typeof(ImageDropDownButton), new FrameworkPropertyMetadata(Side.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Side ContentPlacement
         {
             get
             {
-                return (Thickness)GetValue(TextMarginProperty);
+                return (Side)GetValue(ContentPlacementProperty);
             }
             set
             {
-                SetValue(TextMarginProperty, value);
-            }
-        }
-
-        public static DependencyProperty TextPlacementProperty = DependencyProperty.Register("TextPlacement", typeof(Side), typeof(ImageDropDownButton), new FrameworkPropertyMetadata(Side.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Side TextPlacement
-        {
-            get
-            {
-                return (Side)GetValue(TextPlacementProperty);
-            }
-            set
-            {
-                SetValue(TextPlacementProperty, value);
+                SetValue(ContentPlacementProperty, value);
             }
         }
 
@@ -124,24 +153,28 @@ namespace Imagin.Controls.Common
 
         public ImageDropDownButton()
         {
-            this.TextMargin = new Thickness(5, 0, 0, 0);
             this.DefaultStyleKey = typeof(ImageDropDownButton);
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.ApplyTemplate();
-        }
-
-        #endregion
-
-        #region ICloneable
-
-        public object Clone()
-        {
-            return this.MemberwiseClone();
+            this.ContentMargin = new Thickness(5, 0, 0, 0);
+            this.SetBinding(ImageDropDownButton.IsCheckedProperty, new Binding("DropDown.IsOpen")
+            {
+                Source = this
+            });
+            this.SetBinding(ImageDropDownButton.DropDownDataContextProperty, new Binding("DropDown.DataContext")
+            {
+                Source = this
+            });
         }
 
         #endregion
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            if (this.DropDown != null)
+            {
+                DropDown.PlacementTarget = this;
+                DropDown.Placement = PlacementMode.Bottom;
+                DropDown.IsOpen = true;
+            }
+        }
     }
 }

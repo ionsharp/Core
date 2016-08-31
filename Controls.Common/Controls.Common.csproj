@@ -57,8 +57,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomDataGrid.cs" />
-    <Compile Include="CustomListView.cs" />
+    <Compile Include="AbstractView.cs" />
+    <Compile Include="AdvancedTreeView.cs" />
+    <Compile Include="AdvancedDataGrid.cs" />
+    <Compile Include="AdvancedListView.cs" />
     <Compile Include="DirectionPad.xaml.cs">
       <DependentUpon>DirectionPad.xaml</DependentUpon>
     </Compile>
@@ -73,12 +75,11 @@
     </Compile>
     <Compile Include="Link.cs" />
     <Compile Include="IDragSelector.cs" />
-    <Compile Include="Image\AdvancedImageDropDownButton.cs" />
-    <Compile Include="Image\DropDownButton.cs" />
-    <Compile Include="Image\ImageDropDownButton.cs" />
-    <Compile Include="Image\ColorImage.cs" />
-    <Compile Include="Image\ImageButton.cs" />
-    <Compile Include="Image\ImageToggleButton.cs" />
+    <Compile Include="Buttons\AdvancedImageDropDownButton.cs" />
+    <Compile Include="Buttons\ImageDropDownButton.cs" />
+    <Compile Include="Buttons\ColorImage.cs" />
+    <Compile Include="Buttons\ImageButton.cs" />
+    <Compile Include="Buttons\ImageToggleButton.cs" />
     <Compile Include="IntTextBox.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="LongTextBox.cs" />
