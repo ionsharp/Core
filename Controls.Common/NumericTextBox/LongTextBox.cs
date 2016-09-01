@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Imagin.Common.Extensions;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -6,6 +7,14 @@ namespace Imagin.Controls.Common
 {
     public class LongTextBox : TextBox
     {
+        public long Value
+        {
+            get
+            {
+                return this.Text.ToLong();
+            }
+        }
+
         public LongTextBox() : base()
         {
         }

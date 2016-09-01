@@ -1,5 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using System.Windows;
+﻿using Imagin.Common.Extensions;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -7,6 +7,14 @@ namespace Imagin.Controls.Common
 {
     public class IntTextBox : TextBox
     {
+        public int Value
+        {
+            get
+            {
+                return this.Text.ToInt();
+            }
+        }
+
         public IntTextBox() : base()
         {
         }

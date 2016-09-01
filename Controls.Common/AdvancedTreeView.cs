@@ -83,12 +83,13 @@ namespace Imagin.Controls.Common
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonUp(e);
-            if (!ExpandOnClick)
-                return;
             TreeViewItem Item = (e.OriginalSource as DependencyObject).VisualUpwardSearch();
             if (Item == null)
                 return;
-            Item.IsExpanded = !Item.IsExpanded;
+            if (ExpandOnClick)
+                Item.IsExpanded = !Item.IsExpanded;
+            if (Item.IsExpanded && CollapseSiblings)
+                Item.CollapseSiblings();
         }
 
         /// <summary>
@@ -104,14 +105,6 @@ namespace Imagin.Controls.Common
             e.Handled = true;
         }
 
-        protected override void OnSelectedItemChanged(RoutedPropertyChangedEventArgs<object> e)
-        {
-            base.OnSelectedItemChanged(e);
-            this.SelectedVisual = this.ItemContainerGenerator.ContainerFromItem(this.SelectedItem).As<TreeViewItem>();
-            if (this.CollapseSiblings)
-                this.SelectedVisual.CollapseSiblings();   
-        }
-
         #endregion
 
         #endregion
@@ -121,6 +114,12 @@ namespace Imagin.Controls.Common
         public AdvancedTreeView() : base()
         {
             this.DefaultStyleKey = typeof(AdvancedTreeView);
+            this.SelectedItemChanged += OnSelectedItemChanged;
+        }
+
+        void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            this.SelectedVisual = this.ItemContainerGenerator.ContainerFromItem(this.SelectedItem).As<TreeViewItem>();
         }
 
         #endregion

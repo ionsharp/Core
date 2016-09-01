@@ -60,19 +60,6 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ShowPasswordProperty = DependencyProperty.Register("ShowPassword", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool ShowPassword
-        {
-            get
-            {
-                return (bool)GetValue(ShowPasswordProperty);
-            }
-            set
-            {
-                SetValue(ShowPasswordProperty, value);
-            }
-        }
-
         #endregion
 
         #region FileBox

@@ -100,10 +100,6 @@ namespace Imagin.Controls.Common
                 this.TreeView.SelectedItemChanged += OnSelectedItemChanged;
             }
 
-            Popup Popup = this.Template.FindName("PART_Popup", this) as Popup;
-            if (Popup != null)
-                Popup.LostFocus += (s, e) => this.IsDropDownOpen = false;
-
             this.Select(this.SelectedItem);
         }
 

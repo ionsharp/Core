@@ -381,12 +381,12 @@
             </TabItem>
             <TabItem Header="RadioGroup">
                 <Grid Margin="10" VerticalAlignment="Top">
-                    <Controls.Common:RadioGroup>
-                        <RadioButton Content="First" IsChecked="True" GroupName="Numbers"/>
-                        <RadioButton Content="Second" GroupName="Numbers"/>
-                        <RadioButton Content="Third" GroupName="Numbers"/>
-                        <RadioButton Content="Fourth" GroupName="Numbers"/>
-                        <RadioButton Content="Fifth" GroupName="Numbers"/>
+                    <Controls.Common:RadioGroup GroupName="Numbers">
+                        <RadioButton Content="First" IsChecked="True"/>
+                        <RadioButton Content="Second"/>
+                        <RadioButton Content="Third"/>
+                        <RadioButton Content="Fourth"/>
+                        <RadioButton Content="Fifth"/>
                     </Controls.Common:RadioGroup>
                 </Grid>
             </TabItem>
