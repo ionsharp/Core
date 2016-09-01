@@ -4,6 +4,7 @@ namespace Imagin.Common
 {
     public enum CompassDirection
     {
+        Unknown,
         N,
         S,
         W,

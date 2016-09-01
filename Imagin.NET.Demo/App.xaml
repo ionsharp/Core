@@ -92,6 +92,11 @@
         <SolidColorBrush x:Key="ListBoxItemIsSelectedBorderBrush" Color="#0970b6"/>
         <SolidColorBrush x:Key="ListViewItemIsSelectedForegroundBrush" Color="#FFF"/>
 
+        <Style x:Key="H2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#007acc"/>
+        </Style>
+
         <Style TargetType="{x:Type ContextMenu}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Background" Value="{DynamicResource ContextMenuBackground}" />
@@ -499,6 +504,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="{x:Type Controls.Common:AlphaNumericTextBox}" TargetType="{x:Type Controls.Common:AlphaNumericTextBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
 
         <Style x:Key="{x:Type Controls.Common:IntTextBox}" TargetType="{x:Type Controls.Common:IntTextBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
 

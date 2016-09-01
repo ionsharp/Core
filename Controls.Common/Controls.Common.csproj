@@ -61,10 +61,12 @@
     <Compile Include="AdvancedTreeView.cs" />
     <Compile Include="AdvancedDataGrid.cs" />
     <Compile Include="AdvancedListView.cs" />
+    <Compile Include="AlignableWrapPanel.cs" />
     <Compile Include="DirectionPad.xaml.cs">
       <DependentUpon>DirectionPad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NumericTextBox\DoubleTextBox.cs" />
+    <Compile Include="TextBox\AlphaNumericTextBox.cs" />
+    <Compile Include="TextBox\DoubleTextBox.cs" />
     <Compile Include="DragSelection.cs" />
     <Compile Include="DragSelector.cs" />
     <Compile Include="FileBox.xaml.cs">
@@ -80,9 +82,9 @@
     <Compile Include="Buttons\ColorImage.cs" />
     <Compile Include="Buttons\ImageButton.cs" />
     <Compile Include="Buttons\ImageToggleButton.cs" />
-    <Compile Include="NumericTextBox\IntTextBox.cs" />
+    <Compile Include="TextBox\IntTextBox.cs" />
     <Compile Include="Line.cs" />
-    <Compile Include="NumericTextBox\LongTextBox.cs" />
+    <Compile Include="TextBox\LongTextBox.cs" />
     <Compile Include="PasswordBox.xaml.cs">
       <DependentUpon>PasswordBox.xaml</DependentUpon>
     </Compile>

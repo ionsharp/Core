@@ -3,11 +3,17 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using Imagin.Common.Extensions;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
     public class DoubleUpDown : UpDown
     {
+        #region Properties
+
         public double Value
         {
             get
@@ -44,8 +50,46 @@ namespace Imagin.Controls.Common
             }
         }
 
+        public static DependencyProperty MantissaProperty = DependencyProperty.Register("Mantissa", typeof(int), typeof(DoubleUpDown), new FrameworkPropertyMetadata(3, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMantissaChanged));
+        public int Mantissa
+        {
+            get
+            {
+                return (int)GetValue(MantissaProperty);
+            }
+            set
+            {
+                SetValue(MantissaProperty, value);
+            }
+        }
+        static void OnMantissaChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            DoubleUpDown DoubleUpDown = (DoubleUpDown)Object;
+            DoubleUpDown.FormatValue();
+        }
+
+        #endregion
+
+        #region DoubleUpDown
+
         public DoubleUpDown() : base()
         {
+        }
+
+        #endregion
+
+        #region Methods
+
+        void SetValue(double NewValue)
+        {
+            this.Text = NewValue.ToString();
+        }
+
+        void FormatValue()
+        {
+            int CaretIndex = this.CaretIndex;
+            this.Text = this.Value.ToString("N" + Mantissa.ToString());
+            this.CaretIndex = CaretIndex;
         }
 
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
@@ -55,18 +99,20 @@ namespace Imagin.Controls.Common
             e.Handled = !r.IsMatch(e.Text);
         }
 
+        protected override void OnTextChanged(TextChangedEventArgs e)
+        {
+            base.OnTextChanged(e);
+            this.FormatValue();
+        }
+
         protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.Text))
-                this.Text = 0.ToString();
-            else this.Text = (this.Text.ToDouble() + 1.0).ToString();
+            this.SetValue(this.Value + 1.0);
         }
 
         protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.Text))
-                this.Text = 0d.ToString();
-            else this.Text = (this.Text.ToDouble() - 1.0).ToString();
+            this.SetValue(this.Value - 1.0);
         }
 
         protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -78,5 +124,7 @@ namespace Imagin.Controls.Common
         {
             e.CanExecute = this.Value > this.Minimum;
         }
+
+        #endregion
     }
 }

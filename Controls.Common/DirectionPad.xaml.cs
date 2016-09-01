@@ -46,37 +46,36 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
-        void SetCompassDirection()
+        CompassDirection GetDirection(int Row, int Column)
         {
-            int Row = Grid.GetRow(this.PART_OriginButton);
-            int Column = Grid.GetColumn(this.PART_OriginButton);
-            switch (Row)
+            if (Row == 1)
             {
-                case 1:
-                    if (Column == 1)
-                        this.CompassDirection = CompassDirection.NW;
-                    else if (Column == 2)
-                        this.CompassDirection = CompassDirection.N;
-                    else if (Column == 3)
-                        this.CompassDirection = CompassDirection.NE;
-                    break;
-                case 2:
-                    if (Column == 1)
-                        this.CompassDirection = CompassDirection.W;
-                    else if (Column == 2)
-                        this.CompassDirection = CompassDirection.Origin;
-                    else if (Column == 3)
-                        this.CompassDirection = CompassDirection.E;
-                    break;
-                case 3:
-                    if (Column == 1)
-                        this.CompassDirection = CompassDirection.SW;
-                    else if (Column == 2)
-                        this.CompassDirection = CompassDirection.S;
-                    else if (Column == 3)
-                        this.CompassDirection = CompassDirection.SE;
-                    break;
+                if (Column == 1)
+                    return CompassDirection.NW;
+                else if (Column == 2)
+                    return CompassDirection.N;
+                else if (Column == 3)
+                    return CompassDirection.NE;
             }
+            if (Row == 2)
+            {
+                if (Column == 1)
+                    return CompassDirection.W;
+                else if (Column == 2)
+                    return CompassDirection.Origin;
+                else if (Column == 3)
+                    return CompassDirection.E;
+            }
+            if (Row == 3)
+            {
+                if (Column == 1)
+                    return CompassDirection.SW;
+                else if (Column == 2)
+                    return CompassDirection.S;
+                else if (Column == 3)
+                    return CompassDirection.SE;
+            }
+            return CompassDirection.Unknown;
         }
 
         void SetPositions(CompassDirection CompassDirection)
@@ -120,16 +119,14 @@ namespace Imagin.Controls.Common
                     StartRow = 2;
                     StartColumn = 2;
                     break;
-                    //CompassDirection.Origin
             }
             int i = StartRow, j = StartColumn;
-            foreach (UIElement CurrentButton in this.Grid.Children)
+            foreach (ImageButton b in this.Grid.Children)
             {
-                if (!(CurrentButton is Button)) continue;
                 if (j < StartColumn + 3)
                 {
-                    Grid.SetRow(CurrentButton, i);
-                    Grid.SetColumn(CurrentButton, j++);
+                    Grid.SetRow(b, i);
+                    Grid.SetColumn(b, j++);
                     if (j == (StartColumn + 3))
                     {
                         j = StartColumn;
@@ -145,35 +142,35 @@ namespace Imagin.Controls.Common
             switch (CompassDirection)
             {
                 case CompassDirection.NW:
-                    if (Column - 1 < 0 || Row - 1 < 0) return;
+                    if (Column == 0 || Row == 0) return;
                     ShiftUp = ShiftLeft = true;
                     break;
                 case CompassDirection.N:
-                    if (Row - 1 < 0) return;
+                    if (Row == 0) return;
                     ShiftUp = true;
                     break;
                 case CompassDirection.NE:
-                    if (Column + 1 > 4 || Row - 1 < 0) return;
+                    if (Column > 3 || Row == 0) return;
                     ShiftUp = ShiftRight = true;
                     break;
                 case CompassDirection.W:
-                    if (Column - 1 < 0) return;
+                    if (Column == 0) return;
                     ShiftLeft = true;
                     break;
                 case CompassDirection.E:
-                    if (Column + 1 > 4) return;
+                    if (Column > 3) return;
                     ShiftRight = true;
                     break;
                 case CompassDirection.SW:
-                    if (Column - 1 < 0 || Row + 1 > 4) return;
+                    if (Column == 0 || Row > 3) return;
                     ShiftDown = ShiftLeft = true;
                     break;
                 case CompassDirection.S:
-                    if (Row + 1 > 4) return;
+                    if (Row > 3) return;
                     ShiftDown = true;
                     break;
                 case CompassDirection.SE:
-                    if (Column + 1 > 4 || Row + 1 > 4) return;
+                    if (Column > 3 || Row > 3) return;
                     ShiftDown = ShiftRight = true;
                     break;
                 case CompassDirection.Origin:
@@ -182,16 +179,13 @@ namespace Imagin.Controls.Common
                 default:
                     return;
             }
-            foreach (UIElement CurrentButton in this.Grid.Children)
+            foreach (ImageButton i in this.Grid.Children)
             {
-                if (CurrentButton is Button)
-                {
-                    int CurrentRow = Grid.GetRow(CurrentButton), CurrentColumn = Grid.GetColumn(CurrentButton);
-                    Grid.SetRow(CurrentButton, ShiftUp ? CurrentRow - 1 : (ShiftDown ? CurrentRow + 1 : CurrentRow));
-                    Grid.SetColumn(CurrentButton, ShiftLeft ? CurrentColumn - 1 : (ShiftRight ? CurrentColumn + 1 : CurrentColumn));
-                }
+                int r = Grid.GetRow(i), c = Grid.GetColumn(i);
+                Grid.SetRow(i, ShiftUp ? r - 1 : (ShiftDown ? r + 1 : r));
+                Grid.SetColumn(i, ShiftLeft ? c - 1 : (ShiftRight ? c + 1 : c));
             }
-            this.SetCompassDirection();
+            this.CompassDirection = this.GetDirection(Grid.GetRow(this.PART_OriginButton), Grid.GetColumn(this.PART_OriginButton));
         }
 
         #region Events
@@ -199,12 +193,7 @@ namespace Imagin.Controls.Common
         void OnClick(object sender, RoutedEventArgs e)
         {
             FrameworkElement Element = sender as FrameworkElement;
-            string Tag = Element.Tag.ToString();
-
-            int Row = Grid.GetRow(Element);
-            int Column = Grid.GetColumn(Element);
-
-            this.ShiftPositions(Tag.ParseEnum<CompassDirection>(), Row, Column);
+            this.ShiftPositions(Element.Tag.ToString().ParseEnum<CompassDirection>(), Grid.GetRow(Element), Grid.GetColumn(Element));
         }
 
         #endregion

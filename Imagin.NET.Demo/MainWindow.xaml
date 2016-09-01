@@ -234,6 +234,25 @@
                     </Controls.Common:AdvancedTreeView>
                 </Grid>
             </TabItem>
+            <TabItem Header="AlignableWrapPanel">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Controls.Common:RadioGroup HorizontalAlignment="Center" GroupName="HorizontalContentAlignment">
+                        <RadioButton Content="Left" Checked="OnHorizontalContentAlignmentChanged"/>
+                        <RadioButton Content="Center" IsChecked="True" Checked="OnHorizontalContentAlignmentChanged"/>
+                        <RadioButton Content="Right" Checked="OnHorizontalContentAlignmentChanged"/>
+                    </Controls.Common:RadioGroup>
+                    <Controls.Common:AlignableWrapPanel 
+                        Grid.Row="1"
+                        x:Name="PART_AlignableWrapPanel" 
+                        HorizontalContentAlignment="Center"
+                        Margin="0,10,0,0"/>
+                </Grid>
+            </TabItem>
             <TabItem Header="Buttons">
                 <ScrollViewer Margin="10">
                     <Grid VerticalAlignment="Top">
@@ -355,24 +374,14 @@
             </TabItem>
             <TabItem Header="Link">
                 <Grid Margin="10">
-                    <Controls.Common:Link Uri="http://www.google.com" Content="Click to open Google" Foreground="Blue" Click="Link_Click"/>
+                    <Controls.Common:Link 
+                        Uri="http://www.google.com" 
+                        Content="Click to open Google" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="Blue" 
+                        Click="Link_Click"/>
                 </Grid>
-            </TabItem>
-            <TabItem Header="Numeric">
-                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                    <TextBlock Text="IntTextBox"/>
-                    <Controls.Common:IntTextBox Text="1000000"/>
-                    <TextBlock Text="LongTextBox"/>
-                    <Controls.Common:LongTextBox Text="1000000000000000000000000000"/>
-                    <TextBlock Text="DoubleTextBox"/>
-                    <Controls.Common:DoubleTextBox Text="1000000.0000001"/>
-                    <TextBlock Text="IntUpDown"/>
-                    <Controls.Common:IntUpDown Text="99" Maximum="100"/>
-                    <TextBlock Text="LongUpDown"/>
-                    <Controls.Common:LongUpDown Text="1000000" Maximum="1000000"/>
-                    <TextBlock Text="DoubleUpDown"/>
-                    <Controls.Common:DoubleUpDown Text="999.25" Maximum="1000"/>
-                </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="PasswordBox">
                 <Grid Margin="10">
@@ -427,6 +436,36 @@
                         </Controls.Extended:TabbedTree.ContentTemplate>
                     </Controls.Extended:TabbedTree>
                 </StackPanel>
+            </TabItem>
+            <TabItem Header="TextBox &amp; UpDown">
+                <ScrollViewer>
+                    <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
+                        <TextBlock Style="{DynamicResource H2}" Text="AlphaNumericTextBox"/>
+                        <Controls.Common:AlphaNumericTextBox Text="Whole integers and letters 0 1 2 3 4 5 6"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="IntTextBox"/>
+                        <Controls.Common:IntTextBox Text="1000000"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="LongTextBox"/>
+                        <Controls.Common:LongTextBox Text="1000000000000000000000000000"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="DoubleTextBox"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Mantissa Length: " Margin="0,0,5,0" VerticalAlignment="Center"/>
+                            <Controls.Common:IntTextBox Text="{Binding Mantissa, ElementName=PART_DoubleTextBox, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="75"/>
+                        </StackPanel>
+                        <Controls.Common:DoubleTextBox 
+                        x:Name="PART_DoubleTextBox" 
+                        Text="1000000.0000001"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="IntUpDown"/>
+                        <Controls.Common:IntUpDown Text="99" Maximum="100"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="LongUpDown"/>
+                        <Controls.Common:LongUpDown Text="1000000" Maximum="1000000"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="DoubleUpDown"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Mantissa Length: " Margin="0,0,5,0" VerticalAlignment="Center"/>
+                            <Controls.Common:IntTextBox Text="{Binding Mantissa, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="75"/>
+                        </StackPanel>
+                        <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" Text="999.253" Maximum="1000"/>
+                    </Controls.Common:Spacer>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="TreeViewComboBox">
                 <StackPanel Margin="10">

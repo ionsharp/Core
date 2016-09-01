@@ -179,6 +179,15 @@ namespace Imagin.NET.Demo
             this.TreeViewSource = new ObservableCollection<TreeViewComboBoxItem>();
             for (int i = 0; i < 15; i++)
                 this.TreeViewSource.Add(new TreeViewComboBoxItem("Item " + i.ToString()));
+
+            for (int i = 0; i < 100; i++)
+            {
+                string BaseTitle = i < 25 ? "Title" : (i < 50 ? "Another Title" : (i < 75 ? "Yet Another Title" : "Yet A Longer Title"));
+                this.PART_AlignableWrapPanel.Children.Add(new Button()
+                {
+                    Content = BaseTitle + i.ToString()
+                });
+            }
         }
 
         #endregion
@@ -187,6 +196,14 @@ namespace Imagin.NET.Demo
 
         void Link_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Clicked link!");
+        }
+
+        void OnHorizontalContentAlignmentChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender == null || !sender.As<FrameworkElement>().IsInitialized)
+                return;
+            this.PART_AlignableWrapPanel.HorizontalContentAlignment = (sender as RadioButton).Content.ToString().ParseEnum<HorizontalAlignment>();
         }
 
         void OnViewChanged(object sender, RoutedEventArgs e)
