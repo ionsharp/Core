@@ -13,7 +13,7 @@ ImageButton  | ImageToggleButton | DropDownButton   | ImageDropDownButton | Adva
 IntTextBox   | LongTextBox       | DoubleTextBox    | AlphaNumericTextBox | IntUpDown                  | 
 LongUpDown   | DoubleUpDown      | AdvancedDataGrid | AdvancedListView    | FontFamilyBox              | 
 DirectionPad | Spacer            | FileBox          | PasswordBox         | AdvancedTreeView           | 
-AlignableWrapPanel|
+AlignableWrapPanel | ResourceDictionaryEditor |
 
 ###Extended
 
