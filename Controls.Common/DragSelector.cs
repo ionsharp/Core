@@ -1,4 +1,5 @@
 ﻿using Imagin.Common;
+using Imagin.Common.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -175,13 +176,12 @@ namespace Imagin.Controls.Common
                 return;
             foreach (FrameworkElement Element in DragSelector.FindVisualChildren<FrameworkElement>(this.ScrollViewer))
             {
-                if (Element is ScrollContentPresenter)
-                {
-                    this.ScrollContent = Element as ScrollContentPresenter;
-                    this.Hash = this.ScrollContent.GetHashCode();
-                    Console.WriteLine(this.Hash.ToString());
-                    break;
-                }
+                if (!Element.Is<ScrollContentPresenter>())
+                    continue;
+                this.ScrollContent = Element as ScrollContentPresenter;
+                this.Hash = this.ScrollViewer.Style.GetHashCode();
+                Console.WriteLine(this.Hash.ToString());
+                break;
             }
         }
 
@@ -345,7 +345,7 @@ namespace Imagin.Controls.Common
         /// </summary>
         void OnScrollViewerLayoutUpdated(object sender, EventArgs e)
         {
-            if (this.Hash == null || this.ScrollContent.GetHashCode() != this.Hash.Value)
+            if (this.Hash == null || this.ScrollViewer.Style.GetHashCode() != this.Hash.Value)
                 this.FindScrollContent();
         }
 

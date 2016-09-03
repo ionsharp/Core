@@ -1,10 +1,6 @@
 ﻿using Imagin.Common.Extensions;
-using System;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Input;
-using Imagin.Common.Extensions;
-using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 

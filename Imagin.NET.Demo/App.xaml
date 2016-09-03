@@ -146,6 +146,9 @@
         </Style>
 
         <Style x:Key="{x:Type DataGridCell}" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -155,12 +158,25 @@
                                 <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
                             </Style>
                         </ControlTemplate.Resources>
-                        <Border Padding="{TemplateBinding Padding}" BorderThickness="0" Background="Transparent" SnapsToDevicePixels="True">
+                        <Border 
+                            Padding="{TemplateBinding Padding}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True">
                             <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#11000000"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#05000000"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="{x:Type DataGridRow}" TargetType="{x:Type DataGridRow}">
@@ -450,7 +466,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+        <Style x:Key="{x:Type Controls.Common:AdvancedTextBox}" TargetType="{x:Type Controls.Common:AdvancedTextBox}">
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             <Setter Property="Background" Value="{DynamicResource TextBoxBackground}" />
@@ -460,64 +476,37 @@
             <Setter Property="Height" Value="Auto" />
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
             <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource TextBoxIsMouseOverBorderBrush}" />
+                </Trigger>
+                <Trigger Property="IsReadOnly" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource ReadOnlyTextBoxBackground}" />
+                    <Setter Property="Foreground" Value="{DynamicResource ReadOnlyTextBoxForeground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource ReadOnlyTextBoxBorderBrush}" />
+                </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Padding="{TemplateBinding Padding}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" x:Name="border">
-                            <Grid>
-                                <TextBlock 
-                                    Foreground="{DynamicResource PlaceholderForeground}" 
-                                    FontSize="{TemplateBinding FontSize}"
-                                    FontFamily="{TemplateBinding FontFamily}"
-                                    Text="{TemplateBinding Tag}" 
-                                    HorizontalAlignment="Left" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                <ScrollViewer 
-                                    x:Name="PART_ContentHost" 
-                                    HorizontalAlignment="Stretch" 
-                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                    MinHeight="{TemplateBinding MinHeight}" 
-                                    Height="{TemplateBinding Height}"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" Value="{DynamicResource TextBoxIsMouseOverBorderBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsReadOnly" Value="True">
-                                <Setter Property="Background" Value="{DynamicResource ReadOnlyTextBoxBackground}" />
-                                <Setter Property="Foreground" Value="{DynamicResource ReadOnlyTextBoxForeground}" />
-                                <Setter Property="BorderBrush" Value="{DynamicResource ReadOnlyTextBoxBorderBrush}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <Style x:Key="{x:Type Controls.Common:AlphaNumericTextBox}" TargetType="{x:Type Controls.Common:AlphaNumericTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-        <Style x:Key="{x:Type Controls.Common:AlphaNumericTextBox}" TargetType="{x:Type Controls.Common:AlphaNumericTextBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
+        <Style x:Key="{x:Type Controls.Common:IntTextBox}" TargetType="{x:Type Controls.Common:IntTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-        <Style x:Key="{x:Type Controls.Common:IntTextBox}" TargetType="{x:Type Controls.Common:IntTextBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
+        <Style x:Key="{x:Type Controls.Common:LongTextBox}" TargetType="{x:Type Controls.Common:LongTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-        <Style x:Key="{x:Type Controls.Common:LongTextBox}" TargetType="{x:Type Controls.Common:LongTextBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
+        <Style x:Key="{x:Type Controls.Common:DoubleTextBox}" TargetType="{x:Type Controls.Common:DoubleTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-        <Style x:Key="{x:Type Controls.Common:DoubleTextBox}" TargetType="{x:Type Controls.Common:DoubleTextBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
+        <Style x:Key="{x:Type Controls.Common:IntUpDown}" TargetType="{x:Type Controls.Common:IntUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-        <Style x:Key="{x:Type Controls.Common:IntUpDown}" TargetType="{x:Type Controls.Common:IntUpDown}" BasedOn="{StaticResource TextBoxStyle}"/>
+        <Style x:Key="{x:Type Controls.Common:LongUpDown}" TargetType="{x:Type Controls.Common:LongUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-        <Style x:Key="{x:Type Controls.Common:LongUpDown}" TargetType="{x:Type Controls.Common:LongUpDown}" BasedOn="{StaticResource TextBoxStyle}"/>
+        <Style x:Key="{x:Type Controls.Common:DoubleUpDown}" TargetType="{x:Type Controls.Common:DoubleUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-        <Style x:Key="{x:Type Controls.Common:DoubleUpDown}" TargetType="{x:Type Controls.Common:DoubleUpDown}" BasedOn="{StaticResource TextBoxStyle}"/>
+        <Style x:Key="{x:Type Controls.Common:PasswordBox}" TargetType="{x:Type Controls.Common:PasswordBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+
+        <Style x:Key="{x:Type Controls.Common:FileBox}" TargetType="{x:Type Controls.Common:FileBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
         <Style x:Key="{x:Type Controls.Common:RadioGroup}" TargetType="{x:Type Controls.Common:RadioGroup}">
             <Setter Property="BorderThickness" Value="1" />
@@ -865,90 +854,5 @@
                 </EventTrigger>
             </Style.Triggers>
         </Style>
-        <!--
-        <Style x:Key="{x:Type Controls.Common:CustomListView}" TargetType="{x:Type Controls.Common:CustomListView}" BasedOn="{StaticResource {x:Type Controls.Common:CustomListView}}">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="True"/>
-            <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
-            <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Controls.Common:CustomListView">
-                        <ScrollViewer x:Name="PART_ScrollViewer" Margin="{TemplateBinding Margin}">
-                            <Grid x:Name="PART_Grid" Background="Transparent" ClipToBounds="True">
-                                <ItemsPresenter Margin="{TemplateBinding Padding}"/>
-                                <Controls.Common:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding Selection}"/>
-                            </Grid>
-                        </ScrollViewer>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsGrouping" Value="True">
-                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:BrowserComponent}}}" Value="Details">
-                                <Setter TargetName="PART_ScrollViewer" Property="Style" Value="{DynamicResource GridViewScrollViewerStyle}"/>
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:BrowserComponent}}}" Value="Thumbnails">
-                    <Setter Property="View" Value="{DynamicResource ThumbnailsView}"/>
-                    <Setter Property="Padding" Value="10,10,0,0"/>
-                    <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
-                    <Setter Property="ItemContainerStyle" Value="{StaticResource DefaultItemStyle}"/>
-                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-                    <Setter Property="ItemsPanel">
-                        <Setter.Value>
-                            <ItemsPanelTemplate>
-                                <WrapPanel 
-                                    Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}" 
-                                    ItemWidth="{Binding (ListView.View).ItemWidth, RelativeSource={RelativeSource AncestorType=ListView}}" 
-                                    ItemHeight="{Binding (ListView.View).ItemHeight, RelativeSource={RelativeSource AncestorType=ListView}}" 
-                                    Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:BrowserComponent}}}" Value="List">
-                    <Setter Property="View" Value="{DynamicResource ListView}"/>
-                    <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
-                    <Setter Property="ItemContainerStyle" Value="{StaticResource ListItemStyle}"/>
-                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:BrowserComponent}}}" Value="Details">
-                    <Setter Property="View" Value="{DynamicResource DetailsView}"/>
-                    <Setter Property="ItemContainerStyle" Value="{StaticResource DetailsItemStyle}"/>
-                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:BrowserComponent}}}" Value="Tiles">
-                    <Setter Property="Padding" Value="10,10,0,0"/>
-                    <Setter Property="View" Value="{DynamicResource TilesView}"/>
-                    <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
-                    <Setter Property="ItemContainerStyle" Value="{StaticResource DefaultItemStyle}"/>
-                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-                    <Setter Property="ItemsPanel">
-                        <Setter.Value>
-                            <ItemsPanelTemplate>
-                                <WrapPanel 
-                                    Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}" 
-                                    ItemWidth="{Binding (ListView.View).ItemWidth, RelativeSource={RelativeSource AncestorType=ListView}}" 
-                                    ItemHeight="{Binding (ListView.View).ItemHeight, RelativeSource={RelativeSource AncestorType=ListView}}" 
-                                    Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:BrowserComponent}}}" Value="Content">
-                    <Setter Property="View" Value="{DynamicResource ContentView}"/>
-                    <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
-                    <Setter Property="ItemContainerStyle" Value="{StaticResource ContentItemStyle}"/>
-                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        -->
     </Application.Resources>
 </Application>

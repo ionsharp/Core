@@ -6,6 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
@@ -20,6 +22,84 @@ namespace Imagin.Controls.Extended
         #endregion
 
         #region Dependency
+
+        public static DependencyProperty GridBackgroundProperty = DependencyProperty.Register("GridBackground", typeof(Brush), typeof(PropertyGrid), new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Brush GridBackground
+        {
+            get
+            {
+                return (Brush)GetValue(GridBackgroundProperty);
+            }
+            set
+            {
+                SetValue(GridBackgroundProperty, value);
+            }
+        }
+
+        public static DependencyProperty GridBorderBrushProperty = DependencyProperty.Register("GridBorderBrush", typeof(Brush), typeof(PropertyGrid), new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Brush GridBorderBrush
+        {
+            get
+            {
+                return (Brush)GetValue(GridBorderBrushProperty);
+            }
+            set
+            {
+                SetValue(GridBorderBrushProperty, value);
+            }
+        }
+
+        public static DependencyProperty GridBorderThicknessProperty = DependencyProperty.Register("GridBorderThickness", typeof(Thickness), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Thickness GridBorderThickness
+        {
+            get
+            {
+                return (Thickness)GetValue(GridBorderThicknessProperty);
+            }
+            set
+            {
+                SetValue(GridBorderThicknessProperty, value);
+            }
+        }
+
+        public static DependencyProperty AlternationCountProperty = DependencyProperty.Register("AlternationCount", typeof(int), typeof(PropertyGrid), new FrameworkPropertyMetadata(2, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public int AlternationCount
+        {
+            get
+            {
+                return (int)GetValue(AlternationCountProperty);
+            }
+            set
+            {
+                SetValue(AlternationCountProperty, value);
+            }
+        }
+
+        public static DependencyProperty HeadersVisibilityProperty = DependencyProperty.Register("HeadersVisibility", typeof(DataGridHeadersVisibility), typeof(PropertyGrid), new FrameworkPropertyMetadata(DataGridHeadersVisibility.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataGridHeadersVisibility HeadersVisibility
+        {
+            get
+            {
+                return (DataGridHeadersVisibility)GetValue(HeadersVisibilityProperty);
+            }
+            set
+            {
+                SetValue(HeadersVisibilityProperty, value);
+            }
+        }
+
+        public static DependencyProperty GridLinesVisibilityProperty = DependencyProperty.Register("GridLinesVisibility", typeof(DataGridGridLinesVisibility), typeof(PropertyGrid), new FrameworkPropertyMetadata(DataGridGridLinesVisibility.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataGridGridLinesVisibility GridLinesVisibility
+        {
+            get
+            {
+                return (DataGridGridLinesVisibility)GetValue(GridLinesVisibilityProperty);
+            }
+            set
+            {
+                SetValue(GridLinesVisibilityProperty, value);
+            }
+        }
 
         public static DependencyProperty ShowPrimaryProperty = DependencyProperty.Register("ShowPrimary", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool ShowPrimary
@@ -114,19 +194,6 @@ namespace Imagin.Controls.Extended
             set
             {
                 SetValue(ShowHeaderProperty, value);
-            }
-        }
-
-        public static DependencyProperty ExportTypesProperty = DependencyProperty.Register("ExportTypes", typeof(Type[]), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Type[] ExportTypes
-        {
-            get
-            {
-                return (Type[])GetValue(ExportTypesProperty);
-            }
-            set
-            {
-                SetValue(ExportTypesProperty, value);
             }
         }
 
@@ -271,15 +338,6 @@ namespace Imagin.Controls.Extended
         private void OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             (sender as TextBox).SelectAll();
-        }
-
-        private void OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            TextBox t = (sender as TextBox);
-            if (t.IsKeyboardFocusWithin)
-                return;
-            e.Handled = true;
-            t.Focus();
         }
 
         #endregion

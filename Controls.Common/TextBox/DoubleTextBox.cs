@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class DoubleTextBox : TextBox
+    public class DoubleTextBox : AdvancedTextBox
     {
         public double Value
         {
@@ -31,20 +31,16 @@ namespace Imagin.Controls.Common
         static void OnMantissaChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             DoubleTextBox DoubleTextBox = (DoubleTextBox)Object;
-            DoubleTextBox.SetText();
+            DoubleTextBox.SetValue(DoubleTextBox.Value);
         }
 
         public DoubleTextBox() : base()
         {
         }
 
-        void SetText()
+        void SetValue(double NewValue)
         {
-            double Value;
-            if (string.IsNullOrWhiteSpace(this.Text))
-                this.Text = 0.0.ToString();
-            else if (double.TryParse(this.Text, out Value))
-                this.Text = Value.ToString("N" + Mantissa.ToString());
+            this.Text = NewValue.ToString("N" + Mantissa.ToString());
         }
 
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
@@ -58,7 +54,7 @@ namespace Imagin.Controls.Common
         {
             base.OnTextChanged(e);
             int CaretIndex = this.CaretIndex;
-            this.SetText();
+            this.SetValue(this.Value);
             this.CaretIndex = CaretIndex;
         }
     }

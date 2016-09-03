@@ -1,6 +1,7 @@
-﻿using Imagin.Common;
+﻿using Imagin.Common.Attributes;
 using System;
-using System.Timers;
+using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
@@ -12,8 +13,11 @@ namespace Imagin.Common
     {
         #region Properties
 
-        string name = string.Empty;
-        public string Name
+        protected string name = string.Empty;
+        [Category("General")]
+        [Primary(true)]
+        [XmlElement(ElementName = "Name", Namespace = "")]
+        public virtual string Name
         {
             get
             {
@@ -29,7 +33,7 @@ namespace Imagin.Common
         #endregion
 
         #region Methods
-        
+
         public override string ToString()
         {
             return this.Name;

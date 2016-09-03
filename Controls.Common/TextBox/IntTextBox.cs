@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class IntTextBox : TextBox
+    public class IntTextBox : AdvancedTextBox
     {
         public int Value
         {

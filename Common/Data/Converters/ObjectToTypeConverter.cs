@@ -11,6 +11,10 @@ namespace Imagin.Common.Data.Converters
         {
             if (value == null)
                 return null;
+            if (parameter != null && parameter.ToString() == "asdf")
+            {
+                Console.WriteLine("\n\n" + value.GetType().ToString());
+            }
             return value.GetType();
         }
 

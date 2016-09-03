@@ -5,6 +5,12 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// A WrapPanel with alignable content.
+    /// </summary>
+    /// <remarks>
+    /// Borrowed from http://stackoverflow.com/questions/806777/wpf-how-can-i-center-all-items-in-a-wrappanel.
+    /// </summary>
     public class AlignableWrapPanel : Panel
     {
         #region Properties

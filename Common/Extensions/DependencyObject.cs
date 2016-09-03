@@ -11,6 +11,22 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
+        public static T GetChildOfType<T>(this DependencyObject Object) where T : DependencyObject
+        {
+            if (Object == null)
+                return null;
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(Object); i++)
+            {
+                var Child = VisualTreeHelper.GetChild(Object, i);
+                var Result = (Child as T) ?? GetChildOfType<T>(Child);
+                if (Result != null) return Result;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
         public static IEnumerable<T> GetChildren<T>(this DependencyObject Parent) where T : DependencyObject
         {
             if (Parent != null)

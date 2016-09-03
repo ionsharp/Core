@@ -4,21 +4,8 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public abstract class UpDown : TextBox
+    public abstract class UpDown : AdvancedTextBox
     {
-        public static DependencyProperty PlaceholderProperty = DependencyProperty.Register("Placeholder", typeof(string), typeof(UpDown), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public string Placeholder
-        {
-            get
-            {
-                return (string)GetValue(PlaceholderProperty);
-            }
-            set
-            {
-                SetValue(PlaceholderProperty, value);
-            }
-        }
-
         public UpDown() : base()
         {
             this.DefaultStyleKey = typeof(UpDown);

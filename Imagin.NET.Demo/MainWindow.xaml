@@ -103,7 +103,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="AdvancedListViewStyle" TargetType="{x:Type Controls.Common:AdvancedListView}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedListView}}">
+        <Style x:Key="AdvancedListViewStyle" TargetType="{x:Type Controls.Common:AdvancedListView}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -351,7 +351,7 @@
             </TabItem>
             <TabItem Header="FileBox">
                 <Grid Margin="10">
-                    <Controls.Common:FileBox Padding="0,0,3,0" VerticalAlignment="Top" BorderThickness="1" BorderBrush="DarkGray"/>
+                    <Controls.Common:FileBox VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="FontFamilyBox">
@@ -368,8 +368,8 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Controls.Common:Line Color="Red"/>
-                    <Controls.Common:Line Grid.Column="1" Color="Green" Orientation="Vertical"/>
+                    <Controls.Common:Line Stroke="Red"/>
+                    <Controls.Common:Line Grid.Column="1" Stroke="Green" Orientation="Vertical"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Link">
@@ -385,7 +385,52 @@
             </TabItem>
             <TabItem Header="PasswordBox">
                 <Grid Margin="10">
-                    <Controls.Common:PasswordBox Padding="5,5,1,5" VerticalAlignment="Top" BorderThickness="1" BorderBrush="DarkGray" ShowEnterButton="True" ShowHint="True" Hint="What do you think it is? ;("/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,15,0">
+                        <CheckBox Content="Can enter" IsChecked="{Binding CanEnter, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
+                        <CheckBox Content="Show hint" IsChecked="{Binding ShowHint, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
+                        <Controls.Common:AdvancedTextBox Text="{Binding Hint, ElementName=PART_PasswordBox, UpdateSourceTrigger=PropertyChanged}" Placeholder="Enter a hint..." VerticalAlignment="Center" IsEnabled="{Binding ShowHint, ElementName=PART_PasswordBox}"/>
+                        <CheckBox Content="Show enter button" IsChecked="{Binding ShowEnterButton, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
+                        <CheckBox Content="Show password" IsChecked="{Binding ShowPassword, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
+                    </Controls.Common:Spacer>
+                    <Controls.Common:PasswordBox 
+                        Grid.Row="1"
+                        x:Name="PART_PasswordBox"
+                        Placeholder="Enter a password..." 
+                        VerticalAlignment="Top" 
+                        ShowEnterButton="True" 
+                        ShowHint="True" 
+                        Hint="What do you think it is? ;(" 
+                        Entered="OnPasswordEntered"
+                        Margin="0,5,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="PropertyGrid">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox 
+                        x:Name="PART_ListBox" 
+                        Background="Transparent" 
+                        BorderThickness="0" 
+                        ItemsSource="{Binding PropertyGridSource, IsAsync=True}" 
+                        SelectionMode="Single">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Controls.Extended:PropertyGrid 
+                        Grid.Column="1" 
+                        Background="#05000000" 
+                        SelectedObject="{Binding SelectedItem, Mode=OneWay, ElementName=PART_ListBox}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="RadioGroup">
@@ -401,11 +446,17 @@
             </TabItem>
             <TabItem Header="Spacer">
                 <StackPanel Margin="10">
-                    <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,10,0">
+                    <Controls.Common:Spacer x:Name="PART_Spacer" Orientation="Horizontal" Spacing="0,0,10,0">
                         <Button Content="First"/>
                         <Button Content="Second"/>
                         <Button Content="Third"/>
                         <Button Content="Fourth"/>
+                    </Controls.Common:Spacer>
+                    <Controls.Common:Spacer x:Name="PART_SpacerThicknessPanel" Orientation="Horizontal" Spacing="0,0,10,0" Margin="0,10,0,0">
+                        <Controls.Common:IntTextBox Text="0" TextChanged="OnSpacerThicknessChanged"/>
+                        <Controls.Common:IntTextBox Text="0" TextChanged="OnSpacerThicknessChanged"/>
+                        <Controls.Common:IntTextBox Text="10" TextChanged="OnSpacerThicknessChanged"/>
+                        <Controls.Common:IntTextBox Text="0" TextChanged="OnSpacerThicknessChanged"/>
                     </Controls.Common:Spacer>
                 </StackPanel>
             </TabItem>

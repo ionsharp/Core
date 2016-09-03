@@ -8,11 +8,11 @@ namespace Imagin.Common
     [Serializable]
     public class NamedObject : AbstractObject, IEditable, INamable
     {
-        string name = string.Empty;
+        protected string name = string.Empty;
         [Category("General")]
         [Primary(true)]
         [XmlElement(ElementName = "Name", Namespace = "")]
-        public string Name
+        public virtual string Name
         {
             get
             {

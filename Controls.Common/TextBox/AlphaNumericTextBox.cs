@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class AlphaNumericTextBox : TextBox
+    public class AlphaNumericTextBox : AdvancedTextBox
     {
         Regex Expression
         {

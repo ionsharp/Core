@@ -1,0 +1,81 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Imagin.Controls.Common"
+    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
+    <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+
+    <Style x:Key="{x:Type local:FileBox}" TargetType="{x:Type local:FileBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FileBox}">
+                    <Border
+                        Margin="{TemplateBinding Margin}"
+                        Padding="{TemplateBinding Padding}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="PART_Text">
+                                <ScrollViewer 
+                                x:Name="PART_ContentHost" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                MinHeight="{TemplateBinding MinHeight}" 
+                                Height="{TemplateBinding Height}"/>
+                                <TextBlock 
+                                Foreground="{TemplateBinding PlaceholderForeground}" 
+                                FontSize="{TemplateBinding FontSize}"
+                                FontFamily="{TemplateBinding FontFamily}"
+                                FontStyle="{TemplateBinding FontStyle}"
+                                FontStretch="{TemplateBinding FontStretch}"
+                                FontWeight="{TemplateBinding FontWeight}"
+                                Text="{TemplateBinding Placeholder}" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Left">
+                                                <Setter Property="Grid.Column" Value="1"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Right">
+                                                <Setter Property="Grid.Column" Value="0"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                            </Grid>
+                            <local:ImageButton 
+                                Grid.Column="1" 
+                                x:Name="PART_BrowseButton"
+                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png" 
+                                Padding="5,0" 
+                                ToolTip="Click to browse...">
+                                <local:ImageButton.Style>
+                                    <Style TargetType="{x:Type local:ImageButton}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Left">
+                                                <Setter Property="Grid.Column" Value="0"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Right">
+                                                <Setter Property="Grid.Column" Value="1"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </local:ImageButton.Style>
+                            </local:ImageButton>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

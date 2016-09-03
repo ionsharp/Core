@@ -9,29 +9,29 @@ namespace Imagin.Controls.Common
     /// </summary>
     public class Line : UserControl
     {
-        public static DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(Brush), typeof(Line), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Brush Color
+        public static DependencyProperty StrokeProperty = DependencyProperty.Register("Stroke", typeof(Brush), typeof(Line), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Brush Stroke
         {
             get
             {
-                return (Brush)GetValue(ColorProperty);
-            }
-            set
-            {
-                SetValue(ColorProperty, value);
-            }
-        }
-
-        public static DependencyProperty StrokeProperty = DependencyProperty.Register("Stroke", typeof(double), typeof(Line), new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public double Stroke
-        {
-            get
-            {
-                return (double)GetValue(StrokeProperty);
+                return (Brush)GetValue(StrokeProperty);
             }
             set
             {
                 SetValue(StrokeProperty, value);
+            }
+        }
+
+        public static DependencyProperty ThicknessProperty = DependencyProperty.Register("Thickness", typeof(double), typeof(Line), new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public double Thickness
+        {
+            get
+            {
+                return (double)GetValue(ThicknessProperty);
+            }
+            set
+            {
+                SetValue(ThicknessProperty, value);
             }
         }
 
