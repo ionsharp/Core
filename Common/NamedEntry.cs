@@ -15,7 +15,7 @@ namespace Imagin.Common
 
         protected string name = string.Empty;
         [Category("General")]
-        [Primary(true)]
+        [Featured(true)]
         [XmlElement(ElementName = "Name", Namespace = "")]
         public virtual string Name
         {

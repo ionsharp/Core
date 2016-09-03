@@ -113,6 +113,7 @@ namespace Imagin.NET.Demo
         public class Person : NamedObject
         {
             [Category("General")]
+            [Featured(true)]
             public override string Name
             {
                 get

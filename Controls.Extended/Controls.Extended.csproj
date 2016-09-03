@@ -76,9 +76,10 @@
     <Compile Include="PropertyGrid\PropertyItems\MultiLinePropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItems\PasswordPropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItems\PropertyItem.cs" />
-    <Compile Include="PropertyGrid\PropertyItems\SolidColorPropertyItem.cs" />
+    <Compile Include="PropertyGrid\PropertyItems\SolidColorBrushPropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItems\StringPropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItemTemplateSelector.cs" />
+    <Compile Include="ResourceDictionaryEditor.cs" />
     <Compile Include="TabbedTree.cs" />
   </ItemGroup>
   <ItemGroup>

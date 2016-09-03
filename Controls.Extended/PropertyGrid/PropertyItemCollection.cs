@@ -1,5 +1,6 @@
 ﻿using Imagin.Common.Attributes;
 using Imagin.Common.Collections;
+using Imagin.Common.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,20 @@ namespace Imagin.Controls.Extended
         /// </summary>
         public object Object = null;
 
+        PropertyItem featured = null;
+        public PropertyItem Featured
+        {
+            get
+            {
+                return this.featured;
+            }
+            set
+            {
+                this.featured = value;
+                OnPropertyChanged("Featured");
+            }
+        }
+
         /// <summary>
         /// Creates a PropertyItem based on given arguments.
         /// </summary>
@@ -28,69 +43,72 @@ namespace Imagin.Controls.Extended
             string Name = Property.Name;
             object Value = Property.GetValue(Object);
             string Category = (string)Attributes["Category"];
-            bool IsDisabled = (bool)Attributes["IsReadOnly"];
-            bool IsPrimary = (bool)Attributes["IsPrimary"];
+            bool IsReadOnly = (bool)Attributes["IsReadOnly"];
+            bool IsFeatured = (bool)Attributes["IsFeatured"];
             if (Property.PropertyType == typeof(string))
             {
                 if ((bool)Attributes["IsPassword"])
-                    PropertyItem = new PasswordPropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                    PropertyItem = new PasswordPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
                 else if ((bool)Attributes["IsFile"])
-                    PropertyItem = new FileSystemObjectPropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                    PropertyItem = new FileSystemObjectPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
                 else if ((bool)Attributes["IsMultiLine"])
-                    PropertyItem = new MultiLinePropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                    PropertyItem = new MultiLinePropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
                 else
-                    PropertyItem = new StringPropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                    PropertyItem = new StringPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             }
             else if (Property.PropertyType == typeof(int))
-                PropertyItem = new IntPropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                PropertyItem = new IntPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             else if (Property.PropertyType == typeof(double))
-                PropertyItem = new DoublePropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                PropertyItem = new DoublePropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             else if (Property.PropertyType.IsEnum)
-                PropertyItem = new EnumPropertyItem(Object, Property, Name, Value, Category, IsDisabled, IsPrimary);
+                PropertyItem = new EnumPropertyItem(Object, Property, Name, Value, Category, IsReadOnly, IsFeatured);
             else if (Property.PropertyType == typeof(bool))
-                PropertyItem = new BoolPropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                PropertyItem = new BoolPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             else if (Property.PropertyType == typeof(DateTime))
-                PropertyItem = new DateTimePropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                PropertyItem = new DateTimePropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             else if (Property.PropertyType == typeof(long))
-                PropertyItem = new LongPropertyItem(Object, Name, Value, Category, IsDisabled, IsPrimary);
+                PropertyItem = new LongPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             return PropertyItem;
         }
 
         /// <summary>
-        /// Sets this by enumerating a resource dictionary.
+        /// Set properties by enumerating a resource dictionary.
         /// </summary>
         /// <param name="Dictionary">The dictionary to enumerate.</param>
         /// <param name="Callback">What to do afterwards.</param>
-        public void FromResourceDictionary(ResourceDictionary Dictionary, Action Callback = null)
+        public async void BeginFromResourceDictionary(ResourceDictionary Dictionary, Action Callback = null)
         {
-            this.Clear();
-            ResourceDictionary r = Dictionary;
-            foreach (DictionaryEntry Entry in r)
+            await Task.Run(new Action(() =>
             {
-                if (Entry.Value is LinearGradientBrush)
-                    this.Add(new LinearGradientPropertyItem(null, Entry.Key.ToString(), Entry.Value, "Gradients", false));
-                else if (Entry.Value is SolidColorBrush)
-                    this.Add(new SolidColorPropertyItem(null, Entry.Key.ToString(), Entry.Value, "Brushes", false));
-            }
+                foreach (DictionaryEntry Entry in Dictionary)
+                {
+                    if (Entry.Value == null)
+                        continue;
+                    if (Entry.Value.Is<LinearGradientBrush>())
+                    {
+                        this.Add(new LinearGradientPropertyItem(this.Object, Entry.Key.ToString(), Entry.Value, "Gradients", false));
+                    }
+                    else if (Entry.Value.Is<SolidColorBrush>())
+                    {
+                        this.Add(new SolidColorBrushPropertyItem(this.Object, Entry.Key.ToString(), Entry.Value, "Brushes", false));
+                    }
+                }
+            }));
             if (Callback != null)
                 Callback.Invoke();
         }
 
         /// <summary>
-        /// Sets this by enumerating the properties of an object.
+        /// Set properties by enumerating the properties of an object.
         /// </summary>
         /// <param name="Callback">What to do afterwards.</param>
-        public void FromObject(Action<PropertyItem> Callback = null)
+        public async void BeginFromObject(Action Callback = null)
         {
-            BackgroundWorker Worker = new BackgroundWorker();
-            Worker.DoWork += (s, e) =>
+            object Object = this.Object;
+            await Task.Run(new Action(() =>
             {
-                this.Clear();
-
-                PropertyInfo[] ObjectProperties = e.Argument.GetType().GetProperties();
+                PropertyInfo[] ObjectProperties = Object.GetType().GetProperties();
                 ObjectProperties = ObjectProperties.OrderBy(x => x.Name).ToArray();
-
-                PropertyItem PrimaryItem = null;
 
                 for (int i = 0, Length = ObjectProperties.Length; i < Length; i++)
                 {
@@ -105,7 +123,7 @@ namespace Imagin.Controls.Extended
                     FoundAttributes.Add("Category", null);
                     FoundAttributes.Add("IsPassword", false);
                     FoundAttributes.Add("IsFile", false);
-                    FoundAttributes.Add("IsPrimary", false);
+                    FoundAttributes.Add("IsFeatured", false);
                     FoundAttributes.Add("IsMultiLine", false);
                     FoundAttributes.Add("IsReadOnly", false);
 
@@ -123,40 +141,35 @@ namespace Imagin.Controls.Extended
                             FoundAttributes["IsHidden"] = IsHidden;
                         }
                         if (Attribute is CategoryAttribute)
-                            FoundAttributes["Category"] = (Attribute as CategoryAttribute).Category;
+                            FoundAttributes["Category"] = Attribute.As<CategoryAttribute>().Category;
                         if (Attribute is PasswordAttribute)
-                            FoundAttributes["IsPassword"] = (Attribute as PasswordAttribute).Value;
+                            FoundAttributes["IsPassword"] = Attribute.As<PasswordAttribute>().Value;
                         if (Attribute is FileAttribute)
-                            FoundAttributes["IsFile"] = (Attribute as FileAttribute).Value;
-                        if (Attribute is PrimaryAttribute)
-                            FoundAttributes["IsPrimary"] = (Attribute as PrimaryAttribute).IsPrimary;
+                            FoundAttributes["IsFile"] = Attribute.As<FileAttribute>().Value;
+                        if (Attribute is FeaturedAttribute)
+                            FoundAttributes["IsFeatured"] = Attribute.As<FeaturedAttribute>().IsFeatured;
                         if (Attribute is MultiLineAttribute)
-                            FoundAttributes["IsMultiLine"] = (Attribute as MultiLineAttribute).IsMultiLine;
+                            FoundAttributes["IsMultiLine"] = Attribute.As<MultiLineAttribute>().IsMultiLine;
                         if (Attribute is ReadOnlyAttribute)
-                            FoundAttributes["IsReadOnly"] = (Attribute as ReadOnlyAttribute).IsReadOnly;
+                            FoundAttributes["IsReadOnly"] = Attribute.As<ReadOnlyAttribute>().IsReadOnly;
                     }
                     if (Skip)
                         continue;
-                    PropertyItem PropertyItem = this.GetPropertyItem(e.Argument, Property, FoundAttributes);
-                    if (PropertyItem != null)
-                    {
-                        if (PropertyItem.IsPrimary)
-                            PrimaryItem = PropertyItem;
-                        else
-                            this.Add(PropertyItem);
-                    }
-
+                    PropertyItem PropertyItem = this.GetPropertyItem(Object, Property, FoundAttributes);
+                    if (PropertyItem == null)
+                        continue;
+                    this.Add(PropertyItem);
                 }
-                e.Result = PrimaryItem;
-            };
-            Worker.RunWorkerCompleted += (s, e) =>
-            {
-                if (Callback != null)
-                    Callback.Invoke(e.Result as PropertyItem);
-            };
-            Worker.RunWorkerAsync(this.Object);
+            }));
+
+            if (Callback != null)
+                Callback.Invoke();
         }
 
+        /// <summary>
+        /// Set properties by enumerating an unknown object. 
+        /// </summary>
+        /// <param name="Source">A function that enumerates an unknown object and returns a list of properties.</param>
         public async void BeginFromUnknown(Func<object, IEnumerable<PropertyItem>> Source)
         {
             await Task.Run(new Action(() =>
@@ -171,6 +184,13 @@ namespace Imagin.Controls.Extended
 
         public PropertyItemCollection() : base()
         {
+            this.ItemAdded += OnItemAdded;
+        }
+
+        void OnItemAdded(object sender, Imagin.Common.Collections.Events.ItemAddedEventArgs<PropertyItem> e)
+        {
+            if (e.NewItem.IsFeatured)
+                this.Featured = e.NewItem;
         }
     }
 }

@@ -101,29 +101,16 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty ShowPrimaryProperty = DependencyProperty.Register("ShowPrimary", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool ShowPrimary
+        public static DependencyProperty ShowFeaturedProperty = DependencyProperty.Register("ShowFeatured", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool ShowFeatured
         {
             get
             {
-                return (bool)GetValue(ShowPrimaryProperty);
+                return (bool)GetValue(ShowFeaturedProperty);
             }
             set
             {
-                SetValue(ShowPrimaryProperty, value);
-            }
-        }
-
-        public static DependencyProperty PrimaryItemProperty = DependencyProperty.Register("PrimaryItem", typeof(PropertyItem), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public PropertyItem PrimaryItem
-        {
-            get
-            {
-                return (PropertyItem)GetValue(PrimaryItemProperty);
-            }
-            private set
-            {
-                SetValue(PrimaryItemProperty, value);
+                SetValue(ShowFeaturedProperty, value);
             }
         }
 
@@ -300,7 +287,7 @@ namespace Imagin.Controls.Extended
         /// </summary>
         protected virtual void SetObject()
         {
-            this.Properties.FromObject(new Action<PropertyItem>((PrimaryItem) => this.PrimaryItem = PrimaryItem));
+            this.Properties.BeginFromObject();
         }
 
         #endregion

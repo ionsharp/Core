@@ -4,16 +4,16 @@ namespace Imagin.Common.Attributes
 {
     [Serializable]
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
-    public class PrimaryAttribute : Attribute
+    public class FeaturedAttribute : Attribute
     {
-        public bool IsPrimary
+        public bool IsFeatured
         {
             get; set;
         }
 
-        public PrimaryAttribute(bool IsPrimary)
+        public FeaturedAttribute(bool IsFeatured)
         {
-            this.IsPrimary = IsPrimary;
+            this.IsFeatured = IsFeatured;
         }
     }
 }

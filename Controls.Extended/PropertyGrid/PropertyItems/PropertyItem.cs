@@ -28,17 +28,17 @@ namespace Imagin.Controls.Extended
 
         public event EventHandler<ObjectEventArgs> ValueChanged;
         
-        private bool isPrimary = false;
-        public bool IsPrimary
+        private bool isFeatured = false;
+        public bool IsFeatured
         {
             get
             {
-                return this.isPrimary;
+                return this.isFeatured;
             }
             set
             {
-                this.isPrimary = value;
-                OnPropertyChanged("IsPrimary");
+                this.isFeatured = value;
+                OnPropertyChanged("IsFeatured");
             }
         }
 
@@ -160,7 +160,7 @@ namespace Imagin.Controls.Extended
 
         #region PropertyItem
 
-        public PropertyItem(object SelectedObject, string Name, object Value, string Category, bool IsReadOnly, bool IsPrimary = false)
+        public PropertyItem(object SelectedObject, string Name, object Value, string Category, bool IsReadOnly, bool IsFeatured = false)
         {
             this.SelectedObject = SelectedObject;
             this.Name = Name;
@@ -170,7 +170,7 @@ namespace Imagin.Controls.Extended
                 this.Info = this.SelectedObject.GetType().GetProperty(this.Name, BindingFlags.Public | BindingFlags.Instance);
             this.Category = Category;
             this.IsReadOnly = IsReadOnly;
-            this.IsPrimary = IsPrimary;
+            this.IsFeatured = IsFeatured;
         }
 
         #endregion

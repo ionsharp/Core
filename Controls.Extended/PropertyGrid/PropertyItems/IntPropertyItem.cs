@@ -10,7 +10,7 @@ namespace Imagin.Controls.Extended
                 this.Info.SetValue(SelectedObject, NewValue == null ? 0 : Convert.ToInt32(NewValue), null);
         }
 
-        public IntPropertyItem(object SelectedObject, string Name, object Value, string Category, bool IsReadOnly, bool IsPrimary = false) : base(SelectedObject, Name, Value, Category, IsReadOnly, IsPrimary)
+        public IntPropertyItem(object SelectedObject, string Name, object Value, string Category, bool IsReadOnly, bool IsFeatured = false) : base(SelectedObject, Name, Value, Category, IsReadOnly, IsFeatured)
         {
             this.Type = PropertyType.Int;
         }

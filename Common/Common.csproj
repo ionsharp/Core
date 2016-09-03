@@ -76,6 +76,7 @@
     <Compile Include="Collections\Events\ReplacedEventArgs.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Data\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Data\Converters\BrushToHexConverter.cs" />
     <Compile Include="Data\Converters\EnumToCamelCaseConverter.cs" />
     <Compile Include="Data\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Data\Converters\NullObjectToBooleanConverter.cs" />

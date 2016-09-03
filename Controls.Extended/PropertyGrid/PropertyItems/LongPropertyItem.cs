@@ -10,7 +10,7 @@ namespace Imagin.Controls.Extended
                 this.Info.SetValue(SelectedObject, NewValue == null ? 0L : Convert.ToInt64(NewValue), null);
         }
 
-        public LongPropertyItem(object SelectedObject, string Name, object Value, string Category, bool IsReadOnly, bool IsPrimary = false) : base(SelectedObject, Name, Value, Category, IsReadOnly, IsPrimary)
+        public LongPropertyItem(object SelectedObject, string Name, object Value, string Category, bool IsReadOnly, bool IsFeatured = false) : base(SelectedObject, Name, Value, Category, IsReadOnly, IsFeatured)
         {
             this.Type = PropertyType.Long;
         }

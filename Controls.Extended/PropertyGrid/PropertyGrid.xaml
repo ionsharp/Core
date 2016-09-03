@@ -10,9 +10,6 @@
     xmlns:Common.Extensions="clr-namespace:Imagin.Common.Extensions;assembly=Imagin.Common"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
     mc:Ignorable="d" 
-    d:DesignHeight="300" 
-    d:DesignWidth="300"
-    Padding="5,0,0,0"
     x:Name="PART_PropertyGrid">
     <UserControl.Resources>
         <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
@@ -22,7 +19,8 @@
         <Common.Data.Converters:StringToCamelCaseConverter x:Key="StringToCamelCaseConverter"/>
         <Common.Data.Converters:EnumToCamelCaseConverter x:Key="EnumToCamelCaseConverter"/>
         <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
-
+        <Common.Data.Converters:SolidColorBrushToHexConverter x:Key="SolidColorBrushToHexConverter"/>
+        
         <DataTemplate x:Key="StringTemplate" DataType="{x:Type local:StringPropertyItem}">
             <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" HorizontalAlignment="Stretch"/>
         </DataTemplate>
@@ -109,13 +107,39 @@
         <DataTemplate x:Key="DateTimeTemplate" DataType="{x:Type local:DateTimePropertyItem}">
             <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" HorizontalAlignment="Stretch" IsReadOnly="{Binding IsReadOnly}"/>
         </DataTemplate>
+
+        <DataTemplate x:Key="SolidColorBrushTemplate" DataType="{x:Type local:SolidColorBrushPropertyItem}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Width="25" Height="25" Fill="{Binding Value}" Margin="0,0,5,0"/>
+                <Controls.Common:AlphaNumericTextBox Grid.Column="1" Text="{Binding Value, Converter={StaticResource SolidColorBrushToHexConverter}, UpdateSourceTrigger=LostFocus}" IsReadOnly="{Binding IsReadOnly}"/> 
+            </Grid>
+        </DataTemplate>
+
+        <local:PropertyItemTemplateSelector
+            x:Key="PropertyItemTemplateSelector"
+            FileSystemObjectTemplate="{StaticResource FileSystemObjectTemplate}"
+            MultiLineTemplate="{StaticResource MultiLineTemplate}"
+            PasswordTemplate="{StaticResource PasswordTemplate}"
+            StringTemplate="{StaticResource StringTemplate}"
+            IntTemplate="{StaticResource IntTemplate}"
+            LongTemplate="{StaticResource LongTemplate}"
+            DoubleTemplate="{StaticResource DoubleTemplate}"
+            EnumTemplate="{StaticResource EnumTemplate}"
+            BoolTemplate="{StaticResource BoolTemplate}"
+            GuidTemplate="{StaticResource GuidTemplate}"
+            DateTimeTemplate="{StaticResource DateTimeTemplate}"
+            SolidColorBrushTemplate="{StaticResource SolidColorBrushTemplate}"/>
     </UserControl.Resources>
     <Grid DataContext="{Binding ElementName=PART_PropertyGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid Visibility="{Binding ShowHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid IsEnabled="{Binding SelectedObject, Converter={StaticResource NullObjectToBooleanConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -129,7 +153,7 @@
                 Grid.Column="0"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Category.png"
                 IsChecked="{Binding ShowCategories}"
-                Padding="10,0,0,0"
+                Padding="7,0,0,0"
                 CheckedToolTip="Showing Categories"
                 UncheckedToolTip="Show Categories"
                 VerticalAlignment="Center"/>
@@ -172,7 +196,7 @@
                 Grid.Column="5"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/ArrowDown.png"
                 ToolTip="{l:Loc Options}"
-                Padding="7,0">
+                Padding="5,0">
                 <Controls.Common:ImageDropDownButton.DropDown>
                 <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
                     <MenuItem Header="{l:Loc Reset}" Click="Reset_Executed" ToolTip="Reset All Fields"/>
@@ -183,7 +207,6 @@
         </Grid>
         <Border
             Grid.Row="1"
-            Padding="{Binding Padding}"
             Background="{Binding GridBackground}"
             BorderBrush="{Binding GridBorderBrush}"
             BorderThickness="{Binding GridBorderThickness}">
@@ -192,14 +215,20 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid Margin="10,5,5,0" Visibility="{Binding ShowPrimary, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Grid Visibility="{Binding PrimaryItem, Converter={StaticResource NullObjectToVisibilityConverter}}">
+                <Grid Margin="10,5,5,10" Visibility="{Binding ShowFeatured, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid Visibility="{Binding Properties.Featured, Mode=OneWay, Converter={StaticResource NullObjectToVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding PrimaryItem.Name}" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <TextBox Grid.Column="1" Text="{Binding PrimaryItem.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock 
+                            Text="{Binding Properties.Featured.Name}" 
+                            Margin="0,0,10,0" 
+                            VerticalAlignment="Center"/>
+                        <ContentControl
+                            Grid.Column="1"
+                            Content="{Binding Properties.Featured}"
+                            ContentTemplateSelector="{StaticResource PropertyItemTemplateSelector}"/>
                     </Grid>
                 </Grid>
                 <DataGrid
@@ -222,7 +251,7 @@
                     EnableColumnVirtualization="True"
                     EnableRowVirtualization="True"
                     ItemsSource="{Binding ListCollectionView, IsAsync=True}"
-                    Padding="0,5"
+                    Padding="0"
                     Margin="0"
                     SelectionMode="Single"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -305,22 +334,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn Header="Value" Width="60*">
-                            <DataGridTemplateColumn.CellTemplateSelector>
-                                <local:PropertyItemTemplateSelector
-                                    FileSystemObjectTemplate="{StaticResource FileSystemObjectTemplate}"
-                                    MultiLineTemplate="{StaticResource MultiLineTemplate}"
-                                    PasswordTemplate="{StaticResource PasswordTemplate}"
-                                    StringTemplate="{StaticResource StringTemplate}"
-                                    IntTemplate="{StaticResource IntTemplate}"
-                                    LongTemplate="{StaticResource LongTemplate}"
-                                    DoubleTemplate="{StaticResource DoubleTemplate}"
-                                    EnumTemplate="{StaticResource EnumTemplate}"
-                                    BoolTemplate="{StaticResource BoolTemplate}"
-                                    GuidTemplate="{StaticResource GuidTemplate}"
-                                    DateTimeTemplate="{StaticResource DateTimeTemplate}"/>
-                            </DataGridTemplateColumn.CellTemplateSelector>
-                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Value" Width="60*" CellTemplateSelector="{StaticResource PropertyItemTemplateSelector}"/>
                     </DataGrid.Columns>
                     <DataGrid.GroupStyle>
                         <GroupStyle ContainerStyle="{StaticResource GroupHeaderStyle}">

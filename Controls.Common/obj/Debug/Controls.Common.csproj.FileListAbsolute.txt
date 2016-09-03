@@ -29,3 +29,4 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.FileBox.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.AdvancedTextBox.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Buttons.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache

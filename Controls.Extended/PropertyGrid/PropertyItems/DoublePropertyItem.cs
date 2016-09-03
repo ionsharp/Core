@@ -10,7 +10,7 @@ namespace Imagin.Controls.Extended
                 this.Info.SetValue(SelectedObject, NewValue == null ? 0d : Convert.ToDouble(NewValue), null);
         }
 
-        public DoublePropertyItem(object SelectedObject, string Name, object Value, string Category, bool IsReadOnly, bool IsPrimary = false) : base(SelectedObject, Name, Value, Category, IsReadOnly)
+        public DoublePropertyItem(object SelectedObject, string Name, object Value, string Category, bool IsReadOnly, bool IsFeatured = false) : base(SelectedObject, Name, Value, Category, IsReadOnly, IsFeatured)
         {
             this.Type = PropertyType.Double;
         }

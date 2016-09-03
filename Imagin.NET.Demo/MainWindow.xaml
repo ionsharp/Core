@@ -444,6 +444,27 @@
                     </Controls.Common:RadioGroup>
                 </Grid>
             </TabItem>
+            <TabItem Header="ResourceDictionaryEditor">
+                <TabItem.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary x:Key="PART_ResourceDictionary">
+                            <SolidColorBrush x:Key="Brush1" Color="#DDD"/>
+                            <SolidColorBrush x:Key="Brush2" Color="#DDD"/>
+                            <SolidColorBrush x:Key="Brush3" Color="#BBB"/>
+                            <SolidColorBrush x:Key="Brush4" Color="#BBB"/>
+                            <SolidColorBrush x:Key="Brush5" Color="#FF349ADE"/>
+                            <SolidColorBrush x:Key="Brush6" Color="#FF349ADE"/>
+                            <SolidColorBrush x:Key="Brush7" Color="#afdaf5"/>
+                            <SolidColorBrush x:Key="Brush8" Color="#afdaf5"/>
+                            <SolidColorBrush x:Key="Brush9" Color="#FFF"/>
+                            <SolidColorBrush x:Key="Brush10" Color="#FF349ADE"/>
+                            <SolidColorBrush x:Key="Brush11" Color="#FFF"/>
+                            <SolidColorBrush x:Key="Brush12" Color="#FFF"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary>
+                </TabItem.Resources>
+                <Controls.Extended:ResourceDictionaryEditor SelectedObject="{StaticResource PART_ResourceDictionary}"/>
+            </TabItem>
             <TabItem Header="Spacer">
                 <StackPanel Margin="10">
                     <Controls.Common:Spacer x:Name="PART_Spacer" Orientation="Horizontal" Spacing="0,0,10,0">

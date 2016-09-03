@@ -15,12 +15,12 @@ namespace Imagin.Controls.Extended
             get; set;
         }
 
-        public DataTemplate LinearGradientTemplate
+        public DataTemplate LinearGradientBrushTemplate
         {
             get; set;
         }
 
-        public DataTemplate SolidColorTemplate
+        public DataTemplate SolidColorBrushTemplate
         {
             get; set;
         }
@@ -77,9 +77,9 @@ namespace Imagin.Controls.Extended
             switch (Item.Type)
             {
                 case PropertyType.LinearGradientBrush:
-                    return LinearGradientTemplate;
+                    return LinearGradientBrushTemplate;
                 case PropertyType.SolidColorBrush:
-                    return SolidColorTemplate;
+                    return SolidColorBrushTemplate;
                 case PropertyType.String:
                     return StringTemplate;
                 case PropertyType.Int:

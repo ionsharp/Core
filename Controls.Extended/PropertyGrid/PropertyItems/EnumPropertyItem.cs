@@ -41,7 +41,7 @@ namespace Imagin.Controls.Extended
 
         #endregion
 
-        public EnumPropertyItem(object SelectedObject, PropertyInfo Info, string Name, object Value, string Category, bool IsReadOnly, bool IsPrimary = false) : base(SelectedObject, Name, Value, Category, IsReadOnly, IsPrimary)
+        public EnumPropertyItem(object SelectedObject, PropertyInfo Info, string Name, object Value, string Category, bool IsReadOnly, bool IsFeatured = false) : base(SelectedObject, Name, Value, Category, IsReadOnly, IsFeatured)
         {
             this.Type = PropertyType.Enum;
             this.GetItems(Info);
