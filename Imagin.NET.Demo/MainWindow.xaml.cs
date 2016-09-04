@@ -439,10 +439,10 @@ namespace Imagin.NET.Demo
 
         void OnSpacerThicknessChanged(object sender, TextChangedEventArgs e)
         {
-            if (!sender.As<IntTextBox>().IsInitialized)
+            if (!sender.As<IntUpDown>().IsInitialized)
                 return;
             List<int> Values = new List<int>();
-            foreach (IntTextBox t in PART_SpacerThicknessPanel.Children)
+            foreach (IntUpDown t in PART_SpacerThicknessPanel.Children)
                 Values.Add(t.Text.ToInt());
             this.PART_Spacer.Spacing = new Thickness(Values[0], Values[1], Values[2], Values[3]);
         }

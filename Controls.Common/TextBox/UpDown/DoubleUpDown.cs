@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class DoubleUpDown : UpDown
+    public class DoubleUpDown : FloatingPointUpDown
     {
         #region Properties
 
@@ -59,24 +59,6 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty MantissaProperty = DependencyProperty.Register("Mantissa", typeof(int), typeof(DoubleUpDown), new FrameworkPropertyMetadata(3, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMantissaChanged));
-        public int Mantissa
-        {
-            get
-            {
-                return (int)GetValue(MantissaProperty);
-            }
-            set
-            {
-                SetValue(MantissaProperty, value);
-            }
-        }
-        static void OnMantissaChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            DoubleUpDown DoubleUpDown = (DoubleUpDown)Object;
-            DoubleUpDown.FormatValue();
-        }
-
         #endregion
 
         #region DoubleUpDown
@@ -89,42 +71,29 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
-        protected override object GetValue()
+        public override object GetValue()
         {
             return this.Value;
         }
 
         protected override void CoerceValue(object NewValue)
         {
-            if (Value < this.Minimum)
-                this.Text = this.Minimum.ToString();
-            if (Value > this.Maximum)
-                this.Text = this.Maximum.ToString();
+            if (NewValue.As<double>() < this.Minimum)
+                this.SetText(this.Minimum, true);
+            if (NewValue.As<double>() > this.Maximum)
+                this.SetText(this.Maximum, true);
         }
 
-        void FormatValue()
+        protected override void FormatValue(string StringFormat)
         {
-            int CaretIndex = this.CaretIndex;
-            this.Text = this.Value.ToString("N" + Mantissa.ToString());
-            this.CaretIndex = CaretIndex;
-        }
-
-        protected override void OnPreviewTextInput(TextCompositionEventArgs e)
-        {
-            base.OnPreviewTextInput(e);
-            Regex r = new Regex("^[0-9-.]?$");
-            e.Handled = !r.IsMatch(e.Text);
-        }
-
-        protected override void OnTextChanged(TextChangedEventArgs e)
-        {
-            base.OnTextChanged(e);
-            this.FormatValue();
+            if (!string.IsNullOrEmpty(StringFormat))
+                this.SetText(this.Value.ToString(StringFormat), true);
+            else this.SetText(this.Value.ToString(string.Concat("N", this.Mantissa.ToString())), true);
         }
 
         protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.Text = (this.Value + this.Increment).ToString();
+            this.SetText(this.Value + this.Increment);
         }
         protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -133,7 +102,7 @@ namespace Imagin.Controls.Common
 
         protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.Text = (this.Value - this.Increment).ToString();
+            this.SetText(this.Value - this.Increment);
         }
         protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {

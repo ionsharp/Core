@@ -137,6 +137,16 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
+        /// Imagin.Common: Parses string to decimal.
+        /// </summary>
+        public static decimal ToDecimal(this string ToConvert)
+        {
+            decimal Value = default(decimal);
+            decimal.TryParse(ToConvert, out Value);
+            return Value;
+        }
+
+        /// <summary>
         /// Imagin.Common: Parses string to double.
         /// </summary>
         public static double ToDouble(this string ToConvert)

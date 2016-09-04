@@ -66,7 +66,6 @@
       <DependentUpon>DirectionPad.xaml</DependentUpon>
     </Compile>
     <Compile Include="TextBox\AlphaNumericTextBox.cs" />
-    <Compile Include="TextBox\DoubleTextBox.cs" />
     <Compile Include="DragSelection.cs" />
     <Compile Include="DragSelector.cs" />
     <Compile Include="FontFamilyBox.xaml.cs">
@@ -80,14 +79,15 @@
     <Compile Include="Buttons\ImageButton.cs" />
     <Compile Include="Buttons\ImageToggleButton.cs" />
     <Compile Include="TextBox\FileBox.cs" />
-    <Compile Include="TextBox\IntTextBox.cs" />
     <Compile Include="Line.cs" />
-    <Compile Include="TextBox\LongTextBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadioGroup.cs" />
     <Compile Include="Selection.cs" />
     <Compile Include="Spacer.cs" />
     <Compile Include="TextBox\PasswordBox.cs" />
+    <Compile Include="TextBox\UpDown\DecimalUpDown.cs" />
+    <Compile Include="TextBox\UpDown\FloatingPointUpDown.cs" />
+    <Compile Include="TextBox\UpDown\NumericUpDown.cs" />
     <Compile Include="TreeViewComboBox.cs" />
     <Compile Include="TextBox\AdvancedTextBox.cs" />
     <Compile Include="TextBox\UpDown\UpDown.cs" />

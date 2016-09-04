@@ -30,17 +30,13 @@
 
     <Style x:Key="{x:Type Controls.Common:AlphaNumericTextBox}" TargetType="{x:Type Controls.Common:AlphaNumericTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-    <Style x:Key="{x:Type Controls.Common:IntTextBox}" TargetType="{x:Type Controls.Common:IntTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+    <Style x:Key="{x:Type Controls.Common:IntUpDown}" TargetType="{x:Type Controls.Common:UpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-    <Style x:Key="{x:Type Controls.Common:LongTextBox}" TargetType="{x:Type Controls.Common:LongTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+    <Style x:Key="{x:Type Controls.Common:LongUpDown}" TargetType="{x:Type Controls.Common:UpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-    <Style x:Key="{x:Type Controls.Common:DoubleTextBox}" TargetType="{x:Type Controls.Common:DoubleTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+    <Style x:Key="{x:Type Controls.Common:DoubleUpDown}" TargetType="{x:Type Controls.Common:UpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-    <Style x:Key="{x:Type Controls.Common:IntUpDown}" TargetType="{x:Type Controls.Common:IntUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
-
-    <Style x:Key="{x:Type Controls.Common:LongUpDown}" TargetType="{x:Type Controls.Common:LongUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
-
-    <Style x:Key="{x:Type Controls.Common:DoubleUpDown}" TargetType="{x:Type Controls.Common:DoubleUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+    <Style x:Key="{x:Type Controls.Common:DecimalUpDown}" TargetType="{x:Type Controls.Common:UpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
     <Style x:Key="{x:Type Controls.Common:PasswordBox}" TargetType="{x:Type Controls.Common:PasswordBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 

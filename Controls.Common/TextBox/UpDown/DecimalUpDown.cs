@@ -6,32 +6,26 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class LongUpDown : NumericUpDown
+    public class DecimalUpDown : FloatingPointUpDown
     {
-        public override Regex Expression
-        {
-            get
-            {
-                return new Regex("^[0-9]?$");
-            }
-        }
+        #region Properties
 
-        public long Value
+        public decimal Value
         {
             get
             {
                 if (string.IsNullOrEmpty(this.Text))
-                    return 0L;
-                else return this.Text.ToLong();
+                    return 0m;
+                else return this.Text.ToDecimal();
             }
         }
 
-        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(long), typeof(LongUpDown), new FrameworkPropertyMetadata(1L, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public long Increment
+        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(decimal), typeof(DecimalUpDown), new FrameworkPropertyMetadata(1m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public decimal Increment
         {
             get
             {
-                return (long)GetValue(IncrementProperty);
+                return (decimal)GetValue(IncrementProperty);
             }
             set
             {
@@ -39,12 +33,12 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(long), typeof(LongUpDown), new FrameworkPropertyMetadata(0L, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public long Minimum
+        public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(decimal), typeof(DecimalUpDown), new FrameworkPropertyMetadata(0m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public decimal Minimum
         {
             get
             {
-                return (long)GetValue(MinimumProperty);
+                return (decimal)GetValue(MinimumProperty);
             }
             set
             {
@@ -52,12 +46,12 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(long), typeof(LongUpDown), new FrameworkPropertyMetadata(1000000L, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public long Maximum
+        public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(decimal), typeof(DecimalUpDown), new FrameworkPropertyMetadata(1000m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public decimal Maximum
         {
             get
             {
-                return (long)GetValue(MaximumProperty);
+                return (decimal)GetValue(MaximumProperty);
             }
             set
             {
@@ -65,9 +59,17 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public LongUpDown() : base()
+        #endregion
+
+        #region DecimalUpDown
+
+        public DecimalUpDown() : base()
         {
         }
+
+        #endregion
+
+        #region Methods
 
         public override object GetValue()
         {
@@ -76,9 +78,9 @@ namespace Imagin.Controls.Common
 
         protected override void CoerceValue(object NewValue)
         {
-            if (NewValue.As<long>() < this.Minimum)
+            if (NewValue.As<decimal>() < this.Minimum)
                 this.SetText(this.Minimum, true);
-            if (NewValue.As<long>() > this.Maximum)
+            if (NewValue.As<decimal>() > this.Maximum)
                 this.SetText(this.Maximum, true);
         }
 
@@ -86,6 +88,7 @@ namespace Imagin.Controls.Common
         {
             if (!string.IsNullOrEmpty(StringFormat))
                 this.SetText(this.Value.ToString(StringFormat), true);
+            else this.SetText(this.Value.ToString(string.Concat("N", this.Mantissa.ToString())), true);
         }
 
         protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -99,11 +102,13 @@ namespace Imagin.Controls.Common
 
         protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.Text = (this.Value - this.Increment).ToString();
+            this.SetText(this.Value - this.Increment);
         }
         protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value > this.Minimum;
         }
+
+        #endregion
     }
 }

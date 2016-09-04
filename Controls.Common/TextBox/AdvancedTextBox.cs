@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Imagin.Common;
 
 namespace Imagin.Controls.Common
 {
@@ -48,6 +49,32 @@ namespace Imagin.Controls.Common
             }
         }
 
+        public static DependencyProperty ContentProperty = DependencyProperty.Register("Content", typeof(object), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public object Content
+        {
+            get
+            {
+                return (object)GetValue(ContentProperty);
+            }
+            set
+            {
+                SetValue(ContentProperty, value);
+            }
+        }
+
+        public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Thickness ContentMargin
+        {
+            get
+            {
+                return (Thickness)GetValue(ContentMarginProperty);
+            }
+            set
+            {
+                SetValue(ContentMarginProperty, value);
+            }
+        }
+
         #endregion
 
         #region AdvancedTextBox
@@ -55,6 +82,7 @@ namespace Imagin.Controls.Common
         public AdvancedTextBox() : base()
         {
             this.DefaultStyleKey = typeof(AdvancedTextBox);
+            this.ContentMargin = new Thickness(0, 0, 5, 0);
         }
 
         #endregion

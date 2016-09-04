@@ -4,39 +4,56 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
-    <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
-
     <Style x:Key="{x:Type local:AdvancedTextBox}" TargetType="{x:Type local:AdvancedTextBox}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AdvancedTextBox}">
-                    <Border 
-                        x:Name="border"
-                        Padding="{TemplateBinding Padding}" 
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}">
-                        <Grid>
-                            <TextBlock 
-                                Foreground="{TemplateBinding PlaceholderForeground}" 
-                                FontSize="{TemplateBinding FontSize}"
-                                FontFamily="{TemplateBinding FontFamily}"
-                                FontStyle="{TemplateBinding FontStyle}"
-                                FontStretch="{TemplateBinding FontStretch}"
-                                FontWeight="{TemplateBinding FontWeight}"
-                                Text="{TemplateBinding Placeholder}" 
-                                HorizontalAlignment="Left" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                            <ScrollViewer 
-                                x:Name="PART_ContentHost" 
-                                HorizontalAlignment="Stretch" 
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                MinHeight="{TemplateBinding MinHeight}" 
-                                Height="{TemplateBinding Height}"/>
-                        </Grid>
-                    </Border>
+                    <ControlTemplate.Resources>
+                        <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+                        <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter  
+                            Content="{TemplateBinding Content}" 
+                            Margin="{TemplateBinding ContentMargin}"
+                            Visibility="{Binding Content, Converter={StaticResource NullObjectToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border 
+                            Grid.Column="1"
+                            x:Name="border"
+                            MaxHeight="{TemplateBinding MaxHeight}"
+                            MinWidth="{TemplateBinding MinWidth}"
+                            MinHeight="{TemplateBinding MinHeight}"
+                            Padding="{TemplateBinding Padding}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid>
+                                <TextBlock 
+                                    Foreground="{TemplateBinding PlaceholderForeground}" 
+                                    FontSize="{TemplateBinding FontSize}"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    FontStyle="{TemplateBinding FontStyle}"
+                                    FontStretch="{TemplateBinding FontStretch}"
+                                    FontWeight="{TemplateBinding FontWeight}"
+                                    Text="{TemplateBinding Placeholder}" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                <ScrollViewer 
+                                    x:Name="PART_ContentHost" 
+                                    HorizontalAlignment="Stretch" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                    MinHeight="{TemplateBinding MinHeight}" 
+                                    Height="{TemplateBinding Height}"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -6,8 +6,16 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class IntUpDown : UpDown
+    public class IntUpDown : NumericUpDown
     {
+        public override Regex Expression
+        {
+            get
+            {
+                return new Regex("^[0-9]?$");
+            }
+        }
+
         public int Value
         {
             get
@@ -69,33 +77,29 @@ namespace Imagin.Controls.Common
                 this.Text = this.Maximum.ToString();
         }
 
-        protected override object GetValue()
+        public override object GetValue()
         {
             return this.Value;
         }
 
         protected override void CoerceValue(object NewValue)
         {
-            if (Value < this.Minimum)
-                this.Text = this.Minimum.ToString();
-            if (Value > this.Maximum)
-                this.Text = this.Maximum.ToString();
+            if (NewValue.As<int>() < this.Minimum)
+                this.SetText(this.Minimum, true);
+            if (NewValue.As<int>() > this.Maximum)
+                this.SetText(this.Maximum, true);
         }
 
-        protected override void OnPreviewTextInput(TextCompositionEventArgs e)
+        protected override void FormatValue(string StringFormat)
         {
-            base.OnPreviewTextInput(e);
-            Regex r = new Regex("^[0-9]?$");
-            e.Handled = !r.IsMatch(e.Text);
+            if (!string.IsNullOrEmpty(StringFormat))
+                this.SetText(this.Value.ToString(StringFormat), true);
         }
 
         protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            int NewValue = 0;
-            if ((NewValue = this.Value + this.Increment) > this.Maximum)
-                this.Text = this.Maximum.ToString();
-            else this.Text = NewValue.ToString();
-        }
+            {
+                this.SetText(this.Value + this.Increment);
+            }
         protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value < this.Maximum;
@@ -103,10 +107,7 @@ namespace Imagin.Controls.Common
 
         protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            int NewValue = 0;
-            if ((NewValue = this.Value - this.Increment) < this.Minimum)
-                this.Text = this.Minimum.ToString();
-            else this.Text = NewValue.ToString();
+            this.SetText(this.Value - this.Increment);
         }
         protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
