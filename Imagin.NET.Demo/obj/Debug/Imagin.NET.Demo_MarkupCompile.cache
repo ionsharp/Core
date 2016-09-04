@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\App.xaml
-11151548125
+51459882884
 
 5-2017746502
 18382849908
-MainWindow.xaml;
+Styles\ScrollViewer.xaml;Styles\Brushes.xaml;Styles\TextBox.xaml;Styles\Buttons.xaml;MainWindow.xaml;
 
 False
 

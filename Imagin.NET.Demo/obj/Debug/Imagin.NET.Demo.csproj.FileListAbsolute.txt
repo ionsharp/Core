@@ -23,3 +23,7 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Imagin.NET.Demo.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\App.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\Brushes.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\TextBox.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\Buttons.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\ScrollViewer.baml

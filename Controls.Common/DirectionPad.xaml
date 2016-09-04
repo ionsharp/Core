@@ -8,7 +8,7 @@
     mc:Ignorable="d" 
     d:DesignHeight="300" 
     d:DesignWidth="300">
-    <Grid x:Name="Grid" ClipToBounds="True">
+    <Grid x:Name="PART_Grid" ClipToBounds="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0"/>
             <ColumnDefinition Width="24"/>
@@ -23,11 +23,6 @@
             <RowDefinition Height="24"/>
             <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
-        <Grid.Resources>
-            <Style TargetType="{x:Type local:ImageButton}">
-                <EventSetter Event="Click" Handler="OnClick"/>
-            </Style>
-        </Grid.Resources>
         <local:ImageButton 
             Grid.Row="1" 
             Grid.Column="1"  

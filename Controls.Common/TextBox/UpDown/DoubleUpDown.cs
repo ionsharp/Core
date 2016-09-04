@@ -19,6 +19,19 @@ namespace Imagin.Controls.Common
                 else return this.Text.ToDouble();
             }
         }
+        
+        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(double), typeof(DoubleUpDown), new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public double Increment
+        {
+            get
+            {
+                return (double)GetValue(IncrementProperty);
+            }
+            set
+            {
+                SetValue(IncrementProperty, value);
+            }
+        }
 
         public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(double), typeof(DoubleUpDown), new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public double Minimum
@@ -76,9 +89,17 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
-        void SetValue(double NewValue)
+        protected override object GetValue()
         {
-            this.Text = NewValue.ToString();
+            return this.Value;
+        }
+
+        protected override void CoerceValue(object NewValue)
+        {
+            if (Value < this.Minimum)
+                this.Text = this.Minimum.ToString();
+            if (Value > this.Maximum)
+                this.Text = this.Maximum.ToString();
         }
 
         void FormatValue()
@@ -103,19 +124,17 @@ namespace Imagin.Controls.Common
 
         protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.SetValue(this.Value + 1.0);
+            this.Text = (this.Value + this.Increment).ToString();
         }
-
-        protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            this.SetValue(this.Value - 1.0);
-        }
-
         protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value < this.Maximum;
         }
 
+        protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Text = (this.Value - this.Increment).ToString();
+        }
         protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value > this.Minimum;

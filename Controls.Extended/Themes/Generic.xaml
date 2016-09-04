@@ -61,20 +61,19 @@
                                 Background="{TemplateBinding ContentBackground}" 
                                 BorderBrush="{TemplateBinding ContentBorderBrush}">
                                 <ContentControl
-                                    Content="{TemplateBinding SelectedItem}"
-                                    IsHitTestVisible="False">
+                                    Content="{TemplateBinding SelectedItem}">
                                     <ContentControl.Resources>
                                         <DataTemplate x:Key="DefaultContentTemplate">
-                                            <ContentPresenter Content="{Binding Tag}"/>
+                                            <ContentControl Content="{Binding Tag, Mode=OneWay}"/>
                                         </DataTemplate>
                                     </ContentControl.Resources>
                                     <ContentControl.Style>
                                         <Style TargetType="ContentControl">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TabbedTree}}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="True">
-                                                    <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TabbedTree}}}"/>
+                                                <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="True">
+                                                    <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TabbedTree}}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="False">
+                                                <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="False">
                                                     <Setter Property="ContentTemplate" Value="{StaticResource DefaultContentTemplate}"/>
                                                 </DataTrigger>
                                             </Style.Triggers>

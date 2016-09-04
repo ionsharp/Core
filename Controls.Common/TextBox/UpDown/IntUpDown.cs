@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Imagin.Common.Extensions;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
-using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Common
 {
@@ -15,6 +15,19 @@ namespace Imagin.Controls.Common
                 if (string.IsNullOrEmpty(this.Text))
                     return 0;
                 else return this.Text.ToInt();
+            }
+        }
+
+        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(int), typeof(IntUpDown), new FrameworkPropertyMetadata(1, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public int Increment
+        {
+            get
+            {
+                return (int)GetValue(IncrementProperty);
+            }
+            set
+            {
+                SetValue(IncrementProperty, value);
             }
         }
 
@@ -48,6 +61,27 @@ namespace Imagin.Controls.Common
         {
         }
 
+        void CoeerceValue(int Value)
+        {
+            if (Value < this.Minimum)
+                this.Text = this.Minimum.ToString();
+            if (Value > this.Maximum)
+                this.Text = this.Maximum.ToString();
+        }
+
+        protected override object GetValue()
+        {
+            return this.Value;
+        }
+
+        protected override void CoerceValue(object NewValue)
+        {
+            if (Value < this.Minimum)
+                this.Text = this.Minimum.ToString();
+            if (Value > this.Maximum)
+                this.Text = this.Maximum.ToString();
+        }
+
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
             base.OnPreviewTextInput(e);
@@ -57,23 +91,23 @@ namespace Imagin.Controls.Common
 
         protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.Text))
-                this.Text = 0.ToString();
-            else this.Text = (this.Text.ToInt() + 1).ToString();
+            int NewValue = 0;
+            if ((NewValue = this.Value + this.Increment) > this.Maximum)
+                this.Text = this.Maximum.ToString();
+            else this.Text = NewValue.ToString();
         }
-
-        protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(this.Text))
-                this.Text = 0.ToString();
-            else this.Text = (this.Text.ToInt() - 1).ToString();
-        }
-
         protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value < this.Maximum;
         }
 
+        protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            int NewValue = 0;
+            if ((NewValue = this.Value - this.Increment) < this.Minimum)
+                this.Text = this.Minimum.ToString();
+            else this.Text = NewValue.ToString();
+        }
         protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value > this.Minimum;

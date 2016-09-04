@@ -12,6 +12,19 @@ namespace Imagin.Controls.Extended
     {
         #region DependencyProperties
 
+        public static DependencyProperty SelectedContentProperty = DependencyProperty.Register("SelectedContent", typeof(object), typeof(TabbedTree), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public object SelectedContent
+        {
+            get
+            {
+                return (object)GetValue(SelectedContentProperty);
+            }
+            set
+            {
+                SetValue(SelectedContentProperty, value);
+            }
+        }
+
         public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public DataTemplate ContentTemplate
         {
@@ -154,7 +167,7 @@ namespace Imagin.Controls.Extended
                 SetValue(SelectedIndexProperty, value);
             }
         }
-        private static void OnSelectedIndexChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnSelectedIndexChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             TabbedTree TabbedTree = (TabbedTree)Object;
             TabbedTree.SelectIndex(TabbedTree.SelectedIndex);
@@ -167,6 +180,7 @@ namespace Imagin.Controls.Extended
         public TabbedTree() : base()
         {
             this.DefaultStyleKey = typeof(TabbedTree);
+            this.SelectedItemChanged += this.OnSelectedItemChanged;
         }
 
         public override void OnApplyTemplate()
@@ -209,6 +223,10 @@ namespace Imagin.Controls.Extended
                 }
             }
             return default(List<int>);
+        }
+
+        void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
         }
 
         /// <summary>

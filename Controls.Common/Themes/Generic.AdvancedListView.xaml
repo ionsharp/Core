@@ -70,8 +70,14 @@
                             </Setter>
                         </Style>
                     </ControlTemplate.Resources>
-                    <ScrollViewer x:Name="PART_ScrollViewer" Margin="{TemplateBinding Margin}">
-                        <Grid x:Name="PART_Grid" Background="Transparent" ClipToBounds="True" Margin="{TemplateBinding Padding}">
+                    <ScrollViewer 
+                        x:Name="PART_ScrollViewer" 
+                        Margin="{TemplateBinding Margin}">
+                        <Grid 
+                            x:Name="PART_Grid"
+                            Background="Transparent" 
+                            ClipToBounds="True" 
+                            Margin="{TemplateBinding Padding}">
                             <ItemsPresenter/>
                             <local:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding Selection}"/>
                         </Grid>

@@ -40,6 +40,9 @@ namespace Imagin.Controls.Common
         public DirectionPad()
         {
             InitializeComponent();
+
+            foreach (ImageButton i in this.PART_Grid.Children)
+                i.Click += this.OnClick;
         }
 
         #endregion
@@ -121,7 +124,7 @@ namespace Imagin.Controls.Common
                     break;
             }
             int i = StartRow, j = StartColumn;
-            foreach (ImageButton b in this.Grid.Children)
+            foreach (ImageButton b in this.PART_Grid.Children)
             {
                 if (j < StartColumn + 3)
                 {
@@ -179,7 +182,7 @@ namespace Imagin.Controls.Common
                 default:
                     return;
             }
-            foreach (ImageButton i in this.Grid.Children)
+            foreach (ImageButton i in this.PART_Grid.Children)
             {
                 int r = Grid.GetRow(i), c = Grid.GetColumn(i);
                 Grid.SetRow(i, ShiftUp ? r - 1 : (ShiftDown ? r + 1 : r));

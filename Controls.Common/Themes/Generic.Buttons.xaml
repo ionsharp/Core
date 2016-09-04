@@ -8,11 +8,8 @@
     <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
     <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-    <System:Double x:Key="DisabledOpacity">0.4</System:Double>
-
     <Style x:Key="{x:Type local:ColorImage}" TargetType="{x:Type local:ColorImage}">
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="ImageColor" Value="{DynamicResource ImageBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorImage}">
@@ -24,17 +21,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="{x:Type local:ImageButton}" TargetType="{x:Type local:ImageButton}">
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Width" Value="Auto" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Padding" Value="0" />
@@ -120,31 +110,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="ImageColor" Value="{DynamicResource ImageHoverBrush}"/>
-            </Trigger>
-            <Trigger Property="IsPressed" Value="True">
-                <Setter Property="ImageColor" Value="{DynamicResource ImagePressedBrush}"/>
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="False"/>
-                    <Condition Property="IsPressed" Value="False"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="ImageColor" Value="{DynamicResource ImageBrush}"/>
-            </MultiTrigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="{x:Type local:ImageToggleButton}" TargetType="{x:Type local:ImageToggleButton}">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ImageToggleButton}">
@@ -226,26 +196,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="ImageColor" Value="{DynamicResource ImageHoverBrush}"/>
-                <Setter Property="ToolTip" Value="{Binding CheckedToolTip, RelativeSource={RelativeSource Self}}"/>
-            </Trigger>
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="ImageColor" Value="{DynamicResource ImageBrush}"/>
-                <Setter Property="ToolTip" Value="{Binding UncheckedToolTip, RelativeSource={RelativeSource Self}}"/>
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="{x:Type local:ImageDropDownButton}" TargetType="{x:Type local:ImageDropDownButton}">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ImageDropDownButton}">
@@ -325,43 +280,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True"/>
-                    <Condition Property="IsChecked" Value="False"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="ImageColor" Value="{DynamicResource ImageHoverBrush}"/>
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="False"/>
-                    <Condition Property="IsChecked" Value="False"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="ImageColor" Value="{DynamicResource ImageBrush}"/>
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsChecked" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="ImageColor" Value="{DynamicResource ImagePressedBrush}"/>
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsPressed" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="ImageColor" Value="{DynamicResource ImagePressedBrush}"/>
-            </MultiTrigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="{x:Type local:AdvancedImageDropDownButton}" TargetType="{x:Type local:AdvancedImageDropDownButton}">
-        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>

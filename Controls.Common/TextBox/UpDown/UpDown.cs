@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Windows.Input;
+using Imagin.Common.Extensions;
+using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -20,5 +23,15 @@ namespace Imagin.Controls.Common
         public static readonly RoutedUICommand Down = new RoutedUICommand("Down", "Down", typeof(UpDown));
         protected abstract void Down_Executed(object sender, ExecutedRoutedEventArgs e);
         protected abstract void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e);
+
+        protected abstract object GetValue();
+
+        protected abstract void CoerceValue(object NewValue);
+
+        protected override void OnTextChanged(TextChangedEventArgs e)
+        {
+            base.OnTextChanged(e);
+            this.CoerceValue(this.GetValue());
+        }
     }
 }

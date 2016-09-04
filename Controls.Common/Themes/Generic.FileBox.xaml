@@ -4,6 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
+    <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
 
     <Style x:Key="{x:Type local:FileBox}" TargetType="{x:Type local:FileBox}">
@@ -20,26 +21,27 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions> 
                             <Grid x:Name="PART_Text">
                                 <ScrollViewer 
-                                x:Name="PART_ContentHost" 
-                                HorizontalAlignment="Stretch" 
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                MinHeight="{TemplateBinding MinHeight}" 
-                                Height="{TemplateBinding Height}"/>
+                                    x:Name="PART_ContentHost" 
+                                    HorizontalAlignment="Stretch" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                    MinHeight="{TemplateBinding MinHeight}" 
+                                    Height="{TemplateBinding Height}"/>
                                 <TextBlock 
-                                Foreground="{TemplateBinding PlaceholderForeground}" 
-                                FontSize="{TemplateBinding FontSize}"
-                                FontFamily="{TemplateBinding FontFamily}"
-                                FontStyle="{TemplateBinding FontStyle}"
-                                FontStretch="{TemplateBinding FontStretch}"
-                                FontWeight="{TemplateBinding FontWeight}"
-                                Text="{TemplateBinding Placeholder}" 
-                                HorizontalAlignment="Left" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                    Foreground="{TemplateBinding PlaceholderForeground}" 
+                                    FontSize="{TemplateBinding FontSize}"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    FontStyle="{TemplateBinding FontStyle}"
+                                    FontStretch="{TemplateBinding FontStretch}"
+                                    FontWeight="{TemplateBinding FontWeight}"
+                                    Text="{TemplateBinding Placeholder}" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
                                 <Grid.Style>
                                     <Style TargetType="Grid">
                                         <Style.Triggers>
@@ -53,27 +55,29 @@
                                     </Style>
                                 </Grid.Style>
                             </Grid>
+                            <Grid Grid.Column="1" Visibility="{TemplateBinding CanBrowse, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <local:ColorImage 
+                                    Margin="7,0"
+                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
+                                    Visibility="{TemplateBinding PathExists, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </Grid>
                             <local:ImageButton 
-                                Grid.Column="1" 
+                                Grid.Column="2" 
                                 x:Name="PART_BrowseButton"
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png" 
                                 Padding="5,0" 
-                                ToolTip="Click to browse...">
-                                <local:ImageButton.Style>
-                                    <Style TargetType="{x:Type local:ImageButton}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Left">
-                                                <Setter Property="Grid.Column" Value="0"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Right">
-                                                <Setter Property="Grid.Column" Value="1"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </local:ImageButton.Style>
-                            </local:ImageButton>
+                                ToolTip="Click to browse..."
+                                IsEnabled="{TemplateBinding CanBrowse}"/>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Left">
+                            <Setter TargetName="PART_BrowseButton" Property="Grid.Column" Value="0"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Right">
+                            <Setter TargetName="PART_BrowseButton" Property="Grid.Column" Value="1"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
