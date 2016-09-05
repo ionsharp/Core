@@ -56,12 +56,12 @@
                                 </Grid.Style>
                             </Grid>
                             <Grid Grid.Column="1" Visibility="{TemplateBinding CanBrowse, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <local:ColorImage 
+                                <local:MaskedImage 
                                     Margin="7,0"
                                     Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
                                     Visibility="{TemplateBinding PathExists, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             </Grid>
-                            <local:ImageButton 
+                            <local:MaskedButton 
                                 Grid.Column="2" 
                                 x:Name="PART_BrowseButton"
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png" 

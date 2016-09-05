@@ -151,7 +151,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         public static double ToDouble(this string ToConvert)
         {
-            double Value = 0.0;
+            double Value = default(double);
             double.TryParse(ToConvert, out Value);
             return Value;
         }
@@ -161,7 +161,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         public static int ToInt(this string ToConvert)
         {
-            int Value = 0;
+            int Value = default(int);
             int.TryParse(ToConvert, out Value);
             return Value;
         }
@@ -171,7 +171,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         public static long ToLong(this string ToConvert)
         {
-            long Value = 0L;
+            long Value = default(long);
             long.TryParse(ToConvert, out Value);
             return Value;
         }
@@ -181,7 +181,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         public static short ToShort(this string ToConvert)
         {
-            short Value = (short)0;
+            short Value = default(short);
             short.TryParse(ToConvert, out Value);
             return Value;
         }

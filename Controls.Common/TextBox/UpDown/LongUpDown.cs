@@ -1,13 +1,14 @@
 ﻿using Imagin.Common.Extensions;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
     public class LongUpDown : NumericUpDown
     {
+        #region Properties
+
         public override Regex Expression
         {
             get
@@ -65,9 +66,17 @@ namespace Imagin.Controls.Common
             }
         }
 
+        #endregion
+
+        #region LongUpDown
+
         public LongUpDown() : base()
         {
         }
+
+        #endregion
+
+        #region Methods
 
         public override object GetValue()
         {
@@ -82,28 +91,24 @@ namespace Imagin.Controls.Common
                 this.SetText(this.Maximum, true);
         }
 
-        protected override void FormatValue(string StringFormat)
-        {
-            if (!string.IsNullOrEmpty(StringFormat))
-                this.SetText(this.Value.ToString(StringFormat), true);
-        }
-
-        protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
+        public override void Increase()
         {
             this.SetText(this.Value + this.Increment);
         }
-        protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        protected override void CanIncrease(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value < this.Maximum;
         }
 
-        protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
+        public override void Decrease()
         {
-            this.Text = (this.Value - this.Increment).ToString();
+            this.SetText(this.Value - this.Increment);
         }
-        protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        protected override void CanDecrease(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value > this.Minimum;
         }
+
+        #endregion
     }
 }

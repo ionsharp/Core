@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
-    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
+    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
     <Style x:Key="{x:Type local:UpDown}" TargetType="{x:Type local:UpDown}">
         <Setter Property="Template">
             <Setter.Value>
@@ -69,15 +70,16 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <local:ImageButton 
+                                    <local:MaskedButton 
                                         x:Name="PART_Up"
                                         ImageWidth="10" 
                                         ImageHeight="10" 
                                         Margin="5,0,0,0"
                                         Command="{x:Static local:UpDown.Up}"
                                         CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
+                                        Tag="1"
                                         Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowUp.png"/>
-                                    <local:ImageButton 
+                                    <local:MaskedButton 
                                         Grid.Row="1" 
                                         x:Name="PART_Down"
                                         ImageWidth="10" 
@@ -85,6 +87,7 @@
                                         Margin="5,0,0,0"
                                         Command="{x:Static local:UpDown.Down}"
                                         CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
+                                        Tag="0"
                                         Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
                                 </Grid>
                             </Grid>

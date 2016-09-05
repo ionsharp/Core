@@ -4,39 +4,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
-    <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
-
-    <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
-        <Border 
-            Padding="{TemplateBinding Padding}"
-            BorderThickness="{TemplateBinding BorderThickness}" 
-            Background="{TemplateBinding Background}" 
-            BorderBrush="{TemplateBinding BorderBrush}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="20" />
-                </Grid.ColumnDefinitions>
-                <Border 
-                    Grid.Column="1" 
-                    Background="{DynamicResource ComboBoxToggleButtonBackground}"/>
-                <Path 
-                    Grid.Column="1" 
-                    Fill="{DynamicResource ComboBoxToggleButtonArrowFill}" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center" 
-                    Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z" />
-            </Grid>
-        </Border>
-    </ControlTemplate>
-    
     <Style TargetType="local:TreeViewComboBox">
-        <Setter Property="Background" Value="{DynamicResource ComboBoxBackground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TreeViewComboBox}">
+                    <ControlTemplate.Resources>
+                        <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
+                    </ControlTemplate.Resources>
                     <Grid
                         MinWidth="{TemplateBinding MinWidth}"
                         MaxWidth="{TemplateBinding MaxWidth}"
@@ -47,14 +21,43 @@
                         <ToggleButton 
                             Grid.Column="2" 
                             x:Name="ToggleButton" 
+                            Foreground="{TemplateBinding Foreground}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Padding="{TemplateBinding Padding}"
-                            Template="{StaticResource ComboBoxToggleButton}" 
                             Focusable="false" 
                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
-                            ClickMode="Press"/>
+                            ClickMode="Press">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border 
+                                            x:Name="Border" 
+                                            Grid.ColumnSpan="2" 
+                                            Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        <Border 
+                                            x:Name="PART_Two"
+                                            Grid.Column="0" 
+                                            CornerRadius="0" 
+                                            Margin="1"/>
+                                        <Path 
+                                            x:Name="Arrow" 
+                                            Grid.Column="1" 
+                                            Fill="{TemplateBinding Foreground}" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
                         <ContentControl 
                             Content="{TemplateBinding SelectedItem}"
                             Margin="8,0,21,0"
@@ -102,7 +105,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasItems" Value="False">
-                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="50" />
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="125" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

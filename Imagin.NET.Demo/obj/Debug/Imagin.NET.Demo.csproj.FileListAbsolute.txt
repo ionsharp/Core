@@ -27,3 +27,9 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\TextBox.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\Buttons.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\ScrollViewer.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\ListView.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\MenuItem.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\TreeView.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\ContextMenu.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\DataGrid.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\ComboBox.baml

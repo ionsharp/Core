@@ -1,20 +1,28 @@
 ﻿using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
     public abstract class NumericUpDown : UpDown
     {
+        #region Properties
+
         public abstract Regex Expression
         {
             get;
         }
 
+        #endregion
+
+        #region NumericUpDown
+
         public NumericUpDown() : base()
         {
-            this.StringFormat = "N0";
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Prevent invalid character injection.
@@ -38,5 +46,7 @@ namespace Imagin.Controls.Common
             else if (NewText.StartsWith("-0") && !NewText.Contains("0."))
                 base.Trim(string.Concat("-", NewText.Substring(1).TrimStart('0')));
         }
+
+        #endregion
     }
 }

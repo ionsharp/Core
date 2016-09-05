@@ -1,7 +1,5 @@
 ﻿using Imagin.Common.Extensions;
-using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Imagin.Controls.Common
@@ -84,27 +82,25 @@ namespace Imagin.Controls.Common
                 this.SetText(this.Maximum, true);
         }
 
-        protected override void FormatValue(string StringFormat)
+        protected override void FormatValue()
         {
-            if (!string.IsNullOrEmpty(StringFormat))
-                this.SetText(this.Value.ToString(StringFormat), true);
-            else this.SetText(this.Value.ToString(string.Concat("N", this.Mantissa.ToString())), true);
+            this.SetText(string.Format("{0:0." + new string('0', this.Precision) + "}", this.Value), true);
         }
 
-        protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
+        public override void Increase()
         {
             this.SetText(this.Value + this.Increment);
         }
-        protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        protected override void CanIncrease(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value < this.Maximum;
         }
 
-        protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
+        public override void Decrease()
         {
             this.SetText(this.Value - this.Increment);
         }
-        protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        protected override void CanDecrease(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value > this.Minimum;
         }

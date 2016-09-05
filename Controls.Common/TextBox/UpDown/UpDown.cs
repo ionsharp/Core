@@ -1,18 +1,24 @@
-﻿using System;
+﻿using Imagin.Common.Extensions;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Imagin.Common.Extensions;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Imagin.Controls.Common
 {
     public abstract class UpDown : AdvancedTextBox, INotifyPropertyChanged
     {
+        #region Properties
+
+        DispatcherTimer Timer
+        {
+            get; set;
+        }
+
+        double MillisecondsTicked = 0.0;
+
         protected bool IgnoreTextChange = false;
 
         public static DependencyProperty IsUpDownEnabledProperty = DependencyProperty.Register("IsUpDownEnabled", typeof(bool), typeof(UpDown), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -28,38 +34,48 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty StringFormatProperty = DependencyProperty.Register("StringFormat", typeof(string), typeof(UpDown), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnStringFormatChanged));
-        public string StringFormat
+        public static DependencyProperty MajorChangeProperty = DependencyProperty.Register("MajorChange", typeof(int), typeof(UpDown), new FrameworkPropertyMetadata(100, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMajorChangeChanged));
+        public int MajorChange
         {
             get
             {
-                return (string)GetValue(StringFormatProperty);
+                return (int)GetValue(MajorChangeProperty);
             }
             set
             {
-                SetValue(StringFormatProperty, value);
+                SetValue(MajorChangeProperty, value);
             }
         }
-        static void OnStringFormatChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnMajorChangeChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             UpDown UpDown = (UpDown)Object;
-            UpDown.OnStringFormatChanged(e);
+            if (UpDown.Timer != null)
+            {
+                UpDown.Timer.Stop();
+                UpDown.Timer.Interval = TimeSpan.FromMilliseconds(UpDown.MajorChange);
+            }
         }
+
+        #endregion
+
+        #region UpDown
 
         public UpDown() : base()
         {
             this.DefaultStyleKey = typeof(UpDown);
-            this.CommandBindings.Add(new CommandBinding(Up, Up_Executed, Up_CanExecute));
-            this.CommandBindings.Add(new CommandBinding(Down, Down_Executed, Down_CanExecute));
+            this.CommandBindings.Add(new CommandBinding(Up, this.Up_Executed, this.CanIncrease));
+            this.CommandBindings.Add(new CommandBinding(Down, this.Down_Executed, this.CanDecrease));
+
+            this.Timer = new DispatcherTimer();
+            this.Timer.Interval = TimeSpan.FromMilliseconds(this.MajorChange);
+            this.Timer.Tick += OnTick;
         }
 
-        public static readonly RoutedUICommand Up = new RoutedUICommand("Up", "Up", typeof(UpDown));
-        protected abstract void Up_Executed(object sender, ExecutedRoutedEventArgs e);
-        protected abstract void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e);
-        
-        public static readonly RoutedUICommand Down = new RoutedUICommand("Down", "Down", typeof(UpDown));
-        protected abstract void Down_Executed(object sender, ExecutedRoutedEventArgs e);
-        protected abstract void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e);
+        #endregion
+
+        #region Methods
+
+        #region Abstract
 
         /// <summary>
         /// Gets current value as object.
@@ -73,22 +89,58 @@ namespace Imagin.Controls.Common
         /// <param name="NewValue">The new value to constrain</param>
         protected abstract void CoerceValue(object NewValue);
 
-        /// <summary>
-        /// Applies control-specific string format.
-        /// </summary>
-        /// <param name="StringFormat">The current [StringFormat]</param>
-        /// <returns>[Text] with control-specific [StringFormat] applied.</returns>
-        protected abstract void FormatValue(string StringFormat);
+        public abstract void Increase();
 
-        protected virtual void Trim(string NewText)
+        public abstract void Decrease();
+
+        #endregion
+
+        #region Commands
+
+        public static readonly RoutedUICommand Up = new RoutedUICommand("Up", "Up", typeof(UpDown));
+        protected void Up_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.SetText(NewText, true);
+            this.Increase();
+        }
+        protected abstract void CanIncrease(object sender, CanExecuteRoutedEventArgs e);
+        
+        public static readonly RoutedUICommand Down = new RoutedUICommand("Down", "Down", typeof(UpDown));
+        protected void Down_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Decrease();
+        }
+        protected abstract void CanDecrease(object sender, CanExecuteRoutedEventArgs e);
+
+        #endregion
+
+        #region Events
+
+        void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Timer.Tag = sender.As<MaskedButton>().Tag.ToString() == "1" ? true : false;
+            Timer.Start();
         }
 
-        protected virtual void OnStringFormatChanged(DependencyPropertyChangedEventArgs e)
+        void OnPreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-            this.FormatValue(this.StringFormat);
+            Timer.Stop();
+            this.MillisecondsTicked = 0.0;
+            this.Timer.Tag = null;
         }
+
+        void OnTick(object sender, EventArgs e)
+        {
+            this.MillisecondsTicked += Convert.ToDouble(this.Timer.Interval.TotalMilliseconds);
+            if (this.MillisecondsTicked < 500.0)
+                return;
+            if ((bool)this.Timer.Tag)
+                this.Increase();
+            else this.Decrease();
+        }
+
+        #endregion
+
+        #region Protected
 
         /// <summary>
         /// Sets text while preserving caret index.
@@ -109,6 +161,10 @@ namespace Imagin.Controls.Common
             this.CaretIndex = CaretIndex;
         }
 
+        #endregion
+
+        #region Overrides
+
         /// <summary>
         /// We want to do two things anytime text changes:
         /// 
@@ -123,12 +179,49 @@ namespace Imagin.Controls.Common
                 this.IgnoreTextChange = false;
                 return;
             }
+
             this.Trim(this.Text);
+
             if (this.IsUpDownEnabled)
                 this.CoerceValue(this.GetValue());
-            this.FormatValue(this.StringFormat);
+
+            this.FormatValue();
+
             this.OnPropertyChanged("Value");
         }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            MaskedButton PART_Up = this.Template.FindName("PART_Up", this).As<MaskedButton>();
+            PART_Up.PreviewMouseDown += OnPreviewMouseDown;
+            PART_Up.PreviewMouseUp += OnPreviewMouseUp;
+
+            MaskedButton PART_Down = this.Template.FindName("PART_Down", this).As<MaskedButton>();
+            PART_Down.PreviewMouseDown += OnPreviewMouseDown;
+            PART_Down.PreviewMouseUp += OnPreviewMouseUp;
+        }
+
+        #endregion
+
+        #region Virtual
+
+        /// <summary>
+        /// Applies control-specific string format.
+        /// </summary>
+        /// <param name="StringFormat">The current [StringFormat]</param>
+        /// <returns>[Text] with control-specific [StringFormat] applied.</returns>
+        protected virtual void FormatValue()
+        {
+        }
+
+        protected virtual void Trim(string NewText)
+        {
+            this.SetText(NewText, true);
+        }
+
+        #endregion
 
         #region INotifyPropertyChanged
 
@@ -142,6 +235,8 @@ namespace Imagin.Controls.Common
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion
 
         #endregion
     }

@@ -117,7 +117,7 @@ namespace Imagin.Controls.Common
             this.IgnorePasswordChange = true;
             this.PART_PasswordBox.Password = this.Text;
 
-            this.Template.FindName("PART_EnterButton", this).As<ImageButton>().Click += (s, e) => this.OnEntered();
+            this.Template.FindName("PART_EnterButton", this).As<MaskedButton>().Click += (s, e) => this.OnEntered();
         }
 
         /// <summary>

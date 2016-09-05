@@ -149,7 +149,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Controls.Common:ImageToggleButton
+            <Controls.Common:MaskedToggleButton
                 Grid.Column="0"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Category.png"
                 IsChecked="{Binding ShowCategories}"
@@ -157,20 +157,20 @@
                 CheckedToolTip="Showing Categories"
                 UncheckedToolTip="Show Categories"
                 VerticalAlignment="Center"/>
-            <Controls.Common:ImageDropDownButton
+            <Controls.Common:MaskedDropDownButton
                 Grid.Column="1"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Sort.png"
                 ToolTip="{l:Loc SortDirection}"
                 Padding="10,0"
                 VerticalAlignment="Center">
-                <Controls.Common:ImageDropDownButton.DropDown>
+                <Controls.Common:MaskedDropDownButton.DropDown>
                 <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
                     <MenuItem Header="{l:Loc Ascending}" IsCheckable="True" IsChecked="{Binding IsSortAscending}" Common.Extensions:MenuItemExtensions.GroupName="SortDirection"/>
                     <MenuItem Header="{l:Loc Descending}" IsCheckable="True" IsChecked="{Binding IsSortDescending}" Common.Extensions:MenuItemExtensions.GroupName="SortDirection"/>
                 </ContextMenu>
-                </Controls.Common:ImageDropDownButton.DropDown>
-            </Controls.Common:ImageDropDownButton>
-            <Controls.Common:ColorImage
+                </Controls.Common:MaskedDropDownButton.DropDown>
+            </Controls.Common:MaskedDropDownButton>
+            <Controls.Common:MaskedImage
                 Grid.Column="2"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Search.png"
                 Margin="0,0,5,0"/>
@@ -182,7 +182,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                 KeyUp="OnKeyUp"/>
-            <Controls.Common:ImageButton
+            <Controls.Common:MaskedButton
                 Grid.Column="4"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/XRound.png"
                 ImageWidth="16"
@@ -192,17 +192,17 @@
                 Click="Clear_Executed"
                 Visibility="{Binding SearchQuery, Converter={StaticResource EmptyStringToVisibilityConverter}}"
                 Cursor="Hand"/>
-            <Controls.Common:ImageDropDownButton
+            <Controls.Common:MaskedDropDownButton
                 Grid.Column="5"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/ArrowDown.png"
                 ToolTip="{l:Loc Options}"
                 Padding="5,0">
-                <Controls.Common:ImageDropDownButton.DropDown>
+                <Controls.Common:MaskedDropDownButton.DropDown>
                 <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
                     <MenuItem Header="{l:Loc Reset}" Click="Reset_Executed" ToolTip="Reset All Fields"/>
                 </ContextMenu>
-                </Controls.Common:ImageDropDownButton.DropDown>
-            </Controls.Common:ImageDropDownButton>
+                </Controls.Common:MaskedDropDownButton.DropDown>
+            </Controls.Common:MaskedDropDownButton>
             </Grid>
         </Grid>
         <Border

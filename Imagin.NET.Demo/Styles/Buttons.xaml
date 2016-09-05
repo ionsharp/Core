@@ -5,22 +5,20 @@
     xmlns:local="clr-namespace:Imagin.NET.Demo"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
-    <System:Double x:Key="DisabledOpacity">0.4</System:Double>
-
-    <Style x:Key="{x:Type Controls.Common:ColorImage}" TargetType="{x:Type Controls.Common:ColorImage}">
+    <Style x:Key="{x:Type Controls.Common:MaskedImage}" TargetType="{x:Type Controls.Common:MaskedImage}">
         <Setter Property="ImageColor" Value="{DynamicResource ImageBrush}"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                <Setter Property="Opacity" Value="{DynamicResource DisabledOpacity}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{x:Type Controls.Common:ImageButton}" TargetType="{x:Type Controls.Common:ImageButton}">
+    <Style x:Key="{x:Type Controls.Common:MaskedButton}" TargetType="{x:Type Controls.Common:MaskedButton}">
         <Setter Property="Background" Value="Transparent" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                <Setter Property="Opacity" Value="{DynamicResource DisabledOpacity}" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="ImageColor" Value="{DynamicResource ImageHoverBrush}"/>
@@ -38,7 +36,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{x:Type Controls.Common:ImageToggleButton}" TargetType="{x:Type Controls.Common:ImageToggleButton}">
+    <Style x:Key="{x:Type Controls.Common:MaskedToggleButton}" TargetType="{x:Type Controls.Common:MaskedToggleButton}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
         <Style.Triggers>
@@ -51,17 +49,17 @@
                 <Setter Property="ToolTip" Value="{Binding UncheckedToolTip, RelativeSource={RelativeSource Self}}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                <Setter Property="Opacity" Value="{DynamicResource DisabledOpacity}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{x:Type Controls.Common:ImageDropDownButton}" TargetType="{x:Type Controls.Common:ImageDropDownButton}">
+    <Style x:Key="{x:Type Controls.Common:MaskedDropDownButton}" TargetType="{x:Type Controls.Common:MaskedDropDownButton}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                <Setter Property="Opacity" Value="{DynamicResource DisabledOpacity}" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -90,10 +88,5 @@
                 <Setter Property="ImageColor" Value="{DynamicResource ImagePressedBrush}"/>
             </MultiTrigger>
         </Style.Triggers>
-    </Style>
-
-    <Style x:Key="{x:Type Controls.Common:AdvancedImageDropDownButton}" TargetType="{x:Type Controls.Common:AdvancedImageDropDownButton}">
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Background" Value="Transparent" />
     </Style>
 </ResourceDictionary>

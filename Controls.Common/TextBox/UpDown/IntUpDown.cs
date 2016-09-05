@@ -1,13 +1,14 @@
 ﻿using Imagin.Common.Extensions;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
     public class IntUpDown : NumericUpDown
     {
+        #region Properties
+
         public override Regex Expression
         {
             get
@@ -65,17 +66,17 @@ namespace Imagin.Controls.Common
             }
         }
 
+        #endregion
+
+        #region IntUpDown
+
         public IntUpDown() : base()
         {
         }
 
-        void CoeerceValue(int Value)
-        {
-            if (Value < this.Minimum)
-                this.Text = this.Minimum.ToString();
-            if (Value > this.Maximum)
-                this.Text = this.Maximum.ToString();
-        }
+        #endregion
+
+        #region Methods
 
         public override object GetValue()
         {
@@ -90,28 +91,24 @@ namespace Imagin.Controls.Common
                 this.SetText(this.Maximum, true);
         }
 
-        protected override void FormatValue(string StringFormat)
+        public override void Increase()
         {
-            if (!string.IsNullOrEmpty(StringFormat))
-                this.SetText(this.Value.ToString(StringFormat), true);
+            this.SetText(this.Value + this.Increment);
         }
-
-        protected override void Up_Executed(object sender, ExecutedRoutedEventArgs e)
-            {
-                this.SetText(this.Value + this.Increment);
-            }
-        protected override void Up_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        protected override void CanIncrease(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value < this.Maximum;
         }
 
-        protected override void Down_Executed(object sender, ExecutedRoutedEventArgs e)
+        public override void Decrease()
         {
             this.SetText(this.Value - this.Increment);
         }
-        protected override void Down_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        protected override void CanDecrease(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = this.Value > this.Minimum;
         }
+
+        #endregion
     }
 }

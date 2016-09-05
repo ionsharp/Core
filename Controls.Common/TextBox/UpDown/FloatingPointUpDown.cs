@@ -1,8 +1,5 @@
-﻿using Imagin.Common.Extensions;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
@@ -16,27 +13,21 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty MantissaProperty = DependencyProperty.Register("Mantissa", typeof(int), typeof(FloatingPointUpDown), new FrameworkPropertyMetadata(3, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMantissaChanged));
-        public int Mantissa
+        public static DependencyProperty PrecisionProperty = DependencyProperty.Register("Precision", typeof(int), typeof(FloatingPointUpDown), new FrameworkPropertyMetadata(3, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public int Precision
         {
             get
             {
-                return (int)GetValue(MantissaProperty);
+                return (int)GetValue(PrecisionProperty);
             }
             set
             {
-                SetValue(MantissaProperty, value);
+                SetValue(PrecisionProperty, value);
             }
-        }
-        static void OnMantissaChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            FloatingPointUpDown FloatingPointUpDown = (FloatingPointUpDown)Object;
-            FloatingPointUpDown.FormatValue(FloatingPointUpDown.StringFormat);
         }
 
         public FloatingPointUpDown() : base()
         {
-            this.StringFormat = "N3";
         }
     }
 }

@@ -65,6 +65,10 @@
     <Compile Include="DirectionPad.xaml.cs">
       <DependentUpon>DirectionPad.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FontSizeBox.xaml.cs">
+      <DependentUpon>FontSizeBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gadget.cs" />
     <Compile Include="TextBox\AlphaNumericTextBox.cs" />
     <Compile Include="DragSelection.cs" />
     <Compile Include="DragSelector.cs" />
@@ -73,11 +77,10 @@
     </Compile>
     <Compile Include="Link.cs" />
     <Compile Include="IDragSelector.cs" />
-    <Compile Include="Buttons\AdvancedImageDropDownButton.cs" />
-    <Compile Include="Buttons\ImageDropDownButton.cs" />
-    <Compile Include="Buttons\ColorImage.cs" />
-    <Compile Include="Buttons\ImageButton.cs" />
-    <Compile Include="Buttons\ImageToggleButton.cs" />
+    <Compile Include="Masked\MaskedDropDownButton.cs" />
+    <Compile Include="Masked\MaskedImage.cs" />
+    <Compile Include="Masked\MaskedButton.cs" />
+    <Compile Include="Masked\MaskedToggleButton.cs" />
     <Compile Include="TextBox\FileBox.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +103,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FontSizeBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FontFamilyBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,7 +127,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.Buttons.xaml">
+    <Page Include="Themes\Generic.Gadget.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.Masked.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

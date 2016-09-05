@@ -13,15 +13,14 @@ namespace Imagin.Common.Data.Converters
             Normal,
             Inverted
         }
-        private Visibility GetOpposite(Visibility Visibility)
+        Visibility Evaluate(Visibility Visibility, Parameter Parameter)
         {
-            return Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            return Parameter == Parameter.Normal ? Visibility : (Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible);
         }
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Parameter Parameter = parameter == null ? Parameter.Normal : (Parameter)Enum.Parse(typeof(Parameter), (string)parameter);
-            Visibility Visibility = value == null ? Visibility.Collapsed : Visibility.Visible;
-            return Parameter == Parameter.Normal ? Visibility : this.GetOpposite(Visibility);
+            return this.Evaluate(value == null ? Visibility.Collapsed : Visibility.Visible, Parameter);
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

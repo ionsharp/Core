@@ -1,0 +1,35 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Imagin.Gadgets.Search">
+    <SolidColorBrush x:Key="ImageBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="ImageHoverBrush" Color="#FF007acc"/>
+    <SolidColorBrush x:Key="ImagePressedBrush" Color="#FF70B6E4"/>
+
+    <SolidColorBrush x:Key="TextBoxBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="TextBoxBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="TextBoxIsMouseOverBorderBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="ReadOnlyTextBoxBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="ReadOnlyTextBoxBorderBrush" Color="#DDD"/>
+    <SolidColorBrush x:Key="ReadOnlyTextBoxForeground" Color="#AAA"/>
+
+    <SolidColorBrush x:Key="TextBrush" Color="#666"/>
+
+    <SolidColorBrush x:Key="ComboBoxBackground" Color="#DDD"/>
+    <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#BBB"/>
+    <SolidColorBrush x:Key="ComboBoxForeground" Color="#777"/>
+    <SolidColorBrush x:Key="ComboBoxCheckedBackground" Color="#007acc"/>
+    <SolidColorBrush x:Key="ComboBoxCheckedBorderBrush" Color="#007acc"/>
+    <SolidColorBrush x:Key="ComboBoxCheckedForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="ComboBoxToggleButtonBackground" Color="#DDD"/>
+    <SolidColorBrush x:Key="ComboBoxToggleButtonBorderBrush" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBoxToggleButtonArrowFill" Color="#999"/>
+    <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#DDD"/>
+    <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="#BBB"/>
+    <SolidColorBrush x:Key="ComboBoxItemIsHighlightedBackground" Color="#CCC"/>
+
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#fdf4bf"/>
+    <SolidColorBrush x:Key="ToolTipBorderBrush" Color="#b2ab80"/>
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#284d6f"/>
+</ResourceDictionary>

@@ -23,56 +23,56 @@
             <RowDefinition Height="24"/>
             <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="1" 
             Grid.Column="1"  
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowNW.png" 
             Tag="NW"
             ToolTip="Top Left"/>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="1" 
             Grid.Column="2"  
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowN.png" 
             Tag="N"
             ToolTip="Top"/>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="1" 
             Grid.Column="3"  
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowNE.png" 
             Tag="NE"
             ToolTip="Top Right"/>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="2" 
             Grid.Column="1"  
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowW.png" 
             Tag="W"
             ToolTip="Left"/>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="2" 
             Grid.Column="2"  
             x:Name="PART_OriginButton"
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowP.png" 
             Tag="Origin"
             ToolTip="Center"/>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="2" 
             Grid.Column="3"  
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowE.png" 
             Tag="E"
             ToolTip="Right"/>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="3" 
             Grid.Column="1"  
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowSW.png" 
             Tag="SW"
             ToolTip="Bottom Left"/>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="3" 
             Grid.Column="2"  
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowS.png" 
             Tag="S"
             ToolTip="Bottom"/>
-        <local:ImageButton 
+        <local:MaskedButton 
             Grid.Row="3" 
             Grid.Column="3"  
             Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowSE.png" 

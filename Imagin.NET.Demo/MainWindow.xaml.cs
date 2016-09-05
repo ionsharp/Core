@@ -458,5 +458,10 @@ namespace Imagin.NET.Demo
         }
 
         #endregion
+
+        void MaskedButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Clicked button!");
+        }
     }
 }

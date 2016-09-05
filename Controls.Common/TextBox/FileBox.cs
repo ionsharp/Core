@@ -98,7 +98,7 @@ namespace Imagin.Controls.Common
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            this.Template.FindName("PART_BrowseButton", this).As<ImageButton>().Click += this.OnClick;
+            this.Template.FindName("PART_BrowseButton", this).As<MaskedButton>().Click += this.OnClick;
         }
 
         protected override void OnTextChanged(TextChangedEventArgs e)

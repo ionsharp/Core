@@ -22,7 +22,7 @@
     <SolidColorBrush x:Key="ContextMenuBorderBrush" Color="#AAA"/>
     <SolidColorBrush x:Key="ContextMenuForeground" Color="#666"/>
     <SolidColorBrush x:Key="ContextMenuSeparatorBorderBrush" Color="#D7D7D7"/>
-    <Color x:Key="ContextMenuDropShadowColor">#808080</Color>
+    <Color x:Key="DropShadowColor">#808080</Color>
 
     <SolidColorBrush x:Key="DataGridColumnHeaderBackground" Color="#FCFCFC"/>
     <SolidColorBrush x:Key="DataGridColumnHeaderForeground" Color="#333"/>
@@ -54,6 +54,30 @@
     <SolidColorBrush x:Key="ListBoxItemIsSelectedBackground" Color="#AA1881c8"/>
     <SolidColorBrush x:Key="ListBoxItemIsSelectedBorderBrush" Color="#0970b6"/>
     <SolidColorBrush x:Key="ListViewItemIsSelectedForegroundBrush" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="MenuItemBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="MenuItemBorderBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="MenuItemCheckedBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="MenuItemCheckedMouseOverBackground" Color="#2685c4"/>
+    <LinearGradientBrush x:Key="MenuItemTopLevelHeaderMouseOverBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#F0F0F0"/>
+        <GradientStop Offset="1" Color="#EAEAEA"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="MenuItemTopLevelHeaderMouseOverBorderBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="MenuItemTopLevelHeaderMouseOverForeground" Color="#AAA"/>
+    <LinearGradientBrush x:Key="MenuItemTopLevelItemSubmenuOpenBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#EAEAEA"/>
+        <GradientStop Offset="1" Color="#DADADA"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="MenuItemTopLevelItemSubmenuOpenBorderBrush" Color="#888"/>
+    <LinearGradientBrush x:Key="MenuItemSubLevelItemMouseOverBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#2685c4"/>
+        <GradientStop Offset="1" Color="#2685c4"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="MenuItemSubLevelItemMouseOverForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="MenuItemSubLevelItemWithChildrenBackground" Color="#EAEAEA"/>
+    <SolidColorBrush x:Key="MenuItemSubLevelItemBackground" Color="#F0F0F0"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuOpenArrowForeground" Color="#44000000"/>
 
     <SolidColorBrush x:Key="TextBoxBackground" Color="Transparent"/>
     <SolidColorBrush x:Key="TextBoxBorder" Color="#DDD"/>

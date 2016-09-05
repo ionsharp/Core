@@ -9,9 +9,10 @@
     xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
     mc:Ignorable="d"
-    Title="MainWindow" 
+    Title="Imagin.NET Demo" 
     Height="600" 
     Width="825"
+    Icon="/Images/Logo.png"
     WindowStartupLocation="CenterScreen"
     x:Name="PART_MainWindow">
     <Window.Resources>
@@ -253,89 +254,6 @@
                         Margin="0,10,0,0"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Buttons">
-                <ScrollViewer Margin="10">
-                    <Grid VerticalAlignment="Top">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                            </Style>
-                        </Grid.Resources>
-                        <TextBlock Text="ColorImage"/>
-                        <TextBlock Grid.Column="1" Text="ImageButton"/>
-                        <TextBlock Grid.Column="2" Text="ImageToggleButton"/>
-                        <TextBlock Grid.Column="3" Text="ImageDropDownButton"/>
-                        <TextBlock Grid.Column="4" Text="AdvancedImageDropDownButton"/>
-                        <Controls.Common:ColorImage 
-                            Grid.Row="1"
-                            ImageWidth="24"
-                            ImageHeight="24"
-                            Source="/Images/Gear.png" 
-                            HorizontalAlignment="Left"/>
-                        <Controls.Common:ImageButton 
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            ImageWidth="24"
-                            ImageHeight="24"
-                            Source="/Images/Gear.png" 
-                            Content="Options"/>
-                        <Controls.Common:ImageToggleButton 
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            ImageWidth="24"
-                            ImageHeight="24"
-                            Source="/Images/Gear.png" 
-                            Content="Options"
-                            CheckedToolTip="Options are checked"
-                            UncheckedToolTip="Options are not checked"/>
-                        <Controls.Common:ImageDropDownButton 
-                            Grid.Row="1"
-                            Grid.Column="3"
-                            ImageWidth="24"
-                            ImageHeight="24"
-                            Source="/Images/Gear.png" 
-                            Content="Options">
-                            <Controls.Common:ImageDropDownButton.DropDown>
-                                <ContextMenu>
-                                    <MenuItem Header="Option 1"/>
-                                    <MenuItem Header="Option 2"/>
-                                    <MenuItem Header="Option 3"/>
-                                    <MenuItem Header="Option 4"/>
-                                    <MenuItem Header="Option 5"/>
-                                </ContextMenu>
-                            </Controls.Common:ImageDropDownButton.DropDown>
-                        </Controls.Common:ImageDropDownButton>
-                        <Controls.Common:AdvancedImageDropDownButton 
-                            Grid.Row="1"
-                            Grid.Column="4"
-                            ImageWidth="24"
-                            ImageHeight="24"
-                            Source="/Images/Gear.png" 
-                            Content="Options">
-                            <Controls.Common:AdvancedImageDropDownButton.DropDown>
-                                <ContextMenu>
-                                    <MenuItem Header="Option 1"/>
-                                    <MenuItem Header="Option 2"/>
-                                    <MenuItem Header="Option 3"/>
-                                    <MenuItem Header="Option 4"/>
-                                    <MenuItem Header="Option 5"/>
-                                </ContextMenu>
-                            </Controls.Common:AdvancedImageDropDownButton.DropDown>
-                        </Controls.Common:AdvancedImageDropDownButton>
-                    </Grid>
-                </ScrollViewer>
-            </TabItem>
             <TabItem Header="DirectionPad">
                 <StackPanel Margin="10">
                     <Controls.Common:DirectionPad 
@@ -354,13 +272,21 @@
                     <Controls.Common:FileBox VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="FontFamilyBox">
-                <StackPanel Margin="10">
+            <TabItem Header="Font">
+                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
+                    <TextBlock Style="{DynamicResource H2}" Text="FontFamilyBox"/>
                     <Controls.Common:FontFamilyBox x:Name="PART_FontFamilyBox"/>
                     <TextBlock 
                         Margin="0,10,0,0"
+                        FontFamily="{Binding SelectedItem, Mode=OneWay, ElementName=PART_FontFamilyBox}"
                         Text="{Binding SelectedValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_FontFamilyBox, StringFormat={}Font Family: {0}}"/>
-                </StackPanel>
+                    <TextBlock Style="{DynamicResource H2}" Text="FontSizeBox"/>
+                    <Controls.Common:FontSizeBox x:Name="PART_FontSizeBox" IsEditable="True"/>
+                    <TextBlock 
+                        Margin="0,10,0,0"
+                        FontSize="{Binding SelectedItem, Mode=OneWay, ElementName=PART_FontSizeBox}"
+                        Text="{Binding SelectedValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_FontSizeBox, StringFormat={}Font Size: {0}}"/>
+                </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="Line">
                 <Grid Margin="10">
@@ -382,6 +308,73 @@
                         Foreground="Blue" 
                         Click="Link_Click"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Masked">
+                <ScrollViewer Margin="10">
+                    <Controls.Common:Spacer Spacing="0,0,0,10" VerticalAlignment="Top">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="MaskedImage" Style="{DynamicResource H2}"/>
+                        <Controls.Common:MaskedImage 
+                            Grid.Row="1"
+                            Source="/Images/Gear.png" 
+                            HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Column="1" Text="MaskedButton" Style="{DynamicResource H2}"/>
+                        <Controls.Common:MaskedButton 
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Source="/Images/Gear.png" 
+                            Content="Options"
+                            DropDownVisibility="Visible"
+                            ToolTip="Button tip"
+                            DropDownToolTip="Dropdown tip"
+                            Click="MaskedButton_Click">
+                            <Controls.Common:MaskedButton.DropDown>
+                                <ContextMenu>
+                                    <MenuItem Header="Option 1"/>
+                                    <MenuItem Header="Option 2"/>
+                                    <MenuItem Header="Option 3"/>
+                                    <MenuItem Header="Option 4"/>
+                                    <MenuItem Header="Option 5"/>
+                                    <MenuItem Header="Option 6"/>
+                                    <MenuItem Header="Option 7"/>
+                                    <MenuItem Header="Option 8"/>
+                                </ContextMenu>
+                            </Controls.Common:MaskedButton.DropDown>
+                        </Controls.Common:MaskedButton>
+
+                        <TextBlock Grid.Column="2" Text="MaskedToggleButton" Style="{DynamicResource H2}"/>
+                        <Controls.Common:MaskedToggleButton 
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Source="/Images/Gear.png" 
+                            Content="Options"
+                            CheckedToolTip="Options are checked"
+                            UncheckedToolTip="Options are not checked"/>
+
+                        <TextBlock Grid.Column="3" Text="MaskedDropDownButton" Style="{DynamicResource H2}"/>
+                        <Controls.Common:MaskedDropDownButton 
+                            Grid.Row="1"
+                            Grid.Column="3"
+                            Source="/Images/Gear.png" 
+                            Content="Options">
+                            <Controls.Common:MaskedDropDownButton.DropDown>
+                                <ContextMenu>
+                                    <MenuItem Header="Option 1"/>
+                                    <MenuItem Header="Option 2"/>
+                                    <MenuItem Header="Option 3"/>
+                                    <MenuItem Header="Option 4"/>
+                                    <MenuItem Header="Option 5"/>
+                                </ContextMenu>
+                            </Controls.Common:MaskedDropDownButton.DropDown>
+                        </Controls.Common:MaskedDropDownButton>
+                    </Controls.Common:Spacer>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="PasswordBox">
                 <Grid Margin="10">
@@ -509,48 +502,6 @@
                     </Controls.Extended:TabbedTree>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="TextBox &amp; UpDown">
-                <ScrollViewer>
-                    <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                        <TextBlock Style="{DynamicResource H2}" Text="AlphaNumericTextBox"/>
-                        <Controls.Common:AlphaNumericTextBox Text="Whole integers and letters 0 1 2 3 4 5 6"/>
-                        <TextBlock Style="{DynamicResource H2}" Text="IntUpDown"/>
-                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center">
-                            <Controls.Common:IntUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:IntUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:IntUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}" MinWidth="75"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:IntUpDown x:Name="PART_IntUpDown"  Text="99" Increment="1" Minimum="-100" Maximum="100"/>
-                        <TextBlock Style="{DynamicResource H2}" Text="LongUpDown"/>
-                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
-                            <Controls.Common:LongUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:LongUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:LongUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}" MinWidth="75"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:LongUpDown x:Name="PART_LongUpDown" Text="1000000" Increment="10000" Minimum="-1000000" Maximum="1000000"/>
-                        <TextBlock Style="{DynamicResource H2}" Text="DoubleUpDown"/>
-                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
-                            <Controls.Common:IntUpDown Content="Mantissa" Text="{Binding Mantissa, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:DoubleUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:DoubleUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:DoubleUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}" MinWidth="75"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" Text="999.25" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
-                        <TextBlock Style="{DynamicResource H2}" Text="DecimalUpDown"/>
-                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
-                            <Controls.Common:IntUpDown Content="Mantissa" Text="{Binding Mantissa, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:DecimalUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:DecimalUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:DecimalUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}" MinWidth="75"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" Text="999.50" Increment="10.25" Minimum="-1000.00" Maximum="1000.00"/>
-                    </Controls.Common:Spacer>
-                </ScrollViewer>
-            </TabItem>
             <TabItem Header="TreeViewComboBox">
                 <StackPanel Margin="10">
                     <Controls.Common:TreeViewComboBox ItemsSource="{Binding TreeViewSource}">
@@ -566,6 +517,48 @@
                         </Controls.Common:TreeViewComboBox.ContentTemplate>
                     </Controls.Common:TreeViewComboBox>
                 </StackPanel>
+            </TabItem>
+            <TabItem Header="UpDown">
+                <ScrollViewer>
+                    <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
+                        <TextBlock Style="{DynamicResource H2}" Text="AlphaNumericTextBox"/>
+                        <Controls.Common:AlphaNumericTextBox Text="Whole integers and letters 0 1 2 3 4 5 6"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="IntUpDown"/>
+                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Controls.Common:IntUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:IntUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:IntUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Text="{Binding MajorChange, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Controls.Common:Spacer>
+                        <Controls.Common:IntUpDown x:Name="PART_IntUpDown" Text="99" Increment="1" Minimum="-100" Maximum="100"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="LongUpDown"/>
+                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
+                            <Controls.Common:LongUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                            <Controls.Common:LongUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:LongUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Text="{Binding MajorChange, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Controls.Common:Spacer>
+                        <Controls.Common:LongUpDown x:Name="PART_LongUpDown" Text="1000000" Increment="10000" Minimum="-1000000" Maximum="1000000"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="DoubleUpDown"/>
+                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
+                            <Controls.Common:IntUpDown Content="Precision" Text="{Binding Precision, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:DoubleUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:DoubleUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:DoubleUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Text="{Binding MajorChange, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Controls.Common:Spacer>
+                        <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" Text="999.25" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
+                        <TextBlock Style="{DynamicResource H2}" Text="DecimalUpDown"/>
+                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
+                            <Controls.Common:IntUpDown Content="Precision" Text="{Binding Precision, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:DecimalUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:DecimalUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:DecimalUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Text="{Binding MajorChange, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Controls.Common:Spacer>
+                        <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" Text="999.50" Increment="10.25" Minimum="-1000.00" Maximum="1000.00"/>
+                    </Controls.Common:Spacer>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>

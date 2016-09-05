@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractObject.cs" />
+    <Compile Include="Behavior\Window.cs" />
     <Compile Include="Animations\ExpanderDoubleAnimation.cs" />
     <Compile Include="Animations\GridLengthAnimation.cs" />
     <Compile Include="Attributes\Acronym.cs" />
@@ -74,16 +75,26 @@
     <Compile Include="Collections\Events\ItemsReplacedEventArgs.cs" />
     <Compile Include="Collections\Events\RemovedEventArgs.cs" />
     <Compile Include="Collections\Events\ReplacedEventArgs.cs" />
+    <Compile Include="Collections\Stack.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Data\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Data\Converters\BrushToHexConverter.cs" />
+    <Compile Include="Data\Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Data\Converters\DateTimeIsTodayConverter.cs" />
+    <Compile Include="Data\Converters\DateTimeToDayConverter.cs" />
     <Compile Include="Data\Converters\EnumToCamelCaseConverter.cs" />
+    <Compile Include="Data\Converters\EnumToCollectionConverter.cs" />
+    <Compile Include="Data\Converters\FileNameConverter.cs" />
+    <Compile Include="Data\Converters\FileSizeConverter.cs" />
+    <Compile Include="Data\Converters\FileSpeedConverter.cs" />
+    <Compile Include="Data\Converters\IntToMonthConverter.cs" />
     <Compile Include="Data\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Data\Converters\NullObjectToBooleanConverter.cs" />
     <Compile Include="Data\Converters\NullObjectToVisibilityConverter.cs" />
     <Compile Include="Data\Converters\EmptyStringToVisibilityConverter.cs" />
     <Compile Include="Data\Converters\ObjectToTypeConverter.cs" />
     <Compile Include="Data\Converters\RelativeTimeConverter.cs" />
+    <Compile Include="Data\Converters\SecondsConverter.cs" />
     <Compile Include="Data\Converters\StringToCamelCaseConverter.cs" />
     <Compile Include="DialogProvider.cs" />
     <Compile Include="Entry.cs" />

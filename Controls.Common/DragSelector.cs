@@ -282,8 +282,7 @@ namespace Imagin.Controls.Common
         /// </summary>
         async void OnMouseMove(object sender, MouseEventArgs e)
         {
-            //If left mouse button is not pressed or we don't have proper mouse capture, do nothing.
-            if (e.LeftButton != MouseButtonState.Pressed || !this.Grid.IsMouseCaptured)
+            if (!this.IsDragging)
                 return;
 
             Point CurrentPosition = e.GetPosition(this.Grid);
