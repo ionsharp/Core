@@ -5,78 +5,55 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:Imagin.Controls.Common"
-    mc:Ignorable="d" 
-    d:DesignHeight="300" 
-    d:DesignWidth="300">
-    <Grid x:Name="PART_Grid" ClipToBounds="True">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0"/>
-            <ColumnDefinition Width="24"/>
-            <ColumnDefinition Width="24"/>
-            <ColumnDefinition Width="24"/>
-            <ColumnDefinition Width="0"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
-            <RowDefinition Height="24"/>
-            <RowDefinition Height="24"/>
-            <RowDefinition Height="24"/>
-            <RowDefinition Height="0"/>
-        </Grid.RowDefinitions>
-        <local:MaskedButton 
-            Grid.Row="1" 
-            Grid.Column="1"  
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowNW.png" 
-            Tag="NW"
-            ToolTip="Top Left"/>
-        <local:MaskedButton 
-            Grid.Row="1" 
-            Grid.Column="2"  
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowN.png" 
-            Tag="N"
-            ToolTip="Top"/>
-        <local:MaskedButton 
-            Grid.Row="1" 
-            Grid.Column="3"  
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowNE.png" 
-            Tag="NE"
-            ToolTip="Top Right"/>
-        <local:MaskedButton 
-            Grid.Row="2" 
-            Grid.Column="1"  
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowW.png" 
-            Tag="W"
-            ToolTip="Left"/>
-        <local:MaskedButton 
-            Grid.Row="2" 
-            Grid.Column="2"  
-            x:Name="PART_OriginButton"
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowP.png" 
-            Tag="Origin"
-            ToolTip="Center"/>
-        <local:MaskedButton 
-            Grid.Row="2" 
-            Grid.Column="3"  
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowE.png" 
-            Tag="E"
-            ToolTip="Right"/>
-        <local:MaskedButton 
-            Grid.Row="3" 
-            Grid.Column="1"  
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowSW.png" 
-            Tag="SW"
-            ToolTip="Bottom Left"/>
-        <local:MaskedButton 
-            Grid.Row="3" 
-            Grid.Column="2"  
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowS.png" 
-            Tag="S"
-            ToolTip="Bottom"/>
-        <local:MaskedButton 
-            Grid.Row="3" 
-            Grid.Column="3"  
-            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowSE.png" 
-            Tag="SE"
-            ToolTip="Bottom Right"/>
-    </Grid>
+    x:Name="PART_DirectionPad">
+    <ItemsControl DataContext="{Binding ElementName=PART_DirectionPad}" ClipToBounds="True" ItemsSource="{Binding Items}">
+        <ItemsControl.ItemContainerStyle>
+            <Style TargetType="{x:Type ContentPresenter}">
+                <Setter Property="Grid.Row" Value="{Binding Row}" />
+                <Setter Property="Grid.Column" Value="{Binding Column}" />
+                <Setter Property="Opacity" Value="0" />
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="ContentPresenter.SizeChanged">
+                        <BeginStoryboard>
+                            <BeginStoryboard.Storyboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1.0" Duration="0:0:0.5" AccelerationRatio="0.4" DecelerationRatio="0.4"/>
+                                </Storyboard>
+                            </BeginStoryboard.Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </ItemsControl.ItemContainerStyle>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="0"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <local:MaskedButton
+                    Width="20"
+                    Height="20"
+                    ToolTip="{Binding Name}"
+                    Source="{Binding Icon}"
+                    Click="OnClick"/>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </UserControl>

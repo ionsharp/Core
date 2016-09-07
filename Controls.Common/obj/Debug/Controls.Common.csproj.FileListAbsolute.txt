@@ -5,7 +5,6 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.dll
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.pdb
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.xml
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.g.cs
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.g.cs
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -33,3 +32,4 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Gadget.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.g.cs
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache

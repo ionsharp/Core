@@ -29,6 +29,8 @@ namespace Imagin.Controls.Common
             {
                 MaskedDropDownButton.DropDown.PlacementTarget = MaskedDropDownButton;
                 MaskedDropDownButton.DropDown.Placement = PlacementMode.Bottom;
+                if (MaskedDropDownButton.DropDownDataContext != null)
+                    MaskedDropDownButton.DropDown.DataContext = MaskedDropDownButton.DropDownDataContext;
             }
         }
 

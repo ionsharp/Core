@@ -13,7 +13,13 @@ namespace Imagin.Common.Data.Converters
             if (value == null)
                 return string.Empty;
             else if (value.Is<string>())
-                return value.ToString().ToLong().ToFileSize();
+            {
+                long Value = 0L;
+                if (System.IO.File.Exists(value.ToString()))
+                    Value = new System.IO.FileInfo(value.ToString()).Length;
+                else Value = value.ToString().ToLong();
+                return Value.ToFileSize();
+            }
             else if (value.Is<long>())
                 return value.As<long>().ToFileSize();
             else return string.Empty;

@@ -4,16 +4,16 @@ namespace Imagin.Common
 {
     public enum CompassDirection
     {
-        Unknown,
-        N,
-        S,
-        W,
-        E,
-        Origin,
         NW,
+        N,
         NE,
+        W,
+        Origin,
+        E,
         SW,
-        SE
+        S,
+        SE,
+        Unknown,
     }
 
     [Flags]

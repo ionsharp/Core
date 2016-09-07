@@ -1,5 +1,8 @@
 ﻿using Imagin.Common;
 using Imagin.Common.Extensions;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,11 +12,63 @@ namespace Imagin.Controls.Common
     /// A rectangular control that enables specifying a 
     /// direction by clicking a directional arrow. Directional 
     /// arrows make all arrows shift in corresponding direction
-   ///  when clicked.
+    ///  when clicked.
     /// </summary>
     public partial class DirectionPad : UserControl
     {
-        #region Dependency Properties
+        #region Properties
+
+        #region Private
+
+        int[,] Directions = new int[3, 3]
+        {
+            { 0, 1, 2 },
+            { 3, 4, 5 },
+            { 6, 7, 8 }
+        };
+
+        int[,] Positions = new int[9, 2]
+        {
+            { 0, 0 },
+            { 0, 1 },
+            { 0, 2 },
+            { 1, 0 },
+            { 1, 1 },
+            { 1, 2 },
+            { 2, 0 },
+            { 2, 1 },
+            { 2, 2 }
+        };
+
+        ShiftType[] Shifts = new ShiftType[]
+        {
+            ShiftType.Up | ShiftType.Left,
+            ShiftType.Up,
+            ShiftType.Up | ShiftType.Right,
+            ShiftType.Left,
+            ShiftType.None,
+            ShiftType.Right,
+            ShiftType.Down | ShiftType.Left,
+            ShiftType.Down,
+            ShiftType.Down | ShiftType.Right
+        };
+
+        #endregion
+
+        #region Dependency
+
+        internal static DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<Model>), typeof(DirectionPad), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        internal ObservableCollection<Model> Items
+        {
+            get
+            {
+                return (ObservableCollection<Model>)GetValue(ItemsProperty);
+            }
+            set
+            {
+                SetValue(ItemsProperty, value);
+            }
+        }
 
         public static DependencyProperty CompassDirectionProperty = DependencyProperty.Register("CompassDirection", typeof(CompassDirection), typeof(DirectionPad), new FrameworkPropertyMetadata(CompassDirection.Origin, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCompassDirectionChanged));
         public CompassDirection CompassDirection
@@ -35,101 +90,137 @@ namespace Imagin.Controls.Common
 
         #endregion
 
+        #endregion
+
+        #region Types
+
+        [Flags]
+        enum ShiftType
+        {
+            None = 0,
+            Up = 1,
+            Down = 2,
+            Left = 4,
+            Right = 8
+        }
+
+        #endregion
+
+        #region Model
+
+        public class Model : NamedObject
+        {
+            CompassDirection direction = CompassDirection.Unknown;
+            public CompassDirection Direction
+            {
+                get
+                {
+                    return direction;
+                }
+                set
+                {
+                    this.direction = value;
+                    OnPropertyChanged("Direction");
+                }
+            }
+
+            string icon = string.Empty;
+            public string Icon
+            {
+                get
+                {
+                    return icon;
+                }
+                set
+                {
+                    this.icon = value;
+                    OnPropertyChanged("Icon");
+                }
+            }
+
+            int row = 0;
+            public int Row
+            {
+                get
+                {
+                    return row;
+                }
+                set
+                {
+                    this.row = value;
+                    OnPropertyChanged("Row");
+                }
+            }
+
+            int column = 0;
+            public int Column
+            {
+                get
+                {
+                    return column;
+                }
+                set
+                {
+                    this.column = value;
+                    OnPropertyChanged("Column");
+                }
+            }
+
+            public int DefaultRow
+            {
+                get; private set;
+            }
+
+            public int DefaultColumn
+            {
+                get; private set;
+            }
+
+            public Model(string Name, CompassDirection Direction, string Icon, RowColumn RowColumn) : base(Name)
+            {
+                this.Direction = Direction;
+                this.Icon = string.Concat(@"pack://application:,,,/Imagin.Controls.Common;component/Images/", Icon, ".png");
+                this.Row = RowColumn.Row;
+                this.Column = RowColumn.Column;
+                this.DefaultRow = RowColumn.Row;
+                this.DefaultColumn = RowColumn.Column;
+            }
+        }
+
+        #endregion
+
         #region DirectionPad
 
         public DirectionPad()
         {
             InitializeComponent();
 
-            foreach (MaskedButton i in this.PART_Grid.Children)
-                i.Click += this.OnClick;
+            this.Items = new ObservableCollection<Model>();
+            this.Items.Add(new Model("Top Left", CompassDirection.NW, "ArrowNW", new RowColumn(1, 1)));
+            this.Items.Add(new Model("Top", CompassDirection.N, "ArrowN", new RowColumn(1, 2)));
+            this.Items.Add(new Model("Top Right", CompassDirection.NE, "ArrowNE", new RowColumn(1, 3)));
+            this.Items.Add(new Model("Left", CompassDirection.W, "ArrowW", new RowColumn(2, 1)));
+            this.Items.Add(new Model("Center", CompassDirection.Origin, "ArrowP", new RowColumn(2, 2)));
+            this.Items.Add(new Model("Right", CompassDirection.E, "ArrowE", new RowColumn(2, 3)));
+            this.Items.Add(new Model("Bottom Left", CompassDirection.SW, "ArrowSW", new RowColumn(3, 1)));
+            this.Items.Add(new Model("Bottom", CompassDirection.S, "ArrowS", new RowColumn(3, 2)));
+            this.Items.Add(new Model("Bottom Right", CompassDirection.SE, "ArrowSE", new RowColumn(3, 3)));
         }
 
         #endregion
 
         #region Methods
 
-        CompassDirection GetDirection(int Row, int Column)
-        {
-            if (Row == 1)
-            {
-                if (Column == 1)
-                    return CompassDirection.NW;
-                else if (Column == 2)
-                    return CompassDirection.N;
-                else if (Column == 3)
-                    return CompassDirection.NE;
-            }
-            if (Row == 2)
-            {
-                if (Column == 1)
-                    return CompassDirection.W;
-                else if (Column == 2)
-                    return CompassDirection.Origin;
-                else if (Column == 3)
-                    return CompassDirection.E;
-            }
-            if (Row == 3)
-            {
-                if (Column == 1)
-                    return CompassDirection.SW;
-                else if (Column == 2)
-                    return CompassDirection.S;
-                else if (Column == 3)
-                    return CompassDirection.SE;
-            }
-            return CompassDirection.Unknown;
-        }
-
         void SetPositions(CompassDirection CompassDirection)
         {
-            int StartRow = 0, StartColumn = 0;
-            switch (CompassDirection)
-            {
-                case CompassDirection.NW:
-                    StartRow = 0;
-                    StartColumn = 0;
-                    break;
-                case CompassDirection.N:
-                    StartRow = 0;
-                    StartColumn = 1;
-                    break;
-                case CompassDirection.NE:
-                    StartRow = 0;
-                    StartColumn = 2;
-                    break;
-                case CompassDirection.W:
-                    StartRow = 1;
-                    StartColumn = 0;
-                    break;
-                case CompassDirection.Origin:
-                    StartRow = 1;
-                    StartColumn = 1;
-                    break;
-                case CompassDirection.E:
-                    StartRow = 1;
-                    StartColumn = 2;
-                    break;
-                case CompassDirection.SW:
-                    StartRow = 2;
-                    StartColumn = 0;
-                    break;
-                case CompassDirection.S:
-                    StartRow = 2;
-                    StartColumn = 1;
-                    break;
-                case CompassDirection.SE:
-                    StartRow = 2;
-                    StartColumn = 2;
-                    break;
-            }
+            int StartRow = this.Positions[(int)CompassDirection, 0], StartColumn = this.Positions[(int)CompassDirection, 1];
             int i = StartRow, j = StartColumn;
-            foreach (MaskedButton b in this.PART_Grid.Children)
+            foreach (Model d in this.Items)
             {
                 if (j < StartColumn + 3)
                 {
-                    Grid.SetRow(b, i);
-                    Grid.SetColumn(b, j++);
+                    d.Row = i;
+                    d.Column = j++;
                     if (j == (StartColumn + 3))
                     {
                         j = StartColumn;
@@ -139,67 +230,32 @@ namespace Imagin.Controls.Common
             }
         }
 
-        void ShiftPositions(CompassDirection CompassDirection, int Row, int Column)
+        void ShiftPositions(Model Model)
         {
-            bool ShiftUp = false, ShiftDown = false, ShiftLeft = false, ShiftRight = false;
-            switch (CompassDirection)
-            {
-                case CompassDirection.NW:
-                    if (Column == 0 || Row == 0) return;
-                    ShiftUp = ShiftLeft = true;
-                    break;
-                case CompassDirection.N:
-                    if (Row == 0) return;
-                    ShiftUp = true;
-                    break;
-                case CompassDirection.NE:
-                    if (Column > 3 || Row == 0) return;
-                    ShiftUp = ShiftRight = true;
-                    break;
-                case CompassDirection.W:
-                    if (Column == 0) return;
-                    ShiftLeft = true;
-                    break;
-                case CompassDirection.E:
-                    if (Column > 3) return;
-                    ShiftRight = true;
-                    break;
-                case CompassDirection.SW:
-                    if (Column == 0 || Row > 3) return;
-                    ShiftDown = ShiftLeft = true;
-                    break;
-                case CompassDirection.S:
-                    if (Row > 3) return;
-                    ShiftDown = true;
-                    break;
-                case CompassDirection.SE:
-                    if (Column > 3 || Row > 3) return;
-                    ShiftDown = ShiftRight = true;
-                    break;
-                case CompassDirection.Origin:
-                    this.CompassDirection = CompassDirection.Origin;
-                    return;
-                default:
-                    return;
-            }
-            foreach (MaskedButton i in this.PART_Grid.Children)
-            {
-                int r = Grid.GetRow(i), c = Grid.GetColumn(i);
-                Grid.SetRow(i, ShiftUp ? r - 1 : (ShiftDown ? r + 1 : r));
-                Grid.SetColumn(i, ShiftLeft ? c - 1 : (ShiftRight ? c + 1 : c));
-            }
-            this.CompassDirection = this.GetDirection(Grid.GetRow(this.PART_OriginButton), Grid.GetColumn(this.PART_OriginButton));
-        }
+            if (Model.Direction == CompassDirection.Origin)
+                this.CompassDirection = CompassDirection.Origin;
 
-        #region Events
+            ShiftType Shift = this.Shifts[(int)Model.Direction];
+            if (Shift == ShiftType.None)
+                return;
+
+            foreach (Model d in this.Items)
+            {
+                if (Shift.HasFlag(ShiftType.Up)) d.Row--;
+                if (Shift.HasFlag(ShiftType.Down)) d.Row++;
+                if (Shift.HasFlag(ShiftType.Left)) d.Column--;
+                if (Shift.HasFlag(ShiftType.Right)) d.Column++;
+            }
+
+            Model Origin = this.Items.Where(x => x.Direction == CompassDirection.Origin).First();
+            RowColumn RowColumn = new RowColumn(Origin.Row, Origin.Column);
+            this.CompassDirection = (CompassDirection)this.Directions[--RowColumn.Row, --RowColumn.Column]; 
+        }
 
         void OnClick(object sender, RoutedEventArgs e)
         {
-            FrameworkElement Element = sender as FrameworkElement;
-            this.ShiftPositions(Element.Tag.ToString().ParseEnum<CompassDirection>(), Grid.GetRow(Element), Grid.GetColumn(Element));
+            this.ShiftPositions(sender.As<FrameworkElement>().DataContext.As<Model>());
         }
-
-        #endregion
 
         #endregion
     }

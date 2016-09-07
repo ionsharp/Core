@@ -63,19 +63,6 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ShowHintProperty = DependencyProperty.Register("ShowHint", typeof(bool), typeof(PasswordBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool ShowHint
-        {
-            get
-            {
-                return (bool)GetValue(ShowHintProperty);
-            }
-            set
-            {
-                SetValue(ShowHintProperty, value);
-            }
-        }
-
         public static DependencyProperty ShowPasswordProperty = DependencyProperty.Register("ShowPassword", typeof(bool), typeof(PasswordBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool ShowPassword
         {

@@ -276,16 +276,12 @@
                 <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
                     <TextBlock Style="{DynamicResource H2}" Text="FontFamilyBox"/>
                     <Controls.Common:FontFamilyBox x:Name="PART_FontFamilyBox"/>
-                    <TextBlock 
-                        Margin="0,10,0,0"
-                        FontFamily="{Binding SelectedItem, Mode=OneWay, ElementName=PART_FontFamilyBox}"
-                        Text="{Binding SelectedValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_FontFamilyBox, StringFormat={}Font Family: {0}}"/>
                     <TextBlock Style="{DynamicResource H2}" Text="FontSizeBox"/>
                     <Controls.Common:FontSizeBox x:Name="PART_FontSizeBox" IsEditable="True"/>
                     <TextBlock 
-                        Margin="0,10,0,0"
-                        FontSize="{Binding SelectedItem, Mode=OneWay, ElementName=PART_FontSizeBox}"
-                        Text="{Binding SelectedValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_FontSizeBox, StringFormat={}Font Size: {0}}"/>
+                        FontFamily="{Binding SelectedItem, Mode=OneWay, ElementName=PART_FontFamilyBox}"
+                        FontSize="{Binding Text, Mode=OneWay, ElementName=PART_FontSizeBox}"
+                        Text="Sample text"/>
                 </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="Line">
@@ -396,7 +392,6 @@
                         Placeholder="Enter a password..." 
                         VerticalAlignment="Top" 
                         ShowEnterButton="True" 
-                        ShowHint="True" 
                         Hint="What do you think it is? ;(" 
                         Entered="OnPasswordEntered"
                         Margin="0,5,0,0"/>

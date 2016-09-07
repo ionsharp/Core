@@ -2,21 +2,25 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Common.Data.Converters
 {
     [ValueConversion(typeof(string), typeof(Visibility))]
     public class EmptyStringToVisibilityConverter : IValueConverter
     {
-        enum Parameters
+        enum Parameter
         {
             Normal, Inverted
         }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Parameters Parameter = parameter == null ? Parameters.Normal : (Parameters)Enum.Parse(typeof(Parameters), (string)parameter);
-            return (value as string) == null || (value as string).Length == 0 ? (Parameter == Parameters.Normal ? Visibility.Collapsed : Visibility.Visible) : (Parameter == Parameters.Normal ? Visibility.Visible : Visibility.Collapsed);
+            Parameter Parameter = parameter == null ? Parameter.Normal : (Parameter)Enum.Parse(typeof(Parameter), parameter.ToString());
+            bool Result = string.IsNullOrEmpty(value.As<string>());
+            return Parameter == Parameter.Normal ? (!Result).ToVisibility() : Result.ToVisibility();
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;

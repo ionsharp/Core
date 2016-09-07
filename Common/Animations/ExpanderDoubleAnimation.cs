@@ -4,7 +4,7 @@ using System.Windows.Media.Animation;
 namespace Imagin.Common.Animations
 {
     /// <summary>
-    /// Animates a double value 
+    /// Animates a double value.
     /// </summary>
     public class ExpanderDoubleAnimation : DoubleAnimationBase
     {

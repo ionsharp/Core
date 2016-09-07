@@ -63,36 +63,36 @@
 
         <DataTemplate x:Key="EnumTemplate" DataType="{x:Type local:EnumPropertyItem}">
             <ContentControl>
-            <ContentControl.Style>
-                <Style TargetType="ContentControl">
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                        <ControlTemplate>
-                            <TextBox Text="{Binding Value, Mode=OneWay, Converter={StaticResource EnumToCamelCaseConverter}}" HorizontalAlignment="Stretch" IsReadOnly="True"/>
-                        </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding IsReadOnly}" Value="False">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                        <ControlTemplate>
-                            <ComboBox Background="Transparent" BorderBrush="Transparent" ItemsSource="{Binding Items, IsAsync=True, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource EnumToCamelCaseConverter}}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    </DataTrigger>
-                </Style.Triggers>
-                </Style>
-            </ContentControl.Style>
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay, Converter={StaticResource EnumToCamelCaseConverter}}" HorizontalAlignment="Stretch" IsReadOnly="True"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsReadOnly}" Value="False">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                            <ControlTemplate>
+                                <ComboBox Background="Transparent" BorderBrush="Transparent" ItemsSource="{Binding Items, IsAsync=True, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumToCamelCaseConverter}}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
             </ContentControl>
         </DataTemplate>
 
