@@ -2,7 +2,6 @@
 {
     public static class ObjectExtensions
     {
-
         /// <summary>
         /// Imagin.Common
         /// </summary>

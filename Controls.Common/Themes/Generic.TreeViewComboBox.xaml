@@ -95,8 +95,8 @@
                                         ItemStringFormat="{TemplateBinding ItemStringFormat}"
                                         ItemTemplate="{TemplateBinding ItemTemplate}"
                                         ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                        ExpandOnClick="False"
-                                        CollapseSiblings="False"
+                                        ExpandItemOnClick="False"
+                                        CollapseItemSiblingsOnClick="False"
                                         BorderThickness="0" 
                                         Margin="10,5"/>
                                 </Border>

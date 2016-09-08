@@ -12,8 +12,8 @@
     <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
 
     <Style x:Key="{x:Type local:TabbedTree}" TargetType="{x:Type local:TabbedTree}">
-        <Setter Property="ExpandOnClick" Value="False"/>
-        <Setter Property="CollapseSiblings" Value="False"/>
+        <Setter Property="ExpandItemOnClick" Value="False"/>
+        <Setter Property="CollapseItemSiblingsOnClick" Value="False"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Padding" Value="10,0,0,0"/>

@@ -19,17 +19,19 @@
     <Style x:Key="{x:Type TreeViewItem}" TargetType="{x:Type TreeViewItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="IsExpanded" Value="False" />
-        <Setter Property="Opacity" Value="0" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="IsExpanded" Value="False" />
+        <Setter Property="Controls.Common:AdvancedTreeView.IsItemSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+        <Setter Property="Opacity" Value="0" />
         <Setter Property="Padding" Value="10,5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TreeViewItem">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition MinWidth="19" Width="Auto"/>
+                            <ColumnDefinition MinWidth="15" Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -37,8 +39,16 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <ToggleButton x:Name="Expander" Background="Transparent" Focusable="False" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
-                            <Ellipse Name="PART_Ellipse" Width="12" Height="12" SnapsToDevicePixels="True"/>
+                        <ToggleButton 
+                            x:Name="PART_Expander" 
+                            Background="{DynamicResource Brush.TreeViewItem.ToggleButton.Empty.Fill}" 
+                            BorderBrush="{DynamicResource Brush.TreeViewItem.ToggleButton.Empty.Stroke}"
+                            BorderThickness="1" 
+                            Width="12" 
+                            Height="12" 
+                            Focusable="False" 
+                            IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" 
+                            ClickMode="Press">
                             <ToggleButton.Style>
                                 <Style TargetType="{x:Type ToggleButton}">
                                     <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -46,7 +56,13 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                <Ellipse 
+                                                    Fill="{TemplateBinding Background}"
+                                                    Stroke="{TemplateBinding BorderBrush}"
+                                                    StrokeThickness="{TemplateBinding BorderThickness}"
+                                                    Width="{TemplateBinding Width}" 
+                                                    Height="{TemplateBinding Height}" 
+                                                    SnapsToDevicePixels="True"/>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
@@ -54,17 +70,25 @@
                             </ToggleButton.Style>
                         </ToggleButton>
                         <Border 
-                                Name="PART_Border" 
-                                Grid.Column="1" 
-                                Grid.ColumnSpan="2" 
-                                Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                Padding="{TemplateBinding Padding}" 
-                                SnapsToDevicePixels="True">
-                            <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" MinWidth="20"/>
+                            Grid.Column="1" 
+                            Grid.ColumnSpan="2" 
+                            Name="PART_Border" 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Padding="{TemplateBinding Padding}" 
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter 
+                                x:Name="PART_Header" 
+                                ContentSource="Header" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                MinWidth="20"/>
                         </Border>
-                        <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <ItemsPresenter 
+                            Grid.Row="1" 
+                            Grid.Column="1" 
+                            Grid.ColumnSpan="2"
+                            x:Name="ItemsHost"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -73,8 +97,8 @@
                                 <Condition Property="IsExpanded" Value="True"/>
                             </MultiTrigger.Conditions>
                             <Setter TargetName="ItemsHost" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="PART_Ellipse" Property="Fill" Value="{DynamicResource TreeViewItemToggleButtonFilledCheckedFill}"/>
-                            <Setter TargetName="PART_Ellipse" Property="Stroke" Value="{DynamicResource TreeViewItemToggleButtonFilledCheckedStroke}"/>
+                            <Setter TargetName="PART_Expander" Property="Background" Value="{DynamicResource Brush.TreeViewItem.ToggleButton.Filled.Checked.Fill}"/>
+                            <Setter TargetName="PART_Expander" Property="BorderBrush" Value="{DynamicResource Brush.TreeViewItem.ToggleButton.Filled.Checked.Stroke}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -82,8 +106,8 @@
                                 <Condition Property="IsExpanded" Value="False"/>
                             </MultiTrigger.Conditions>
                             <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="PART_Ellipse" Property="Fill" Value="{DynamicResource TreeViewItemToggleButtonFilledFill}"/>
-                            <Setter TargetName="PART_Ellipse" Property="Stroke" Value="{DynamicResource TreeViewItemToggleButtonFilledStroke}"/>
+                            <Setter TargetName="PART_Expander" Property="Background" Value="{DynamicResource Brush.TreeViewItem.ToggleButton.Filled.Fill}"/>
+                            <Setter TargetName="PART_Expander" Property="BorderBrush" Value="{DynamicResource Brush.TreeViewItem.ToggleButton.Filled.Stroke}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -91,8 +115,6 @@
                                 <Condition Property="IsExpanded" Value="True"/>
                             </MultiTrigger.Conditions>
                             <Setter TargetName="ItemsHost" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="PART_Ellipse" Property="Fill" Value="{DynamicResource TreeViewItemToggleButtonEmptyFill}"/>
-                            <Setter TargetName="PART_Ellipse" Property="Stroke" Value="{DynamicResource TreeViewItemToggleButtonEmptyStroke}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -100,40 +122,33 @@
                                 <Condition Property="IsExpanded" Value="False"/>
                             </MultiTrigger.Conditions>
                             <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="PART_Ellipse" Property="Fill" Value="{DynamicResource TreeViewItemToggleButtonEmptyFill}"/>
-                            <Setter TargetName="PART_Ellipse" Property="Stroke" Value="{DynamicResource TreeViewItemToggleButtonEmptyStroke}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="False"/>
+                                <Condition Property="Controls.Common:AdvancedTreeView.IsItemSelected" Value="False"/>
                                 <Condition SourceName="PART_Border" Property="IsMouseOver" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" Value="{DynamicResource TreeViewItemIsMouseOverBackground}"/>
-                            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TreeViewItemIsMouseOverForeground}"/>
-                            <Setter TargetName="PART_Ellipse" Property="Fill" Value="{DynamicResource TreeViewItemIsMouseOverBackground}"/>
-                            <Setter TargetName="PART_Ellipse" Property="Stroke" Value="{DynamicResource TreeViewItemIsMouseOverStroke}"/>
+                            <Setter Property="Background" Value="{DynamicResource Brush.TreeViewItem.MouseOver.Background}"/>
+                            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Brush.TreeViewItem.MouseOver.Foreground}"/>
+                            <Setter TargetName="PART_Expander" Property="Background" Value="{DynamicResource Brush.TreeViewItem.MouseOver.Background}"/>
+                            <Setter TargetName="PART_Expander" Property="BorderBrush" Value="{DynamicResource Brush.TreeViewItem.MouseOver.ToggleButton.Stroke}"/>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="Controls.Common:AdvancedTreeView.IsItemSelected" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" Value="{DynamicResource TreeViewItemIsSelectedBackground}"/>
-                            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TreeViewItemIsSelectedForeground}"/>
-                            <Setter TargetName="PART_Ellipse" Property="Fill" Value="{DynamicResource TreeViewItemIsSelectedBackground}"/>
-                            <Setter TargetName="PART_Ellipse" Property="Stroke" Value="{DynamicResource TreeViewItemIsSelectedBackground}"/>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="False"/>
-                                <Condition SourceName="PART_Border" Property="IsMouseOver" Value="False"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="TextBlock.Foreground" Value="{DynamicResource TextBrush}"/>
+                            <Setter TargetName="PART_Expander" Property="Background" Value="{DynamicResource Brush.TreeViewItem.Selected.Background}"/>
+                            <Setter TargetName="PART_Expander" Property="BorderBrush" Value="{DynamicResource Brush.TreeViewItem.Selected.Background}"/>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="Controls.Common:AdvancedTreeView.IsItemSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Brush.TreeViewItem.Selected.Background}"/>
+                <Setter Property="TextBlock.Foreground" Value="{DynamicResource Brush.TreeViewItem.Selected.Foreground}"/>
+            </Trigger>
             <EventTrigger RoutedEvent="TreeViewItem.Loaded">
                 <BeginStoryboard>
                     <Storyboard>

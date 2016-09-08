@@ -90,7 +90,6 @@ namespace Imagin.Common.Extensions
                 else
                 {
                     FrameworkContentElement fce = element as FrameworkContentElement;
-
                     if (fce != null)
                     {
                         parent = fce.Parent;
@@ -102,7 +101,6 @@ namespace Imagin.Common.Extensions
                     }
                 }
             }
-
             return parent;
         }
 
@@ -177,11 +175,11 @@ namespace Imagin.Common.Extensions
             }
         }
 
-        public static TreeViewItem VisualUpwardSearch(this DependencyObject Source)
+        public static T VisualUpwardSearch<T>(this DependencyObject Source)
         {
-            while (Source != null && !Source.Is<TreeViewItem>())
+            while (Source != null && !Source.Is<T>())
                 Source = VisualTreeHelper.GetParent(Source);
-            return Source.As<TreeViewItem>();
+            return Source.As<T>();
         }
     }
 }

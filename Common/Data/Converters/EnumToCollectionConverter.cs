@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Common.Data.Converters
 {
@@ -12,17 +13,18 @@ namespace Imagin.Common.Data.Converters
         {
             if (value == null) return null;
 
-            Type Type;
-            if (value is Enum) Type = value.GetType();
-            else if (value is Type) Type = (Type)value;
+            Type EnumType;
+            if (value is Enum)
+                EnumType = value.GetType();
+            else if (value.Is<Type>())
+                EnumType = value.As<Type>();
             else return null;
 
-            ObservableCollection<Enum> Items = new ObservableCollection<Enum>();
-            Array EnumValues = Enum.GetValues(Type);
-            foreach (object Value in EnumValues)
-                Items.Add(Value as Enum);
+            ObservableCollection<Enum> Result = new ObservableCollection<Enum>();
+            foreach (object i in Enum.GetValues(EnumType))
+                Result.Add(i.As<Enum>());
 
-            return Items;
+            return Result;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

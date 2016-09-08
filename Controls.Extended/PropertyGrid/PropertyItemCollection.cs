@@ -15,12 +15,17 @@ namespace Imagin.Controls.Extended
 {
     public sealed class PropertyItemCollection : ConcurrentObservableCollection<PropertyItem>
     {
+        #region Properties
+
         /// <summary>
         /// The object to evaluate.
         /// </summary>
         public object Object = null;
 
         PropertyItem featured = null;
+        /// <summary>
+        /// The featured property. This property is placed above all other properties.
+        /// </summary>
         public PropertyItem Featured
         {
             get
@@ -33,6 +38,19 @@ namespace Imagin.Controls.Extended
                 OnPropertyChanged("Featured");
             }
         }
+
+        #endregion
+
+        #region PropertyItemCollection
+
+        public PropertyItemCollection() : base()
+        {
+            this.ItemAdded += OnItemAdded;
+        }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Creates a PropertyItem based on given arguments.
@@ -70,6 +88,14 @@ namespace Imagin.Controls.Extended
                 PropertyItem = new LongPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             return PropertyItem;
         }
+
+        void OnItemAdded(object sender, Imagin.Common.Collections.Events.ItemAddedEventArgs<PropertyItem> e)
+        {
+            if (e.NewItem.IsFeatured)
+                this.Featured = e.NewItem;
+        }
+
+        #region Public
 
         /// <summary>
         /// Set properties by enumerating a resource dictionary.
@@ -182,15 +208,8 @@ namespace Imagin.Controls.Extended
             }));
         }
 
-        public PropertyItemCollection() : base()
-        {
-            this.ItemAdded += OnItemAdded;
-        }
+        #endregion
 
-        void OnItemAdded(object sender, Imagin.Common.Collections.Events.ItemAddedEventArgs<PropertyItem> e)
-        {
-            if (e.NewItem.IsFeatured)
-                this.Featured = e.NewItem;
-        }
+        #endregion
     }
 }

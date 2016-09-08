@@ -253,6 +253,9 @@ namespace Imagin.Controls.Common
                     IsSelected = true;
                 else if (ItemBounds.IntersectsWith(this.PreviousArea))
                     IsSelected = false;
+                //If item is hidden, ignore it.
+                if (Item.Visibility == Visibility.Collapsed)
+                    IsSelected = false;
                 if (IsSelected != null)
                     this.TrySelect(Item, IsSelected.Value);
             }

@@ -1,11 +1,9 @@
 ﻿using Imagin.Common.Events;
-using Imagin.Common.Extensions;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
@@ -255,15 +253,40 @@ namespace Imagin.Controls.Extended
 
         #region Methods
 
-        #region Private
+        #region Commands
 
-        /// <summary>
-        /// Performs non case-sensitive search. Camel-case version of property name is compared.
-        /// </summary>
-        void Search()
+        void Clear_Executed(object sender, RoutedEventArgs e)
+        {
+            this.SearchQuery = string.Empty;
+        }
+
+        void Reset_Executed(object sender, RoutedEventArgs e)
         {
             foreach (PropertyItem Item in this.Properties)
-                Item.IsVisible = this.SearchQuery == string.Empty ? true : Item.Name.SplitCamelCase().ToLower().StartsWith(this.SearchQuery.ToLower()) ? true : false;
+                Item.Value = null;
+        }
+
+        #endregion
+
+        #region Protected
+
+        protected void Group(string PropertyName)
+        {
+            if (this.ListCollectionView == null)
+                return;
+            this.ListCollectionView.GroupDescriptions.Clear();
+            if (this.ShowCategories)
+                this.ListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(PropertyName));
+        }
+
+        protected void Sort(ListSortDirection Direction)
+        {
+            if (this.ListCollectionView == null)
+                return;
+            this.ListCollectionView.SortDescriptions.Clear();
+            if (this.ShowCategories)
+                this.ListCollectionView.SortDescriptions.Add(new SortDescription("Category", Direction));
+            this.ListCollectionView.SortDescriptions.Add(new SortDescription("Name", Direction));
         }
 
         #endregion
@@ -287,59 +310,6 @@ namespace Imagin.Controls.Extended
         protected virtual void SetObject()
         {
             this.Properties.BeginFromObject();
-        }
-
-        #endregion
-
-        #region Public
-
-        public void Group(string PropertyName)
-        {
-            if (this.ListCollectionView == null)
-                return;
-            this.ListCollectionView.GroupDescriptions.Clear();
-            if (this.ShowCategories)
-                this.ListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(PropertyName));
-        }
-
-        public void Sort(ListSortDirection Direction)
-        {
-            if (this.ListCollectionView == null)
-                return;
-            this.ListCollectionView.SortDescriptions.Clear();
-            if (this.ShowCategories)
-                this.ListCollectionView.SortDescriptions.Add(new SortDescription("Category", Direction));
-            this.ListCollectionView.SortDescriptions.Add(new SortDescription("Name", Direction));
-        }
-
-        #endregion
-
-        #region Events
-
-        private void OnKeyUp(object sender, KeyEventArgs e)
-        {
-            this.Search();
-        }
-
-        private void OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            (sender as TextBox).SelectAll();
-        }
-
-        #endregion
-
-        #region Commands
-
-        private void Clear_Executed(object sender, RoutedEventArgs e)
-        {
-            this.SearchQuery = string.Empty;
-            this.Search();
-        }
-
-        private void Reset_Executed(object sender, RoutedEventArgs e)
-        {
-            foreach (PropertyItem Item in this.Properties)
-                Item.Value = null;
         }
 
         #endregion

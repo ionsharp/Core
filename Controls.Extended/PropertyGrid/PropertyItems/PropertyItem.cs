@@ -114,20 +114,6 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        private bool isVisible = true;
-        public bool IsVisible
-        {
-            get
-            {
-                return this.isVisible;
-            }
-            set
-            {
-                this.isVisible = value;
-                OnPropertyChanged("IsVisible");
-            }
-        }
-
         private object selectedObject = null;
         public object SelectedObject
         {
@@ -165,7 +151,7 @@ namespace Imagin.Controls.Extended
             this.SelectedObject = SelectedObject;
             this.Name = Name;
             this.Value = Value;
-            this.ValueChanged += PropertyItem_ValueChanged;
+            this.ValueChanged += OnValueChanged;
             if (this.SelectedObject != null)
                 this.Info = this.SelectedObject.GetType().GetProperty(this.Name, BindingFlags.Public | BindingFlags.Instance);
             this.Category = Category;
@@ -185,7 +171,7 @@ namespace Imagin.Controls.Extended
 
         #region Events
 
-        private void PropertyItem_ValueChanged(object sender, ObjectEventArgs e)
+        private void OnValueChanged(object sender, ObjectEventArgs e)
         {
             this.SetValue(e.Object);
         }

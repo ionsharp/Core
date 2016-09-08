@@ -16,8 +16,9 @@
     WindowStartupLocation="CenterScreen"
     x:Name="PART_MainWindow">
     <Window.Resources>
+        <Common.Data.Converters:IListCountConverter x:Key="IListCountConverter"/>
         <Common.Data.Converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
-
+        
         <Controls.Common:AbstractView x:Key="ListView" x:Shared="False">
             <Controls.Common:AbstractView.ItemTemplate>
                 <DataTemplate>
@@ -219,19 +220,38 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,10,0" TrimLast="True" HorizontalAlignment="Center" Margin="0,10">
-                        <CheckBox Content="Expand on click" IsChecked="{Binding ExpandOnClick, ElementName=PART_AdvancedTreeView}"/>
-                        <CheckBox Content="Collapse siblings" IsChecked="{Binding CollapseSiblings, ElementName=PART_AdvancedTreeView}"/>
+                        <TextBlock Text="{Binding SelectedTreeViewItems.Count, Mode=OneWay, StringFormat={}Selected Items: {0}}"/>
+                        <CheckBox Content="Expand on click" IsChecked="{Binding ExpandItemOnClick, ElementName=PART_AdvancedTreeView}"/>
+                        <CheckBox Content="Collapse siblings" IsChecked="{Binding CollapseItemSiblingsOnClick, ElementName=PART_AdvancedTreeView}"/>
+                        <CheckBox Content="Select item on right click" IsChecked="{Binding SelectItemOnRightClick, ElementName=PART_AdvancedTreeView}"/>
+                        <CheckBox Content="Select none on empty space click" IsChecked="{Binding SelectNoneOnEmptySpaceClick, ElementName=PART_AdvancedTreeView}"/>
                     </Controls.Common:Spacer>
                     <Controls.Common:AdvancedTreeView 
                         Grid.Row="1"
                         x:Name="PART_AdvancedTreeView"
                         ItemsSource="{Binding TreeViewSource, UpdateSourceTrigger=PropertyChanged}"
-                        Margin="10,0,0,0">
+                        Margin="10,0,0,0"
+                        SelectedItems="{Binding SelectedTreeViewItems}">
                         <Controls.Common:AdvancedTreeView.ItemTemplate>
                             <HierarchicalDataTemplate ItemsSource="{Binding Items}">
                                 <TextBlock Text="{Binding Name}"/>
                             </HierarchicalDataTemplate>
                         </Controls.Common:AdvancedTreeView.ItemTemplate>
+                        <Controls.Common:AdvancedTreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="ContextMenu">
+                                    <Setter.Value>
+                                        <ContextMenu>
+                                            <MenuItem Header="Option 1"/>
+                                            <MenuItem Header="Option 2"/>
+                                            <MenuItem Header="Option 3"/>
+                                            <MenuItem Header="Option 4"/>
+                                            <MenuItem Header="Option 5"/>
+                                        </ContextMenu>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Controls.Common:AdvancedTreeView.ItemContainerStyle>
                     </Controls.Common:AdvancedTreeView>
                 </Grid>
             </TabItem>
@@ -264,7 +284,7 @@
                         Margin="0,10,0,0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top" 
-                        Text="{Binding CompassDirection, ElementName=PART_DirectionPad, StringFormat={}Direction: {0}}"/>
+                        Text="{Binding Direction, ElementName=PART_DirectionPad, StringFormat={}Direction: {0}}"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="FileBox">
@@ -329,7 +349,7 @@
                             DropDownVisibility="Visible"
                             ToolTip="Button tip"
                             DropDownToolTip="Dropdown tip"
-                            Click="MaskedButton_Click">
+                            Click="OnMaskedButtonClick">
                             <Controls.Common:MaskedButton.DropDown>
                                 <ContextMenu>
                                     <MenuItem Header="Option 1"/>

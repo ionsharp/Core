@@ -7,6 +7,9 @@
     <Common.Data.Converters:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
 
     <Style x:Key="{x:Type local:AdvancedListView}" TargetType="{x:Type local:AdvancedListView}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="True"/>
         <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
@@ -72,6 +75,9 @@
                     </ControlTemplate.Resources>
                     <ScrollViewer 
                         x:Name="PART_ScrollViewer" 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
                         Margin="{TemplateBinding Margin}">
                         <Grid 
                             x:Name="PART_Grid"

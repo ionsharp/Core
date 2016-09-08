@@ -52,7 +52,7 @@ namespace Imagin.NET.Demo
             }
         }
 
-        public class TreeViewComboBoxItem : NamedObject
+        public class TreeViewItemViewModel : NamedObject
         {
             string message = string.Empty;
             public string Message
@@ -68,8 +68,8 @@ namespace Imagin.NET.Demo
                 }
             }
 
-            ObservableCollection<TreeViewComboBoxItem> items = null;
-            public ObservableCollection<TreeViewComboBoxItem> Items
+            ObservableCollection<TreeViewItemViewModel> items = null;
+            public ObservableCollection<TreeViewItemViewModel> Items
             {
                 get
                 {
@@ -82,15 +82,14 @@ namespace Imagin.NET.Demo
                 }
             }
 
-            public TreeViewComboBoxItem(string Name, bool AddChildren = true) : base(Name)
+            public TreeViewItemViewModel(string Name, int Depth = 0) : base(Name)
             {
-                this.Items = new ObservableCollection<TreeViewComboBoxItem>();
-                if (!AddChildren)
-                    return;
-                int Max = new Random().Next(0, 5);
+                this.Items = new ObservableCollection<TreeViewItemViewModel>();
+                if (Depth == 4) return;
+                int Max = Random.Next(0, 10);
                 for (int i = 0; i < Max; i++)
                 {
-                    this.Items.Add(new TreeViewComboBoxItem("Child Item " + i.ToString(), false)
+                    this.Items.Add(new TreeViewItemViewModel("Child Item " + i.ToString(), Depth + 1)
                     {
                         Message = "Child item " + i.ToString() + " has a message."
                     });
@@ -108,7 +107,6 @@ namespace Imagin.NET.Demo
             ADHD = 5,
             Death = 6
         }
-
 
         public class Person : NamedObject
         {
@@ -295,6 +293,8 @@ namespace Imagin.NET.Demo
 
         #region Properties
 
+        static Random Random = new Random();
+
         public static DependencyProperty ViewProperty = DependencyProperty.Register("View", typeof(ViewEnum), typeof(MainWindow), new FrameworkPropertyMetadata(ViewEnum.Details, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public ViewEnum View
         {
@@ -321,12 +321,25 @@ namespace Imagin.NET.Demo
             }
         }
 
-        public static DependencyProperty TreeViewSourceProperty = DependencyProperty.Register("TreeViewSource", typeof(ObservableCollection<TreeViewComboBoxItem>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public ObservableCollection<TreeViewComboBoxItem> TreeViewSource
+        public static DependencyProperty SelectedTreeViewItemsProperty = DependencyProperty.Register("SelectedTreeViewItems", typeof(ObservableCollection<TreeViewItemViewModel>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public ObservableCollection<TreeViewItemViewModel> SelectedTreeViewItems
         {
             get
             {
-                return (ObservableCollection<TreeViewComboBoxItem>)GetValue(TreeViewSourceProperty);
+                return (ObservableCollection<TreeViewItemViewModel>)GetValue(SelectedTreeViewItemsProperty);
+            }
+            set
+            {
+                SetValue(SelectedTreeViewItemsProperty, value);
+            }
+        }
+
+        public static DependencyProperty TreeViewSourceProperty = DependencyProperty.Register("TreeViewSource", typeof(ObservableCollection<TreeViewItemViewModel>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public ObservableCollection<TreeViewItemViewModel> TreeViewSource
+        {
+            get
+            {
+                return (ObservableCollection<TreeViewItemViewModel>)GetValue(TreeViewSourceProperty);
             }
             set
             {
@@ -380,9 +393,10 @@ namespace Imagin.NET.Demo
             this.ListViewSource = new ListCollectionView(this.DataGridSource);
             //this.ListViewSource.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
 
-            this.TreeViewSource = new ObservableCollection<TreeViewComboBoxItem>();
+            this.TreeViewSource = new ObservableCollection<TreeViewItemViewModel>();
+            this.SelectedTreeViewItems = new ObservableCollection<TreeViewItemViewModel>();
             for (int i = 0; i < 15; i++)
-                this.TreeViewSource.Add(new TreeViewComboBoxItem("Item " + i.ToString()));
+                this.TreeViewSource.Add(new TreeViewItemViewModel("Item " + i.ToString()));
 
             for (int i = 0; i < 100; i++)
             {
@@ -394,21 +408,20 @@ namespace Imagin.NET.Demo
             }
 
             this.PropertyGridSource = new ObservableCollection<Person>();
-            Random r = new Random();
             for (int i = 0; i < 15; i++)
             {
                 this.PropertyGridSource.Add(new Person("Person " + i.ToString())
                 {
                     Born = DateTime.UtcNow.AddDays(-1 * (i + 18)),
                     AccountBalance = Math.Round((double)(i * 100 + (1 / (i + 1))), 3),
-                    Coffee = (Coffee)r.Next(0, 6),
-                    IsMarried = r.Next(0, 1) == 1 ? true : false,
-                    HasKids = r.Next(0, 1) == 1 ? true : false,
+                    Coffee = (Coffee)Random.Next(0, 6),
+                    IsMarried = Random.Next(0, 1) == 1 ? true : false,
+                    HasKids = Random.Next(0, 1) == 1 ? true : false,
                     Journal = "Journal entry " + i.ToString(),
-                    MostVisitedComputerFolder = r.Next(0, 40).As<Environment.SpecialFolder>().ToString(),
+                    MostVisitedComputerFolder = Random.Next(0, 40).As<Environment.SpecialFolder>().ToString(),
                     PasswordMostUsed = "Password " + i.ToString(),
-                    NumberOfCars = r.Next(0, 3),
-                    NumberOfTimesBlinked = RandomLong(9999999999, 99999999999, r)
+                    NumberOfCars = Random.Next(0, 3),
+                    NumberOfTimesBlinked = RandomLong(9999999999, 99999999999, Random)
                 });
             }
         }
@@ -437,6 +450,11 @@ namespace Imagin.NET.Demo
             this.PART_AlignableWrapPanel.HorizontalContentAlignment = (sender as RadioButton).Content.ToString().ParseEnum<HorizontalAlignment>();
         }
 
+        void OnMaskedButtonClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Clicked button!");
+        }
+
         void OnSpacerThicknessChanged(object sender, TextChangedEventArgs e)
         {
             if (!sender.As<IntUpDown>().IsInitialized)
@@ -458,10 +476,5 @@ namespace Imagin.NET.Demo
         }
 
         #endregion
-
-        void MaskedButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Clicked button!");
-        }
     }
 }

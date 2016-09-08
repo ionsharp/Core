@@ -40,7 +40,7 @@ namespace Imagin.Controls.Common
             { 2, 2 }
         };
 
-        ShiftType[] Shifts = new ShiftType[]
+        ShiftType[] Shifts = new ShiftType[9]
         {
             ShiftType.Up | ShiftType.Left,
             ShiftType.Up,
@@ -70,22 +70,22 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty CompassDirectionProperty = DependencyProperty.Register("CompassDirection", typeof(CompassDirection), typeof(DirectionPad), new FrameworkPropertyMetadata(CompassDirection.Origin, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCompassDirectionChanged));
-        public CompassDirection CompassDirection
+        public static DependencyProperty DirectionProperty = DependencyProperty.Register("Direction", typeof(CompassDirection), typeof(DirectionPad), new FrameworkPropertyMetadata(CompassDirection.Origin, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCompassDirectionChanged));
+        public CompassDirection Direction
         {
             get
             {
-                return (CompassDirection)GetValue(CompassDirectionProperty);
+                return (CompassDirection)GetValue(DirectionProperty);
             }
             set
             {
-                SetValue(CompassDirectionProperty, value);
+                SetValue(DirectionProperty, value);
             }
         }
         private static void OnCompassDirectionChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             DirectionPad Pad = Object as DirectionPad;
-            Pad.SetPositions(Pad.CompassDirection);
+            Pad.SetPositions(Pad.Direction);
         }
 
         #endregion
@@ -108,7 +108,7 @@ namespace Imagin.Controls.Common
 
         #region Model
 
-        public class Model : NamedObject
+       internal class Model : NamedObject
         {
             CompassDirection direction = CompassDirection.Unknown;
             public CompassDirection Direction
@@ -211,9 +211,9 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
-        void SetPositions(CompassDirection CompassDirection)
+        void SetPositions(CompassDirection Direction)
         {
-            int StartRow = this.Positions[(int)CompassDirection, 0], StartColumn = this.Positions[(int)CompassDirection, 1];
+            int StartRow = this.Positions[(int)Direction, 0], StartColumn = this.Positions[(int)Direction, 1];
             int i = StartRow, j = StartColumn;
             foreach (Model d in this.Items)
             {
@@ -233,7 +233,7 @@ namespace Imagin.Controls.Common
         void ShiftPositions(Model Model)
         {
             if (Model.Direction == CompassDirection.Origin)
-                this.CompassDirection = CompassDirection.Origin;
+                this.Direction = CompassDirection.Origin;
 
             ShiftType Shift = this.Shifts[(int)Model.Direction];
             if (Shift == ShiftType.None)
@@ -249,7 +249,7 @@ namespace Imagin.Controls.Common
 
             Model Origin = this.Items.Where(x => x.Direction == CompassDirection.Origin).First();
             RowColumn RowColumn = new RowColumn(Origin.Row, Origin.Column);
-            this.CompassDirection = (CompassDirection)this.Directions[--RowColumn.Row, --RowColumn.Column]; 
+            this.Direction = (CompassDirection)this.Directions[--RowColumn.Row, --RowColumn.Column]; 
         }
 
         void OnClick(object sender, RoutedEventArgs e)

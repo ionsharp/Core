@@ -86,18 +86,19 @@
     <SolidColorBrush x:Key="ReadOnlyTextBoxBorderBrush" Color="#DDD"/>
     <SolidColorBrush x:Key="ReadOnlyTextBoxForeground" Color="#AAA"/>
 
-    <SolidColorBrush x:Key="TreeViewItemToggleButtonEmptyStroke" Color="#DDD"/>
-    <SolidColorBrush x:Key="TreeViewItemToggleButtonEmptyFill" Color="#DDD"/>
-    <SolidColorBrush x:Key="TreeViewItemToggleButtonFilledStroke" Color="#BBB"/>
-    <SolidColorBrush x:Key="TreeViewItemToggleButtonFilledFill" Color="#BBB"/>
-    <SolidColorBrush x:Key="TreeViewItemToggleButtonFilledCheckedStroke" Color="#FF349ADE"/>
-    <SolidColorBrush x:Key="TreeViewItemToggleButtonFilledCheckedFill" Color="#FF349ADE"/>
-    <SolidColorBrush x:Key="TreeViewItemIsMouseOverBackground" Color="#afdaf5"/>
-    <SolidColorBrush x:Key="TreeViewItemIsMouseOverStroke" Color="#afdaf5"/>
-    <SolidColorBrush x:Key="TreeViewItemIsMouseOverForeground" Color="#FFF"/>
-    <SolidColorBrush x:Key="TreeViewItemIsSelectedBackground" Color="#FF349ADE"/>
-    <SolidColorBrush x:Key="TreeViewItemIsSelectedForeground" Color="#FFF"/>
-    <SolidColorBrush x:Key="TreeViewItemIsSelectedIconColor" Color="#FFF"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Empty.Fill" Color="#DDD"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Empty.Stroke" Color="#DDD"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Filled.Fill" Color="#BBB"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Filled.Stroke" Color="#BBB"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Filled.Checked.Fill" Color="#FF349ADE"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Filled.Checked.Stroke" Color="#FF349ADE"/>
+
+    <SolidColorBrush x:Key="Brush.TreeViewItem.Foreground" Color="#666"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.MouseOver.Background" Color="#8ac5ec"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.MouseOver.Foreground" Color="#666"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.MouseOver.ToggleButton.Stroke" Color="#afdaf5"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.Selected.Background" Color="#FF349ADE"/>
+    <SolidColorBrush x:Key="Brush.TreeViewItem.Selected.Foreground" Color="#FFF"/>
 
     <SolidColorBrush x:Key="ScrollBarBackground" Color="#AAA"/>
     <SolidColorBrush x:Key="ScrollBarIsMouseOverBackground" Color="#888"/>
