@@ -1,15 +1,20 @@
-﻿using System.Windows;
+﻿using Imagin.Common.Extensions;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Imagin.Common;
 
 namespace Imagin.Controls.Common
 {
     public class AdvancedTextBox : TextBox
     {
         #region Properties
-        
+
+        public event EventHandler<KeyEventArgs> Entered;
+
+        public event EventHandler<RoutedEventArgs> TripleClick;
+
         public static DependencyProperty PlaceholderForegroundProperty = DependencyProperty.Register("PlaceholderForeground", typeof(Brush), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(Brushes.LightGray, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Brush PlaceholderForeground
         {
@@ -33,6 +38,19 @@ namespace Imagin.Controls.Common
             set
             {
                 SetValue(PlaceholderProperty, value);
+            }
+        }
+
+        public static DependencyProperty SelectAllOnTripleClickProperty = DependencyProperty.Register("SelectAllOnTripleClick", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool SelectAllOnTripleClick
+        {
+            get
+            {
+                return (bool)GetValue(SelectAllOnTripleClickProperty);
+            }
+            set
+            {
+                SetValue(SelectAllOnTripleClickProperty, value);
             }
         }
 
@@ -75,6 +93,19 @@ namespace Imagin.Controls.Common
             }
         }
 
+        public static DependencyProperty ShowClearButtonProperty = DependencyProperty.Register("ShowClearButton", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool ShowClearButton
+        {
+            get
+            {
+                return (bool)GetValue(ShowClearButtonProperty);
+            }
+            set
+            {
+                SetValue(ShowClearButtonProperty, value);
+            }
+        }
+
         #endregion
 
         #region AdvancedTextBox
@@ -89,13 +120,26 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
+        #region Overrides
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            var Button = this.Template.FindName("PART_ClearButton", this);
+            if (Button != null && Button.Is<Button>())
+            {
+                Button PART_ClearButton = Button.As<Button>();
+                PART_ClearButton.Click += (s, e) => this.Text = string.Empty;
+            }
+        }
+
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnPreviewMouseLeftButtonDown(e);
-            if (this.IsKeyboardFocusWithin)
-                return;
-            e.Handled = true;
-            this.Focus();
+            if (this.IsKeyboardFocusWithin) return;
+            e.Handled = this.OnPreviewMouseLeftButtonDownHandled(e);
+            if (e.Handled) this.Focus();
         }
 
         protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
@@ -104,6 +148,62 @@ namespace Imagin.Controls.Common
             if (this.SelectOnFocus)
                 this.SelectAll();
         }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if (e.Key == Key.Enter)
+                this.OnEntered(e);
+        }
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
+            if (e.ClickCount == 3)
+            {
+                this.OnTripleClick();
+                if (SelectAllOnTripleClick)
+                    this.SelectAll();
+            }
+        }
+
+        #endregion
+
+        #region Virtual
+
+        protected virtual void OnEntered(KeyEventArgs e)
+        {
+            if (this.Entered != null)
+                this.Entered(this, e);
+        }
+
+        protected virtual bool OnPreviewMouseLeftButtonDownHandled(MouseButtonEventArgs e)
+        {
+            return true;
+            /*
+            DependencyObject Parent = e.OriginalSource.As<DependencyObject>();
+            while (!Parent.Is<AdvancedTextBox>())
+            {
+                Parent = Parent.GetParent();
+                if (Parent.Is<Button>())
+                    break;
+            }
+            if (Parent.Is<AdvancedTextBox>())
+            {
+                e.Handled = true;
+                this.Focus();
+            }
+
+            */
+        }
+
+        protected virtual void OnTripleClick(RoutedEventArgs e = null)
+        {
+            if (this.TripleClick != null)
+                this.TripleClick(this, e == null ? new RoutedEventArgs() : e);
+        }
+
+        #endregion
 
         #endregion
     }

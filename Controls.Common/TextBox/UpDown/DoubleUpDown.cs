@@ -1,108 +1,69 @@
 ﻿using Imagin.Common.Extensions;
-using System.Windows;
-using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class DoubleUpDown : FloatingPointUpDown
+    public class DoubleUpDown : IrrationalUpDown<double>
     {
-        #region Properties
-
-        public double Value
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.Text))
-                    return 0.0;
-                else return this.Text.ToDouble();
-            }
-        }
-        
-        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(double), typeof(DoubleUpDown), new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public double Increment
-        {
-            get
-            {
-                return (double)GetValue(IncrementProperty);
-            }
-            set
-            {
-                SetValue(IncrementProperty, value);
-            }
-        }
-
-        public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(double), typeof(DoubleUpDown), new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public double Minimum
-        {
-            get
-            {
-                return (double)GetValue(MinimumProperty);
-            }
-            set
-            {
-                SetValue(MinimumProperty, value);
-            }
-        }
-
-        public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(double), typeof(DoubleUpDown), new FrameworkPropertyMetadata(1000d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public double Maximum
-        {
-            get
-            {
-                return (double)GetValue(MaximumProperty);
-            }
-            set
-            {
-                SetValue(MaximumProperty, value);
-            }
-        }
-
-        #endregion
-
         #region DoubleUpDown
 
         public DoubleUpDown() : base()
         {
+            this.Minimum = -1000000.0;
+            this.Maximum = 1000000.0;
+            this.Value = 0.0;
         }
 
         #endregion
 
         #region Methods
 
-        public override object GetValue()
+        protected override bool CanIncrease()
         {
-            return this.Value;
+            return this.Value < this.Maximum;
         }
 
-        protected override void CoerceValue(object NewValue)
+        protected override bool CanDecrease()
         {
-            if (NewValue.As<double>() < this.Minimum)
-                this.SetText(this.Minimum, true);
-            if (NewValue.As<double>() > this.Maximum)
-                this.SetText(this.Maximum, true);
+            return this.Value > this.Minimum;
         }
 
-        protected override void FormatValue()
+        protected override object OnMaximumCoerced(object NewMaximum)
         {
-            this.SetText(string.Format("{0:0." + new string('0', this.Precision) + "}", this.Value), true);
+            return NewMaximum.As<double>() < this.Minimum ? this.Minimum : (NewMaximum.As<double>() > double.MaxValue ? double.MaxValue : NewMaximum);
+        }
+
+        protected override object OnMinimumCoerced(object NewMinimum)
+        {
+            return NewMinimum.As<double>() > this.Maximum ? this.Maximum : (NewMinimum.As<double>() < double.MinValue ? double.MinValue : NewMinimum);
+        }
+
+        protected override bool OnTextChanged()
+        {
+            if (!base.OnTextChanged()) return false;
+            this.Value = this.OnValueCoerced(this.Text.ToDouble()).As<double>();
+            return true;
+        }
+
+        protected override bool OnValueChanged()
+        {
+            if (!base.OnValueChanged()) return false;
+            this.SetText(this.Value.ToString(this.StringFormat));
+            return true;
+        }
+
+        protected override object OnValueCoerced(object NewValue)
+        {
+            return NewValue.As<double>() < this.Minimum ? this.Minimum : (NewValue.As<double>() > this.Maximum ? this.Maximum : NewValue);
         }
 
         public override void Increase()
         {
-            this.SetText(this.Value + this.Increment);
-        }
-        protected override void CanIncrease(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = this.Value < this.Maximum;
+            this.Value += this.Increment;
         }
 
         public override void Decrease()
         {
-            this.SetText(this.Value - this.Increment);
-        }
-        protected override void CanDecrease(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = this.Value > this.Minimum;
+            this.Value -= this.Increment;
         }
 
         #endregion

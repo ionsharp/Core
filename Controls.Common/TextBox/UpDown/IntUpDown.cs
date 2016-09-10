@@ -1,112 +1,71 @@
 ﻿using Imagin.Common.Extensions;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Input;
+using System;
 
 namespace Imagin.Controls.Common
 {
-    public class IntUpDown : NumericUpDown
+    public class IntUpDown : RationalUpDown<int>
     {
-        #region Properties
-
-        public override Regex Expression
-        {
-            get
-            {
-                return new Regex("^[0-9]?$");
-            }
-        }
-
-        public int Value
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.Text))
-                    return 0;
-                else return this.Text.ToInt();
-            }
-        }
-
-        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(int), typeof(IntUpDown), new FrameworkPropertyMetadata(1, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public int Increment
-        {
-            get
-            {
-                return (int)GetValue(IncrementProperty);
-            }
-            set
-            {
-                SetValue(IncrementProperty, value);
-            }
-        }
-
-        public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(int), typeof(IntUpDown), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public int Minimum
-        {
-            get
-            {
-                return (int)GetValue(MinimumProperty);
-            }
-            set
-            {
-                SetValue(MinimumProperty, value);
-            }
-        }
-
-        public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(int), typeof(IntUpDown), new FrameworkPropertyMetadata(1000, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public int Maximum
-        {
-            get
-            {
-                return (int)GetValue(MaximumProperty);
-            }
-            set
-            {
-                SetValue(MaximumProperty, value);
-            }
-        }
-
-        #endregion
-
         #region IntUpDown
 
         public IntUpDown() : base()
         {
+            this.Minimum = -1000000;
+            this.Maximum = 1000000;
+            this.Value = 0;
+            this.Increment = 1;
         }
 
         #endregion
 
         #region Methods
 
-        public override object GetValue()
+        protected override bool CanIncrease()
         {
-            return this.Value;
+            return this.Value < this.Maximum;
         }
 
-        protected override void CoerceValue(object NewValue)
+        protected override bool CanDecrease()
         {
-            if (NewValue.As<int>() < this.Minimum)
-                this.SetText(this.Minimum, true);
-            if (NewValue.As<int>() > this.Maximum)
-                this.SetText(this.Maximum, true);
+            return this.Value > this.Minimum;
+        }
+
+        protected override object OnMaximumCoerced(object NewMaximum)
+        {
+            return NewMaximum.As<int>() < this.Minimum ? this.Minimum : (NewMaximum.As<int>() > int.MaxValue ? int.MaxValue : NewMaximum);
+        }
+
+        protected override object OnMinimumCoerced(object NewMinimum)
+        {
+            return NewMinimum.As<int>() > this.Maximum ? this.Maximum : (NewMinimum.As<int>() < int.MinValue ? int.MinValue : NewMinimum);
+        }
+
+        protected override bool OnTextChanged()
+        {
+            if (!base.OnTextChanged()) return false;
+            this.Value = this.OnValueCoerced(this.Text.ToInt()).As<int>();
+            return true;
+        }
+
+        protected override bool OnValueChanged()
+        {
+            if (!base.OnValueChanged()) return false;
+            this.SetText(this.Value.ToString(this.StringFormat));
+            return true;
+        }
+
+        protected override object OnValueCoerced(object NewValue)
+        {
+            return NewValue.As<int>() < this.Minimum ? this.Minimum : (NewValue.As<int>() > this.Maximum ? this.Maximum : NewValue);
         }
 
         public override void Increase()
         {
-            this.SetText(this.Value + this.Increment);
-        }
-        protected override void CanIncrease(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = this.Value < this.Maximum;
+            this.Value += this.Increment;
         }
 
         public override void Decrease()
         {
-            this.SetText(this.Value - this.Increment);
-        }
-        protected override void CanDecrease(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = this.Value > this.Minimum;
+            this.Value -= this.Increment;
         }
 
         #endregion

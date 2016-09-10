@@ -20,8 +20,8 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
-        private static TreeViewItem _selectTreeViewItemOnMouseUp;
-
+        static TreeViewItem SelectTreeViewItemOnMouseUp;
+        
         public static DependencyProperty CollapseItemSiblingsOnClickProperty = DependencyProperty.Register("CollapseItemSiblingsOnClick", typeof(bool), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool CollapseItemSiblingsOnClick
         {
@@ -362,11 +362,13 @@ namespace Imagin.Controls.Common
 
         static void OnTreeViewItemGotFocus(object sender, RoutedEventArgs e)
         {
-            _selectTreeViewItemOnMouseUp = null;
+            SelectTreeViewItemOnMouseUp = null;
             if (e.OriginalSource is TreeView) return;
             var Item = FindTreeViewItem(e.OriginalSource as DependencyObject);
+            if (!Item.Is<TreeViewItem>())
+                return;
             if (Mouse.LeftButton == MouseButtonState.Pressed && GetIsItemSelected(Item) && Keyboard.Modifiers != ModifierKeys.Control)
-                _selectTreeViewItemOnMouseUp = Item;
+                SelectTreeViewItemOnMouseUp = Item;
             else SelectItems(Item, sender as TreeView);
         }
 
@@ -380,7 +382,7 @@ namespace Imagin.Controls.Common
         static void OnTreeViewItemPreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             var Item = FindTreeViewItem(e.OriginalSource as DependencyObject);
-            if (Item == _selectTreeViewItemOnMouseUp)
+            if (Item == SelectTreeViewItemOnMouseUp)
                 SelectItems(Item, sender as TreeView);
         }
 

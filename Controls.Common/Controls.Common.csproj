@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractView.cs" />
+    <Compile Include="AdvancedComboBox.cs" />
     <Compile Include="AdvancedTreeView.cs" />
     <Compile Include="AdvancedDataGrid.cs" />
     <Compile Include="AdvancedListView.cs" />
@@ -89,11 +90,16 @@
     <Compile Include="Spacer.cs" />
     <Compile Include="TextBox\PasswordBox.cs" />
     <Compile Include="TextBox\UpDown\DecimalUpDown.cs" />
-    <Compile Include="TextBox\UpDown\FloatingPointUpDown.cs" />
+    <Compile Include="TextBox\UpDown\IrrationalUpDown.cs" />
+    <Compile Include="TextBox\UpDown\RationalUpDown.cs" />
+    <Compile Include="TextBox\UpDown\ByteUpDown.cs" />
+    <Compile Include="TextBox\UpDown\IUpDown.cs" />
     <Compile Include="TextBox\UpDown\NumericUpDown.cs" />
+    <Compile Include="TextBox\UpDown\ShortUpDown.cs" />
+    <Compile Include="TextBox\UpDown\UpDown.cs" />
     <Compile Include="TreeViewComboBox.cs" />
     <Compile Include="TextBox\AdvancedTextBox.cs" />
-    <Compile Include="TextBox\UpDown\UpDown.cs" />
+    <Compile Include="TextBox\UpDown\UpDown.Generic.cs" />
     <Compile Include="TextBox\UpDown\DoubleUpDown.cs" />
     <Compile Include="TextBox\UpDown\IntUpDown.cs" />
     <Compile Include="TextBox\UpDown\LongUpDown.cs" />
@@ -204,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\CheckmarkRound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\XRound.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

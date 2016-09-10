@@ -72,22 +72,24 @@
                                     </Grid.RowDefinitions>
                                     <local:MaskedButton 
                                         x:Name="PART_Up"
+                                        Focusable="False"
                                         ImageWidth="10" 
                                         ImageHeight="10" 
                                         Margin="5,0,0,0"
                                         Command="{x:Static local:UpDown.Up}"
                                         CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
-                                        Tag="1"
+                                        Tag="Up"
                                         Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowUp.png"/>
                                     <local:MaskedButton 
                                         Grid.Row="1" 
                                         x:Name="PART_Down"
+                                        Focusable="False"
                                         ImageWidth="10" 
                                         ImageHeight="10" 
                                         Margin="5,0,0,0"
                                         Command="{x:Static local:UpDown.Down}"
                                         CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
-                                        Tag="0"
+                                        Tag="Down"
                                         Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
                                 </Grid>
                             </Grid>

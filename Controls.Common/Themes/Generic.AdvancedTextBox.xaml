@@ -9,9 +9,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AdvancedTextBox}">
                     <ControlTemplate.Resources>
+                        <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
                         <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
                         <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
-                    </ControlTemplate.Resources>
+                    </ControlTemplate.Resources> 
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -33,6 +34,10 @@
                             Background="{TemplateBinding Background}" 
                             BorderBrush="{TemplateBinding BorderBrush}">
                             <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
                                 <TextBlock 
                                     Foreground="{TemplateBinding PlaceholderForeground}" 
                                     FontSize="{TemplateBinding FontSize}"
@@ -51,6 +56,13 @@
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                     MinHeight="{TemplateBinding MinHeight}" 
                                     Height="{TemplateBinding Height}"/>
+                                <Grid Grid.Column="1" Visibility="{TemplateBinding ShowClearButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <local:MaskedButton
+                                        x:Name="PART_ClearButton"
+                                        Source="pack://application:,,,/Imagin.Controls.Common;component/Images/XRound.png"
+                                        Margin="5,0,0,0"
+                                        Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+                                </Grid>
                             </Grid>
                         </Border>
                     </Grid>

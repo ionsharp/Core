@@ -12,14 +12,7 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
-        DispatcherTimer Timer
-        {
-            get; set;
-        }
-
-        double MillisecondsTicked = 0.0;
-
-        protected bool IgnoreTextChange = false;
+        #region Dependency 
 
         public static DependencyProperty IsUpDownEnabledProperty = DependencyProperty.Register("IsUpDownEnabled", typeof(bool), typeof(UpDown), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool IsUpDownEnabled
@@ -34,12 +27,12 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty MajorChangeProperty = DependencyProperty.Register("MajorChange", typeof(int), typeof(UpDown), new FrameworkPropertyMetadata(100, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMajorChangeChanged));
-        public int MajorChange
+        public static DependencyProperty MajorChangeProperty = DependencyProperty.Register("MajorChange", typeof(double), typeof(UpDown), new FrameworkPropertyMetadata(100.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMajorChangeChanged));
+        public double MajorChange
         {
             get
             {
-                return (int)GetValue(MajorChangeProperty);
+                return (double)GetValue(MajorChangeProperty);
             }
             set
             {
@@ -49,12 +42,68 @@ namespace Imagin.Controls.Common
         static void OnMajorChangeChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             UpDown UpDown = (UpDown)Object;
-            if (UpDown.Timer != null)
+            UpDown.ResetTimer();
+        }
+
+        public static DependencyProperty MajorChangeDelayProperty = DependencyProperty.Register("MajorChangeDelay", typeof(double), typeof(UpDown), new FrameworkPropertyMetadata(500.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public double MajorChangeDelay
+        {
+            get
             {
-                UpDown.Timer.Stop();
-                UpDown.Timer.Interval = TimeSpan.FromMilliseconds(UpDown.MajorChange);
+                return (double)GetValue(MajorChangeDelayProperty);
+            }
+            set
+            {
+                SetValue(MajorChangeDelayProperty, value);
             }
         }
+
+        public static DependencyProperty StringFormatProperty = DependencyProperty.Register("StringFormat", typeof(string), typeof(UpDown), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnStringFormatChanged));
+        public string StringFormat
+        {
+            get
+            {
+                return (string)GetValue(StringFormatProperty);
+            }
+            set
+            {
+                SetValue(StringFormatProperty, value);
+            }
+        }
+        static void OnStringFormatChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            UpDown UpDown = (UpDown)Object;
+            UpDown.OnStringFormatChanged();
+        }
+
+        #endregion
+
+        #region Protected
+
+        protected UpDownTimer Timer
+        {
+            get; set;
+        }
+        
+        protected bool OnTextChangedHandled = false;
+
+        protected bool OnValueChangedHandled = false;
+
+        #endregion
+
+        #region References
+
+        protected Button PART_Up
+        {
+            get; set;
+        }
+
+        protected Button PART_Down
+        {
+            get; set;
+        }
+
+        #endregion
 
         #endregion
 
@@ -63,12 +112,11 @@ namespace Imagin.Controls.Common
         public UpDown() : base()
         {
             this.DefaultStyleKey = typeof(UpDown);
+
             this.CommandBindings.Add(new CommandBinding(Up, this.Up_Executed, this.CanIncrease));
             this.CommandBindings.Add(new CommandBinding(Down, this.Down_Executed, this.CanDecrease));
 
-            this.Timer = new DispatcherTimer();
-            this.Timer.Interval = TimeSpan.FromMilliseconds(this.MajorChange);
-            this.Timer.Tick += OnTick;
+            this.ResetTimer();
         }
 
         #endregion
@@ -77,65 +125,70 @@ namespace Imagin.Controls.Common
 
         #region Abstract
 
-        /// <summary>
-        /// Gets current value as object.
-        /// </summary>
-        /// <returns>Current value as object.</returns>
-        public abstract object GetValue();
+        protected abstract bool CanDecrease();
 
-        /// <summary>
-        /// Coerces value to constraints.
-        /// </summary>
-        /// <param name="NewValue">The new value to constrain</param>
-        protected abstract void CoerceValue(object NewValue);
-
-        public abstract void Increase();
+        protected abstract bool CanIncrease();
 
         public abstract void Decrease();
+
+        public abstract void Increase();
 
         #endregion
 
         #region Commands
 
-        public static readonly RoutedUICommand Up = new RoutedUICommand("Up", "Up", typeof(UpDown));
-        protected void Up_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            this.Increase();
-        }
-        protected abstract void CanIncrease(object sender, CanExecuteRoutedEventArgs e);
-        
         public static readonly RoutedUICommand Down = new RoutedUICommand("Down", "Down", typeof(UpDown));
         protected void Down_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.Decrease();
+            if (this.IsUpDownEnabled)
+                this.Decrease();
         }
-        protected abstract void CanDecrease(object sender, CanExecuteRoutedEventArgs e);
+        void CanDecrease(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.CanDecrease();
+        }
+
+        public static readonly RoutedUICommand Up = new RoutedUICommand("Up", "Up", typeof(UpDown));
+        protected void Up_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (this.IsUpDownEnabled)
+                this.Increase();
+        }
+        void CanIncrease(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.CanIncrease();
+        }
 
         #endregion
 
         #region Events
 
-        void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        void OnMajorChange(UpDownDirection Direction)
         {
-            this.Timer.Tag = sender.As<MaskedButton>().Tag.ToString() == "1" ? true : false;
-            Timer.Start();
-        }
-
-        void OnPreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Timer.Stop();
-            this.MillisecondsTicked = 0.0;
-            this.Timer.Tag = null;
-        }
-
-        void OnTick(object sender, EventArgs e)
-        {
-            this.MillisecondsTicked += Convert.ToDouble(this.Timer.Interval.TotalMilliseconds);
-            if (this.MillisecondsTicked < 500.0)
-                return;
-            if ((bool)this.Timer.Tag)
+            if (Direction == UpDownDirection.Up)
                 this.Increase();
-            else this.Decrease();
+            else if (Direction == UpDownDirection.Down)
+                this.Decrease();
+        }
+
+        protected virtual void OnMajorChange(object sender, EventArgs e)
+        {
+            this.Timer.Milliseconds += this.Timer.Interval.TotalMilliseconds;
+            if (this.Timer.Milliseconds < this.MajorChangeDelay) return;
+            this.OnMajorChange(this.Timer.Direction);
+        }
+
+        void OnUpDownButtonPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Timer.Direction = sender.As<MaskedButton>().Tag.ToString().ParseEnum<UpDownDirection>();
+            this.Timer.Start();
+        }
+
+        void OnUpDownButtonPreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.Timer.Stop();
+            this.Timer.Milliseconds = 0.0;
+            this.Timer.Direction = UpDownDirection.None;
         }
 
         #endregion
@@ -143,82 +196,51 @@ namespace Imagin.Controls.Common
         #region Protected
 
         /// <summary>
-        /// Sets text while preserving caret index.
+        /// Set text; string format should be applied prior to calling.
         /// </summary>
-        protected void SetText(object Value, bool IgnoreTextChange = false)
-        {
-            this.SetText(Value.ToString(), IgnoreTextChange);
-        }
-
-        /// <summary>
-        /// Sets text while preserving caret index.
-        /// </summary>
-        protected void SetText(string NewText, bool IgnoreTextChange = false)
+        protected void SetText(string NewText)
         {
             int CaretIndex = this.CaretIndex;
-            this.IgnoreTextChange = IgnoreTextChange;
             this.Text = NewText;
             this.CaretIndex = CaretIndex;
+        }
+
+        void ResetTimer()
+        {
+            this.Timer = new UpDownTimer();
+            this.Timer.Interval = TimeSpan.FromMilliseconds(this.MajorChange);
+            this.Timer.Tick += OnMajorChange;
         }
 
         #endregion
 
         #region Overrides
 
-        /// <summary>
-        /// We want to do two things anytime text changes:
-        /// 
-        /// 1) Clip value to [Minimum] and [Maximum].
-        /// 2) Update [Value] one-way bindings.
-        /// </summary>
-        protected override void OnTextChanged(TextChangedEventArgs e)
-        {
-            base.OnTextChanged(e);
-            if (this.IgnoreTextChange)
-            {
-                this.IgnoreTextChange = false;
-                return;
-            }
-
-            this.Trim(this.Text);
-
-            if (this.IsUpDownEnabled)
-                this.CoerceValue(this.GetValue());
-
-            this.FormatValue();
-
-            this.OnPropertyChanged("Value");
-        }
-
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            MaskedButton PART_Up = this.Template.FindName("PART_Up", this).As<MaskedButton>();
-            PART_Up.PreviewMouseDown += OnPreviewMouseDown;
-            PART_Up.PreviewMouseUp += OnPreviewMouseUp;
+            this.PART_Up = this.Template.FindName("PART_Up", this).As<Button>();
+            this.PART_Up.PreviewMouseDown += OnUpDownButtonPreviewMouseDown;
+            this.PART_Up.PreviewMouseUp += OnUpDownButtonPreviewMouseUp;
 
-            MaskedButton PART_Down = this.Template.FindName("PART_Down", this).As<MaskedButton>();
-            PART_Down.PreviewMouseDown += OnPreviewMouseDown;
-            PART_Down.PreviewMouseUp += OnPreviewMouseUp;
+            this.PART_Down = this.Template.FindName("PART_Down", this).As<Button>();
+            this.PART_Down.PreviewMouseDown += OnUpDownButtonPreviewMouseDown;
+            this.PART_Down.PreviewMouseUp += OnUpDownButtonPreviewMouseUp;
         }
 
-        #endregion
-
-        #region Virtual
-
-        /// <summary>
-        /// Applies control-specific string format.
-        /// </summary>
-        /// <param name="StringFormat">The current [StringFormat]</param>
-        /// <returns>[Text] with control-specific [StringFormat] applied.</returns>
-        protected virtual void FormatValue()
+        protected override bool OnPreviewMouseLeftButtonDownHandled(MouseButtonEventArgs e)
         {
-        }
-
-        protected virtual void Trim(string NewText)
-        {
-            this.SetText(NewText, true);
+            DependencyObject Parent = e.OriginalSource.As<DependencyObject>();
+            while (!Parent.Is<UpDown>())
+            {
+                Parent = Parent.GetParent();
+                if (Parent.Is<Button>())
+                    break;
+            }
+            if (Parent.Is<UpDown>())
+                return true;
+            return false;
         }
 
         #endregion
@@ -237,6 +259,43 @@ namespace Imagin.Controls.Common
         }
 
         #endregion
+
+        #region Virtual
+
+        protected virtual void OnStringFormatChanged()
+        {
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Types
+
+        protected enum UpDownDirection
+        {
+            None,
+            Up,
+            Down
+        }
+
+        protected class UpDownTimer : DispatcherTimer
+        {
+            public double Milliseconds
+            {
+                get; set;
+            }
+
+            public UpDownDirection Direction
+            {
+                get; set;
+            }
+
+            internal UpDownTimer() : base()
+            {
+                this.Milliseconds = 0.0;
+            }
+        }
 
         #endregion
     }

@@ -534,44 +534,76 @@
                 </StackPanel>
             </TabItem>
             <TabItem Header="UpDown">
-                <ScrollViewer>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
                         <TextBlock Style="{DynamicResource H2}" Text="AlphaNumericTextBox"/>
                         <Controls.Common:AlphaNumericTextBox Text="Whole integers and letters 0 1 2 3 4 5 6"/>
+
+                        <TextBlock Style="{DynamicResource H2}" Text="ShortUpDown"/>
+                        <Controls.Common:Spacer DataContext="{Binding ElementName=PART_ShortUpDown}" Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Controls.Common:AdvancedTextBox Content="Value" Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:ShortUpDown Content="Increment" Value="{Binding Increment}" Minimum="-255" Maximum="255"/>
+                            <Controls.Common:ShortUpDown Content="Minimum" Value="{Binding Minimum}" Minimum="-255" Maximum="255"/>
+                            <Controls.Common:ShortUpDown Content="Maximum" Value="{Binding Maximum}" Minimum="-255" Maximum="255"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Controls.Common:Spacer>
+                        <Controls.Common:ShortUpDown x:Name="PART_ShortUpDown" Value="{Binding ShortValue}" StringFormat="N0" Increment="1" Minimum="-100" Maximum="100"/>
+
                         <TextBlock Style="{DynamicResource H2}" Text="IntUpDown"/>
-                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center">
-                            <Controls.Common:IntUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:IntUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:IntUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:IntUpDown Content="Major Change" Text="{Binding MajorChange, ElementName=PART_IntUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Controls.Common:Spacer DataContext="{Binding ElementName=PART_IntUpDown}" Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Controls.Common:AdvancedTextBox Content="Value" Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:IntUpDown Content="Increment" Value="{Binding Increment}" Minimum="-10000" Maximum="10000"/>
+                            <Controls.Common:IntUpDown Content="Minimum" Value="{Binding Minimum}" Minimum="-10000" Maximum="10000"/>
+                            <Controls.Common:IntUpDown Content="Maximum" Value="{Binding Maximum}" Minimum="-10000" Maximum="10000"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:IntUpDown x:Name="PART_IntUpDown" Text="99" Increment="1" Minimum="-100" Maximum="100"/>
+                        <Controls.Common:IntUpDown x:Name="PART_IntUpDown" Value="{Binding IntValue}" StringFormat="N0" Increment="10" Minimum="-100" Maximum="100"/>
+
+                        <TextBlock Style="{DynamicResource H2}" Text="ByteUpDown"/>
+                        <Controls.Common:Spacer DataContext="{Binding ElementName=PART_ByteUpDown}" Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Controls.Common:AdvancedTextBox Content="Value" Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:ByteUpDown Content="Increment" Value="{Binding Increment}" Minimum="0" Maximum="255"/>
+                            <Controls.Common:ByteUpDown Content="Minimum" Value="{Binding Minimum}" Minimum="0" Maximum="255"/>
+                            <Controls.Common:ByteUpDown Content="Maximum" Value="{Binding Maximum}" Minimum="0" Maximum="255"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Controls.Common:Spacer>
+                        <Controls.Common:ByteUpDown x:Name="PART_ByteUpDown" Value="{Binding ByteValue}" StringFormat="N0" Increment="1" Minimum="0" Maximum="255"/>
+
                         <TextBlock Style="{DynamicResource H2}" Text="LongUpDown"/>
-                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
-                            <Controls.Common:LongUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                            <Controls.Common:LongUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:LongUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:IntUpDown Content="Major Change" Text="{Binding MajorChange, ElementName=PART_LongUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Controls.Common:Spacer DataContext="{Binding ElementName=PART_LongUpDown}" Spacing="0,0,10,0" Orientation="Horizontal">
+                            <Controls.Common:AdvancedTextBox Content="Value" Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:LongUpDown Content="Increment" Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
+                            <Controls.Common:LongUpDown Content="Minimum" Value="{Binding Minimum}" Minimum="-1000000" Maximum="1000000"/>
+                            <Controls.Common:LongUpDown Content="Maximum" Value="{Binding Maximum}" Minimum="-1000000" Maximum="1000000"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:LongUpDown x:Name="PART_LongUpDown" Text="1000000" Increment="10000" Minimum="-1000000" Maximum="1000000"/>
+                        <Controls.Common:LongUpDown x:Name="PART_LongUpDown" Value="{Binding LongValue}" StringFormat="N0" Increment="100" Minimum="-1000000" Maximum="1000000"/>
+                        
                         <TextBlock Style="{DynamicResource H2}" Text="DoubleUpDown"/>
-                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
-                            <Controls.Common:IntUpDown Content="Precision" Text="{Binding Precision, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:DoubleUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:DoubleUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:DoubleUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:IntUpDown Content="Major Change" Text="{Binding MajorChange, ElementName=PART_DoubleUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Controls.Common:Spacer DataContext="{Binding ElementName=PART_DoubleUpDown}" Spacing="0,0,10,0" Orientation="Horizontal">
+                            <Controls.Common:AdvancedTextBox Content="Value" Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:DoubleUpDown Content="Increment" Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
+                            <Controls.Common:DoubleUpDown Content="Minimum" Value="{Binding Minimum}" Minimum="-1000000" Maximum="1000000"/>
+                            <Controls.Common:DoubleUpDown Content="Maximum" Value="{Binding Maximum}" Minimum="-1000000" Maximum="1000000"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" Text="999.25" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
+                        <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" Value="{Binding DoubleValue}" StringFormat="N3" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
+                        
                         <TextBlock Style="{DynamicResource H2}" Text="DecimalUpDown"/>
-                        <Controls.Common:Spacer Spacing="0,0,10,0" Orientation="Horizontal">
-                            <Controls.Common:IntUpDown Content="Precision" Text="{Binding Precision, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:DecimalUpDown Content="Increment" Text="{Binding Increment, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:DecimalUpDown Content="Minimum" IsUpDownEnabled="False" Text="{Binding Minimum, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:DecimalUpDown Content="Maximum" IsUpDownEnabled="False" Text="{Binding Maximum, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:IntUpDown Content="Major Change" Text="{Binding MajorChange, ElementName=PART_DecimalUpDown, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Controls.Common:Spacer DataContext="{Binding ElementName=PART_DecimalUpDown}" Spacing="0,0,10,0" Orientation="Horizontal">
+                            <Controls.Common:AdvancedTextBox Content="Value" Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:DecimalUpDown Content="Increment" Value="{Binding Increment}" Minimum="-1000000.0" Maximum="1000000.0"/>
+                            <Controls.Common:DecimalUpDown Content="Minimum" Value="{Binding Minimum}" Minimum="-1000000.0" Maximum="1000000.0"/>
+                            <Controls.Common:DecimalUpDown Content="Maximum" Value="{Binding Maximum}" Minimum="-1000000.0" Maximum="1000000.0"/>
+                            <Controls.Common:IntUpDown Content="Major Change" Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                            <Controls.Common:AdvancedTextBox Content="String Format" Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" Text="999.50" Increment="10.25" Minimum="-1000.00" Maximum="1000.00"/>
+                        <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" Value="{Binding DecimalValue}" StringFormat="N3" Increment="10.25"/>
                     </Controls.Common:Spacer>
                 </ScrollViewer>
             </TabItem>

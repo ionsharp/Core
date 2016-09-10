@@ -21,26 +21,27 @@
                                     Grid.ColumnSpan="2"
                                     CanContentScroll="True"/>
                         <ScrollBar 
-                                    Grid.Row="0" 
-                                    Grid.Column="1" 
-                                    x:Name="PART_VerticalScrollBar" 
-                                    HorizontalAlignment="Right" 
-                                    Margin="0,0,-5,0"
-                                    Value="{TemplateBinding VerticalOffset}" 
-                                    Maximum="{TemplateBinding ScrollableHeight}" 
-                                    ViewportSize="{TemplateBinding ViewportHeight}" 
-                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                            Grid.Row="0" 
+                            Grid.Column="1" 
+                            x:Name="PART_VerticalScrollBar" 
+                            HorizontalAlignment="Right" 
+                            Margin="0,0,-5,0"
+                            Value="{TemplateBinding VerticalOffset}" 
+                            Maximum="{TemplateBinding ScrollableHeight}" 
+                            ViewportSize="{TemplateBinding ViewportHeight}" 
+                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
                         <ScrollBar 
-                                    Grid.Row="1" 
-                                    Grid.Column="0" 
-                                    x:Name="PART_HorizontalScrollBar" 
-                                    Orientation="Horizontal" 
-                                    Margin="0,0,0,-5"
-                                    VerticalAlignment="Bottom" 
-                                    Value="{TemplateBinding HorizontalOffset}" 
-                                    Maximum="{TemplateBinding ScrollableWidth}" 
-                                    ViewportSize="{TemplateBinding ViewportWidth}" 
-                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                            Grid.Row="1" 
+                            Grid.Column="0" 
+                            x:Name="PART_HorizontalScrollBar" 
+                            Orientation="Horizontal" 
+                            Margin="0,0,0,-5"
+                            VerticalAlignment="Bottom" 
+                            Value="{TemplateBinding HorizontalOffset}" 
+                            Maximum="{TemplateBinding ScrollableWidth}" 
+                            ViewportSize="{TemplateBinding ViewportWidth}" 
+                            Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}">
+                        </ScrollBar>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -83,10 +84,9 @@
                             <RowDefinition Height="0.00001*" />
                         </Grid.RowDefinitions>
                         <Track 
-                                    x:Name="PART_Track" 
-                                    Grid.Row="0" 
-                                    IsDirectionReversed="True" 
-                                    Focusable="false">
+                            x:Name="PART_Track" 
+                            Grid.Row="0" 
+                            Focusable="false">
                             <Track.Thumb>
                                 <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" Style="{DynamicResource ScrollBarTrackThumb}" />
                             </Track.Thumb>
@@ -111,10 +111,12 @@
                         <Trigger Property="Orientation" Value="Vertical">
                             <Setter Property="Width" Value="5" />
                             <Setter Property="Height" Value="Auto" />
+                            <Setter TargetName="PART_Track" Property="IsDirectionReversed" Value="True" />
                         </Trigger>
                         <Trigger Property="Orientation" Value="Horizontal">
                             <Setter Property="Width" Value="Auto" />
                             <Setter Property="Height" Value="5" />
+                            <Setter TargetName="PART_Track" Property="IsDirectionReversed" Value="False" />
                             <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
                             <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
                             <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />

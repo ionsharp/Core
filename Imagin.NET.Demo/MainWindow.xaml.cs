@@ -1,6 +1,7 @@
 ﻿using Imagin.Common;
 using Imagin.Common.Attributes;
 using Imagin.Common.Extensions;
+using Imagin.Controls.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,6 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Imagin.Controls.Common;
 
 namespace Imagin.NET.Demo
 {
@@ -294,6 +294,84 @@ namespace Imagin.NET.Demo
         #region Properties
 
         static Random Random = new Random();
+        
+        public static DependencyProperty ShortValueProperty = DependencyProperty.Register("ShortValue", typeof(short), typeof(MainWindow), new FrameworkPropertyMetadata((short)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public short ShortValue
+        {
+            get
+            {
+                return (short)GetValue(ShortValueProperty);
+            }
+            set
+            {
+                SetValue(ShortValueProperty, value);
+            }
+        }
+
+        public static DependencyProperty IntValueProperty = DependencyProperty.Register("IntValue", typeof(int), typeof(MainWindow), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public int IntValue
+        {
+            get
+            {
+                return (int)GetValue(IntValueProperty);
+            }
+            set
+            {
+                SetValue(IntValueProperty, value);
+            }
+        }
+
+        public static DependencyProperty ByteValueProperty = DependencyProperty.Register("ByteValue", typeof(byte), typeof(MainWindow), new FrameworkPropertyMetadata((byte)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public byte ByteValue
+        {
+            get
+            {
+                return (byte)GetValue(ByteValueProperty);
+            }
+            set
+            {
+                SetValue(ByteValueProperty, value);
+            }
+        }
+
+        public static DependencyProperty LongValueProperty = DependencyProperty.Register("LongValueProperty", typeof(long), typeof(MainWindow), new FrameworkPropertyMetadata(0L, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public long LongValue
+        {
+            get
+            {
+                return (long)GetValue(LongValueProperty);
+            }
+            set
+            {
+                SetValue(LongValueProperty, value);
+            }
+        }
+
+        public static DependencyProperty DoubleValueProperty = DependencyProperty.Register("DoubleValue", typeof(double), typeof(MainWindow), new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public double DoubleValue
+        {
+            get
+            {
+                return (double)GetValue(DoubleValueProperty);
+            }
+            set
+            {
+                SetValue(DoubleValueProperty, value);
+            }
+        }
+
+        public static DependencyProperty DecimalValueProperty = DependencyProperty.Register("DecimalValue", typeof(decimal), typeof(MainWindow), new FrameworkPropertyMetadata(0m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public decimal DecimalValue
+        {
+            get
+            {
+                return (decimal)GetValue(DecimalValueProperty);
+            }
+            set
+            {
+                SetValue(DecimalValueProperty, value);
+            }
+        }
 
         public static DependencyProperty ViewProperty = DependencyProperty.Register("View", typeof(ViewEnum), typeof(MainWindow), new FrameworkPropertyMetadata(ViewEnum.Details, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public ViewEnum View
@@ -455,6 +533,11 @@ namespace Imagin.NET.Demo
             MessageBox.Show("Clicked button!");
         }
 
+        void OnPasswordEntered(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            MessageBox.Show("Entered a password!");
+        }
+
         void OnSpacerThicknessChanged(object sender, TextChangedEventArgs e)
         {
             if (!sender.As<IntUpDown>().IsInitialized)
@@ -468,11 +551,6 @@ namespace Imagin.NET.Demo
         void OnViewChanged(object sender, RoutedEventArgs e)
         {
             this.View = sender.As<RadioButton>().Content.ToString().ParseEnum<ViewEnum>();
-        }
-
-        void OnPasswordEntered(object sender, Common.Events.ObjectEventArgs e)
-        {
-            MessageBox.Show("Entered a password!");
         }
 
         #endregion

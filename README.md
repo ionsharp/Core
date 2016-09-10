@@ -1,4 +1,4 @@
-﻿#Imagin.NET ![](https://img.shields.io/badge/style-1.9-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6-red.svg?style=flat&label=.NET)
+﻿#Imagin.NET ![](https://img.shields.io/badge/style-2.0-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6-red.svg?style=flat&label=.NET)
 
 Imagin.NET is a library written in C# that provides common WPF controls and utilities.
 
@@ -10,9 +10,7 @@ Imagin.NET is a library written in C# that provides common WPF controls and util
 --------------------|---------------------|---------------------|--------------------|---------------------|
 Line                | Link                | TreeViewComboBox    | RadioGroup         | MaskedImage         |
 MaskedButton        | MaskedToggleButton  | MaskedDropDownButton| AdvancedTextBox    | AlphaNumericTextBox | 
-IntUpDown           | LongUpDown          | DoubleUpDown        | DecimalUpDown      | AdvancedDataGrid    | 
-AdvancedListView    | FontFamilyBox       | FontSizeBox         | DirectionPad       | Spacer              | 
-FileBox             | PasswordBox         | AdvancedTreeView    | AlignableWrapPanel |
+ShortUpDown         | IntUpDown           | ByteUpDown          | LongUpDown         | DoubleUpDown        | DecimalUpDown       | AdvancedDataGrid    | AdvancedListView    | FontFamilyBox      | FontSizeBox         | DirectionPad        | Spacer              | FileBox             | PasswordBox        | AdvancedTreeView    | AlignableWrapPanel  |                     |                     |                    |                     |
 
 ###Extended
 

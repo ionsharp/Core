@@ -30,7 +30,11 @@
 
     <Style x:Key="{x:Type Controls.Common:AlphaNumericTextBox}" TargetType="{x:Type Controls.Common:AlphaNumericTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
+    <Style x:Key="{x:Type Controls.Common:ShortUpDown}" TargetType="{x:Type Controls.Common:ShortUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+
     <Style x:Key="{x:Type Controls.Common:IntUpDown}" TargetType="{x:Type Controls.Common:UpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+
+    <Style x:Key="{x:Type Controls.Common:ByteUpDown}" TargetType="{x:Type Controls.Common:ByteUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
     <Style x:Key="{x:Type Controls.Common:LongUpDown}" TargetType="{x:Type Controls.Common:UpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 

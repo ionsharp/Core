@@ -1,109 +1,70 @@
 ﻿using Imagin.Common.Extensions;
-using System.Windows;
-using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public class DecimalUpDown : FloatingPointUpDown
+    public class DecimalUpDown : IrrationalUpDown<decimal>
     {
-        #region Properties
-
-        public decimal Value
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.Text))
-                    return 0m;
-                else return this.Text.ToDecimal();
-            }
-        }
-
-        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(decimal), typeof(DecimalUpDown), new FrameworkPropertyMetadata(1m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public decimal Increment
-        {
-            get
-            {
-                return (decimal)GetValue(IncrementProperty);
-            }
-            set
-            {
-                SetValue(IncrementProperty, value);
-            }
-        }
-
-        public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(decimal), typeof(DecimalUpDown), new FrameworkPropertyMetadata(0m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public decimal Minimum
-        {
-            get
-            {
-                return (decimal)GetValue(MinimumProperty);
-            }
-            set
-            {
-                SetValue(MinimumProperty, value);
-            }
-        }
-
-        public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(decimal), typeof(DecimalUpDown), new FrameworkPropertyMetadata(1000m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public decimal Maximum
-        {
-            get
-            {
-                return (decimal)GetValue(MaximumProperty);
-            }
-            set
-            {
-                SetValue(MaximumProperty, value);
-            }
-        }
-
-        #endregion
-
         #region DecimalUpDown
 
         public DecimalUpDown() : base()
         {
-            this.Precision = 2;
+            this.Minimum = -1000000m;
+            this.Maximum = 1000000m;
+            this.Value = 0m;
+            this.Increment = 1m;
         }
 
         #endregion
 
         #region Methods
 
-        public override object GetValue()
+        protected override bool CanIncrease()
         {
-            return this.Value;
+            return this.Value < this.Maximum;
         }
 
-        protected override void CoerceValue(object NewValue)
+        protected override bool CanDecrease()
         {
-            if (NewValue.As<decimal>() < this.Minimum)
-                this.SetText(this.Minimum, true);
-            if (NewValue.As<decimal>() > this.Maximum)
-                this.SetText(this.Maximum, true);
+            return this.Value > this.Minimum;
         }
 
-        protected override void FormatValue()
+        protected override object OnMaximumCoerced(object NewMaximum)
         {
-            this.SetText(string.Format("{0:0." + new string('0', this.Precision) + "}", this.Value), true);
+            return NewMaximum.As<decimal>() < this.Minimum ? this.Minimum : (NewMaximum.As<decimal>() > decimal.MaxValue ? decimal.MaxValue : NewMaximum);
+        }
+
+        protected override object OnMinimumCoerced(object NewMinimum)
+        {
+            return NewMinimum.As<decimal>() > this.Maximum ? this.Maximum : (NewMinimum.As<decimal>() < decimal.MinValue ? decimal.MinValue : NewMinimum);
+        }
+
+        protected override bool OnTextChanged()
+        {
+            if (!base.OnTextChanged()) return false;
+            this.Value = this.OnValueCoerced(this.Text.ToDecimal()).As<decimal>();
+            return true;
+        }
+
+        protected override bool OnValueChanged()
+        {
+            if (!base.OnValueChanged()) return false;
+            this.SetText(this.Value.ToString(this.StringFormat));
+            return true;
+        }
+
+        protected override object OnValueCoerced(object NewValue)
+        {
+            return NewValue.As<decimal>() < this.Minimum ? this.Minimum : (NewValue.As<decimal>() > this.Maximum ? this.Maximum : NewValue);
         }
 
         public override void Increase()
         {
-            this.SetText(this.Value + this.Increment);
-        }
-        protected override void CanIncrease(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = this.Value < this.Maximum;
+            this.Value += this.Increment;
         }
 
         public override void Decrease()
         {
-            this.SetText(this.Value - this.Increment);
-        }
-        protected override void CanDecrease(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = this.Value > this.Minimum;
+            this.Value -= this.Increment;
         }
 
         #endregion

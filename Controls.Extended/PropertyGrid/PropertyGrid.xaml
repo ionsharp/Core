@@ -179,17 +179,8 @@
                     Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     ToolTip="{l:Loc Search}"
                     Background="Transparent"
-                    BorderThickness="0"/>
-                <Controls.Common:MaskedButton
-                    Grid.Column="4"
-                    Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/XRound.png"
-                    ImageWidth="16"
-                    ImageHeight="16"
-                    Padding="0,0,7,0"
-                    ToolTip="{l:Loc Clear}"
-                    Click="Clear_Executed"
-                    Visibility="{Binding SearchQuery, Converter={StaticResource EmptyStringToVisibilityConverter}}"
-                    Cursor="Hand"/>
+                    BorderThickness="0"
+                    ShowClearButton="True"/>
                 <Controls.Common:MaskedDropDownButton
                     Grid.Column="5"
                     Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/ArrowDown.png"

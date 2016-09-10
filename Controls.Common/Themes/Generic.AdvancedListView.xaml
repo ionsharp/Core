@@ -82,9 +82,8 @@
                         <Grid 
                             x:Name="PART_Grid"
                             Background="Transparent" 
-                            ClipToBounds="True" 
-                            Margin="{TemplateBinding Padding}">
-                            <ItemsPresenter/>
+                            ClipToBounds="True">
+                            <ItemsPresenter Margin="{TemplateBinding Padding}"/>
                             <local:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding Selection}"/>
                         </Grid>
                     </ScrollViewer>

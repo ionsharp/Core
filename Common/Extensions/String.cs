@@ -137,6 +137,16 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
+        /// Imagin.Common: Parses string to byte.
+        /// </summary>
+        public static byte ToByte(this string ToConvert)
+        {
+            byte Value = default(byte);
+            byte.TryParse(ToConvert, out Value);
+            return Value;
+        }
+
+        /// <summary>
         /// Imagin.Common: Parses string to decimal.
         /// </summary>
         public static decimal ToDecimal(this string ToConvert)

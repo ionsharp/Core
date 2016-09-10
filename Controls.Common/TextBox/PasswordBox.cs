@@ -1,9 +1,6 @@
-﻿using Imagin.Common.Events;
-using Imagin.Common.Extensions;
-using System;
+﻿using Imagin.Common.Extensions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
@@ -19,8 +16,6 @@ namespace Imagin.Controls.Common
         {
             get; set;
         }
-
-        public event EventHandler<ObjectEventArgs> Entered;
 
         #region Dependency 
 
@@ -99,12 +94,11 @@ namespace Imagin.Controls.Common
 
             this.PART_PasswordBox = this.Template.FindName("PART_PasswordBox", this).As<System.Windows.Controls.PasswordBox>();
             this.PART_PasswordBox.PasswordChanged += OnPasswordChanged;
-            this.PART_PasswordBox.PreviewKeyUp += OnPreviewKeyUp;
 
             this.IgnorePasswordChange = true;
             this.PART_PasswordBox.Password = this.Text;
 
-            this.Template.FindName("PART_EnterButton", this).As<MaskedButton>().Click += (s, e) => this.OnEntered();
+            this.Template.FindName("PART_EnterButton", this).As<MaskedButton>().Click += (s, e) => this.OnEntered(null);
         }
 
         /// <summary>
@@ -124,23 +118,6 @@ namespace Imagin.Controls.Common
             this.PART_PasswordBox.Password = this.Text;
         }
 
-        protected override void OnPreviewKeyDown(KeyEventArgs e)
-        {
-            base.OnPreviewKeyDown(e);
-            if (e.Key == Key.Enter)
-                this.OnEntered();
-        }
-
-        #endregion
-
-        #region Virtual
-
-        protected virtual void OnEntered()
-        {
-            if (this.Entered != null)
-                this.Entered(this, new ObjectEventArgs(this.Text));
-        }
-
         #endregion
 
         #region Events
@@ -157,12 +134,6 @@ namespace Imagin.Controls.Common
             }
             this.IgnoreTextChange = true;
             this.Text = sender.As<System.Windows.Controls.PasswordBox>().Password;
-        }
-
-        void OnPreviewKeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                this.OnEntered();
         }
 
         #endregion
