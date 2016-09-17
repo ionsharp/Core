@@ -9,10 +9,10 @@ namespace Imagin.Controls.Common
 
         public IntUpDown() : base()
         {
-            this.Minimum = -1000000;
-            this.Maximum = 1000000;
-            this.Value = 0;
             this.Increment = 1;
+            this.Minimum = int.MinValue;
+            this.Maximum = int.MaxValue;
+            this.Value = 0;
         }
 
         #endregion

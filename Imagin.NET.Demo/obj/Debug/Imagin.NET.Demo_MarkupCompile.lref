@@ -1,7 +1,10 @@
 ﻿C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\GeneratedInternalTypeHelper.g.cs
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\App.xaml;;
+FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\Window.xaml;;
+FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\Slider.xaml;;
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\ListView.xaml;;
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\MenuItem.xaml;;
+FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\RadioButton.xaml;;
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\TreeView.xaml;;
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\ContextMenu.xaml;;
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\DataGrid.xaml;;
@@ -9,6 +12,6 @@ FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Dem
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\ScrollViewer.xaml;;
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\Brushes.xaml;;
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\TextBox.xaml;;
-FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\Buttons.xaml;;
+FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\Styles\Masked.xaml;;
 FC:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\MainWindow.xaml;;
 

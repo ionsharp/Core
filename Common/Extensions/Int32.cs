@@ -6,6 +6,14 @@ namespace Imagin.Common.Extensions
     public static class Int32Extensions
     {
         /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static int Coerce(this int ToCoerce, int Maximum, int Minimum = 0)
+        {
+            return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
+        }
+
+        /// <summary>
         /// Imagin.Common: Generates a random string with numeric length.
         /// </summary>
         public static string Random(this int Length)
@@ -13,6 +21,22 @@ namespace Imagin.Common.Extensions
             const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var Random = new Random();
             return new string(Enumerable.Repeat(Chars, Length).Select(s => s[Random.Next(s.Length)]).ToArray());
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static byte ToByte(this int ToConvert)
+        {
+            return Convert.ToByte(ToConvert);
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static double ToDouble(this int ToConvert)
+        {
+            return Convert.ToDouble(ToConvert);
         }
 
         /// <summary>

@@ -9,10 +9,10 @@ namespace Imagin.Controls.Common
 
         public ShortUpDown() : base()
         {
-            this.Value = Convert.ToInt16(0);
-            this.Minimum = Convert.ToInt16(-10000);
-            this.Maximum = Convert.ToInt16(10000);
             this.Increment = Convert.ToInt16(1);
+            this.Minimum = short.MinValue;
+            this.Maximum = short.MaxValue;
+            this.Value = Convert.ToInt16(0);
         }
 
         #endregion

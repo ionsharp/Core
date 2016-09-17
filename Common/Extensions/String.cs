@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace Imagin.Common.Extensions
 {
@@ -13,6 +14,14 @@ namespace Imagin.Common.Extensions
         public static string Capitalize(this string Value)
         {
             return Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Value.ToLower());
+        }
+
+        /// <summary>
+        /// Imagin.Common: Converts alphanumeric hexadecimal to SolidColorBrush.
+        /// </summary>
+        public static SolidColorBrush ToSolidColorBrush(this string AlphaNumericHex)
+        {
+            return (SolidColorBrush)(new BrushConverter().ConvertFrom("#" + AlphaNumericHex));
         }
 
         /// <summary>

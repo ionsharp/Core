@@ -180,10 +180,10 @@ namespace Imagin.Controls.Common
             {
                 this.Direction = Direction;
                 this.Icon = string.Concat(@"pack://application:,,,/Imagin.Controls.Common;component/Images/", Icon, ".png");
-                this.Row = RowColumn.Row;
-                this.Column = RowColumn.Column;
-                this.DefaultRow = RowColumn.Row;
-                this.DefaultColumn = RowColumn.Column;
+                this.Row = RowColumn.Row.ToInt();
+                this.Column = RowColumn.Column.ToInt();
+                this.DefaultRow = RowColumn.Row.ToInt();
+                this.DefaultColumn = RowColumn.Column.ToInt();
             }
         }
 
@@ -249,7 +249,7 @@ namespace Imagin.Controls.Common
 
             Model Origin = this.Items.Where(x => x.Direction == CompassDirection.Origin).First();
             RowColumn RowColumn = new RowColumn(Origin.Row, Origin.Column);
-            this.Direction = (CompassDirection)this.Directions[--RowColumn.Row, --RowColumn.Column]; 
+            this.Direction = (CompassDirection)this.Directions[(--RowColumn.Row).ToInt(), (--RowColumn.Column).ToInt()]; 
         }
 
         void OnClick(object sender, RoutedEventArgs e)

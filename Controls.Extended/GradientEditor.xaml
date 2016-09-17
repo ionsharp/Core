@@ -1,0 +1,164 @@
+﻿<UserControl 
+    x:Class="Imagin.Controls.Extended.GradientEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Controls.Extended"
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    x:Name="PART_GradientEditor">
+    <Grid DataContext="{Binding ElementName=PART_GradientEditor}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+                Text="Bands" 
+                VerticalAlignment="Center"/>
+            <Slider 
+                Grid.Column="1" 
+                Height="22" 
+                Name="PART_BandsSlider" 
+                Margin="10,0"
+                IsSnapToTickEnabled="True"
+                VerticalAlignment="Center" 
+                TickPlacement="BottomRight" 
+                TickFrequency="1" 
+                Value="{Binding SelectedBand}"
+                SmallChange="1" 
+                Minimum="1"
+                Maximum="{Binding Bands, Mode=OneWay}"/>
+            <Controls.Common:IntUpDown
+                Grid.Column="2"
+                Minimum="1"
+                Maximum="25"
+                Text="{Binding Bands, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Width="75"
+                VerticalAlignment="Center"/>
+            
+            <local:ColorChip 
+                Grid.Row="1" 
+                x:Name="PART_ColorChip"
+                Color="{Binding SelectedColor, Mode=TwoWay}"
+                VerticalAlignment="Center"/>
+            <Slider
+                Grid.Row="1"
+                Grid.Column="1" 
+                Height="22" 
+                Margin="10,0"
+                IsSnapToTickEnabled="True"
+                TickPlacement="BottomRight" 
+                TickFrequency="0.01" 
+                SmallChange="0.01" 
+                LargeChange="0.05" 
+                Value="{Binding Offset}"
+                Maximum="1.0"
+                Minimum="0"
+                VerticalAlignment="Center"/>
+            <Controls.Common:DoubleUpDown
+                Grid.Row="1"
+                Grid.Column="2"
+                Width="75"
+                Minimum="0"
+                Maximum="1.0"
+                Increment="0.01"
+                StringFormat="N2"
+                Text="{Binding Offset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                VerticalAlignment="Center"/>
+        </Grid>
+        <Controls.Common:CheckerBoard
+            Grid.Row="1"
+            Margin="0,5"
+            BorderThickness="{Binding PreviewBorderThickness}"
+            BorderBrush="{Binding PreviewBorderBrush}"
+            CheckerForeground="LightGray"
+            MinHeight="50">
+            <Rectangle Fill="{Binding Gradient}"/>
+        </Controls.Common:CheckerBoard>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+                Text="Start" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+            <Grid Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Controls.Common:DoubleUpDown
+                    Minimum="0"
+                    Maximum="1.0"
+                    Text="{Binding StartPoint.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="30"
+                    Margin="5,0"
+                    Increment="0.01"
+                    StringFormat="N2"
+                    VerticalAlignment="Center"
+                    TextChanged="OnPointChanged"/>
+                <Controls.Common:DoubleUpDown
+                    Grid.Column="1"
+                    Minimum="0"
+                    Maximum="1.0"
+                    Text="{Binding StartPoint.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="30"
+                    Increment="0.01"
+                    StringFormat="N2"
+                    VerticalAlignment="Center"
+                    TextChanged="OnPointChanged"/>
+            </Grid>
+
+            <TextBlock 
+                Grid.Row="1"
+                Text="End" 
+                Margin="0,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+            <Grid 
+                Grid.Row="1" 
+                Grid.Column="1"
+                Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Controls.Common:DoubleUpDown
+                    Minimum="0"
+                    Maximum="1.0"
+                    Text="{Binding EndPoint.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="30"
+                    Margin="5,0"
+                    Increment="0.01"
+                    StringFormat="N2"
+                    VerticalAlignment="Center"
+                    TextChanged="OnPointChanged"/>
+                <Controls.Common:DoubleUpDown
+                    Grid.Column="1"
+                    Minimum="0"
+                    Maximum="1.0"
+                    Text="{Binding EndPoint.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="30"
+                    Increment="0.01"
+                    StringFormat="N2"
+                    VerticalAlignment="Center"
+                    TextChanged="OnPointChanged"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

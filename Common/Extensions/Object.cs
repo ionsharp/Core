@@ -19,5 +19,13 @@
         {
             return ToEvaluate is T;
         }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static dynamic ToDynamic(this object ToConvert)
+        {
+            return (dynamic)ToConvert;
+        }
     }
 }

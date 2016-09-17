@@ -6,6 +6,7 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedTextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.CheckerBoard.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Masked.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Line.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Link.xaml" />
@@ -17,6 +18,7 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Gadget.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.RadioGroup.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.ThicknessBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.TreeViewComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.UpDown.xaml" />
     </ResourceDictionary.MergedDictionaries>

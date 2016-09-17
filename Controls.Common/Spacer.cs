@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Imagin.Common.Extensions;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Imagin.Controls.Common
@@ -8,6 +9,42 @@ namespace Imagin.Controls.Common
     /// </summary>
     public class Spacer : StackPanel
     {
+        public static DependencyProperty HorizontalContentAlignmentProperty = DependencyProperty.Register("HorizontalContentAlignment", typeof(HorizontalAlignment), typeof(Spacer), new FrameworkPropertyMetadata(HorizontalAlignment.Left, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnHorizontalContentAlignmentChanged));
+        public HorizontalAlignment HorizontalContentAlignment
+        {
+            get
+            {
+                return (HorizontalAlignment)GetValue(HorizontalContentAlignmentProperty);
+            }
+            set
+            {
+                SetValue(HorizontalContentAlignmentProperty, value);
+            }
+        }
+        static void OnHorizontalContentAlignmentChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            Spacer Spacer = Object.As<Spacer>();
+            Spacer.RegisterSetHorizontalContentAlignment();
+        }
+
+        public static DependencyProperty VerticalContentAlignmentProperty = DependencyProperty.Register("VerticalContentAlignment", typeof(VerticalAlignment), typeof(Spacer), new FrameworkPropertyMetadata(VerticalAlignment.Top, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnVerticalContentAlignmentChanged));
+        public VerticalAlignment VerticalContentAlignment
+        {
+            get
+            {
+                return (VerticalAlignment)GetValue(VerticalContentAlignmentProperty);
+            }
+            set
+            {
+                SetValue(VerticalContentAlignmentProperty, value);
+            }
+        }
+        static void OnVerticalContentAlignmentChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            Spacer Spacer = Object.As<Spacer>();
+            Spacer.RegisterSetVerticalContentAlignment();
+        }
+
         public static DependencyProperty SpacingProperty = DependencyProperty.Register("Spacing", typeof(Thickness), typeof(Spacer), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSpacingChanged));
         public Thickness Spacing
         {
@@ -20,9 +57,10 @@ namespace Imagin.Controls.Common
                 SetValue(SpacingProperty, value);
             }
         }
-        private static void OnSpacingChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnSpacingChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            ((Spacer)Object).SetPadding();
+            Spacer Spacer = Object.As<Spacer>();
+            Spacer.RegisterSetPadding();
         }
 
         public static DependencyProperty TrimFirstProperty = DependencyProperty.Register("TrimFirst", typeof(bool), typeof(Spacer), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTrimFirstChanged));
@@ -37,9 +75,10 @@ namespace Imagin.Controls.Common
                 SetValue(TrimFirstProperty, value);
             }
         }
-        private static void OnTrimFirstChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnTrimFirstChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            ((Spacer)Object).SetPadding();
+            Spacer Spacer = Object.As<Spacer>();
+            Spacer.RegisterSetPadding();
         }
 
         public static DependencyProperty TrimLastProperty = DependencyProperty.Register("TrimLast", typeof(bool), typeof(Spacer), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTrimLastChanged));
@@ -54,12 +93,31 @@ namespace Imagin.Controls.Common
                 SetValue(TrimLastProperty, value);
             }
         }
-        private static void OnTrimLastChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnTrimLastChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            ((Spacer)Object).SetPadding();
+            Spacer Spacer = Object.As<Spacer>();
+            Spacer.RegisterSetPadding();
         }
 
-        private void SetPadding()
+        void RegisterSetPadding()
+        {
+            this.LayoutUpdated -= SetPadding;
+            this.LayoutUpdated += SetPadding;
+        }
+
+        void RegisterSetHorizontalContentAlignment()
+        {
+            this.LayoutUpdated -= SetHorizontalContentAlignment;
+            this.LayoutUpdated += SetHorizontalContentAlignment;
+        }
+
+        void RegisterSetVerticalContentAlignment()
+        {
+            this.LayoutUpdated -= SetVerticalContentAlignment;
+            this.LayoutUpdated += SetVerticalContentAlignment;
+        }
+
+        void SetPadding()
         {
             for (int i = 0, Count = this.Children.Count; i < Count; i++)
             {
@@ -73,14 +131,41 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public Spacer()
-        {
-            this.LayoutUpdated += OnLayoutUpdated;
-        }
-
-        private void OnLayoutUpdated(object sender, System.EventArgs e)
+        void SetPadding(object sender, System.EventArgs e)
         {
             this.SetPadding();
+        }
+
+        void SetHorizontalContentAlignment()
+        {
+            for (int i = 0, Count = this.Children.Count; i < Count; i++)
+            {
+                FrameworkElement Element = this.Children[i] as FrameworkElement;
+                Element.HorizontalAlignment = this.HorizontalContentAlignment;
+            }
+        }
+
+        void SetHorizontalContentAlignment(object sender, System.EventArgs e)
+        {
+            this.SetHorizontalContentAlignment();
+        }
+
+        void SetVerticalContentAlignment()
+        {
+            for (int i = 0, Count = this.Children.Count; i < Count; i++)
+            {
+                FrameworkElement Element = this.Children[i] as FrameworkElement;
+                Element.VerticalAlignment = this.VerticalContentAlignment;
+            }
+        }
+
+        void SetVerticalContentAlignment(object sender, System.EventArgs e)
+        {
+            this.SetVerticalContentAlignment();
+        }
+
+        public Spacer()
+        {
         }
     }
 }

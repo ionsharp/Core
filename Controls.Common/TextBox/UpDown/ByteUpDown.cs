@@ -11,10 +11,10 @@ namespace Imagin.Controls.Common
 
         public ByteUpDown() : base()
         {
-            this.Minimum = Convert.ToByte(0);
-            this.Maximum = Convert.ToByte(255);
-            this.Value = Convert.ToByte(0);
             this.Increment = Convert.ToByte(1);
+            this.Minimum = byte.MinValue;
+            this.Maximum = byte.MaxValue;
+            this.Value = Convert.ToByte(0);
         }
 
         #endregion

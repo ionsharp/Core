@@ -4,7 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.NET.Demo"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common">
-    <Style x:Key="{x:Type Controls.Common:AdvancedTextBox}" TargetType="{x:Type Controls.Common:AdvancedTextBox}">
+    <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="{DynamicResource TextBoxBackground}" />
@@ -27,6 +27,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="{x:Type Controls.Common:AdvancedTextBox}" TargetType="{x:Type Controls.Common:AdvancedTextBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
 
     <Style x:Key="{x:Type Controls.Common:AlphaNumericTextBox}" TargetType="{x:Type Controls.Common:AlphaNumericTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 

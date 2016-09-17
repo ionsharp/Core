@@ -14,7 +14,7 @@ namespace Imagin.Controls.Common
 
         bool IgnoreSelectedItemChange = false;
 
-        public event EventHandler<ObjectEventArgs> SelectedItemChanged;
+        public event EventHandler<EventArgs<object>> SelectedItemChanged;
 
         TreeView TreeView
         {
@@ -127,7 +127,7 @@ namespace Imagin.Controls.Common
             this.IgnoreSelectedItemChange = true;
             this.SelectedItem = e.NewValue;
             if (this.SelectedItemChanged != null)
-                this.SelectedItemChanged(this, new ObjectEventArgs(this.SelectedItem));
+                this.SelectedItemChanged(this, new EventArgs<object>(e.NewValue));
         }
 
         #endregion

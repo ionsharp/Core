@@ -2,17 +2,17 @@
 {
     public struct RowColumn
     {
-        public int Row
+        public double Row
         {
             get; set;
         }
 
-        public int Column
+        public double Column
         {
             get; set;
         }
 
-        public RowColumn(int Row, int Column)
+        public RowColumn(double Row, double Column)
         {
             this.Row = Row;
             this.Column = Column;

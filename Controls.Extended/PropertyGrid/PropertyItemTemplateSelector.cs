@@ -5,6 +5,21 @@ namespace Imagin.Controls.Extended
 {
     public class PropertyItemTemplateSelector : DataTemplateSelector
     {
+        public DataTemplate ShortTemplate
+        {
+            get; set;
+        }
+
+        public DataTemplate ByteTemplate
+        {
+            get; set;
+        }
+
+        public DataTemplate DecimalTemplate
+        {
+            get; set;
+        }
+
         public DataTemplate LongTemplate
         {
             get; set;

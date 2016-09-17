@@ -12,60 +12,50 @@
                         <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
                         <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
                         <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
-                    </ControlTemplate.Resources> 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter  
-                            Content="{TemplateBinding Content}" 
-                            Margin="{TemplateBinding ContentMargin}"
-                            Visibility="{Binding Content, Converter={StaticResource NullObjectToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Border 
-                            Grid.Column="1"
-                            x:Name="border"
-                            MaxHeight="{TemplateBinding MaxHeight}"
-                            MinWidth="{TemplateBinding MinWidth}"
-                            MinHeight="{TemplateBinding MinHeight}"
-                            Padding="{TemplateBinding Padding}" 
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock 
-                                    Foreground="{TemplateBinding PlaceholderForeground}" 
-                                    FontSize="{TemplateBinding FontSize}"
-                                    FontFamily="{TemplateBinding FontFamily}"
-                                    FontStyle="{TemplateBinding FontStyle}"
-                                    FontStretch="{TemplateBinding FontStretch}"
-                                    FontWeight="{TemplateBinding FontWeight}"
-                                    Text="{TemplateBinding Placeholder}" 
-                                    HorizontalAlignment="Left" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                <ScrollViewer 
-                                    x:Name="PART_ContentHost" 
-                                    HorizontalAlignment="Stretch" 
-                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                    MinHeight="{TemplateBinding MinHeight}" 
-                                    Height="{TemplateBinding Height}"/>
-                                <Grid Grid.Column="1" Visibility="{TemplateBinding ShowClearButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <local:MaskedButton
+                    </ControlTemplate.Resources>
+                    <Border 
+                                Grid.Column="1"
+                                x:Name="border"
+                                MaxWidth="{TemplateBinding MaxWidth}"
+                                MaxHeight="{TemplateBinding MaxHeight}"
+                                MinWidth="{TemplateBinding MinWidth}"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                Padding="{TemplateBinding Padding}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                        Foreground="{TemplateBinding PlaceholderForeground}" 
+                                        FontSize="{TemplateBinding FontSize}"
+                                        FontFamily="{TemplateBinding FontFamily}"
+                                        FontStyle="{TemplateBinding FontStyle}"
+                                        FontStretch="{TemplateBinding FontStretch}"
+                                        FontWeight="{TemplateBinding FontWeight}"
+                                        Text="{TemplateBinding Placeholder}" 
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                            <ScrollViewer 
+                                        x:Name="PART_ContentHost" 
+                                        HorizontalAlignment="Stretch" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                        MinHeight="{TemplateBinding MinHeight}" 
+                                        Height="{TemplateBinding Height}"/>
+                            <Grid Grid.Column="1" Visibility="{TemplateBinding ShowClearButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <local:MaskedButton
                                         x:Name="PART_ClearButton"
                                         Source="pack://application:,,,/Imagin.Controls.Common;component/Images/XRound.png"
                                         Margin="5,0,0,0"
                                         Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
-                                </Grid>
                             </Grid>
-                        </Border>
-                    </Grid>
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

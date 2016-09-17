@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,6 +41,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -59,11 +61,70 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chips\GradientChip.xaml.cs">
+      <DependentUpon>GradientChip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorComb\ColorComb.cs" />
+    <Compile Include="ColorPicker\AlphaSlider.xaml.cs">
+      <DependentUpon>AlphaSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chips\ColorChip.xaml.cs">
+      <DependentUpon>ColorChip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\ColorSelector.xaml.cs">
+      <DependentUpon>ColorSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\Models\LuvModel.cs" />
+    <Compile Include="Dialogs\ColorDialog.xaml.cs">
+      <DependentUpon>ColorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\ColorSpaceView.cs" />
+    <Compile Include="ColorPicker\ComponentCollection.cs" />
+    <Compile Include="ColorPicker\Models\CmykModel.cs" />
+    <Compile Include="ColorPicker\Models\ComponentModel.cs" />
+    <Compile Include="ColorPicker\ComponentView.cs" />
+    <Compile Include="ColorPicker\Models\ColorSpaceModel.cs" />
+    <Compile Include="ColorPicker\Models\HsbModel.cs" />
+    <Compile Include="ColorPicker\Models\HslModel.cs" />
+    <Compile Include="ColorPicker\Models\LabModel.cs" />
+    <Compile Include="ColorPicker\Models\LchModel.cs" />
+    <Compile Include="ColorPicker\Models\RgbModel.cs" />
+    <Compile Include="ColorPicker\Models\XyzModel.cs" />
+    <Compile Include="ColorPicker\Models\NormalComponentModel.cs" />
+    <Compile Include="ColorPicker\Primitives\Luv.cs" />
+    <Compile Include="GradientEditor.xaml.cs">
+      <DependentUpon>GradientEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GradientDialog.xaml.cs">
+      <DependentUpon>GradientDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorComb\HexagonButton.cs" />
+    <Compile Include="Dialogs\IColorDialog.cs" />
+    <Compile Include="Chips\DualColorChip.xaml.cs">
+      <DependentUpon>DualColorChip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\Primitives\Cmyk.cs" />
+    <Compile Include="ColorPicker\Primitives\Hsb.cs" />
+    <Compile Include="ColorPicker\Primitives\Hsl.cs" />
+    <Compile Include="ColorPicker\Primitives\Lab.cs" />
+    <Compile Include="ColorPicker\Primitives\Lch.cs" />
+    <Compile Include="ColorPicker\Primitives\Rgba.cs" />
+    <Compile Include="ColorPicker\Primitives\Xyz.cs" />
+    <Compile Include="ColorPicker\NewCurrent.xaml.cs">
+      <DependentUpon>NewCurrent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\ColorSpace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyGrid\PropertyGrid.xaml.cs">
       <DependentUpon>PropertyGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="PropertyGrid\PropertyItemCollection.cs" />
+    <Compile Include="PropertyGrid\PropertyItems\DecimalPropertyItem.cs" />
+    <Compile Include="PropertyGrid\PropertyItems\BytePropertyItem.cs" />
+    <Compile Include="PropertyGrid\PropertyItems\ShortPropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItems\BoolPropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItems\DateTimePropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItems\DoublePropertyItem.cs" />
@@ -79,13 +140,69 @@
     <Compile Include="PropertyGrid\PropertyItems\SolidColorBrushPropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItems\StringPropertyItem.cs" />
     <Compile Include="PropertyGrid\PropertyItemTemplateSelector.cs" />
-    <Compile Include="ResourceDictionaryEditor.cs" />
+    <Compile Include="PropertyGrid\ResourceDictionaryEditor.cs" />
     <Compile Include="TabbedTree.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Chips\GradientChip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColorPicker\AlphaSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chips\ColorChip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColorPicker\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColorPicker\ColorSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ColorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chips\DualColorChip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColorPicker\NewCurrent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColorPicker\Resources\Slider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GradientEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\GradientDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PropertyGrid\PropertyGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.TabbedTree.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.HexagonButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.ColorComb.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
@@ -108,6 +225,7 @@
   <ItemGroup>
     <Resource Include="Images\ArrowDown.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

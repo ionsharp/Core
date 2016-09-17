@@ -5,6 +5,15 @@
     xmlns:local="clr-namespace:Imagin.NET.Demo">
     <SolidColorBrush x:Key="TextBrush" Color="#666"/>
 
+    <SolidColorBrush x:Key="ButtonForeground" Color="#666"/>
+    <SolidColorBrush x:Key="ButtonBackground" Color="#FAFAFA"/>
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="#DDD"/>
+    <SolidColorBrush x:Key="ButtonMouseOverBackground" Color="#EEE"/>
+    <SolidColorBrush x:Key="ButtonMouseOverBorderBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="ButtonMouseDownBackground" Color="#DDD"/>
+    <SolidColorBrush x:Key="ButtonMouseDownBorderBrush" Color="#999"/>
+    <SolidColorBrush x:Key="ButtonDefaultBorderBrush" Color="#349ADE"/>
+
     <SolidColorBrush x:Key="ComboBoxBackground" Color="#DDD"/>
     <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#BBB"/>
     <SolidColorBrush x:Key="ComboBoxForeground" Color="#777"/>
@@ -79,6 +88,11 @@
     <SolidColorBrush x:Key="MenuItemSubLevelItemBackground" Color="#F0F0F0"/>
     <SolidColorBrush x:Key="MenuItemSubmenuOpenArrowForeground" Color="#44000000"/>
 
+    <SolidColorBrush x:Key="RadioButtonTickMarkStrokeBrush" Color="#FF349ADE"/>
+    <SolidColorBrush x:Key="RadioButtonBackgroundBrush" Color="Transparent"/>
+    <SolidColorBrush x:Key="RadioButtonForegroundBrush" Color="#666"/>
+    <SolidColorBrush x:Key="RadioButtonBorderBrush" Color="#DDD"/>
+
     <SolidColorBrush x:Key="TextBoxBackground" Color="Transparent"/>
     <SolidColorBrush x:Key="TextBoxBorder" Color="#DDD"/>
     <SolidColorBrush x:Key="TextBoxIsMouseOverBorderBrush" Color="#AAA"/>
@@ -103,4 +117,78 @@
     <SolidColorBrush x:Key="ScrollBarBackground" Color="#AAA"/>
     <SolidColorBrush x:Key="ScrollBarIsMouseOverBackground" Color="#888"/>
     <SolidColorBrush x:Key="ScrollBarIsDraggingBackground" Color="#777"/>
+
+    <SolidColorBrush x:Key="SliderRepeatButton1Background" Color="#CCC"/>
+    <SolidColorBrush x:Key="SliderRepeatButton1BorderBrush" Color="#CCC"/>
+    <SolidColorBrush x:Key="SliderRepeatButton2Background" Color="#FF349ADE"/>
+    <SolidColorBrush x:Key="SliderRepeatButton2BorderBrush" Color="#FF349ADE"/>
+
+    <SolidColorBrush x:Key="SliderToggleButtonBackground" Color="#FAFAFB"/>
+    <SolidColorBrush x:Key="SliderToggleButtonBorderBrush" Color="#EAEAEB"/>
+    <SolidColorBrush x:Key="SliderToggleButtonDropShadowColor" Color="#BBB"/>
+    <Style x:Key="SliderToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="{DynamicResource SliderToggleButtonForeground}" />
+        <Setter Property="Background" Value="{DynamicResource SliderToggleButtonBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SliderToggleButtonBorderBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Viewbox Stretch="Uniform">
+                        <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                            <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5"/>
+                            <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5"/>
+                            <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0.5,0,0.5"/>
+                            <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.3">
+                                <Ellipse.RenderTransform>
+                                    <TranslateTransform X="0" Y="0" />
+                                </Ellipse.RenderTransform>
+                                <Ellipse.BitmapEffect>
+                                    <DropShadowBitmapEffect Softness="0.1" ShadowDepth="0.7" Direction="270" Color="{DynamicResource SliderToggleButtonDropShadowBitmap}"/>
+                                </Ellipse.BitmapEffect>
+                            </Ellipse>
+                        </Canvas>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True" >
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#349ADE" Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#349ADE" Duration="0:0:0.2" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                            <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FAFAFA" Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#EAEAEB" Duration="0:0:0.2" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                            <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="WindowButtonBorderBrush" Color="Transparent"/>
+    <SolidColorBrush x:Key="WindowButtonBackgroundBrush" Color="Transparent"/>
+    <SolidColorBrush x:Key="WindowButtonForegroundBrush" Color="#888"/>
+    <SolidColorBrush x:Key="WindowButtonMouseOverBorderBrush" Color="#e9e9e9"/>
+    <SolidColorBrush x:Key="WindowButtonMouseOverBackgroundBrush" Color="#e9e9e9"/>
+    <SolidColorBrush x:Key="WindowButtonMouseOverForegroundBrush" Color="#007acc"/>
+    <SolidColorBrush x:Key="WindowButtonPressedBorderBrush" Color="#007acc"/>
+    <SolidColorBrush x:Key="WindowButtonPressedBackgroundBrush" Color="#007acc"/>
+    <SolidColorBrush x:Key="WindowButtonPressedForegroundBrush" Color="#FFF"/>
 </ResourceDictionary>

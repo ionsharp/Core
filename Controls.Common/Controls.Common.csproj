@@ -63,6 +63,7 @@
     <Compile Include="AdvancedDataGrid.cs" />
     <Compile Include="AdvancedListView.cs" />
     <Compile Include="AlignableWrapPanel.cs" />
+    <Compile Include="CheckerBoard.cs" />
     <Compile Include="DirectionPad.xaml.cs">
       <DependentUpon>DirectionPad.xaml</DependentUpon>
     </Compile>
@@ -97,6 +98,7 @@
     <Compile Include="TextBox\UpDown\NumericUpDown.cs" />
     <Compile Include="TextBox\UpDown\ShortUpDown.cs" />
     <Compile Include="TextBox\UpDown\UpDown.cs" />
+    <Compile Include="ThicknessBox.cs" />
     <Compile Include="TreeViewComboBox.cs" />
     <Compile Include="TextBox\AdvancedTextBox.cs" />
     <Compile Include="TextBox\UpDown\UpDown.Generic.cs" />
@@ -133,6 +135,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.CheckerBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.Gadget.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -162,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.RadioGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.ThicknessBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -53,19 +53,34 @@
                     <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" HorizontalAlignment="Stretch"/>
                 </DataTemplate>
             </local:PropertyItemTemplateSelector.StringTemplate>
+            <local:PropertyItemTemplateSelector.ShortTemplate>
+                <DataTemplate DataType="{x:Type local:ShortPropertyItem}">
+                    <Controls.Common:ShortUpDown Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" HorizontalAlignment="Stretch"/>
+                </DataTemplate>
+            </local:PropertyItemTemplateSelector.ShortTemplate>
+            <local:PropertyItemTemplateSelector.ByteTemplate>
+                <DataTemplate DataType="{x:Type local:BytePropertyItem}">
+                    <Controls.Common:ByteUpDown Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" HorizontalAlignment="Stretch"/>
+                </DataTemplate>
+            </local:PropertyItemTemplateSelector.ByteTemplate>
             <local:PropertyItemTemplateSelector.IntTemplate>
                 <DataTemplate DataType="{x:Type local:IntPropertyItem}">
-                    <Controls.Common:IntUpDown Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" HorizontalAlignment="Stretch"/>
+                    <Controls.Common:IntUpDown Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" HorizontalAlignment="Stretch"/>
                 </DataTemplate>
             </local:PropertyItemTemplateSelector.IntTemplate>
             <local:PropertyItemTemplateSelector.LongTemplate>
                 <DataTemplate DataType="{x:Type local:LongPropertyItem}">
-                    <Controls.Common:LongUpDown Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" HorizontalAlignment="Stretch"/>
+                    <Controls.Common:LongUpDown Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" HorizontalAlignment="Stretch"/>
                 </DataTemplate>
             </local:PropertyItemTemplateSelector.LongTemplate>
+            <local:PropertyItemTemplateSelector.DecimalTemplate>
+                <DataTemplate DataType="{x:Type local:DecimalPropertyItem}">
+                    <Controls.Common:DecimalUpDown Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" HorizontalAlignment="Stretch"/>
+                </DataTemplate>
+            </local:PropertyItemTemplateSelector.DecimalTemplate>
             <local:PropertyItemTemplateSelector.DoubleTemplate>
                 <DataTemplate DataType="{x:Type local:DoublePropertyItem}">
-                    <Controls.Common:DoubleUpDown Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" HorizontalAlignment="Stretch"/>
+                    <Controls.Common:DoubleUpDown Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" HorizontalAlignment="Stretch"/>
                 </DataTemplate>
             </local:PropertyItemTemplateSelector.DoubleTemplate>
             <local:PropertyItemTemplateSelector.EnumTemplate>
@@ -126,11 +141,16 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Rectangle Width="25" Height="25" Fill="{Binding Value}" Margin="0,0,5,0"/>
-                        <Controls.Common:AlphaNumericTextBox Grid.Column="1" Text="{Binding Value, Converter={StaticResource SolidColorBrushToHexConverter}, UpdateSourceTrigger=LostFocus}" IsReadOnly="{Binding IsReadOnly}"/>
+                        <local:ColorChip Brush="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="25" Height="25" Margin="0,0,5,0"/>
+                        <Controls.Common:AlphaNumericTextBox Grid.Column="1" Text="{Binding Value, Mode=TwoWay, Converter={StaticResource SolidColorBrushToHexConverter}, UpdateSourceTrigger=LostFocus}" MaxLength="8" IsReadOnly="{Binding IsReadOnly}"/>
                     </Grid>
                 </DataTemplate>
             </local:PropertyItemTemplateSelector.SolidColorBrushTemplate>
+            <local:PropertyItemTemplateSelector.LinearGradientBrushTemplate>
+                <DataTemplate DataType="{x:Type local:LinearGradientPropertyItem}">
+                    <local:GradientChip Gradient="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
+                </DataTemplate>
+            </local:PropertyItemTemplateSelector.LinearGradientBrushTemplate>
         </local:PropertyItemTemplateSelector>
     </UserControl.Resources>
     <Grid DataContext="{Binding ElementName=PART_PropertyGrid}">

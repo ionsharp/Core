@@ -19,6 +19,9 @@ namespace Imagin.Controls.Extended
         LinearGradientBrush,
         SolidColorBrush,
         DateTime,
+        Short,
+        Decimal,
+        Byte,
         Long
     }
 
@@ -26,7 +29,7 @@ namespace Imagin.Controls.Extended
     {
         #region Members
 
-        public event EventHandler<ObjectEventArgs> ValueChanged;
+        public event EventHandler<EventArgs<object>> ValueChanged;
         
         private bool isFeatured = false;
         public bool IsFeatured
@@ -110,7 +113,7 @@ namespace Imagin.Controls.Extended
                 this.value = value;
                 OnPropertyChanged("Value");
                 if (this.ValueChanged != null)
-                    this.ValueChanged(this, new ObjectEventArgs(value));
+                    this.ValueChanged(this, new EventArgs<object>(value));
             }
         }
 
@@ -171,9 +174,9 @@ namespace Imagin.Controls.Extended
 
         #region Events
 
-        private void OnValueChanged(object sender, ObjectEventArgs e)
+        private void OnValueChanged(object sender, EventArgs<object> e)
         {
-            this.SetValue(e.Object);
+            this.SetValue(e.Value);
         }
 
         #endregion

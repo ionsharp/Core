@@ -1,0 +1,60 @@
+﻿<UserControl 
+    x:Class="Imagin.Controls.Extended.NewCurrent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:Imagin.Controls.Extended" 
+    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    mc:Ignorable="d" 
+    d:DesignHeight="100" 
+    d:DesignWidth="100"
+    x:Name="PART_NewCurrent">
+    <UserControl.Resources>
+        <Common.Data.Converters:ColorToHexConverter x:Key="ColorToHexConverter"/>
+        <Common.Data.Converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
+    </UserControl.Resources> 
+    <Grid DataContext="{Binding ElementName=PART_NewCurrent}" Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Name="PART_NewLabel" 
+            HorizontalAlignment="Center" 
+            Text="New"
+            Margin="0,0,0,5"/>
+        <Controls.Common:CheckerBoard 
+            Grid.Row="1"
+            x:Name="PART_NewCheckered"
+            BorderBrush="Black"
+            BorderThickness="1"
+            CheckerForeground="LightGray"
+            ToolTip="{Binding NewColor, Converter={StaticResource ColorToHexConverter}, StringFormat={}#{0}}">
+            <Rectangle Name="PART_NewRectangle" Fill="{Binding NewColor, Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
+        </Controls.Common:CheckerBoard>
+        <Controls.Common:CheckerBoard 
+            Grid.Row="2"
+            x:Name="PART_CurrentCheckered"
+            BorderBrush="Black"
+            BorderThickness="1"
+            CheckerForeground="LightGray"
+            Margin="0,-1,0,0"
+            ToolTip="{Binding CurrentColor, Converter={StaticResource ColorToHexConverter}, StringFormat={}#{0}}">
+            <Rectangle Name="PART_CurrentRectangle" Fill="{Binding CurrentColor, Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
+        </Controls.Common:CheckerBoard>
+        <TextBlock 
+            Grid.Row="3"  
+            Name="PART_CurrentLabel" 
+            Text="Current"  
+            HorizontalAlignment="Center" 
+            Margin="0,5,0,0"/>
+    </Grid>
+</UserControl>

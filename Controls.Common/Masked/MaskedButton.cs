@@ -25,19 +25,6 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ContentPlacementProperty = DependencyProperty.Register("ContentPlacement", typeof(Side), typeof(MaskedButton), new FrameworkPropertyMetadata(Side.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Side ContentPlacement
-        {
-            get
-            {
-                return (Side)GetValue(ContentPlacementProperty);
-            }
-            set
-            {
-                SetValue(ContentPlacementProperty, value);
-            }
-        }
-
         public static readonly DependencyProperty DropDownProperty = DependencyProperty.Register("DropDown", typeof(ContextMenu), typeof(MaskedButton), new UIPropertyMetadata(null, OnDropDownChanged));
         public ContextMenu DropDown
         {

@@ -158,19 +158,6 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty ContentPlacementProperty = DependencyProperty.Register("ContentPlacement", typeof(Side), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(Side.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Side ContentPlacement
-        {
-            get
-            {
-                return (Side)GetValue(ContentPlacementProperty);
-            }
-            set
-            {
-                SetValue(ContentPlacementProperty, value);
-            }
-        }
-
         #endregion
 
         #region Methods

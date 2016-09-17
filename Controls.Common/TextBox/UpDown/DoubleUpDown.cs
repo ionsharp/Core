@@ -8,8 +8,9 @@ namespace Imagin.Controls.Common
 
         public DoubleUpDown() : base()
         {
-            this.Minimum = -1000000.0;
-            this.Maximum = 1000000.0;
+            this.Increment = 1.0;
+            this.Minimum = double.MinValue;
+            this.Maximum = double.MaxValue;
             this.Value = 0.0;
         }
 
@@ -53,6 +54,7 @@ namespace Imagin.Controls.Common
 
         protected override object OnValueCoerced(object NewValue)
         {
+            if (!this.IsUpDownEnabled) return NewValue;
             return NewValue.As<double>() < this.Minimum ? this.Minimum : (NewValue.As<double>() > this.Maximum ? this.Maximum : NewValue);
         }
 

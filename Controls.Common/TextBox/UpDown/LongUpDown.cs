@@ -8,10 +8,10 @@ namespace Imagin.Controls.Common
 
         public LongUpDown() : base()
         {
-            this.Minimum = -1000000000L;
-            this.Maximum = 1000000000L;
-            this.Value = 0L;
             this.Increment = 1L;
+            this.Minimum = long.MinValue;
+            this.Maximum = long.MaxValue;
+            this.Value = 0L;
         }
 
         #endregion

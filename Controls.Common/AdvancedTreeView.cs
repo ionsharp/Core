@@ -140,6 +140,7 @@ namespace Imagin.Controls.Common
         public AdvancedTreeView()
         {
             this.DefaultStyleKey = typeof(AdvancedTreeView);
+
             this.GotFocus += OnTreeViewItemGotFocus;
             this.PreviewMouseLeftButtonDown += OnTreeViewItemPreviewMouseDown;
             this.PreviewMouseLeftButtonUp += OnTreeViewItemPreviewMouseUp;

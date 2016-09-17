@@ -1,0 +1,21 @@
+﻿<UserControl 
+    x:Class="Imagin.Controls.Extended.ColorChip"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common" 
+    Width="30" 
+    Height="30" 
+    Cursor="Hand"
+    MouseDown="OnMouseDown" 
+    MouseUp="OnMouseUp" 
+    MouseDoubleClick="OnMouseDoubleClick"
+    x:Name="PART_ColorChip">
+    <Border DataContext="{Binding ElementName=PART_ColorChip}" BorderBrush="Black" BorderThickness="1">
+        <Controls.Common:CheckerBoard 
+            BorderBrush="White" 
+            BorderThickness="1"
+            CheckerForeground="LightGray">
+            <Rectangle Fill="{Binding Brush}"/>
+        </Controls.Common:CheckerBoard>
+    </Border>
+</UserControl>

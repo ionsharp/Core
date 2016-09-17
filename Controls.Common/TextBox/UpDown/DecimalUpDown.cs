@@ -8,10 +8,10 @@ namespace Imagin.Controls.Common
 
         public DecimalUpDown() : base()
         {
-            this.Minimum = -1000000m;
-            this.Maximum = 1000000m;
-            this.Value = 0m;
             this.Increment = 1m;
+            this.Minimum = decimal.MinValue;
+            this.Maximum = decimal.MaxValue;
+            this.Value = 0m;
         }
 
         #endregion

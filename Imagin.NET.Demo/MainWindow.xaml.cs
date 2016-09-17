@@ -8,7 +8,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Data;
+using Imagin.Controls.Extended.Primitives;
 
 namespace Imagin.NET.Demo
 {
@@ -538,14 +540,9 @@ namespace Imagin.NET.Demo
             MessageBox.Show("Entered a password!");
         }
 
-        void OnSpacerThicknessChanged(object sender, TextChangedEventArgs e)
+        void SelectColor(object sender, RoutedEventArgs e)
         {
-            if (!sender.As<IntUpDown>().IsInitialized)
-                return;
-            List<int> Values = new List<int>();
-            foreach (IntUpDown t in PART_SpacerThicknessPanel.Children)
-                Values.Add(t.Text.ToInt());
-            this.PART_Spacer.Spacing = new Thickness(Values[0], Values[1], Values[2], Values[3]);
+            PART_ColorPicker.InitialColor = PART_ColorPicker.SelectedColor;
         }
 
         void OnViewChanged(object sender, RoutedEventArgs e)

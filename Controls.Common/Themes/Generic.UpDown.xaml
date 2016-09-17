@@ -14,28 +14,18 @@
                         <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
                         <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
                     </ControlTemplate.Resources>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter 
-                            Content="{TemplateBinding Content}" 
-                            Margin="{TemplateBinding ContentMargin}"
-                            Visibility="{Binding Content, Converter={StaticResource NullObjectToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Border 
+                    <Border 
                             Grid.Column="1"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}" 
                             BorderBrush="{TemplateBinding BorderBrush}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Border 
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border 
                                     x:Name="border"
                                     MaxHeight="{TemplateBinding MaxHeight}"
                                     MinWidth="{TemplateBinding MinWidth}"
@@ -44,8 +34,8 @@
                                     Padding="{TemplateBinding Padding}"
                                     HorizontalAlignment="Stretch" 
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <Grid>
-                                        <TextBlock 
+                                <Grid>
+                                    <TextBlock 
                                             Foreground="{DynamicResource PlaceholderForeground}" 
                                             FontSize="{TemplateBinding FontSize}"
                                             FontFamily="{TemplateBinding FontFamily}"
@@ -53,24 +43,24 @@
                                             HorizontalAlignment="Left" 
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                        <ScrollViewer 
+                                    <ScrollViewer 
                                             x:Name="PART_ContentHost" 
                                             HorizontalAlignment="Stretch" 
                                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
                                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                             MinHeight="{TemplateBinding MinHeight}" 
                                             Height="{TemplateBinding Height}"/>
-                                    </Grid>
-                                </Border>
-                                <Grid 
+                                </Grid>
+                            </Border>
+                            <Grid 
                                     Grid.Column="1"
                                     Margin="0,0,5,0"
                                     Visibility="{Binding IsUpDownEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <local:MaskedButton 
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <local:MaskedButton 
                                         x:Name="PART_Up"
                                         Focusable="False"
                                         ImageWidth="10" 
@@ -80,7 +70,7 @@
                                         CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
                                         Tag="Up"
                                         Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowUp.png"/>
-                                    <local:MaskedButton 
+                                <local:MaskedButton 
                                         Grid.Row="1" 
                                         x:Name="PART_Down"
                                         Focusable="False"
@@ -91,10 +81,9 @@
                                         CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
                                         Tag="Down"
                                         Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
-                                </Grid>
                             </Grid>
-                        </Border>
-                    </Grid>
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

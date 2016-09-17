@@ -76,6 +76,12 @@ namespace Imagin.Controls.Extended
             }
             else if (Property.PropertyType == typeof(int))
                 PropertyItem = new IntPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
+            else if (Property.PropertyType == typeof(short))
+                PropertyItem = new ShortPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
+            else if (Property.PropertyType == typeof(byte))
+                PropertyItem = new BytePropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
+            else if (Property.PropertyType == typeof(decimal))
+                PropertyItem = new DecimalPropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             else if (Property.PropertyType == typeof(double))
                 PropertyItem = new DoublePropertyItem(Object, Name, Value, Category, IsReadOnly, IsFeatured);
             else if (Property.PropertyType.IsEnum)
@@ -111,13 +117,9 @@ namespace Imagin.Controls.Extended
                     if (Entry.Value == null)
                         continue;
                     if (Entry.Value.Is<LinearGradientBrush>())
-                    {
                         this.Add(new LinearGradientPropertyItem(this.Object, Entry.Key.ToString(), Entry.Value, "Gradients", false));
-                    }
                     else if (Entry.Value.Is<SolidColorBrush>())
-                    {
                         this.Add(new SolidColorBrushPropertyItem(this.Object, Entry.Key.ToString(), Entry.Value, "Brushes", false));
-                    }
                 }
             }));
             if (Callback != null)

@@ -1,4 +1,5 @@
 ﻿using Imagin.Common.Events;
+using Imagin.Common.Extensions;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -14,7 +15,7 @@ namespace Imagin.Controls.Extended
 
         #region Events
 
-        public event EventHandler<ObjectEventArgs> SelectedObjectChanged;
+        public event EventHandler<EventArgs<object>> SelectedObjectChanged;
 
         #endregion
 
@@ -162,10 +163,9 @@ namespace Imagin.Controls.Extended
                 SetValue(SelectedObjectProperty, value);
             }
         }
-        private static void OnSelectedObjectChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnSelectedObjectChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            PropertyGrid PropertyGrid = (PropertyGrid)Object;
-            PropertyGrid.OnSelectedObjectChanged();
+            Object.As<PropertyGrid>().OnSelectedObjectChanged();
         }
 
         public static DependencyProperty ShowHeaderProperty = DependencyProperty.Register("ShowHeader", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -193,10 +193,11 @@ namespace Imagin.Controls.Extended
                 SetValue(IsSortAscendingProperty, value);
             }
         }
-        private static void OnIsSortAscendingChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnIsSortAscendingChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             PropertyGrid PropertyGrid = (PropertyGrid)Object;
-            if (PropertyGrid.IsSortAscending) PropertyGrid.Sort(ListSortDirection.Ascending);
+            if (PropertyGrid.IsSortAscending)
+                PropertyGrid.Sort(ListSortDirection.Ascending);
         }
 
         public static DependencyProperty IsSortDescendingProperty = DependencyProperty.Register("IsSortDescending", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsSortDescendingChanged));
@@ -211,7 +212,7 @@ namespace Imagin.Controls.Extended
                 SetValue(IsSortDescendingProperty, value);
             }
         }
-        private static void OnIsSortDescendingChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnIsSortDescendingChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             PropertyGrid PropertyGrid = (PropertyGrid)Object;
             if (PropertyGrid.IsSortDescending)
@@ -230,10 +231,9 @@ namespace Imagin.Controls.Extended
                 SetValue(ShowCategoriesProperty, value);
             }
         }
-        private static void OnShowCategoriesChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnShowCategoriesChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            PropertyGrid PropertyGrid = (PropertyGrid)Object;
-            PropertyGrid.Group("Category");
+            Object.As<PropertyGrid>().Group("Category");
         }
 
         #endregion
@@ -296,7 +296,7 @@ namespace Imagin.Controls.Extended
         protected virtual void OnSelectedObjectChanged()
         {
             if (this.SelectedObjectChanged != null)
-                this.SelectedObjectChanged(this, new ObjectEventArgs(this.SelectedObject));
+                this.SelectedObjectChanged(this, new EventArgs<object>(this.SelectedObject));
             if (this.SelectedObject == null)
                 return;
             this.Properties.Object = this.SelectedObject;

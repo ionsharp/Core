@@ -27,18 +27,20 @@
                 <Setter Property="BorderBrush" Value="DarkGray" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Brushes.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Buttons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Masked.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ComboBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ContextMenu.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/DataGrid.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ListView.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/MenuItem.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/RadioButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ScrollViewer.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Slider.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/TreeView.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Window.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
