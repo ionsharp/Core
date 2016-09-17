@@ -13,13 +13,15 @@ MaskedButton        | MaskedToggleButton  | MaskedDropDownButton| AdvancedTextBo
 ShortUpDown         | IntUpDown           | ByteUpDown          | LongUpDown         | DoubleUpDown        |
 DecimalUpDown       | AdvancedDataGrid    | AdvancedListView    | FontFamilyBox      | FontSizeBox         |
 DirectionPad        | Spacer              | FileBox             | PasswordBox        | AdvancedTreeView    |
-AlignableWrapPanel  | 
+AlignableWrapPanel  | ThicknessBox        |
 
 ###Extended
 
-      .      |            .             |            |
--------------|--------------------------|------------|
-PropertyGrid | ResourceDictionaryEditor | TabbedTree |
+         .        |            .             |        .       |      .      |
+------------------|--------------------------|----------------|-------------|
+PropertyGrid      | ResourceDictionaryEditor | TabbedTree     | ColorComb   |
+ColorChip         | GradientChip             | DualColorChip  | ColorPicker |
+ColorDialog       | GradientDialog           | GradientEditor |
 
 ##Desktop Gadgets
 
