@@ -13,7 +13,7 @@ MaskedButton        | MaskedToggleButton  | MaskedDropDownButton| AdvancedTextBo
 ShortUpDown         | IntUpDown           | ByteUpDown          | LongUpDown         | DoubleUpDown        |
 DecimalUpDown       | AdvancedDataGrid    | AdvancedListView    | FontFamilyBox      | FontSizeBox         |
 DirectionPad        | Spacer              | FileBox             | PasswordBox        | AdvancedTreeView    |
-AlignableWrapPanel  | ThicknessBox        |
+AlignableWrapPanel  | ThicknessBox        | Gadget              |
 
 ###Extended
 
