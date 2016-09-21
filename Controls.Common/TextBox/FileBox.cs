@@ -90,6 +90,11 @@ namespace Imagin.Controls.Common
             this.IsReadOnly = true;
         }
 
+        public void Browse()
+        {
+            this.OnClick(this, new RoutedEventArgs());
+        }
+
         public void Validate()
         {
             this.PathExists = System.IO.Directory.Exists(this.Text);

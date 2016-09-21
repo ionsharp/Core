@@ -59,6 +59,12 @@ namespace Imagin.Common.Extensions
             }
         }
 
+        public static bool IsEqualTo(this DateTime? First, DateTime? Second)
+        {
+            if (First == null || Second == null) return false;
+            return (First.Value.Date == Second.Value.Date);
+        }
+
         /// <summary>
         /// Imagin.Common: Checks if month, day, and year are identical to that of today (ignores time).
         /// </summary>

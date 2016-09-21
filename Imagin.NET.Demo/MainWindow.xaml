@@ -376,6 +376,7 @@
                     <Controls.Extended:ColorPicker
                         Grid.Row="1"
                         x:Name="PART_ColorPicker"
+                        ComponentsWidth="475"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"/>
                 </Grid>
@@ -392,6 +393,13 @@
                         VerticalAlignment="Top" 
                         Text="{Binding Direction, ElementName=PART_DirectionPad, StringFormat={}Direction: {0}}"/>
                 </StackPanel>
+            </TabItem>
+            <TabItem Header="EditableLabel">
+                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
+                    <Controls.Common:EditableLabel Content="Edit this on mouse down" HorizontalAlignment="Left" ShowButton="True" MouseEvent="MouseDown"/>
+                    <Controls.Common:EditableLabel Content="Edit this on mouse up" ButtonHorizontalAlignment="Right" ShowButton="True"/>
+                    <Controls.Common:EditableLabel Content="Edit this on mouse double click" MouseEvent="MouseDoubleClick"/>
+                </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="FileBox">
                 <Grid Margin="10">
@@ -466,6 +474,7 @@
                         <Controls.Common:MaskedButton 
                             Grid.Row="1"
                             Grid.Column="1"
+                            HorizontalAlignment="Left"
                             Source="/Images/Gear.png" 
                             Content="Options"
                             DropDownVisibility="Visible"
@@ -490,6 +499,7 @@
                         <Controls.Common:MaskedToggleButton 
                             Grid.Row="1"
                             Grid.Column="2"
+                            HorizontalAlignment="Left"
                             Source="/Images/Gear.png" 
                             Content="Options"
                             CheckedToolTip="Options are checked"
@@ -499,6 +509,7 @@
                         <Controls.Common:MaskedDropDownButton 
                             Grid.Row="1"
                             Grid.Column="3"
+                            HorizontalAlignment="Left"
                             Source="/Images/Gear.png" 
                             Content="Options">
                             <Controls.Common:MaskedDropDownButton.DropDown>

@@ -33,5 +33,9 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.g.resources
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.dll
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.pdb
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.CheckerBoard.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.EditableLabel.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.RippleDecorator.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.xml

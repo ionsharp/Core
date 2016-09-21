@@ -36,3 +36,5 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\RadioButton.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\Window.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\Styles\Slider.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Imagin.NET.Demo\bin\Debug\XAMLMarkupExtensions.xml

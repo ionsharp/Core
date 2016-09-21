@@ -50,37 +50,37 @@ namespace Imagin.Controls.Extended
         /// </summary>
         public virtual void UpdatePlane(WriteableBitmap Bitmap, int ComponentValue, Func<RowColumn, int, Rgba> Action = null, RowColumn? Unit = null)
         {
-            unsafe
-            {
-                Bitmap.Lock();
+unsafe
+{
+    Bitmap.Lock();
 
-                int CurrentPixel = -1;
-                byte* Start = (byte*)(void*)Bitmap.BackBuffer;
+    int CurrentPixel = -1;
+    byte* Start = (byte*)(void*)Bitmap.BackBuffer;
 
-                var u = Unit.Value;
-                u.Row = u.Row / 256.0;
-                u.Column = u.Column / 256.0;
+    var u = Unit.Value;
+    u.Row = u.Row / 256.0;
+    u.Column = u.Column / 256.0;
 
-                double CurrentRow = u.Row * 256.0;
+    double CurrentRow = u.Row * 256.0;
 
-                for (int Row = 0; Row < Bitmap.PixelHeight; Row++)
-                {
-                    double CurrentCol = 0;
-                    for (int Col = 0; Col < Bitmap.PixelWidth; Col++)
-                    {
-                        var c = Action.Invoke(new RowColumn(CurrentRow, CurrentCol), ComponentValue);
+    for (int Row = 0; Row < Bitmap.PixelHeight; Row++)
+    {
+        double CurrentCol = 0;
+        for (int Col = 0; Col < Bitmap.PixelWidth; Col++)
+        {
+            var c = Action.Invoke(new RowColumn(CurrentRow, CurrentCol), ComponentValue);
 
-                        CurrentPixel++;
-                        *(Start + CurrentPixel * 3 + 0) = c.B;
-                        *(Start + CurrentPixel * 3 + 1) = c.G;
-                        *(Start + CurrentPixel * 3 + 2) = c.R;
-                        CurrentCol += u.Column;
-                    }
-                    CurrentRow -= u.Row;
-                }
-                Bitmap.AddDirtyRect(new Int32Rect(0, 0, Bitmap.PixelWidth, Bitmap.PixelHeight));
-                Bitmap.Unlock();
-            }
+            CurrentPixel++;
+            *(Start + CurrentPixel * 3 + 0) = c.B;
+            *(Start + CurrentPixel * 3 + 1) = c.G;
+            *(Start + CurrentPixel * 3 + 2) = c.R;
+            CurrentCol += u.Column;
+        }
+        CurrentRow -= u.Row;
+    }
+    Bitmap.AddDirtyRect(new Int32Rect(0, 0, Bitmap.PixelWidth, Bitmap.PixelHeight));
+    Bitmap.Unlock();
+}
         }
 
         /// <summary>

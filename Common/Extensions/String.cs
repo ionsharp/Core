@@ -139,10 +139,20 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common: Parses string to boolean (evaluates "true" and "false"; everything else is parsed to an int).
         /// </summary>
-        public static bool ToBool(this string ToConvert)
+        public static bool? ToBool(this string ToConvert)
         {
-            string toConvert = ToConvert.ToLower();
-            return toConvert == "true" ? true : toConvert == "false" ? false : ToConvert.ToInt() == 0 ? false : true;
+            switch (ToConvert.ToLower())
+            {
+                case "true":
+                case "t":
+                case "1":
+                    return true;
+                case "false":
+                case "f":
+                case "0":
+                    return false;
+            }
+            return null;
         }
 
         /// <summary>

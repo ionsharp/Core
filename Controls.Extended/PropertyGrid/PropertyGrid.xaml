@@ -207,9 +207,16 @@
                     ToolTip="{l:Loc Options}"
                     Padding="5,0">
                     <Controls.Common:MaskedDropDownButton.DropDown>
-                    <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
-                        <MenuItem Header="{l:Loc Reset}" Click="Reset_Executed" ToolTip="Reset All Fields"/>
-                    </ContextMenu>
+                        <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                            <MenuItem 
+                                Header="{l:Loc CollapseGroups}" 
+                                IsCheckable="True"
+                                IsChecked="{Binding CollapseGroups}"
+                                StaysOpenOnClick="True"
+                                ToolTip="Automatically Collapse Groups"/>
+                            <Separator/>
+                            <MenuItem Header="{l:Loc Reset}" Click="Reset_Executed" ToolTip="Reset All Fields"/>
+                        </ContextMenu>
                     </Controls.Common:MaskedDropDownButton.DropDown>
                 </Controls.Common:MaskedDropDownButton>
             </Grid>
@@ -321,7 +328,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type GroupItem}">
-                                        <Expander Header="{Binding Name}" IsExpanded="True">
+                                        <Expander Header="{Binding Name}" IsExpanded="{Binding CollapseGroups, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}, Converter={StaticResource InverseBooleanConverter}}">
                                             <ItemsPresenter/>
                                         </Expander>
                                     </ControlTemplate>

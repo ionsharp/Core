@@ -17,7 +17,7 @@
     <Grid DataContext="{Binding ElementName=PART_ColorPicker}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="375"/>
+            <ColumnDefinition Width="{Binding ComponentsWidth}"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <local:ColorSelector 
@@ -121,8 +121,8 @@
             Margin="15,0,0,0"
             Visibility="{Binding ShowNewCurrent, Converter={StaticResource BooleanToVisibilityConverter}}">
             <local:NewCurrent 
-                HorizontalAlignment="Center" 
                 x:Name="newCurrent"
+                HorizontalAlignment="Center" 
                 VerticalAlignment="Top" 
                 Height="125" 
                 Width="100" 

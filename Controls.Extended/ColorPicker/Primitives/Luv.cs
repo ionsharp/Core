@@ -12,9 +12,27 @@ namespace Imagin.Controls.Extended.Primitives
     {
         #region Properties
 
+        public struct MaxValue
+        {
+            public static double L = 1.0;
+
+            public static double U = 1.0;
+
+            public static double V = 1.0;
+        }
+
+        public struct MinValue
+        {
+            public static double L = 0.0;
+
+            public static double U = -1.0;
+
+            public static double V = -1.0;
+        }
+
         double l;
         /// <summary>
-        /// Gets or sets the lightness component (0 to 100).
+        /// Gets or sets the lightness component (0 to 1).
         /// </summary>
         public double L
         {
@@ -24,13 +42,13 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                l = value;
+                l = value.Coerce(Luv.MaxValue.L, Luv.MinValue.L);
             }
         }
 
         double u;
         /// <summary>
-        /// Gets or sets the saturation component (0 to 1).
+        /// Gets or sets the u component (-1 to 1).
         /// </summary>
         public double U
         {
@@ -40,13 +58,13 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                u = value;
+                u = value.Coerce(Luv.MaxValue.U, Luv.MinValue.U);
             }
         }
 
         double v;
         /// <summary>
-        /// Gets or sets the brightness component (0 to 1).
+        /// Gets or sets the v component (-1 to 1).
         /// </summary>
         public double V
         {
@@ -56,7 +74,7 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                v = value;
+                v = value.Coerce(Luv.MaxValue.V, Luv.MinValue.V);
             }
         }
 
@@ -79,9 +97,9 @@ namespace Imagin.Controls.Extended.Primitives
         /// </summary>
         public Luv(double L, double U, double V)
         {
-            this.l = L;
-            this.u = U;
-            this.v = V;
+            this.l = L.Coerce(Luv.MaxValue.L, Luv.MinValue.L);
+            this.u = U.Coerce(Luv.MaxValue.U, Luv.MinValue.U);
+            this.v = V.Coerce(Luv.MaxValue.V, Luv.MinValue.V);
         }
 
         #endregion

@@ -43,8 +43,8 @@ namespace Imagin.Controls.Extended
             public override Color ColorAtPoint(Point SelectionPoint, int ComponentValue)
             {
                 double l = ComponentValue.ToDouble();
-                double c = 100.0 - SelectionPoint.Y;
-                double h = SelectionPoint.X.Round();
+                double c = (1.0 - SelectionPoint.Y / 255.0).Shift(2);
+                double h = (SelectionPoint.X / 255.0) * 359.0;
                 return Lch.ToColor(l, c, h);
             }
 
@@ -56,8 +56,8 @@ namespace Imagin.Controls.Extended
             public override Point PointFromColor(Color Color)
             {
                 Lch Lch = Lch.FromColor(Color);
-                int x = 100 + Lch.C.ToInt();
-                int y = 359 - Lch.H.ToInt();
+                int x = ((Lch.C / Lch.MaxValue.C) * 255.0).ToInt();
+                int y = 255 - ((Lch.H / Lch.MaxValue.H) * 255.0).ToInt();
                 return new Point(x, y);
             }
 
@@ -99,9 +99,9 @@ namespace Imagin.Controls.Extended
 
             public override Color ColorAtPoint(Point SelectionPoint, int ComponentValue)
             {
-                double l = 100.0 - SelectionPoint.Y;
+                double l = (1.0 - SelectionPoint.Y / 255.0).Shift(2);
                 double c = ComponentValue.ToDouble();
-                double h = SelectionPoint.X.Round();
+                double h = (SelectionPoint.X / 255.0) * 359.0;
                 return Lch.ToColor(l, c, h);
             }
 
@@ -113,8 +113,8 @@ namespace Imagin.Controls.Extended
             public override Point PointFromColor(Color Color)
             {
                 Lch Lch = Lch.FromColor(Color);
-                int x = 100 + Lch.L.ToInt();
-                int y = 359 - Lch.H.ToInt();
+                int x = ((Lch.L / Lch.MaxValue.L) * 255.0).ToInt();
+                int y = 255 - ((Lch.H / Lch.MaxValue.H) * 255.0).ToInt();
                 return new Point(x, y);
             }
 
@@ -172,8 +172,8 @@ namespace Imagin.Controls.Extended
 
             public override Color ColorAtPoint(Point SelectionPoint, int ComponentValue)
             {
-                double l = (100.0 - SelectionPoint.Y) / 256.0;
-                double c = SelectionPoint.X - 100.0;
+                double l = (1.0 - SelectionPoint.Y / 255.0).Shift(2);
+                double c = SelectionPoint.X / 255.0;
                 double h = ComponentValue.ToDouble();
                 return Lch.ToColor(l, c, h);
             }
@@ -187,8 +187,8 @@ namespace Imagin.Controls.Extended
             public override Point PointFromColor(Color Color)
             {
                 Lch Lch = Lch.FromColor(Color);
-                int x = 100 + Lch.L.ToInt();
-                int y = 100 - Lch.C.ToInt();
+                int x = ((Lch.L / Lch.MaxValue.L) * 255.0).ToInt();
+                int y = 255 - ((Lch.C / Lch.MaxValue.C) * 255.0).ToInt();
                 return new Point(x, y);
             }
 

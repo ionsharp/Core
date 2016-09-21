@@ -31,6 +31,19 @@ namespace Imagin.Controls.Extended
         }
 
         #region Dependency
+        
+        public static DependencyProperty ComponentsWidthProperty = DependencyProperty.Register("ComponentsWidth", typeof(double), typeof(ColorPicker), new FrameworkPropertyMetadata(425.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public double ComponentsWidth
+        {
+            get
+            {
+                return (double)GetValue(ComponentsWidthProperty);
+            }
+            set
+            {
+                SetValue(ComponentsWidthProperty, value);
+            }
+        }
 
         public static DependencyProperty InitialColorProperty = DependencyProperty.Register("InitialColor", typeof(Color), typeof(ColorPicker), new FrameworkPropertyMetadata(Colors.Transparent, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnInitialColorChanged));
         public Color InitialColor
@@ -151,6 +164,7 @@ namespace Imagin.Controls.Extended
             this.Models.Add(new XyzModel());
             this.Models.Add(new LabModel());
             this.Models.Add(new LchModel());
+            this.Models.Add(new LuvModel());
             this.Models.Add(new CmykModel());
 
             this.PART_ColorSelector.ColorChanged += OnColorSelectorColorChanged;

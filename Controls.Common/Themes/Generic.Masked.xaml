@@ -48,95 +48,99 @@
                         BorderThickness="{TemplateBinding BorderThickness}" 
                         BorderBrush="{TemplateBinding BorderBrush}"  
                         Background="{TemplateBinding Background}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <local:MaskedImage
-                                x:Name="PART_Rectangle" 
-                                Source="{TemplateBinding Source}"
-                                ImageWidth="{TemplateBinding ImageWidth}" 
-                                ImageHeight="{TemplateBinding ImageHeight}"
-                                ImageColor="{TemplateBinding ImageColor}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
-                            <ContentControl 
-                                Grid.Column="1" 
-                                x:Name="PART_Content"
-                                Content="{TemplateBinding Content}" 
-                                Margin="{TemplateBinding ContentMargin}" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
-                            <ContentControl 
-                                Grid.Column="2" 
-                                x:Name="PART_Dropdown"
-                                Margin="5,0,0,-1"
-                                Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" 
-                                ToolTip="{TemplateBinding DropDownToolTip}" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding DropDownVisibility}">
-                                <ContentControl.Style>
-                                    <Style TargetType="{x:Type ContentControl}">
-                                        <Setter Property="Cursor" Value="Hand"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type ContentControl}">
-                                                    <Rectangle x:Name="PART_Rectangle" Width="12" Height="12" RenderTransformOrigin="0.5,0.5">
-                                                        <Rectangle.OpacityMask>
-                                                            <ImageBrush ImageSource="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
-                                                        </Rectangle.OpacityMask>
-                                                        <Rectangle.RenderTransform>
-                                                            <RotateTransform Angle="-90"/>
-                                                        </Rectangle.RenderTransform>
-                                                    </Rectangle>
-                                                    <ControlTemplate.Triggers>
-                                                        <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" Value="True">
-                                                            <DataTrigger.EnterActions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation 
-                                                                            Duration="0:0:0.25" 
-                                                                            Storyboard.TargetName="PART_Rectangle" 
-                                                                            Storyboard.TargetProperty="RenderTransform.Angle" 
-                                                                            From="-90" 
-                                                                            To="0"/>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </DataTrigger.EnterActions>
-                                                            <DataTrigger.ExitActions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation 
-                                                                            Duration="0:0:0.25" 
-                                                                            Storyboard.TargetName="PART_Rectangle" 
-                                                                            Storyboard.TargetProperty="RenderTransform.Angle" 
-                                                                            From="0" 
-                                                                            To="-90"/>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </DataTrigger.ExitActions>
-                                                            <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImagePressedBrush}"/>
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" Value="False">
-                                                            <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageBrush}"/>
-                                                        </DataTrigger>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageHoverBrush}"/>
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ContentControl.Style>
-                            </ContentControl>
-                        </Grid>
+                        <local:RippleDecorator
+                            BorderBrush="{TemplateBinding ImageColor}"
+                            IsRippleEnabled="{TemplateBinding IsRippleEnabled}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <local:MaskedImage
+                                        x:Name="PART_Rectangle" 
+                                        Source="{TemplateBinding Source}"
+                                        ImageWidth="{TemplateBinding ImageWidth}" 
+                                        ImageHeight="{TemplateBinding ImageHeight}"
+                                        ImageColor="{TemplateBinding ImageColor}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                                <ContentControl 
+                                        Grid.Column="1" 
+                                        x:Name="PART_Content"
+                                        Content="{TemplateBinding Content}" 
+                                        Margin="{TemplateBinding ContentMargin}" 
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                                <ContentControl 
+                                        Grid.Column="2" 
+                                        x:Name="PART_Dropdown"
+                                        Margin="5,0,0,-1"
+                                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" 
+                                        ToolTip="{TemplateBinding DropDownToolTip}" 
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Visibility="{TemplateBinding DropDownVisibility}">
+                                    <ContentControl.Style>
+                                        <Style TargetType="{x:Type ContentControl}">
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                                                        <Rectangle x:Name="PART_Rectangle" Width="12" Height="12" RenderTransformOrigin="0.5,0.5">
+                                                            <Rectangle.OpacityMask>
+                                                                <ImageBrush ImageSource="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
+                                                            </Rectangle.OpacityMask>
+                                                            <Rectangle.RenderTransform>
+                                                                <RotateTransform Angle="-90"/>
+                                                            </Rectangle.RenderTransform>
+                                                        </Rectangle>
+                                                        <ControlTemplate.Triggers>
+                                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" Value="True">
+                                                                <DataTrigger.EnterActions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation 
+                                                                                Duration="0:0:0.25" 
+                                                                                Storyboard.TargetName="PART_Rectangle" 
+                                                                                Storyboard.TargetProperty="RenderTransform.Angle" 
+                                                                                From="-90" 
+                                                                                To="0"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </DataTrigger.EnterActions>
+                                                                <DataTrigger.ExitActions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation 
+                                                                                Duration="0:0:0.25" 
+                                                                                Storyboard.TargetName="PART_Rectangle" 
+                                                                                Storyboard.TargetProperty="RenderTransform.Angle" 
+                                                                                From="0" 
+                                                                                To="-90"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </DataTrigger.ExitActions>
+                                                                <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImagePressedBrush}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" Value="False">
+                                                                <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageBrush}"/>
+                                                            </DataTrigger>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageHoverBrush}"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
+                            </Grid>
+                        </local:RippleDecorator>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -157,30 +161,34 @@
                         BorderBrush="{TemplateBinding BorderBrush}" 
                         BorderThickness="{TemplateBinding BorderThickness}" 
                         Background="{TemplateBinding Background}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <local:MaskedImage
-                                x:Name="PART_Rectangle" 
-                                Margin="0"
-                                Padding="0"
-                                Source="{TemplateBinding Source}"
-                                ImageWidth="{TemplateBinding ImageWidth}" 
-                                ImageHeight="{TemplateBinding ImageHeight}"
-                                ImageColor="{TemplateBinding ImageColor}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
-                            <ContentPresenter 
-                                Grid.Column="1" 
-                                x:Name="PART_Content"
-                                Content="{TemplateBinding Content}" 
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                Margin="{TemplateBinding ContentMargin}" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
-                        </Grid>
+                        <local:RippleDecorator
+                            BorderBrush="{TemplateBinding ImageColor}"
+                            IsRippleEnabled="{TemplateBinding IsRippleEnabled}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <local:MaskedImage
+                                    x:Name="PART_Rectangle" 
+                                    Margin="0"
+                                    Padding="0"
+                                    Source="{TemplateBinding Source}"
+                                    ImageWidth="{TemplateBinding ImageWidth}" 
+                                    ImageHeight="{TemplateBinding ImageHeight}"
+                                    ImageColor="{TemplateBinding ImageColor}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                                <ContentPresenter 
+                                    Grid.Column="1" 
+                                    x:Name="PART_Content"
+                                    Content="{TemplateBinding Content}" 
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    Margin="{TemplateBinding ContentMargin}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                            </Grid>
+                        </local:RippleDecorator>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -200,27 +208,31 @@
                         BorderBrush="{TemplateBinding BorderBrush}" 
                         Margin="{TemplateBinding Margin}" 
                         Padding="{TemplateBinding Padding}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <local:MaskedImage
-                                x:Name="PART_Rectangle" 
-                                Source="{TemplateBinding Source}"
-                                ImageWidth="{TemplateBinding ImageWidth}" 
-                                ImageHeight="{TemplateBinding ImageHeight}"
-                                ImageColor="{TemplateBinding ImageColor}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
-                            <ContentControl 
-                                Grid.Column="1" 
-                                x:Name="PART_Content"
-                                Content="{TemplateBinding Content}" 
-                                Margin="{TemplateBinding ContentMargin}" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
-                        </Grid>
+                        <local:RippleDecorator
+                            BorderBrush="{TemplateBinding ImageColor}"
+                            IsRippleEnabled="{TemplateBinding IsRippleEnabled}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <local:MaskedImage
+                                    x:Name="PART_Rectangle" 
+                                    Source="{TemplateBinding Source}"
+                                    ImageWidth="{TemplateBinding ImageWidth}" 
+                                    ImageHeight="{TemplateBinding ImageHeight}"
+                                    ImageColor="{TemplateBinding ImageColor}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Source, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                                <ContentControl 
+                                    Grid.Column="1" 
+                                    x:Name="PART_Content"
+                                    Content="{TemplateBinding Content}" 
+                                    Margin="{TemplateBinding ContentMargin}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Content, Converter={StaticResource NullObjectToVisibilityConverter}}"/>
+                            </Grid>
+                        </local:RippleDecorator>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

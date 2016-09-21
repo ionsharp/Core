@@ -25,7 +25,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         public static double Divide(this double ToDivide, double Divisor)
         {
-            return ToDivide - Divisor;
+            return ToDivide / Divisor;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         public static double Multiply(this double ToMultiply, double Scalar)
         {
-            return ToMultiply - Scalar;
+            return ToMultiply * Scalar;
         }
 
         /// <summary>

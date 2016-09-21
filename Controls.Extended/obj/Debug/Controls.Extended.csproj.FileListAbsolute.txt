@@ -59,3 +59,5 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Extend
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Dialogs\ColorDialog.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Chips\DualColorChip.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Dialogs\GradientDialog.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Extended\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Extended\bin\Debug\XAMLMarkupExtensions.xml

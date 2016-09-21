@@ -79,6 +79,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="Data\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Data\Converters\ByteToDoubleConverter.cs" />
+    <Compile Include="Data\Converters\SolidColorBrushToColorConverter.cs" />
     <Compile Include="Data\Converters\SolidColorBrushToHexConverter.cs" />
     <Compile Include="Data\Converters\CollectionCountConverter.cs" />
     <Compile Include="Data\Converters\ColorToSolidColorBrushConverter.cs" />
@@ -106,8 +107,11 @@
     <Compile Include="Events\EventArgs.Generic.cs" />
     <Compile Include="Exceptions\InvalidResultException.cs" />
     <Compile Include="Exceptions\InvalidTokenException.cs" />
+    <Compile Include="Extensions\Bitmap.cs" />
+    <Compile Include="Extensions\BitmapImage.cs" />
     <Compile Include="Extensions\Bool.cs" />
     <Compile Include="Extensions\Byte.cs" />
+    <Compile Include="Extensions\Cursor.cs" />
     <Compile Include="Extensions\Float.cs" />
     <Compile Include="Extensions\LinearGradientBrush.cs" />
     <Compile Include="Extensions\SolidColorBrush.cs" />

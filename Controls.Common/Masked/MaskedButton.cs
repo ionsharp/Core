@@ -1,5 +1,4 @@
-﻿using Imagin.Common;
-using Imagin.Common.Extensions;
+﻿using Imagin.Common.Extensions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -8,6 +7,7 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Common
 {
+    [TemplatePart(Name = "PART_Dropdown", Type = typeof(ContentControl))]
     public class MaskedButton : Button
     {
         #region DependencyProperties
@@ -104,6 +104,19 @@ namespace Imagin.Controls.Common
             set
             {
                 SetValue(IsCheckedProperty, value);
+            }
+        }
+
+        public static DependencyProperty IsRippleEnabledProperty = DependencyProperty.Register("IsRippleEnabled", typeof(bool), typeof(MaskedButton), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool IsRippleEnabled
+        {
+            get
+            {
+                return (bool)GetValue(IsRippleEnabledProperty);
+            }
+            set
+            {
+                SetValue(IsRippleEnabledProperty, value);
             }
         }
 

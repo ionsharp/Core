@@ -4,18 +4,55 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common">
     <Style TargetType="{x:Type local:Line}">
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Line}">
-                    <Rectangle x:Name="PART_Rectangle" Fill="{TemplateBinding Stroke}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle 
+                            x:Name="PART_Rectangle" 
+                            Fill="{TemplateBinding Stroke}"/>
+                        <ContentPresenter 
+                            x:Name="PART_Content"
+                            Content="{TemplateBinding Content}"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Horizontal">
+                            <Setter Property="Padding" Value="0,0,10,0"/>
                             <Setter TargetName="PART_Rectangle" Property="Width" Value="Auto"/>
                             <Setter TargetName="PART_Rectangle" Property="Height" Value="{Binding Thickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="1"/>
                         </Trigger>
                         <Trigger Property="Orientation" Value="Vertical">
+                            <Setter Property="Padding" Value="0,0,0,10"/>
                             <Setter TargetName="PART_Rectangle" Property="Width" Value="{Binding Thickness, RelativeSource={RelativeSource TemplatedParent}}"/>
                             <Setter TargetName="PART_Rectangle" Property="Height" Value="Auto"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="2"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="1"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="PART_Rectangle" Property="Grid.ColumnSpan" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

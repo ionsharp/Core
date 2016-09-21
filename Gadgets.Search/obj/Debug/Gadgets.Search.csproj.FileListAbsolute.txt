@@ -21,7 +21,9 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets\Gadgets
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Gadgets.Search.exe.config
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Gadgets.Search.exe
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Gadgets.Search.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Common.dll
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Controls.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Common.pdb
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Controls.Common.pdb
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Gadgets.Search.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\SearchGadget.g.cs
@@ -31,11 +33,9 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search_MarkupCompile.lref
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\App.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\SearchGadget.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Styles\Brushes.baml
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search.g.resources
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search.Properties.Resources.resources
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Gadgets.Search.csproj.GenerateResource.Cache
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search.exe
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search.pdb
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Common.dll
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Common.pdb
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Styles\Brushes.baml

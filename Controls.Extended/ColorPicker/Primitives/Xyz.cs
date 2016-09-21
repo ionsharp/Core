@@ -31,7 +31,7 @@ namespace Imagin.Controls.Extended.Primitives
     /// 
     /// This structure supports Observer = 2°, Illuminant = D65 by default.
     /// </remarks>
-    public class Xyz
+    public struct Xyz
     {
         #region Properties
 
@@ -51,11 +51,11 @@ namespace Imagin.Controls.Extended.Primitives
 
         public struct MaxValue
         {
-            public static double X = D65[0];
+            public static double X = E[0];
 
-            public static double Y = D65[1];
+            public static double Y = E[1];
 
-            public static double Z = D65[2];
+            public static double Z = E[2];
         }
 
         public struct MinValue
@@ -201,7 +201,7 @@ namespace Imagin.Controls.Extended.Primitives
 
             for (int i = 0; i < 3; i++)
             {
-                Clinear[i] = (Clinear[i] <= 0.0031308) ? 12.92 * Clinear[i] : (1.055 * Math.Pow(Clinear[i], 1d / 2.4)) - 0.055;
+                Clinear[i] = (Clinear[i] <= 0.0031308) ? 12.92 * Clinear[i] : (1.055 * Math.Pow(Clinear[i], 1.0 / 2.4)) - 0.055;
                 Clinear[i] = Math.Round(Clinear[i] * 255.0);
                 Clinear[i] = Clinear[i].Coerce(255.0);
             }

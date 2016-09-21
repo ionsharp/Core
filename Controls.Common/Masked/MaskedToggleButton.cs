@@ -54,6 +54,19 @@ namespace Imagin.Controls.Common
             }
         }
 
+        public static DependencyProperty IsRippleEnabledProperty = DependencyProperty.Register("IsRippleEnabled", typeof(bool), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool IsRippleEnabled
+        {
+            get
+            {
+                return (bool)GetValue(IsRippleEnabledProperty);
+            }
+            set
+            {
+                SetValue(IsRippleEnabledProperty, value);
+            }
+        }
+
         public static DependencyProperty GroupNameProperty = DependencyProperty.Register("GroupName", typeof(string), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnGroupNameChanged));
         public string GroupName
         {

@@ -20,6 +20,19 @@ namespace Imagin.Controls.Extended
         #endregion
 
         #region Dependency
+        
+        public static DependencyProperty CollapseGroupsProperty = DependencyProperty.Register("CollapseGroups", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool CollapseGroups
+        {
+            get
+            {
+                return (bool)GetValue(CollapseGroupsProperty);
+            }
+            set
+            {
+                SetValue(CollapseGroupsProperty, value);
+            }
+        }
 
         public static DependencyProperty GridBackgroundProperty = DependencyProperty.Register("GridBackground", typeof(Brush), typeof(PropertyGrid), new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Brush GridBackground

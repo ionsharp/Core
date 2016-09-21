@@ -8,9 +8,33 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
+        public static int Add(this int ToAdd, int Increment)
+        {
+            return ToAdd + Increment;
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
         public static int Coerce(this int ToCoerce, int Maximum, int Minimum = 0)
         {
             return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static int Divide(this int ToDivide, int Divisor)
+        {
+            return ToDivide / Divisor;
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static int Multiply(this int ToMultiply, int Scalar)
+        {
+            return ToMultiply * Scalar;
         }
 
         /// <summary>
@@ -21,6 +45,30 @@ namespace Imagin.Common.Extensions
             const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var Random = new Random();
             return new string(Enumerable.Repeat(Chars, Length).Select(s => s[Random.Next(s.Length)]).ToArray());
+        }
+
+        /// <summary>
+        /// Imagin.Common: Converts int to byte array.
+        /// </summary>
+        public static byte[] SplitBytes(this int ToSplit)
+        {
+            string s = ToSplit.ToString();
+            byte[] Result = new byte[s.Length];
+            int i = 0;
+            foreach (char c in s)
+            {
+                Result[i] = c.ToString().ToByte();
+                i++;
+            }
+            return Result;
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static int Subtract(this int ToSubtract, int Decrement)
+        {
+            return ToSubtract - Decrement;
         }
 
         /// <summary>
