@@ -1,0 +1,51 @@
+﻿<Application 
+    x:Class="Imagin.NET.Demo.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.NET.Demo"
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+
+            <System:Double x:Key="DisabledOpacity">0.4</System:Double>
+
+            <Storyboard x:Key="FadeInAnimation">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1.0" Duration="0:0:0.5" AccelerationRatio="0.4" DecelerationRatio="0.4"/>
+            </Storyboard>
+
+            <Style TargetType="{x:Type GridSplitter}">
+                <Setter Property="Background" Value="{DynamicResource Brush.GridSplitter.Background}" />
+            </Style>
+
+            <Style x:Key="H2" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="#007acc"/>
+            </Style>
+
+            <Style x:Key="{x:Type Controls.Common:RadioGroup}" TargetType="{x:Type Controls.Common:RadioGroup}">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="DarkGray" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Brushes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Masked.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ContextMenu.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/DataGrid.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ListView.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/MenuItem.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ScrollViewer.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Slider.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/TreeView.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Window.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

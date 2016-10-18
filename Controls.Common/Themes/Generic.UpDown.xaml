@@ -36,7 +36,7 @@
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid>
                                     <TextBlock 
-                                            Foreground="{DynamicResource PlaceholderForeground}" 
+                                            Foreground="{TemplateBinding PlaceholderForeground}" 
                                             FontSize="{TemplateBinding FontSize}"
                                             FontFamily="{TemplateBinding FontFamily}"
                                             Text="{TemplateBinding Placeholder}" 

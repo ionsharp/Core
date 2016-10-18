@@ -27,126 +27,136 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
-        public static IEnumerable<T> GetChildren<T>(this DependencyObject Parent) where T : DependencyObject
+        public static IEnumerable<T> GetVisualChildren<T>(this DependencyObject Parent) where T : DependencyObject
         {
             if (Parent != null)
             {
                 for (int i = 0; i < VisualTreeHelper.GetChildrenCount(Parent); i++)
                 {
-                    DependencyObject Child = VisualTreeHelper.GetChild(Parent, i);
+                    var Child = VisualTreeHelper.GetChild(Parent, i);
                     if (Child != null && Child is T)
                         yield return (T)Child;
-                    foreach (T childOfChild in GetChildren<T>(Child))
-                        yield return childOfChild;
+                    foreach (var ChildOfChild in GetVisualChildren<T>(Child))
+                        yield return ChildOfChild;
                 }
             }
         }
 
         /// <summary>
-        /// Imagin.Common: Tries its best to return the specified element's parent. It will 
-        /// try to find, in this order, the VisualParent, LogicalParent, LogicalTemplatedParent.
-        /// It only works for Visual, FrameworkElement or FrameworkContentElement.
+        /// Imagin.Common: Attempts to find parent for specified object in following order: 
+        /// VisualParent -> LogicalParent -> LogicalTemplatedParent.
         /// </summary>
-        /// <param name="element">The element to which to return the parent. It will only 
-        /// work if element is a Visual, a FrameworkElement or a FrameworkContentElement.</param>
-        /// <remarks>If the logical parent is not found (Parent), we check the TemplatedParent
-        /// (see FrameworkElement.Parent documentation). But, we never actually witnessed
-        /// this situation.</remarks>
-        public static DependencyObject GetParent(this DependencyObject element)
+        /// <remarks>
+        /// Visual, FrameworkElement, and FrameworkContentElement types are supported.
+        /// If the logical parent is not found, we try TemplatedParent
+        /// </remarks>
+        /// <param name="Object">The object to get the parent for.</param>
+        public static DependencyObject GetParent(this DependencyObject Object)
         {
-            return element.GetParent(true);
-        }
-
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
-        static DependencyObject GetParent(this DependencyObject element, bool recurseIntoPopup)
-        {
-            if (recurseIntoPopup)
+            if (Object is Popup)
             {
-                // Case 126732 : To correctly detect parent of a popup we must do that exception case
-                Popup popup = element as Popup;
-                if ((popup != null) && (popup.PlacementTarget != null))
-                    return popup.PlacementTarget;
+                //Case 126732 : To correctly detect parent of a popup we must do that exception case
+                var Popup = Object as Popup;
+                if (Popup != null && Popup.PlacementTarget != null)
+                    return Popup.PlacementTarget;
             }
 
-            Visual visual = element as Visual;
-            DependencyObject parent = (visual == null) ? null : VisualTreeHelper.GetParent(visual);
-
-            if (parent == null)
+            Visual Visual = Object as Visual;
+            DependencyObject Parent = Visual == null ? null : VisualTreeHelper.GetParent(Visual);
+            if (Parent == null)
             {
-                // No Visual parent. Check in the logical tree.
-                FrameworkElement fe = element as FrameworkElement;
-
-                if (fe != null)
+                //No visual parent, check logical tree.
+                var FrameworkElement = Object as FrameworkElement;
+                if (FrameworkElement != null)
                 {
-                    parent = fe.Parent;
-
-                    if (parent == null)
-                    {
-                        parent = fe.TemplatedParent;
-                    }
+                    Parent = FrameworkElement.Parent;
+                    if (Parent == null)
+                        Parent = FrameworkElement.TemplatedParent;
                 }
                 else
                 {
-                    FrameworkContentElement fce = element as FrameworkContentElement;
-                    if (fce != null)
+                    var FrameworkContentElement = Object as FrameworkContentElement;
+                    if (FrameworkContentElement != null)
                     {
-                        parent = fce.Parent;
-
-                        if (parent == null)
-                        {
-                            parent = fce.TemplatedParent;
-                        }
+                        Parent = FrameworkContentElement.Parent;
+                        if (Parent == null)
+                            Parent = FrameworkContentElement.TemplatedParent;
                     }
                 }
             }
-            return parent;
-        }
-
-        /// <summary>
-        /// Imagin.Common: Returns true if the specified element is a child of parent somewhere in the visual 
-        /// tree. This method will work for Visual, FrameworkElement and FrameworkContentElement.
-        /// </summary>
-        /// <param name="element">The element that is potentially a child of the specified parent.</param>
-        /// <param name="parent">The element that is potentially a parent of the specified element.</param>
-        public static bool IsDescendantOf(this DependencyObject element, DependencyObject parent)
-        {
-            return element.IsDescendantOf(parent, true);
-        }
-
-        /// <summary>
-        /// Imagin.Common: Returns true if the specified element is a child of parent somewhere in the visual 
-        /// tree. This method will work for Visual, FrameworkElement and FrameworkContentElement.
-        /// </summary>
-        /// <param name="element">The element that is potentially a child of the specified parent.</param>
-        /// <param name="parent">The element that is potentially a parent of the specified element.</param>
-        public static bool IsDescendantOf(this DependencyObject element, DependencyObject parent, bool recurseIntoPopup)
-        {
-            while (element != null)
-            {
-                if (element == parent)
-                    return true;
-
-                element = element.GetParent(recurseIntoPopup);
-            }
-
-            return false;
+            return Parent;
         }
 
         /// <summary>
         /// Imagin.Common
         /// </summary>
-        public static T FindParent<T>(this DependencyObject Child) where T : DependencyObject
+        public static T GetParent<T>(this DependencyObject Object) where T : DependencyObject
+        {
+            var Parent = Object.GetParent();
+            while (Parent != null && !Parent.Is<T>())
+                Parent = Parent.GetParent();
+            return Parent.As<T>();
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static DependencyObject GetLogicalParent(this DependencyObject Child)
+        {
+            return LogicalTreeHelper.GetParent(Child);
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static T GetLogicalParent<T>(this DependencyObject Child) where T : DependencyObject
         {
             do
             {
-                if (Child is T)
-                    return (T)Child;
-                Child = VisualTreeHelper.GetParent(Child);
+                if (Child is T) return (T)Child;
+                Child = Child.GetLogicalParent();
             }
             while (Child != null);
             return null;
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static DependencyObject GetVisualParent(this DependencyObject Child)
+        {
+            return VisualTreeHelper.GetParent(Child);
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static T GetVisualParent<T>(this DependencyObject Child) where T : DependencyObject
+        {
+            do
+            {
+                if (Child is T) return (T)Child;
+                Child = Child.GetVisualParent();
+            }
+            while (Child != null);
+            return null;
+        }
+
+        /// <summary>
+        /// Imagin.Common: Returns true if the specified element is a child of parent somewhere in the visual 
+        /// tree. This method will work for Visual, FrameworkElement and FrameworkContentElement.
+        /// </summary>
+        /// <param name="element">The element that is potentially a child of the specified parent.</param>
+        /// <param name="parent">The element that is potentially a parent of the specified element.</param>
+        public static bool IsDescendantOf(this DependencyObject Object, DependencyObject Parent)
+        {
+            while (Object != null)
+            {
+                if (Object == Parent)
+                    return true;
+                Object = Object.GetParent();
+            }
+            return false;
         }
 
         /// <summary>
@@ -173,13 +183,6 @@ namespace Imagin.Common.Extensions
                     }
                 }
             }
-        }
-
-        public static T VisualUpwardSearch<T>(this DependencyObject Source)
-        {
-            while (Source != null && !Source.Is<T>())
-                Source = VisualTreeHelper.GetParent(Source);
-            return Source.As<T>();
         }
     }
 }

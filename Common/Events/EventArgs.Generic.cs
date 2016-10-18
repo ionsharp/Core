@@ -13,9 +13,16 @@ namespace Imagin.Common.Events
             }
         }
 
-        public EventArgs(T Value)
+        object parameter;
+        public object Parameter
+        {
+            get; set;
+        }
+
+        public EventArgs(T Value, object Parameter = null)
         {
             this.value = Value;
+            this.parameter = Parameter;
         }
     }
 }

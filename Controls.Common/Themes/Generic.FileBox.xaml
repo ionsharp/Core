@@ -64,6 +64,7 @@
                             <local:MaskedButton 
                                 Grid.Column="2" 
                                 x:Name="PART_BrowseButton"
+                                Focusable="False"
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png" 
                                 Padding="5,0" 
                                 ToolTip="Click to browse..."

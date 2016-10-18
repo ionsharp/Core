@@ -22,6 +22,7 @@ namespace Imagin.Common.Data.Converters
             if (Value == "/" || Value == @"\" || Value.EndsWith(@":\"))
                 return Value;
             Parameters Type = parameter == null ? Parameters.With : ((string)parameter).ParseEnum<Parameters>();
+
             return Type == Parameters.With ? Value.GetFileName() : Value.GetFileNameWithoutExtension();
         }
 

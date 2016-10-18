@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\
 Imagin.Controls.Common
 none
 false
 DEBUG;TRACE
 
-22-1665312649
+23-1232612496
 
-441085973627
-171213651875
-DirectionPad.xaml;FontSizeBox.xaml;FontFamilyBox.xaml;Themes\Generic.AdvancedDataGrid.xaml;Themes\Generic.AdvancedListView.xaml;Themes\Generic.AdvancedTextBox.xaml;Themes\Generic.AdvancedTreeView.xaml;Themes\Generic.RippleDecorator.xaml;Themes\Generic.CheckerBoard.xaml;Themes\Generic.EditableLabel.xaml;Themes\Generic.Gadget.xaml;Themes\Generic.Masked.xaml;Themes\Generic.DragSelection.xaml;Themes\Generic.FileBox.xaml;Themes\Generic.Line.xaml;Themes\Generic.Link.xaml;Themes\Generic.PasswordBox.xaml;Themes\Generic.RadioGroup.xaml;Themes\Generic.ThicknessBox.xaml;Themes\Generic.TreeViewComboBox.xaml;Themes\Generic.UpDown.xaml;Themes\Generic.xaml;
+57132959636
+17-361885592
+DirectionPad.xaml;FontSizeBox.xaml;FontFamilyBox.xaml;Themes\Generic.AdvancedItemsControl.xaml;Themes\Generic.AdvancedDataGrid.xaml;Themes\Generic.AdvancedListView.xaml;Themes\Generic.AdvancedTextBox.xaml;Themes\Generic.AdvancedTreeView.xaml;Themes\Generic.RippleDecorator.xaml;Themes\Generic.CheckerBoard.xaml;Themes\Generic.EditableLabel.xaml;Themes\Generic.Gadget.xaml;Themes\Generic.Masked.xaml;Themes\Generic.DragSelection.xaml;Themes\Generic.FileBox.xaml;Themes\Generic.Line.xaml;Themes\Generic.Link.xaml;Themes\Generic.PasswordBox.xaml;Themes\Generic.RadioGroup.xaml;Themes\Generic.TreeViewComboBox.xaml;Themes\Generic.DateTimeUpDown.xaml;Themes\Generic.UpDown.xaml;Themes\Generic.xaml;
 
 False
 

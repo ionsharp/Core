@@ -2,8 +2,78 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:Imagin.Controls.Common">
-    <Style TargetType="{x:Type local:AdvancedTreeView}">
+    xmlns:local="clr-namespace:Imagin.Controls.Common"
+    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
+    <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    
+    <Style x:Key="Style.AdvancedTreeView.ScrollViewer" TargetType="ScrollViewer">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollViewer">
+                    <Border 
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        Padding="{TemplateBinding Padding}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!--
+                            <local:TreeViewColumnHeadersPresenter
+                                Grid.ColumnSpan="2"
+                                Background="{DynamicResource Brush.TreeView.ColumnHeader.Background}"
+                                Columns="{Binding TemplatedParent.Columns, RelativeSource={RelativeSource TemplatedParent}}"
+                                MinHeight="{Binding ActualHeight, Mode=OneTime, RelativeSource={RelativeSource Self}}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                Visibility="{Binding TemplatedParent.ColumnHeaderVisibility, RelativeSource={RelativeSource TemplatedParent}}">
+                                <local:TreeViewColumnHeadersPresenter.ItemTemplate>
+                                    <DataTemplate>
+                                        <local:TreeViewColumnPresenter
+                                            Content="{Binding}"
+                                            ContentStringFormat="{Binding TemplatedParent.ColumnHeaderStringFormat, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}}"
+                                            ContentTemplate="{Binding TemplatedParent.ColumnHeaderTemplate, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}}"
+                                            ContentTemplateSelector="{Binding TemplatedParent.ColumnHeaderTemplateSelector, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}}"
+                                            HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
+                                            VerticalContentAlignment="{Binding VerticalContentAlignment}"/>
+                                    </DataTemplate>
+                                </local:TreeViewColumnHeadersPresenter.ItemTemplate>
+                            </local:TreeViewColumnHeadersPresenter>
+                            -->
+                            <ScrollContentPresenter 
+                                Grid.ColumnSpan="2"
+                                Grid.Row="0" 
+                                Name="PART_ScrollContentPresenter" 
+                                KeyboardNavigation.DirectionalNavigation="Local"/>
+                            <ScrollBar 
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Name="PART_VerticalScrollBar"
+                                Maximum="{TemplateBinding ScrollableHeight}"
+                                ViewportSize="{TemplateBinding ViewportHeight}"
+                                Value="{TemplateBinding VerticalOffset}"
+                                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                            <ScrollBar 
+                                Grid.Row="1"
+                                Name="PART_HorizontalScrollBar"
+                                Orientation="Horizontal"
+                                Maximum="{TemplateBinding ScrollableWidth}"
+                                ViewportSize="{TemplateBinding ViewportWidth}"
+                                Value="{TemplateBinding HorizontalOffset}"
+                                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type local:AdvancedTreeView}" TargetType="{x:Type local:AdvancedTreeView}">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
@@ -15,13 +85,18 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AdvancedTreeView}">
                     <ScrollViewer 
-                        BorderThickness="{TemplateBinding BorderThickness}" 
-                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        x:Name="PART_ScrollViewer"
                         Background="{TemplateBinding Background}" 
-                        Padding="{TemplateBinding Padding}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CanContentScroll="True"
                         Focusable="False" 
-                        CanContentScroll="True">
-                        <ItemsPresenter HorizontalAlignment="Stretch"/>
+                        Padding="{TemplateBinding Padding}" 
+                        Style="{StaticResource Style.AdvancedTreeView.ScrollViewer}">
+                        <Grid x:Name="PART_Grid" Background="Transparent" ClipToBounds="True" Margin="{TemplateBinding Padding}">
+                            <ItemsPresenter HorizontalAlignment="Stretch"/>
+                            <local:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding DragSelection}"/>
+                        </Grid>
                     </ScrollViewer>
                 </ControlTemplate>
             </Setter.Value>

@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Gadgets.Search"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
-    xmlns:Gadgets="clr-namespace:Imagin.Gadgets;assembly=Imagin.Gadgets"
     mc:Ignorable="d"
     Title="Search"
     x:Name="PART_MainWindow"

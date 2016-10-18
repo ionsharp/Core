@@ -236,8 +236,7 @@ namespace Imagin.Controls.Common
                 this.Direction = CompassDirection.Origin;
 
             ShiftType Shift = this.Shifts[(int)Model.Direction];
-            if (Shift == ShiftType.None)
-                return;
+            if (Shift == ShiftType.None) return;
 
             foreach (Model d in this.Items)
             {
@@ -247,8 +246,8 @@ namespace Imagin.Controls.Common
                 if (Shift.HasFlag(ShiftType.Right)) d.Column++;
             }
 
-            Model Origin = this.Items.Where(x => x.Direction == CompassDirection.Origin).First();
-            RowColumn RowColumn = new RowColumn(Origin.Row, Origin.Column);
+            var Origin = this.Items.Where(x => x.Direction == CompassDirection.Origin).First();
+            var RowColumn = new RowColumn(Origin.Row, Origin.Column);
             this.Direction = (CompassDirection)this.Directions[(--RowColumn.Row).ToInt(), (--RowColumn.Column).ToInt()]; 
         }
 

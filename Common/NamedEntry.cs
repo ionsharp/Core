@@ -15,8 +15,8 @@ namespace Imagin.Common
 
         protected string name = string.Empty;
         [Category("General")]
+        [Description("The name of the object.")]
         [Featured(true)]
-        [XmlElement(ElementName = "Name", Namespace = "")]
         public virtual string Name
         {
             get
@@ -60,6 +60,7 @@ namespace Imagin.Common
         public NamedEntry(DateTime Date, int NotifyEvery = 1000) : base(Date, NotifyEvery)
         {
         }
+        
         #endregion
     }
 }

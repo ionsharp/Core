@@ -8,6 +8,19 @@ namespace Imagin.Controls.Common
     /// </summary>
     public class RadioGroup : ItemsControl
     {
+        public static DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(RadioGroup), new FrameworkPropertyMetadata(default(CornerRadius), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public CornerRadius CornerRadius
+        {
+            get
+            {
+                return (CornerRadius)GetValue(CornerRadiusProperty);
+            }
+            set
+            {
+                SetValue(CornerRadiusProperty, value);
+            }
+        }
+
         public static DependencyProperty GroupNameProperty = DependencyProperty.Register("GroupName", typeof(string), typeof(RadioGroup), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnGroupNameChanged));
         public string GroupName
         {

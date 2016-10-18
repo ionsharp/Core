@@ -1,6 +1,8 @@
-﻿using Imagin.Common;
+﻿using Imagin.Common.Attributes;
 using System;
+using System.ComponentModel;
 using System.Timers;
+using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
@@ -12,8 +14,16 @@ namespace Imagin.Common
     {
         #region Properties
 
-        DateTime date = DateTime.UtcNow;
-        public DateTime Date
+        Timer Timer
+        {
+            get; set;
+        }
+
+        [XmlIgnore]
+        protected DateTime date = DateTime.UtcNow;
+        [Category("General")]
+        [Description("The entry date.")]
+        public virtual DateTime Date
         {
             get
             {
@@ -26,14 +36,11 @@ namespace Imagin.Common
             }
         }
 
-        public int NotifyEvery
+        [Browsable(false)]
+        [XmlIgnore]
+        public int NotificationInterval
         {
             get; set;
-        }
-
-        public Timer Timer
-        {
-            get; private set;
         }
 
         #endregion
@@ -43,7 +50,7 @@ namespace Imagin.Common
         protected virtual void OnInitialized()
         {
             this.Timer = new Timer();
-            this.Timer.Interval = this.NotifyEvery;
+            this.Timer.Interval = this.NotificationInterval;
             this.Timer.Elapsed += (s, e) => OnPropertyChanged("Date");
             this.Timer.Start();
         }
@@ -54,14 +61,14 @@ namespace Imagin.Common
 
         public Entry(int NotifyEvery = 1000)
         {
-            this.NotifyEvery = NotifyEvery;
+            this.NotificationInterval = NotifyEvery;
             this.OnInitialized();
         }
 
         public Entry(DateTime Date, int NotifyEvery = 1000)
         {
             this.Date = Date;
-            this.NotifyEvery = NotifyEvery;
+            this.NotificationInterval = NotifyEvery;
             this.OnInitialized();
         }
 

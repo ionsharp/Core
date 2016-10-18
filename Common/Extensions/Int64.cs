@@ -47,6 +47,14 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
+        public static double ToDouble(this long ToConvert)
+        {
+            return Convert.ToDouble(ToConvert);
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
         public static string ToFileSize(this long Bytes)
         {
             return Convert.ToDouble(Bytes).ToFileSize();

@@ -11,15 +11,13 @@
                     <ControlTemplate.Resources>
                         <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
                     </ControlTemplate.Resources>
-                    <Grid
-                        MinWidth="{TemplateBinding MinWidth}"
-                        MaxWidth="{TemplateBinding MaxWidth}"
-                        MinHeight="{TemplateBinding MinHeight}"
-                        MaxHeight="{TemplateBinding MaxHeight}"
-                        Width="{TemplateBinding Width}"
-                        Height="{TemplateBinding Height}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                        </Grid.ColumnDefinitions>
                         <ToggleButton 
-                            Grid.Column="2" 
+                            Grid.ColumnSpan="2" 
                             x:Name="ToggleButton" 
                             Foreground="{TemplateBinding Foreground}"
                             Background="{TemplateBinding Background}"
@@ -42,19 +40,36 @@
                                             Background="{TemplateBinding Background}" 
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"/>
-                                        <Border 
-                                            x:Name="PART_Two"
-                                            Grid.Column="0" 
-                                            CornerRadius="0" 
-                                            Margin="1"/>
                                         <Path 
-                                            x:Name="Arrow" 
+                                            x:Name="PART_Arrow" 
                                             Grid.Column="1" 
                                             Fill="{TemplateBinding Foreground}" 
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center" 
-                                            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"/>
+                                            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z">
+                                            <Path.RenderTransform>
+                                                <RotateTransform/>
+                                            </Path.RenderTransform>
+                                        </Path>
                                     </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="PART_Arrow" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="90" Duration="0:0:0.4"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="PART_Arrow" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="0" Duration="0:0:0.4"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </ToggleButton.Template>
                         </ToggleButton>
@@ -95,8 +110,8 @@
                                         ItemStringFormat="{TemplateBinding ItemStringFormat}"
                                         ItemTemplate="{TemplateBinding ItemTemplate}"
                                         ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                        ExpandItemOnClick="False"
-                                        CollapseItemSiblingsOnClick="False"
+                                        ExpandOnClick="False"
+                                        CollapseSiblingsOnClick="False"
                                         BorderThickness="0" 
                                         Margin="10,5"/>
                                 </Border>

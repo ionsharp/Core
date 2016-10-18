@@ -40,7 +40,7 @@ namespace Imagin.Common.Web
                 {
                     case HttpStatusCode.Found:
                         // This is a redirect to an error page, so ignore.
-                        Console.WriteLine("Found (302), ignoring ");
+                        //Console.WriteLine("Found (302), ignoring ");
                         break;
 
                     case HttpStatusCode.OK:
@@ -56,13 +56,13 @@ namespace Imagin.Common.Web
 
                     default:
                         // This is unexpected.
-                        Console.WriteLine(Response.StatusCode);
+                        //Console.WriteLine(Response.StatusCode);
                         break;
                 }
             }
             catch (WebException ex)
             {
-                Console.WriteLine(":Exception " + ex.Message);
+                //Console.WriteLine(":Exception " + ex.Message);
                 Response = ex.Response as HttpWebResponse;
             }
         }

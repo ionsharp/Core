@@ -4,8 +4,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common">
     <Style x:Key="{x:Type local:DragSelection}" TargetType="{x:Type local:DragSelection}">
-        <Setter Property="Background" Value="#349ADE"/>
-        <Setter Property="BorderBrush" Value="#FF2B97E0"/>
+        <Setter Property="Background" Value="#55349ADE"/>
+        <Setter Property="BorderBrush" Value="#2489cd"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -18,7 +18,6 @@
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             Background="{TemplateBinding Background}" 
                             CornerRadius="1" 
-                            Opacity="0.5" 
                             Width="{Binding Selection.Width}" 
                             Height="{Binding Selection.Height}">
                             <Border.RenderTransform>

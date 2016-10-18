@@ -111,5 +111,13 @@ namespace Imagin.Common.Extensions
                 Result += "th";
             return Result;
         }
+
+        /// <summary>
+        /// Imagin.Common: Checks if given number is within given range.
+        /// </summary>
+        public static bool WithinRange(this int Number, int Min, int Max)
+        {
+            return Number >= Min && Number <= Max;
+        }
     }
 }

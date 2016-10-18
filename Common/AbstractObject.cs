@@ -3,8 +3,11 @@ using System.ComponentModel;
 
 namespace Imagin.Common
 {
+    /// <summary>
+    /// A base for abstract objects (implements INotifyPropertyChanged).
+    /// </summary>
     [Serializable]
-    public abstract class AbstractObject : INotifyPropertyChanged, ICloneable
+    public abstract class AbstractObject : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
 
@@ -17,15 +20,6 @@ namespace Imagin.Common
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-        }
-
-        #endregion
-
-        #region ICloneable
-
-        public object Clone()
-        {
-            return this.MemberwiseClone();
         }
 
         #endregion

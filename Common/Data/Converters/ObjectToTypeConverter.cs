@@ -9,13 +9,7 @@ namespace Imagin.Common.Data.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return null;
-            if (parameter != null && parameter.ToString() == "asdf")
-            {
-                Console.WriteLine("\n\n" + value.GetType().ToString());
-            }
-            return value.GetType();
+            return value == null ? null : value.GetType();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

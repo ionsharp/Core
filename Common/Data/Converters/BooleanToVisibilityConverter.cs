@@ -2,25 +2,58 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Common.Data.Converters
 {
     [ValueConversion(typeof(bool), typeof(Visibility))]
     public class BooleanToVisibilityConverter : IValueConverter
     {
-        enum Parameters
+        enum Mode
         {
-            Normal, Inverted
+            Normal,
+            Inverted
         }
+
+        Visibility GetInverse(Visibility Visibility)
+        {
+            return Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+        }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var boolValue = value is bool ? (bool)value : (value is int ? ((int)value > 0 ? true : false) : false);
-            Parameters Type = parameter == null ? Parameters.Normal : (Parameters)Enum.Parse(typeof(Parameters), (string)parameter);
-            return Type == Parameters.Inverted ? (!boolValue ? Visibility.Visible : Visibility.Collapsed) : (boolValue ? Visibility.Visible : Visibility.Collapsed);
+            if (value != null && value.IsAny(typeof(bool), typeof(int)))
+            {
+                var Value = (bool)value;
+                var Type = Mode.Normal;
+
+                if (parameter is Visibility)
+                    return Value ? Visibility.Visible : parameter;
+                else if (parameter != null)
+                    Type = (Mode)Enum.Parse(typeof(Mode), parameter.ToString());
+
+                var Result = Value ? Visibility.Visible : Visibility.Collapsed;
+                return Type == Mode.Inverted ? GetInverse(Result) : Result;
+            }
+            return Visibility.Collapsed;
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return null;
+            if (value != null && value is Visibility)
+            {
+                var Value = (Visibility)value;
+                var Type = Mode.Normal;
+
+                var Result = Value == Visibility.Visible ? true : false;
+                if (parameter is Visibility)
+                    return Result;
+                else if (parameter != null)
+                    Type = (Mode)Enum.Parse(typeof(Mode), parameter.ToString());
+
+                return Type == Mode.Normal ? Result : !Result;
+            }
+            return false;
         }
     }
 }

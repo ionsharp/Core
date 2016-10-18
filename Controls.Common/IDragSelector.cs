@@ -2,22 +2,22 @@
 {
     public interface IDragSelector
     {
-        double ScrollOffset
+        double DragScrollOffset
         {
             get; set;
         }
 
-        double ScrollTolerance
+        double DragScrollTolerance
+        {
+            get; set;
+        }
+
+        Selection DragSelection
         {
             get; set;
         }
 
         bool IsDragSelectionEnabled
-        {
-            get; set;
-        }
-
-        Selection Selection
         {
             get; set;
         }

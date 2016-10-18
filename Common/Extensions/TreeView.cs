@@ -11,8 +11,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         public static void CollapseSiblings(this TreeViewItem Item)
         {
-            Console.WriteLine(Item.GetType().ToString());
-            FrameworkElement Parent = Item.GetParent().As<FrameworkElement>();
+            var Parent = Item.GetParent().As<FrameworkElement>();
             while (!Parent.Is<TreeViewItem>())
             {
                 if (Parent == null || Parent.Is<TreeView>())
@@ -27,6 +26,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         static void CollapseSiblings(this ItemsControl Parent, TreeViewItem Source)
         {
+            if (Parent == null || Parent.Items == null) return;
             foreach (var i in Parent.Items)
             {
                 var c = Parent.ItemContainerGenerator.ContainerFromItem(i);
@@ -35,6 +35,23 @@ namespace Imagin.Common.Extensions
                 if (Child != null && !Child.Equals(Source))
                     Child.IsExpanded = false;
             }
+        }
+
+        /// <summary>
+        /// Imagin.Common: Get node depth for specified TreeViewItem.
+        /// </summary>
+        public static int GetDepth(this TreeViewItem Item)
+        {
+            int Depth = 0;
+
+            var Temp = Item as DependencyObject;
+            while (Temp != null && !Temp.Is<TreeView>())
+            {
+                if (Temp.Is<TreeViewItem>()) Depth++;
+                Temp = Temp.GetParent();
+            }
+
+            return Depth;
         }
     }
 }

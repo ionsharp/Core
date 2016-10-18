@@ -197,13 +197,15 @@ namespace Imagin.Controls.Common
         public MaskedButton()
         {
             this.DefaultStyleKey = typeof(MaskedButton);
-            this.ContentMargin = new Thickness(5, 0, 0, 0);
         }
 
         public override void OnApplyTemplate()
         {
             base.ApplyTemplate();
-            this.Template.FindName("PART_Dropdown", this).As<ContentControl>().MouseLeftButtonDown += OnDropdownMouseLeftButtonDown;
+
+            var d = this.Template.FindName("PART_Dropdown", this).As<ContentControl>();
+            if (d != null)
+                d.MouseLeftButtonDown += OnDropdownMouseLeftButtonDown;
         }
 
         #endregion

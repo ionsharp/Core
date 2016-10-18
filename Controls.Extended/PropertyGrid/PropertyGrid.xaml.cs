@@ -1,10 +1,12 @@
 ﻿using Imagin.Common.Events;
 using Imagin.Common.Extensions;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
@@ -138,12 +140,12 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty PropertiesProperty = DependencyProperty.Register("Properties", typeof(PropertyItemCollection), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public PropertyItemCollection Properties
+        public static DependencyProperty PropertiesProperty = DependencyProperty.Register("Properties", typeof(PropertyModelCollection), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public PropertyModelCollection Properties
         {
             get
             {
-                return (PropertyItemCollection)GetValue(PropertiesProperty);
+                return (PropertyModelCollection)GetValue(PropertiesProperty);
             }
             set
             {
@@ -193,8 +195,34 @@ namespace Imagin.Controls.Extended
                 SetValue(ShowHeaderProperty, value);
             }
         }
+        
+        public static DependencyProperty SortByNameProperty = DependencyProperty.Register("SortByName", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
+        public bool SortByName
+        {
+            get
+            {
+                return (bool)GetValue(IsSortAscendingProperty);
+            }
+            set
+            {
+                SetValue(IsSortAscendingProperty, value);
+            }
+        }
 
-        public static DependencyProperty IsSortAscendingProperty = DependencyProperty.Register("IsSortAscending", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsSortAscendingChanged));
+        public static DependencyProperty SortByTypeProperty = DependencyProperty.Register("SortByType", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
+        public bool SortByType
+        {
+            get
+            {
+                return (bool)GetValue(IsSortAscendingProperty);
+            }
+            set
+            {
+                SetValue(IsSortAscendingProperty, value);
+            }
+        }
+
+        public static DependencyProperty IsSortAscendingProperty = DependencyProperty.Register("IsSortAscending", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
         public bool IsSortAscending
         {
             get
@@ -206,14 +234,8 @@ namespace Imagin.Controls.Extended
                 SetValue(IsSortAscendingProperty, value);
             }
         }
-        static void OnIsSortAscendingChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            PropertyGrid PropertyGrid = (PropertyGrid)Object;
-            if (PropertyGrid.IsSortAscending)
-                PropertyGrid.Sort(ListSortDirection.Ascending);
-        }
 
-        public static DependencyProperty IsSortDescendingProperty = DependencyProperty.Register("IsSortDescending", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsSortDescendingChanged));
+        public static DependencyProperty IsSortDescendingProperty = DependencyProperty.Register("IsSortDescending", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
         public bool IsSortDescending
         {
             get
@@ -225,11 +247,10 @@ namespace Imagin.Controls.Extended
                 SetValue(IsSortDescendingProperty, value);
             }
         }
-        static void OnIsSortDescendingChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+
+        static void OnSortChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            PropertyGrid PropertyGrid = (PropertyGrid)Object;
-            if (PropertyGrid.IsSortDescending)
-                PropertyGrid.Sort(ListSortDirection.Descending);
+            ((PropertyGrid)Object).OnSortChanged();
         }
 
         public static DependencyProperty ShowCategoriesProperty = DependencyProperty.Register("ShowCategories", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnShowCategoriesChanged));
@@ -249,6 +270,19 @@ namespace Imagin.Controls.Extended
             Object.As<PropertyGrid>().Group("Category");
         }
 
+        public static DependencyProperty ShowPropertyDescriptionProperty = DependencyProperty.Register("ShowPropertyDescription", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool ShowPropertyDescription
+        {
+            get
+            {
+                return (bool)GetValue(ShowPropertyDescriptionProperty);
+            }
+            set
+            {
+                SetValue(ShowPropertyDescriptionProperty, value);
+            }
+        }
+        
         #endregion
 
         #endregion
@@ -258,8 +292,13 @@ namespace Imagin.Controls.Extended
         public PropertyGrid()
         {
             InitializeComponent();
-            this.Properties = new PropertyItemCollection();
+
+            this.CommandBindings.Add(new CommandBinding(EditCollectionCommand, this.EditCollectionCommand_Executed, this.EditCollectionCommand_CanExecute));
+            this.CommandBindings.Add(new CommandBinding(ResetCommand, this.ResetCommand_Executed, this.ResetCommand_CanExecute));
+
+            this.Properties = new PropertyModelCollection();
             this.ListCollectionView = new ListCollectionView(this.Properties);
+            this.Sort();
         }
 
         #endregion
@@ -268,15 +307,36 @@ namespace Imagin.Controls.Extended
 
         #region Commands
 
-        void Clear_Executed(object sender, RoutedEventArgs e)
+        public static readonly RoutedUICommand EditCollectionCommand = new RoutedUICommand("EditCollectionCommand", "EditCollectionCommand", typeof(PropertyGrid));
+        void EditCollectionCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            this.SearchQuery = string.Empty;
+            var Window = new Window()
+            {
+                Content = new CollectionEditor()
+                {
+                    Collection = e.Parameter
+                },
+                Height = 425,
+                Title = "Edit Collection",
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                Width = 720
+            };
+            Window.ShowDialog();
+        }
+        void EditCollectionCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = e.Parameter != null;
         }
 
-        void Reset_Executed(object sender, RoutedEventArgs e)
+        public static readonly RoutedUICommand ResetCommand = new RoutedUICommand("ResetCommand", "ResetCommand", typeof(PropertyGrid));
+        void ResetCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            foreach (PropertyItem Item in this.Properties)
-                Item.Value = null;
+            foreach (var i in this.Properties)
+                i.Value = null;
+        }
+        void ResetCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = this.Properties != null && this.Properties.Count > 0;
         }
 
         #endregion
@@ -292,14 +352,17 @@ namespace Imagin.Controls.Extended
                 this.ListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(PropertyName));
         }
 
-        protected void Sort(ListSortDirection Direction)
+        protected void Sort()
         {
-            if (this.ListCollectionView == null)
-                return;
-            this.ListCollectionView.SortDescriptions.Clear();
-            if (this.ShowCategories)
-                this.ListCollectionView.SortDescriptions.Add(new SortDescription("Category", Direction));
-            this.ListCollectionView.SortDescriptions.Add(new SortDescription("Name", Direction));
+            if (this.ListCollectionView != null)
+            {
+                this.ListCollectionView.SortDescriptions.Clear();
+
+                var SortDirection = this.IsSortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+                if (this.ShowCategories)
+                    this.ListCollectionView.SortDescriptions.Add(new SortDescription("Category", SortDirection));
+                this.ListCollectionView.SortDescriptions.Add(new SortDescription(this.SortByName ? "Name" : "Type", SortDirection));
+            }
         }
 
         #endregion
@@ -310,15 +373,19 @@ namespace Imagin.Controls.Extended
         {
             if (this.SelectedObjectChanged != null)
                 this.SelectedObjectChanged(this, new EventArgs<object>(this.SelectedObject));
-            if (this.SelectedObject == null)
-                return;
+            if (this.SelectedObject == null) return;
             this.Properties.Object = this.SelectedObject;
             this.Properties.Clear();
             this.SetObject();
         }
 
+        protected virtual void OnSortChanged()
+        {
+            this.Sort();
+        }
+
         /// <summary>
-        /// Populate this.Properties with PropertyItems representing each member of the SelectedObject.
+        /// Populate this.Properties with PropertyModels representing each member of the SelectedObject.
         /// </summary>
         protected virtual void SetObject()
         {

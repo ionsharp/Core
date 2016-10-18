@@ -18,7 +18,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AdvancedListView}">
                     <ControlTemplate.Resources>
-                        <Style x:Key="GridViewStyle" TargetType="{x:Type ScrollViewer}">
+                        <Style x:Key="Style.ListView.ScrollViewer" TargetType="{x:Type ScrollViewer}">
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ScrollViewer">
@@ -33,7 +33,9 @@
                                                     <RowDefinition Height="*"/>
                                                     <RowDefinition Height="Auto"/>
                                                 </Grid.RowDefinitions>
-                                                <Border Grid.ColumnSpan="2" Background="#11000000">
+                                                <Border 
+                                                    Grid.ColumnSpan="2" 
+                                                    Background="{DynamicResource Brush.GridView.Background}">
                                                     <GridViewHeaderRowPresenter 
                                                         HorizontalAlignment="Stretch"
                                                         Columns="{Binding TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}"
@@ -84,7 +86,7 @@
                             Background="Transparent" 
                             ClipToBounds="True">
                             <ItemsPresenter Margin="{TemplateBinding Padding}"/>
-                            <local:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding Selection}"/>
+                            <local:DragSelection x:Name="PART_DragSelection" Selection="{TemplateBinding DragSelection}"/>
                         </Grid>
                     </ScrollViewer>
                     <ControlTemplate.Triggers>
@@ -92,7 +94,7 @@
                             <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding View, Converter={StaticResource ObjectToTypeConverter}, RelativeSource={RelativeSource Self}, ConverterParameter=asdf}" Value="{x:Type GridView}">
-                            <Setter TargetName="PART_ScrollViewer" Property="Style" Value="{StaticResource GridViewStyle}"/>
+                            <Setter TargetName="PART_ScrollViewer" Property="Style" Value="{StaticResource Style.ListView.ScrollViewer}"/>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

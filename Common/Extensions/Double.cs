@@ -28,6 +28,13 @@ namespace Imagin.Common.Extensions
             return ToDivide / Divisor;
         }
 
+        public static TimeSpan GetRemaining(this TimeSpan Elapsed, long TotalBytes, long ProcessedBytes)
+        {
+            var Lines = (ProcessedBytes.ToDouble() / TotalBytes.ToDouble()).Multiply(100.0);
+            Lines = Lines == 0.0 ? 1.0 : Lines;
+            return TimeSpan.FromSeconds(Elapsed.TotalSeconds.Divide(Lines).Multiply(100.0.Subtract(Lines)));
+        }
+
         /// <summary>
         /// Imagin.Common
         /// </summary>
@@ -104,6 +111,14 @@ namespace Imagin.Common.Extensions
         public static int ToInt(this double ToConvert)
         {
             return Convert.ToInt32(ToConvert);
+        }
+
+        /// <summary>
+        /// Imagin.Common: Converts double to long.
+        /// </summary>
+        public static long ToLong(this double ToConvert)
+        {
+            return Convert.ToInt64(ToConvert);
         }
 
         /// <summary>

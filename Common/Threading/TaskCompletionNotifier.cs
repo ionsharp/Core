@@ -76,8 +76,8 @@ namespace Imagin.Common.Threading
         public TaskCompletionNotifier(Task<TResult> task)
         {
             this.Task = task;
-            if (task.IsCompleted)
-                return;
+            if (task.IsCompleted) return;
+
             var Scheduler = (SynchronizationContext.Current == null) ? TaskScheduler.Current : TaskScheduler.FromCurrentSynchronizationContext();
             task.ContinueWith(t =>
             {

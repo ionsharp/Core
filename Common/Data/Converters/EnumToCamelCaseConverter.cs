@@ -12,6 +12,7 @@ namespace Imagin.Common.Data.Converters
         {
             return value == null ? string.Empty : value.ToString().SplitCamelCase();
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;

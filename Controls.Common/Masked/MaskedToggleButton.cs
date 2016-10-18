@@ -1,4 +1,4 @@
-﻿using Imagin.Common;
+﻿using Imagin.Common.Extensions;
 using System;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -93,16 +93,14 @@ namespace Imagin.Controls.Common
 
         private void MaskedToggleButton_Checked(object sender, EventArgs e)
         {
-            //We only want to affect the other values if current is true. This avoids other controls from attempting to execute same method when their values have changed.
-            //In order for this to work, all controls sharing same group name should be in same parent.
-            DependencyObject Parent = this.FindParent<DependencyObject>(this);
+            DependencyObject Parent = this.GetParent<DependencyObject>();
             for (int i = 0, Count = VisualTreeHelper.GetChildrenCount(Parent); i < Count; i++)
             {
                 var Child = VisualTreeHelper.GetChild(Parent, i);
-                if (!(Child is MaskedToggleButton)) continue; //If it's not same type of control, skip it
+                if (!(Child is MaskedToggleButton)) continue; 
                 MaskedToggleButton Button = Child as MaskedToggleButton;
-                if (Button == this) continue; //If we're at this, skip it
-                Button.IsChecked = false; //If it's not this, we'll want to uncheck it.
+                if (Button == this) continue; 
+                Button.IsChecked = false; 
             }
         }
 
@@ -174,14 +172,6 @@ namespace Imagin.Controls.Common
         #endregion
 
         #region Methods
-
-        private T FindParent<T>(DependencyObject child) where T : DependencyObject
-        {
-            DependencyObject parentObject = VisualTreeHelper.GetParent(child); //Get parent item
-            if (parentObject == null) return null; //We've reached the end of the tree
-            T parent = parentObject as T; //Check if the parent matches the type we're looking for
-            if (parent != null) return parent; else return FindParent<T>(parentObject);
-        }
 
         public void SetGroup()
         {

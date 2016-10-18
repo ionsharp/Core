@@ -8,10 +8,12 @@ namespace Imagin.Common
     [Serializable]
     public class NamedObject : AbstractObject, IEditable, INamable
     {
+        [XmlIgnore]
         protected string name = string.Empty;
         [Category("General")]
+        [Description("The name of the object.")]
         [Featured(true)]
-        [XmlElement(ElementName = "Name", Namespace = "")]
+        [XmlElement(ElementName = "Name")]
         public virtual string Name
         {
             get
@@ -26,7 +28,7 @@ namespace Imagin.Common
         }
 
         bool isEditable = false;
-        [Hide(true)]
+        [Browsable(false)]
         [XmlIgnore]
         public bool IsEditable
         {

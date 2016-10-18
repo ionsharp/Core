@@ -7,70 +7,73 @@
     
     <System:Double x:Key="DisabledOpacity">0.4</System:Double>
 
-    <Style TargetType="local:RadioGroup">
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-        <Setter Property="ItemContainerStyle">
+    <Style x:Key="Style.RadioButton" TargetType="{x:Type RadioButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:RadioGroup}}}"/>
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:RadioGroup}}}"/>
+        <Setter Property="Template">
             <Setter.Value>
-                <Style TargetType="{x:Type RadioButton}">
-                    <Setter Property="Cursor" Value="Hand" />
-                    <Setter Property="FontSize" Value="13" />
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type RadioButton}">
-                                <BulletDecorator Background="Transparent" Cursor="Hand">
-                                    <Border 
-                                        Background="{TemplateBinding Background}" 
-                                        Margin="0,0,-1,0" 
-                                        BorderThickness="0,0,1,0"
-                                        BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:RadioGroup}}}">
-                                        <TextBlock 
-                                            Margin="7,2" 
-                                            Foreground="{TemplateBinding Foreground}" 
-                                            FontSize="12"><InlineUIContainer><ContentPresenter /></InlineUIContainer></TextBlock>
-                                    </Border>
-                                </BulletDecorator>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#11000000" />
-                                    </Trigger>
-                                    <Trigger Property="IsChecked" Value="True">
-                                        <Setter Property="Background" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:RadioGroup}}}" />
-                                        <Setter Property="Foreground" Value="#FFF" />
-                                    </Trigger>
-                                    <Trigger Property="IsChecked" Value="False">
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:RadioGroup}}}" />
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator>
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="0,0,1,0"
+                            Margin="0,0,-1,0">
+                            <TextBlock 
+                                Margin="7,2" 
+                                FontFamily="{TemplateBinding FontFamily}"
+                                FontSize="{TemplateBinding FontSize}"
+                                FontStretch="{TemplateBinding FontStretch}"
+                                FontWeight="{TemplateBinding FontWeight}"
+                                Foreground="{TemplateBinding Foreground}">
+                                <InlineUIContainer><ContentPresenter /></InlineUIContainer>
+                            </TextBlock>
+                        </Border>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="{DynamicResource Brush.RadioGroup.MouseOver.Background}" />
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter Property="Foreground" Value="{DynamicResource Brush.RadioGroup.MouseOver.Foreground}" />
+                        </MultiTrigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="{Binding BorderBrush, RelativeSource={RelativeSource Self}}" />
+                            <Setter Property="Cursor" Value="Arrow" />
+                            <Setter Property="Foreground" Value="{DynamicResource Brush.RadioGroup.Checked.Foreground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="local:RadioGroup">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource Style.RadioButton}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RadioGroup}">
-                    <Grid>
-                        <Border 
-                            CornerRadius="4" 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}"  
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            Padding="{TemplateBinding Padding}" 
-                            Margin="{TemplateBinding Margin}">
-                            <StackPanel 
-                                IsItemsHost="True" 
-                                Orientation="Horizontal" 
-                                ClipToBounds="True"/>
-                        </Border>
-                    </Grid>
+                    <Border 
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}"  
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="{TemplateBinding CornerRadius}" 
+                        Padding="{TemplateBinding Padding}" 
+                        Margin="{TemplateBinding Margin}">
+                        <StackPanel  
+                            ClipToBounds="True"
+                            IsItemsHost="True" 
+                            Orientation="Horizontal"/>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

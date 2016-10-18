@@ -38,15 +38,15 @@ namespace Imagin.Common.Behavior
 
         #region Always On Bottom
 
+        public static readonly DependencyProperty AlwaysOnBottom = DependencyProperty.RegisterAttached("IsWatermarkEnabled", typeof(bool), typeof(WindowBehavior), new UIPropertyMetadata(false, OnAlwaysOnBottomChanged));
         public static bool GetAlwaysOnBottom(DependencyObject obj)
-                {
-                    return (bool)obj.GetValue(AlwaysOnBottom);
-                }
+        {
+            return (bool)obj.GetValue(AlwaysOnBottom);
+        }
         public static void SetAlwaysOnBottom(DependencyObject obj, bool value)
         {
-                    obj.SetValue(AlwaysOnBottom, value);
+            obj.SetValue(AlwaysOnBottom, value);
         }
-        public static readonly DependencyProperty AlwaysOnBottom = DependencyProperty.RegisterAttached("IsWatermarkEnabled", typeof(bool), typeof(WindowBehavior), new UIPropertyMetadata(false, OnAlwaysOnBottomChanged));
         static void OnAlwaysOnBottomChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             Window = sender as Window;
@@ -73,14 +73,14 @@ namespace Imagin.Common.Behavior
         static extern bool EndDeferWindowPos(IntPtr hWinPosInfo);
 
         static void Window_Loaded(object sender, RoutedEventArgs e)
-                {
-                    IntPtr hWnd = new WindowInteropHelper(Window).Handle;
-                    SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
+        {
+            IntPtr hWnd = new WindowInteropHelper(Window).Handle;
+            SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
 
-                    IntPtr windowHandle = (new WindowInteropHelper(Window)).Handle;
-                    HwndSource src = HwndSource.FromHwnd(windowHandle);
-                    src.AddHook(new HwndSourceHook(WndProc));
-                }
+            IntPtr windowHandle = (new WindowInteropHelper(Window)).Handle;
+            HwndSource src = HwndSource.FromHwnd(windowHandle);
+            src.AddHook(new HwndSourceHook(WndProc));
+        }
 
         static void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

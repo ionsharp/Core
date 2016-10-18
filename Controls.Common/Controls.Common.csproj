@@ -59,9 +59,19 @@
   <ItemGroup>
     <Compile Include="AbstractView.cs" />
     <Compile Include="AdvancedComboBox.cs" />
-    <Compile Include="AdvancedTreeView.cs" />
-    <Compile Include="AdvancedDataGrid.cs" />
+    <Compile Include="AdvancedItemsControl.cs" />
+    <Compile Include="AdvancedTreeView\AdvancedTreeView.cs" />
+    <Compile Include="AdvancedDataGrid\AdvancedDataGrid.cs" />
     <Compile Include="AdvancedListView.cs" />
+    <Compile Include="AdvancedTreeView\TreeViewColumnGridLengthConverter.cs" />
+    <Compile Include="AdvancedTreeView\TreeViewColumnDoubleConverter.cs" />
+    <Compile Include="AdvancedTreeView\Columns\TreeViewTemplateColumn.cs" />
+    <Compile Include="AdvancedTreeView\Columns\TreeViewColumn.cs" />
+    <Compile Include="AdvancedTreeView\Columns\TreeViewColumnCollection.cs" />
+    <Compile Include="AdvancedTreeView\Presenters\TreeViewColumnHeadersPresenter.cs" />
+    <Compile Include="AdvancedTreeView\Presenters\TreeViewColumnPresenter.cs" />
+    <Compile Include="AdvancedTreeView\Presenters\TreeViewItemHeaderPresenter.cs" />
+    <Compile Include="AdvancedTreeView\Columns\TreeViewTextColumn.cs" />
     <Compile Include="AlignableWrapPanel.cs" />
     <Compile Include="CheckerBoard.cs" />
     <Compile Include="DirectionPad.xaml.cs">
@@ -73,7 +83,7 @@
     </Compile>
     <Compile Include="Gadget.cs" />
     <Compile Include="Decorators\RippleDecorator.cs" />
-    <Compile Include="TextBox\AlphaNumericTextBox.cs" />
+    <Compile Include="AdvancedTextBox\AlphaNumericTextBox.cs" />
     <Compile Include="DragSelection.cs" />
     <Compile Include="DragSelector.cs" />
     <Compile Include="FontFamilyBox.xaml.cs">
@@ -85,28 +95,31 @@
     <Compile Include="Masked\MaskedImage.cs" />
     <Compile Include="Masked\MaskedButton.cs" />
     <Compile Include="Masked\MaskedToggleButton.cs" />
-    <Compile Include="TextBox\FileBox.cs" />
+    <Compile Include="AdvancedTextBox\FileBox.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadioGroup.cs" />
+    <Compile Include="ResizableGrid.cs" />
     <Compile Include="Selection.cs" />
     <Compile Include="Spacer.cs" />
-    <Compile Include="TextBox\PasswordBox.cs" />
-    <Compile Include="TextBox\UpDown\DecimalUpDown.cs" />
-    <Compile Include="TextBox\UpDown\IrrationalUpDown.cs" />
-    <Compile Include="TextBox\UpDown\RationalUpDown.cs" />
-    <Compile Include="TextBox\UpDown\ByteUpDown.cs" />
-    <Compile Include="TextBox\UpDown\IUpDown.cs" />
-    <Compile Include="TextBox\UpDown\NumericUpDown.cs" />
-    <Compile Include="TextBox\UpDown\ShortUpDown.cs" />
-    <Compile Include="TextBox\UpDown\UpDown.cs" />
-    <Compile Include="ThicknessBox.cs" />
+    <Compile Include="AdvancedTextBox\PasswordBox.cs" />
+    <Compile Include="UpDown\TimeUpDown.cs" />
+    <Compile Include="UpDown\DecimalUpDown.cs" />
+    <Compile Include="UpDown\IrrationalUpDown.cs" />
+    <Compile Include="UpDown\RationalUpDown.cs" />
+    <Compile Include="UpDown\ByteUpDown.cs" />
+    <Compile Include="UpDown\IUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown.cs" />
+    <Compile Include="UpDown\ShortUpDown.cs" />
+    <Compile Include="UpDown\DateTimeUpDown.cs" />
+    <Compile Include="UpDown\UniformUpDown.cs" />
+    <Compile Include="UpDown\UpDown.cs" />
     <Compile Include="TreeViewComboBox.cs" />
-    <Compile Include="TextBox\AdvancedTextBox.cs" />
-    <Compile Include="TextBox\UpDown\UpDown.Generic.cs" />
-    <Compile Include="TextBox\UpDown\DoubleUpDown.cs" />
-    <Compile Include="TextBox\UpDown\IntUpDown.cs" />
-    <Compile Include="TextBox\UpDown\LongUpDown.cs" />
+    <Compile Include="AdvancedTextBox\AdvancedTextBox.cs" />
+    <Compile Include="UpDown\UpDown.Generic.cs" />
+    <Compile Include="UpDown\DoubleUpDown.cs" />
+    <Compile Include="UpDown\IntUpDown.cs" />
+    <Compile Include="UpDown\LongUpDown.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="DirectionPad.xaml">
@@ -120,6 +133,10 @@
     <Page Include="FontFamilyBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.AdvancedItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.AdvancedDataGrid.xaml">
       <SubType>Designer</SubType>
@@ -181,13 +198,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.ThicknessBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Generic.TreeViewComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.DateTimeUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.UpDown.xaml">
       <SubType>Designer</SubType>
@@ -236,6 +253,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LinkHorizontal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,6 +9,51 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
+        public static DependencyProperty DragScrollOffsetProperty = DependencyProperty.Register("DragScrollOffset", typeof(double), typeof(AdvancedListView), new FrameworkPropertyMetadata(10.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Indicates offset to apply when automatically scrolling.
+        /// </summary>
+        public double DragScrollOffset
+        {
+            get
+            {
+                return (double)GetValue(DragScrollOffsetProperty);
+            }
+            set
+            {
+                SetValue(DragScrollOffsetProperty, value);
+            }
+        }
+
+        public static DependencyProperty DragScrollToleranceProperty = DependencyProperty.Register("DragScrollTolerance", typeof(double), typeof(AdvancedListView), new FrameworkPropertyMetadata(5.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Indicates how far from outer width/height to allow offset application when automatically scrolling.
+        /// </summary>
+        public double DragScrollTolerance
+        {
+            get
+            {
+                return (double)GetValue(DragScrollToleranceProperty);
+            }
+            set
+            {
+                SetValue(DragScrollToleranceProperty, value);
+            }
+        }
+
+        public static DependencyProperty DragSelectionProperty = DependencyProperty.Register("DragSelection", typeof(Selection), typeof(AdvancedListView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Selection DragSelection
+        {
+            get
+            {
+                return (Selection)GetValue(DragSelectionProperty);
+            }
+            set
+            {
+                SetValue(DragSelectionProperty, value);
+            }
+        }
+
         public static DependencyProperty DragSelectorProperty = DependencyProperty.Register("DragSelector", typeof(DragSelector), typeof(AdvancedListView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public DragSelector DragSelector
         {
@@ -51,51 +96,6 @@ namespace Imagin.Controls.Common
             set
             {
                 SetValue(ScrollWrapProperty, value);
-            }
-        }
-
-        public static DependencyProperty ScrollOffsetProperty = DependencyProperty.Register("ScrollOffset", typeof(double), typeof(AdvancedListView), new FrameworkPropertyMetadata(10.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// Indicates offset to apply when automatically scrolling.
-        /// </summary>
-        public double ScrollOffset
-        {
-            get
-            {
-                return (double)GetValue(ScrollOffsetProperty);
-            }
-            set
-            {
-                SetValue(ScrollOffsetProperty, value);
-            }
-        }
-
-        public static DependencyProperty ScrollToleranceProperty = DependencyProperty.Register("ScrollTolerance", typeof(double), typeof(AdvancedListView), new FrameworkPropertyMetadata(5.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// Indicates how far from outer width/height to allow offset application when automatically scrolling.
-        /// </summary>
-        public double ScrollTolerance
-        {
-            get
-            {
-                return (double)GetValue(ScrollToleranceProperty);
-            }
-            set
-            {
-                SetValue(ScrollToleranceProperty, value);
-            }
-        }
-
-        public static DependencyProperty SelectionProperty = DependencyProperty.Register("Selection", typeof(Selection), typeof(AdvancedListView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Selection Selection
-        {
-            get
-            {
-                return (Selection)GetValue(SelectionProperty);
-            }
-            set
-            {
-                SetValue(SelectionProperty, value);
             }
         }
 
