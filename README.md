@@ -1,7 +1,7 @@
 ﻿#Imagin.Net ![](https://img.shields.io/badge/style-2.3-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-unstable-orange.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6-red.svg?style=flat&label=.NET)
 Imagin.NET is a library written in C# that provides common WPF controls and utilities.
 
-##[Documentation](https://github.com/imagin-tech/Imagin.NET/wiki/Documentation)
+##[Documentation](https://imagin.codeplex.com/documentation)
 ###Common
   .  |  .  |  .  |  .  |  .  |
 -----|-----|-----|-----|-----|
