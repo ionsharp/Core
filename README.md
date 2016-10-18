@@ -6,48 +6,23 @@ Imagin.NET is a library written in C# that provides common WPF controls and util
 
 ###Common
 
-         .          |          .          |          .          |         .          |          .          |
---------------------|---------------------|---------------------|--------------------|---------------------|
-AdvancedComboBox |
-AdvancedDataGrid |   
-AdvancedListView | 
-AdvancedTextBox  |
-AdvancedTreeView |   
-AlignableWrapPanel |  
-AlphaNumericTextBox |
-ByteUpDown |          
-CheckerBoard |        
-DecimalUpDown |      
-DirectionPad |        
-DoubleUpDown |   
-EditableLabel |          
-FileBox |           
-FontFamilyBox |   
-FontSizeBox |            
-Gadget |             
-IntUpDown |          
-Line |
-Link |
-LongUpDown |
-MaskedButton |        
-MaskedDropDownButton |
-MaskedImage |
-MaskedToggleButton |
-PasswordBox |         
-RadioGroup |         
-ResizableGrid |       
-RippleDecorator |    
-ShortUpDown |         
-Spacer |                     
-TreeViewComboBox |          
+         .          |          .          |           .          |         .        |           .           |
+--------------------|---------------------|----------------------|------------------|-----------------------|
+AdvancedComboBox    | AdvancedDataGrid    | AdvancedListView     | AdvancedTextBox  | AdvancedTreeView      |   
+AlignableWrapPanel  | AlphaNumericTextBox | ByteUpDown           | CheckerBoard     | DecimalUpDown         |
+DirectionPad        | DoubleUpDown        | EditableLabel        | FileBox          | FontFamilyBox         |   
+FontSizeBox         | Gadget              | IntUpDown            | Line             | Link                  | 
+LongUpDown          | MaskedButton        | MaskedDropDownButton | MaskedImage      | MaskedToggleButton    |
+PasswordBox         | RadioGroup          | ResizableGrid        | RippleDecorator  | ShortUpDown           |         
+Spacer              | TreeViewComboBox    |
 
 ###Extended
 
-         .        |            .             |        .       |         .        |
-------------------|--------------------------|----------------|------------------|
-PropertyGrid      | ResourceDictionaryEditor | TabbedTree     | ColorComb        |
-ColorChip         | GradientChip             | DualColorChip  | ColorPicker      |
-ColorDialog       | GradientDialog           | GradientEditor | CollectionEditor |
+         .        |         .       |             .            |         .        |
+------------------|-----------------|--------------------------|------------------|
+CollectionEditor  | ColorChip       | ColorComb                | ColorDialog      |
+ColorPicker       | DualColorChip   | GradientChip             | GradientDialog   |           
+GradientEditor    | PropertyGrid    | ResourceDictionaryEditor |
 
 ##Desktop Gadgets
 
