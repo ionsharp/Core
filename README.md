@@ -8,12 +8,12 @@ Imagin.NET is a library written in C# that provides common WPF controls and util
 
          .          |          .          |           .          |         .        |           .           |
 --------------------|---------------------|----------------------|------------------|-----------------------|
-AdvancedComboBox    | AdvancedDataGrid    | AdvancedListView     | AdvancedTextBox  | AdvancedTreeView      |   
+AdvancedComboBox    | AdvancedDataGrid    | AdvancedListView     | AdvancedTextBox  | AdvancedTreeView      |
 AlignableWrapPanel  | AlphaNumericTextBox | ByteUpDown           | CheckerBoard     | DecimalUpDown         |
-DirectionPad        | DoubleUpDown        | EditableLabel        | FileBox          | FontFamilyBox         |   
-FontSizeBox         | Gadget              | IntUpDown            | Line             | Link                  | 
+DirectionPad        | DoubleUpDown        | EditableLabel        | FileBox          | FontFamilyBox         |
+FontSizeBox         | Gadget              | IntUpDown            | Line             | Link                  |
 LongUpDown          | MaskedButton        | MaskedDropDownButton | MaskedImage      | MaskedToggleButton    |
-PasswordBox         | RadioGroup          | ResizableGrid        | RippleDecorator  | ShortUpDown           |         
+PasswordBox         | RadioGroup          | ResizableGrid        | RippleDecorator  | ShortUpDown           |
 Spacer              | TreeViewComboBox    |
 
 ###Extended
@@ -21,11 +21,11 @@ Spacer              | TreeViewComboBox    |
          .        |         .       |             .            |         .        |
 ------------------|-----------------|--------------------------|------------------|
 CollectionEditor  | ColorChip       | ColorComb                | ColorDialog      |
-ColorPicker       | DualColorChip   | GradientChip             | GradientDialog   |           
+ColorPicker       | DualColorChip   | GradientChip             | GradientDialog   |
 GradientEditor    | PropertyGrid    | ResourceDictionaryEditor |
 
 ##Desktop Gadgets
 
-      .      |             .            |
--------------|--------------------------|
-SearchGadget | ClockGadget (in progress)|
+             .            |      .       |
+--------------------------|--------------|
+ClockGadget (in progress) | SearchGadget |
