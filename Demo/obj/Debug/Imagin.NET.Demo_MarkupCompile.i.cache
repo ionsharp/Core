@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Imagin.NET.Demo\obj\Debug\
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\
 Imagin.NET.Demo
 none
 false
 DEBUG;TRACE
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Imagin.NET.Demo\App.xaml
-14-1810233071
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\App.xaml
+141632220422
 
 92050693982
 181860358272
-Styles\Window.xaml;Styles\Slider.xaml;Styles\ListView.xaml;Styles\MenuItem.xaml;Styles\RadioButton.xaml;Styles\TreeView.xaml;Styles\ContextMenu.xaml;Styles\DataGrid.xaml;Styles\ComboBox.xaml;Styles\ScrollViewer.xaml;Styles\Brushes.xaml;Styles\TextBox.xaml;Styles\Masked.xaml;MainWindow.xaml;
+Styles\Generic.Window.xaml;Styles\Generic.Slider.xaml;Styles\Generic.ListBox.xaml;Styles\Generic.MenuItem.xaml;Styles\Generic.RadioButton.xaml;Styles\Generic.TreeView.xaml;Styles\Generic.ContextMenu.xaml;Styles\Generic.DataGrid.xaml;Styles\Generic.ComboBox.xaml;Styles\Generic.ScrollViewer.xaml;Styles\Brushes.xaml;Styles\Generic.TextBox.xaml;Styles\Generic.Masked.xaml;MainWindow.xaml;
 
-False
+True
 

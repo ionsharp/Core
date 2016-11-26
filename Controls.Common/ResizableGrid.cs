@@ -104,6 +104,8 @@ namespace Imagin.Controls.Common
             if (Items == null) return;
 
             var Children = Items.Cast<object>().Select(ResizableGrid.GenerateContainer).ToArray();
+            if (Children.Count() == 0) return;
+
             Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
                 for (int i = 0; ; i++)

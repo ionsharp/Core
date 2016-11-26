@@ -2,8 +2,8 @@
 
 namespace Imagin.Common.Attributes
 {
-    [Serializable]
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
+    [Serializable]
     public class FeaturedAttribute : Attribute
     {
         public bool IsFeatured

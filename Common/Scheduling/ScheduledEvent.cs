@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Imagin.Common.Attributes;
+using Imagin.Common.Text;
+using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Timers;
 using System.Xml.Serialization;
@@ -16,6 +19,7 @@ namespace Imagin.Common.Scheduling
         string description = string.Empty;
         [Category("General")]
         [Description("The description for the scheduled event.")]
+        [StringRepresentation(StringRepresentation.Multiline)]
         public string Description
         {
             get
@@ -94,8 +98,25 @@ namespace Imagin.Common.Scheduling
             }
         }
 
+        ObservableCollection<DateTime> reminders = new ObservableCollection<DateTime>();
+        [Category("Reminders")]
+        [Description("A list of date and times to trigger a reminder prior to the event.")]
+        public ObservableCollection<DateTime> Reminders
+        {
+            get
+            {
+                return reminders;
+            }
+            set
+            {
+                reminders = value;
+                OnPropertyChanged("Reminders");
+            }
+        }
+
         RepeatOptions repeatOptions = default(RepeatOptions);
-        [Category("Frequency")]
+        [DisplayName("Repeat")]
+        [Category("Repeat")]
         [Description("Properties that describe how often the scheduled event should repeat.")]
         public RepeatOptions RepeatOptions
         {
@@ -111,6 +132,7 @@ namespace Imagin.Common.Scheduling
         }
 
         Timer timer = new Timer();
+        [Browsable(false)]
         [XmlIgnore]
         public Timer Timer
         {

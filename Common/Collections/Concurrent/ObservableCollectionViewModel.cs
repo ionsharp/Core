@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace Imagin.Common.Collections
+namespace Imagin.Common.Collections.Concurrent
 {
     /// <summary>
     /// This is the view model for the ConcurrentObservableCollectionBase that can be bound to a view.

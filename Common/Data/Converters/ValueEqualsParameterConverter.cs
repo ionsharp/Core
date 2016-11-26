@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using Imagin.Common.Extensions;
 
 namespace Imagin.Common.Data.Converters
 {

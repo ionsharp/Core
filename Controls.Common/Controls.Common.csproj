@@ -60,68 +60,123 @@
     <Compile Include="AbstractView.cs" />
     <Compile Include="AdvancedComboBox.cs" />
     <Compile Include="AdvancedItemsControl.cs" />
-    <Compile Include="AdvancedTreeView\AdvancedTreeView.cs" />
-    <Compile Include="AdvancedDataGrid\AdvancedDataGrid.cs" />
-    <Compile Include="AdvancedListView.cs" />
-    <Compile Include="AdvancedTreeView\TreeViewColumnGridLengthConverter.cs" />
-    <Compile Include="AdvancedTreeView\TreeViewColumnDoubleConverter.cs" />
-    <Compile Include="AdvancedTreeView\Columns\TreeViewTemplateColumn.cs" />
-    <Compile Include="AdvancedTreeView\Columns\TreeViewColumn.cs" />
-    <Compile Include="AdvancedTreeView\Columns\TreeViewColumnCollection.cs" />
-    <Compile Include="AdvancedTreeView\Presenters\TreeViewColumnHeadersPresenter.cs" />
-    <Compile Include="AdvancedTreeView\Presenters\TreeViewColumnPresenter.cs" />
-    <Compile Include="AdvancedTreeView\Presenters\TreeViewItemHeaderPresenter.cs" />
-    <Compile Include="AdvancedTreeView\Columns\TreeViewTextColumn.cs" />
+    <Compile Include="ButtonChrome.cs" />
+    <Compile Include="ButtonSpinner\ButtonSpinner.cs" />
+    <Compile Include="ButtonSpinner\Location.cs" />
+    <Compile Include="ButtonSpinner\SpinDirection.cs" />
+    <Compile Include="ButtonSpinner\SpinEventArgs.cs" />
+    <Compile Include="ButtonSpinner\Spinner.cs" />
+    <Compile Include="ButtonSpinner\ValidSpinDirections.cs" />
+    <Compile Include="CheckableDatePicker\CheckableDatePicker.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
+    <Compile Include="CheckableDatePicker\CheckableMonths.xaml.cs">
+      <DependentUpon>CheckableMonths.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckableDatePicker\CheckableWeekDays.xaml.cs">
+      <DependentUpon>CheckableWeekDays.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckableDatePicker\CheckableDays.xaml.cs">
+      <DependentUpon>CheckableDays.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DateTimePicker\DateTimePicker.cs" />
+    <Compile Include="DateTimePicker\DateTimePickerBase.cs" />
+    <Compile Include="PaneView.cs" />
+    <Compile Include="RepeatBox\RepeatBox.xaml.cs">
+      <DependentUpon>RepeatBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RepeatBox\RepeatBoxTemplateSelector.cs" />
+    <Compile Include="TextBox\AutoSelectTextBox\AutoSelectBehavior.cs" />
+    <Compile Include="TextBox\AutoSelectTextBox\AutoSelectTextBox.cs" />
+    <Compile Include="TextBox\AutoSelectTextBox\QueryMoveFocusEventArgs.cs" />
+    <Compile Include="TextBox\InputBase.cs" />
+    <Compile Include="TextBox\WatermarkTextBox.cs" />
+    <Compile Include="TimePicker\TimeItem.cs" />
+    <Compile Include="TimePicker\TimePicker.cs" />
+    <Compile Include="ToggleSwitch.cs" />
+    <Compile Include="TreeView\AdvancedTreeView.cs" />
+    <Compile Include="TreeView\%28Converters%29\TreeViewColumnGridLengthConverter.cs" />
+    <Compile Include="TreeView\%28Converters%29\TreeViewColumnDoubleConverter.cs" />
+    <Compile Include="TreeView\%28Columns%29\TreeViewTemplateColumn.cs" />
+    <Compile Include="TreeView\%28Columns%29\TreeViewColumn.cs" />
+    <Compile Include="TreeView\%28Columns%29\TreeViewColumnCollection.cs" />
+    <Compile Include="TreeView\%28Presenters%29\TreeViewColumnHeadersPresenter.cs" />
+    <Compile Include="TreeView\%28Presenters%29\TreeViewRowHeader.cs" />
+    <Compile Include="TreeView\%28Columns%29\TreeViewTextColumn.cs" />
+    <Compile Include="TreeView\%28Presenters%29\TreeViewColumnHeader.cs" />
     <Compile Include="AlignableWrapPanel.cs" />
     <Compile Include="CheckerBoard.cs" />
     <Compile Include="DirectionPad.xaml.cs">
       <DependentUpon>DirectionPad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditableLabel.cs" />
+    <Compile Include="TextBox\EditableLabel.cs" />
+    <Compile Include="Extensions\DataGrid.cs" />
+    <Compile Include="Extensions\ItemsControl.cs" />
+    <Compile Include="Extensions\ListBox.cs" />
+    <Compile Include="Extensions\MenuItem.cs" />
+    <Compile Include="Extensions\TreeView.cs" />
+    <Compile Include="Extensions\TreeViewItem.cs" />
+    <Compile Include="Extensions\Window.cs" />
     <Compile Include="FontSizeBox.xaml.cs">
       <DependentUpon>FontSizeBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gadget.cs" />
     <Compile Include="Decorators\RippleDecorator.cs" />
-    <Compile Include="AdvancedTextBox\AlphaNumericTextBox.cs" />
+    <Compile Include="TextBox\AlphaNumericTextBox.cs" />
     <Compile Include="DragSelection.cs" />
-    <Compile Include="DragSelector.cs" />
+    <Compile Include="DragSelectionManager.cs" />
     <Compile Include="FontFamilyBox.xaml.cs">
       <DependentUpon>FontFamilyBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Link.cs" />
-    <Compile Include="IDragSelector.cs" />
     <Compile Include="Masked\MaskedDropDownButton.cs" />
     <Compile Include="Masked\MaskedImage.cs" />
     <Compile Include="Masked\MaskedButton.cs" />
     <Compile Include="Masked\MaskedToggleButton.cs" />
-    <Compile Include="AdvancedTextBox\FileBox.cs" />
+    <Compile Include="TextBox\FileBox.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadioGroup.cs" />
     <Compile Include="ResizableGrid.cs" />
     <Compile Include="Selection.cs" />
     <Compile Include="Spacer.cs" />
-    <Compile Include="AdvancedTextBox\PasswordBox.cs" />
-    <Compile Include="UpDown\TimeUpDown.cs" />
-    <Compile Include="UpDown\DecimalUpDown.cs" />
-    <Compile Include="UpDown\IrrationalUpDown.cs" />
-    <Compile Include="UpDown\RationalUpDown.cs" />
-    <Compile Include="UpDown\ByteUpDown.cs" />
+    <Compile Include="TextBox\PasswordBox.cs" />
+    <Compile Include="TreeView\TreeViewSelectionMode.cs" />
+    <Compile Include="UpDown\DateTimeUpDown\DateTimeFormat.cs" />
+    <Compile Include="UpDown\DateTimeUpDown\DateTimeInfo.cs" />
+    <Compile Include="UpDown\DateTimeUpDown\DateTimeParser.cs" />
+    <Compile Include="UpDown\DateTimeUpDown\DateTimePart.cs" />
+    <Compile Include="UpDown\DateTimeUpDown\DateTimeUpDown.cs" />
+    <Compile Include="UpDown\DateTimeUpDown\DateTimeUpDownBase.cs" />
+    <Compile Include="UpDown\NumericUpDown\DecimalUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown\IrrationalUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown\RationalUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown\ByteUpDown.cs" />
     <Compile Include="UpDown\IUpDown.cs" />
-    <Compile Include="UpDown\NumericUpDown.cs" />
-    <Compile Include="UpDown\ShortUpDown.cs" />
-    <Compile Include="UpDown\DateTimeUpDown.cs" />
-    <Compile Include="UpDown\UniformUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown\NumericUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown\ShortUpDown.cs" />
     <Compile Include="UpDown\UpDown.cs" />
     <Compile Include="TreeViewComboBox.cs" />
-    <Compile Include="AdvancedTextBox\AdvancedTextBox.cs" />
+    <Compile Include="TextBox\AdvancedTextBox.cs" />
     <Compile Include="UpDown\UpDown.Generic.cs" />
-    <Compile Include="UpDown\DoubleUpDown.cs" />
-    <Compile Include="UpDown\IntUpDown.cs" />
-    <Compile Include="UpDown\LongUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown\DoubleUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown\IntUpDown.cs" />
+    <Compile Include="UpDown\NumericUpDown\LongUpDown.cs" />
+    <Compile Include="UpDown\UpDownBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="CheckableDatePicker\CheckableMonths.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CheckableDatePicker\CheckableWeekDays.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CheckableDatePicker\CheckableDays.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DirectionPad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,17 +189,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RepeatBox\RepeatBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.AdvancedItemsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.AdvancedDataGrid.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Themes\Generic.ButtonChrome.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.AdvancedListView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.AdvancedTextBox.xaml">
       <SubType>Designer</SubType>
@@ -153,6 +208,26 @@
     <Page Include="Themes\Generic.AdvancedTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.ButtonSpinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.DateTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.DateTimeUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.TimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.ToggleSwitch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.RippleDecorator.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -202,11 +277,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.DateTimeUpDown.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Generic.UpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.WatermarkTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,6 +331,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\LinkHorizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BottomRightTriangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ArrowDownSmall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

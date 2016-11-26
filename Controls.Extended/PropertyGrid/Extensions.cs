@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Imagin.Common.Scheduling;
+using System;
+using System.Collections;
 using System.Net;
 using System.Windows;
-using System.Collections;
+using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
@@ -29,14 +31,24 @@ namespace Imagin.Controls.Extended
                 return typeof(IntPropertyModel);
             if (Type == typeof(long))
                 return typeof(LongPropertyModel);
+            if (Type == typeof(LinearGradientBrush))
+                return typeof(LinearGradientPropertyModel);
             if (Type == typeof(NetworkCredential))
                 return typeof(NetworkCredentialPropertyModel);
+            if (Type == typeof(RepeatOptions))
+                return typeof(RepeatOptionsPropertyModel);
             if (Type == typeof(short))
                 return typeof(ShortPropertyModel);
             if (Type == typeof(Size))
                 return typeof(SizePropertyModel);
+            if (Type == typeof(SolidColorBrush))
+                return typeof(SolidColorBrushPropertyModel);
             if (Type == typeof(string))
                 return typeof(StringPropertyModel);
+            if (Type == typeof(Uri))
+                return typeof(UriPropertyModel);
+            if (Type == typeof(Version))
+                return typeof(VersionPropertyModel);
             return default(Type);
         }
     }

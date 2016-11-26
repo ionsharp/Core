@@ -81,6 +81,7 @@
       <DependentUpon>ColorSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\Models\LuvModel.cs" />
+    <Compile Include="Converters\FeaturedPropertyVisibilityConverter.cs" />
     <Compile Include="Dialogs\ColorDialog.xaml.cs">
       <DependentUpon>ColorDialog.xaml</DependentUpon>
     </Compile>
@@ -127,6 +128,11 @@
     </Compile>
     <Compile Include="PropertyGrid\PropertyModelCollection.cs" />
     <Compile Include="PropertyGrid\PropertyModel\CollectionPropertyModel.cs" />
+    <Compile Include="PropertyGrid\PropertyModel\UriPropertyModel.cs" />
+    <Compile Include="PropertyGrid\PropertyModel\VersionPropertyModel.cs" />
+    <Compile Include="PropertyGrid\PropertyModel\RepeatOptionsPropertyModel.cs" />
+    <Compile Include="PropertyGrid\PropertyModel\NumericPropertyModel.Generic.cs" />
+    <Compile Include="PropertyGrid\PropertyModel\NumericPropertyModel.cs" />
     <Compile Include="PropertyGrid\PropertyModel\SizePropertyModel.cs" />
     <Compile Include="PropertyGrid\PropertyModel\NetworkCredentialPropertyModel.cs" />
     <Compile Include="PropertyGrid\PropertyModel\DecimalPropertyModel.cs" />

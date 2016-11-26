@@ -5,7 +5,7 @@ namespace Imagin.Common
     public static class Time
     {
         /// <summary>
-        /// Gets time remaining for a process using elapsed time, total number of bytes to receive, and number of bytes received.
+        /// Gets time remaining for a process using elapsed time, total number of bytes to receive, and number of bytes already received.
         /// </summary>
         public static long Remaining(double TimeElapsed, long Total, long Recieved)
         {

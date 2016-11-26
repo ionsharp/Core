@@ -1,4 +1,5 @@
-﻿using Imagin.Common.Events;
+﻿using Imagin.Common.Collections.Generic;
+using Imagin.Common.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

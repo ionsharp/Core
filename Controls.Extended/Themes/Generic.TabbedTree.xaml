@@ -5,15 +5,17 @@
     xmlns:o="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
     xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
-    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
-    <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
-
+    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
+    xmlns:Common.Extensions="clr-namespace:Imagin.Common.Extensions;assembly=Imagin.Common"
+    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common">
+    <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <Common.Data.Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+    
     <Style x:Key="{x:Type local:TabbedTree}" TargetType="{x:Type local:TabbedTree}">
-        <Setter Property="ExpandOnClick" Value="False"/>
-        <Setter Property="CollapseSiblingsOnClick" Value="False"/>
+        <Setter Property="Controls.Common.Extensions:TreeViewItemExtensions.CollapseSiblingsOnClick" Value="False"/>
+        <Setter Property="Controls.Common.Extensions:TreeViewItemExtensions.ExpandOnClick" Value="False"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="Padding" Value="10,0,0,0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Visible"/>
@@ -35,7 +37,6 @@
                         Background="{TemplateBinding Background}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        Margin="{TemplateBinding Margin}"
                         Padding="{TemplateBinding Padding}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -51,35 +52,72 @@
                                 CanContentScroll="True">
                                 <ItemsPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Stretch"/>
                             </ScrollViewer>
+
+                            <GridSplitter
+                                HorizontalAlignment="Right"
+                                ResizeBehavior="CurrentAndNext"
+                                ResizeDirection="Columns"
+                                ShowsPreview="True"
+                                VerticalAlignment="Stretch"
+                                Visibility="{TemplateBinding CanResizeContent, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Width="4"/>
+
                             <Border 
                                 Grid.Column="1"
                                 Padding="{TemplateBinding ContentPadding}" 
                                 BorderThickness="{TemplateBinding ContentBorderThickness}" 
                                 Background="{TemplateBinding ContentBackground}" 
                                 BorderBrush="{TemplateBinding ContentBorderBrush}">
-                                <ContentControl
-                                    Content="{TemplateBinding SelectedItem}">
-                                    <ContentControl.Resources>
-                                        <DataTemplate x:Key="DefaultContentTemplate">
-                                            <ContentControl Content="{Binding Tag, Mode=OneWay}"/>
-                                        </DataTemplate>
-                                    </ContentControl.Resources>
-                                    <ContentControl.Style>
-                                        <Style TargetType="ContentControl">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="True">
-                                                    <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="False">
-                                                    <Setter Property="ContentTemplate" Value="{StaticResource DefaultContentTemplate}"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </ContentControl.Style>
-                                </ContentControl>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <ContentControl
+                                        x:Name="PART_ContentHeader"
+                                        ContentTemplate="{TemplateBinding ContentHeaderTemplate}"
+                                        Visibility="{TemplateBinding ContentHeaderVisibility}"/>
+                                    <ContentControl
+                                        Grid.Row="1"
+                                        x:Name="PART_Content"
+                                        Content="{TemplateBinding SelectedItem}">
+                                        <ContentControl.Resources>
+                                            <DataTemplate x:Key="DefaultContentTemplate">
+                                                <ContentControl Content="{Binding Path=(Common.Extensions:ControlExtensions.Content), Mode=OneWay}"/>
+                                            </DataTemplate>
+                                        </ContentControl.Resources>
+                                        <ContentControl.Style>
+                                            <Style TargetType="ContentControl">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToBooleanConverter}}" Value="True">
+                                                        <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToBooleanConverter}}" Value="False">
+                                                        <Setter Property="ContentTemplate" Value="{StaticResource DefaultContentTemplate}"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ContentControl.Style>
+                                    </ContentControl>
+                                </Grid>
                             </Border>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ContentHeaderTemplate" Value="{x:Null}">
+                            <Setter TargetName="PART_ContentHeader" Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding Mode=OneWay}"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="SelectedItem" Value="{x:Null}">
+                            <Setter TargetName="PART_Content" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_ContentHeader" Property="Visibility" Value="Collapsed"/>
+                        </Trigger> 
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

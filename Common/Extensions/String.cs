@@ -11,6 +11,70 @@ namespace Imagin.Common.Extensions
 {
     public static class StringExtensions
     {
+        #region Private
+
+        /// <summary>
+        /// Imagin.Common: Gets the directory name of a path formatted for a FTP server.
+        /// </summary>
+        /// <param name="path">The path</param>
+        /// <returns>The parent directory path</returns>
+        static string GetFtpDirectoryName(this string Path)
+        {
+            var tpath = (Path == null ? "" : Path.GetFtpPath());
+            int lastslash = -1;
+
+            if (tpath.Length == 0 || tpath == "/")
+                return "/";
+
+            lastslash = tpath.LastIndexOf('/');
+            if (lastslash < 0)
+                return ".";
+
+            return tpath.Substring(0, lastslash);
+        }
+
+        /// <summary>
+        /// Imagin.Common: Gets the file name from the path.
+        /// </summary>
+        /// <param name="path">The full path to the file</param>
+        /// <returns>The file name</returns>
+        static string GetFtpFileName(this string Path)
+        {
+            var Result = (Path == null ? null : Path);
+            var LastSlash = -1;
+
+            if (Result != null)
+            {
+                LastSlash = Result.LastIndexOf('/');
+                if (LastSlash < 0) return Result;
+
+                LastSlash += 1;
+                if (LastSlash >= Result.Length) return Result;
+
+                return Result.Substring(LastSlash, Result.Length - LastSlash);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Imagin.Common: Converts the specified path into a valid FTP file system path.
+        /// </summary>
+        /// <param name="path">The file system path</param>
+        /// <returns>A path formatted for FTP</returns>
+        static string GetFtpPath(this string Path)
+        {
+            if (!string.IsNullOrEmpty(Path))
+            {
+                Path = Regex.Replace(Path.Replace('\\', '/'), "[/]+", "/").TrimEnd('/');
+                return Path.Length == 0 ? "/" : Path;
+            }
+            return "./";
+        }
+
+        #endregion
+
+        #region Public
+
         /// <summary>
         /// Imagin.Common
         /// </summary>
@@ -75,9 +139,21 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
-        public static string GetDirectoryName(this string Path)
+        public static string GetDirectoryName(this string Path, string Scheme = null)
         {
-            return System.IO.Path.GetDirectoryName(Path);
+            var Result = Path;
+            switch (Scheme)
+            {
+                case "":
+                case null:
+                    Result = System.IO.Path.GetDirectoryName(Result);
+                    break;
+                default:
+                    if (Scheme == Uri.UriSchemeFtp)
+                        Result = Path.GetFtpDirectoryName();
+                    break;
+            }
+            return Result;
         }
 
         /// <summary>
@@ -91,10 +167,24 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
-        public static string GetFileName(this string Path)
+        public static string GetFileName(this string Path, string Scheme = null)
         {
-            var Name = System.IO.Path.GetFileName(Path);
-            return string.IsNullOrEmpty(Name) ? (Path.EndsWith(@":\") ? Path : string.Empty) : Name;
+            var Result = Path;
+            if (!Result.EndsWith(@":\"))
+            {
+                switch (Scheme)
+                {
+                    case "":
+                    case null:
+                        Result = System.IO.Path.GetFileName(Path);
+                        break;
+                    default:
+                        if (Scheme == Uri.UriSchemeFtp)
+                            Result = Path.GetFtpFileName();
+                        break;
+                }
+            }
+            return Result;
         }
 
         /// <summary>
@@ -106,29 +196,13 @@ namespace Imagin.Common.Extensions
             return string.IsNullOrEmpty(Name) ? Path.EndsWith(@":\") ? Path : string.Empty : Name;
         }
 
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
         public static string GetFileType(this string Path, Func<string, string> GetTypeDescription)
         {
             var Result = Path.EndsWith(@":\") ? "Drive" : (Path.DirectoryExists() ? "Folder" : (!Path.IsNullOrEmpty() ? GetTypeDescription(Path) : Path));
             return Result.IsNullOrEmpty() ? Path.GetFileNameWithoutExtension() : Result;
-        }
-
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
-        public static string GetFtpDirectoryName(this string Path)
-        {
-            if (Path == null || Path == string.Empty || Path == "/") return string.Empty;
-            
-            string[] Tree = Path.Split('/');
-            if (Tree == null || Tree.Length == 0) return "/"; //Chances are we are at root
-
-            string NewPath = string.Empty;
-            for (int i = 0, Count = Tree.Length; i < Count; i++)
-            {
-                if (i == Count - 1) break;
-                NewPath += @"/" + Tree[i];
-            }
-            return NewPath.Replace("//", "/");
         }
 
         /// <summary>
@@ -317,6 +391,36 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
+        /// Imagin.Common: Parses string to short.
+        /// </summary>
+        public static short ToInt16(this string ToConvert)
+        {
+            short Value = default(short);
+            short.TryParse(ToConvert, out Value);
+            return Value;
+        }
+
+        /// <summary>
+        /// Imagin.Common: Parses string to int.
+        /// </summary>
+        public static int ToInt32(this string ToConvert)
+        {
+            int Value = default(int);
+            int.TryParse(ToConvert, out Value);
+            return Value;
+        }
+
+        /// <summary>
+        /// Imagin.Common: Parses string to long.
+        /// </summary>
+        public static long ToInt64(this string ToConvert)
+        {
+            long Value = default(long);
+            long.TryParse(ToConvert, out Value);
+            return Value;
+        }
+
+        /// <summary>
         /// Imagin.Common: Parses string to boolean.
         /// </summary>
         public static string SplitCamelCase(this string ToConvert)
@@ -357,6 +461,7 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common: Parses string to int.
         /// </summary>
+        [Obsolete("Use ToInt16 instead.")]
         public static int ToInt(this string ToConvert)
         {
             int Value = default(int);
@@ -367,6 +472,7 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common: Parses string to long.
         /// </summary>
+        [Obsolete("Use ToInt32 instead.")]
         public static long ToLong(this string ToConvert)
         {
             long Value = default(long);
@@ -391,6 +497,7 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common: Parses string to short.
         /// </summary>
+        [Obsolete("Use ToInt16 instead.")]
         public static short ToShort(this string ToConvert)
         {
             short Value = default(short);
@@ -425,5 +532,7 @@ namespace Imagin.Common.Extensions
             }
             return new Version(major, minor, build);
         }
+
+        #endregion
     }
 }

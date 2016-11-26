@@ -4,9 +4,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common">
     <Style TargetType="{x:Type local:Link}">
-        <Setter Property="Foreground" Value="{DynamicResource LinkBrush}" />
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="ToolTip" Value="{Binding Uri, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Link">
@@ -14,20 +14,20 @@
                         Background="{TemplateBinding Background}" 
                         BorderBrush="{TemplateBinding BorderBrush}" 
                         BorderThickness="{TemplateBinding BorderThickness}" 
-                        Margin="{TemplateBinding Margin}" 
                         Padding="{TemplateBinding Padding}" 
                         VerticalAlignment="{TemplateBinding VerticalAlignment}" 
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
                         <TextBlock 
-                            TextDecorations="{TemplateBinding TextDecorations}"
                             Foreground="{TemplateBinding Foreground}" 
                             FontFamily="{TemplateBinding FontFamily}" 
                             FontSize="{TemplateBinding FontSize}" 
                             FontStretch="{TemplateBinding FontStretch}" 
                             FontStyle="{TemplateBinding FontStyle}" 
-                            FontWeight="{TemplateBinding FontWeight}">
-                            <Run Text="{TemplateBinding Content}"/>
-                        </TextBlock>
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Text="{TemplateBinding Content}"
+                            TextDecorations="{TemplateBinding TextDecorations}"
+                            TextTrimming="{TemplateBinding TextTrimming}"
+                            TextWrapping="{TemplateBinding TextWrapping}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

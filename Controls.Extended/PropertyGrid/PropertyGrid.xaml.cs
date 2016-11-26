@@ -1,8 +1,11 @@
-﻿using Imagin.Common.Events;
+﻿using Imagin.Common.Collections.ObjectModel;
+using Imagin.Common.Data;
+using Imagin.Common.Events;
 using Imagin.Common.Extensions;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,14 +18,29 @@ namespace Imagin.Controls.Extended
     {
         #region Properties
 
-        #region Events
-
-        public event EventHandler<EventArgs<object>> SelectedObjectChanged;
-
-        #endregion
+        ResourceDictionary TemplateAccessor
+        {
+            get
+            {
+                return this.Resources["Dictionary.Templates"] as ResourceDictionary;
+            }
+        }
 
         #region Dependency
         
+        public static DependencyProperty ButtonsProperty = DependencyProperty.Register("Buttons", typeof(FrameworkElementCollection), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public FrameworkElementCollection Buttons
+        {
+            get
+            {
+                return (FrameworkElementCollection)GetValue(ButtonsProperty);
+            }
+            set
+            {
+                SetValue(ButtonsProperty, value);
+            }
+        }
+
         public static DependencyProperty CollapseGroupsProperty = DependencyProperty.Register("CollapseGroups", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool CollapseGroups
         {
@@ -36,6 +54,49 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        public static DependencyProperty DataTemplatesProperty = DependencyProperty.Register("DataTemplates", typeof(ResourceDictionary), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(ResourceDictionary), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDataTemplatesChanged));
+        public ResourceDictionary DataTemplates
+        {
+            get
+            {
+                return (ResourceDictionary)GetValue(DataTemplatesProperty);
+            }
+            set
+            {
+                SetValue(DataTemplatesProperty, value);
+            }
+        }
+        static void OnDataTemplatesChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            Object.As<PropertyGrid>().OnDataTemplatesChanged((ResourceDictionary)e.NewValue);
+        }
+
+        public static DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public string DateTimeFormat
+        {
+            get
+            {
+                return (string)GetValue(DateTimeFormatProperty);
+            }
+            set
+            {
+                SetValue(DateTimeFormatProperty, value);
+            }
+        }
+
+        public static DependencyProperty FileSizeFormatProperty = DependencyProperty.Register("FileSizeFormat", typeof(FileSizeFormat), typeof(PropertyGrid), new FrameworkPropertyMetadata(FileSizeFormat.BinaryUsingSI, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public FileSizeFormat FileSizeFormat
+        {
+            get
+            {
+                return (FileSizeFormat)GetValue(FileSizeFormatProperty);
+            }
+            set
+            {
+                SetValue(FileSizeFormatProperty, value);
+            }
+        }
+        
         public static DependencyProperty GridBackgroundProperty = DependencyProperty.Register("GridBackground", typeof(Brush), typeof(PropertyGrid), new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Brush GridBackground
         {
@@ -75,16 +136,16 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty AlternationCountProperty = DependencyProperty.Register("AlternationCount", typeof(int), typeof(PropertyGrid), new FrameworkPropertyMetadata(2, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public int AlternationCount
+        public static DependencyProperty GridLinesVisibilityProperty = DependencyProperty.Register("GridLinesVisibility", typeof(DataGridGridLinesVisibility), typeof(PropertyGrid), new FrameworkPropertyMetadata(DataGridGridLinesVisibility.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataGridGridLinesVisibility GridLinesVisibility
         {
             get
             {
-                return (int)GetValue(AlternationCountProperty);
+                return (DataGridGridLinesVisibility)GetValue(GridLinesVisibilityProperty);
             }
             set
             {
-                SetValue(AlternationCountProperty, value);
+                SetValue(GridLinesVisibilityProperty, value);
             }
         }
 
@@ -101,58 +162,6 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty GridLinesVisibilityProperty = DependencyProperty.Register("GridLinesVisibility", typeof(DataGridGridLinesVisibility), typeof(PropertyGrid), new FrameworkPropertyMetadata(DataGridGridLinesVisibility.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public DataGridGridLinesVisibility GridLinesVisibility
-        {
-            get
-            {
-                return (DataGridGridLinesVisibility)GetValue(GridLinesVisibilityProperty);
-            }
-            set
-            {
-                SetValue(GridLinesVisibilityProperty, value);
-            }
-        }
-
-        public static DependencyProperty ShowFeaturedProperty = DependencyProperty.Register("ShowFeatured", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool ShowFeatured
-        {
-            get
-            {
-                return (bool)GetValue(ShowFeaturedProperty);
-            }
-            set
-            {
-                SetValue(ShowFeaturedProperty, value);
-            }
-        }
-
-        public static DependencyProperty SearchQueryProperty = DependencyProperty.Register("SearchQuery", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public string SearchQuery
-        {
-            get
-            {
-                return (string)GetValue(SearchQueryProperty);
-            }
-            set
-            {
-                SetValue(SearchQueryProperty, value);
-            }
-        }
-
-        public static DependencyProperty PropertiesProperty = DependencyProperty.Register("Properties", typeof(PropertyModelCollection), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public PropertyModelCollection Properties
-        {
-            get
-            {
-                return (PropertyModelCollection)GetValue(PropertiesProperty);
-            }
-            set
-            {
-                SetValue(PropertiesProperty, value);
-            }
-        }
-
         public static DependencyProperty ListCollectionViewProperty = DependencyProperty.Register("ListCollectionView", typeof(ListCollectionView), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public ListCollectionView ListCollectionView
         {
@@ -166,59 +175,29 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty SelectedObjectProperty = DependencyProperty.Register("SelectedObject", typeof(object), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedObjectChanged));
-        public object SelectedObject
+        public static DependencyProperty LoaderTemplateProperty = DependencyProperty.Register("LoaderTemplate", typeof(DataTemplate), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate LoaderTemplate
         {
             get
             {
-                return (object)GetValue(SelectedObjectProperty);
+                return (DataTemplate)GetValue(LoaderTemplateProperty);
             }
             set
             {
-                SetValue(SelectedObjectProperty, value);
-            }
-        }
-        static void OnSelectedObjectChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            Object.As<PropertyGrid>().OnSelectedObjectChanged();
-        }
-
-        public static DependencyProperty ShowHeaderProperty = DependencyProperty.Register("ShowHeader", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool ShowHeader
-        {
-            get
-            {
-                return (bool)GetValue(ShowHeaderProperty);
-            }
-            set
-            {
-                SetValue(ShowHeaderProperty, value);
+                SetValue(LoaderTemplateProperty, value);
             }
         }
         
-        public static DependencyProperty SortByNameProperty = DependencyProperty.Register("SortByName", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
-        public bool SortByName
+        public static DependencyProperty IsLoadingProperty = DependencyProperty.Register("IsLoading", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
+        public bool IsLoading
         {
             get
             {
-                return (bool)GetValue(IsSortAscendingProperty);
+                return (bool)GetValue(IsLoadingProperty);
             }
             set
             {
-                SetValue(IsSortAscendingProperty, value);
-            }
-        }
-
-        public static DependencyProperty SortByTypeProperty = DependencyProperty.Register("SortByType", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
-        public bool SortByType
-        {
-            get
-            {
-                return (bool)GetValue(IsSortAscendingProperty);
-            }
-            set
-            {
-                SetValue(IsSortAscendingProperty, value);
+                SetValue(IsLoadingProperty, value);
             }
         }
 
@@ -253,6 +232,75 @@ namespace Imagin.Controls.Extended
             ((PropertyGrid)Object).OnSortChanged();
         }
 
+        public static DependencyProperty PropertiesProperty = DependencyProperty.Register("Properties", typeof(PropertyModelCollection), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public PropertyModelCollection Properties
+        {
+            get
+            {
+                return (PropertyModelCollection)GetValue(PropertiesProperty);
+            }
+            set
+            {
+                SetValue(PropertiesProperty, value);
+            }
+        }
+
+        public static DependencyProperty PropertyDescriptionStyleProperty = DependencyProperty.Register("PropertyDescriptionStyle", typeof(Style), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Style PropertyDescriptionStyle
+        {
+            get
+            {
+                return (Style)GetValue(PropertyDescriptionStyleProperty);
+            }
+            set
+            {
+                SetValue(PropertyDescriptionStyleProperty, value);
+            }
+        }
+
+        public static DependencyProperty PropertyDescriptionTemplateProperty = DependencyProperty.Register("PropertyDescriptionTemplate", typeof(DataTemplate), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate PropertyDescriptionTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(PropertyDescriptionTemplateProperty);
+            }
+            set
+            {
+                SetValue(PropertyDescriptionTemplateProperty, value);
+            }
+        }
+
+        public static DependencyProperty SearchQueryProperty = DependencyProperty.Register("SearchQuery", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public string SearchQuery
+        {
+            get
+            {
+                return (string)GetValue(SearchQueryProperty);
+            }
+            set
+            {
+                SetValue(SearchQueryProperty, value);
+            }
+        }
+
+        public static DependencyProperty SelectedObjectProperty = DependencyProperty.Register("SelectedObject", typeof(object), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedObjectChanged));
+        public object SelectedObject
+        {
+            get
+            {
+                return (object)GetValue(SelectedObjectProperty);
+            }
+            set
+            {
+                SetValue(SelectedObjectProperty, value);
+            }
+        }
+        static void OnSelectedObjectChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            Object.As<PropertyGrid>().OnSelectedObjectChanged((object)e.NewValue);
+        }
+
         public static DependencyProperty ShowCategoriesProperty = DependencyProperty.Register("ShowCategories", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnShowCategoriesChanged));
         public bool ShowCategories
         {
@@ -270,6 +318,32 @@ namespace Imagin.Controls.Extended
             Object.As<PropertyGrid>().Group("Category");
         }
 
+        public static DependencyProperty ShowFeaturedProperty = DependencyProperty.Register("ShowFeatured", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool ShowFeatured
+        {
+            get
+            {
+                return (bool)GetValue(ShowFeaturedProperty);
+            }
+            set
+            {
+                SetValue(ShowFeaturedProperty, value);
+            }
+        }
+
+        public static DependencyProperty ShowHeaderProperty = DependencyProperty.Register("ShowHeader", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool ShowHeader
+        {
+            get
+            {
+                return (bool)GetValue(ShowHeaderProperty);
+            }
+            set
+            {
+                SetValue(ShowHeaderProperty, value);
+            }
+        }
+
         public static DependencyProperty ShowPropertyDescriptionProperty = DependencyProperty.Register("ShowPropertyDescription", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool ShowPropertyDescription
         {
@@ -282,7 +356,52 @@ namespace Imagin.Controls.Extended
                 SetValue(ShowPropertyDescriptionProperty, value);
             }
         }
-        
+
+        public static DependencyProperty ShowTypeProperty = DependencyProperty.Register("ShowType", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool ShowType
+        {
+            get
+            {
+                return (bool)GetValue(ShowTypeProperty);
+            }
+            set
+            {
+                SetValue(ShowTypeProperty, value);
+            }
+        }
+
+        public static DependencyProperty SortByNameProperty = DependencyProperty.Register("SortByName", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
+        public bool SortByName
+        {
+            get
+            {
+                return (bool)GetValue(IsSortAscendingProperty);
+            }
+            set
+            {
+                SetValue(IsSortAscendingProperty, value);
+            }
+        }
+
+        public static DependencyProperty SortByTypeProperty = DependencyProperty.Register("SortByType", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
+        public bool SortByType
+        {
+            get
+            {
+                return (bool)GetValue(IsSortAscendingProperty);
+            }
+            set
+            {
+                SetValue(IsSortAscendingProperty, value);
+            }
+        }
+
+        #endregion
+
+        #region Events
+
+        public event EventHandler<EventArgs<object>> SelectedObjectChanged;
+
         #endregion
 
         #endregion
@@ -296,6 +415,7 @@ namespace Imagin.Controls.Extended
             this.CommandBindings.Add(new CommandBinding(EditCollectionCommand, this.EditCollectionCommand_Executed, this.EditCollectionCommand_CanExecute));
             this.CommandBindings.Add(new CommandBinding(ResetCommand, this.ResetCommand_Executed, this.ResetCommand_CanExecute));
 
+            this.Buttons = new FrameworkElementCollection();
             this.Properties = new PropertyModelCollection();
             this.ListCollectionView = new ListCollectionView(this.Properties);
             this.Sort();
@@ -369,14 +489,34 @@ namespace Imagin.Controls.Extended
 
         #region Virtual
 
-        protected virtual void OnSelectedObjectChanged()
+        protected virtual void OnDataTemplatesChanged(ResourceDictionary Value)
+        {
+            if (Value != null)
+            {
+                var a = this.TemplateAccessor;
+                foreach (var i in Value)
+                {
+                    var d = (DictionaryEntry)i;
+                    a.Add(d.Key, d.Value);
+                }
+            }
+        }
+
+        protected virtual async Task OnSelectedObjectChanged(object Value)
         {
             if (this.SelectedObjectChanged != null)
-                this.SelectedObjectChanged(this, new EventArgs<object>(this.SelectedObject));
-            if (this.SelectedObject == null) return;
-            this.Properties.Object = this.SelectedObject;
-            this.Properties.Clear();
-            this.SetObject();
+                this.SelectedObjectChanged(this, new EventArgs<object>(Value));
+
+            if (Value != null)
+            {
+                this.Properties.Object = Value;
+                this.Properties.Featured = null;
+                this.Properties.Clear();
+
+                this.IsLoading = true;
+                await this.SetObject(Value);
+                this.IsLoading = false;
+            }
         }
 
         protected virtual void OnSortChanged()
@@ -387,9 +527,9 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// Populate this.Properties with PropertyModels representing each member of the SelectedObject.
         /// </summary>
-        protected virtual void SetObject()
+        protected virtual async Task SetObject(object Value)
         {
-            this.Properties.BeginFromObject();
+            await this.Properties.BeginFromObject();
         }
 
         #endregion

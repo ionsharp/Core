@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -37,6 +45,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,33 +53,68 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WPFLocalizeExtension, Version=2.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfLocalizeExtension.2.3.2\lib\net35\WPFLocalizeExtension.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XAMLMarkupExtensions, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAMLMarkupExtensions.1.2.2\lib\net40\XAMLMarkupExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractObject.cs" />
+    <Compile Include="AbstractDependencyObject.cs" />
+    <Compile Include="ComponentModel\AbstractObject.cs" />
+    <Compile Include="Attributes\Constraint.cs" />
     <Compile Include="Attributes\Alias.cs" />
     <Compile Include="Attributes\DynamicProperty.cs" />
     <Compile Include="Attributes\Icon.cs" />
+    <Compile Include="Attributes\Int64Representation.cs" />
     <Compile Include="Attributes\StringRepresentation.cs" />
-    <Compile Include="Behavior\Window.cs" />
     <Compile Include="Animations\ExpanderDoubleAnimation.cs" />
     <Compile Include="Animations\GridLengthAnimation.cs" />
     <Compile Include="Attributes\Abbreviation.cs" />
     <Compile Include="Attributes\Featured.cs" />
-    <Compile Include="Collections\Concurrent\ConcurrentObservableCollection\ConcurrentObservableBase.cs" />
-    <Compile Include="Collections\Concurrent\ConcurrentObservableCollection\ConcurrentObservableCollection.cs" />
+    <Compile Include="ComponentModel\CheckableObject.Generic.cs" />
+    <Compile Include="Collections\Concurrent\AbstractObjectCollection.cs" />
+    <Compile Include="Collections\Concurrent\ConcurrentObservableBase.cs" />
+    <Compile Include="Collections\Concurrent\ConcurrentObservableCollection.cs" />
     <Compile Include="Collections\Concurrent\DispatcherQueueProcessor.cs" />
-    <Compile Include="Collections\Concurrent\ImmutableCollection\ImmutableCollection.cs" />
-    <Compile Include="Collections\Concurrent\ImmutableCollection\ImmutableCollectionBase.cs" />
+    <Compile Include="Collections\Concurrent\ImmutableCollection.cs" />
+    <Compile Include="Collections\Concurrent\ImmutableCollectionBase.cs" />
     <Compile Include="Collections\Concurrent\ObservableCollectionViewModel.cs" />
-    <Compile Include="Collections\FrameworkElementCollection.cs" />
-    <Compile Include="Collections\IHierarchialCollection.cs" />
-    <Compile Include="Collections\IStackableCollection.cs" />
-    <Compile Include="Collections\ITrackableCollection.cs" />
-    <Compile Include="Collections\ObservableStack.cs" />
-    <Compile Include="Collections\TrackableCollection.cs" />
+    <Compile Include="Collections\Concurrent\ServerObjectCollection.Generic.cs" />
+    <Compile Include="Collections\ObjectModel\FrameworkElementCollection.cs" />
+    <Compile Include="Collections\Generic\IHierarchialCollection.cs" />
+    <Compile Include="Collections\Generic\IStackableCollection.cs" />
+    <Compile Include="Collections\Generic\ITrackableCollection.cs" />
+    <Compile Include="Collections\ObjectModel\ObservableStack.cs" />
+    <Compile Include="Collections\ObjectModel\TrackableCollection.cs" />
     <Compile Include="Collections\TrackableList.cs" />
     <Compile Include="CompassDirection.cs" />
-    <Compile Include="ControlOptions.cs" />
+    <Compile Include="ComponentModel\InvalidResultException.cs" />
+    <Compile Include="Configuration\AppDomainContext.cs" />
+    <Compile Include="Configuration\IApp.cs" />
+    <Compile Include="Configuration\IAppConfig.cs" />
+    <Compile Include="Configuration\IMainWindow.cs" />
+    <Compile Include="Configuration\IMainWindowViewModel.cs" />
+    <Compile Include="Configuration\IPlugin.cs" />
+    <Compile Include="Configuration\Plugin.cs" />
+    <Compile Include="Configuration\PluginManager.cs" />
+    <Compile Include="Configuration\Stability.cs" />
+    <Compile Include="Data\Collections\ConditionCollection.cs" />
+    <Compile Include="Data\Condition.cs" />
+    <Compile Include="Data\ConditionType.cs" />
+    <Compile Include="Data\Convert.cs" />
+    <Compile Include="Data\Converters\IntToBooleanConverter.cs" />
+    <Compile Include="Data\Converters\LowerCaseConverter.cs" />
+    <Compile Include="Data\Converters\FileSizeMultiValueConverter.cs" />
+    <Compile Include="Data\Converters\StringToBooleanConverter.cs" />
+    <Compile Include="Data\Converters\ValueEqualsParameterToVisibilityConverter.cs" />
+    <Compile Include="Data\Converters\FlagToVisibilityMultiValueConverter.cs" />
+    <Compile Include="Data\Converters\DateTimeStringFormatConverter.cs" />
+    <Compile Include="Data\Converters\DescriptionAttributeConverter.cs" />
+    <Compile Include="Data\Converters\NullConverter.cs" />
     <Compile Include="Data\Converters\ValueEqualsParameterConverter.cs" />
     <Compile Include="Data\Converters\IconAttributeConverter.cs" />
     <Compile Include="Data\Converters\BooleanToVisibilityConverter.cs" />
@@ -95,27 +139,36 @@
     <Compile Include="Data\Converters\FileSpeedConverter.cs" />
     <Compile Include="Data\Converters\IntToMonthConverter.cs" />
     <Compile Include="Data\Converters\InverseBooleanConverter.cs" />
-    <Compile Include="Data\Converters\NullObjectToBooleanConverter.cs" />
-    <Compile Include="Data\Converters\NullObjectToVisibilityConverter.cs" />
-    <Compile Include="Data\Converters\EmptyStringToVisibilityConverter.cs" />
+    <Compile Include="Data\Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Data\Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Data\Converters\StringToVisibilityConverter.cs" />
     <Compile Include="Data\Converters\ObjectToTypeConverter.cs" />
     <Compile Include="Data\Converters\RelativeTimeConverter.cs" />
     <Compile Include="Data\Converters\SecondsConverter.cs" />
-    <Compile Include="Data\Converters\StartsWithToVisibilityConverter.cs" />
+    <Compile Include="Data\Converters\StartsWithToVisibilityMultiValueConverter.cs" />
     <Compile Include="Data\Converters\StringToCamelCaseConverter.cs" />
     <Compile Include="Data\Converters\SubstringConverter.cs" />
     <Compile Include="Data\Converters\TreeViewLineConverter.cs" />
     <Compile Include="Data\Converters\UpperCaseConverter.cs" />
+    <Compile Include="Data\DateTimeCondition.cs" />
+    <Compile Include="Data\DateTimeOperator.cs" />
+    <Compile Include="Data\GraphicalUnit.cs" />
+    <Compile Include="Data\InvalidTokenException.cs" />
+    <Compile Include="Data\LongCondition.cs" />
+    <Compile Include="Data\LongOperator.cs" />
+    <Compile Include="Data\MatchType.cs" />
+    <Compile Include="Data\SearchHelper.cs" />
+    <Compile Include="Data\SearchInfo.cs" />
+    <Compile Include="Data\SearchOptions.cs" />
+    <Compile Include="Data\StringCondition.cs" />
+    <Compile Include="Data\StringOperator.cs" />
     <Compile Include="DialogProvider.cs" />
+    <Compile Include="DialogProviderMode.cs" />
+    <Compile Include="DialogProviderSelectionMode.cs" />
     <Compile Include="Direction.cs" />
-    <Compile Include="Entry.cs" />
-    <Compile Include="Error.cs" />
-    <Compile Include="Events\EventArgs.Generic.cs" />
-    <Compile Include="Exceptions\Exception.Generic.cs" />
-    <Compile Include="Exceptions\FileFormatException.Generic.cs" />
-    <Compile Include="Exceptions\FileNotFoundException.Generic.cs" />
-    <Compile Include="Exceptions\InvalidResultException.cs" />
-    <Compile Include="Exceptions\InvalidTokenException.cs" />
+    <Compile Include="ComponentModel\Entry.cs" />
+    <Compile Include="ComponentModel\Error.cs" />
+    <Compile Include="Exception.Generic.cs" />
     <Compile Include="Extensions\Bitmap.cs" />
     <Compile Include="Extensions\BitmapImage.cs" />
     <Compile Include="Extensions\Bool.cs" />
@@ -125,6 +178,7 @@
     <Compile Include="Extensions\Float.cs" />
     <Compile Include="Extensions\LinearGradientBrush.cs" />
     <Compile Include="Extensions\Random.cs" />
+    <Compile Include="Extensions\ResourceDictionary.cs" />
     <Compile Include="Extensions\SolidColorBrush.cs" />
     <Compile Include="Extensions\Color.cs" />
     <Compile Include="Extensions\DateTime.cs" />
@@ -136,37 +190,48 @@
     <Compile Include="Extensions\Int64.cs" />
     <Compile Include="Extensions\IntPtr.cs" />
     <Compile Include="Extensions\SpecialFolder.cs" />
-    <Compile Include="Extensions\TreeView.cs" />
-    <Compile Include="Extensions\MenuItem.cs" />
     <Compile Include="Extensions\Object.cs" />
     <Compile Include="Extensions\String.cs" />
     <Compile Include="Extensions\TimeSpan.cs" />
     <Compile Include="Extensions\Control.cs" />
     <Compile Include="Extensions\UIElement.cs" />
     <Compile Include="Extensions\Visibility.cs" />
-    <Compile Include="FileSystemEntry.cs" />
-    <Compile Include="FileSystemEntryProperty.cs" />
-    <Compile Include="ICheckable.cs" />
-    <Compile Include="IEditable.cs" />
-    <Compile Include="INamable.cs" />
-    <Compile Include="INotifiable.cs" />
+    <Compile Include="Globalization\LocalizationProvider.cs" />
+    <Compile Include="ComponentModel\IContainer.cs" />
+    <Compile Include="ComponentModel\ICheckable.cs" />
+    <Compile Include="ComponentModel\IEditable.cs" />
+    <Compile Include="ComponentModel\INamable.cs" />
+    <Compile Include="ComponentModel\INotifiable.cs" />
+    <Compile Include="Input\EventArgs.Generic.cs" />
+    <Compile Include="Input\InputValidationErrorEventArgs.cs" />
+    <Compile Include="Input\IValidateInput.cs" />
     <Compile Include="Input\MouseEvent.cs" />
+    <Compile Include="Data\FileSizeFormat.cs" />
+    <Compile Include="Input\MouseWheelActiveTrigger.cs" />
+    <Compile Include="Input\ValueArgs.cs" />
     <Compile Include="IO\FileEntry.cs" />
+    <Compile Include="IO\FileFormatException.Generic.cs" />
+    <Compile Include="IO\FileNotFoundException.Generic.cs" />
     <Compile Include="IO\FileSystemObject.cs" />
-    <Compile Include="ITaggable.cs" />
-    <Compile Include="Logging\LogEntry.cs" />
-    <Compile Include="Logging\LogEntryStatus.cs" />
-    <Compile Include="Measurement\Convert.cs" />
-    <Compile Include="Measurement\GraphicalUnit.cs" />
-    <Compile Include="Mvvm\BindingProxy.cs" />
-    <Compile Include="NamedEntry.cs" />
-    <Compile Include="NamedNotifiableObject.cs" />
-    <Compile Include="NamedObject.cs" />
-    <Compile Include="NativeMethods.cs" />
-    <Compile Include="NotifiableObject.cs" />
+    <Compile Include="ComponentModel\ITaggable.cs" />
+    <Compile Include="Native\Utilities.cs" />
+    <Compile Include="Text\Int64Representation.cs" />
+    <Compile Include="Mvvm\AbstractViewModel.cs" />
+    <Compile Include="Mvvm\IPaneViewModel.cs" />
+    <Compile Include="Mvvm\IDocumentViewModel.cs" />
+    <Compile Include="Mvvm\IPaneViewModelCollection.cs" />
+    <Compile Include="Mvvm\IDocumentViewModelCollection.cs" />
+    <Compile Include="Tracing\LogEntry.cs" />
+    <Compile Include="Tracing\LogEntryStatus.cs" />
+    <Compile Include="Data\BindingProxy.cs" />
+    <Compile Include="ComponentModel\NamedEntry.cs" />
+    <Compile Include="NamedDependencyObject.cs" />
+    <Compile Include="ComponentModel\NamedNotifiableObject.cs" />
+    <Compile Include="ComponentModel\NamedObject.cs" />
+    <Compile Include="ComponentModel\NotifiableObject.cs" />
     <Compile Include="Primitives\PointSize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Result.cs" />
+    <Compile Include="ComponentModel\Result.cs" />
     <Compile Include="RowColumn.cs" />
     <Compile Include="Scheduling\WeeklyRecurrence.cs" />
     <Compile Include="Scheduling\MonthlyRecurrence.cs" />
@@ -176,16 +241,26 @@
     <Compile Include="Serialization\SerializableFontFamily.cs" />
     <Compile Include="Side.cs" />
     <Compile Include="StretchMode.cs" />
-    <Compile Include="Success.cs" />
-    <Compile Include="TaggedObject.cs" />
+    <Compile Include="ComponentModel\Success.cs" />
+    <Compile Include="ComponentModel\TaggedObject.cs" />
     <Compile Include="Text\Encoding.cs" />
     <Compile Include="Text\StringRepresentation.cs" />
     <Compile Include="Threading\BackgroundQueue.cs" />
     <Compile Include="Threading\TaskCompletionNotifier.cs" />
     <Compile Include="Time.cs" />
+    <Compile Include="Tracing\ILog.cs" />
+    <Compile Include="Tracing\WarningLevel.cs" />
+    <Compile Include="Extensions\Keyboard.cs" />
     <Compile Include="VirtualFolder.cs" />
     <Compile Include="Web\Fetch.cs" />
     <Compile Include="Web\FetchStream.cs" />
+    <Compile Include="Web\IClient.cs" />
+    <Compile Include="Web\Server\ServerObjectProperty.cs" />
+    <Compile Include="Web\Server\ServerObjectType.cs" />
+    <Compile Include="Web\Server\IServerObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

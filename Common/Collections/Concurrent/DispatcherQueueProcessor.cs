@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace Imagin.Common.Collections
+namespace Imagin.Common.Collections.Concurrent
 {
     /// <summary>
     /// Executes a stream on actions on the dispatcher thread.

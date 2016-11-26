@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagin.Common.Native;
+using System;
 
 namespace Imagin.Common.Extensions
 {
@@ -9,7 +10,7 @@ namespace Imagin.Common.Extensions
         /// </summary>
         public static bool DeleteObject(this IntPtr Ptr)
         {
-            return NativeMethods.DeleteObject(Ptr);
+            return NativeUtilities.DeleteObject(Ptr);
         }
     }
 }

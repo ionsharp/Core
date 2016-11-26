@@ -12,8 +12,8 @@
         <ResourceDictionary>
             <System:Double x:Key="DisabledOpacity">0.4</System:Double>
 
-            <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
-            <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
+            <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+            <Common.Data.Converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
 
             <Style x:Key="{x:Type Controls.Common:AdvancedTextBox}" TargetType="{x:Type Controls.Common:AdvancedTextBox}">
                 <Setter Property="VerticalContentAlignment" Value="Center" />

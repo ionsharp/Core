@@ -1,7 +1,8 @@
 ﻿using Imagin.Common.Attributes;
-using Imagin.Common.Collections;
+using Imagin.Common.Collections.Concurrent;
 using Imagin.Common.Events;
 using Imagin.Common.Extensions;
+using Imagin.Common.Scheduling;
 using Imagin.Common.Text;
 using System;
 using System.Collections;
@@ -74,10 +75,13 @@ namespace Imagin.Controls.Extended
                     typeof(long),
                     typeof(LinearGradientBrush),
                     typeof(NetworkCredential),
+                    typeof(RepeatOptions),
                     typeof(short),
                     typeof(Size),
                     typeof(SolidColorBrush),
-                    typeof(string)
+                    typeof(string),
+                    typeof(Uri),
+                    typeof(Version)
                 };
             }
         }
@@ -108,10 +112,10 @@ namespace Imagin.Controls.Extended
         /// </summary>
         /// <param name="Dictionary">The dictionary to enumerate.</param>
         /// <param name="Callback">What to do afterwards.</param>
-        public async void BeginFromResourceDictionary(ResourceDictionary Dictionary, Action Callback = null)
+        public async Task BeginFromResourceDictionary(ResourceDictionary Dictionary, Action Callback = null)
         {
             if (Dictionary == null) return;
-            await Task.Run(new Action(() =>
+            await Task.Run(() =>
             {
                 foreach (DictionaryEntry Entry in Dictionary)
                 {
@@ -129,7 +133,7 @@ namespace Imagin.Controls.Extended
                         this.Add(Result);
                     }
                 }
-            }));
+            });
             if (Callback != null)
                 Callback.Invoke();
         }
@@ -138,11 +142,12 @@ namespace Imagin.Controls.Extended
         /// Set properties by enumerating the properties of an object.
         /// </summary>
         /// <param name="Callback">What to do afterwards.</param>
-        public async void BeginFromObject(Action Callback = null)
+        public async Task BeginFromObject(Action Callback = null)
         {
             var Object = this.Object;
             if (Object == null) return;
-            await Task.Run(new Action(() =>
+
+            await Task.Run(() =>
             {
                 //Enumerate object class attributes to find dynamic properties.
                 foreach (var i in Object.GetType().GetCustomAttributes(true))
@@ -164,9 +169,11 @@ namespace Imagin.Controls.Extended
                     if (!(Property.CanWrite && Property.GetSetMethod(true).IsPublic) || (!Property.PropertyType.EqualsAny(this.SupportedTypes) && !Property.PropertyType.IsEnum && !typeof(IList).IsAssignableFrom(Property.PropertyType)))
                         continue;
 
-                    string Category = string.Empty, Description = string.Empty;
+                    string Category = string.Empty, Description = string.Empty, Name = Property.Name;
                     bool IsFeatured = false, IsHidden = false, IsReadOnly = false;
                     StringRepresentation StringRepresentation = StringRepresentation.Regular;
+                    ConstraintAttribute Constraint = null;
+                    Int64Representation Int64Representation = Int64Representation.Default;
 
                     //Enumerate property's attributes.
                     foreach (var Attribute in Property.GetCustomAttributes(true))
@@ -175,12 +182,18 @@ namespace Imagin.Controls.Extended
                         if (Attribute is BrowsableAttribute && (IsHidden = !(Attribute as BrowsableAttribute).Browsable).As<bool>())
                             break;
 
-                        if (Attribute is CategoryAttribute)
+                        if (Attribute is DisplayNameAttribute)
+                            Name = Attribute.As<DisplayNameAttribute>().DisplayName;
+                        else if (Attribute is CategoryAttribute)
                             Category = Attribute.As<CategoryAttribute>().Category;
+                        else if (Attribute is ConstraintAttribute)
+                            Constraint = Attribute as ConstraintAttribute;
                         else if (Attribute is DescriptionAttribute)
                             Description = Attribute.As<DescriptionAttribute>().Description;
                         else if (Attribute is FeaturedAttribute)
                             IsFeatured = Attribute.As<FeaturedAttribute>().IsFeatured;
+                        else if (Attribute is Int64RepresentationAttribute)
+                            Int64Representation = Attribute.As<Int64RepresentationAttribute>().Representation;
                         else if (Attribute is StringRepresentationAttribute)
                             StringRepresentation = Attribute.As<StringRepresentationAttribute>().Representation;
                         else if (Attribute is ReadOnlyAttribute)
@@ -191,13 +204,18 @@ namespace Imagin.Controls.Extended
                     if (IsHidden) continue;
 
                     //Create and add PropertyModel.
-                    PropertyModel PropertyModel = PropertyModel.New(Property.PropertyType.GetPropertyModelType(), Property.Name, Property.GetValue(Object), Category, Description, IsReadOnly, IsFeatured);
+                    PropertyModel PropertyModel = PropertyModel.New(Property.PropertyType.GetPropertyModelType(), Name, Property.GetValue(Object), Category, Description, IsReadOnly, IsFeatured);
                     if (PropertyModel is StringPropertyModel)
                         PropertyModel.As<StringPropertyModel>().Representation = StringRepresentation;
+                    if (PropertyModel is NumericPropertyModel && Constraint != null)
+                        PropertyModel.As<NumericPropertyModel>().SetConstraint(Constraint.Minimum, Constraint.Maximum);
+                    if (PropertyModel is LongPropertyModel)
+                        PropertyModel.As<LongPropertyModel>().Int64Representation = Int64Representation;
+
                     PropertyModel.SelectedObject = Object;
                     this.Add(PropertyModel);
                 }
-            }));
+            });
 
             if (Callback != null)
                 Callback.Invoke();
@@ -207,16 +225,16 @@ namespace Imagin.Controls.Extended
         /// Set properties by enumerating an unknown object. 
         /// </summary>
         /// <param name="Source">A function that enumerates an unknown object and returns a list of properties.</param>
-        public async void BeginFromUnknown(Func<object, IEnumerable<PropertyModel>> Source)
+        public async Task BeginFromUnknown(Func<object, IEnumerable<PropertyModel>> Source)
         {
-            await Task.Run(new Action(() =>
+            await Task.Run(() =>
             {
                 IEnumerable<PropertyModel> Properties = Source(new object());
                 if (Properties == null)
                     return;
                 foreach (PropertyModel p in Properties)
                     this.Add(p);
-            }));
+            });
         }
 
         #endregion

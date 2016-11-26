@@ -6,19 +6,6 @@ namespace Imagin.Controls.Extended
 {
     public partial class CollectionEditor : UserControl
     {
-        public static DependencyProperty AlternationCountProperty = DependencyProperty.Register("AlternationCount", typeof(int), typeof(CollectionEditor), new FrameworkPropertyMetadata(2, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public int AlternationCount
-        {
-            get
-            {
-                return (int)GetValue(AlternationCountProperty);
-            }
-            set
-            {
-                SetValue(AlternationCountProperty, value);
-            }
-        }
-
         public static DependencyProperty CollectionProperty = DependencyProperty.Register("Collection", typeof(object), typeof(CollectionEditor), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCollectionChanged));
         public object Collection
         {

@@ -2,7 +2,7 @@
 
 namespace Imagin.Controls.Extended
 {
-    public sealed class IntPropertyModel : PropertyModel
+    public sealed class IntPropertyModel : NumericPropertyModel<int>
     {
         protected override void OnValueChanged(object NewValue)
         {

@@ -7,28 +7,6 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
-        public static DateTime Tomorrow
-        {
-            get
-            {
-                return DateTime.Today.AddDays(1.0);
-            }
-        }
-
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
-        public static DateTime Yesterday
-        {
-            get
-            {
-                return DateTime.Today.AddDays(-1.0);
-            }
-        }
-
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int CurrentMonth
         {
             get
@@ -59,10 +37,28 @@ namespace Imagin.Common.Extensions
             }
         }
 
+        public static DateTime GetContextNow(this DateTimeKind Kind)
+        {
+            if (Kind == DateTimeKind.Unspecified)
+                return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified);
+            return (Kind == DateTimeKind.Utc) ? DateTime.UtcNow : DateTime.Now;
+        }
+
+        /// <summary>
+        /// Imagin.Common: Determines if first date is equal to second.
+        /// </summary>
         public static bool IsEqualTo(this DateTime? First, DateTime? Second)
         {
             if (First == null || Second == null) return false;
             return (First.Value.Date == Second.Value.Date);
+        }
+
+        /// <summary>
+        /// Imagin.Common: Determines if first date is equal to second irrespective of time.
+        /// </summary>
+        public static bool IsEqualTo(this DateTime DateTime, DateTime SecondDateTime)
+        {
+            return DateTime.Month == SecondDateTime.Month && DateTime.Day == SecondDateTime.Day && DateTime.Year == SecondDateTime.Year;
         }
 
         /// <summary>
@@ -75,11 +71,14 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Checks if month, day, and year of first DateTime are identical to second (ignores time).
+        /// Imagin.Common
         /// </summary>
-        public static bool IsEqualTo(this DateTime DateTime, DateTime SecondDateTime)
+        public static DateTime Tomorrow
         {
-            return DateTime.Month == SecondDateTime.Month && DateTime.Day == SecondDateTime.Day && DateTime.Year == SecondDateTime.Year;
+            get
+            {
+                return DateTime.Today.AddDays(1.0);
+            }
         }
 
         /// <summary>
@@ -170,6 +169,17 @@ namespace Imagin.Common.Extensions
             //It's now
             else
                 return NowText;
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static DateTime Yesterday
+        {
+            get
+            {
+                return DateTime.Today.AddDays(-1.0);
+            }
         }
     }
 }

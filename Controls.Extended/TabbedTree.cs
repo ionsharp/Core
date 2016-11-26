@@ -1,4 +1,5 @@
 ﻿using Imagin.Controls.Common;
+using Imagin.Controls.Common.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +11,23 @@ namespace Imagin.Controls.Extended
 {
     public class TabbedTree : AdvancedTreeView
     {
-        #region DependencyProperties
+        #region Properties
 
-        public static DependencyProperty SelectedContentProperty = DependencyProperty.Register("SelectedContent", typeof(object), typeof(TabbedTree), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public object SelectedContent
+        ContentControl PART_ContentHeader
         {
-            get
-            {
-                return (object)GetValue(SelectedContentProperty);
-            }
-            set
-            {
-                SetValue(SelectedContentProperty, value);
-            }
+            get; set;
         }
 
-        public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public DataTemplate ContentTemplate
+        public static DependencyProperty CanResizeContentProperty = DependencyProperty.Register("CanResizeContent", typeof(bool), typeof(TabbedTree), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool CanResizeContent
         {
             get
             {
-                return (DataTemplate)GetValue(ContentTemplateProperty);
+                return (bool)GetValue(CanResizeContentProperty);
             }
             set
             {
-                SetValue(ContentTemplateProperty, value);
+                SetValue(CanResizeContentProperty, value);
             }
         }
 
@@ -77,6 +70,32 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        public static DependencyProperty ContentHeaderTemplateProperty = DependencyProperty.Register("ContentHeaderTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(default(DataTemplate), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate ContentHeaderTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(ContentHeaderTemplateProperty);
+            }
+            set
+            {
+                SetValue(ContentHeaderTemplateProperty, value);
+            }
+        }
+
+        public static DependencyProperty ContentHeaderVisibilityProperty = DependencyProperty.Register("ContentHeaderVisibility", typeof(Visibility), typeof(TabbedTree), new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Visibility ContentHeaderVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(ContentHeaderVisibilityProperty);
+            }
+            set
+            {
+                SetValue(ContentHeaderVisibilityProperty, value);
+            }
+        }
+        
         public static DependencyProperty ContentPaddingProperty = DependencyProperty.Register("ContentPadding", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Thickness ContentPadding
         {
@@ -90,16 +109,16 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty MenuWidthProperty = DependencyProperty.Register("MenuWidth", typeof(GridLength), typeof(TabbedTree), new FrameworkPropertyMetadata(default(GridLength), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public GridLength MenuWidth
+        public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate ContentTemplate
         {
             get
             {
-                return (GridLength)GetValue(MenuWidthProperty);
+                return (DataTemplate)GetValue(ContentTemplateProperty);
             }
             set
             {
-                SetValue(MenuWidthProperty, value);
+                SetValue(ContentTemplateProperty, value);
             }
         }
 
@@ -116,16 +135,16 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty MenuBorderThicknessProperty = DependencyProperty.Register("MenuBorderThickness", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Thickness MenuBorderThickness
+        public static DependencyProperty MenuWidthProperty = DependencyProperty.Register("MenuWidth", typeof(GridLength), typeof(TabbedTree), new FrameworkPropertyMetadata(default(GridLength), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public GridLength MenuWidth
         {
             get
             {
-                return (Thickness)GetValue(MenuBorderThicknessProperty);
+                return (GridLength)GetValue(MenuWidthProperty);
             }
             set
             {
-                SetValue(MenuBorderThicknessProperty, value);
+                SetValue(MenuWidthProperty, value);
             }
         }
 
@@ -155,6 +174,19 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        public static DependencyProperty MenuBorderThicknessProperty = DependencyProperty.Register("MenuBorderThickness", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Thickness MenuBorderThickness
+        {
+            get
+            {
+                return (Thickness)GetValue(MenuBorderThicknessProperty);
+            }
+            set
+            {
+                SetValue(MenuBorderThicknessProperty, value);
+            }
+        }
+
         public static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(string), typeof(TabbedTree), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedIndexChanged));
         public string SelectedIndex
         {
@@ -169,8 +201,7 @@ namespace Imagin.Controls.Extended
         }
         static void OnSelectedIndexChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            TabbedTree TabbedTree = (TabbedTree)Object;
-            TabbedTree.SelectIndex(TabbedTree.SelectedIndex);
+            ((TabbedTree)Object).OnSelectedIndexChanged((string)e.NewValue);
         }
 
         #endregion
@@ -180,82 +211,74 @@ namespace Imagin.Controls.Extended
         public TabbedTree() : base()
         {
             this.DefaultStyleKey = typeof(TabbedTree);
-            this.SelectedItemChanged += this.OnSelectedItemChanged;
+
+            this.SelectedItemChanged += OnSelectedItemChanged;
         }
 
         public override void OnApplyTemplate()
         {
             base.ApplyTemplate();
 
-            //If a selected index is not specified, select first by default.
-            if (!string.IsNullOrEmpty(this.SelectedIndex))
-                this.SelectIndex(this.SelectedIndex);
-            else this.SetSelectedIndex(0);
+            this.PART_ContentHeader = this.Template.FindName("PART_ContentHeader", this) as ContentControl;
         }
 
         #endregion
 
         #region Methods
 
-        public void SetSelectedIndex(params int[] Values)
+        IEnumerable<int> GetIndices(string Index)
         {
-            string Temp = string.Empty;
-            foreach (int i in Values) Temp += i.ToString() + ",";
-            Temp = Temp.TrimEnd(',');
-            this.SelectedIndex = Temp;
-        }
-
-        List<int> GetIndices(string Index)
-        {
-            if (!string.IsNullOrEmpty(Index))
+            var Indices = Index.Split(',');
+            foreach (var i in Indices)
             {
-                List<int> Values = new List<int>();
-                string[] OldValues = Index.Split(',');
-                try
-                {
-                    for (int i = 0, Count = OldValues.Count(); i < Count; i++)
-                        Values.Add(Convert.ToInt32(OldValues[i]));
-                    return Values;
-                }
-                catch
-                {
-
-                }
+                var j = 0;
+                if (!int.TryParse(i, out j))
+                    continue;
+                yield return j;
             }
-            return default(List<int>);
         }
 
-        void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        void SelectTarget(IEnumerable<int> Indices, ItemsControl Control = null)
         {
+            if (Indices != null)
+            {
+                var Target = this as ItemsControl;
+                foreach (var i in Indices)
+                {
+                    if (Target.Items.Count > i)
+                        Target = Target.Items[i] as ItemsControl;
+                    else break;
+                }
+                if (Target != null && Target is TreeViewItem)
+                    TreeViewItemExtensions.SetIsSelected(Target as TreeViewItem, true);
+            }
+        }
+
+        protected virtual void OnSelectedIndexChanged(string Value)
+        {
+            this.SelectTarget(this.GetIndices(Value));
+        }
+
+        protected virtual void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (this.PART_ContentHeader != null)
+            {
+                if (e.NewValue is TreeViewItem)
+                    this.PART_ContentHeader.Content = (e.NewValue as TreeViewItem).Header.ToString();
+                else this.PART_ContentHeader.Content = e.NewValue;
+            }
         }
 
         /// <summary>
-        /// An array that represents the index depth.
+        /// Set selected index by specifying numeric depth.
         /// </summary>
-        /// <param name="Index">0-based index.</param>
-        void SelectIndex(string Index)
+        /// <param name="Values"></param>
+        public void SetSelectedIndex(params int[] Values)
         {
-            List<int> Values = this.GetIndices(Index);
-            if (Values == null)
-                return;
-            TreeViewItem Target = null;
-            foreach (int i in Values)
-            {
-                if (Target == null)
-                {
-                    if (this.Items.Count > i)
-                        Target = this.Items[i] as TreeViewItem; //Can never be null; guarentees Target != null after first pass or breaks.
-                    else break;
-                }
-                else
-                {
-                    if (Target.Items.Count > i)
-                        Target = Target.Items[i] as TreeViewItem;
-                    else break;
-                }
-            }
-            if (Target != null)
-                Target.IsSelected = true;
+            var Result = string.Empty;
+            foreach (var i in Values)
+                Result += i.ToString() + ",";
+            this.SelectedIndex = Result.TrimEnd(',');
         }
 
         #endregion

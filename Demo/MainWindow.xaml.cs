@@ -2,10 +2,11 @@
 using Imagin.Common.Attributes;
 using Imagin.Common.Extensions;
 using Imagin.Common.Text;
+using Imagin.Common.Web;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,6 +19,38 @@ namespace Imagin.NET.Demo
 
         public class FileSystemEntryModel : NamedObject
         {
+            Guid id = Guid.NewGuid();
+            [Description("The date the file was last accessed.")]
+            [ReadOnly(true)]
+            public Guid Id
+            {
+                get
+                {
+                    return id;
+                }
+                set
+                {
+                    id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+
+            [Description("The name of the file.")]
+            [Featured(true)]
+            [ReadOnly(true)]
+            public override string Name
+            {
+                get
+                {
+                    return name;
+                }
+                set
+                {
+                    name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+
             bool isExpanded = false;
             public bool IsExpanded
             {
@@ -87,153 +120,10 @@ namespace Imagin.NET.Demo
                 }
             }
 
-            string type = string.Empty;
-            public string Type
-            {
-                get
-                {
-                    return this.type;
-                }
-                set
-                {
-                    this.type = value;
-                    OnPropertyChanged("Type");
-                }
-            }
-
-            DateTime accessed = default(DateTime);
-            public DateTime Accessed
-            {
-                get
-                {
-                    return this.accessed;
-                }
-                set
-                {
-                    this.accessed = value;
-                    OnPropertyChanged("Accessed");
-                }
-            }
-
-            DateTime created = default(DateTime);
-            public DateTime Created
-            {
-                get
-                {
-                    return this.created;
-                }
-                set
-                {
-                    this.created = value;
-                    OnPropertyChanged("Created");
-                }
-            }
-
-            DateTime modified = default(DateTime);
-            public DateTime Modified
-            {
-                get
-                {
-                    return this.modified;
-                }
-                set
-                {
-                    this.modified = value;
-                    OnPropertyChanged("Modified");
-                }
-            }
-
-            ObservableCollection<FileSystemEntryModel> items = null;
-            public ObservableCollection<FileSystemEntryModel> Items
-            {
-                get
-                {
-                    return this.items;
-                }
-                set
-                {
-                    this.items = value;
-                    OnPropertyChanged("Items");
-                }
-            }
-
-            public override string ToString()
-            {
-                return Name;
-            }
-
-            public FileSystemEntryModel(string Path) : base()
-            {
-                this.Items = new ObservableCollection<FileSystemEntryModel>();
-
-                this.Path = Path;
-                bool IsFolder = System.IO.Directory.Exists(Path), IsFile = System.IO.File.Exists(Path);
-
-                this.Name = !IsFolder && !IsFile ? this.Path : Path.GetFileName();
-                if (!IsFolder && !IsFile) return;
-
-                this.Type = IsFolder ? (Path.EndsWith(":") || Path.EndsWith(@":\") ? "Drive" : "Folder") : (IsFile ? string.Format("{0} File", Path.GetExtension().Replace(".", "").ToUpper()) : string.Empty);
-
-                var Info = IsFolder ? new System.IO.DirectoryInfo(Path) : IsFile ? new System.IO.FileInfo(Path) as System.IO.FileSystemInfo : null;
-                if (Info != null)
-                {
-                    if (IsFile)
-                        this.Size = (Info as System.IO.FileInfo).Length;
-                    this.Accessed = Info.LastAccessTimeUtc;
-                    this.Created = Info.CreationTimeUtc;
-                    this.Modified = Info.LastWriteTimeUtc;
-                }
-            }
-        }
-
-        public enum Rating
-        {
-            Zero,
-            One,
-            Two,
-            Three,
-            Four,
-            Five
-        }
-
-        public class FileModel : NamedObject
-        {
-            [Description("The name of the file.")]
-            [Featured(true)]
-            [ReadOnly(true)]
-            public override string Name
-            {
-                get
-                {
-                    return name;
-                }
-                set
-                {
-                    name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-
-            Guid id = Guid.NewGuid();
-            [Description("The date the file was last accessed.")]
-            [ReadOnly(true)]
-            public Guid Id
-            {
-                get
-                {
-                    return id;
-                }
-                set
-                {
-                    id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
-
-            FileSystemEntry type;
+            ServerObjectType type;
             [Description("The type of the file system entry.")]
             [ReadOnly(true)]
-            public FileSystemEntry Type
+            public ServerObjectType Type
             {
                 get
                 {
@@ -243,70 +133,6 @@ namespace Imagin.NET.Demo
                 {
                     type = value;
                     OnPropertyChanged("Type");
-                }
-            }
-
-            Rating rating = Rating.Zero;
-            [Description("The type of the file system entry.")]
-            [ReadOnly(true)]
-            public Rating Rating
-            {
-                get
-                {
-                    return rating;
-                }
-                set
-                {
-                    rating = value;
-                    OnPropertyChanged("Rating");
-                }
-            }
-
-            DateTime accessed = default(DateTime);
-            [Description("The date the file was last accessed.")]
-            [ReadOnly(true)]
-            public DateTime Accessed
-            {
-                get
-                {
-                    return accessed;
-                }
-                set
-                {
-                    accessed = value;
-                    OnPropertyChanged("Accessed");
-                }
-            }
-
-            DateTime created = default(DateTime);
-            [Description("The date the file was created.")]
-            [ReadOnly(true)]
-            public DateTime Created
-            {
-                get
-                {
-                    return created;
-                }
-                set
-                {
-                    created = value;
-                    OnPropertyChanged("Created");
-                }
-            }
-
-            DateTime modified = default(DateTime);
-            [Description("The date the file was last modified.")]
-            [ReadOnly(true)]
-            public DateTime Modified
-            {
-                get
-                {
-                    return modified;
-                }
-                set
-                {
-                    modified = value;
-                    OnPropertyChanged("Modified");
                 }
             }
 
@@ -342,22 +168,6 @@ namespace Imagin.NET.Demo
                 }
             }
 
-            long length = 0L;
-            [Description("The length of the file as number of bytes.")]
-            [ReadOnly(true)]
-            public long Length
-            {
-                get
-                {
-                    return length;
-                }
-                set
-                {
-                    length = value;
-                    OnPropertyChanged("Length");
-                }
-            }
-
             string notes = string.Empty;
             [Description("File notes.")]
             [StringRepresentation(StringRepresentation.Multiline)]
@@ -371,35 +181,6 @@ namespace Imagin.NET.Demo
                 {
                     notes = value;
                     OnPropertyChanged("Notes");
-                }
-            }
-
-            NetworkCredential credential = null;
-            [Description("Network credential used to open the file.")]
-            public NetworkCredential Credential
-            {
-                get
-                {
-                    return credential;
-                }
-                set
-                {
-                    credential = value;
-                    OnPropertyChanged("Credential");
-                }
-            }
-
-            ObservableCollection<FileModel> items = null;
-            public ObservableCollection<FileModel> Items
-            {
-                get
-                {
-                    return this.items;
-                }
-                set
-                {
-                    this.items = value;
-                    OnPropertyChanged("Items");
                 }
             }
 
@@ -419,52 +200,72 @@ namespace Imagin.NET.Demo
                 }
             }
 
-            string path = string.Empty;
-            [Description("Path to the file.")]
+            DateTime accessed = default(DateTime);
+            [Description("The date the file was last accessed.")]
             [ReadOnly(true)]
-            public string Path
+            public DateTime Accessed
             {
                 get
                 {
-                    return path;
+                    return this.accessed;
                 }
                 set
                 {
-                    path = value;
-                    OnPropertyChanged("Path");
+                    this.accessed = value;
+                    OnPropertyChanged("Accessed");
                 }
             }
 
-            string resourcesPath = string.Empty;
-            [Description("Path to resources for the file.")]
-            [StringRepresentation(StringRepresentation.FileSystemPath)]
-            public string ResourcesPath
+            DateTime created = default(DateTime);
+            [Description("The date the file was created.")]
+            [ReadOnly(true)]
+            public DateTime Created
             {
                 get
                 {
-                    return resourcesPath;
+                    return this.created;
                 }
                 set
                 {
-                    resourcesPath = value;
-                    OnPropertyChanged("ResourcesPath");
+                    this.created = value;
+                    OnPropertyChanged("Created");
                 }
             }
 
-            Size size = default(Size);
-            [Description("Dimensions of the file if it is an image.")]
+            DateTime modified = default(DateTime);
+            [Description("The date the file was last modified.")]
             [ReadOnly(true)]
-            public Size Size
+            public DateTime Modified
             {
                 get
                 {
-                    return size;
+                    return this.modified;
                 }
                 set
                 {
-                    size = value;
-                    OnPropertyChanged("Size");
+                    this.modified = value;
+                    OnPropertyChanged("Modified");
                 }
+            }
+
+            ObservableCollection<FileSystemEntryModel> items = null;
+            [Browsable(false)]
+            public ObservableCollection<FileSystemEntryModel> Items
+            {
+                get
+                {
+                    return this.items;
+                }
+                set
+                {
+                    this.items = value;
+                    OnPropertyChanged("Items");
+                }
+            }
+
+            public override string ToString()
+            {
+                return Name;
             }
 
             void Set(System.IO.FileSystemInfo Info)
@@ -479,24 +280,52 @@ namespace Imagin.NET.Demo
 
             void Set(System.IO.DirectoryInfo Info)
             {
-                this.Type = FileSystemEntry.Folder;
+                this.Type = ServerObjectType.Folder;
+
                 this.Set(Info as System.IO.FileSystemInfo);
             }
 
             void Set(System.IO.FileInfo Info)
             {
-                this.Type = FileSystemEntry.File;
+                this.Type = ServerObjectType.File;
+                this.Size = Info.Length;
+
                 this.Set(Info as System.IO.FileSystemInfo);
-                this.Length = Info.Length;
             }
 
-            public FileModel(string Path) : base(Path.GetFileName())
+            public FileSystemEntryModel(string Path) : base()
             {
-                this.Items = new ObservableCollection<FileModel>();
+                this.Items = new ObservableCollection<FileSystemEntryModel>();
+
+                bool IsFolder = System.IO.Directory.Exists(Path), IsFile = System.IO.File.Exists(Path);
                 if (Path.DirectoryExists())
                     this.Set(new System.IO.DirectoryInfo(Path));
                 else if (Path.FileExists())
                     this.Set(new System.IO.FileInfo(Path));
+
+                this.Name = !IsFolder && !IsFile ? this.Path : Path.GetFileName();
+            }
+        }
+
+        public class HierarchialObject : NamedObject
+        {
+            ObservableCollection<HierarchialObject> items = null;
+            public ObservableCollection<HierarchialObject> Items
+            {
+                get
+                {
+                    return this.items;
+                }
+                set
+                {
+                    this.items = value;
+                    OnPropertyChanged("Items");
+                }
+            }
+
+            public HierarchialObject(string Name) : base(Name)
+            {
+                this.Items = new ObservableCollection<Demo.MainWindow.HierarchialObject>();
             }
         }
 
@@ -511,7 +340,9 @@ namespace Imagin.NET.Demo
         #region Properties
 
         static Random Random = new Random();
-        
+
+        string LastPath = string.Empty;
+
         public static DependencyProperty ShortValueProperty = DependencyProperty.Register("ShortValue", typeof(short), typeof(MainWindow), new FrameworkPropertyMetadata((short)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public short ShortValue
         {
@@ -616,12 +447,12 @@ namespace Imagin.NET.Demo
             }
         }
 
-        public static DependencyProperty SelectedFileSystemEntriesProperty = DependencyProperty.Register("SelectedFileSystemEntries", typeof(ObservableCollection<FileSystemEntryModel>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public ObservableCollection<FileSystemEntryModel> SelectedFileSystemEntries
+        public static DependencyProperty SelectedFileSystemEntriesProperty = DependencyProperty.Register("SelectedFileSystemEntries", typeof(ObservableCollection<object>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public ObservableCollection<object> SelectedFileSystemEntries
         {
             get
             {
-                return (ObservableCollection<FileSystemEntryModel>)GetValue(SelectedFileSystemEntriesProperty);
+                return (ObservableCollection<object>)GetValue(SelectedFileSystemEntriesProperty);
             }
             set
             {
@@ -642,16 +473,16 @@ namespace Imagin.NET.Demo
             }
         }
 
-        public static DependencyProperty PropertyGridSourceProperty = DependencyProperty.Register("PropertyGridSource", typeof(ObservableCollection<FileModel>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public ObservableCollection<FileModel> PropertyGridSource
+        public static DependencyProperty HierarchialCollectionProperty = DependencyProperty.Register("HierarchialCollection", typeof(ObservableCollection<HierarchialObject>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public ObservableCollection<HierarchialObject> HierarchialCollection
         {
             get
             {
-                return (ObservableCollection<FileModel>)GetValue(PropertyGridSourceProperty);
+                return (ObservableCollection<HierarchialObject>)GetValue(HierarchialCollectionProperty);
             }
             set
             {
-                SetValue(PropertyGridSourceProperty, value);
+                SetValue(HierarchialCollectionProperty, value);
             }
         }
 
@@ -663,8 +494,9 @@ namespace Imagin.NET.Demo
         {
             InitializeComponent();
 
+            this.SelectedFileSystemEntries = new ObservableCollection<object>();
+
             this.FileSystem = new ObservableCollection<FileSystemEntryModel>();
-            this.SelectedFileSystemEntries = new ObservableCollection<FileSystemEntryModel>();
             foreach (var i in System.IO.Directory.GetLogicalDrives())
                 this.FileSystem.Add(new FileSystemEntryModel(i));
 
@@ -679,24 +511,17 @@ namespace Imagin.NET.Demo
                 });
             }
 
-            this.PropertyGridSource = new ObservableCollection<FileModel>();
-            foreach (var i in System.IO.Directory.EnumerateFileSystemEntries(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
+            HierarchialCollection = new ObservableCollection<HierarchialObject>();
+            for (int i = 0; i < 10; i++)
             {
-                var Model = new FileModel(i);
-                if (Model.Type == FileSystemEntry.Folder)
+                var k = new HierarchialObject("Object " + i);
+                for (int j = 0; j < 5; j++)
                 {
-                    try
-                    {
-                        var Items = System.IO.Directory.EnumerateFileSystemEntries(Model.Path); //This can potentially fail
-                        foreach (var j in Items)
-                            Model.Items.Add(new FileModel(j));
-                    }
-                    catch
-                    {
-                    }
+                    var m = new HierarchialObject("Object " + (i + j));
+                    m.Items.Add(new HierarchialObject("Object " + i + "a"));
+                    k.Items.Add(m);
                 }
-                this.PropertyGridSource.Add(Model);
-
+                HierarchialCollection.Add(k);
             }
         }
 
@@ -722,6 +547,21 @@ namespace Imagin.NET.Demo
             if (sender == null || !sender.As<FrameworkElement>().IsInitialized)
                 return;
             this.PART_AlignableWrapPanel.HorizontalContentAlignment = (sender as RadioButton).Content.ToString().ParseEnum<HorizontalAlignment>();
+        }
+        
+        void OnGetParentPath(object sender, RoutedEventArgs e)
+        {
+            if (this.LastPath.IsNull()) return;
+
+            var Parent = LastPath.DirectoryExists() ? LastPath.GetDirectoryName() : null;
+            this.SetPath(Parent);
+        }
+
+        void OnMouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            var Path = (sender as FrameworkElement).Tag.ToString();
+            if (Path.DirectoryExists())
+                this.SetPath(Path);
         }
 
         void OnMaskedButtonClick(object sender, RoutedEventArgs e)
@@ -753,6 +593,31 @@ namespace Imagin.NET.Demo
         void OnViewChanged(object sender, RoutedEventArgs e)
         {
             this.View = sender.As<RadioButton>().Content.ToString().ParseEnum<ViewEnum>();
+        }
+
+        void SetPath(string Path)
+        {
+            this.FileSystem.Clear();
+
+            var Items = default(IEnumerable<string>);
+            try
+            {
+                if (Path.IsNullOrEmpty())
+                    Items = System.IO.Directory.GetLogicalDrives();
+                else Items = System.IO.Directory.EnumerateFileSystemEntries(Path);
+            }
+            catch
+            {
+                Items = null;
+            }
+
+            if (Items != null)
+            {
+                foreach (var i in Items)
+                    this.FileSystem.Add(new FileSystemEntryModel(i));
+            }
+
+            this.LastPath = Path;
         }
 
         #endregion

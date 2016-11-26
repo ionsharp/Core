@@ -15,7 +15,8 @@ namespace Imagin.Common.Threading
         /// </summary>
         public Task<TResult> Task
         {
-            get; private set; }
+            get; private set;
+        }
 
         /// <summary>
         /// Gets the result of the task. Returns the default value of TResult if the task has not completed successfully.
@@ -24,7 +25,9 @@ namespace Imagin.Common.Threading
         {
             get
             {
-                return (Task.Status == TaskStatus.RanToCompletion) ? Task.Result : default(TResult); } }
+                return (Task.Status == TaskStatus.RanToCompletion) ? Task.Result : default(TResult);
+            }
+        }
 
         /// <summary>
         /// Gets whether the task has completed.

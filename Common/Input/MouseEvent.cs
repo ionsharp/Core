@@ -1,9 +1,14 @@
-﻿namespace Imagin.Common.Input
+﻿using System;
+
+namespace Imagin.Common.Input
 {
+    [Flags]
     public enum MouseEvent
     {
-        MouseDown,
-        MouseUp,
-        MouseDoubleClick
+        None = 0,
+        Default = 1,
+        MouseDown = 2,
+        MouseUp = 4,
+        MouseDoubleClick = 8
     }
 }

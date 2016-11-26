@@ -22,18 +22,25 @@
     <SolidColorBrush x:Key="ButtonMouseDownBorderBrush" Color="#999"/>
     <SolidColorBrush x:Key="ButtonDefaultBorderBrush" Color="#349ADE"/>
 
-    <SolidColorBrush x:Key="ComboBoxBackground" Color="#DDD"/>
-    <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#BBB"/>
-    <SolidColorBrush x:Key="ComboBoxForeground" Color="#777"/>
-    <SolidColorBrush x:Key="ComboBoxCheckedBackground" Color="#007acc"/>
-    <SolidColorBrush x:Key="ComboBoxCheckedBorderBrush" Color="#007acc"/>
-    <SolidColorBrush x:Key="ComboBoxCheckedForeground" Color="#FFF"/>
-    <SolidColorBrush x:Key="ComboBoxToggleButtonBackground" Color="#DDD"/>
-    <SolidColorBrush x:Key="ComboBoxToggleButtonBorderBrush" Color="Transparent"/>
-    <SolidColorBrush x:Key="ComboBoxToggleButtonArrowFill" Color="#999"/>
-    <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#DDD"/>
-    <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="#BBB"/>
-    <SolidColorBrush x:Key="ComboBoxItemIsHighlightedBackground" Color="#CCC"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.Foreground" Color="#777"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.MouseOver.Background" Color="#DDD"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.MouseOver.Border" Color="#BBB"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.MouseOver.Foreground" Color="#777"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.Checked.Background" Color="#FF349ADE"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.Checked.Border" Color="#FF349ADE"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.Checked.Foreground" Color="#FFF"/>
+    <LinearGradientBrush x:Key="Brush.ComboBox.DropDown.Background" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#F0F0F0"/>
+        <GradientStop Offset="1" Color="#EAEAEA"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="Brush.ComboBox.DropDown.Border" Color="#999"/>
+
+    <SolidColorBrush x:Key="Brush.ComboBoxItem.Foreground" Color="#777"/>
+    <SolidColorBrush x:Key="Brush.ComboBoxItem.Selected.Background" Color="#FF349ADE"/>
+    <SolidColorBrush x:Key="Brush.ComboBoxItem.Selected.Foreground" Color="#FFF"/>
+    <SolidColorBrush x:Key="Brush.ComboBoxItem.MouseOver.Background" Color="#11000000"/>
 
     <SolidColorBrush x:Key="ContextMenuBackground" Color="Transparent"/>
     <SolidColorBrush x:Key="ContextMenuBorderBrush" Color="#AAA"/>
@@ -41,36 +48,52 @@
     <SolidColorBrush x:Key="ContextMenuSeparatorBorderBrush" Color="#D7D7D7"/>
     <Color x:Key="DropShadowColor">#808080</Color>
 
-    <SolidColorBrush x:Key="DataGridColumnHeaderBackground" Color="#FCFCFC"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderForeground" Color="#333"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderBorderBrush" Color="#e8f1fb"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderMouseOverBackground" Color="#b9e9fc"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderMouseOverBorderBrush" Color="#69bbe3"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderPressedBackground" Color="#ddeff8"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderPressedBorderBrush" Color="#96d9f9"/>
-    <SolidColorBrush x:Key="DataGridBackground" Color="Transparent"/>
-    <SolidColorBrush x:Key="DataGridBorderBrush" Color="Transparent"/>
-    <SolidColorBrush x:Key="DataGridRowForeground" Color="#333"/>
-    <SolidColorBrush x:Key="DataGridRowIsSelectedIsActiveBackground" Color="#60bffb"/>
-    <SolidColorBrush x:Key="DataGridRowIsSelectedIsNotActiveBackground" Color="#FF6CC6FF"/>
-    <SolidColorBrush x:Key="DataGridRowIsSelectedIsActiveForeground" Color="#333"/>
-    <SolidColorBrush x:Key="DataGridRowIsSelectedIsNotActiveForeground" Color="#333"/>
-    <SolidColorBrush x:Key="DataGridRowIsSelectedEvenBackground" Color="#11000000"/>
-    <SolidColorBrush x:Key="DataGridRowIsSelectedOddBackground" Color="#22000000"/>
-    <SolidColorBrush x:Key="DataGridRowIsMouseOverBackground" Color="#a9dffe"/>
-    <SolidColorBrush x:Key="DataGridRowIsMouseOverForeground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.DataGrid.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.DataGrid.Border" Color="Transparent"/>
+
+    <SolidColorBrush x:Key="Brush.DataGrid.GridLines.Horizontal" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.DataGrid.GridLines.Vertical" Color="Transparent"/>
+
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Background" Color="#FCFCFC"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Border" Color="#e8f1fb"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Foreground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.MouseOver.Background" Color="#b9e9fc"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.MouseOver.Border" Color="#69bbe3"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.MouseOver.Foreground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Pressed.Background" Color="#ddeff8"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Pressed.Border" Color="#96d9f9"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Pressed.Foreground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Thumb" Color="#22000000"/>
+
+    <SolidColorBrush x:Key="Brush.DataGridRow.Foreground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Background" Color="#FF6CC6FF"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Foreground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Background" Color="#60bffb"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Foreground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Even.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Odd.Background" Color="Gainsboro"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Background" Color="#a9dffe"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Foreground" Color="#333"/>
+
+    <SolidColorBrush x:Key="Brush.GridView.Background" Color="#11000000"/>
 
     <SolidColorBrush x:Key="ImageBrush" Color="#BBB"/>
     <SolidColorBrush x:Key="ImageHoverBrush" Color="#FF349ADE"/>
     <SolidColorBrush x:Key="ImagePressedBrush" Color="#FF70B6E4"/>
 
-    <SolidColorBrush x:Key="ListBoxBackground" Color="Transparent"/>
-    <SolidColorBrush x:Key="ListBoxBorderBrush" Color="#DDD"/>
-    <SolidColorBrush x:Key="ListBoxItemIsMouseOverBackground" Color="#C1E6FF"/>
-    <SolidColorBrush x:Key="ListBoxItemIsMouseOverBorderBrush" Color="#57bbff"/>
-    <SolidColorBrush x:Key="ListBoxItemIsSelectedBackground" Color="#AA1881c8"/>
-    <SolidColorBrush x:Key="ListBoxItemIsSelectedBorderBrush" Color="#0970b6"/>
-    <SolidColorBrush x:Key="ListViewItemIsSelectedForegroundBrush" Color="#FFF"/>
+    <SolidColorBrush x:Key="Brush.ListBox.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.ListBox.Border" Color="#DDD"/>
+    <SolidColorBrush x:Key="Brush.ListBox.IsFocused.BorderBrush" Color="#007acc"/>
+
+    <SolidColorBrush x:Key="Brush.ListBoxItem.MouseOver.Background" Color="#C1E6FF"/>
+    <SolidColorBrush x:Key="Brush.ListBoxItem.MouseOver.Border" Color="#57bbff"/>
+    <SolidColorBrush x:Key="Brush.ListBoxItem.MouseOver.Foreground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="Brush.ListBoxItem.Selected.Background" Color="#AA1881c8"/>
+    <SolidColorBrush x:Key="Brush.ListBoxItem.Selected.Border" Color="#0970b6"/>
+    <SolidColorBrush x:Key="Brush.ListBoxItem.Selected.Foreground" Color="#FFF"/>
+    <SolidColorBrush x:Key="Brush.ListBoxItem.Selected.Active.Background" Color="#AA1881c8"/>
+    <SolidColorBrush x:Key="Brush.ListBoxItem.Selected.Active.Border" Color="#0970b6"/>
+    <SolidColorBrush x:Key="Brush.ListBoxItem.Selected.Active.Foreground" Color="#FFF"/>
 
     <SolidColorBrush x:Key="MenuItemBackground" Color="Transparent"/>
     <SolidColorBrush x:Key="MenuItemBorderBrush" Color="#AAA"/>
@@ -96,20 +119,23 @@
     <SolidColorBrush x:Key="MenuItemSubLevelItemBackground" Color="#F0F0F0"/>
     <SolidColorBrush x:Key="MenuItemSubmenuOpenArrowForeground" Color="#44000000"/>
 
-    <SolidColorBrush x:Key="RadioButtonTickMarkStrokeBrush" Color="#FF349ADE"/>
-    <SolidColorBrush x:Key="RadioButtonBackgroundBrush" Color="Transparent"/>
-    <SolidColorBrush x:Key="RadioButtonForegroundBrush" Color="#666"/>
-    <SolidColorBrush x:Key="RadioButtonBorderBrush" Color="#DDD"/>
+    <SolidColorBrush x:Key="Brush.RadioGroup.MouseOver.Background" Color="#22000000"/>
+    <SolidColorBrush x:Key="Brush.RadioGroup.MouseOver.Foreground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.RadioGroup.Checked.Foreground" Color="#FFF"/>
 
-    <SolidColorBrush x:Key="TextBoxBackground" Color="Transparent"/>
-    <SolidColorBrush x:Key="TextBoxBorder" Color="#DDD"/>
-    <SolidColorBrush x:Key="TextBoxIsMouseOverBorderBrush" Color="#AAA"/>
-    <SolidColorBrush x:Key="ReadOnlyTextBoxBackground" Color="Transparent"/>
-    <SolidColorBrush x:Key="ReadOnlyTextBoxBorderBrush" Color="#DDD"/>
-    <SolidColorBrush x:Key="ReadOnlyTextBoxForeground" Color="#AAA"/>
-    
-    <SolidColorBrush x:Key="Brush.TextBox.Placeholder.Foreground" Color="#AAA"/>
-    
+    <SolidColorBrush x:Key="Brush.RadioButton.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.RadioButton.Border" Color="#DDD"/>
+    <SolidColorBrush x:Key="Brush.RadioButton.Foreground" Color="#666"/>
+    <SolidColorBrush x:Key="Brush.RadioButton.Tick.Stroke" Color="#FF349ADE"/>
+
+    <SolidColorBrush x:Key="Brush.Text" Color="#666"/>
+
+    <SolidColorBrush x:Key="Brush.TextBox.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.TextBox.Border" Color="#DDD"/>
+    <SolidColorBrush x:Key="Brush.TextBox.MouseOver.Border" Color="#AAA"/>
+    <SolidColorBrush x:Key="Brush.TextBox.Focused.Border" Color="#007ACC"/>
+    <SolidColorBrush x:Key="Brush.TextBox.Placeholder" Color="#AA666666"/>
+
     <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Empty.Fill" Color="#DDD"/>
     <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Empty.Stroke" Color="#DDD"/>
     <SolidColorBrush x:Key="Brush.TreeViewItem.ToggleButton.Filled.Fill" Color="#BBB"/>

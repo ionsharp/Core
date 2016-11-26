@@ -4,6 +4,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
+    <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 
     <Style x:Key="{x:Type local:EditableLabel}" TargetType="{x:Type local:EditableLabel}">
         <Setter Property="Background" Value="Transparent"/>
@@ -11,40 +13,69 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:EditableLabel}">
-                    <ControlTemplate.Resources>
-                        <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-                    </ControlTemplate.Resources>
-                    <Border 
-                        Padding="{TemplateBinding Padding}" 
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}">
-                        <Grid>
-                            <local:AdvancedTextBox 
-                                x:Name="PART_TextBox"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding IsEditable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <Grid Visibility="{TemplateBinding IsEditable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <ContentPresenter 
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Content="{TemplateBinding Content}"
-                                    ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
-                                <local:MaskedButton
-                                    Grid.Column="1"
-                                    x:Name="PART_Button"
-                                    HorizontalAlignment="{TemplateBinding ButtonHorizontalAlignment}"
-                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Pencil.png"
-                                    Margin="5,0,0,0"
-                                    Visibility="{TemplateBinding ShowButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            </Grid>
+                    <Grid>
+                        <Grid Visibility="{TemplateBinding IsEditable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                Foreground="{TemplateBinding PlaceholderForeground}" 
+                                FontSize="{TemplateBinding FontSize}"
+                                FontFamily="{TemplateBinding FontFamily}"
+                                FontStyle="{TemplateBinding FontStyle}"
+                                FontStretch="{TemplateBinding FontStretch}"
+                                FontWeight="{TemplateBinding FontWeight}" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                Margin="{TemplateBinding Padding}"
+                                Text="{Binding Text, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <local:MaskedButton
+                                Grid.Column="1"
+                                x:Name="PART_Button"
+                                HorizontalAlignment="{TemplateBinding ButtonHorizontalAlignment}"
+                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Pencil.png"
+                                Margin="5,0,0,0"
+                                Visibility="{TemplateBinding ShowButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </Grid>
-                    </Border>
+                        <Border 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Visibility="{TemplateBinding IsEditable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Foreground="{TemplateBinding PlaceholderForeground}" 
+                                    FontSize="{TemplateBinding FontSize}"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    FontStyle="{TemplateBinding FontStyle}"
+                                    FontStretch="{TemplateBinding FontStretch}"
+                                    FontWeight="{TemplateBinding FontWeight}" 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}"
+                                    Text="{TemplateBinding Placeholder}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                <ScrollViewer 
+                                    x:Name="PART_ContentHost" 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <Grid Grid.Column="1" Visibility="{TemplateBinding IsClearEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <local:MaskedButton
+                                        x:Name="PART_ClearButton"
+                                        Source="pack://application:,,,/Imagin.Controls.Common;component/Images/XRound.png"
+                                        Margin="5,0,0,0"
+                                        Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToVisibilityConverter}}"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

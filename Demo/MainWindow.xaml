@@ -6,8 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.NET.Demo"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
     xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
+    xmlns:Common.Extensions="clr-namespace:Imagin.Common.Extensions;assembly=Imagin.Common"
     mc:Ignorable="d"
     Title="Imagin.NET Demo" 
     Height="600" 
@@ -20,6 +22,7 @@
         <Common.Data.Converters:ColorToHexConverter x:Key="ColorToHexConverter"/>
         <Common.Data.Converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
         <Common.Data.Converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
+        <Common.Data.Converters:FileNameConverter x:Key="FileNameConverter"/>
         <Common.Data.Converters:FileSizeConverter x:Key="FileSizeConverter"/>
         <Common.Data.Converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
         
@@ -31,7 +34,9 @@
             </Controls.Common:AbstractView.ItemTemplate>
         </Controls.Common:AbstractView>
 
-        <GridView x:Key="DetailsView" x:Shared="False">
+        <GridView
+            x:Key="DetailsView" 
+            x:Shared="False">
             <GridViewColumn Header="Name">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
@@ -79,22 +84,18 @@
         <Style x:Key="DefaultItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Padding" Value="5" />
-            <Setter Property="Margin" Value="0,0,10,10"/>
-            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="Tag" Value="{Binding Path}"/>
+            <EventSetter Event="MouseDoubleClick" Handler="OnMouseDoubleClick"/>
         </Style>
 
         <Style x:Key="ListItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource DefaultItemStyle}">
-            <Setter Property="Margin" Value="10,0,0,0" />
             <Setter Property="Padding" Value="7,5" />
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         </Style>
 
         <Style x:Key="DetailsItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource DefaultItemStyle}">
-            <Setter Property="Margin" Value="10,0,0,0" />
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
@@ -126,94 +127,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style x:Key="AdvancedListViewStyle" TargetType="{x:Type Controls.Common:AdvancedListView}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedListView}}">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="List">
-                    <Setter Property="View" Value="{DynamicResource ListView}"/>
-                    <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
-                    <Setter Property="ItemContainerStyle" Value="{StaticResource ListItemStyle}"/>
-                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="Details">
-                    <Setter Property="View" Value="{DynamicResource DetailsView}"/>
-                    <Setter Property="ItemContainerStyle" Value="{StaticResource DetailsItemStyle}"/>
-                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
     </Window.Resources>
     <Grid 
         DataContext="{Binding ElementName=PART_MainWindow}"
         Margin="10">
         <TabControl Background="Transparent">
-            <TabItem Header="AdvancedDataGrid">
-                <Controls.Common:AdvancedDataGrid
-                    CanUserResizeColumns="True"
-                    CanUserAddRows="False"
-                    GridLinesVisibility="None"
-                    HeadersVisibility="Column"
-                    AutoGenerateColumns="False"
-                    ItemsSource="{Binding FileSystem, UpdateSourceTrigger=PropertyChanged}"
-                    Style="{StaticResource {x:Type Controls.Common:AdvancedDataGrid}}">
-                    <Controls.Common:AdvancedDataGrid.Columns>
-                        <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Name}" SortMemberPath="Name"/>
-                        <DataGridTextColumn Width="*" Header="Type" Binding="{Binding Type}" SortMemberPath="Type"/>
-                        <DataGridTextColumn Width="*" Header="Size" Binding="{Binding Size, Converter={StaticResource FileSizeConverter}}" SortMemberPath="Size"/>
-                        <DataGridTextColumn Width="*" Header="Accessed" Binding="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}}" SortMemberPath="Accessed"/>
-                        <DataGridTextColumn Width="*" Header="Created" Binding="{Binding Created, Converter={StaticResource RelativeTimeConverter}}" SortMemberPath="Created"/>
-                        <DataGridTextColumn Width="*" Header="Modified" Binding="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}" SortMemberPath="Modified"/>
-                    </Controls.Common:AdvancedDataGrid.Columns>
-                </Controls.Common:AdvancedDataGrid>
-            </TabItem>
-            <TabItem Header="AdvancedListView">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Controls.Common:RadioGroup HorizontalAlignment="Center" Margin="0,10">
-                        <RadioButton Content="Details" IsChecked="True" Checked="OnViewChanged" GroupName="View"/>
-                        <RadioButton Content="List" Checked="OnViewChanged" GroupName="View"/>
-                    </Controls.Common:RadioGroup>
-                    <Controls.Common:AdvancedListView 
-                        Grid.Row="1"
-                        ItemsSource="{Binding ListViewSource}"
-                        Style="{StaticResource AdvancedListViewStyle}">
-                        <Controls.Common:AdvancedListView.GroupStyle>
-                            <GroupStyle HidesIfEmpty="True">
-                                <GroupStyle.Panel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel/>
-                                    </ItemsPanelTemplate>
-                                </GroupStyle.Panel>
-                                <GroupStyle.ContainerStyle>
-                                    <Style TargetType="{x:Type GroupItem}">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                    <Expander IsExpanded="True" HorizontalAlignment="Stretch">
-                                                        <Expander.Header>
-                                                            <TextBlock FontSize="15">
-                                                            <Run Text="{Binding Name, Mode=OneWay}" Foreground="#007acc"/>
-                                                            <Run Text="{Binding ItemCount, Mode=OneWay, StringFormat= ({0})}"/>
-                                                            </TextBlock>
-                                                        </Expander.Header>
-                                                        <ItemsPresenter/>
-                                                    </Expander>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupStyle.ContainerStyle>
-                            </GroupStyle>
-                        </Controls.Common:AdvancedListView.GroupStyle>
-                    </Controls.Common:AdvancedListView>
-                </Grid>
-            </TabItem>
             <TabItem Header="AdvancedTextBox">
                 <Controls.Common:Spacer Spacing="0,0,0,10" Margin="10">
                     <TextBlock Style="{DynamicResource H2}" Text="AdvancedTextBox"/>
@@ -245,7 +163,7 @@
                         VerticalContentAlignment="Center"
                         Margin="0,10">
                         <TextBlock Text="{Binding Columns.Count, Mode=OneWay, StringFormat={}Columns: {0}}"/>
-                        <TextBlock Text="{Binding SelectedFileSystemEntries.Count, Mode=OneWay, StringFormat={}Selected Items: {0}, ElementName=PART_MainWindow}"/>
+                        <TextBlock Text="{Binding SelectedItems.Count, Mode=OneWay, StringFormat={}Selected Items: {0}, ElementName=PART_AdvancedTreeView}"/>
                         <CheckBox Content="Expand on click" IsChecked="{Binding ExpandOnClick}"/>
                         <CheckBox Content="Collapse siblings" IsChecked="{Binding CollapseSiblingsOnClick}"/>
                         <CheckBox Content="Select on right click" IsChecked="{Binding SelectOnRightClick}"/>
@@ -268,9 +186,9 @@
                         Grid.Row="1"
                         x:Name="PART_AdvancedTreeView"
                         ColumnHeaderVisibility="Visible"
+                        Controls.Common.Extensions:ItemsControlExtensions.IsColumnMenuEnabled="True"
                         ItemsSource="{Binding FileSystem, UpdateSourceTrigger=PropertyChanged}"
-                        SelectedItems="{Binding SelectedTreeViewItems}"
-                        SelectionMode="Extended"
+                        Controls.Common.Extensions:TreeViewExtensions.SelectionMode="Extended"
                         VirtualizingPanel.IsVirtualizing="True"
                         VirtualizingPanel.VirtualizationMode="Recycling">
                         <Controls.Common:AdvancedTreeView.ColumnHeaderTemplate>
@@ -430,6 +348,44 @@
                         VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="DataGrid">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Controls.Common:MaskedButton
+                        Click="OnGetParentPath"
+                        HorizontalAlignment="Left"
+                        Padding="7,0"
+                        Source="/Images/UpArrow.png"
+                        VerticalAlignment="Center"/>
+                    <DataGrid
+                        Grid.Row="1"
+                        Controls.Common.Extensions:DataGridExtensions.AutoSizeColumns="True"
+                        Controls.Common.Extensions:DataGridExtensions.DisplayRowNumberOffset="1"
+                        Controls.Common.Extensions:DataGridExtensions.DisplayRowNumber="True"
+                        HeadersVisibility="All" 
+                        Controls.Common.Extensions:ItemsControlExtensions.IsColumnMenuEnabled="True"
+                        Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled="True"
+                        ItemsSource="{Binding FileSystem, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" SortMemberPath="Name"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" SortMemberPath="Type"/>
+                            <DataGridTextColumn Header="Size" Binding="{Binding Size, Converter={StaticResource FileSizeConverter}}" SortMemberPath="Size"/>
+                            <DataGridTextColumn Header="Accessed" Binding="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}}" SortMemberPath="Accessed"/>
+                            <DataGridTextColumn Header="Created" Binding="{Binding Created, Converter={StaticResource RelativeTimeConverter}}" SortMemberPath="Created"/>
+                            <DataGridTextColumn Header="Modified" Binding="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}" SortMemberPath="Modified"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                                <Setter Property="Tag" Value="{Binding Path}"/>
+                                <EventSetter Event="MouseDoubleClick" Handler="OnMouseDoubleClick"/>
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
             <TabItem Header="DirectionPad">
                 <StackPanel Margin="10">
                     <Controls.Common:DirectionPad 
@@ -445,9 +401,9 @@
             </TabItem>
             <TabItem Header="EditableLabel">
                 <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                    <Controls.Common:EditableLabel Content="Edit this on mouse down" HorizontalAlignment="Left" ShowButton="True" MouseEvent="MouseDown"/>
-                    <Controls.Common:EditableLabel Content="Edit this on mouse up" ButtonHorizontalAlignment="Right" ShowButton="True"/>
-                    <Controls.Common:EditableLabel Content="Edit this on mouse double click" MouseEvent="MouseDoubleClick"/>
+                    <Controls.Common:EditableLabel Text="Edit this on mouse down" HorizontalAlignment="Left" ShowButton="True" MouseEvent="MouseDown"/>
+                    <Controls.Common:EditableLabel Text="Edit this on mouse up" ButtonHorizontalAlignment="Right" ShowButton="True"/>
+                    <Controls.Common:EditableLabel Text="Edit this on mouse double click" MouseEvent="MouseDoubleClick"/>
                 </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="FileBox">
@@ -502,6 +458,80 @@
                         VerticalAlignment="Center"
                         Foreground="Blue" 
                         Click="Link_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="ListView">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Controls.Common:MaskedButton
+                        Click="OnGetParentPath"
+                        HorizontalAlignment="Left"
+                        Padding="7,0"
+                        Source="/Images/UpArrow.png"
+                        VerticalAlignment="Center"/>
+                    <Controls.Common:RadioGroup
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <RadioButton Content="Details" IsChecked="True" Checked="OnViewChanged" GroupName="View"/>
+                        <RadioButton Content="List" Checked="OnViewChanged" GroupName="View"/>
+                    </Controls.Common:RadioGroup>
+                    <ListView
+                        Grid.Row="1"
+                        Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled="True"
+                        ItemsSource="{Binding ListViewSource}"
+                        SelectionMode="Multiple">
+                        <ListView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True">
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander IsExpanded="True" HorizontalAlignment="Stretch">
+                                                        <Expander.Header>
+                                                            <TextBlock FontSize="15">
+                                                            <Run Text="{Binding Name, Mode=OneWay}" Foreground="#007acc"/>
+                                                            <Run Text="{Binding ItemCount, Mode=OneWay, StringFormat= ({0})}"/>
+                                                            </TextBlock>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter/>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                        <ListView.Style>
+                            <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListView}}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="List">
+                                        <Setter Property="View" Value="{DynamicResource ListView}"/>
+                                        <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
+                                        <Setter Property="ItemContainerStyle" Value="{StaticResource ListItemStyle}"/>
+                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="Details">
+                                        <Setter Property="View" Value="{DynamicResource DetailsView}"/>
+                                        <Setter Property="ItemContainerStyle" Value="{StaticResource DetailsItemStyle}"/>
+                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.Style>
+                    </ListView>
                 </Grid>
             </TabItem>
             <TabItem Header="Masked">
@@ -608,7 +638,7 @@
                         x:Name="PART_ListBox" 
                         Background="Transparent" 
                         BorderThickness="0" 
-                        ItemsSource="{Binding PropertyGridSource, IsAsync=True}" 
+                        ItemsSource="{Binding FileSystem, IsAsync=True}" 
                         SelectionMode="Single">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -619,19 +649,22 @@
                     <Controls.Extended:PropertyGrid 
                         Grid.Column="1" 
                         Background="#05000000" 
-                        SelectedObject="{Binding SelectedItem, Mode=OneWay, ElementName=PART_ListBox}"/>
+                        SelectedObject="{Binding SelectedItem, Mode=OneWay, ElementName=PART_ListBox}"
+                        ShowHeader="True"/>
                 </Grid>
             </TabItem>
             <TabItem Header="RadioGroup">
-                <Grid Margin="10" VerticalAlignment="Top">
-                    <Controls.Common:RadioGroup GroupName="Numbers">
-                        <RadioButton Content="First" IsChecked="True"/>
-                        <RadioButton Content="Second"/>
-                        <RadioButton Content="Third"/>
-                        <RadioButton Content="Fourth"/>
-                        <RadioButton Content="Fifth"/>
-                    </Controls.Common:RadioGroup>
-                </Grid>
+                <Controls.Common:RadioGroup
+                    GroupName="Numbers"
+                    HorizontalAlignment="Center"
+                    Margin="10"
+                    VerticalAlignment="Top">
+                    <RadioButton Content="First" IsChecked="True"/>
+                    <RadioButton Content="Second"/>
+                    <RadioButton Content="Third"/>
+                    <RadioButton Content="Fourth"/>
+                    <RadioButton Content="Fifth"/>
+                </Controls.Common:RadioGroup>
             </TabItem>
             <TabItem Header="ResourceDictionaryEditor">
                 <TabItem.Resources>
@@ -715,18 +748,129 @@
                 </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="TabbedTree">
-                <StackPanel Margin="10">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        FontSize="17"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,10"
+                        Text="Static Collection"/>
                     <Controls.Extended:TabbedTree 
-                        MaxHeight="300" 
-                        ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                        ItemsSource="{Binding FileSystem, UpdateSourceTrigger=PropertyChanged}" 
-                        MenuWidth="30*" 
+                        Grid.Row="1"
                         ContentWidth="70*" 
                         ContentBorderThickness="1" 
-                        ContentBorderBrush="DarkGray">
+                        ContentBorderBrush="DarkGray" 
+                        ContentHeaderVisibility="Visible"
+                        ContentPadding="10,7"
+                        Margin="0,0,10,0"
+                        MenuWidth="30*"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <Controls.Extended:TabbedTree.ItemContainerStyle>
                             <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                                 <Setter Property="IsExpanded" Value="True"/>
+                            </Style>
+                        </Controls.Extended:TabbedTree.ItemContainerStyle>
+                        <TreeViewItem Header="Option 1">
+                            <Common.Extensions:ControlExtensions.Content>
+                                <Grid>
+                                    <TextBlock 
+                                        FontSize="32"
+                                        Text="Content 1"/>
+                                </Grid>
+                            </Common.Extensions:ControlExtensions.Content>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Option 2">
+                            <Common.Extensions:ControlExtensions.Content>
+                                <Grid>
+                                    <TextBlock 
+                                        FontSize="32"
+                                        Text="Content 2"/>
+                                </Grid>
+                            </Common.Extensions:ControlExtensions.Content>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Option 3">
+                            <Common.Extensions:ControlExtensions.Content>
+                                <Grid>
+                                    <TextBlock 
+                                        FontSize="32"
+                                        Text="Content 3"/>
+                                </Grid>
+                            </Common.Extensions:ControlExtensions.Content>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Option 4">
+                            <Common.Extensions:ControlExtensions.Content>
+                                <Grid>
+                                    <TextBlock 
+                                        FontSize="32"
+                                        Text="Content 4"/>
+                                </Grid>
+                            </Common.Extensions:ControlExtensions.Content>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Option 5">
+                            <Common.Extensions:ControlExtensions.Content>
+                                <Grid>
+                                    <TextBlock 
+                                        FontSize="32"
+                                        Text="Content 5"/>
+                                </Grid>
+                            </Common.Extensions:ControlExtensions.Content>
+                        </TreeViewItem>
+                    </Controls.Extended:TabbedTree>
+
+                    <TextBlock
+                        Grid.Column="1"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,10"
+                        Text="Bound Collection"/>
+                    <Controls.Extended:TabbedTree 
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        CanResizeContent="True"
+                        ContentBorderBrush="DarkGray" 
+                        ContentBorderThickness="1" 
+                        ContentPadding="10"
+                        ContentWidth="70*" 
+                        ItemsSource="{Binding FileSystem, UpdateSourceTrigger=PropertyChanged}" 
+                        MenuWidth="30*"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <Controls.Extended:TabbedTree.ContentTemplate>
+                            <DataTemplate>
+                                <ScrollViewer>
+                                    <Controls.Common:Spacer Spacing="0,0,0,10" TrimLast="True">
+                                        <TextBlock Text="Name:"/>
+                                        <TextBlock Text="{Binding Path, Converter={StaticResource FileNameConverter}}"/>
+
+                                        <TextBlock Text="Path:"/>
+                                        <TextBlock Text="{Binding Path}"/>
+
+                                        <TextBlock Text="Size:"/>
+                                        <TextBlock Text="{Binding Size, Converter={StaticResource FileSizeConverter}}"/>
+
+                                        <TextBlock Text="Accessed:"/>
+                                        <TextBlock Text="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}}"/>
+
+                                        <TextBlock Text="Created:"/>
+                                        <TextBlock Text="{Binding Created, Converter={StaticResource RelativeTimeConverter}}"/>
+
+                                        <TextBlock Text="Modified:"/>
+                                        <TextBlock Text="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}"/>
+                                    </Controls.Common:Spacer>
+                                </ScrollViewer>
+                            </DataTemplate>
+                        </Controls.Extended:TabbedTree.ContentTemplate>
+                        <Controls.Extended:TabbedTree.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Style>
                         </Controls.Extended:TabbedTree.ItemContainerStyle>
                         <Controls.Extended:TabbedTree.ItemTemplate>
@@ -734,20 +878,12 @@
                                 <TextBlock Text="{Binding Name}"/>
                             </HierarchicalDataTemplate>
                         </Controls.Extended:TabbedTree.ItemTemplate>
-                        <Controls.Extended:TabbedTree.ContentTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="10">
-                                    <TextBlock Text="Notes" Margin="0,0,0,7"/>
-                                    <TextBox Text="{Binding Notes}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </Controls.Extended:TabbedTree.ContentTemplate>
                     </Controls.Extended:TabbedTree>
-                </StackPanel>
+                </Grid>
             </TabItem>
             <TabItem Header="TreeViewComboBox">
                 <StackPanel Margin="10">
-                    <Controls.Common:TreeViewComboBox ItemsSource="{Binding FileSystem}">
+                    <Controls.Common:TreeViewComboBox ItemsSource="{Binding HierarchialCollection}">
                         <Controls.Common:TreeViewComboBox.ItemTemplate>
                             <HierarchicalDataTemplate ItemsSource="{Binding Items}">
                                 <TextBlock Text="{Binding Name}"/>
@@ -764,26 +900,6 @@
             <TabItem Header="UpDown">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                        <TextBlock Style="{DynamicResource H2}" Text="DateTimeUpDown"/>
-                        <Controls.Common:Spacer 
-                            DataContext="{Binding ElementName=PART_DateTimeUpDown}" 
-                            Spacing="0,0,10,0" 
-                            Orientation="Horizontal" 
-                            VerticalAlignment="Center"
-                            VerticalContentAlignment="Center">
-                            <TextBlock Text="Value"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <TextBlock Text="Minimum"/>
-                            <Controls.Common:DateTimeUpDown Value="{Binding Minimum}"/>
-                            <TextBlock Text="Maximum"/>
-                            <Controls.Common:DateTimeUpDown Value="{Binding Maximum}"/>
-                            <TextBlock Text="Major Change"/>
-                            <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <TextBlock Text="String Format"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:DateTimeUpDown x:Name="PART_DateTimeUpDown" Value="{Binding DateTimeValue}" Increment="1"/>
-
                         <TextBlock Style="{DynamicResource H2}" Text="ShortUpDown"/>
                         <Controls.Common:Spacer 
                             DataContext="{Binding ElementName=PART_ShortUpDown}" 

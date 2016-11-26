@@ -1,6 +1,6 @@
 ﻿namespace Imagin.Controls.Extended
 {
-    public sealed class BytePropertyModel : PropertyModel
+    public sealed class BytePropertyModel : NumericPropertyModel<byte>
     {
         protected override void OnValueChanged(object NewValue)
         {

@@ -10,6 +10,19 @@ namespace Imagin.Controls.Common
     public class AdvancedComboBox : ComboBox
     {
         public event EventHandler<KeyEventArgs> Entered;
+        
+        public static DependencyProperty CheckedToolTipProperty = DependencyProperty.Register("CheckedToolTip", typeof(string), typeof(AdvancedComboBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public string CheckedToolTip
+        {
+            get
+            {
+                return (string)GetValue(CheckedToolTipProperty);
+            }
+            set
+            {
+                SetValue(CheckedToolTipProperty, value);
+            }
+        }
 
         public static DependencyProperty PlaceholderProperty = DependencyProperty.Register("Placeholder", typeof(string), typeof(AdvancedComboBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public string Placeholder
@@ -21,6 +34,19 @@ namespace Imagin.Controls.Common
             set
             {
                 SetValue(PlaceholderProperty, value);
+            }
+        }
+
+        public static DependencyProperty UncheckedToolTipProperty = DependencyProperty.Register("UncheckedToolTip", typeof(string), typeof(AdvancedComboBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public string UncheckedToolTip
+        {
+            get
+            {
+                return (string)GetValue(UncheckedToolTipProperty);
+            }
+            set
+            {
+                SetValue(UncheckedToolTipProperty, value);
             }
         }
 

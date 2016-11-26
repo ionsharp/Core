@@ -5,15 +5,13 @@
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
     <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-    <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+    <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 
     <Style x:Key="{x:Type local:FileBox}" TargetType="{x:Type local:FileBox}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:FileBox}">
                     <Border
-                        Margin="{TemplateBinding Margin}"
-                        Padding="{TemplateBinding Padding}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         Background="{TemplateBinding Background}">
@@ -22,42 +20,27 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions> 
-                            <Grid x:Name="PART_Text">
-                                <ScrollViewer 
-                                    x:Name="PART_ContentHost" 
-                                    HorizontalAlignment="Stretch" 
-                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                    MinHeight="{TemplateBinding MinHeight}" 
-                                    Height="{TemplateBinding Height}"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid>
                                 <TextBlock 
                                     Foreground="{TemplateBinding PlaceholderForeground}" 
                                     FontSize="{TemplateBinding FontSize}"
                                     FontFamily="{TemplateBinding FontFamily}"
-                                    FontStyle="{TemplateBinding FontStyle}"
-                                    FontStretch="{TemplateBinding FontStretch}"
-                                    FontWeight="{TemplateBinding FontWeight}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}"
                                     Text="{TemplateBinding Placeholder}" 
-                                    HorizontalAlignment="Left" 
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                <Grid.Style>
-                                    <Style TargetType="Grid">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Left">
-                                                <Setter Property="Grid.Column" Value="1"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Right">
-                                                <Setter Property="Grid.Column" Value="0"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Grid.Style>
+                                    Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                <ScrollViewer 
+                                    x:Name="PART_ContentHost" 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Grid>
-                            <Grid Grid.Column="1" Visibility="{TemplateBinding CanBrowse, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid Grid.Column="1" Visibility="{TemplateBinding IsDialogEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <local:MaskedImage 
-                                    Margin="7,0"
+                                    Margin="5,0,0,0"
                                     Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
                                     Visibility="{TemplateBinding PathExists, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             </Grid>
@@ -66,19 +49,11 @@
                                 x:Name="PART_BrowseButton"
                                 Focusable="False"
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png" 
-                                Padding="5,0" 
+                                Margin="5,0" 
                                 ToolTip="Click to browse..."
-                                IsEnabled="{TemplateBinding CanBrowse}"/>
+                                IsEnabled="{TemplateBinding IsDialogEnabled}"/>
                         </Grid>
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Left">
-                            <Setter TargetName="PART_BrowseButton" Property="Grid.Column" Value="0"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ButtonPosition, RelativeSource={RelativeSource TemplatedParent}}" Value="Right">
-                            <Setter TargetName="PART_BrowseButton" Property="Grid.Column" Value="1"/>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

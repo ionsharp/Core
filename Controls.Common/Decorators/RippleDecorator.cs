@@ -9,10 +9,20 @@ using System.Windows.Shapes;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// A container that applies a ripple effect to content.
+    /// </summary>
+    /// <remarks>
+    /// If (RippleMouseEvent = MouseEvent.Default) 
+    ///     RepeatBehavior = Forever
+    ///     Animation begins without input
+    /// </remarks>
     [TemplatePart(Name = "PART_Canvas", Type = typeof(Canvas))]
     [TemplatePart(Name = "PART_Ellipse", Type = typeof(Ellipse))]
     public class RippleDecorator : ContentControl
     {
+        #region Properties
+
         Canvas PART_Canvas
         {
             get; set;
@@ -64,20 +74,33 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty MaximumStrokeThicknessProperty = DependencyProperty.Register("MaximumStrokeThickness", typeof(double), typeof(RippleDecorator), new FrameworkPropertyMetadata(15.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPropertyChanged));
-        public double MaximumStrokeThickness
+        public static DependencyProperty ToStrokeThicknessProperty = DependencyProperty.Register("ToStrokeThickness", typeof(double), typeof(RippleDecorator), new FrameworkPropertyMetadata(3.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPropertyChanged));
+        public double ToStrokeThickness
         {
             get
             {
-                return (double)GetValue(MaximumStrokeThicknessProperty);
+                return (double)GetValue(ToStrokeThicknessProperty);
             }
             set
             {
-                SetValue(MaximumStrokeThicknessProperty, value);
+                SetValue(ToStrokeThicknessProperty, value);
             }
         }
 
-        public static DependencyProperty RippleMouseEventProperty = DependencyProperty.Register("RippleMouseEvent", typeof(MouseEvent), typeof(RippleDecorator), new FrameworkPropertyMetadata(MouseEvent.MouseDown, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty FromStrokeThicknessProperty = DependencyProperty.Register("FromStrokeThickness", typeof(double), typeof(RippleDecorator), new FrameworkPropertyMetadata(15.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPropertyChanged));
+        public double FromStrokeThickness
+        {
+            get
+            {
+                return (double)GetValue(FromStrokeThicknessProperty);
+            }
+            set
+            {
+                SetValue(FromStrokeThicknessProperty, value);
+            }
+        }
+
+        public static DependencyProperty RippleMouseEventProperty = DependencyProperty.Register("RippleMouseEvent", typeof(MouseEvent), typeof(RippleDecorator), new FrameworkPropertyMetadata(MouseEvent.MouseDown, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPropertyChanged));
         public MouseEvent RippleMouseEvent
         {
             get
@@ -163,60 +186,55 @@ namespace Imagin.Controls.Common
             Object.As<RippleDecorator>().OnPropertyChanged(e.NewValue);
         }
 
+        #endregion
+
+        #region RippleDecorator
+
         public RippleDecorator()
         {
             this.DefaultStyleKey = typeof(RippleDecorator);
 
             this.PropertyChangeHandled = true;
-            this.RippleDelay = new Duration(TimeSpan.FromSeconds(0.0));
-            this.RippleDuration = new Duration(TimeSpan.FromSeconds(1.0));
+            SetCurrentValue(RippleDelayProperty, new Duration(TimeSpan.FromSeconds(0.0)));
+            SetCurrentValue(RippleDurationProperty, new Duration(TimeSpan.FromSeconds(1.0)));
             this.PropertyChangeHandled = false;
 
             this.RippleAnimation = this.GetAnimation();
         }
 
-        public override void OnApplyTemplate()
+        #endregion
+
+        #region Methods
+
+        void BeginAnimation()
         {
-            base.ApplyTemplate();
-
-            this.PART_Canvas = this.Template.FindName("PART_Canvas", this).As<Canvas>();
-
-            this.PART_Ellipse = this.Template.FindName("PART_Ellipse", this).As<Ellipse>();
-            this.PART_Ellipse.SizeChanged += RippleDecorator_SizeChanged; ;
-        }
-
-        void RippleDecorator_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Canvas.SetTop(PART_Ellipse, (PART_Canvas.ActualHeight / 2.0) - (e.NewSize.Height / 2.0));
-            Canvas.SetLeft(PART_Ellipse, (PART_Canvas.ActualWidth / 2.0) - (e.NewSize.Width / 2.0));
+            this.PART_Ellipse.BeginStoryboard(this.RippleAnimation);
         }
 
         Storyboard GetAnimation()
         {
-            Storyboard Result = new Storyboard()
-            {
-                Duration = this.RippleDuration
-            };
+            var Result = new Storyboard();
+            Result.Duration = this.RippleDuration;
 
-            DoubleAnimationUsingKeyFrames WidthAnimation = new DoubleAnimationUsingKeyFrames()
+            var WidthAnimation = new DoubleAnimationUsingKeyFrames()
             {
                 Duration = this.RippleDuration,
                 AccelerationRatio = this.RippleAcceleration,
                 DecelerationRatio = this.RippleDeceleration
             };
-            DoubleAnimationUsingKeyFrames HeightAnimation = new DoubleAnimationUsingKeyFrames()
+            var HeightAnimation = new DoubleAnimationUsingKeyFrames()
             {
                 Duration = this.RippleDuration,
                 AccelerationRatio = this.RippleAcceleration,
                 DecelerationRatio = this.RippleDeceleration
             };
-            DoubleAnimationUsingKeyFrames StrokeThicknessAnimation = new DoubleAnimationUsingKeyFrames()
+            var StrokeThicknessAnimation = new DoubleAnimationUsingKeyFrames()
             {
                 Duration = this.RippleDuration,
                 AccelerationRatio = this.RippleAcceleration,
                 DecelerationRatio = this.RippleDeceleration
             };
-            DoubleAnimationUsingKeyFrames OpacityAnimation = new DoubleAnimationUsingKeyFrames()
+            var OpacityAnimation = new DoubleAnimationUsingKeyFrames()
             {
                 Duration = this.RippleDuration,
                 AccelerationRatio = this.RippleAcceleration,
@@ -243,9 +261,8 @@ namespace Imagin.Controls.Common
 
             var Offset = (this.RippleDuration.TimeSpan.Ticks / 4) * 3;
 
-            StrokeThicknessAnimation.KeyFrames.Add(new DiscreteDoubleKeyFrame(this.MaximumStrokeThickness, KeyTime.FromTimeSpan(this.RippleDelay.TimeSpan)));
-            StrokeThicknessAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(this.MaximumStrokeThickness / 5.0, KeyTime.FromTimeSpan(new TimeSpan(Offset))));
-            StrokeThicknessAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(0.0, KeyTime.FromTimeSpan(this.RippleDuration.TimeSpan)));
+            StrokeThicknessAnimation.KeyFrames.Add(new DiscreteDoubleKeyFrame(this.FromStrokeThickness, KeyTime.FromTimeSpan(this.RippleDelay.TimeSpan)));
+            StrokeThicknessAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(this.ToStrokeThickness, KeyTime.FromTimeSpan(this.RippleDuration.TimeSpan)));
 
             OpacityAnimation.KeyFrames.Add(new DiscreteDoubleKeyFrame(this.MaximumOpacity, KeyTime.FromTimeSpan(this.RippleDelay.TimeSpan)));
             OpacityAnimation.KeyFrames.Add(new LinearDoubleKeyFrame(this.MaximumOpacity / 2.0, KeyTime.FromTimeSpan(new TimeSpan(Offset))));
@@ -256,14 +273,37 @@ namespace Imagin.Controls.Common
             Result.Children.Add(StrokeThicknessAnimation);
             Result.Children.Add(OpacityAnimation);
 
+            if (this.RippleMouseEvent == MouseEvent.Default)
+            {
+                Result.RepeatBehavior = RepeatBehavior.Forever;
+                this.BeginAnimation();
+            }
+
             return Result;
+        }
+
+        void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Canvas.SetTop(PART_Ellipse, (PART_Canvas.ActualHeight / 2.0) - (e.NewSize.Height / 2.0));
+            Canvas.SetLeft(PART_Ellipse, (PART_Canvas.ActualWidth / 2.0) - (e.NewSize.Width / 2.0));
         }
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
             base.OnPreviewMouseDown(e);
-            if (this.RippleAnimation == null || !this.IsRippleEnabled || this.RippleMouseEvent != MouseEvent.MouseDown) return;
-            this.PART_Ellipse.BeginStoryboard(this.RippleAnimation);
+
+            if (this.RippleAnimation != null && this.IsRippleEnabled && this.RippleMouseEvent == MouseEvent.MouseDown)
+                this.BeginAnimation();
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.ApplyTemplate();
+
+            this.PART_Canvas = this.Template.FindName("PART_Canvas", this).As<Canvas>();
+
+            this.PART_Ellipse = this.Template.FindName("PART_Ellipse", this).As<Ellipse>();
+            this.PART_Ellipse.SizeChanged += OnSizeChanged; 
         }
 
         protected virtual void OnPropertyChanged(object Value)
@@ -271,5 +311,7 @@ namespace Imagin.Controls.Common
             if (this.PropertyChangeHandled) return;
             this.RippleAnimation = this.GetAnimation();
         }
+
+        #endregion
     }
 }

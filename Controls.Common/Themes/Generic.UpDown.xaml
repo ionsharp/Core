@@ -11,76 +11,66 @@
                 <ControlTemplate TargetType="{x:Type local:UpDown}">
                     <ControlTemplate.Resources>
                         <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-                        <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
-                        <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
+                        <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+                        <Common.Data.Converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
                     </ControlTemplate.Resources>
                     <Border 
-                            Grid.Column="1"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                        Grid.Column="1"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Border 
-                                    x:Name="border"
-                                    MaxHeight="{TemplateBinding MaxHeight}"
-                                    MinWidth="{TemplateBinding MinWidth}"
-                                    MinHeight="{TemplateBinding MinHeight}"
-                                    Height="{TemplateBinding Height}"
-                                    Padding="{TemplateBinding Padding}"
-                                    HorizontalAlignment="Stretch" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Grid>
-                                    <TextBlock 
-                                            Foreground="{TemplateBinding PlaceholderForeground}" 
-                                            FontSize="{TemplateBinding FontSize}"
-                                            FontFamily="{TemplateBinding FontFamily}"
-                                            Text="{TemplateBinding Placeholder}" 
-                                            HorizontalAlignment="Left" 
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                    <ScrollViewer 
-                                            x:Name="PART_ContentHost" 
-                                            HorizontalAlignment="Stretch" 
-                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                            MinHeight="{TemplateBinding MinHeight}" 
-                                            Height="{TemplateBinding Height}"/>
-                                </Grid>
-                            </Border>
+                            <Grid>
+                                <TextBlock 
+                                    Foreground="{TemplateBinding PlaceholderForeground}" 
+                                    FontSize="{TemplateBinding FontSize}"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}"
+                                    Text="{TemplateBinding Placeholder}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                <ScrollViewer 
+                                    x:Name="PART_ContentHost" 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
                             <Grid 
-                                    Grid.Column="1"
-                                    Margin="0,0,5,0"
-                                    Visibility="{Binding IsUpDownEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                Grid.Column="1"
+                                Margin="0,0,5,0"
+                                Visibility="{Binding IsUpDownEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <local:MaskedButton 
-                                        x:Name="PART_Up"
-                                        Focusable="False"
-                                        ImageWidth="10" 
-                                        ImageHeight="10" 
-                                        Margin="5,0,0,0"
-                                        Command="{x:Static local:UpDown.Up}"
-                                        CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
-                                        Tag="Up"
-                                        Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowUp.png"/>
+                                    x:Name="PART_Up"
+                                    Focusable="False"
+                                    ImageWidth="10" 
+                                    ImageHeight="10" 
+                                    Margin="5,0,0,0"
+                                    Command="{x:Static local:UpDown.Up}"
+                                    CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
+                                    Tag="Up"
+                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowUp.png"/>
                                 <local:MaskedButton 
-                                        Grid.Row="1" 
-                                        x:Name="PART_Down"
-                                        Focusable="False"
-                                        ImageWidth="10" 
-                                        ImageHeight="10" 
-                                        Margin="5,0,0,0"
-                                        Command="{x:Static local:UpDown.Down}"
-                                        CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
-                                        Tag="Down"
-                                        Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
+                                    Grid.Row="1" 
+                                    x:Name="PART_Down"
+                                    Focusable="False"
+                                    ImageWidth="10" 
+                                    ImageHeight="10" 
+                                    Margin="5,0,0,0"
+                                    Command="{x:Static local:UpDown.Down}"
+                                    CommandTarget="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UpDown}}}"
+                                    Tag="Down"
+                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
                             </Grid>
                         </Grid>
                     </Border>

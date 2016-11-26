@@ -1,6 +1,8 @@
-﻿namespace Imagin.Controls.Extended
+﻿using System;
+
+namespace Imagin.Controls.Extended
 {
-    public sealed class DecimalPropertyModel : PropertyModel
+    public sealed class DecimalPropertyModel : NumericPropertyModel<decimal>
     {
         protected override void OnValueChanged(object NewValue)
         {

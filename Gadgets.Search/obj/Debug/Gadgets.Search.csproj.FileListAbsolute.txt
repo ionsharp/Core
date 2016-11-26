@@ -60,3 +60,7 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Gadgets.Search.csproj.GenerateResource.Cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search.exe
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\WPFLocalizeExtension.xml

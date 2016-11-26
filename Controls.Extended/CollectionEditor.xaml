@@ -13,6 +13,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ListBox
+            BorderThickness="0"
             ItemContainerStyle="{Binding ItemContainerStyle}"
             ItemContainerStyleSelector="{Binding ItemContainerStyleSelector}"
             ItemsPanel="{Binding ItemsPanel}"
@@ -29,7 +30,6 @@
             VerticalAlignment="Stretch"/>
         <local:PropertyGrid
             Grid.Column="1"
-            AlternationCount="{Binding AlternationCount}"
             GridLinesVisibility="{Binding GridLinesVisibility}"
             HeadersVisibility="{Binding HeadersVisibility}"
             SelectedObject="{Binding SelectedItem}"/>

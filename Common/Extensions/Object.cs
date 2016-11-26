@@ -28,7 +28,7 @@ namespace Imagin.Common.Extensions
 
         public static bool EqualsAny(this object ToEvaluate, params object[] ToEvaluateAgainst)
         {
-            foreach (object i in ToEvaluateAgainst)
+            foreach (var i in ToEvaluateAgainst)
             {
                 if (ToEvaluate == i)
                     return true;

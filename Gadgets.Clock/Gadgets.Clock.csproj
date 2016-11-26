@@ -7,8 +7,8 @@
     <ProjectGuid>{211268C2-535A-49DE-B70E-C3EA8AE017A2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gadgets.Alarm</RootNamespace>
-    <AssemblyName>Gadgets.Alarm</AssemblyName>
+    <RootNamespace>Gadgets.Clock</RootNamespace>
+    <AssemblyName>Gadgets.Clock</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

@@ -1,6 +1,6 @@
 ﻿namespace Imagin.Controls.Extended
 {
-    public sealed class ShortPropertyModel : PropertyModel
+    public sealed class ShortPropertyModel : NumericPropertyModel<short>
     {
         protected override void OnValueChanged(object NewValue)
         {

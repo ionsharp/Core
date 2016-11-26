@@ -4,22 +4,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
+    <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+
     <Style x:Key="{x:Type local:AdvancedTextBox}" TargetType="{x:Type local:AdvancedTextBox}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AdvancedTextBox}">
-                    <ControlTemplate.Resources>
-                        <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-                        <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
-                        <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
-                    </ControlTemplate.Resources>
                     <Border 
-                        x:Name="border"
-                        MaxWidth="{TemplateBinding MaxWidth}"
-                        MaxHeight="{TemplateBinding MaxHeight}"
-                        MinWidth="{TemplateBinding MinWidth}"
-                        MinHeight="{TemplateBinding MinHeight}"
-                        Padding="{TemplateBinding Padding}" 
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Background="{TemplateBinding Background}" 
                         BorderBrush="{TemplateBinding BorderBrush}">
@@ -34,24 +26,24 @@
                                 FontFamily="{TemplateBinding FontFamily}"
                                 FontStyle="{TemplateBinding FontStyle}"
                                 FontStretch="{TemplateBinding FontStretch}"
-                                FontWeight="{TemplateBinding FontWeight}"
-                                Text="{TemplateBinding Placeholder}" 
-                                HorizontalAlignment="Left" 
+                                FontWeight="{TemplateBinding FontWeight}" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                Margin="{TemplateBinding Padding}"
+                                Text="{TemplateBinding Placeholder}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding Text, Converter={StaticResource EmptyStringToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
                             <ScrollViewer 
                                 x:Name="PART_ContentHost" 
-                                HorizontalAlignment="Stretch" 
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                Margin="{TemplateBinding Padding}"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                MinHeight="{TemplateBinding MinHeight}" 
-                                Height="{TemplateBinding Height}"/>
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <Grid Grid.Column="1" Visibility="{TemplateBinding IsClearEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <local:MaskedButton
                                     x:Name="PART_ClearButton"
                                     Source="pack://application:,,,/Imagin.Controls.Common;component/Images/XRound.png"
-                                    Margin="5,0,0,0"
-                                    Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+                                    Margin="5,0"
+                                    Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToVisibilityConverter}}"/>
                             </Grid>
                         </Grid>
                     </Border>

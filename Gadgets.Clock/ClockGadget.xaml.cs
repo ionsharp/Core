@@ -9,17 +9,11 @@ namespace Imagin.Gadgets
     {
         public class ObservableDate : NotifiableObject
         {
-            DateTime date = DateTime.Now;
             public DateTime Date
             {
                 get
                 {
-                    return date;
-                }
-                set
-                {
-                    date = value;
-                    OnPropertyChanged("Date");
+                    return DateTime.Now;
                 }
             }
 
@@ -30,7 +24,7 @@ namespace Imagin.Gadgets
             public override void OnNotified(ElapsedEventArgs e)
             {
                 base.OnNotified(e);
-                this.Date = DateTime.Now;
+                OnPropertyChanged("Date");
             }
         }
 

@@ -16,7 +16,7 @@ namespace Imagin.Common.Data.Converters
             if (Value.IsValidUrl(Uri.UriSchemeFile))
                 return Value.GetDirectoryName();
             else if (Value.IsValidUrl(Uri.UriSchemeFtp))
-                return Value.GetFtpDirectoryName();
+                return Value.GetDirectoryName(Uri.UriSchemeFtp);
             return string.Empty;
         }
 

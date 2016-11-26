@@ -1,17 +1,15 @@
-﻿using Imagin.Common.Extensions;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 
 namespace Imagin.Common.Data.Converters
 {
-    [ValueConversion(typeof(string), typeof(string))]
+    [ValueConversion(typeof(object), typeof(string))]
     public class UpperCaseConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.IsNull() || !value.Is<string>() || value.As<string>().IsEmpty()) return string.Empty;
-            return value.As<string>().ToUpper();
+            return value?.ToString().ToUpper();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

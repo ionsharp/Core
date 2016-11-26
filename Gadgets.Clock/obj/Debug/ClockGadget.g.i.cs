@@ -61,7 +61,7 @@ namespace Imagin.Gadgets {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Gadgets.Alarm;component/clockgadget.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Gadgets.Clock;component/clockgadget.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\ClockGadget.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

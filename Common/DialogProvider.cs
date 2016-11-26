@@ -1,23 +1,11 @@
 ﻿using Imagin.Common.Extensions;
-using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Imagin.Common
 {
-    public enum DialogProviderType
-    {
-        FolderBrowser,
-        OpenFile,
-        SaveFile
-    }
-
-    public enum DialogProviderMode
-    {
-        Single,
-        Multiple
-    }
-
     public static class DialogProvider
     {
         struct DefaultTitle
@@ -29,115 +17,97 @@ namespace Imagin.Common
             public static string Save = "Save...";
         }
 
-        static string GetFilter(IEnumerable<string> Formats = null)
+        static CommonFileDialog GetDialog(string Title, DialogProviderMode DialogProviderMode, DialogProviderSelectionMode DialogProviderSelectionMode, IEnumerable<string> Extensions, string DefaultPath)
         {
-            if (Formats.IsNull()) Formats = new[] { "*" };
-            string Result = string.Empty;
-            foreach (string e in Formats)
+            CommonFileDialog Result = null;
+            switch (DialogProviderMode)
             {
-                if (e == "*") Result += "All Files (*)|*.*|";
-                else Result += "." + e + "|*." + e + "|";
-            }
-            return Result.Substring(0, Result.Length - 1);
-        }
-
-        static System.Windows.Forms.FolderBrowserDialog GetFolderBrowserDialog(string Title, string DefaultPath)
-        {
-            return new System.Windows.Forms.FolderBrowserDialog()
-            {
-                Description = Title.IsNullOrEmpty() ? DefaultTitle.Folder : Title,
-                SelectedPath = DefaultPath.IsNull() ? string.Empty : DefaultPath
-            };
-        }
-
-        static OpenFileDialog GetOpenFileDialog(string Title, bool Multiselect, string Format, string DefaultPath)
-        {
-            return new OpenFileDialog()
-            {
-                AddExtension = true,
-                CheckPathExists = true,
-                Filter = Format,
-                Multiselect = Multiselect,
-                Title = Title.IsNullOrEmpty() ? DefaultTitle.Open : Title,
-                FileName = DefaultPath.IsNull() ? string.Empty : DefaultPath
-            };
-        }
-
-        static SaveFileDialog GetSaveFileDialog(string Title, string Format, string DefaultPath)
-        {
-            return new SaveFileDialog()
-            {
-                AddExtension = true,
-                CheckPathExists = true,
-                Filter = Format,
-                Title = Title.IsNullOrEmpty() ? DefaultTitle.Save : Title,
-                FileName = DefaultPath.IsNull() ? string.Empty : DefaultPath
-            };
-        }
-        
-        public static bool Show(out string[] Paths, string Title = "", DialogProviderType Type = DialogProviderType.OpenFile, DialogProviderMode Mode = DialogProviderMode.Single, IEnumerable<string> Formats = null, string DefaultPath = "")
-        {
-            switch (Type)
-            {
-                case DialogProviderType.FolderBrowser:
-                    var FolderBrowserDialog = GetFolderBrowserDialog(Title, DefaultPath);
-                    if (FolderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                case DialogProviderMode.Open:
+                case DialogProviderMode.OpenFile:
+                case DialogProviderMode.OpenFolder:
+                    Result = new CommonOpenFileDialog()
                     {
-                        Paths = new[] { FolderBrowserDialog.SelectedPath };
-                        return true;
-                    }
+                        AddToMostRecentlyUsedList = true,
+                        DefaultDirectory = Environment.SpecialFolder.Desktop.GetPath(),
+                        DefaultFileName = DefaultPath.IsNull() ? string.Empty : DefaultPath,
+                        EnsureValidNames = true,
+                        EnsurePathExists = true,
+                        InitialDirectory = DefaultPath,
+                        IsFolderPicker = DialogProviderMode == DialogProviderMode.OpenFolder,
+                        Multiselect = DialogProviderSelectionMode == DialogProviderSelectionMode.Multiple,
+                        NavigateToShortcut = true,
+                        ShowHiddenItems = true,
+                        ShowPlacesList = true,
+                        Title = Title.IsNullOrEmpty() ? DefaultTitle.Open : Title,
+                    };
                     break;
-                case DialogProviderType.OpenFile:
-                    var OpenFileDialog = GetOpenFileDialog(Title, Mode == DialogProviderMode.Multiple, GetFilter(Formats), DefaultPath);
-                    if (OpenFileDialog.ShowDialog().Value)
+                case DialogProviderMode.SaveFile:
+                    Result = new CommonSaveFileDialog()
                     {
-                        Paths = OpenFileDialog.FileNames;
-                        return true;
-                    }
-                    break;
-                case DialogProviderType.SaveFile:
-                    var SaveFileDialog = GetSaveFileDialog(Title, GetFilter(Formats), DefaultPath);
-                    if (SaveFileDialog.ShowDialog().Value)
-                    {
-                        Paths = SaveFileDialog.FileNames;
-                        return true;
-                    }
+                        AddToMostRecentlyUsedList = true,
+                        AlwaysAppendDefaultExtension = true,
+                        DefaultDirectory = Environment.SpecialFolder.Desktop.GetPath(),
+                        EnsureValidNames = true,
+                        InitialDirectory = DefaultPath,
+                        IsExpandedMode = true,
+                        NavigateToShortcut = true,
+                        OverwritePrompt = true,
+                        ShowHiddenItems = true,
+                        ShowPlacesList = true,
+                        Title = Title.IsNullOrEmpty() ? DefaultTitle.Save : Title,
+                    };
                     break;
             }
-            Paths = null;
+            if (Extensions != null)
+            {
+                foreach (var i in Extensions)
+                    Result.Filters.Add(new CommonFileDialogFilter(i.ToUpper() + " Files", "*." + i));
+            }
+            Result.Filters.Add(new CommonFileDialogFilter("(*) All Files", "*"));
+
+            return Result;
+        }
+
+        public static bool Show(out string[] Paths, string Title = "", DialogProviderMode DialogProviderMode = DialogProviderMode.OpenFile, DialogProviderSelectionMode DialogProviderSelectionMode = DialogProviderSelectionMode.Single, IEnumerable<string> Extensions = null, string DefaultPath = "")
+        {
+            Paths = new string[0];
+
+            var Dialog = GetDialog(Title, DialogProviderMode, DialogProviderSelectionMode, Extensions, DefaultPath);
+
+            var Result = Dialog.ShowDialog();
+            if (Result == CommonFileDialogResult.Ok)
+            {
+                switch (DialogProviderMode)
+                {
+                    case DialogProviderMode.Open:
+                    case DialogProviderMode.OpenFile:
+                    case DialogProviderMode.OpenFolder:
+                        Paths = (Dialog as CommonOpenFileDialog).FileNames.ToArray<string>();
+                        break;
+                    case DialogProviderMode.SaveFile:
+                        Paths = new string[] 
+                        {
+                            (Dialog as CommonSaveFileDialog).FileName
+                        };
+                        break;
+                }
+                return true;
+            }
             return false;
         }
 
-        public static bool Show(out string Path, string Title = "", DialogProviderType Type = DialogProviderType.OpenFile, IEnumerable<string> Formats = null, string DefaultPath = "")
+        public static bool Show(out string Path, string Title = "", DialogProviderMode DialogProviderMode = DialogProviderMode.OpenFile, IEnumerable<string> Extensions = null, string DefaultPath = "")
         {
-            switch (Type)
-            {
-                case DialogProviderType.FolderBrowser:
-                    var FolderBrowserDialog = GetFolderBrowserDialog(Title, DefaultPath);
-                    if (FolderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        Path = FolderBrowserDialog.SelectedPath;
-                        return true;
-                    }
-                    break;
-                case DialogProviderType.OpenFile:
-                    var OpenFileDialog = GetOpenFileDialog(Title, false, GetFilter(Formats), DefaultPath);
-                    if (OpenFileDialog.ShowDialog().Value)
-                    {
-                        Path = OpenFileDialog.FileNames[0];
-                        return true;
-                    }
-                    break;
-                case DialogProviderType.SaveFile:
-                    var SaveFileDialog = GetSaveFileDialog(Title, GetFilter(Formats), DefaultPath);
-                    if (SaveFileDialog.ShowDialog() == true)
-                    {
-                        Path = SaveFileDialog.FileNames[0];
-                        return true;
-                    }
-                    break;
-            }
             Path = string.Empty;
+
+            var Dialog = GetDialog(Title, DialogProviderMode, DialogProviderSelectionMode.Single, Extensions, DefaultPath);
+
+            var Result = Dialog.ShowDialog();
+            if (Result == CommonFileDialogResult.Ok)
+            {
+                Path = (Dialog as CommonFileDialog).FileName;
+                return true;
+            }
             return false;
         }
     }

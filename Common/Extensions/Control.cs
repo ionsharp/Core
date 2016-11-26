@@ -8,9 +8,6 @@ namespace Imagin.Common.Extensions
     {
         #region Properties
 
-        /// <summary>
-        /// the TreeViewItem that is the current drop target
-        /// </summary>
         static Control CurrentDropTarget = null;
 
         static Control CurrentItem = null;
@@ -20,6 +17,9 @@ namespace Imagin.Common.Extensions
         /// </summary>
         static bool IsPossibleDropTarget;
 
+        /// <summary>
+        /// Indicates whether or not the mouse is directly over an item.
+        /// </summary>
         static readonly DependencyPropertyKey IsMouseDirectlyOverItemKey = DependencyProperty.RegisterAttachedReadOnly("IsMouseDirectlyOverItem", typeof(bool), typeof(ControlExtensions), new FrameworkPropertyMetadata(null, new CoerceValueCallback(CalculateIsMouseDirectlyOverItem)));
         public static readonly DependencyProperty IsMouseDirectlyOverItemProperty = IsMouseDirectlyOverItemKey.DependencyProperty;
         public static bool GetIsMouseDirectlyOverItem(DependencyObject obj)
@@ -31,6 +31,9 @@ namespace Imagin.Common.Extensions
             return item == CurrentItem;
         }
 
+        /// <summary>
+        /// Indicates whether or not the current item is a possible drop target
+        /// </summary>
         static readonly DependencyPropertyKey IsPossibleDropTargetKey = DependencyProperty.RegisterAttachedReadOnly("IsPossibleDropTarget", typeof(bool), typeof(ControlExtensions), new FrameworkPropertyMetadata(null, new CoerceValueCallback(CalculateIsPossibleDropTarget)));
         public static readonly DependencyProperty IsPossibleDropTargetProperty = IsPossibleDropTargetKey.DependencyProperty;
         public static bool GetIsPossibleDropTarget(DependencyObject Object)
@@ -58,6 +61,70 @@ namespace Imagin.Common.Extensions
             args.Handled = true;
         }
 
+        /// <summary>
+        /// Enables assigning any FrameworkElement a 'content' object.
+        /// </summary>
+        public static readonly DependencyProperty Content = DependencyProperty.RegisterAttached("Content", typeof(object), typeof(ControlExtensions), new PropertyMetadata(null, OnContentChanged));
+        public static object GetContent(DependencyObject obj)
+        {
+            return (object)obj.GetValue(Content);
+        }
+        public static void SetContent(DependencyObject obj, object value)
+        {
+            obj.SetValue(Content, value);
+        }
+        static void OnContentChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var FrameworkElement = sender as FrameworkElement;
+            if (FrameworkElement != null)
+            {
+                if (e.NewValue != null && e.NewValue is FrameworkElement)
+                    e.NewValue.As<FrameworkElement>().DataContext = FrameworkElement.DataContext;
+            }
+        }
+
+        public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached("IsVisible", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(true));
+        public static void SetIsVisible(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsVisibleProperty, value);
+        }
+        public static bool GetIsVisible(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsVisibleProperty);
+        }
+
+        public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.RegisterAttached("IsReadOnly", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false));
+        public static void SetIsReadOnly(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsReadOnlyProperty, value);
+        }
+        public static bool GetIsReadOnly(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsReadOnlyProperty);
+        }
+
+        public static readonly DependencyProperty IsDragMoveEnabled = DependencyProperty.RegisterAttached("IsDragMoveEnabled", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false, OnIsDragMoveEnabledChanged));
+        public static bool GetIsDragMoveEnabled(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsDragMoveEnabled);
+        }
+        public static void SetIsDragMoveEnabled(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsDragMoveEnabled, value);
+        }
+        static void OnIsDragMoveEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var Window = (sender as DependencyObject).GetParent<Window>();
+            if (Window != null && (bool)e.NewValue)
+            {
+                (sender as FrameworkElement).MouseDown += (a, b) =>
+                {
+                    if (b.LeftButton == MouseButtonState.Pressed)
+                        Window.DragMove();
+                };
+            }
+        }
+
         #endregion
 
         #region ControlExtensions
@@ -82,7 +149,8 @@ namespace Imagin.Common.Extensions
             lock (IsPossibleDropTargetProperty)
             {
                 IsPossibleDropTarget = false;
-                if (CurrentDropTarget != null) CurrentDropTarget.InvalidateProperty(IsPossibleDropTargetProperty);
+                if (CurrentDropTarget != null)
+                    CurrentDropTarget.InvalidateProperty(IsPossibleDropTargetProperty);
                 var Item = sender as Control;
                 if (Item != null)
                 {
@@ -93,7 +161,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Called when an item is dragged over the TreeViewItem.
+        /// Called when an item is dragged over the control.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The <see cref="System.Windows.DragEventArgs"/> instance containing the event data.</param>
@@ -108,8 +176,10 @@ namespace Imagin.Common.Extensions
                     CurrentDropTarget = null;
                     OldItem.InvalidateProperty(IsPossibleDropTargetProperty);
                 }
+
                 if (Args.Effects != DragDropEffects.None)
                     IsPossibleDropTarget = true;
+
                 var Control = sender as Control;
                 if (Control != null)
                 {
@@ -120,7 +190,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Called when the drag cursor leaves the TreeViewItem
+        /// Called when the drag cursor leaves the control.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The <see cref="System.Windows.DragEventArgs"/> instance containing the event data.</param>
@@ -156,6 +226,7 @@ namespace Imagin.Common.Extensions
                 }
                 //Get the element that is currently under the mouse.
                 var CurrentPosition = Mouse.DirectlyOver;
+
                 // See if the mouse is still over something.
                 if (CurrentPosition != null)
                 {

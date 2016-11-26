@@ -1,40 +1,31 @@
-﻿using Imagin.Common;
-using Imagin.Common.Collections;
-using Imagin.Common.Events;
+﻿using Imagin.Common.Events;
+using Imagin.Controls.Common.Extensions;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace Imagin.Controls.Common
 {
+    [TemplatePart(Name = "PART_TreeView", Type = typeof(TreeView))]
     public class TreeViewComboBox : ComboBox
     {
         #region Properties
 
-        bool IgnoreSelectedItemChange = false;
-
         public event EventHandler<EventArgs<object>> SelectedItemChanged;
 
-        TreeView TreeView
+        bool SelectionChangeHandled
         {
             get; set;
         }
-        
-        public new static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int), typeof(TreeViewComboBox), new FrameworkPropertyMetadata(-1, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedIndexChanged));
-        public new int SelectedIndex
+
+        bool SelectedItemChangeHandled
         {
-            get
-            {
-                return (int)GetValue(SelectedIndexProperty);
-            }
-            set
-            {
-                SetValue(SelectedIndexProperty, value);
-            }
+            get; set;
         }
-        private static void OnSelectedIndexChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+
+        TreeView PART_TreeView
         {
+            get; set;
         }
 
         public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TreeViewComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -50,29 +41,6 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public new static DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(TreeViewComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedItemChanged));
-        public new object SelectedItem
-        {
-            get
-            {
-                return (NamedObject)GetValue(SelectedItemProperty);
-            }
-            set
-            {
-                SetValue(SelectedItemProperty, value);
-            }
-        }
-        private static void OnSelectedItemChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            TreeViewComboBox TreeViewComboBox = Object as TreeViewComboBox;
-            if (TreeViewComboBox.IgnoreSelectedItemChange)
-            {
-                TreeViewComboBox.IgnoreSelectedItemChange = false;
-                return;
-            }
-            TreeViewComboBox.Select(TreeViewComboBox.SelectedItem);
-        }
-
         #endregion
 
         #region TreeViewComboBox
@@ -80,57 +48,70 @@ namespace Imagin.Controls.Common
         public TreeViewComboBox() : base()
         {
             this.DefaultStyleKey = typeof(TreeViewComboBox);
+
+            this.SelectionChanged += OnSelectionChanged;
         }
 
         #endregion
 
         #region Methods
 
-        #region Overrides
+        protected virtual void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!this.SelectionChangeHandled && e.AddedItems.Count > 0)
+            {
+                this.SelectedItemChangeHandled = true;
+                this.Select(this.PART_TreeView, e.AddedItems[0]);
+                this.SelectedItemChangeHandled = false;
+            }
+        }
+
+        protected virtual void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (!this.SelectedItemChangeHandled && !e.Handled)
+            {
+                e.Handled = true;
+
+                this.SelectionChangeHandled = true;
+                SelectedValue = PART_TreeView.SelectedItem;
+                this.SelectionChangeHandled = false;
+
+                this.IsDropDownOpen = false;
+            }
+
+            if (this.SelectedItemChanged != null)
+                this.SelectedItemChanged(this, new EventArgs<object>(e.NewValue));
+        }
 
         public override void OnApplyTemplate()
         {
             base.ApplyTemplate();
 
-            TreeView TreeView = this.Template.FindName("PART_TreeView", this) as TreeView;
+            var TreeView = this.Template.FindName("PART_TreeView", this) as TreeView;
             if (TreeView != null)
             {
-                this.TreeView = TreeView;
-                this.TreeView.Resources = this.Resources;
-                this.TreeView.SelectedItemChanged += OnSelectedItemChanged;
+                this.PART_TreeView = TreeView;
+                this.PART_TreeView.Resources = this.Resources;
+                this.PART_TreeView.SelectedItemChanged += OnSelectedItemChanged;
             }
-
-            this.Select(this.SelectedItem);
         }
 
-        #endregion
-
-        #region Private
-
-        void Select(object Item)
+        void Select(ItemsControl ItemsControl, object ToSelect)
         {
-            if (this.TreeView == null || Item == null)
-                return;
-            TreeViewItem t = (TreeViewItem)this.TreeView.ItemContainerGenerator.ContainerFromItem(Item);
-            if (t != null)
-                t.IsSelected = true;
+            if (ItemsControl != null)
+            {
+                foreach (var i in ItemsControl.Items)
+                {
+                    var j = (ItemsControl)ItemsControl.ItemContainerGenerator.ContainerFromItem(i);
+                    if (ToSelect == i)
+                    {
+                        TreeViewItemExtensions.SetIsSelected(j as TreeViewItem, true);
+                        break;
+                    }
+                    else Select(j, ToSelect);
+                }
+            }
         }
-
-        #endregion
-
-        #region Events
-
-        void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (this.TreeView == null)
-                return;
-            this.IgnoreSelectedItemChange = true;
-            this.SelectedItem = e.NewValue;
-            if (this.SelectedItemChanged != null)
-                this.SelectedItemChanged(this, new EventArgs<object>(e.NewValue));
-        }
-
-        #endregion
 
         #endregion
     }

@@ -7,22 +7,26 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedItemsControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedTextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.ButtonChrome.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.ButtonSpinner.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.CheckerBoard.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.DateTimePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.DateTimeUpDown.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Masked.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Line.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Link.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.DragSelection.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedDataGrid.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedListView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedTreeView.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.DateTimeUpDown.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.EditableLabel.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.FileBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Gadget.xaml" /> 
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.RadioGroup.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.RippleDecorator.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.TimePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.ToggleSwitch.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.TreeViewComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.UpDown.xaml" />
-    </ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.WatermarkTextBox.xaml" />
+    </ResourceDictionary.MergedDictionaries> 
 </ResourceDictionary> 

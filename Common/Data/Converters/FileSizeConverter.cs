@@ -8,21 +8,14 @@ namespace Imagin.Common.Data.Converters
     [ValueConversion(typeof(long), typeof(string))]
     public class FileSizeConverter : IValueConverter
     {
+        FileSizeFormat GetFileSizeFormat(object Parameter)
+        {
+            return Parameter == null ? FileSizeFormat.BinaryUsingSI : (Parameter is FileSizeFormat ? (FileSizeFormat)Parameter : (FileSizeFormat)Enum.Parse(typeof(FileSizeFormat), Parameter.ToString()));
+        }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return string.Empty;
-            else if (value.Is<string>())
-            {
-                long Value = 0L;
-                if (System.IO.File.Exists(value.ToString()))
-                    Value = new System.IO.FileInfo(value.ToString()).Length;
-                else Value = value.ToString().ToLong();
-                return Value.ToFileSize();
-            }
-            else if (value.Is<long>())
-                return value.As<long>().ToFileSize();
-            else return string.Empty;
+            return value != null && value.Is<long>() ? value.As<long>().ToFileSize(GetFileSizeFormat(parameter)) : string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -8,6 +8,16 @@ namespace Imagin.Common.Extensions
 {
     public static class DependencyObjectExtensions
     {
+        public static void CollapseAll(this DependencyObject Object)
+        {
+            Object.ToggleAll(false);
+        }
+
+        public static void ExpandAll(this DependencyObject Object)
+        {
+            Object.ToggleAll(true);
+        }
+
         /// <summary>
         /// Imagin.Common
         /// </summary>
@@ -22,24 +32,6 @@ namespace Imagin.Common.Extensions
                 if (Result != null) return Result;
             }
             return null;
-        }
-
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
-        public static IEnumerable<T> GetVisualChildren<T>(this DependencyObject Parent) where T : DependencyObject
-        {
-            if (Parent != null)
-            {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(Parent); i++)
-                {
-                    var Child = VisualTreeHelper.GetChild(Parent, i);
-                    if (Child != null && Child is T)
-                        yield return (T)Child;
-                    foreach (var ChildOfChild in GetVisualChildren<T>(Child))
-                        yield return ChildOfChild;
-                }
-            }
         }
 
         /// <summary>
@@ -118,6 +110,24 @@ namespace Imagin.Common.Extensions
             }
             while (Child != null);
             return null;
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static IEnumerable<T> GetVisualChildren<T>(this DependencyObject Parent) where T : DependencyObject
+        {
+            if (Parent != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(Parent); i++)
+                {
+                    var Child = VisualTreeHelper.GetChild(Parent, i);
+                    if (Child != null && Child is T)
+                        yield return (T)Child;
+                    foreach (var ChildOfChild in GetVisualChildren<T>(Child))
+                        yield return ChildOfChild;
+                }
+            }
         }
 
         /// <summary>

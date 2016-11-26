@@ -9,7 +9,7 @@
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+            <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 
             <System:Double x:Key="DisabledOpacity">0.4</System:Double>
 
@@ -26,25 +26,20 @@
                 <Setter Property="Foreground" Value="#007acc"/>
             </Style>
 
-            <Style x:Key="{x:Type Controls.Common:RadioGroup}" TargetType="{x:Type Controls.Common:RadioGroup}">
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="BorderBrush" Value="DarkGray" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
-            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Brushes.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Masked.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ComboBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ContextMenu.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/DataGrid.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ListView.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/MenuItem.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/RadioButton.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/ScrollViewer.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Slider.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/TextBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/TreeView.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Window.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.Masked.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.ContextMenu.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.DataGrid.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.MenuItem.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.ScrollViewer.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.Slider.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.TreeView.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.Window.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -6,22 +6,28 @@
     xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
-    xmlns:Common.Extensions="clr-namespace:Imagin.Common.Extensions;assembly=Imagin.Common"
+    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:Controls.Extended.Converters="clr-namespace:Imagin.Controls.Extended.Converters"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:System.ComponentModel="clr-namespace:System.ComponentModel;assembly=System"
     x:Name="PART_PropertyGrid">
     <UserControl.Resources>
-        <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
+        <Common.Data.Converters:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
+        <Common.Data.Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
         <Common.Data.Converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
-        <Common.Data.Converters:NullObjectToVisibilityConverter x:Key="NullObjectToVisibilityConverter"/>
+        <Common.Data.Converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
         <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Common.Data.Converters:StringToCamelCaseConverter x:Key="StringToCamelCaseConverter"/>
         <Common.Data.Converters:EnumToCamelCaseConverter x:Key="EnumToCamelCaseConverter"/>
         <Common.Data.Converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
-        <Common.Data.Converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+        <Common.Data.Converters:FileSizeMultiValueConverter x:Key="FileSizeMultiValueConverter"/>
+        <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
         <Common.Data.Converters:SolidColorBrushToHexConverter x:Key="SolidColorBrushToHexConverter"/>
         <Common.Data.Converters:StartsWithToVisibilityMultiValueConverter x:Key="StartsWithToVisibilityMultiValueConverter"/>
-
+        
+        <Controls.Extended.Converters:FeaturedPropertyVisibilityConverter x:Key="FeaturedPropertyVisibilityConverter"/>
+        
         <!-- Styles -->
         <Style x:Key="Style.DataGrid.Row" TargetType="{x:Type DataGridRow}">
             <Setter Property="TextElement.Foreground" Value="{Binding Foreground, ElementName=PART_PropertyGrid}" />
@@ -74,6 +80,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="Style.DataGrid.GroupHeader" TargetType="{x:Type GroupItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -88,209 +95,274 @@
 
         <!-- Templates -->
         <DataTemplate x:Key="PropertyModelTemplate">
-            <ContentControl Content="{Binding}">
+            <ContentControl 
+                Content="{Binding}">
                 <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type local:BoolPropertyModel}">
-                        <CheckBox 
-                            HorizontalAlignment="Left" 
-                            IsChecked="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
-                            Margin="0,5"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:BytePropertyModel}">
-                        <Controls.Common:ByteUpDown 
-                            HorizontalAlignment="Stretch"
-                            IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
-                            IsUpDownEnabled="{Binding IsReadOnly}"
-                            Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:CollectionPropertyModel}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock 
-                                Margin="0,5"
-                                Text="{l:LocText Prefix=(, Key=Collection, Suffix=)}"/>
-                            <Controls.Common:MaskedButton
-                                Grid.Column="1"
-                                Command="{x:Static local:PropertyGrid.EditCollectionCommand}"
-                                CommandParameter="{Binding Value, Mode=OneWay}"
-                                Padding="7,0,0,0"
-                                Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Pencil.png"/>
-                        </Grid>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:DateTimePropertyModel}">
-                        <Controls.Common:AdvancedTextBox 
-                            Text="{Binding Value, Mode=OneWay}" 
-                            HorizontalAlignment="Stretch" 
-                            IsReadOnly="{Binding IsReadOnly}"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:DecimalPropertyModel}">
-                        <Controls.Common:DecimalUpDown 
-                            HorizontalAlignment="Stretch"
-                            IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
-                            IsUpDownEnabled="{Binding IsReadOnly}"
-                            Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:DoublePropertyModel}">
-                        <Controls.Common:DoubleUpDown 
-                            HorizontalAlignment="Stretch"
-                            IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
-                            IsUpDownEnabled="{Binding IsReadOnly}"
-                            Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:EnumPropertyModel}">
-                        <Controls.Common:AdvancedComboBox 
-                            IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
-                            ItemsSource="{Binding Value, Mode=OneTime, Converter={StaticResource EnumToCollectionConverter}}" 
-                            SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            VirtualizingPanel.IsVirtualizing="True" 
-                            VirtualizingPanel.VirtualizationMode="Recycling">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource EnumToCamelCaseConverter}}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </Controls.Common:AdvancedComboBox>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:GuidPropertyModel}">
-                        <Controls.Common:AdvancedTextBox 
-                            HorizontalAlignment="Stretch"
-                            IsReadOnly="{Binding IsReadOnly}"
-                            Text="{Binding Value, Mode=OneWay}" />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:IntPropertyModel}">
-                        <Controls.Common:IntUpDown 
-                            HorizontalAlignment="Stretch"
-                            IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
-                            IsUpDownEnabled="{Binding IsReadOnly}"
-                            Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:LinearGradientPropertyModel}">
-                        <local:GradientChip 
-                                                    Gradient="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                    Height="25"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:LongPropertyModel}">
-                        <Controls.Common:LongUpDown 
-                            Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            IsReadOnly="{Binding IsReadOnly}" 
-                            IsUpDownEnabled="{Binding IsReadOnly}"
-                            HorizontalAlignment="Stretch"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:NetworkCredentialPropertyModel}">
-                        <StackPanel IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}">
-                            <Controls.Common:AdvancedTextBox
-                                Margin="0,0,0,5"
-                                Placeholder="{l:Loc Username}"
-                                Text="{Binding Value.UserName}"/>
-                            <Controls.Common:PasswordBox
-                                Placeholder="{l:Loc Password}"
-                                Text="{Binding Value.Password}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:ShortPropertyModel}">
-                        <Controls.Common:ShortUpDown 
-                            Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
-                            IsUpDownEnabled="{Binding IsReadOnly}"
-                            HorizontalAlignment="Stretch"/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:SizePropertyModel}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Controls.Common:DoubleUpDown
-                                Maximum="{x:Static System:Double.MaxValue}"
-                                Minimum="0"
-                                Value="{Binding Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Controls.Common:MaskedToggleButton
-                                Grid.Column="1"
-                                CheckedToolTip="{l:Loc Unbind}"
-                                IsChecked="{Binding IsBound}"
-                                Padding="7,0"
-                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/LinkHorizontal.png"
-                                UncheckedToolTip="{l:Loc Bind}"/>
-                            <Controls.Common:DoubleUpDown
-                                Grid.Column="2"
-                                Maximum="{x:Static System:Double.MaxValue}"
-                                Minimum="0"
-                                Value="{Binding Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Grid>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:SolidColorBrushPropertyModel}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <local:ColorChip Brush="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="25" Height="25" Margin="0,0,5,0"/>
-                            <Controls.Common:AlphaNumericTextBox Grid.Column="1" Text="{Binding Value, Mode=TwoWay, Converter={StaticResource SolidColorBrushToHexConverter}, UpdateSourceTrigger=LostFocus}" MaxLength="8" IsReadOnly="{Binding IsReadOnly}"/>
-                        </Grid>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type local:StringPropertyModel}">
-                        <DataTemplate.Resources>
+                    <ResourceDictionary>
+                        <DataTemplate DataType="{x:Type local:BoolPropertyModel}">
+                            <CheckBox 
+                                HorizontalAlignment="Left" 
+                                IsChecked="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                                Margin="0,5"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:BytePropertyModel}">
+                            <Controls.Common:ByteUpDown 
+                                HorizontalAlignment="Stretch"
+                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
+                                IsUpDownEnabled="{Binding IsReadOnly}"
+                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:CollectionPropertyModel}">
+                            <Grid Margin="0,7">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Text="{l:LocText Prefix=(, Key=Collection, Suffix=)}"/>
+                                <Controls.Common:MaskedButton
+                                    Grid.Column="1"
+                                    Command="{x:Static local:PropertyGrid.EditCollectionCommand}"
+                                    CommandParameter="{Binding Value, Mode=OneWay}"
+                                    Padding="7,0,0,0"
+                                    Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Pencil.png"/>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:DateTimePropertyModel}">
+                            <Controls.Common:DateTimePicker 
+                                FormatString="{Binding DateTimeFormat, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"
+                                HorizontalAlignment="Stretch" 
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:DecimalPropertyModel}">
+                            <Controls.Common:DecimalUpDown 
+                                HorizontalAlignment="Stretch"
+                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
+                                IsUpDownEnabled="{Binding IsReadOnly}"
+                                Maximum="{Binding Maximum}"
+                                Minimum="{Binding Minimum}"
+                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:DoublePropertyModel}">
+                            <Controls.Common:DoubleUpDown 
+                                HorizontalAlignment="Stretch"
+                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                                IsUpDownEnabled="{Binding IsReadOnly}"
+                                Maximum="{Binding Maximum}"
+                                Minimum="{Binding Minimum}"
+                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:EnumPropertyModel}">
+                            <Controls.Common:AdvancedComboBox 
+                                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                                ItemsSource="{Binding Value, Mode=OneTime, Converter={StaticResource EnumToCollectionConverter}}" 
+                                SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                VirtualizingPanel.IsVirtualizing="True" 
+                                VirtualizingPanel.VirtualizationMode="Recycling">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource EnumToCamelCaseConverter}}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </Controls.Common:AdvancedComboBox>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:GuidPropertyModel}">
                             <Controls.Common:AdvancedTextBox 
-                                x:Key="DefaultContent" 
-                                Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                HorizontalAlignment="Stretch"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Text="{Binding Value, Mode=OneWay}" />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:IntPropertyModel}">
+                            <Controls.Common:IntUpDown 
+                                HorizontalAlignment="Stretch"
+                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
+                                IsUpDownEnabled="{Binding IsReadOnly}"
+                                Maximum="{Binding Maximum}"
+                                Minimum="{Binding Minimum}"
+                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:LinearGradientPropertyModel}">
+                            <local:GradientChip 
+                                Gradient="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                Height="25"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:LongPropertyModel}">
+                            <ContentControl>
+                                <ContentControl.Style>
+                                    <Style TargetType="ContentControl">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Int64Representation}" Value="FileSize">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <TextBlock Margin="0,10">
+                                                            <TextBlock.Text>
+                                                                <MultiBinding Converter="{StaticResource FileSizeMultiValueConverter}">
+                                                                    <Binding Path="Value" Mode="OneWay"/>
+                                                                    <Binding Path="FileSizeFormat" RelativeSource="{RelativeSource AncestorType={x:Type local:PropertyGrid}}"/>
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Int64Representation}" Value="Default">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <Controls.Common:LongUpDown 
+                                                            IsReadOnly="{Binding IsReadOnly}" 
+                                                            IsUpDownEnabled="{Binding IsReadOnly}"
+                                                            HorizontalAlignment="Stretch"
+                                                            Maximum="{Binding Maximum}"
+                                                            Minimum="{Binding Minimum}"
+                                                            Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:NetworkCredentialPropertyModel}">
+                            <StackPanel IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}">
+                                <Controls.Common:AdvancedTextBox
+                                    Margin="0,0,0,5"
+                                    Placeholder="{l:Loc Username}"
+                                    Text="{Binding Value.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Controls.Common:PasswordBox
+                                    Placeholder="{l:Loc Password}"
+                                    Text="{Binding Value.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:RepeatOptionsPropertyModel}">
+                            <StackPanel>
+                                <CheckBox
+                                    Content="{l:Loc Repeat}"
+                                    IsChecked="{Binding Value.Repeats}"
+                                    Margin="0,7"/>
+                                <Controls.Common:RepeatBox
+                                    HorizontalAlignment="Stretch"
+                                    RepeatOptions="{Binding Value}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:ShortPropertyModel}">
+                            <Controls.Common:ShortUpDown 
+                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
+                                IsUpDownEnabled="{Binding IsReadOnly}"
+                                HorizontalAlignment="Stretch"
+                                Maximum="{Binding Maximum}"
+                                Minimum="{Binding Minimum}"
+                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:SizePropertyModel}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Controls.Common:DoubleUpDown
+                                    Maximum="{x:Static System:Double.MaxValue}"
+                                    Minimum="0"
+                                    Value="{Binding Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Controls.Common:MaskedToggleButton
+                                    Grid.Column="1"
+                                    CheckedToolTip="{l:Loc Unbind}"
+                                    IsChecked="{Binding IsBound}"
+                                    Padding="7,0"
+                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/LinkHorizontal.png"
+                                    UncheckedToolTip="{l:Loc Bind}"/>
+                                <Controls.Common:DoubleUpDown
+                                    Grid.Column="2"
+                                    Maximum="{x:Static System:Double.MaxValue}"
+                                    Minimum="0"
+                                    Value="{Binding Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:SolidColorBrushPropertyModel}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <local:ColorChip Brush="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="25" Height="25" Margin="0,0,5,0"/>
+                                <Controls.Common:AlphaNumericTextBox Grid.Column="1" Text="{Binding Value, Mode=TwoWay, Converter={StaticResource SolidColorBrushToHexConverter}, UpdateSourceTrigger=LostFocus}" MaxLength="8" IsReadOnly="{Binding IsReadOnly}"/>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:StringPropertyModel}">
+                            <DataTemplate.Resources>
+                                <DataTemplate x:Key="DataTemplate.Default">
+                                    <Controls.Common:AdvancedTextBox 
+                                        HorizontalAlignment="Stretch"
+                                        IsReadOnly="{Binding IsReadOnly}" 
+                                        Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataTemplate.Resources>
+                            <ContentControl>
+                                <ContentControl.Style>
+                                    <Style TargetType="ContentControl">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="Regular">
+                                                <Setter Property="ContentTemplate" Value="{StaticResource DataTemplate.Default}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="Unspecified">
+                                                <Setter Property="ContentTemplate" Value="{StaticResource DataTemplate.Default}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="FileSystemPath">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <Controls.Common:FileBox  
+                                                            HorizontalAlignment="Stretch"
+                                                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="Multiline">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <Controls.Common:AdvancedTextBox 
+                                                            AcceptsReturn="True"
+                                                            IsReadOnly="{Binding IsReadOnly}" 
+                                                            Height="Auto"
+                                                            HorizontalAlignment="Stretch"
+                                                            Padding="3"
+                                                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                            TextBlock.LineStackingStrategy="BlockLineHeight"
+                                                            TextBlock.LineHeight="15"
+                                                            VerticalContentAlignment="Top"
+                                                            TextWrapping="Wrap"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="Password">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <Controls.Common:PasswordBox 
+                                                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                            HorizontalAlignment="Stretch"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:UriPropertyModel}">
+                            <Controls.Common:AdvancedTextBox 
+                                HorizontalAlignment="Stretch"
                                 IsReadOnly="{Binding IsReadOnly}" 
-                                HorizontalAlignment="Stretch"/>
-                        </DataTemplate.Resources>
-                        <ContentControl>
-                            <ContentControl.Style>
-                                <Style TargetType="ContentControl">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Representation}" Value="Regular">
-                                            <Setter Property="Content" Value="{StaticResource DefaultContent}"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Representation}" Value="Unspecified">
-                                            <Setter Property="Content" Value="{StaticResource DefaultContent}"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Representation}" Value="FileSystemPath">
-                                            <Setter Property="Content">
-                                                <Setter.Value>
-                                                    <Controls.Common:FileBox 
-                                                        Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                        HorizontalAlignment="Stretch"/>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Representation}" Value="Multiline">
-                                            <Setter Property="Content">
-                                                <Setter.Value>
-                                                    <Controls.Common:AdvancedTextBox 
-                                                        AcceptsReturn="True"
-                                                        Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                        IsReadOnly="{Binding IsReadOnly}" 
-                                                        Height="Auto"
-                                                        HorizontalAlignment="Stretch"
-                                                        Padding="0,7.5"
-                                                        TextBlock.LineStackingStrategy="BlockLineHeight"
-                                                        TextBlock.LineHeight="15"
-                                                        VerticalContentAlignment="Top"
-                                                        TextWrapping="Wrap"/>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Representation}" Value="Password">
-                                            <Setter Property="Content">
-                                                <Setter.Value>
-                                                    <Controls.Common:PasswordBox 
-                                                        Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                        HorizontalAlignment="Stretch"/>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ContentControl.Style>
-                        </ContentControl>
-                    </DataTemplate>
+                                Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:VersionPropertyModel}">
+                            <Controls.Common:AdvancedTextBox 
+                                HorizontalAlignment="Stretch"
+                                IsReadOnly="{Binding IsReadOnly}" 
+                                Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </ResourceDictionary>
                 </ContentControl.Resources>
             </ContentControl>
         </DataTemplate>
@@ -302,8 +374,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Visibility="{Binding ShowHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Grid IsEnabled="{Binding SelectedObject, Converter={StaticResource NullObjectToBooleanConverter}}">
+            <Grid IsEnabled="{Binding SelectedObject, Converter={StaticResource NullToBooleanConverter}}">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -311,8 +384,17 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                <ItemsControl
+                    ItemsSource="{Binding Buttons, Mode=OneWay}"
+                    VerticalAlignment="Center">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding Mode=OneWay}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 <Controls.Common:MaskedToggleButton
-                    Grid.Column="0"
+                    Grid.Column="1"
                     Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Category.png"
                     IsChecked="{Binding ShowCategories}"
                     Padding="7,0,0,0"
@@ -320,27 +402,27 @@
                     UncheckedToolTip="Show Categories"
                     VerticalAlignment="Center"/>
                 <Controls.Common:MaskedDropDownButton
-                    Grid.Column="1"
+                    Grid.Column="2"
                     Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Sort.png"
                     ToolTip="{l:Loc SortDirection}"
                     Padding="10,0"
                     VerticalAlignment="Center">
                     <Controls.Common:MaskedDropDownButton.DropDown>
                         <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
-                            <MenuItem Header="{l:Loc Name}" IsCheckable="True" IsChecked="{Binding SortByName}" Common.Extensions:MenuItemExtensions.GroupName="SortName"/>
-                            <MenuItem Header="{l:Loc Type}" IsCheckable="True" IsChecked="{Binding SortByType}" Common.Extensions:MenuItemExtensions.GroupName="SortName"/>
+                            <MenuItem Header="{l:Loc Name}" IsCheckable="True" IsChecked="{Binding SortByName}" Controls.Common.Extensions:MenuItemExtensions.GroupName="SortName"/>
+                            <MenuItem Header="{l:Loc Type}" IsCheckable="True" IsChecked="{Binding SortByType}" Controls.Common.Extensions:MenuItemExtensions.GroupName="SortName"/>
                             <Separator/>
-                            <MenuItem Header="{l:Loc Ascending}" IsCheckable="True" IsChecked="{Binding IsSortAscending}" Common.Extensions:MenuItemExtensions.GroupName="SortDirection"/>
-                            <MenuItem Header="{l:Loc Descending}" IsCheckable="True" IsChecked="{Binding IsSortDescending}" Common.Extensions:MenuItemExtensions.GroupName="SortDirection"/>
+                            <MenuItem Header="{l:Loc Ascending}" IsCheckable="True" IsChecked="{Binding IsSortAscending}" Controls.Common.Extensions:MenuItemExtensions.GroupName="SortDirection"/>
+                            <MenuItem Header="{l:Loc Descending}" IsCheckable="True" IsChecked="{Binding IsSortDescending}" Controls.Common.Extensions:MenuItemExtensions.GroupName="SortDirection"/>
                         </ContextMenu>
                     </Controls.Common:MaskedDropDownButton.DropDown>
                 </Controls.Common:MaskedDropDownButton>
                 <Controls.Common:MaskedImage
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Search.png"
                     Margin="0,0,5,0"/>
                 <Controls.Common:AdvancedTextBox
-                    Grid.Column="3"
+                    Grid.Column="4"
                     IsClearEnabled="True"
                     Placeholder="{l:Loc Search}"
                     Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -348,7 +430,7 @@
                     Background="Transparent"
                     BorderThickness="0"/>
                 <Controls.Common:MaskedDropDownButton
-                    Grid.Column="5"
+                    Grid.Column="6"
                     Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/ArrowDown.png"
                     ToolTip="{l:Loc Options}"
                     Padding="5,0">
@@ -358,13 +440,11 @@
                                 Header="{l:Loc CollapseGroups}" 
                                 IsCheckable="True"
                                 IsChecked="{Binding CollapseGroups}"
-                                StaysOpenOnClick="True"
-                                ToolTip="Automatically Collapse Groups"/>
+                                StaysOpenOnClick="True"/>
                             <Separator/>
                             <MenuItem 
                                 Header="{l:Loc Reset}" 
-                                Command="{x:Static local:PropertyGrid.ResetCommand}" 
-                                ToolTip="Reset All Fields"/>
+                                Command="{x:Static local:PropertyGrid.ResetCommand}"/>
                         </ContextMenu>
                     </Controls.Common:MaskedDropDownButton.DropDown>
                 </Controls.Common:MaskedDropDownButton>
@@ -376,16 +456,36 @@
             BorderBrush="{Binding GridBorderBrush}"
             BorderThickness="{Binding GridBorderThickness}">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid Margin="10,5,5,10" Visibility="{Binding ShowFeatured, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Grid Visibility="{Binding Properties.Featured, Mode=OneWay, Converter={StaticResource NullObjectToVisibilityConverter}}">
+                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ContentControl
+                        ContentTemplate="{Binding LoaderTemplate}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock 
+                        FontWeight="Bold"
+                        Margin="10,5"
+                        Text="{Binding SelectedObject, Converter={StaticResource ObjectToTypeConverter}}"
+                        Visibility="{Binding ShowType, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <Grid 
+                        Grid.Row="1"
+                        Margin="10,5,5,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        <Grid.Visibility>
+                            <MultiBinding Converter="{StaticResource FeaturedPropertyVisibilityConverter}">
+                                <Binding Path="ShowFeatured"/>
+                                <Binding Path="Properties.Featured"/>
+                            </MultiBinding>
+                        </Grid.Visibility>
                         <TextBlock 
                             Text="{Binding Properties.Featured.Name}" 
                             Margin="0,0,10,0" 
@@ -395,106 +495,106 @@
                             Content="{Binding Properties.Featured}"
                             ContentTemplate="{StaticResource PropertyModelTemplate}"/>
                     </Grid>
+                    <DataGrid
+                        Grid.Row="2"
+                        AutoGenerateColumns="False"
+                        BorderThickness="0"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        CanUserDeleteRows="False"
+                        CanUserReorderColumns="False"
+                        CanUserAddRows="False"
+                        CanUserResizeColumns="False"
+                        CanUserResizeRows="False"
+                        EnableColumnVirtualization="True"
+                        EnableRowVirtualization="True"
+                        GridLinesVisibility="{Binding GridLinesVisibility}"
+                        HeadersVisibility="{Binding HeadersVisibility}"
+                        ItemsSource="{Binding ListCollectionView, IsAsync=True}"
+                        Margin="0"
+                        Padding="0"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        SelectedValue="{Binding Properties.ActiveProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectionMode="Single"
+                        VirtualizingPanel.IsVirtualizing="True"
+                        VirtualizingPanel.VirtualizationMode="Recycling"
+                        VirtualizingPanel.IsContainerVirtualizable="True">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                <Setter Property="Padding" Value="10,1"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="Name" 
+                                SortMemberPath="Name" 
+                                Width="40*"
+                                Binding="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToCamelCaseConverter}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                        <Setter Property="ToolTip" Value="{Binding Name}" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn 
+                                Header="Value" 
+                                Width="60*"
+                                CellTemplate="{StaticResource PropertyModelTemplate}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.GroupStyle>
+                            <GroupStyle ContainerStyle="{StaticResource Style.DataGrid.GroupHeader}">
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <DataGridRowsPresenter/>
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                            </GroupStyle>
+                        </DataGrid.GroupStyle>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource Style.DataGrid.Row}">
+                                <Setter Property="Visibility">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource StartsWithToVisibilityMultiValueConverter}">
+                                            <Binding Path="Name" Converter="{StaticResource StringToCamelCaseConverter}"/>
+                                            <Binding Path="SearchQuery" RelativeSource="{RelativeSource AncestorType={x:Type local:PropertyGrid}}"/>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+                    </DataGrid>
                 </Grid>
-                <DataGrid
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    AlternationCount="{Binding AlternationCount}"
-                    BorderThickness="0"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
-                    CanUserDeleteRows="False"
-                    CanUserReorderColumns="False"
-                    CanUserAddRows="False"
-                    CanUserResizeColumns="False"
-                    CanUserResizeRows="False"
-                    EnableColumnVirtualization="True"
-                    EnableRowVirtualization="True"
-                    GridLinesVisibility="{Binding GridLinesVisibility}"
-                    HeadersVisibility="{Binding HeadersVisibility}"
-                    ItemsSource="{Binding ListCollectionView, IsAsync=True}"
-                    Margin="0"
-                    Padding="0"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    SelectedValue="{Binding Properties.ActiveProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SelectionMode="Single"
-                    VirtualizingPanel.IsVirtualizing="True"
-                    VirtualizingPanel.VirtualizationMode="Recycling"
-                    VirtualizingPanel.IsContainerVirtualizable="True">
-                    <DataGrid.CellStyle>
-                        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
-                            <Setter Property="Padding" Value="10,1"/>
-                        </Style>
-                    </DataGrid.CellStyle>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" SortMemberPath="Name" Width="40*" Binding="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToCamelCaseConverter}}">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                    <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTemplateColumn Header="Value" Width="60*" CellTemplate="{StaticResource PropertyModelTemplate}"/>
-                    </DataGrid.Columns>
-                    <DataGrid.GroupStyle>
-                        <GroupStyle ContainerStyle="{StaticResource Style.DataGrid.GroupHeader}">
-                            <GroupStyle.Panel>
-                                <ItemsPanelTemplate>
-                                    <DataGridRowsPresenter/>
-                                </ItemsPanelTemplate>
-                            </GroupStyle.Panel>
-                        </GroupStyle>
-                    </DataGrid.GroupStyle>
-                    <DataGrid.ItemContainerStyle>
-                        <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource Style.DataGrid.Row}">
-                            <Setter Property="Visibility">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource StartsWithToVisibilityMultiValueConverter}">
-                                        <Binding Path="Name" Converter="{StaticResource StringToCamelCaseConverter}"/>
-                                        <Binding Path="SearchQuery" RelativeSource="{RelativeSource AncestorType={x:Type local:PropertyGrid}}"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DataGrid.ItemContainerStyle>
-                </DataGrid>
             </Grid>
         </Border>
-        <Border
+        <ContentControl 
             Grid.Row="2"
-            BorderBrush="{Binding GridBorderBrush}"
-            BorderThickness="{Binding GridBorderThickness}"
+            Content="{Binding Properties.ActiveProperty}"
             Visibility="{Binding ShowPropertyDescription, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <ContentControl Content="{Binding Properties.ActiveProperty}">
-                <ContentControl.ContentTemplate>
-                    <DataTemplate>
-                        <Border 
-                            Background="#05000000"
-                            MaxHeight="150"
-                            Padding="10"
-                            Visibility="{Binding Mode=OneWay, Converter={StaticResource NullObjectToVisibilityConverter}}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock 
-                                    FontWeight="Bold"
-                                    Margin="0,0,15,0"
-                                    Text="{Binding Name, Converter={StaticResource StringToCamelCaseConverter}}"
-                                    TextTrimming="CharacterEllipsis"/>
-                                <TextBlock 
-                                    Grid.Row="1"
-                                    Text="{Binding Description}"
-                                    TextTrimming="CharacterEllipsis"
-                                    TextWrapping="Wrap"/>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ContentControl.ContentTemplate>
-            </ContentControl>
-        </Border>
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <Border Style="{Binding PropertyDescriptionStyle, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock 
+                                FontWeight="Bold"
+                                Margin="0,0,15,0"
+                                Text="{Binding Name, Converter={StaticResource StringToCamelCaseConverter}}"
+                                TextTrimming="CharacterEllipsis"/>
+                            <TextBlock 
+                                Grid.Row="1"
+                                Text="{Binding Description}"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="Wrap"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
     </Grid>
 </UserControl>

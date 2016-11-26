@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Imagin.Common.Extensions;
+using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Data;
-using Imagin.Common.Extensions;
 
 namespace Imagin.Common.Data.Converters
 {
@@ -22,7 +23,13 @@ namespace Imagin.Common.Data.Converters
 
             ObservableCollection<Enum> Result = new ObservableCollection<Enum>();
             foreach (object i in Enum.GetValues(EnumType))
-                Result.Add(i.As<Enum>());
+            {
+                var Field = i as Enum;
+
+                var Attribute = Field.GetAttribute<BrowsableAttribute>();
+                if (Attribute == null || Attribute.Browsable)
+                    Result.Add(i.As<Enum>());
+            }
 
             return Result;
         }

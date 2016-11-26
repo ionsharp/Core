@@ -3,14 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
+    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
+    <Common.Data.Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+
     <Style TargetType="local:TreeViewComboBox">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TreeViewComboBox}">
-                    <ControlTemplate.Resources>
-                        <Common.Data.Converters:NullObjectToBooleanConverter x:Key="NullObjectToBooleanConverter"/>
-                    </ControlTemplate.Resources>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -46,7 +46,8 @@
                                             Fill="{TemplateBinding Foreground}" 
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center" 
-                                            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z">
+                                            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+                                            RenderTransformOrigin="0.5,0.5">
                                             <Path.RenderTransform>
                                                 <RotateTransform/>
                                             </Path.RenderTransform>
@@ -87,21 +88,37 @@
                             <ContentControl.Style>
                                 <Style TargetType="ContentControl">
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TreeViewComboBox}}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="True">
+                                        <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TreeViewComboBox}}, Converter={StaticResource NullToBooleanConverter}}" Value="True">
                                             <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TreeViewComboBox}}}"/>
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TreeViewComboBox}}, Converter={StaticResource NullObjectToBooleanConverter}}" Value="False">
+                                        <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource AncestorType={x:Type local:TreeViewComboBox}}, Converter={StaticResource NullToBooleanConverter}}" Value="False">
                                             <Setter Property="ContentTemplate" Value="{StaticResource DefaultContentTemplate}"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </ContentControl.Style>
                         </ContentControl>
-                        <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
-                            <Grid x:Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}">
-                                <Border x:Name="DropDownBorder" Background="{DynamicResource ComboBoxDropDownBackground}" BorderThickness="1" BorderBrush="{DynamicResource ComboBoxDropDownBorderBrush}">
-                                    <local:AdvancedTreeView 
+                        <Popup 
+                            x:Name="PART_Popup" 
+                            AllowsTransparency="True" 
+                            Focusable="False" 
+                            IsOpen="{TemplateBinding IsDropDownOpen}" 
+                            Placement="Bottom" 
+                            PopupAnimation="Fade"
+                            StaysOpen="True">
+                            <Grid 
+                                x:Name="DropDown" 
+                                SnapsToDevicePixels="True"
+                                MinWidth="{TemplateBinding ActualWidth}">
+                                <Border 
+                                    x:Name="DropDownBorder"
+                                    Background="{DynamicResource Brush.ComboBox.DropDown.Background}" 
+                                    BorderThickness="1" 
+                                    BorderBrush="{DynamicResource Brush.ComboBox.DropDown.Border}"
+                                    Padding="5">
+                                    <TreeView 
                                         x:Name="PART_TreeView" 
+                                        BorderThickness="0" 
                                         ItemBindingGroup="{TemplateBinding ItemBindingGroup}"
                                         ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
                                         ItemContainerStyleSelector="{TemplateBinding ItemContainerStyleSelector}"
@@ -109,11 +126,7 @@
                                         ItemsSource="{TemplateBinding ItemsSource}"
                                         ItemStringFormat="{TemplateBinding ItemStringFormat}"
                                         ItemTemplate="{TemplateBinding ItemTemplate}"
-                                        ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                        ExpandOnClick="False"
-                                        CollapseSiblingsOnClick="False"
-                                        BorderThickness="0" 
-                                        Margin="10,5"/>
+                                        ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
                                 </Border>
                             </Grid>
                         </Popup>

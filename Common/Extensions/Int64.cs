@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagin.Common.Data;
+using System;
 
 namespace Imagin.Common.Extensions
 {
@@ -55,9 +56,9 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
-        public static string ToFileSize(this long Bytes)
+        public static string ToFileSize(this long Bytes, FileSizeFormat FileSizeFormat = FileSizeFormat.BinaryUsingSI, int RoundTo = 2)
         {
-            return Convert.ToDouble(Bytes).ToFileSize();
+            return Convert.ToDouble(Bytes).ToFileSize(FileSizeFormat, RoundTo);
         }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using Imagin.Common.Extensions;
-using Imagin.Common.Input;
 using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Imagin.Controls.Common
 {
@@ -13,7 +8,7 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
-        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(TimeSpan), typeof(DateTimeUpDown), new FrameworkPropertyMetadata(default(TimeSpan), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(TimeSpan), typeof(TimeUpDown), new FrameworkPropertyMetadata(default(TimeSpan), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public TimeSpan Increment
         {
             get

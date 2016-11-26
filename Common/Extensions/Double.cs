@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagin.Common.Data;
+using System;
 
 namespace Imagin.Common.Extensions
 {
@@ -18,6 +19,14 @@ namespace Imagin.Common.Extensions
         public static double Coerce(this double ToCoerce, double Maximum, double Minimum = 0.0)
         {
             return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
+        }
+
+        /// <summary>
+        /// Imagin.Common
+        /// </summary>
+        public static double Coerce(this double ToCoerce, double MinMax, bool MinOrMax)
+        {
+            return MinOrMax ? (ToCoerce < MinMax ? MinMax : ToCoerce) : (ToCoerce > MinMax ? MinMax : ToCoerce);
         }
 
         /// <summary>
@@ -92,17 +101,41 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Imagin.Common
         /// </summary>
-        public static string ToFileSize(this double Bytes)
+        public static string ToFileSize(this double Bytes, FileSizeFormat FileSizeFormat = FileSizeFormat.BinaryUsingSI, int RoundTo = 2)
         {
-            const int byteConversion = 1024;
-            if (Bytes >= Math.Pow(byteConversion, 3)) //GB Range
-                return string.Concat(Math.Round(Bytes / Math.Pow(byteConversion, 3), 2), " GB");
-            else if (Bytes >= Math.Pow(byteConversion, 2)) //MB Range
-                return string.Concat(Math.Round(Bytes / Math.Pow(byteConversion, 2), 2), " MB");
-            else if (Bytes >= byteConversion) //KB Range
-                return string.Concat(Math.Round(Bytes / byteConversion, 2), " KB");
-            else
-                return string.Concat(Bytes, " B");
+            if (FileSizeFormat == FileSizeFormat.Bytes)
+                return Bytes.ToString();
+
+            var x = FileSizeFormat == FileSizeFormat.BinaryUsingSI || FileSizeFormat == FileSizeFormat.IECBinary ? 1024 : 1000;
+
+            var a = new string[]
+            {
+                "B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB",
+            };
+            var b = new string[]
+            {
+                "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB",
+            };
+            var c = FileSizeFormat == FileSizeFormat.BinaryUsingSI || FileSizeFormat == FileSizeFormat.DecimalUsingSI ? b : a;
+
+            var f = new Func<double, string, string>((Value, Suffix) =>
+            {
+                return string.Format("{0} {1}", Value, Suffix);
+            });
+
+            for (var i = 8; i >= 0; i--)
+            {
+                var e = c[i];
+
+                if (i == 0)
+                    return f(Bytes, e);
+                else if (i == 1 && Bytes >= x)
+                    return f((Bytes / x).Round(RoundTo), e);
+                else if (Bytes >= Math.Pow(x, i))
+                    return f((Bytes / Math.Pow(x, i)).Round(RoundTo), e);
+            }
+
+            return string.Empty;
         }
 
         /// <summary>
