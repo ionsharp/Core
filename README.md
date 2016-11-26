@@ -11,9 +11,7 @@ IntUpDown | Line | Link | LongUpDown | MaskedButton |
 MaskedDropDownButton | MaskedImage | MaskedToggleButton | PasswordBox | RadioGroup | 
 ResizableGrid | RippleDecorator | ShortUpDown |
 
-####[Extensions](https://imagin.codeplex.com/extensions)
-
-###Extended###
+###Extended
 
   .  |  .  |  .  |  .  |
 -----|-----|-----|-----|
@@ -21,8 +19,12 @@ CollectionEditor | ColorChip | ColorComb | ColorDialog |
 ColorPicker | DualColorChip | GradientChip | GradientDialog |
 GradientEditor | PropertyGrid | ResourceDictionaryEditor |
 
-##Desktop Gadgets##
+###Gadgets
 
   .  |  .  |
 -----|-----|
 ClockGadget (in progress) | SearchGadget |
+
+##Donate
+
+[![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=AJJG6PWLBYQNG)
