@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Imagin.Common.Mvvm;
+using Imagin.Common.Tracing;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace Imagin.Common.Configuration
@@ -13,8 +15,10 @@ namespace Imagin.Common.Configuration
             get; 
         }
 
-        IAppConfig GetConfig();
-        
+        ILog GetLog();
+
+        IMainWindowViewModel GetMainWindowViewModel();
+
         Window MainWindow
         {
             get;

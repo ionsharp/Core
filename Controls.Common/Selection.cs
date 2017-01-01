@@ -5,10 +5,12 @@ using System.Windows;
 
 namespace Imagin.Controls.Common
 {
+    [Serializable]
     public class Selection : AbstractObject
     {
         #region Properties
 
+        [field: NonSerialized]
         public event EventHandler<EventArgs> SelectionChanged;
 
         private double width = 0;
@@ -116,8 +118,13 @@ namespace Imagin.Controls.Common
             Debug.WriteLine(string.Format("X: {0}, Y: {1}, Width: {2}, Height: {3}", this.X, this.Y, this.Width, this.Height));
         }
 
+        public Rect GetRect()
+        {
+            return new Rect(x, y, width, height);
+        }
+
         /// <summary>
-        /// Sets new selection with given values.
+        /// Set selection from given values.
         /// </summary>
         /// <param name="X">X-position of selection.</param>
         /// <param name="Y">Y-position of selection.</param>
@@ -131,6 +138,22 @@ namespace Imagin.Controls.Common
             this.Height = Height;
         }
 
+        /// <summary>
+        /// Set selection from given Rect.
+        /// </summary>
+        public void Set(Rect Rect)
+        {
+            this.X = Rect.X;
+            this.Y = Rect.Y;
+            this.Width = Rect.Width;
+            this.Height = Rect.Height;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("X = {0}, Y = {1}, Width = {2}, Height = {3}", X, Y, Width, Height);
+        }
+
         #endregion
 
         #region Selection
@@ -142,12 +165,24 @@ namespace Imagin.Controls.Common
         /// <param name="Y">Y-position of selection.</param>
         /// <param name="Width">Width of selection.</param>
         /// <param name="Height">Height of selection.</param>
+        public Selection()
+        {
+        }
+
         public Selection(double X, double Y, double Width, double Height)
         {
             this.X = X;
             this.Y = Y;
             this.Width = Width;
             this.Height = Height;
+        }
+
+        public Selection(Rect Rect)
+        {
+            this.X = Rect.X;
+            this.Y = Rect.Y;
+            this.Width = Rect.Width;
+            this.Height = Rect.Height;
         }
 
         #endregion

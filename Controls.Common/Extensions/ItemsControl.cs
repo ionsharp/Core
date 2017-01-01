@@ -298,7 +298,7 @@ namespace Imagin.Controls.Common.Extensions
         #region Methods
 
         /// <summary>
-        /// Imagin.Common: Collapse all items in ItemsControl (siblings of <param name="Source"/>).
+        /// Collapse all items in ItemsControl (siblings of <param name="Source"/>).
         /// </summary>
         internal static void CollapseSiblings(this ItemsControl Parent, TreeViewItem Source)
         {

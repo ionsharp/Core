@@ -7,7 +7,7 @@ namespace Imagin.Common.Extensions
     public static class ObjectExtensions
     {
         /// <summary>
-        /// Imagin.Common: Returns object as specified type.
+        /// Returns object as specified type.
         /// </summary>
         public static T As<T>(this object ToCast)
         {
@@ -47,7 +47,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Get attribute for member of specified object and of specified type.
+        /// Get attribute for member of specified object and of specified type.
         /// </summary>
         /// <typeparam name="T">The type of attribute to get.</typeparam>
         /// <param name="ToEvaluate">The object containing the target attribute.</param>
@@ -65,7 +65,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Get all attributes for member of specified object and of specified type.
+        /// Get all attributes for member of specified object and of specified type.
         /// </summary>
         /// <typeparam name="T">The type of attributes to get.</typeparam>
         /// <param name="ToEvaluate">The object containing the target attributes.</param>
@@ -80,7 +80,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Get all attributes for member of specified object.
+        /// Get all attributes for member of specified object.
         /// </summary>
         /// <param name="ToEvaluate">The object containing the target attributes.</param>
         /// <param name="Member">The name of the member to get attributes from; if object is enum, field attributes are obtained.</param>
@@ -99,7 +99,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Check if member of specified object has attribute of specified type.
+        /// Check if member of specified object has attribute of specified type.
         /// </summary>
         /// <typeparam name="T">The type of attribute to check exists.</typeparam>
         /// <param name="ToEvaluate">The object containing the target attribute.</param>
@@ -118,7 +118,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Check if specified object has property with specified name.
+        /// Check if specified object has property with specified name.
         /// </summary>
         /// <param name="ToEvaluate">The object to evaluate.</param>
         /// <param name="PropertyName">The name of the property to check exists.</param>
@@ -129,7 +129,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Checks if specified object is of specified type.
+        /// Checks if specified object is of specified type.
         /// </summary>
         public static bool Is<T>(this object ToEvaluate)
         {
@@ -137,7 +137,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Checks if specified object is of specified type.
+        /// Checks if specified object is of specified type.
         /// </summary>
         public static bool IsAny(this object ToEvaluate, params Type[] Types)
         {
@@ -151,7 +151,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Checks if specified object is null.
+        /// Checks if specified object is null.
         /// </summary>
         public static bool IsNull(this object ToEvaluate)
         {
@@ -164,16 +164,13 @@ namespace Imagin.Common.Extensions
             return ToEvaluate.GetType().GetProperty(PropertyName) != null;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static dynamic ToDynamic(this object ToConvert)
         {
             return (dynamic)ToConvert;
         }
 
         /// <summary>
-        /// Imagin.Common: Checks if specified object's type is equal to specified type.
+        /// Checks if specified object's type is equal to specified type.
         /// </summary>
         public static bool TypeEquals<T>(this object ToEvaluate)
         {

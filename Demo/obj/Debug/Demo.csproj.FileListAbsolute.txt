@@ -61,7 +61,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Generated
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Imagin.NET.Demo_MarkupCompile.cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Imagin.NET.Demo_MarkupCompile.lref
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\App.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Brushes.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\MainWindow.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Imagin.NET.Demo.g.resources
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Imagin.NET.Demo.Properties.Resources.resources
@@ -71,15 +70,4 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.Window.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.Slider.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.ListBox.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.MenuItem.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.RadioButton.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.TreeView.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.ContextMenu.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.DataGrid.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.ComboBox.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.ScrollViewer.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.TextBox.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.Masked.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Themes.pdb

@@ -1,0 +1,37 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Style x:Key="{x:Type ContextMenu}" TargetType="{x:Type ContextMenu}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Grid.IsSharedSizeScope" Value="true"/>
+        <Setter Property="Background" Value="{DynamicResource Brush.ContextMenu.Background}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.ContextMenu.Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.ContextMenu.Foreground}" />
+        <Setter Property="MaxHeight" Value="720" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Border
+                        Name="Border" 
+                        MaxHeight="{TemplateBinding MaxHeight}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        Margin="10,0,10,10">
+                        <Border.Effect>
+                            <DropShadowEffect Color="{DynamicResource Brush.ContextMenu.DropShadow}" Opacity="0.25" BlurRadius="8" ShadowDepth="3"/>
+                        </Border.Effect>
+                        <ScrollViewer MaxHeight="{TemplateBinding MaxHeight}">
+                            <StackPanel
+                                IsItemsHost="True" 
+                                KeyboardNavigation.DirectionalNavigation="Cycle" 
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

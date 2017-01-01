@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Imagin.Controls.Common.Converters
+namespace Imagin.Controls.Common
 {
     [ValueConversion(typeof(double), typeof(double))]
     public class TreeViewColumnDoubleConverter : IValueConverter

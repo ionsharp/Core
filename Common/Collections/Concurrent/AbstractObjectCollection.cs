@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Generic;
 
 namespace Imagin.Common.Collections.Concurrent
 {

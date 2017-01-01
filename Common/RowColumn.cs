@@ -1,5 +1,8 @@
 ﻿namespace Imagin.Common
 {
+    /// <summary>
+    /// A data type to represent a row and column pair.
+    /// </summary>
     public struct RowColumn
     {
         public double Row

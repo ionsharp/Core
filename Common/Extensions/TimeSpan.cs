@@ -4,9 +4,6 @@ namespace Imagin.Common.Extensions
 {
     public static class TimeSpanExtensions
     {
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static string ToShortTime(this TimeSpan t)
         {
             if (t.TotalSeconds == 0) return string.Empty;

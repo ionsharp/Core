@@ -6,40 +6,28 @@ namespace Imagin.Common.Extensions
 {
     public static class Int32Extensions
     {
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int Add(this int ToAdd, int Increment)
         {
             return ToAdd + Increment;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int Coerce(this int ToCoerce, int Maximum, int Minimum = 0)
         {
             return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int Divide(this int ToDivide, int Divisor)
         {
             return ToDivide / Divisor;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int Multiply(this int ToMultiply, int Scalar)
         {
             return ToMultiply * Scalar;
         }
 
         /// <summary>
-        /// Imagin.Common: Generates a random string with numeric length.
+        /// Generates a random string with numeric length.
         /// </summary>
         public static string Random(this int Length)
         {
@@ -49,7 +37,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Converts int to byte array.
+        /// Converts int to byte array.
         /// </summary>
         public static byte[] SplitBytes(this int ToSplit)
         {
@@ -64,41 +52,26 @@ namespace Imagin.Common.Extensions
             return Result;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int Subtract(this int ToSubtract, int Decrement)
         {
             return ToSubtract - Decrement;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static byte ToByte(this int ToConvert)
         {
             return Convert.ToByte(ToConvert);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static double ToDouble(this int ToConvert)
         {
             return Convert.ToDouble(ToConvert);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static string ToFileSize(this int Bytes, FileSizeFormat FileSizeFormat = FileSizeFormat.BinaryUsingSI, int RoundTo = 2)
         {
             return Convert.ToDouble(Bytes).ToFileSize(FileSizeFormat, RoundTo);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static string ToOrdinal(this int Number)
         {
             string Result = Number.ToString();
@@ -114,7 +87,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Checks if given number is within given range.
+        /// Checks if given number is within given range.
         /// </summary>
         public static bool WithinRange(this int Number, int Min, int Max)
         {

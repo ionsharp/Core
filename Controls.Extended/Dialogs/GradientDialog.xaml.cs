@@ -1,9 +1,10 @@
-﻿using System.Windows;
+﻿using Imagin.Controls.Common;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
-    public partial class GradientDialog : Window
+    public partial class GradientDialog : BasicWindow
     {
         public LinearGradientBrush Gradient
         {

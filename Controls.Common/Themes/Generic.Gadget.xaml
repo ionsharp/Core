@@ -30,7 +30,9 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             ClipToBounds="True"
                             CornerRadius="5">
-                            <ContentPresenter VerticalAlignment="Center"/>
+                            <AdornerDecorator>
+                                <ContentPresenter VerticalAlignment="Center"/>
+                            </AdornerDecorator>
                         </Border>
                     </Grid>
                 </ControlTemplate>

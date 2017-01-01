@@ -1,13 +1,25 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace Imagin.Controls.Common.Extensions
 {
     public static class WindowExtensions
     {
         #region Always On Bottom
+
+        public static readonly DependencyProperty SinkerProperty = DependencyProperty.RegisterAttached("Sinker", typeof(WindowSinker), typeof(WindowExtensions), new UIPropertyMetadata(null));
+        public static WindowSinker GetSinker(DependencyObject obj)
+        {
+            return (WindowSinker)obj.GetValue(SinkerProperty);
+        }
+        public static void SetSinker(DependencyObject obj, WindowSinker value)
+        {
+            obj.SetValue(SinkerProperty, value);
+        }
 
         public static readonly DependencyProperty AlwaysOnBottomProperty = DependencyProperty.RegisterAttached("AlwaysOnBottom", typeof(bool), typeof(WindowExtensions), new UIPropertyMetadata(false, OnAlwaysOnBottomChanged));
         public static bool GetAlwaysOnBottom(DependencyObject obj)
@@ -20,89 +32,306 @@ namespace Imagin.Controls.Common.Extensions
         }
         static void OnAlwaysOnBottomChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            Window = sender as Window;
+            var Window = sender as Window;
             if (Window != null)
             {
                 if ((bool)e.NewValue)
                 {
-                    Window.Loaded += OnLoaded;
-                    Window.Closing += OnClosing;
+                    var Sinker = new WindowSinker(Window);
+                    Sinker.Sink();
+                    SetSinker(Window, Sinker);
                 }
                 else
                 {
-                    Window.Loaded -= OnLoaded;
-                    Window.Closing -= OnClosing;
+                    var Sinker = GetSinker(Window);
+                    Sinker.Unsink();
+                    SetSinker(Window, null);
                 }
             }
         }
 
-        #region Constants
+        #endregion
 
-        const UInt32 SWP_NOSIZE = 0x0001;
+        #region Icon
 
-        const UInt32 SWP_NOMOVE = 0x0002;
-
-        const UInt32 SWP_NOACTIVATE = 0x0010;
-
-        const UInt32 SWP_NOZORDER = 0x0004;
-
-        const int WM_ACTIVATEAPP = 0x001C;
-
-        const int WM_ACTIVATE = 0x0006;
-
-        const int WM_SETFOCUS = 0x0007;
-
-        const int WM_WINDOWPOSCHANGING = 0x0046;
-
-        static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
-
-        static Window Window
+        /// <summary>
+        /// Gets or sets a value indicating whether window should implement default behavior; this is only applicable when window
+        /// a) overrides default style,
+        /// b) allows transparency, and
+        /// c) style is set to 'None'.
+        /// </summary>
+        public static readonly DependencyProperty IconProperty = DependencyProperty.RegisterAttached("Icon", typeof(ImageSource), typeof(WindowExtensions), new PropertyMetadata(null));
+        public static ImageSource GetIcon(DependencyObject obj)
         {
-            get; set;
+            return (ImageSource)obj.GetValue(IconProperty);
+        }
+        public static void SetIcon(DependencyObject obj, ImageSource value)
+        {
+            obj.SetValue(IconProperty, value);
+        }
+
+        #endregion
+
+        #region OverridesDefaultBehavior
+
+        /// <summary>
+        /// Gets or sets a value indicating whether window should implement default behavior; this is only applicable when window
+        /// a) overrides default style,
+        /// b) allows transparency, and
+        /// c) style is set to 'None'.
+        /// </summary>
+        public static readonly DependencyProperty OverridesDefaultBehaviorProperty = DependencyProperty.RegisterAttached("OverridesDefaultBehavior", typeof(bool), typeof(WindowExtensions), new PropertyMetadata(false, OnOverridesDefaultBehaviorChanged));
+        public static bool GetOverridesDefaultBehavior(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(OverridesDefaultBehaviorProperty);
+        }
+        public static void SetOverridesDefaultBehavior(DependencyObject obj, bool value)
+        {
+            obj.SetValue(OverridesDefaultBehaviorProperty, value);
+        }
+        static void OnOverridesDefaultBehaviorChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var Window = sender as Window;
+            if (Window != null && (bool)e.NewValue)
+            {
+                Window.SourceInitialized += (a, b) =>
+                {
+                    var Handle = (new WindowInteropHelper(Window)).Handle;
+                    HwndSource.FromHwnd(Handle).AddHook(new HwndSourceHook(WindowProc));
+
+                    Window.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnCloseWindow));
+                    Window.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, OnMaximizeWindow, OnCanResizeWindow));
+                    Window.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, OnMinimizeWindow, OnCanMinimizeWindow));
+                    Window.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, OnRestoreWindow, OnCanResizeWindow));
+                };
+            }
+        }
+
+        #region public struct POINT
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            /// <summary>
+            /// x coordinate of point.
+            /// </summary>
+            public int x;
+            /// <summary>
+            /// y coordinate of point.
+            /// </summary>
+            public int y;
+
+            /// <summary>
+            /// Construct a point of coordinates (x,y).
+            /// </summary>
+            public POINT(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        #endregion
+
+        #region public struct MINMAXINFO
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MINMAXINFO
+        {
+            public POINT ptReserved;
+            public POINT ptMaxSize;
+            public POINT ptMaxPosition;
+            public POINT ptMinTrackSize;
+            public POINT ptMaxTrackSize;
+        };
+
+        #endregion
+
+        #region public class MONITORINFO
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public class MONITORINFO
+        {
+            /// <summary>
+            /// </summary>            
+            public int cbSize = Marshal.SizeOf(typeof(MONITORINFO));
+
+            /// <summary>
+            /// </summary>            
+            public RECT rcMonitor = new RECT();
+
+            /// <summary>
+            /// </summary>            
+            public RECT rcWork = new RECT();
+
+            /// <summary>
+            /// </summary>            
+            public int dwFlags = 0;
+        }
+
+        #endregion
+
+        #region public struct RECT
+
+        [StructLayout(LayoutKind.Sequential, Pack = 0)]
+        public struct RECT
+        {
+            /// <summary> Win32 </summary>
+            public int left;
+            /// <summary> Win32 </summary>
+            public int top;
+            /// <summary> Win32 </summary>
+            public int right;
+            /// <summary> Win32 </summary>
+            public int bottom;
+
+            /// <summary> Win32 </summary>
+            public static readonly RECT Empty = new RECT();
+
+            /// <summary> Win32 </summary>
+            public int Width
+            {
+                get { return Math.Abs(right - left); }  // Abs needed for BIDI OS
+            }
+            /// <summary> Win32 </summary>
+            public int Height
+            {
+                get { return bottom - top; }
+            }
+            /// <summary> Win32 </summary>
+            public RECT(int left, int top, int right, int bottom)
+            {
+                this.left = left;
+                this.top = top;
+                this.right = right;
+                this.bottom = bottom;
+            }
+            /// <summary> Win32 </summary>
+            public RECT(RECT rcSrc)
+            {
+                this.left = rcSrc.left;
+                this.top = rcSrc.top;
+                this.right = rcSrc.right;
+                this.bottom = rcSrc.bottom;
+            }
+            /// <summary> Win32 </summary>
+            public bool IsEmpty
+            {
+                get
+                {
+                    // BUGBUG : On Bidi OS (hebrew arabic) left > right
+                    return left >= right || top >= bottom;
+                }
+            }
+            /// <summary> Return a user friendly representation of this struct </summary>
+            public override string ToString()
+            {
+                if (this == RECT.Empty) { return "RECT {Empty}"; }
+                return "RECT { left : " + left + " / top : " + top + " / right : " + right + " / bottom : " + bottom + " }";
+            }
+
+            /// <summary> Determine if 2 RECT are equal (deep compare) </summary>
+            public override bool Equals(object obj)
+            {
+                if (!(obj is Rect)) { return false; }
+                return (this == (RECT)obj);
+            }
+
+            /// <summary>Return the HashCode for this struct (not garanteed to be unique)</summary>
+            public override int GetHashCode()
+            {
+                return left.GetHashCode() + top.GetHashCode() + right.GetHashCode() + bottom.GetHashCode();
+            }
+            /// <summary> Determine if 2 RECT are equal (deep compare)</summary>
+            public static bool operator ==(RECT rect1, RECT rect2)
+            {
+                return (rect1.left == rect2.left && rect1.top == rect2.top && rect1.right == rect2.right && rect1.bottom == rect2.bottom);
+            }
+            /// <summary> Determine if 2 RECT are different(deep compare)</summary>
+            public static bool operator !=(RECT rect1, RECT rect2)
+            {
+                return !(rect1 == rect2);
+            }
         }
 
         #endregion
 
         #region Methods
 
-        [DllImport("user32.dll")]
-        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+        [DllImport("user32")]
+        internal static extern bool GetMonitorInfo(IntPtr hMonitor, MONITORINFO lpmi);
 
-        [DllImport("user32.dll")]
-        static extern IntPtr DeferWindowPos(IntPtr hWinPosInfo, IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
+        [DllImport("User32")]
+        internal static extern IntPtr MonitorFromWindow(IntPtr handle, int flags);
 
-        [DllImport("user32.dll")]
-        static extern IntPtr BeginDeferWindowPos(int nNumWindows);
-
-        [DllImport("user32.dll")]
-        static extern bool EndDeferWindowPos(IntPtr hWinPosInfo);
-
-        static void OnLoaded(object sender, RoutedEventArgs e)
+        static void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
         {
-            IntPtr hWnd = new WindowInteropHelper(Window).Handle;
-            SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
-
-            IntPtr windowHandle = (new WindowInteropHelper(Window)).Handle;
-            HwndSource src = HwndSource.FromHwnd(windowHandle);
-            src.AddHook(new HwndSourceHook(WndProc));
+            var Window = sender as Window;
+            e.CanExecute = Window.ResizeMode == ResizeMode.CanResize || Window.ResizeMode == ResizeMode.CanResizeWithGrip;
         }
 
-        static void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        static void OnCloseWindow(object sender, ExecutedRoutedEventArgs e)
         {
-            IntPtr windowHandle = (new WindowInteropHelper(Window)).Handle;
-            HwndSource src = HwndSource.FromHwnd(windowHandle);
-            src.RemoveHook(new HwndSourceHook(WndProc));
+            SystemCommands.CloseWindow(sender as Window);
         }
 
-        static IntPtr WndProc(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        static void OnMaximizeWindow(object sender, ExecutedRoutedEventArgs e)
         {
-            if (msg == WM_SETFOCUS)
+            (sender as Window).WindowState = WindowState.Maximized;
+        }
+
+        static void OnMinimizeWindow(object sender, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(sender as Window);
+        }
+
+        static void OnCanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = (sender as Window).ResizeMode != ResizeMode.NoResize;
+        }
+
+        static void OnRestoreWindow(object sender, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.RestoreWindow(sender as Window);
+        }
+
+        static IntPtr WindowProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            switch (msg)
             {
-                hWnd = new WindowInteropHelper(Window).Handle;
-                SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
-                handled = true;
+                case 0x0024:
+                    WmGetMinMaxInfo(hwnd, lParam);
+                    handled = true;
+                    break;
             }
-            return IntPtr.Zero;
+
+            return (IntPtr)0;
+        }
+
+        static void WmGetMinMaxInfo(IntPtr hwnd, IntPtr lParam)
+        {
+            MINMAXINFO mmi = (MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(MINMAXINFO));
+
+            // Adjust the maximized size and position to fit the work area of the correct monitor
+            var MONITOR_DEFAULTTONEAREST = 0x00000002;
+            IntPtr monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+
+            if (monitor != IntPtr.Zero)
+            {
+
+                var monitorInfo = new MONITORINFO();
+                GetMonitorInfo(monitor, monitorInfo);
+
+                var rcWorkArea = monitorInfo.rcWork;
+                var rcMonitorArea = monitorInfo.rcMonitor;
+
+                mmi.ptMaxPosition.x = Math.Abs(rcWorkArea.left - rcMonitorArea.left);
+                mmi.ptMaxPosition.y = Math.Abs(rcWorkArea.top - rcMonitorArea.top);
+                mmi.ptMaxSize.x = Math.Abs(rcWorkArea.right - rcWorkArea.left);
+                mmi.ptMaxSize.y = Math.Abs(rcWorkArea.bottom - rcWorkArea.top);
+            }
+
+            Marshal.StructureToPtr(mmi, lParam, true);
         }
 
         #endregion

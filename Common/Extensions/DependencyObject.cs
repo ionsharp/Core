@@ -18,9 +18,6 @@ namespace Imagin.Common.Extensions
             Object.ToggleAll(true);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static T GetChildOfType<T>(this DependencyObject Object) where T : DependencyObject
         {
             if (Object == null)
@@ -35,7 +32,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Attempts to find parent for specified object in following order: 
+        /// Attempts to find parent for specified object in following order: 
         /// VisualParent -> LogicalParent -> LogicalTemplatedParent.
         /// </summary>
         /// <remarks>
@@ -79,9 +76,6 @@ namespace Imagin.Common.Extensions
             return Parent;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static T GetParent<T>(this DependencyObject Object) where T : DependencyObject
         {
             var Parent = Object.GetParent();
@@ -90,17 +84,11 @@ namespace Imagin.Common.Extensions
             return Parent.As<T>();
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static DependencyObject GetLogicalParent(this DependencyObject Child)
         {
             return LogicalTreeHelper.GetParent(Child);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static T GetLogicalParent<T>(this DependencyObject Child) where T : DependencyObject
         {
             do
@@ -112,9 +100,6 @@ namespace Imagin.Common.Extensions
             return null;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static IEnumerable<T> GetVisualChildren<T>(this DependencyObject Parent) where T : DependencyObject
         {
             if (Parent != null)
@@ -130,17 +115,11 @@ namespace Imagin.Common.Extensions
             }
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static DependencyObject GetVisualParent(this DependencyObject Child)
         {
             return VisualTreeHelper.GetParent(Child);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static T GetVisualParent<T>(this DependencyObject Child) where T : DependencyObject
         {
             do
@@ -153,7 +132,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Returns true if the specified element is a child of parent somewhere in the visual 
+        /// Returns true if the specified element is a child of parent somewhere in the visual 
         /// tree. This method will work for Visual, FrameworkElement and FrameworkContentElement.
         /// </summary>
         /// <param name="element">The element that is potentially a child of the specified parent.</param>
@@ -170,7 +149,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Sets IsExpanded property to specified value on all TreeViewItems found.
+        /// Sets IsExpanded property to specified value on all TreeViewItems found.
         /// </summary>
         public static void ToggleAll(this DependencyObject Object, bool IsExpanded)
         {

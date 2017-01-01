@@ -5,7 +5,7 @@ using System.Windows.Media;
 namespace Imagin.Controls.Common
 {
     /// <summary>
-    /// A ComboBox containing font sizes.
+    /// A ComboBox containing traditional font sizes.
     /// </summary>
     public partial class FontSizeBox : ComboBox
     {

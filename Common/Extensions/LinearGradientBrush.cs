@@ -5,7 +5,7 @@ namespace Imagin.Common.Extensions
     public static class LinearGradientBrushExtensions
     {
         /// <summary>
-        /// Imagin.Common: Creates LinearGradientBrush from specified LinearGradientBrush and it's values.
+        /// Creates LinearGradientBrush from specified LinearGradientBrush and it's values.
         /// </summary>
         public static LinearGradientBrush Duplicate(this LinearGradientBrush ToClone)
         {

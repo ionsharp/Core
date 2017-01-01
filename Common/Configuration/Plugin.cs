@@ -216,7 +216,7 @@ namespace Imagin.Common.Configuration
         /// </summary>
         protected void MergePaneViewModel()
         {
-            App.GetConfig().GetMainWindowViewModel().GetPanes().Add(PaneViewModel);
+            App.GetMainWindowViewModel().GetPanes().Add(PaneViewModel);
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace Imagin.Common.Configuration
         /// </summary>
         protected void ReleasePaneViewModel()
         {
-            App.GetConfig().GetMainWindowViewModel().GetPanes().Remove(PaneViewModel);
+            App.GetMainWindowViewModel().GetPanes().Remove(PaneViewModel);
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace Imagin.Common.Configuration
         /// </summary>
         protected void Trace(WarningLevel WarningLevel, LogEntryStatus LogEntryStatus, string Source, string Message)
         {
-            App.GetConfig().GetLog().Write(WarningLevel, LogEntryStatus, Source, Message);
+            App.GetLog().Write(WarningLevel, LogEntryStatus, Source, Message);
         }
 
         #endregion

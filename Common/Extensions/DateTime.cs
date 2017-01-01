@@ -4,9 +4,6 @@ namespace Imagin.Common.Extensions
 {
     public static class DateTimeExtensions
     {
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int CurrentMonth
         {
             get
@@ -15,9 +12,6 @@ namespace Imagin.Common.Extensions
             }
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int CurrentDay
         {
             get
@@ -26,9 +20,6 @@ namespace Imagin.Common.Extensions
             }
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static int CurrentYear
         {
             get
@@ -45,7 +36,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Determines if first date is equal to second.
+        /// Determines if first date is equal to second.
         /// </summary>
         public static bool IsEqualTo(this DateTime? First, DateTime? Second)
         {
@@ -54,7 +45,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Determines if first date is equal to second irrespective of time.
+        /// Determines if first date is equal to second irrespective of time.
         /// </summary>
         public static bool IsEqualTo(this DateTime DateTime, DateTime SecondDateTime)
         {
@@ -62,7 +53,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Checks if month, day, and year are identical to that of today (ignores time).
+        /// Checks if month, day, and year are identical to that of today (ignores time).
         /// </summary>
         public static bool IsToday(this DateTime DateTime)
         {
@@ -70,9 +61,6 @@ namespace Imagin.Common.Extensions
             return DateTime.Month == Today.Month && DateTime.Day == Today.Day && DateTime.Year == Today.Year;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static DateTime Tomorrow
         {
             get
@@ -81,9 +69,6 @@ namespace Imagin.Common.Extensions
             }
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static string ToRelativeTime(this DateTime Date)
         {
             const int SECOND = 1;
@@ -171,9 +156,6 @@ namespace Imagin.Common.Extensions
                 return NowText;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static DateTime Yesterday
         {
             get

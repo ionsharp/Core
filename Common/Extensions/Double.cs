@@ -5,33 +5,21 @@ namespace Imagin.Common.Extensions
 {
     public static class DoubleExtensions
     {
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static double Add(this double ToAdd, double Increment)
         {
             return ToAdd + Increment;
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static double Coerce(this double ToCoerce, double Maximum, double Minimum = 0.0)
         {
             return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static double Coerce(this double ToCoerce, double MinMax, bool MinOrMax)
         {
             return MinOrMax ? (ToCoerce < MinMax ? MinMax : ToCoerce) : (ToCoerce > MinMax ? MinMax : ToCoerce);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static double Divide(this double ToDivide, double Divisor)
         {
             return ToDivide / Divisor;
@@ -44,16 +32,18 @@ namespace Imagin.Common.Extensions
             return TimeSpan.FromSeconds(Elapsed.TotalSeconds.Divide(Lines).Multiply(100.0.Subtract(Lines)));
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static double Multiply(this double ToMultiply, double Scalar)
         {
             return ToMultiply * Scalar;
         }
 
+        public static double NearestFactor(this double Value, double Factor)
+        {
+            return Math.Round((Value / Factor), MidpointRounding.AwayFromZero) * Factor;
+        }
+
         /// <summary>
-        /// Imagin.Common: Rounds double to variable places.
+        /// Rounds double to variable places.
         /// </summary>
         public static double Round(this double ToRound, int Digits = 0)
         {
@@ -61,7 +51,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Shifts decimal variable places.
+        /// Shifts decimal variable places.
         /// </summary>
         public static double Shift(this double ToShift, int Shifts = 1, bool ShiftRight = true)
         {
@@ -75,32 +65,26 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Shifts decimal point and rounds to variable places.
+        /// Shifts decimal point and rounds to variable places.
         /// </summary>
         public static double ShiftRound(this double ToShiftRound, int Shifts = 1, int Digits = 0, bool ShiftRight = true)
         {
             return ToShiftRound.Shift(Shifts, ShiftRight).Round(Digits);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static double Subtract(this double ToSubtract, double Decrement)
         {
             return ToSubtract - Decrement;
         }
 
         /// <summary>
-        /// Imagin.Common: Converts double to byte.
+        /// Converts double to byte.
         /// </summary>
         public static byte ToByte(this double ToConvert)
         {
             return Convert.ToByte(ToConvert);
         }
 
-        /// <summary>
-        /// Imagin.Common
-        /// </summary>
         public static string ToFileSize(this double Bytes, FileSizeFormat FileSizeFormat = FileSizeFormat.BinaryUsingSI, int RoundTo = 2)
         {
             if (FileSizeFormat == FileSizeFormat.Bytes)
@@ -139,7 +123,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Converts double to int.
+        /// Converts double to int.
         /// </summary>
         public static int ToInt(this double ToConvert)
         {
@@ -147,7 +131,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Converts double to long.
+        /// Converts double to long.
         /// </summary>
         public static long ToLong(this double ToConvert)
         {
@@ -155,7 +139,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Converts angle to radians.
+        /// Converts angle to radians.
         /// </summary>
         public static double ToRadians(this double ToConvert)
         {

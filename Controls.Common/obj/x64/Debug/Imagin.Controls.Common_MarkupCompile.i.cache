@@ -1,0 +1,20 @@
+﻿Imagin.Controls.Common
+
+
+library
+C#
+.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\x64\Debug\
+Imagin.Controls.Common
+none
+false
+DEBUG;TRACE
+
+32-1694096536
+
+1021123570855
+17-1573174674
+CheckableDatePicker\CheckableMonths.xaml;CheckableDatePicker\CheckableWeekDays.xaml;CheckableDatePicker\CheckableDays.xaml;DirectionPad.xaml;FontSizeBox.xaml;FontFamilyBox.xaml;RepeatBox\RepeatBox.xaml;Themes\Generic.AdvancedItemsControl.xaml;Themes\Generic.ButtonChrome.xaml;Themes\Generic.AdvancedTextBox.xaml;Themes\Generic.AdvancedTreeView.xaml;Themes\Generic.ButtonSpinner.xaml;Themes\Generic.DateTimePicker.xaml;Themes\Generic.DateTimeUpDown.xaml;Themes\Generic.TimePicker.xaml;Themes\Generic.ToggleSwitch.xaml;Themes\Generic.RippleDecorator.xaml;Themes\Generic.CheckerBoard.xaml;Themes\Generic.EditableLabel.xaml;Themes\Generic.Gadget.xaml;Themes\Generic.Masked.xaml;Themes\Generic.DragSelection.xaml;Themes\Generic.FileBox.xaml;Themes\Generic.Line.xaml;Themes\Generic.Link.xaml;Themes\Generic.PasswordBox.xaml;Themes\Generic.RadioGroup.xaml;Themes\Generic.TreeViewComboBox.xaml;Themes\Generic.UpDown.xaml;Themes\Generic.BasicWindow.xaml;Themes\Generic.WatermarkTextBox.xaml;Themes\Generic.xaml;
+
+True
+

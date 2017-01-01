@@ -27,19 +27,8 @@
             </Style>
 
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Brushes.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.Masked.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.ComboBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.ContextMenu.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.DataGrid.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.ListBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.MenuItem.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.RadioButton.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.ScrollViewer.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.Slider.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.TextBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.TreeView.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.Window.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Themes/Default.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

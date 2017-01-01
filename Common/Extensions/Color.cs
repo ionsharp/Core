@@ -5,7 +5,7 @@ namespace Imagin.Common.Extensions
     public static class ColorExtensions
     {
         /// <summary>
-        /// Imagin.Common: Converts color to hex string without alpha component.
+        /// Converts color to hex string without alpha component.
         /// </summary>
         public static string ToHex(this Color Color)
         {
@@ -13,7 +13,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Converts color to hex string with alpha component.
+        /// Converts color to hex string with alpha component.
         /// </summary>
         public static string ToHexWithAlpha(this Color Color)
         {
@@ -21,7 +21,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Creates new color with specified alpha component from specified color.
+        /// Creates new color with specified alpha component from specified color.
         /// </summary>
         public static Color WithAlpha(this Color Color, byte Alpha)
         {

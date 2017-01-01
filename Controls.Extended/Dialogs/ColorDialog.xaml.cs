@@ -1,11 +1,11 @@
 ﻿using Imagin.Common.Events;
-using System.Collections.ObjectModel;
+using Imagin.Controls.Common;
 using System.Windows;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
-    public partial class ColorDialog : Window, IColorDialog
+    public partial class ColorDialog : BasicWindow, IColorDialog
     {
         #region Properties
 

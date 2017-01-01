@@ -1,4 +1,4 @@
-﻿<Window 
+﻿<Controls.Common:BasicWindow 
     x:Class="Imagin.Controls.Extended.GradientDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -31,4 +31,4 @@
                 Click="OnCancel"/>
         </Controls.Common:Spacer>
     </Grid>
-</Window>
+</Controls.Common:BasicWindow>

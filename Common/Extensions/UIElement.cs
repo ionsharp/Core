@@ -6,9 +6,6 @@ namespace Imagin.Common.Extensions
 {
     public static class UIElementExtensions
     {
-        /// <summary>
-        /// Imagin.Core
-        /// </summary>
         public static void FadeIn(this UIElement Element, Duration Duration = default(Duration), EventHandler Callback = null)
         {
             DoubleAnimation Animation = new DoubleAnimation()
@@ -22,9 +19,6 @@ namespace Imagin.Common.Extensions
             Element.BeginAnimation(UIElement.OpacityProperty, Animation);
         }
 
-        /// <summary>
-        /// Imagin.Core
-        /// </summary>
         public static void FadeOut(this UIElement Element, Duration Duration = default(Duration), EventHandler Callback = null)
         {
             DoubleAnimation Animation = new DoubleAnimation()

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Imagin.Controls.Common.Converters
+namespace Imagin.Controls.Common
 {
     [ValueConversion(typeof(GridLength), typeof(GridLength))]
     public class TreeViewColumnGridLengthConverter : TreeViewColumnDoubleConverter

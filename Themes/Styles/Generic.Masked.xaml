@@ -1,0 +1,108 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common">
+    <Style x:Key="{x:Type Controls.Common:MaskedImage}" TargetType="{x:Type Controls.Common:MaskedImage}">
+        <Setter Property="ImageColor" Value="{DynamicResource Brush.Image}"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type Controls.Common:MaskedButton}" TargetType="{x:Type Controls.Common:MaskedButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.MouseOver}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.Pressed}"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False"/>
+                    <Condition Property="IsPressed" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image}"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type Controls.Common:MaskedToggleButton}" TargetType="{x:Type Controls.Common:MaskedToggleButton}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="IsRippleEnabled" Value="True" />
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.MouseOver}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False"/>
+                    <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image}"/>
+            </MultiTrigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.Checked}"/>
+                <Setter Property="ToolTip" Value="{Binding CheckedToolTip, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="ToolTip" Value="{Binding UncheckedToolTip, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.Pressed}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type Controls.Common:MaskedDropDownButton}" TargetType="{x:Type Controls.Common:MaskedDropDownButton}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="IsRippleEnabled" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.MouseOver}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="False"/>
+                    <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.Checked}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.Pressed}"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

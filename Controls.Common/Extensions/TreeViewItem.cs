@@ -9,7 +9,7 @@ namespace Imagin.Controls.Common.Extensions
         #region Methods
 
         /// <summary>
-        /// Imagin.Common: Collapses siblings of <param name="Item"/>.
+        /// Collapses siblings of <param name="Item"/>.
         /// </summary>
         public static void CollapseSiblings(this TreeViewItem Item)
         {
@@ -24,7 +24,7 @@ namespace Imagin.Controls.Common.Extensions
         }
 
         /// <summary>
-        /// Imagin.Common: Get node depth for specified TreeViewItem.
+        /// Get node depth for specified TreeViewItem.
         /// </summary>
         public static int GetDepth(this TreeViewItem Item)
         {
