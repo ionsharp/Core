@@ -24,7 +24,7 @@ namespace Imagin.Common
             }
             set
             {
-                name = value;
+                name = OnNameChanged(value);
                 OnPropertyChanged("Name");
             }
         }
@@ -58,6 +58,11 @@ namespace Imagin.Common
         {
             this.Name = Name;
             this.IsEditable = IsEditable;
+        }
+
+        protected virtual string OnNameChanged(string Value)
+        {
+            return Value;
         }
     }
 }

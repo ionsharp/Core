@@ -1,5 +1,5 @@
 ﻿using Imagin.Common.Collections.Generic;
-using Imagin.Common.Events;
+using Imagin.Common.Input;
 using Imagin.Common.Extensions;
 using System;
 using System.Collections;

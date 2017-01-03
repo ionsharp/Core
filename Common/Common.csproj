@@ -81,8 +81,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractDependencyObject.cs" />
-    <Compile Include="AbstractObject.cs" />
+    <Compile Include="Abstract\AbstractDependencyObject.cs" />
+    <Compile Include="Abstract\AbstractObject.cs" />
     <Compile Include="Attributes\Constraint.cs" />
     <Compile Include="Attributes\Alias.cs" />
     <Compile Include="Attributes\DynamicProperty.cs" />
@@ -93,7 +93,7 @@
     <Compile Include="Animations\GridLengthAnimation.cs" />
     <Compile Include="Attributes\Abbreviation.cs" />
     <Compile Include="Attributes\Featured.cs" />
-    <Compile Include="ComponentModel\CheckableObject.Generic.cs" />
+    <Compile Include="Abstract\CheckableObject.Generic.cs" />
     <Compile Include="Collections\Concurrent\AbstractObjectCollection.cs" />
     <Compile Include="Collections\Concurrent\ConcurrentObservableBase.cs" />
     <Compile Include="Collections\Concurrent\ConcurrentObservableCollection.cs" />
@@ -110,7 +110,7 @@
     <Compile Include="Collections\ObjectModel\TrackableCollection.cs" />
     <Compile Include="Collections\TrackableList.cs" />
     <Compile Include="CompassDirection.cs" />
-    <Compile Include="ComponentModel\InvalidResultException.cs" />
+    <Compile Include="Debug\InvalidResultException.cs" />
     <Compile Include="Configuration\AppDomainContext.cs" />
     <Compile Include="Configuration\IApp.cs" />
     <Compile Include="Configuration\IMainWindow.cs" />
@@ -166,6 +166,7 @@
     <Compile Include="Data\Converters\SubstringConverter.cs" />
     <Compile Include="Data\Converters\TreeViewLineConverter.cs" />
     <Compile Include="Data\Converters\UpperCaseConverter.cs" />
+    <Compile Include="Data\Converters\WritableColorToBrushConverter.cs" />
     <Compile Include="Data\DateTimeCondition.cs" />
     <Compile Include="Data\DateTimeOperator.cs" />
     <Compile Include="Data\GraphicalUnit.cs" />
@@ -182,9 +183,9 @@
     <Compile Include="DialogProviderMode.cs" />
     <Compile Include="DialogProviderSelectionMode.cs" />
     <Compile Include="Direction.cs" />
-    <Compile Include="Entry.cs" />
-    <Compile Include="Error.cs" />
-    <Compile Include="Exception.Generic.cs" />
+    <Compile Include="Abstract\Entry.cs" />
+    <Compile Include="Debug\Error.cs" />
+    <Compile Include="Debug\Exception.Generic.cs" />
     <Compile Include="Extensions\Bitmap.cs" />
     <Compile Include="Extensions\BitmapImage.cs" />
     <Compile Include="Extensions\Bool.cs" />
@@ -217,6 +218,8 @@
     <Compile Include="ICheckable.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="IEditable.cs" />
+    <Compile Include="ILockable.cs" />
+    <Compile Include="IPositionable.cs" />
     <Compile Include="INamable.cs" />
     <Compile Include="INotifiable.cs" />
     <Compile Include="Input\EventArgs.Generic.cs" />
@@ -225,21 +228,25 @@
     <Compile Include="Input\MouseEvent.cs" />
     <Compile Include="Data\FileSizeFormat.cs" />
     <Compile Include="Input\MouseWheelActiveTrigger.cs" />
-    <Compile Include="Input\ValueArgs.cs" />
+    <Compile Include="Input\ChangedValue.cs" />
     <Compile Include="IO\FileEntry.cs" />
     <Compile Include="IO\FileFormatException.Generic.cs" />
     <Compile Include="IO\FileNotFoundException.Generic.cs" />
     <Compile Include="IO\FileSystemObject.cs" />
+    <Compile Include="ISizable.cs" />
     <Compile Include="ITaggable.cs" />
     <Compile Include="Mvvm\IMainWindowViewModel.cs" />
-    <Compile Include="NamedEntry.cs" />
-    <Compile Include="NamedNotifiableObject.cs" />
-    <Compile Include="NamedObject.cs" />
+    <Compile Include="Abstract\NamedEntry.cs" />
+    <Compile Include="Abstract\NamedNotifiableObject.cs" />
+    <Compile Include="Abstract\NamedObject.cs" />
     <Compile Include="Native\Utilities.cs" />
-    <Compile Include="NotifiableObject.cs" />
-    <Compile Include="Result.cs" />
-    <Compile Include="Success.cs" />
-    <Compile Include="TaggedObject.cs" />
+    <Compile Include="Abstract\NotifiableObject.cs" />
+    <Compile Include="Primitives\Position.cs" />
+    <Compile Include="Debug\Result.cs" />
+    <Compile Include="Primitives\Selection.cs" />
+    <Compile Include="Serialization\WritableColor.cs" />
+    <Compile Include="Debug\Success.cs" />
+    <Compile Include="Abstract\TaggedObject.cs" />
     <Compile Include="Text\Int64Representation.cs" />
     <Compile Include="Mvvm\AbstractViewModel.cs" />
     <Compile Include="Mvvm\IPaneViewModel.cs" />
@@ -249,16 +256,15 @@
     <Compile Include="Tracing\LogEntry.cs" />
     <Compile Include="Tracing\LogEntryStatus.cs" />
     <Compile Include="Data\BindingProxy.cs" />
-    <Compile Include="NamedDependencyObject.cs" />
-    <Compile Include="Primitives\PointSize.cs" />
+    <Compile Include="Abstract\NamedDependencyObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RowColumn.cs" />
+    <Compile Include="Primitives\RowColumn.cs" />
     <Compile Include="Scheduling\WeeklyRecurrence.cs" />
     <Compile Include="Scheduling\MonthlyRecurrence.cs" />
     <Compile Include="Scheduling\Recurrence.cs" />
     <Compile Include="Scheduling\RepeatOptions.cs" />
     <Compile Include="Scheduling\ScheduledEvent.cs" />
-    <Compile Include="Serialization\SerializableFontFamily.cs" />
+    <Compile Include="Serialization\WritableFontFamily.cs" />
     <Compile Include="Side.cs" />
     <Compile Include="StretchMode.cs" />
     <Compile Include="Text\Encoding.cs" />
@@ -269,7 +275,7 @@
     <Compile Include="Tracing\ILog.cs" />
     <Compile Include="Tracing\WarningLevel.cs" />
     <Compile Include="Extensions\Keyboard.cs" />
-    <Compile Include="VirtualFolder.cs" />
+    <Compile Include="Abstract\VirtualFolder.cs" />
     <Compile Include="Web\Fetch.cs" />
     <Compile Include="Web\FetchStream.cs" />
     <Compile Include="Web\IClient.cs" />

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Imagin.Common.Events
+namespace Imagin.Common.Input
 {
     public class ChangedValue : Tuple<object, object>
     {

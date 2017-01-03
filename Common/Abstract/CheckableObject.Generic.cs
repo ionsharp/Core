@@ -1,5 +1,5 @@
-﻿using System;
-using Imagin.Common.Events;
+﻿using Imagin.Common.Input;
+using System;
 
 namespace Imagin.Common.ComponentModel
 {

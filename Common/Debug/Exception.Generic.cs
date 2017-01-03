@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Imagin.Common.Exceptions
+namespace Imagin.Common.Debug
 {
     public class Exception<T> : Exception
     {

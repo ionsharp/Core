@@ -83,6 +83,49 @@ namespace Imagin.Common.Extensions
             return Result;
         }
 
+        /// <summary>
+        /// Get string after a.
+        /// </summary>
+        public static string After(this string value, string a)
+        {
+            var pos_a = value.LastIndexOf(a);
+
+            if (pos_a == -1)
+                return string.Empty;
+
+            var adjusted = pos_a + a.Length;
+
+            return adjusted >= value.Length ? string.Empty : value.Substring(adjusted);
+        }
+
+        /// <summary>
+        /// Get string between a and b.
+        /// </summary>
+        public static string Between(this string value, string a, string b)
+        {
+            var pos_a = value.IndexOf(a);
+            var pos_b = value.LastIndexOf(b);
+
+            if (pos_a == -1)
+                return string.Empty;
+
+            if (pos_b == -1)
+                return string.Empty;
+
+            var adjusted = pos_a + a.Length;
+
+            return adjusted >= pos_b ? string.Empty : value.Substring(adjusted, pos_b - adjusted);
+        }
+
+        /// <summary>
+        /// Get string before a a.
+        /// </summary>
+        public static string Before(this string value, string a)
+        {
+            var pos_a = value.IndexOf(a);
+            return pos_a == -1 ? string.Empty : value.Substring(0, pos_a);
+        }
+
         public static string Capitalize(this string Value)
         {
             return Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Value.ToLower());

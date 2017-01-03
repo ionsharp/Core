@@ -1,4 +1,4 @@
-﻿namespace Imagin.Common.Mvvm
+﻿namespace Imagin.Common.Configuration
 {
     public interface IMainWindow
     {

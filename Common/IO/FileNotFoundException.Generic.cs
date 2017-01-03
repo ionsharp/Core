@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagin.Common.Debug;
+using System;
 
 namespace Imagin.Common.Exceptions
 {
