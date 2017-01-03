@@ -7,13 +7,13 @@
 
     <SolidColorBrush x:Key="Brush.Button.Foreground" Color="#666"/>
     <SolidColorBrush x:Key="Brush.Button.Background" Color="#EEE"/>
-    <SolidColorBrush x:Key="Brush.Button.Border" Color="#DDD"/>
-    <SolidColorBrush x:Key="Brush.Button.MouseOver.Background" Color="#FFEAEAEA"/>
-    <SolidColorBrush x:Key="Brush.Button.MouseOver.Border" Color="#CCC"/>
-    <SolidColorBrush x:Key="Brush.Button.MouseDown.Background" Color="#FFE2E2E2"/>
-    <SolidColorBrush x:Key="Brush.Button.MouseDown.Border" Color="#BBB"/>
+    <SolidColorBrush x:Key="Brush.Button.Border" Color="#CCC"/>
+    <SolidColorBrush x:Key="Brush.Button.MouseOver.Background" Color="#FFDDDDDD"/>
+    <SolidColorBrush x:Key="Brush.Button.MouseOver.Border" Color="#AAA"/>
+    <SolidColorBrush x:Key="Brush.Button.MouseDown.Background" Color="#349ADE"/>
+    <SolidColorBrush x:Key="Brush.Button.MouseDown.Border" Color="#349ADE"/>
     <SolidColorBrush x:Key="Brush.Button.Default.Border" Color="#349ADE"/>
-    <SolidColorBrush x:Key="Brush.Button.Cancel.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.Button.Cancel.Border" Color="#CCC"/>
 
     <SolidColorBrush x:Key="Brush.CheckBox.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="Brush.CheckBox.Border" Color="#DDD"/>

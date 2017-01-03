@@ -1,7 +1,7 @@
 ﻿using Imagin.Common.Collections.ObjectModel;
 using Imagin.Common.Data;
-using Imagin.Common.Events;
 using Imagin.Common.Extensions;
+using Imagin.Common.Input;
 using System;
 using System.Collections;
 using System.ComponentModel;

@@ -9,9 +9,7 @@
     <Style x:Key="{x:Type local:ToggleSwitch}" TargetType="{x:Type local:ToggleSwitch}">
         <Setter Property="BorderThickness" Value="3"/>
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Height" Value="27"/>
         <Setter Property="Padding" Value="2"/>
-        <Setter Property="Width" Value="60"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleSwitch}">
@@ -33,7 +31,11 @@
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <DockPanel x:Name="PART_Panel">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
                         <ContentPresenter 
                             Content="{TemplateBinding Content}" 
                             ContentStringFormat="{TemplateBinding ContentStringFormat}" 
@@ -41,15 +43,16 @@
                             RecognizesAccessKey="True" 
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                             VerticalAlignment="Center"/>
-                        <Grid>
+                        <Grid 
+                            Grid.Column="1"
+                            Height="27"
+                            Width="60">
                             <Border 
                                 x:Name="PART_Background" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 CornerRadius="{TemplateBinding CornerRadius}" 
-                                Height="{TemplateBinding Height}" 
-                                Padding="{TemplateBinding Padding}"
-                                Width="{TemplateBinding Width}">
+                                Padding="{TemplateBinding Padding}">
                                 <Grid Background="{TemplateBinding Background}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -101,7 +104,7 @@
                                 </Thumb.RenderTransform>
                             </Thumb>
                         </Grid>
-                    </DockPanel>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Trigger.EnterActions>

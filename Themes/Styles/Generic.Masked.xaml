@@ -2,7 +2,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common">
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:Double x:Key="DisabledOpacity">0.4</System:Double>
+
     <Style x:Key="{x:Type Controls.Common:MaskedImage}" TargetType="{x:Type Controls.Common:MaskedImage}">
         <Setter Property="ImageColor" Value="{DynamicResource Brush.Image}"/>
         <Style.Triggers>

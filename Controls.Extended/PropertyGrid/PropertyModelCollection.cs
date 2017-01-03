@@ -1,7 +1,7 @@
 ﻿using Imagin.Common.Attributes;
 using Imagin.Common.Collections.Concurrent;
-using Imagin.Common.Events;
 using Imagin.Common.Extensions;
+using Imagin.Common.Input;
 using Imagin.Common.Scheduling;
 using Imagin.Common.Text;
 using System;

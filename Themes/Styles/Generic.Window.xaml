@@ -207,7 +207,8 @@
                                 <Border 
                                     x:Name="ContentBorder" 
                                     BorderBrush="{DynamicResource Brush.Border.BorderBrush}"
-                                    BorderThickness="0,1,0,0">
+                                    BorderThickness="0,1,0,0"
+                                    Padding="{TemplateBinding Padding}">
                                     <ContentPresenter />
                                 </Border>
                             </AdornerDecorator>
@@ -257,7 +258,11 @@
 
     <!-- ............................................... Dialogs -->
 
-    <Style x:Key="{x:Type Controls.Extended:ColorDialog}" TargetType="{x:Type Controls.Extended:ColorDialog}" BasedOn="{StaticResource Style.BasicWindow}"/>
+    <Style x:Key="{x:Type Controls.Extended:ColorDialog}" TargetType="{x:Type Controls.Extended:ColorDialog}" BasedOn="{StaticResource Style.BasicWindow}">
+        <Setter Property="Padding" Value="15"/>
+    </Style>
 
-    <Style x:Key="{x:Type Controls.Extended:GradientDialog}" TargetType="{x:Type Controls.Extended:GradientDialog}" BasedOn="{StaticResource Style.BasicWindow}"/>
+    <Style x:Key="{x:Type Controls.Extended:GradientDialog}" TargetType="{x:Type Controls.Extended:GradientDialog}" BasedOn="{StaticResource Style.BasicWindow}">
+        <Setter Property="Padding" Value="15"/>
+    </Style>
 </ResourceDictionary>

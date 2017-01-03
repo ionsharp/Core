@@ -40,6 +40,21 @@
                                 <ColumnDefinition x:Name="Col3" Width="14" />
                             </Grid.ColumnDefinitions>
                             <Grid>
+                                <Controls.Common:MaskedImage 
+                                    x:Name="PART_Bullet" 
+                                    HorizontalAlignment="Stretch"  
+                                    HorizontalContentAlignment="Center"
+                                    ImageColor="{TemplateBinding Foreground}"
+                                    ImageWidth="8"
+                                    Source="/Images/Dot.png" 
+                                    VerticalAlignment="Stretch"
+                                    Visibility="Collapsed"/>
+                                <Controls.Common:MaskedImage 
+                                    x:Name="PART_Icon" 
+                                    HorizontalAlignment="Center"  
+                                    ImageColor="{TemplateBinding Foreground}"
+                                    Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="Center"/>
                             </Grid>
 
                             <ContentPresenter 
@@ -102,6 +117,7 @@
                             <Setter TargetName="Col0" Property="MinWidth" Value="0" />
                             <Setter TargetName="Col3" Property="Width" Value="Auto" />
                             <Setter TargetName="PART_Arrow" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_InputGesture" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_Submenu" Property="Placement" Value="Bottom" />
                             <Setter TargetName="PART_SubmenuBorder" Property="BorderThickness" Value="1" />
@@ -110,17 +126,22 @@
                             <Setter TargetName="Col0" Property="MinWidth" Value="0" />
                             <Setter TargetName="Col3" Property="Width" Value="Auto" />
                             <Setter TargetName="PART_Arrow" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_InputGesture" Property="Visibility" Value="Collapsed" />
                             <Setter Property="Padding" Value="10,2" />
                         </Trigger>
                         <Trigger Property="Role" Value="SubmenuHeader">
                             <Setter TargetName="PART_Border" Property="MinHeight" Value="22" />
+                            <Setter TargetName="PART_Bullet" Property="Margin" Value="0,0,5,0" />
+                            <Setter TargetName="PART_Icon" Property="Margin" Value="0,0,5,0" />
                             <Setter Property="Padding" Value="0,6" />
                             <Setter Property="DockPanel.Dock" Value="Top" />
                         </Trigger>
                         <Trigger Property="Role" Value="SubmenuItem">
                             <Setter TargetName="PART_Arrow" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_Border" Property="MinHeight" Value="22" />
+                            <Setter TargetName="PART_Bullet" Property="Margin" Value="0,0,5,0" />
+                            <Setter TargetName="PART_Icon" Property="Margin" Value="0,0,5,0" />
                             <Setter Property="DockPanel.Dock" Value="Top" />
                             <Setter Property="Padding" Value="0,6" />
                         </Trigger>
@@ -128,18 +149,23 @@
                             <Setter TargetName="PART_Submenu" Property="PopupAnimation" Value="None" />
                         </Trigger>
                         <Trigger Property="Icon" Value="{x:Null}">
+                            <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_Header" Property="Opacity" Value="0.6"/>
                             <Setter TargetName="PART_InputGesture" Property="Opacity" Value="0.6"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="PART_Bullet" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_Bullet" Property="Background" Value="{DynamicResource Brush.MenuItem.Checked.Bullet.Background}" />
+                            <Setter TargetName="PART_Bullet" Property="Margin" Value="0,0,7,0" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsHighlighted" Value="True" />
                                 <Condition Property="IsChecked" Value="True" />
                             </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Bullet" Property="Background" Value="{DynamicResource Brush.MenuItem.Checked.MouseOver.Bullet.Background}" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

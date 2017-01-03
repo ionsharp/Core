@@ -1,4 +1,4 @@
-﻿using Imagin.Common.Events;
+﻿using Imagin.Common.Input;
 using Imagin.Controls.Common.Extensions;
 using System;
 using System.Windows;

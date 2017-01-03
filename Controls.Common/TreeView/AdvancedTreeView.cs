@@ -1,14 +1,13 @@
 ﻿using Imagin.Common.Collections.ObjectModel;
 using Imagin.Common.Extensions;
+using Imagin.Common.Input;
 using Imagin.Controls.Common.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using Imagin.Common.Input;
-using Imagin.Common.Events;
-using System.Collections.Generic;
 
 namespace Imagin.Controls.Common
 {

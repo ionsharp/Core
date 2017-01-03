@@ -1,5 +1,5 @@
-﻿using Imagin.Common.Events;
-using Imagin.Common.Extensions;
+﻿using Imagin.Common.Extensions;
+using Imagin.Common.Input;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -157,23 +157,23 @@ namespace Imagin.Controls.Extended
         {
             InitializeComponent();
 
-            this.Models = new ObservableCollection<ColorSpaceModel>();
-            this.Models.Add(new RgbModel());
-            this.Models.Add(new HsbModel());
-            this.Models.Add(new HslModel());
-            this.Models.Add(new XyzModel());
-            this.Models.Add(new LabModel());
-            this.Models.Add(new LchModel());
-            this.Models.Add(new LuvModel());
-            this.Models.Add(new CmykModel());
+            Models = new ObservableCollection<ColorSpaceModel>();
+            Models.Add(new RgbModel());
+            Models.Add(new HsbModel());
+            Models.Add(new HslModel());
+            Models.Add(new XyzModel());
+            Models.Add(new LabModel());
+            Models.Add(new LchModel());
+            //this.Models.Add(new LuvModel());
+            //this.Models.Add(new CmykModel());
 
-            this.PART_ColorSelector.ColorChanged += OnColorSelectorColorChanged;
+            PART_ColorSelector.ColorChanged += OnColorSelectorColorChanged;
 
-            this.LayoutUpdated += (s, e) =>
+            LayoutUpdated += (s, e) =>
             {
-                if (!this.IsLoaded || this.PART_ColorSelector.NormalComponent != null) return;
-                if (this.PART_ColorSelector.NormalComponent == null)
-                    this.Models.Where(x => x.Is<HsbModel>()).First().Components[typeof(HsbModel.HComponent)].As<NormalComponentModel>().IsEnabled = true;
+                if (!IsLoaded || PART_ColorSelector.NormalComponent != null) return;
+                if (PART_ColorSelector.NormalComponent == null)
+                    Models.Where(x => x.Is<HsbModel>()).First().Components[typeof(HsbModel.HComponent)].As<NormalComponentModel>().IsEnabled = true;
             };
         }
 

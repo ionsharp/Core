@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Imagin.Common.Primitives;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Imagin.Controls.Common

@@ -163,16 +163,16 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// Ensures given size does not exceed canvas bounds.
         /// </summary>
-        Size BoundSize(PointSize PointSize, Size Bounds)
+        Size BoundSize(Rect Rect, Size Bounds)
         {
             var Width =
-                PointSize.Size.Width + PointSize.Point.X > Bounds.Width
-                    ? Bounds.Width - PointSize.Point.X
-                    : PointSize.Size.Width;
+                Rect.Width + Rect.X > Bounds.Width
+                    ? Bounds.Width - Rect.X
+                    : Rect.Width;
             var Height =
-                PointSize.Size.Height + PointSize.Point.Y > Bounds.Height
-                    ? Bounds.Height - PointSize.Point.Y
-                    : PointSize.Size.Height;
+                Rect.Height + Rect.Y > Bounds.Height
+                    ? Bounds.Height - Rect.Y
+                    : Rect.Height;
 
             return new Size(Width.Coerce(0.0, true), Height.Coerce(0.0, true));
         }
@@ -196,9 +196,9 @@ namespace Imagin.Controls.Common
             }
         }
 
-        async Task<PointSize> GetPointSize(Point CurrentPosition)
+        async Task<Rect> GetRect(Point CurrentPosition)
         {
-            var Result = new PointSize();
+            var Result = new Rect();
 
             var StartPosition = this.StartPosition;
 
@@ -212,7 +212,11 @@ namespace Imagin.Controls.Common
             await Task.Run(new Action(() =>
             {
                 Result.Size = new Size(Math.Abs(CurrentPosition.X - StartPosition.X), Math.Abs(CurrentPosition.Y - StartPosition.Y));
-                Result.Point = this.BoundPosition(new Point(x, y), SelectionSize, ScrollContentPresenterSize);
+
+                var Point = BoundPosition(new Point(x, y), SelectionSize, ScrollContentPresenterSize);
+                Result.X = Point.X;
+                Result.Y = Point.Y;
+
                 Result.Size = this.BoundSize(Result, ScrollContentPresenterSize);
             }));
 
@@ -233,12 +237,12 @@ namespace Imagin.Controls.Common
 
         async Task OnDragSelect(MouseEventArgs e)
         {
-            var PointSize = await GetPointSize(e.GetPosition(this.PART_Grid));
-            if (this.IsDragging)
+            var Rect = await GetRect(e.GetPosition(PART_Grid));
+            if (IsDragging)
             {
-                this.Selection.Set(PointSize.Point.X, PointSize.Point.Y, PointSize.Size.Width, PointSize.Size.Height);
-                this.Select(this.ItemsControl, new Rect(this.ScrollContentPresenter.TranslatePoint(this.Selection.TopLeft, this.ScrollContentPresenter), this.ScrollContentPresenter.TranslatePoint(this.Selection.BottomRight, this.ScrollContentPresenter)));
-                this.AdjustScroll(e.GetPosition(this.ItemsControl));
+                Selection.Set(Rect.X, Rect.Y, Rect.Width, Rect.Height);
+                Select(ItemsControl, new Rect(ScrollContentPresenter.TranslatePoint(Selection.TopLeft, ScrollContentPresenter), ScrollContentPresenter.TranslatePoint(Selection.BottomRight, ScrollContentPresenter)));
+                AdjustScroll(e.GetPosition(ItemsControl));
             }
         }
 
@@ -257,29 +261,29 @@ namespace Imagin.Controls.Common
 
         void OnInitialized()
         {
-            this.PART_Grid = this.ItemsControl.Template.FindName("PART_Grid", this.ItemsControl) as Grid;
-            if (this.PART_Grid == null)
+            PART_Grid = ItemsControl.Template.FindName("PART_Grid", ItemsControl) as Grid;
+            if (PART_Grid == null)
                 throw new KeyNotFoundException("Grid cannot be null.");
 
             //Required for mouse events
-            this.PART_Grid.Background = Brushes.Transparent;
+            PART_Grid.Background = Brushes.Transparent;
 
-            this.PART_ScrollViewer = this.ItemsControl.Template.FindName("PART_ScrollViewer", this.ItemsControl) as ScrollViewer;
-            if (this.PART_ScrollViewer == null)
+            PART_ScrollViewer = ItemsControl.Template.FindName("PART_ScrollViewer", ItemsControl) as ScrollViewer;
+            if (PART_ScrollViewer == null)
                 throw new KeyNotFoundException("ScrollViewer cannot be null.");
 
-            this.Selection = new Selection(0.0, 0.0, 0.0, 0.0);
+            Selection = new Selection(0.0, 0.0, 0.0, 0.0);
 
             //Create and add selection control to grid
-            this.PART_DragSelection = new DragSelection();
-            BindingOperations.SetBinding(this.PART_DragSelection, DragSelection.SelectionProperty, new Binding()
+            PART_DragSelection = new DragSelection();
+            BindingOperations.SetBinding(PART_DragSelection, DragSelection.SelectionProperty, new Binding()
             {
                 Mode = BindingMode.TwoWay,
                 Path = new PropertyPath("Selection"),
                 Source = this
             });
 
-            this.PART_Grid.Children.Add(this.PART_DragSelection);
+            PART_Grid.Children.Add(PART_DragSelection);
         }
 
         /// <summary>

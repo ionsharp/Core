@@ -1,8 +1,7 @@
-﻿using Imagin.Common.Events;
-using Imagin.Common.Extensions;
+﻿using Imagin.Common.Extensions;
+using Imagin.Common.Input;
 using Imagin.Controls.Extended.Primitives;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;

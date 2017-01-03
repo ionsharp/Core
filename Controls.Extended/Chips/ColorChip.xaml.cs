@@ -1,5 +1,4 @@
-﻿using Imagin.Common.Events;
-using Imagin.Common.Input;
+﻿using Imagin.Common.Input;
 using System;
 using System.Windows;
 using System.Windows.Controls;

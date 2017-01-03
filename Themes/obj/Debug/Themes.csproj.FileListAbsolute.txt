@@ -78,3 +78,11 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Imagin.
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Imagin.Themes.g.resources
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Imagin.Themes.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Imagin.Themes.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.Expander.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.GroupBox.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.Label.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.Splitters.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.Link.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.Border.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.TextBlock.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.ToggleSwitch.baml

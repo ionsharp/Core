@@ -1,7 +1,4 @@
 ﻿using Imagin.Common;
-using Imagin.Common.Events;
-using System;
-using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Media;
 
