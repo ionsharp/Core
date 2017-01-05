@@ -1,4 +1,4 @@
-﻿<Window 
+﻿<Controls.Common:BasicWindow 
     x:Class="Imagin.NET.Demo.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,25 +8,28 @@
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
     xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
     xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended"
+    xmlns:Common.Data="clr-namespace:Imagin.Common.Data;assembly=Imagin.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
     xmlns:Common.Extensions="clr-namespace:Imagin.Common.Extensions;assembly=Imagin.Common"
     mc:Ignorable="d"
-    Title="Imagin.NET Demo" 
     Height="600" 
+    Title="Imagin.NET Demo" 
     Width="1200"
-    Icon="/Images/Logo.png"
     WindowStartupLocation="CenterScreen"
-    Style="{StaticResource {x:Type Window}}"
     x:Name="PART_MainWindow">
-    <Window.Resources>
+    <Controls.Common:BasicWindow.Resources>
         <Common.Data.Converters:ColorToHexConverter x:Key="ColorToHexConverter"/>
         <Common.Data.Converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
         <Common.Data.Converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
         <Common.Data.Converters:FileNameConverter x:Key="FileNameConverter"/>
         <Common.Data.Converters:FileSizeConverter x:Key="FileSizeConverter"/>
         <Common.Data.Converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
-        
-        <Controls.Common:AbstractView x:Key="ListView" x:Shared="False">
+
+        <!-- ....................................................................................[Views] -->
+
+        <Controls.Common:AbstractView 
+            x:Key="View.List" 
+            x:Shared="False">
             <Controls.Common:AbstractView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
@@ -35,7 +38,7 @@
         </Controls.Common:AbstractView>
 
         <GridView
-            x:Key="DetailsView" 
+            x:Key="View.Details" 
             x:Shared="False">
             <GridViewColumn Header="Name">
                 <GridViewColumn.CellTemplate>
@@ -81,7 +84,9 @@
             </GridViewColumn>
         </GridView>
 
-        <Style x:Key="DefaultItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+        <!-- ....................................................................................[Styles] -->
+        
+        <Style x:Key="Style.View.Default" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -91,11 +96,11 @@
             <EventSetter Event="MouseDoubleClick" Handler="OnMouseDoubleClick"/>
         </Style>
 
-        <Style x:Key="ListItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource DefaultItemStyle}">
+        <Style x:Key="Style.View.List" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Style.View.Default}">
             <Setter Property="Padding" Value="7,5" />
         </Style>
 
-        <Style x:Key="DetailsItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource DefaultItemStyle}">
+        <Style x:Key="Style.View.Details" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Style.View.Default}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
@@ -127,7 +132,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Resources>
+    </Controls.Common:BasicWindow.Resources>
     <Grid 
         DataContext="{Binding ElementName=PART_MainWindow}"
         Margin="10">
@@ -136,7 +141,7 @@
                 <Controls.Common:Spacer Spacing="0,0,0,10" Margin="10">
                     <TextBlock Style="{DynamicResource H2}" Text="AdvancedTextBox"/>
                     <Controls.Common:Spacer DataContext="{Binding ElementName=PART_AdvancedTextBox}" Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center" VerticalContentAlignment="Center">
-                        <TextBlock Text="Placeholder"/>
+                        <Label Content="Placeholder"/>
                         <Controls.Common:AdvancedTextBox Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <CheckBox Content="Select All On Triple Click" IsChecked="{Binding SelectAllOnTripleClick}"/>
                         <CheckBox Content="Select On Focus" IsChecked="{Binding SelectOnFocus}"/>
@@ -162,8 +167,8 @@
                         HorizontalAlignment="Center" 
                         VerticalContentAlignment="Center"
                         Margin="0,10">
-                        <TextBlock Text="{Binding Columns.Count, Mode=OneWay, StringFormat={}Columns: {0}}"/>
-                        <TextBlock Text="{Binding SelectedItems.Count, Mode=OneWay, StringFormat={}Selected Items: {0}, ElementName=PART_AdvancedTreeView}"/>
+                        <Label Content="{Binding Columns.Count, Mode=OneWay, StringFormat={}Columns: {0}}"/>
+                        <Label Content="{Binding SelectedItems.Count, Mode=OneWay, StringFormat={}Selected Items: {0}, ElementName=PART_AdvancedTreeView}"/>
                         <CheckBox Content="Expand on click" IsChecked="{Binding ExpandOnClick}"/>
                         <CheckBox Content="Collapse siblings" IsChecked="{Binding CollapseSiblingsOnClick}"/>
                         <CheckBox Content="Select on right click" IsChecked="{Binding SelectOnRightClick}"/>
@@ -179,15 +184,16 @@
                             ToolTip="Column Header Visibility"/>
                         <ComboBox 
                             SelectedValue="{Binding ColumnVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            ItemsSource="{Binding ColumnVisibility, Converter={StaticResource EnumToCollectionConverter}}"
+                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
                             ToolTip="Column Visibility"/>
                     </Controls.Common:Spacer>
+                    
                     <Controls.Common:AdvancedTreeView 
                         Grid.Row="1"
                         x:Name="PART_AdvancedTreeView"
                         ColumnHeaderVisibility="Visible"
                         Controls.Common.Extensions:ItemsControlExtensions.IsColumnMenuEnabled="True"
-                        ItemsSource="{Binding FileSystem, UpdateSourceTrigger=PropertyChanged}"
+                        ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}"
                         Controls.Common.Extensions:TreeViewExtensions.SelectionMode="Extended"
                         VirtualizingPanel.IsVirtualizing="True"
                         VirtualizingPanel.VirtualizationMode="Recycling">
@@ -288,21 +294,21 @@
                             Spacing="0,0,15,0" 
                             HorizontalAlignment="Left"
                             VerticalContentAlignment="Center">
-                            <TextBlock Text="Total Hexagons"/>
+                            <Label Content="Total Hexagons"/>
                             <Controls.Common:AdvancedTextBox 
                                 IsReadOnly="True"
                                 Text="{Binding TotalChildren, Mode=OneWay}"/>
-                            <TextBlock Text="Max Generations"/>
+                            <Label Content="Max Generations"/>
                             <Controls.Common:IntUpDown 
                                 Value="{Binding MaxGenerations}"
                                 Minimum="1"
                                 Maximum="12"/>
-                            <TextBlock Text="Selected Color"/>
+                            <Label Content="Selected Color"/>
                             <Controls.Common:AdvancedTextBox 
                                 IsReadOnly="True"
                                 Text="{Binding SelectedColor, Mode=OneWay, Converter={StaticResource ColorToHexConverter}, StringFormat={}#{0}}"/>
                             <CheckBox Content="Uses Gradients" IsChecked="{Binding UsesGradients}"/>
-                            <TextBlock Text="Item Stroke Thickness"/>
+                            <Label Content="Item Stroke Thickness"/>
                             <Controls.Common:DoubleUpDown 
                                 Value="{Binding ItemStrokeThickness}"
                                 Increment="0.01"
@@ -334,7 +340,7 @@
                         <Button 
                             Content="Select" 
                             HorizontalAlignment="Left"
-                            Click="SelectColor"/>
+                            Click="OnColorSelected"/>
                         <CheckBox Content="Show Slider" IsChecked="{Binding ShowSlider}"/>
                         <CheckBox Content="Show Alpha Slider" IsChecked="{Binding ShowAlphaSlider}"/>
                         <CheckBox Content="Show Components" IsChecked="{Binding ShowComponents}"/>
@@ -368,7 +374,7 @@
                         HeadersVisibility="All" 
                         Controls.Common.Extensions:ItemsControlExtensions.IsColumnMenuEnabled="True"
                         Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled="True"
-                        ItemsSource="{Binding FileSystem, UpdateSourceTrigger=PropertyChanged}">
+                        ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" SortMemberPath="Name"/>
                             <DataGridTextColumn Header="Type" Binding="{Binding Type}" SortMemberPath="Type"/>
@@ -392,11 +398,11 @@
                         x:Name="PART_DirectionPad"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top"/>
-                    <TextBlock 
+                    <Label 
                         Margin="0,10,0,0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top" 
-                        Text="{Binding Direction, ElementName=PART_DirectionPad, StringFormat={}Direction: {0}}"/>
+                        Content="{Binding Direction, ElementName=PART_DirectionPad, StringFormat={}Direction: {0}}"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="EditableLabel">
@@ -414,13 +420,35 @@
             <TabItem Header="Font">
                 <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
                     <TextBlock Style="{DynamicResource H2}" Text="FontFamilyBox"/>
-                    <Controls.Common:FontFamilyBox x:Name="PART_FontFamilyBox"/>
+                    <CheckBox 
+                        DataContext="{Binding ElementName=PART_FontFamilyBox}"
+                        Content="Show preview"
+                        IsChecked="{Binding ShowPreview}"/>
+                    <Controls.Common:FontFamilyBox 
+                        x:Name="PART_FontFamilyBox"/>
+                    
                     <TextBlock Style="{DynamicResource H2}" Text="FontSizeBox"/>
+                    <Controls.Common:Spacer 
+                        DataContext="{Binding ElementName=PART_FontSizeBox}"
+                        Orientation="Horizontal"
+                        Spacing="0,0,10,0" 
+                        TrimLast="True">
+                        <Label Content="Wheel Tick"/>
+                        <Controls.Common:DoubleUpDown Text="{Binding WheelTick}"/>
+
+                        <Label Content="Wheel Tick (Min)"/>
+                        <Controls.Common:DoubleUpDown Text="{Binding WheelTickMin}"/>
+
+                        <Label Content="Wheel Tick (Max)"/>
+                        <Controls.Common:DoubleUpDown Text="{Binding WheelTickMax}"/>
+                    </Controls.Common:Spacer>
+
                     <Controls.Common:FontSizeBox x:Name="PART_FontSizeBox" IsEditable="True"/>
+
                     <TextBlock 
                         FontFamily="{Binding SelectedItem, Mode=OneWay, ElementName=PART_FontFamilyBox}"
                         FontSize="{Binding Text, Mode=OneWay, ElementName=PART_FontSizeBox}"
-                        Text="Sample text"/>
+                        Text="This is sample text"/>
                 </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="GradientEditor">
@@ -457,7 +485,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Foreground="Blue" 
-                        Click="Link_Click"/>
+                        Click="OnLinkPressed"/>
                 </Grid>
             </TabItem>
             <TabItem Header="ListView">
@@ -481,7 +509,7 @@
                     <ListView
                         Grid.Row="1"
                         Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled="True"
-                        ItemsSource="{Binding ListViewSource}"
+                        ItemsSource="{Binding FileSystemCollectionView}"
                         SelectionMode="Multiple">
                         <ListView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True">
@@ -498,8 +526,8 @@
                                                     <Expander IsExpanded="True" HorizontalAlignment="Stretch">
                                                         <Expander.Header>
                                                             <TextBlock FontSize="15">
-                                                            <Run Text="{Binding Name, Mode=OneWay}" Foreground="#007acc"/>
-                                                            <Run Text="{Binding ItemCount, Mode=OneWay, StringFormat= ({0})}"/>
+                                                                <Run Text="{Binding Name, Mode=OneWay}" Foreground="#007acc"/>
+                                                                <Run Text="{Binding ItemCount, Mode=OneWay, StringFormat= ({0})}"/>
                                                             </TextBlock>
                                                         </Expander.Header>
                                                         <ItemsPresenter/>
@@ -517,15 +545,15 @@
                                 <Setter Property="BorderBrush" Value="Transparent"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="List">
-                                        <Setter Property="View" Value="{DynamicResource ListView}"/>
+                                    <DataTrigger Binding="{Binding ListView, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="List">
+                                        <Setter Property="View" Value="{DynamicResource View.List}"/>
                                         <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
-                                        <Setter Property="ItemContainerStyle" Value="{StaticResource ListItemStyle}"/>
+                                        <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.List}"/>
                                         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="Details">
-                                        <Setter Property="View" Value="{DynamicResource DetailsView}"/>
-                                        <Setter Property="ItemContainerStyle" Value="{StaticResource DetailsItemStyle}"/>
+                                    <DataTrigger Binding="{Binding ListView, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="Details">
+                                        <Setter Property="View" Value="{DynamicResource View.Details}"/>
+                                        <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.Details}"/>
                                         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -634,20 +662,70 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Controls.Common:Spacer 
+                        Grid.ColumnSpan="2"
+                        DataContext="{Binding ElementName=PART_PropertyGrid}" 
+                        Margin="0,0,0,10"
+                        Orientation="Horizontal" 
+                        Spacing="0,0,10,0" 
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center">
+                        <CheckBox 
+                            Content="AcceptNullObjects"
+                            IsChecked="{Binding AcceptNullObjects}"/>
+                        
+                        <Label Content="DateTimeFormat"/>
+                        <Controls.Common:AdvancedTextBox
+                            Text="{Binding DateTimeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        
+                        <Label Content="FileSizeFormat"/>
+                        <ComboBox 
+                            SelectedValue="{Binding FileSizeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type Common.Data:FileSizeFormat}, Converter={StaticResource EnumToCollectionConverter}}"
+                            ToolTip="Column Visibility"/>
+
+                        <Label Content="GridLinesVisibility"/>
+                        <ComboBox 
+                            SelectedValue="{Binding GridLinesVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type DataGridGridLinesVisibility}, Converter={StaticResource EnumToCollectionConverter}}"
+                            ToolTip="Column Visibility"/>
+
+                        <Label Content="HeadersVisibility"/>
+                        <ComboBox 
+                            SelectedValue="{Binding HeadersVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type DataGridHeadersVisibility}, Converter={StaticResource EnumToCollectionConverter}}"
+                            ToolTip="Column Visibility"/>
+
+                        <CheckBox 
+                            Content="ShowType"
+                            IsChecked="{Binding ShowType}"/>
+                    </Controls.Common:Spacer> 
+                    <Controls.Common:AdvancedTreeView 
+                        Grid.Row="1"
                         x:Name="PART_ListBox" 
                         Background="Transparent" 
                         BorderThickness="0" 
-                        ItemsSource="{Binding FileSystem, IsAsync=True}" 
-                        SelectionMode="Single">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
+                        ItemsSource="{Binding FileSystemCollection, IsAsync=True}" 
+                        Controls.Common.Extensions:TreeViewExtensions.SelectionMode="Single">
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
                                 <TextBlock Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </Controls.Common:AdvancedTreeView>
                     <Controls.Extended:PropertyGrid 
                         Grid.Column="1" 
+                        Grid.Row="1"
+                        x:Name="PART_PropertyGrid"
                         Background="#05000000" 
                         SelectedObject="{Binding SelectedItem, Mode=OneWay, ElementName=PART_ListBox}"
                         ShowHeader="True"/>
@@ -666,53 +744,6 @@
                     <RadioButton Content="Fifth"/>
                 </Controls.Common:RadioGroup>
             </TabItem>
-            <TabItem Header="ResourceDictionaryEditor">
-                <TabItem.Resources>
-                    <ResourceDictionary>
-                        <ResourceDictionary x:Key="PART_ResourceDictionary">
-                            <SolidColorBrush x:Key="Brush1" Color="#DDD"/>
-                            <SolidColorBrush x:Key="Brush2" Color="#DDD"/>
-                            <SolidColorBrush x:Key="Brush3" Color="#BBB"/>
-                            <SolidColorBrush x:Key="Brush4" Color="#BBB"/>
-                            <SolidColorBrush x:Key="Brush5" Color="#FF349ADE"/>
-                            <SolidColorBrush x:Key="Brush6" Color="#FF349ADE"/>
-                            <SolidColorBrush x:Key="Brush7" Color="#afdaf5"/>
-                            <SolidColorBrush x:Key="Brush8" Color="#afdaf5"/>
-                            <SolidColorBrush x:Key="Brush9" Color="#FFF"/>
-                            <SolidColorBrush x:Key="Brush10" Color="#FF349ADE"/>
-                            <SolidColorBrush x:Key="Brush11" Color="#FFF"/>
-                            <SolidColorBrush x:Key="Brush12" Color="#FFF"/>
-
-                            <LinearGradientBrush x:Key="Gradient1" StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Offset="0" Color="Red"/>
-                                <GradientStop Offset="1" Color="Green"/>
-                            </LinearGradientBrush>
-                            <LinearGradientBrush x:Key="Gradient2" StartPoint="0,0.5" EndPoint="1,0.5">
-                                <GradientStop Offset="0" Color="Red"/>
-                                <GradientStop Offset="0.5" Color="Green"/>
-                                <GradientStop Offset="1" Color="Blue"/>
-                            </LinearGradientBrush>
-                            <LinearGradientBrush x:Key="Gradient3" StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Offset="0" Color="Red"/>
-                                <GradientStop Offset="0.25" Color="Green"/>
-                                <GradientStop Offset="0.5" Color="Blue"/>
-                                <GradientStop Offset="1" Color="Orange"/>
-                            </LinearGradientBrush>
-                            <LinearGradientBrush x:Key="Gradient4" StartPoint="0,0.5" EndPoint="1,0.5">
-                                <GradientStop Offset="0" Color="Red"/>
-                                <GradientStop Offset="0.25" Color="Black"/>
-                                <GradientStop Offset="0.5" Color="Orange"/>
-                                <GradientStop Offset="1" Color="Black"/>
-                            </LinearGradientBrush>
-                            <LinearGradientBrush x:Key="Gradient5" StartPoint="0,0.5" EndPoint="1,0.5">
-                                <GradientStop Offset="0" Color="Blue"/>
-                                <GradientStop Offset="1" Color="Black"/>
-                            </LinearGradientBrush>
-                        </ResourceDictionary>
-                    </ResourceDictionary>
-                </TabItem.Resources>
-                <Controls.Extended:ResourceDictionaryEditor SelectedObject="{StaticResource PART_ResourceDictionary}"/>
-            </TabItem>
             <TabItem Header="Spacer">
                 <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
                     <TextBlock Style="{DynamicResource H2}" Text="Spacer"/>
@@ -727,20 +758,20 @@
                         Spacing="0,0,5,0" 
                         TrimLast="True"
                         VerticalContentAlignment="Center">
-                        <TextBlock Text="Left"/>
+                        <Label Content="Left"/>
                         <Controls.Common:DoubleUpDown
                             x:Name="PART_SpacerThicknessLeft"
                             TextChanged="OnSpacerThicknessChanged"/>
-                        <TextBlock Text="Top"/>
+                        <Label Content="Top"/>
                         <Controls.Common:DoubleUpDown
                             x:Name="PART_SpacerThicknessTop"
                             TextChanged="OnSpacerThicknessChanged"/>
-                        <TextBlock Text="Right"/>
+                        <Label Content="Right"/>
                         <Controls.Common:DoubleUpDown
                             x:Name="PART_SpacerThicknessRight"
                             TextChanged="OnSpacerThicknessChanged"
                             Value="10"/>
-                        <TextBlock Text="Bottom"/>
+                        <Label Content="Bottom"/>
                         <Controls.Common:DoubleUpDown
                             x:Name="PART_SpacerThicknessBottom"
                             TextChanged="OnSpacerThicknessChanged"/>
@@ -757,20 +788,23 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock
+
+                    <Label
                         FontSize="17"
                         FontWeight="Bold"
                         HorizontalAlignment="Center"
-                        Margin="0,0,0,10"
-                        Text="Static Collection"/>
+                        Margin="0,0,0,15"
+                        Content="Static"/>
                     <Controls.Extended:TabbedTree 
                         Grid.Row="1"
                         ContentWidth="70*" 
                         ContentBorderThickness="1" 
-                        ContentBorderBrush="DarkGray" 
+                        ContentBorderBrush="#10000000" 
                         ContentHeaderVisibility="Visible"
                         ContentPadding="10,7"
                         Margin="0,0,10,0"
+                        MenuBackground="#05000000"
+                        MenuPadding="5"
                         MenuWidth="30*"
                         ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <Controls.Extended:TabbedTree.ItemContainerStyle>
@@ -825,45 +859,47 @@
                         </TreeViewItem>
                     </Controls.Extended:TabbedTree>
 
-                    <TextBlock
+                    <Label
                         Grid.Column="1"
                         FontSize="17"
                         FontWeight="Bold"
                         HorizontalAlignment="Center"
-                        Margin="0,0,0,10"
-                        Text="Bound Collection"/>
+                        Margin="0,0,0,15"
+                        Content="Dynamic"/>
                     <Controls.Extended:TabbedTree 
                         Grid.Column="1"
                         Grid.Row="1"
                         CanResizeContent="True"
-                        ContentBorderBrush="DarkGray" 
+                        ContentBorderBrush="#10000000" 
                         ContentBorderThickness="1" 
                         ContentPadding="10"
                         ContentWidth="70*" 
-                        ItemsSource="{Binding FileSystem, UpdateSourceTrigger=PropertyChanged}" 
+                        ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}" 
+                        MenuBackground="#05000000"
+                        MenuPadding="5"
                         MenuWidth="30*"
                         ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <Controls.Extended:TabbedTree.ContentTemplate>
                             <DataTemplate>
                                 <ScrollViewer>
                                     <Controls.Common:Spacer Spacing="0,0,0,10" TrimLast="True">
-                                        <TextBlock Text="Name:"/>
-                                        <TextBlock Text="{Binding Path, Converter={StaticResource FileNameConverter}}"/>
+                                        <Label Content="Name:"/>
+                                        <Label Content="{Binding Path, Converter={StaticResource FileNameConverter}}"/>
 
-                                        <TextBlock Text="Path:"/>
-                                        <TextBlock Text="{Binding Path}"/>
+                                        <Label Content="Path:"/>
+                                        <Label Content="{Binding Path}"/>
 
-                                        <TextBlock Text="Size:"/>
-                                        <TextBlock Text="{Binding Size, Converter={StaticResource FileSizeConverter}}"/>
+                                        <Label Content="Size:"/>
+                                        <Label Content="{Binding Size, Converter={StaticResource FileSizeConverter}}"/>
 
-                                        <TextBlock Text="Accessed:"/>
-                                        <TextBlock Text="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}}"/>
+                                        <Label Content="Accessed:"/>
+                                        <Label Content="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}}"/>
 
-                                        <TextBlock Text="Created:"/>
-                                        <TextBlock Text="{Binding Created, Converter={StaticResource RelativeTimeConverter}}"/>
+                                        <Label Content="Created:"/>
+                                        <Label Content="{Binding Created, Converter={StaticResource RelativeTimeConverter}}"/>
 
-                                        <TextBlock Text="Modified:"/>
-                                        <TextBlock Text="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}"/>
+                                        <Label Content="Modified:"/>
+                                        <Label Content="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}"/>
                                     </Controls.Common:Spacer>
                                 </ScrollViewer>
                             </DataTemplate>
@@ -907,20 +943,20 @@
                             Orientation="Horizontal" 
                             VerticalAlignment="Center"
                             VerticalContentAlignment="Center">
-                            <TextBlock Text="Value"/>
+                            <Label Content="Value"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <TextBlock Text="Increment"/>
+                            <Label Content="Increment"/>
                             <Controls.Common:ShortUpDown Value="{Binding Increment}" Minimum="-255" Maximum="255"/>
-                            <TextBlock Text="Minimum"/>
+                            <Label Content="Minimum"/>
                             <Controls.Common:ShortUpDown Value="{Binding Minimum}" Minimum="-255" Maximum="255"/>
-                            <TextBlock Text="Maximum"/>
+                            <Label Content="Maximum"/>
                             <Controls.Common:ShortUpDown Value="{Binding Maximum}" Minimum="-255" Maximum="255"/>
-                            <TextBlock Text="Major Change"/>
+                            <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <TextBlock Text="String Format"/>
+                            <Label Content="String Format"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:ShortUpDown x:Name="PART_ShortUpDown" Value="{Binding ShortValue}" StringFormat="N0" Increment="1" Minimum="-100" Maximum="100"/>
+                        <Controls.Common:ShortUpDown x:Name="PART_ShortUpDown" StringFormat="N0" Increment="1" Minimum="-100" Maximum="100"/>
 
                         <TextBlock Style="{DynamicResource H2}" Text="IntUpDown"/>
                         <Controls.Common:Spacer 
@@ -929,20 +965,20 @@
                             Orientation="Horizontal" 
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center">
-                            <TextBlock Text="Value"/>
+                            <Label Content="Value"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <TextBlock Text="Increment"/>
+                            <Label Content="Increment"/>
                             <Controls.Common:IntUpDown Value="{Binding Increment}" Minimum="-10000" Maximum="10000"/>
-                            <TextBlock Text="Minimum"/>
+                            <Label Content="Minimum"/>
                             <Controls.Common:IntUpDown Value="{Binding Minimum}" Minimum="-10000" Maximum="10000"/>
-                            <TextBlock Text="Maximum"/>
+                            <Label Content="Maximum"/>
                             <Controls.Common:IntUpDown Value="{Binding Maximum}" Minimum="-10000" Maximum="10000"/>
-                            <TextBlock Text="Major Change"/>
+                            <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <TextBlock Text="String Format"/>
+                            <Label Content="String Format"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:IntUpDown x:Name="PART_IntUpDown" Value="{Binding IntValue}" StringFormat="N0" Increment="10" Minimum="-100" Maximum="100"/>
+                        <Controls.Common:IntUpDown x:Name="PART_IntUpDown" StringFormat="N0" Increment="10" Minimum="-100" Maximum="100"/>
 
                         <TextBlock Style="{DynamicResource H2}" Text="ByteUpDown"/>
                         <Controls.Common:Spacer 
@@ -951,20 +987,20 @@
                             Orientation="Horizontal" 
                             VerticalAlignment="Center"
                             VerticalContentAlignment="Center">
-                            <TextBlock Text="Value"/>
+                            <Label Content="Value"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <TextBlock Text="Increment"/>
+                            <Label Content="Increment"/>
                             <Controls.Common:ByteUpDown Value="{Binding Increment}" Minimum="0" Maximum="255"/>
-                            <TextBlock Text="Minimum"/>
+                            <Label Content="Minimum"/>
                             <Controls.Common:ByteUpDown Value="{Binding Minimum}" Minimum="0" Maximum="255"/>
-                            <TextBlock Text="Maximum"/>
+                            <Label Content="Maximum"/>
                             <Controls.Common:ByteUpDown Value="{Binding Maximum}" Minimum="0" Maximum="255"/>
-                            <TextBlock Text="Major Change"/>
+                            <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <TextBlock Text="String Format"/>
+                            <Label Content="String Format"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:ByteUpDown x:Name="PART_ByteUpDown" Value="{Binding ByteValue}" StringFormat="N0" Increment="1" Minimum="0" Maximum="255"/>
+                        <Controls.Common:ByteUpDown x:Name="PART_ByteUpDown" StringFormat="N0" Increment="1" Minimum="0" Maximum="255"/>
 
                         <TextBlock Style="{DynamicResource H2}" Text="LongUpDown"/>
                         <Controls.Common:Spacer 
@@ -972,20 +1008,20 @@
                             Spacing="0,0,10,0" 
                             Orientation="Horizontal" 
                             VerticalContentAlignment="Center">
-                            <TextBlock Text="Value"/>
+                            <Label Content="Value"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <TextBlock Text="Increment"/>
+                            <Label Content="Increment"/>
                             <Controls.Common:LongUpDown Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
-                            <TextBlock Text="Minimum"/>
+                            <Label Content="Minimum"/>
                             <Controls.Common:LongUpDown Value="{Binding Minimum}" Minimum="-1000000" Maximum="1000000"/>
-                            <TextBlock Text="Maximum"/>
+                            <Label Content="Maximum"/>
                             <Controls.Common:LongUpDown Value="{Binding Maximum}" Minimum="-1000000" Maximum="1000000"/>
-                            <TextBlock Text="Major Change"/>
+                            <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <TextBlock Text="String Format"/>
+                            <Label Content="String Format"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:LongUpDown x:Name="PART_LongUpDown" Value="{Binding LongValue}" StringFormat="N0" Increment="100" Minimum="-1000000" Maximum="1000000"/>
+                        <Controls.Common:LongUpDown x:Name="PART_LongUpDown" StringFormat="N0" Increment="100" Minimum="-1000000" Maximum="1000000"/>
                         
                         <TextBlock Style="{DynamicResource H2}" Text="DoubleUpDown"/>
                         <Controls.Common:Spacer 
@@ -993,20 +1029,20 @@
                             Spacing="0,0,10,0" 
                             Orientation="Horizontal" 
                             VerticalContentAlignment="Center">
-                            <TextBlock Text="Value"/>
+                            <Label Content="Value"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <TextBlock Text="Increment"/>
+                            <Label Content="Increment"/>
                             <Controls.Common:DoubleUpDown Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
-                            <TextBlock Text="Minimum"/>
+                            <Label Content="Minimum"/>
                             <Controls.Common:DoubleUpDown Value="{Binding Minimum}" Minimum="-1000000" Maximum="1000000"/>
-                            <TextBlock Text="Maximum"/>
+                            <Label Content="Maximum"/>
                             <Controls.Common:DoubleUpDown Value="{Binding Maximum}" Minimum="-1000000" Maximum="1000000"/>
-                            <TextBlock Text="Major Change"/>
+                            <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <TextBlock Text="String Format"/>
+                            <Label Content="String Format"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" Value="{Binding DoubleValue}" StringFormat="N3" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
+                        <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" StringFormat="N3" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
                         
                         <TextBlock Style="{DynamicResource H2}" Text="DecimalUpDown"/>
                         <Controls.Common:Spacer 
@@ -1014,23 +1050,23 @@
                             Spacing="0,0,10,0" 
                             Orientation="Horizontal" 
                             VerticalContentAlignment="Center">
-                            <TextBlock Text="Value"/>
+                            <Label Content="Value"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <TextBlock Text="Increment"/>
+                            <Label Content="Increment"/>
                             <Controls.Common:DecimalUpDown Value="{Binding Increment}" Minimum="-1000000.0" Maximum="1000000.0"/>
-                            <TextBlock Text="Minimum"/>
+                            <Label Content="Minimum"/>
                             <Controls.Common:DecimalUpDown Value="{Binding Minimum}" Minimum="-1000000.0" Maximum="1000000.0"/>
-                            <TextBlock Text="Maximum"/>
+                            <Label Content="Maximum"/>
                             <Controls.Common:DecimalUpDown Value="{Binding Maximum}" Minimum="-1000000.0" Maximum="1000000.0"/>
-                            <TextBlock Text="Major Change"/>
+                            <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <TextBlock Text="String Format"/>
+                            <Label Content="String Format"/>
                             <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
-                        <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" Value="{Binding DecimalValue}" StringFormat="N3" Increment="10.25"/>
+                        <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" StringFormat="N3" Increment="10.25"/>
                     </Controls.Common:Spacer>
                 </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>
-</Window>
+</Controls.Common:BasicWindow>

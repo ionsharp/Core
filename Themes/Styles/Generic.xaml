@@ -19,6 +19,7 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Link.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.ListBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Menu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.PropertyGrid.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.RadioButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Slider.xaml" />

@@ -61,7 +61,7 @@
         <Setter Property="Content">
             <Setter.Value>
                 <Controls.Common:MaskedImage 
-                    Source="/Images/Restore.png" 
+                    Source="pack://application:,,,/Imagin.Themes;component/Images/Restore.png" 
                     ImageWidth="10" 
                     ImageHeight="10" 
                     ImageColor="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>

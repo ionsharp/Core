@@ -50,7 +50,9 @@
                                 BorderBrush="{TemplateBinding MenuBorderBrush}"
                                 Focusable="False" 
                                 CanContentScroll="True">
-                                <ItemsPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Stretch"/>
+                                <ItemsPresenter 
+                                    Margin="{TemplateBinding MenuPadding}" 
+                                    HorizontalAlignment="Stretch"/>
                             </ScrollViewer>
 
                             <GridSplitter

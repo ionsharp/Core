@@ -66,14 +66,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Hsb.FromColor(Color).H * this.MaxValue.ToDouble()).Round().ToInt();
+                return (Hsb.FromColor(Color).H * this.MaxValue.ToDouble()).Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Hsb Hsb = Hsb.FromColor(Color);
-                int x = (Hsb.S * 255.0).ToInt();
-                int y = 255 - (Hsb.B * 255.0).ToInt();
+                int x = (Hsb.S * 255.0).ToInt32();
+                int y = 255 - (Hsb.B * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -122,14 +122,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return Hsb.FromColor(Color).S.Shift(2).ToInt();
+                return Hsb.FromColor(Color).S.Shift(2).ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Hsb Hsb = Hsb.FromColor(Color);
-                int x = (Hsb.H * 255.0).ToInt();
-                int y = 255 - (Hsb.B * 255.0).ToInt();
+                int x = (Hsb.H * 255.0).ToInt32();
+                int y = 255 - (Hsb.B * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -179,14 +179,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return Hsb.FromColor(Color).B.Shift(2).ToInt();
+                return Hsb.FromColor(Color).B.Shift(2).ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Hsb Hsb = Hsb.FromColor(Color);
-                int x = (Hsb.H * 255.0).ToInt();
-                int y = 255 - (Hsb.S * 255.0).ToInt();
+                int x = (Hsb.H * 255.0).ToInt32();
+                int y = 255 - (Hsb.S * 255.0).ToInt32();
                 return new Point(x, y);
             }
 

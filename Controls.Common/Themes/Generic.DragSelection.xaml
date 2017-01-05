@@ -17,15 +17,9 @@
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             Background="{TemplateBinding Background}" 
-                            CornerRadius="1" 
-                            Width="{Binding Selection.Width}" 
-                            Height="{Binding Selection.Height}">
-                            <Border.RenderTransform>
-                                <TranslateTransform 
-                                    X="{Binding Selection.X}" 
-                                    Y="{Binding Selection.Y}"/>
-                            </Border.RenderTransform>
-                        </Border>
+                            CornerRadius="1"  
+                            Height="{Binding Selection.Height}"
+                            Width="{Binding Selection.Width}"/>
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>

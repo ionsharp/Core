@@ -26,10 +26,10 @@
             <RowDefinition Height="35*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <TextBlock 
+        <Label 
             Name="PART_NewLabel" 
             HorizontalAlignment="Center" 
-            Text="New"
+            Content="New"
             Margin="0,0,0,5"/>
         <Controls.Common:CheckerBoard 
             Grid.Row="1"
@@ -50,10 +50,10 @@
             ToolTip="{Binding CurrentColor, Converter={StaticResource ColorToHexConverter}, StringFormat={}#{0}}">
             <Rectangle Name="PART_CurrentRectangle" Fill="{Binding CurrentColor, Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
         </Controls.Common:CheckerBoard>
-        <TextBlock 
+        <Label 
             Grid.Row="3"  
             Name="PART_CurrentLabel" 
-            Text="Current"  
+            Content="Current"  
             HorizontalAlignment="Center" 
             Margin="0,5,0,0"/>
     </Grid>

@@ -2,9 +2,11 @@
 using Imagin.Common.Data;
 using Imagin.Common.Extensions;
 using Imagin.Common.Input;
+using Imagin.Common.Scheduling;
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,16 +20,8 @@ namespace Imagin.Controls.Extended
     {
         #region Properties
 
-        ResourceDictionary TemplateAccessor
-        {
-            get
-            {
-                return this.Resources["Dictionary.Templates"] as ResourceDictionary;
-            }
-        }
+        public event EventHandler<EventArgs<object>> SelectedObjectChanged;
 
-        #region Dependency
-        
         public static DependencyProperty ButtonsProperty = DependencyProperty.Register("Buttons", typeof(FrameworkElementCollection), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public FrameworkElementCollection Buttons
         {
@@ -52,23 +46,6 @@ namespace Imagin.Controls.Extended
             {
                 SetValue(CollapseGroupsProperty, value);
             }
-        }
-
-        public static DependencyProperty DataTemplatesProperty = DependencyProperty.Register("DataTemplates", typeof(ResourceDictionary), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(ResourceDictionary), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDataTemplatesChanged));
-        public ResourceDictionary DataTemplates
-        {
-            get
-            {
-                return (ResourceDictionary)GetValue(DataTemplatesProperty);
-            }
-            set
-            {
-                SetValue(DataTemplatesProperty, value);
-            }
-        }
-        static void OnDataTemplatesChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            Object.As<PropertyGrid>().OnDataTemplatesChanged((ResourceDictionary)e.NewValue);
         }
 
         public static DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -396,13 +373,18 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        #endregion
-
-        #region Events
-
-        public event EventHandler<EventArgs<object>> SelectedObjectChanged;
-
-        #endregion
+        public static DependencyProperty AcceptNullObjectsProperty = DependencyProperty.Register("AcceptNullObjects", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
+        public bool AcceptNullObjects
+        {
+            get
+            {
+                return (bool)GetValue(AcceptNullObjectsProperty);
+            }
+            set
+            {
+                SetValue(AcceptNullObjectsProperty, value);
+            }
+        }
 
         #endregion
 
@@ -412,13 +394,13 @@ namespace Imagin.Controls.Extended
         {
             InitializeComponent();
 
-            this.CommandBindings.Add(new CommandBinding(EditCollectionCommand, this.EditCollectionCommand_Executed, this.EditCollectionCommand_CanExecute));
-            this.CommandBindings.Add(new CommandBinding(ResetCommand, this.ResetCommand_Executed, this.ResetCommand_CanExecute));
+            CommandBindings.Add(new CommandBinding(EditCollectionCommand, this.EditCollectionCommand_Executed, this.EditCollectionCommand_CanExecute));
+            CommandBindings.Add(new CommandBinding(ResetCommand, this.ResetCommand_Executed, this.ResetCommand_CanExecute));
 
-            this.Buttons = new FrameworkElementCollection();
-            this.Properties = new PropertyModelCollection();
-            this.ListCollectionView = new ListCollectionView(this.Properties);
-            this.Sort();
+            Buttons = new FrameworkElementCollection();
+            Properties = new PropertyModelCollection();
+            ListCollectionView = new ListCollectionView(Properties);
+            Sort();
         }
 
         #endregion
@@ -451,12 +433,12 @@ namespace Imagin.Controls.Extended
         public static readonly RoutedUICommand ResetCommand = new RoutedUICommand("ResetCommand", "ResetCommand", typeof(PropertyGrid));
         void ResetCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            foreach (var i in this.Properties)
+            foreach (var i in Properties)
                 i.Value = null;
         }
         void ResetCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = this.Properties != null && this.Properties.Count > 0;
+            e.CanExecute = Properties != null && Properties.Count > 0;
         }
 
         #endregion
@@ -465,23 +447,28 @@ namespace Imagin.Controls.Extended
 
         protected void Group(string PropertyName)
         {
-            if (this.ListCollectionView == null)
-                return;
-            this.ListCollectionView.GroupDescriptions.Clear();
-            if (this.ShowCategories)
-                this.ListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(PropertyName));
+            if (ListCollectionView != null)
+            {
+                ListCollectionView.GroupDescriptions.Clear();
+
+                if (ShowCategories)
+                    ListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(PropertyName));
+            }
+
         }
 
         protected void Sort()
         {
-            if (this.ListCollectionView != null)
+            if (ListCollectionView != null)
             {
-                this.ListCollectionView.SortDescriptions.Clear();
+                ListCollectionView.SortDescriptions.Clear();
 
                 var SortDirection = this.IsSortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending;
-                if (this.ShowCategories)
-                    this.ListCollectionView.SortDescriptions.Add(new SortDescription("Category", SortDirection));
-                this.ListCollectionView.SortDescriptions.Add(new SortDescription(this.SortByName ? "Name" : "Type", SortDirection));
+
+                if (ShowCategories)
+                    ListCollectionView.SortDescriptions.Add(new SortDescription("Category", SortDirection));
+
+                ListCollectionView.SortDescriptions.Add(new SortDescription(SortByName ? "Name" : "Type", SortDirection));
             }
         }
 
@@ -489,39 +476,32 @@ namespace Imagin.Controls.Extended
 
         #region Virtual
 
-        protected virtual void OnDataTemplatesChanged(ResourceDictionary Value)
-        {
-            if (Value != null)
-            {
-                var a = this.TemplateAccessor;
-                foreach (var i in Value)
-                {
-                    var d = (DictionaryEntry)i;
-                    a.Add(d.Key, d.Value);
-                }
-            }
-        }
-
         protected virtual async Task OnSelectedObjectChanged(object Value)
         {
-            if (this.SelectedObjectChanged != null)
-                this.SelectedObjectChanged(this, new EventArgs<object>(Value));
+            if (SelectedObjectChanged != null)
+                SelectedObjectChanged(this, new EventArgs<object>(Value));
 
             if (Value != null)
             {
-                this.Properties.Object = Value;
-                this.Properties.Featured = null;
-                this.Properties.Clear();
+                Properties.Featured = null;
+                Properties.Object = Value;
+                Properties.Clear();
 
-                this.IsLoading = true;
-                await this.SetObject(Value);
-                this.IsLoading = false;
+                IsLoading = true;
+                await SetObject(Value);
+                IsLoading = false;
+            }
+            else if (AcceptNullObjects)
+            {
+                Properties.Featured = null;
+                Properties.Object = null;
+                Properties.Clear();
             }
         }
 
         protected virtual void OnSortChanged()
         {
-            this.Sort();
+            Sort();
         }
 
         /// <summary>
@@ -529,7 +509,7 @@ namespace Imagin.Controls.Extended
         /// </summary>
         protected virtual async Task SetObject(object Value)
         {
-            await this.Properties.BeginFromObject();
+            await Properties.BeginFromObject(Value);
         }
 
         #endregion

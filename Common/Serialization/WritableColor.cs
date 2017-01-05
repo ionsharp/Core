@@ -5,47 +5,32 @@ using Imagin.Common.Extensions;
 
 namespace Imagin.Common.Serialization
 {
+    /// <summary>
+    /// Facilitates with serializing standard .NET colors.
+    /// </summary>
     [Serializable]
-    public class WritableColor : AbstractObject
+    public class WritableColor : WritableObject<string>
     {
-        #region Properties
-
-        string hex = "00000000";
-        public string Hex
-        {
-            get
-            {
-                return hex;
-            }
-            set
-            {
-                hex = value.StartsWith("#") ? value.Substring(1) : value;
-            }
-        }
-
-        #endregion
-
-        #region WritableColor
-
         public WritableColor()
         {
+            Value = "00000000";
         }
 
-        public WritableColor(string hex)
+        public WritableColor(string Hex) : base(Hex)
         {
-            Hex = hex;
         }
 
-        public WritableColor(Color Color)
+        public WritableColor(Color Color) : base(Color.ToHexWithAlpha())
         {
-            Hex = Color.ToHexWithAlpha();
         }
 
-        public WritableColor(SolidColorBrush SolidColorBrush)
+        public WritableColor(SolidColorBrush SolidColorBrush) : base(SolidColorBrush.Color.ToHexWithAlpha())
         {
-            Hex = SolidColorBrush.Color.ToHexWithAlpha();
         }
 
-        #endregion
+        protected override string OnPreviewValueChanged(string Value)
+        {
+            return Value.StartsWith("#") ? Value.Substring(1) : Value;
+        }
     }
 }

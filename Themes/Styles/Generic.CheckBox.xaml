@@ -15,7 +15,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
-                    <BulletDecorator Cursor="Hand">
+                    <BulletDecorator>
                         <Grid Background="Transparent">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -42,7 +42,7 @@
                                 Margin="10,0,0,0" 
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{Binding Converter, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}">
+                                Visibility="{Binding Content, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
                                 <InlineUIContainer><ContentPresenter/></InlineUIContainer>
                             </TextBlock>
                         </Grid>
@@ -52,7 +52,7 @@
                             <Setter TargetName="PART_Tick" Property="Visibility" Value="Visible" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                            <Setter Property="Opacity" Value="0.6" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

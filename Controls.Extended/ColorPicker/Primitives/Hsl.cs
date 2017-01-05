@@ -197,7 +197,7 @@ namespace Imagin.Controls.Extended.Primitives
             g = (g * 255.0).Round().Coerce(255.0);
             b = (b * 255.0).Round().Coerce(255.0);
 
-            return new Rgba(r.ToInt(), g.ToInt(), b.ToInt(), 255);
+            return new Rgba(r.ToInt32(), g.ToInt32(), b.ToInt32(), 255);
         }
 
         #endregion

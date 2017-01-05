@@ -12,14 +12,14 @@ namespace Imagin.Controls.Common.Extensions
     {
         #region Properties
 
-        #region DragSelectionManager
+        #region DragSelector
 
-        internal static readonly DependencyProperty DragSelectionManagerProperty = DependencyProperty.RegisterAttached("DragSelectionManager", typeof(DragSelectionManager), typeof(ItemsControlExtensions), new PropertyMetadata(null));
-        internal static DragSelectionManager GetDragSelectionManager(DependencyObject obj)
+        internal static readonly DependencyProperty DragSelectionManagerProperty = DependencyProperty.RegisterAttached("DragSelectionManager", typeof(DragSelector), typeof(ItemsControlExtensions), new PropertyMetadata(null));
+        internal static DragSelector GetDragSelectionManager(DependencyObject obj)
         {
-            return (DragSelectionManager)obj.GetValue(DragSelectionManagerProperty);
+            return (DragSelector)obj.GetValue(DragSelectionManagerProperty);
         }
-        internal static void SetDragSelectionManager(DependencyObject obj, DragSelectionManager value)
+        internal static void SetDragSelectionManager(DependencyObject obj, DragSelector value)
         {
             obj.SetValue(DragSelectionManagerProperty, value);
         }
@@ -219,7 +219,7 @@ namespace Imagin.Controls.Common.Extensions
             {
                 ItemsControl.ApplyTemplate();
 
-                var Manager = new DragSelectionManager(ItemsControl);
+                var Manager = DragSelector.New(ItemsControl);
                 Manager.Register();
 
                 SetDragSelectionManager(ItemsControl, Manager);

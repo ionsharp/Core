@@ -8,8 +8,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -33,11 +33,11 @@ namespace Imagin.Controls.Extended
         {
             get
             {
-                return this.featured;
+                return featured;
             }
             set
             {
-                this.featured = value;
+                featured = value;
                 OnPropertyChanged("Featured");
             }
         }
@@ -50,11 +50,11 @@ namespace Imagin.Controls.Extended
         {
             get
             {
-                return this.activeProperty;
+                return activeProperty;
             }
             set
             {
-                this.activeProperty = value;
+                activeProperty = value;
                 OnPropertyChanged("ActiveProperty");
             }
         }
@@ -92,48 +92,41 @@ namespace Imagin.Controls.Extended
 
         public PropertyModelCollection() : base()
         {
-            this.ItemAdded += OnItemAdded;
+            ItemAdded += OnItemAdded;
         }
 
         #endregion
 
         #region Methods
 
+        bool IsSupported(PropertyInfo Property)
+        {
+            return Property.IsPublic() && (Property.PropertyType.EqualsAny(SupportedTypes) || Property.PropertyType.IsEnum || Property.PropertyType.Implements<IList>());
+        }
+
         void OnItemAdded(object sender, EventArgs<PropertyModel> e)
         {
             if (e.Value.IsFeatured)
-                this.Featured = e.Value;
+                Featured = e.Value;
         }
 
-        #region Public
-
         /// <summary>
-        /// Set properties by enumerating a resource dictionary.
+        /// Set and add custom properties.
         /// </summary>
-        /// <param name="Dictionary">The dictionary to enumerate.</param>
-        /// <param name="Callback">What to do afterwards.</param>
-        public async Task BeginFromResourceDictionary(ResourceDictionary Dictionary, Action Callback = null)
+        /// <param name="Source">A function that enumerates an object and returns a list of property models.</param>
+        public async Task BeginFrom(Func<object, IEnumerable<PropertyModel>> Source, Action Callback = null)
         {
-            if (Dictionary == null) return;
+            var i = Object;
             await Task.Run(() =>
             {
-                foreach (DictionaryEntry Entry in Dictionary)
+                var Properties = Source(i);
+                if (Properties != null)
                 {
-                    var Value = Entry.Value;
-                    if (Value == null) continue;
-
-                    var Type = Value.GetType();
-                    if (Type.EqualsAny(typeof(LinearGradientBrush), typeof(SolidColorBrush)))
-                    {
-                        var t = Type.GetPropertyModelType();
-                        if (t == null) continue;
-
-                        var Result = PropertyModel.New(t, Entry.Key.ToString(), Value, Type.Name.SplitCamelCase(), string.Empty, false, false);
-                        Result.SelectedObject = this.Object;
-                        this.Add(Result);
-                    }
+                    foreach (var j in Properties)
+                        Add(j);
                 }
             });
+
             if (Callback != null)
                 Callback.Invoke();
         }
@@ -142,102 +135,49 @@ namespace Imagin.Controls.Extended
         /// Set properties by enumerating the properties of an object.
         /// </summary>
         /// <param name="Callback">What to do afterwards.</param>
-        public async Task BeginFromObject(Action Callback = null)
+        public async Task BeginFromObject(object Object, Action Callback = null)
         {
-            var Object = this.Object;
-            if (Object == null) return;
-
             await Task.Run(() =>
             {
-                //Enumerate object class attributes to find dynamic properties.
-                foreach (var i in Object.GetType().GetCustomAttributes(true))
-                {
-                    if (i is DynamicPropertyAttribute)
-                    {
-                        //To do: Generate a PropertyModel based on DynamicPropertyAttribute properties
-                    }
-                }
+                //TO-DO: Evaluate dynamic properties if <Object> implements a certain interface?
 
-                //Get list of object's properties sorted by name.
-                var Properties = Object.GetType().GetProperties().OrderBy(x => x.Name).ToArray();
-                //Enumerate the object's properties.
+                var Properties = Object.GetType().GetProperties();
+
                 for (int i = 0, Length = Properties.Length; i < Length; i++)
                 {
                     var Property = Properties[i];
 
-                    //Skip property if it (is not public and has get/set methods) or (isn't a supported type and isn't an enum).
-                    if (!(Property.CanWrite && Property.GetSetMethod(true).IsPublic) || (!Property.PropertyType.EqualsAny(this.SupportedTypes) && !Property.PropertyType.IsEnum && !typeof(IList).IsAssignableFrom(Property.PropertyType)))
+                    if (!IsSupported(Property))
                         continue;
 
-                    string Category = string.Empty, Description = string.Empty, Name = Property.Name;
-                    bool IsFeatured = false, IsHidden = false, IsReadOnly = false;
-                    StringRepresentation StringRepresentation = StringRepresentation.Regular;
-                    ConstraintAttribute Constraint = null;
-                    Int64Representation Int64Representation = Int64Representation.Default;
-
-                    //Enumerate property's attributes.
-                    foreach (var Attribute in Property.GetCustomAttributes(true))
+                    var Attributes = new PropertyAttributes()
                     {
-                        //If hidden, discontinue enumeration.
-                        if (Attribute is BrowsableAttribute && (IsHidden = !(Attribute as BrowsableAttribute).Browsable).As<bool>())
-                            break;
+                        { "Browsable", "Browsable", true },
+                        { "Category", "Category", string.Empty },
+                        { "Constraint", string.Empty, null },
+                        { "Description", "Description", string.Empty },
+                        { "DisplayName", "DisplayName", false },
+                        { "Featured", "IsFeatured", false },
+                        { "Int64Representation", "Representation", Int64Representation.Default },
+                        { "ReadOnly", "IsReadOnly", false },
+                        { "StringRepresentation", "Representation", StringRepresentation.Regular },
+                    };
 
-                        if (Attribute is DisplayNameAttribute)
-                            Name = Attribute.As<DisplayNameAttribute>().DisplayName;
-                        else if (Attribute is CategoryAttribute)
-                            Category = Attribute.As<CategoryAttribute>().Category;
-                        else if (Attribute is ConstraintAttribute)
-                            Constraint = Attribute as ConstraintAttribute;
-                        else if (Attribute is DescriptionAttribute)
-                            Description = Attribute.As<DescriptionAttribute>().Description;
-                        else if (Attribute is FeaturedAttribute)
-                            IsFeatured = Attribute.As<FeaturedAttribute>().IsFeatured;
-                        else if (Attribute is Int64RepresentationAttribute)
-                            Int64Representation = Attribute.As<Int64RepresentationAttribute>().Representation;
-                        else if (Attribute is StringRepresentationAttribute)
-                            StringRepresentation = Attribute.As<StringRepresentationAttribute>().Representation;
-                        else if (Attribute is ReadOnlyAttribute)
-                            IsReadOnly = Attribute.As<ReadOnlyAttribute>().IsReadOnly;
+                    Attributes.ExtractFrom(Property);
+
+                    if ((bool)Attributes["Browsable", false])
+                    {
+                        var Model = PropertyModel.New(Object, Property, Attributes);
+
+                        if (Model != null)
+                            Add(Model);
                     }
-
-                    //If hidden, skip property.
-                    if (IsHidden) continue;
-
-                    //Create and add PropertyModel.
-                    PropertyModel PropertyModel = PropertyModel.New(Property.PropertyType.GetPropertyModelType(), Name, Property.GetValue(Object), Category, Description, IsReadOnly, IsFeatured);
-                    if (PropertyModel is StringPropertyModel)
-                        PropertyModel.As<StringPropertyModel>().Representation = StringRepresentation;
-                    if (PropertyModel is NumericPropertyModel && Constraint != null)
-                        PropertyModel.As<NumericPropertyModel>().SetConstraint(Constraint.Minimum, Constraint.Maximum);
-                    if (PropertyModel is LongPropertyModel)
-                        PropertyModel.As<LongPropertyModel>().Int64Representation = Int64Representation;
-
-                    PropertyModel.SelectedObject = Object;
-                    this.Add(PropertyModel);
                 }
             });
 
             if (Callback != null)
                 Callback.Invoke();
         }
-
-        /// <summary>
-        /// Set properties by enumerating an unknown object. 
-        /// </summary>
-        /// <param name="Source">A function that enumerates an unknown object and returns a list of properties.</param>
-        public async Task BeginFromUnknown(Func<object, IEnumerable<PropertyModel>> Source)
-        {
-            await Task.Run(() =>
-            {
-                IEnumerable<PropertyModel> Properties = Source(new object());
-                if (Properties == null)
-                    return;
-                foreach (PropertyModel p in Properties)
-                    this.Add(p);
-            });
-        }
-
-        #endregion
 
         #endregion
     }

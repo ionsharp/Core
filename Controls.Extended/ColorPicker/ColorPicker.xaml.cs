@@ -31,7 +31,9 @@ namespace Imagin.Controls.Extended
         }
 
         #region Dependency
-        
+
+        double? LastComponentsWidth = null;
+
         public static DependencyProperty ComponentsWidthProperty = DependencyProperty.Register("ComponentsWidth", typeof(double), typeof(ColorPicker), new FrameworkPropertyMetadata(425.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public double ComponentsWidth
         {
@@ -95,7 +97,7 @@ namespace Imagin.Controls.Extended
             ColorPicker.OnSelectedColorChanged((Color)e.NewValue);
         }
 
-        public static DependencyProperty ShowComponentsProperty = DependencyProperty.Register("ShowComponents", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ShowComponentsProperty = DependencyProperty.Register("ShowComponents", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnShowComponentsChanged));
         public bool ShowComponents
         {
             get
@@ -107,7 +109,22 @@ namespace Imagin.Controls.Extended
                 SetValue(ShowComponentsProperty, value);
             }
         }
+        static void OnShowComponentsChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            var This = Object.As<ColorPicker>();
 
+            if (!e.NewValue.To<bool>())
+            {
+                This.LastComponentsWidth = This.ComponentsWidth;
+                This.ComponentsWidth = 0d;
+            }
+            else if (This.ComponentsWidth == 0 && This.LastComponentsWidth != null)
+            {
+                This.ComponentsWidth = This.LastComponentsWidth.Value;
+                This.LastComponentsWidth = null;
+            }
+        }
+        
         public static DependencyProperty ShowNewCurrentProperty = DependencyProperty.Register("ShowNewCurrent", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool ShowNewCurrent
         {

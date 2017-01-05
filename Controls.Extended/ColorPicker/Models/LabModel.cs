@@ -50,14 +50,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return Lab.FromColor(Color).L.Round().ToInt();
+                return Lab.FromColor(Color).L.Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Lab Lab = Lab.FromColor(Color);
-                int x = 128 + Lab.A.ToInt();
-                int y = 128 - Lab.B.ToInt();
+                int x = 128 + Lab.A.ToInt32();
+                int y = 128 - Lab.B.ToInt32();
                 return new Point(x, y);
             }
 
@@ -124,14 +124,14 @@ namespace Imagin.Controls.Extended
             public override int GetValue(Color Color)
             {
                 Lab Lab = Lab.FromColor(Color);
-                return Lab.A.Round().ToInt();
+                return Lab.A.Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Lab Lab = Lab.FromColor(Color);
-                int x = 128 + Lab.B.ToInt();
-                int y = 100 - Lab.L.ToInt();
+                int x = 128 + Lab.B.ToInt32();
+                int y = 100 - Lab.L.ToInt32();
                 return new Point(x, y);
             }
 
@@ -198,14 +198,14 @@ namespace Imagin.Controls.Extended
             public override int GetValue(Color Color)
             {
                 Lab Lab = Lab.FromColor(Color);
-                return Lab.B.Round().ToInt();
+                return Lab.B.Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Lab Lab = Lab.FromColor(Color);
-                int x = 128 + Lab.A.ToInt();
-                int y = 100 - Lab.L.ToInt();
+                int x = 128 + Lab.A.ToInt32();
+                int y = 100 - Lab.L.ToInt32();
                 return new Point(x, y);
             }
 

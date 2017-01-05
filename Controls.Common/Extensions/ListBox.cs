@@ -110,7 +110,7 @@ namespace Imagin.Controls.Common.Extensions
 
                     var Item = (ListBox.ItemContainerGenerator.ContainerFromItem(ListBox.Items.CurrentItem) as ListBoxItem);
                     var ItemWidth = Item.ActualWidth + Item.Margin.Left + Item.Margin.Right;
-                    int ItemsPerRow = (Width / ItemWidth).Round().ToInt();
+                    int ItemsPerRow = (Width / ItemWidth).Round().ToInt32();
 
                     //If there is only one item per row, up corresponds to left and  down corresponds to right.
                     if (ItemsPerRow <= 1)

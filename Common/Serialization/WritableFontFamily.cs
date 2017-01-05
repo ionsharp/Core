@@ -43,7 +43,7 @@ namespace Imagin.Common.Serialization
 
         #endregion
 
-        #region SerializableFontFamily
+        #region WritableFontFamily
 
         WritableFontFamily()
         {

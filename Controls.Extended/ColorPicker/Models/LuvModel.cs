@@ -50,14 +50,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Luv.FromColor(Color).L * 100.0).Round().ToInt();
+                return (Luv.FromColor(Color).L * 100.0).Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Luv Luv = Luv.FromColor(Color);
-                int x = (Luv.U * 255.0).ToInt();
-                int y = 255 - (Luv.V * 255.0).ToInt();
+                int x = (Luv.U * 255.0).ToInt32();
+                int y = 255 - (Luv.V * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -115,14 +115,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return ((Luv.FromColor(Color).U) * 100.0).ToInt();
+                return ((Luv.FromColor(Color).U) * 100.0).ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Luv Luv = Luv.FromColor(Color);
-                int x = (Luv.L * 255.0).ToInt();
-                int y = 255 - (Luv.V * 255.0).ToInt();
+                int x = (Luv.L * 255.0).ToInt32();
+                int y = 255 - (Luv.V * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -180,14 +180,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Luv.FromColor(Color).V * 100.0).ToInt();
+                return (Luv.FromColor(Color).V * 100.0).ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Luv Luv = Luv.FromColor(Color);
-                int x = (Luv.L * 255.0).ToInt();
-                int y = 255 - (Luv.U * 255.0).ToInt();
+                int x = (Luv.L * 255.0).ToInt32();
+                int y = 255 - (Luv.U * 255.0).ToInt32();
                 return new Point(x, y);
             }
 

@@ -9,11 +9,16 @@ namespace Imagin.Common
     [Serializable]
     public abstract class AbstractObject : INotifyPropertyChanged
     {
-        #region INotifyPropertyChanged
-
+        /// <summary>
+        /// 
+        /// </summary>
         [field: NonSerializedAttribute()]
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propertyName"></param>
         public void OnPropertyChanged(string propertyName)
         {
             if (this.PropertyChanged != null)
@@ -22,14 +27,11 @@ namespace Imagin.Common
             }
         }
 
-        #endregion
-
-        #region AbstractObject
-
+        /// <summary>
+        /// 
+        /// </summary>
         public AbstractObject()
         {
         }
-
-        #endregion
     }
 }

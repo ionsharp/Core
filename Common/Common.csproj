@@ -20,6 +20,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <DocumentationFile>bin\Debug\Imagin.Common.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -186,34 +189,39 @@
     <Compile Include="Abstract\Entry.cs" />
     <Compile Include="Debug\Error.cs" />
     <Compile Include="Debug\Exception.Generic.cs" />
-    <Compile Include="Extensions\Bitmap.cs" />
-    <Compile Include="Extensions\BitmapImage.cs" />
-    <Compile Include="Extensions\Bool.cs" />
-    <Compile Include="Extensions\Byte.cs" />
-    <Compile Include="Extensions\Cursor.cs" />
-    <Compile Include="Extensions\Encoding.cs" />
-    <Compile Include="Extensions\Float.cs" />
-    <Compile Include="Extensions\Generic.cs" />
-    <Compile Include="Extensions\LinearGradientBrush.cs" />
-    <Compile Include="Extensions\Random.cs" />
-    <Compile Include="Extensions\ResourceDictionary.cs" />
-    <Compile Include="Extensions\SolidColorBrush.cs" />
-    <Compile Include="Extensions\Color.cs" />
-    <Compile Include="Extensions\DateTime.cs" />
-    <Compile Include="Extensions\DependencyObject.cs" />
-    <Compile Include="Extensions\Double.cs" />
-    <Compile Include="Extensions\Enum.cs" />
-    <Compile Include="Extensions\Icon.cs" />
-    <Compile Include="Extensions\Int32.cs" />
-    <Compile Include="Extensions\Int64.cs" />
-    <Compile Include="Extensions\IntPtr.cs" />
-    <Compile Include="Extensions\SpecialFolder.cs" />
-    <Compile Include="Extensions\Object.cs" />
-    <Compile Include="Extensions\String.cs" />
-    <Compile Include="Extensions\TimeSpan.cs" />
-    <Compile Include="Extensions\Control.cs" />
-    <Compile Include="Extensions\UIElement.cs" />
-    <Compile Include="Extensions\Visibility.cs" />
+    <Compile Include="Linq\PropertyInfo.cs" />
+    <Compile Include="Linq\Bitmap.cs" />
+    <Compile Include="Linq\BitmapImage.cs" />
+    <Compile Include="Linq\Bool.cs" />
+    <Compile Include="Linq\Byte.cs" />
+    <Compile Include="Linq\Cursor.cs" />
+    <Compile Include="Linq\Encoding.cs" />
+    <Compile Include="Linq\Float.cs" />
+    <Compile Include="Linq\Generic.cs" />
+    <Compile Include="Linq\LinearGradientBrush.cs" />
+    <Compile Include="Linq\ModifierKeys.cs" />
+    <Compile Include="Linq\Point.cs" />
+    <Compile Include="Linq\Rect.cs" />
+    <Compile Include="Linq\Random.cs" />
+    <Compile Include="Linq\ResourceDictionary.cs" />
+    <Compile Include="Linq\SolidColorBrush.cs" />
+    <Compile Include="Linq\Color.cs" />
+    <Compile Include="Linq\DateTime.cs" />
+    <Compile Include="Linq\DependencyObject.cs" />
+    <Compile Include="Linq\Double.cs" />
+    <Compile Include="Linq\Enum.cs" />
+    <Compile Include="Linq\Icon.cs" />
+    <Compile Include="Linq\Int32.cs" />
+    <Compile Include="Linq\Int64.cs" />
+    <Compile Include="Linq\IntPtr.cs" />
+    <Compile Include="Linq\SpecialFolder.cs" />
+    <Compile Include="Linq\Object.cs" />
+    <Compile Include="Linq\String.cs" />
+    <Compile Include="Linq\Type.cs" />
+    <Compile Include="Linq\TimeSpan.cs" />
+    <Compile Include="Linq\Control.cs" />
+    <Compile Include="Linq\UIElement.cs" />
+    <Compile Include="Linq\Visibility.cs" />
     <Compile Include="Globalization\LocalizationProvider.cs" />
     <Compile Include="ICheckable.cs" />
     <Compile Include="IContainer.cs" />
@@ -247,6 +255,9 @@
     <Compile Include="Serialization\WritableColor.cs" />
     <Compile Include="Debug\Success.cs" />
     <Compile Include="Abstract\TaggedObject.cs" />
+    <Compile Include="Serialization\WritableEnum.cs" />
+    <Compile Include="Serialization\WritableObject.Generic.cs" />
+    <Compile Include="Span.cs" />
     <Compile Include="Text\Int64Representation.cs" />
     <Compile Include="Mvvm\AbstractViewModel.cs" />
     <Compile Include="Mvvm\IPaneViewModel.cs" />
@@ -274,7 +285,7 @@
     <Compile Include="Time.cs" />
     <Compile Include="Tracing\ILog.cs" />
     <Compile Include="Tracing\WarningLevel.cs" />
-    <Compile Include="Extensions\Keyboard.cs" />
+    <Compile Include="Linq\Keyboard.cs" />
     <Compile Include="Abstract\VirtualFolder.cs" />
     <Compile Include="Web\Fetch.cs" />
     <Compile Include="Web\FetchStream.cs" />

@@ -141,33 +141,13 @@
     </Compile>
     <Compile Include="ColorPicker\ColorSpace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyGrid\Extensions.cs" />
+    <Compile Include="PropertyGrid\Models\Models.cs" />
+    <Compile Include="PropertyGrid\PropertyAttributes.cs" />
     <Compile Include="PropertyGrid\PropertyGrid.xaml.cs">
       <DependentUpon>PropertyGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="PropertyGrid\PropertyModelCollection.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\CollectionPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\UriPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\VersionPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\RepeatOptionsPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\NumericPropertyModel.Generic.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\NumericPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\SizePropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\NetworkCredentialPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\DecimalPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\BytePropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\ShortPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\BoolPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\DateTimePropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\DoublePropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\EnumPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\GuidPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\IntPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\LinearGradientPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\LongPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\PropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\SolidColorBrushPropertyModel.cs" />
-    <Compile Include="PropertyGrid\PropertyModel\StringPropertyModel.cs" />
+    <Compile Include="PropertyGrid\Models\PropertyModel.cs" />
     <Compile Include="PropertyGrid\ResourceDictionaryEditor.cs" />
     <Compile Include="TabbedTree.cs" />
   </ItemGroup>
@@ -263,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Lang\Main.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LinkHorizontal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -17,6 +17,7 @@
 
     <Style x:Key="{x:Type Controls.Common:MaskedButton}" TargetType="{x:Type Controls.Common:MaskedButton}">
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
@@ -40,6 +41,7 @@
     <Style x:Key="{x:Type Controls.Common:MaskedToggleButton}" TargetType="{x:Type Controls.Common:MaskedToggleButton}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="IsRippleEnabled" Value="True" />
         <Style.Triggers>
             <MultiTrigger>
@@ -75,6 +77,7 @@
     <Style x:Key="{x:Type Controls.Common:MaskedDropDownButton}" TargetType="{x:Type Controls.Common:MaskedDropDownButton}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="IsRippleEnabled" Value="True" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagin.Common.Input;
+using System;
 using System.Windows;
 
 namespace Imagin.Common.Primitives
@@ -12,7 +13,13 @@ namespace Imagin.Common.Primitives
         #region Properties
 
         [field: NonSerialized]
-        public event EventHandler<EventArgs> SelectionChanged;
+        public event EventHandler<EventArgs<Point>> PositionChanged;
+
+        [field: NonSerialized]
+        public event EventHandler<EventArgs<Rect>> SelectionChanged;
+
+        [field: NonSerialized]
+        public event EventHandler<EventArgs<Size>> SizeChanged;
 
         double width = 0;
         public double Width
@@ -25,8 +32,8 @@ namespace Imagin.Common.Primitives
             {
                 width = value;
                 OnPropertyChanged("Width");
-                if (SelectionChanged != null)
-                    SelectionChanged(this, EventArgs.Empty);
+                OnSelectionChanged(Rect);
+                OnSizeChanged(Size);
             }
         }
 
@@ -41,8 +48,8 @@ namespace Imagin.Common.Primitives
             {
                 height = value;
                 OnPropertyChanged("Height");
-                if (SelectionChanged != null)
-                    SelectionChanged(this, EventArgs.Empty);
+                OnSelectionChanged(Rect);
+                OnSizeChanged(Size);
             }
         }
 
@@ -57,8 +64,8 @@ namespace Imagin.Common.Primitives
             {
                 x = value;
                 OnPropertyChanged("X");
-                if (SelectionChanged != null)
-                    SelectionChanged(this, EventArgs.Empty);
+                OnPositionChanged(Position);
+                OnSelectionChanged(Rect);
             }
         }
 
@@ -73,12 +80,12 @@ namespace Imagin.Common.Primitives
             {
                 y = value;
                 OnPropertyChanged("Y");
-                if (SelectionChanged != null)
-                    SelectionChanged(this, EventArgs.Empty);
+                OnPositionChanged(Position);
+                OnSelectionChanged(Rect);
             }
         }
 
-        public Point Location
+        public Point Position
         {
             get
             {
@@ -182,6 +189,24 @@ namespace Imagin.Common.Primitives
         #endregion
 
         #region Methods
+
+        protected virtual void OnPositionChanged(Point Point)
+        {
+            if (PositionChanged != null)
+                PositionChanged(this, new EventArgs<Point>(Point));
+        }
+
+        protected virtual void OnSelectionChanged(Rect Rect)
+        {
+            if (SelectionChanged != null)
+                SelectionChanged(this, new EventArgs<Rect>(Rect));
+        }
+
+        protected virtual void OnSizeChanged(Size Size)
+        {
+            if (SizeChanged != null)
+                SizeChanged(this, new EventArgs<Size>(Size));
+        }
 
         /// <summary>
         /// Set selection from given values.

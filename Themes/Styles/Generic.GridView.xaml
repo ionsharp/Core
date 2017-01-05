@@ -42,7 +42,7 @@
                                 Cursor="SizeWE"
                                 Margin="-8,0,-9,0"
                                 HorizontalAlignment="Right"
-                                Style="{StaticResource Style.DataGridColumnHeader.Thumb}"/>
+                                Style="{DynamicResource Style.DataGridColumnHeader.Thumb}"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>

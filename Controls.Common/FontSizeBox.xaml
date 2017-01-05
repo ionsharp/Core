@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:l="http://wpflocalizeextension.codeplex.com"
-    xmlns:local="clr-namespace:Imagin.Controls"
+    xmlns:local="clr-namespace:Imagin.Controls.Common"
     mc:Ignorable="d" 
     VerticalAlignment="Center" 
     SelectedIndex="0" 

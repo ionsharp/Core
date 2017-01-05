@@ -187,6 +187,19 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        public static DependencyProperty MenuPaddingProperty = DependencyProperty.Register("MenuPadding", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Thickness MenuPadding
+        {
+            get
+            {
+                return (Thickness)GetValue(MenuPaddingProperty);
+            }
+            set
+            {
+                SetValue(MenuPaddingProperty, value);
+            }
+        }
+
         public static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(string), typeof(TabbedTree), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedIndexChanged));
         public string SelectedIndex
         {

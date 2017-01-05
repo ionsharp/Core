@@ -67,9 +67,9 @@
     <Reference Include="Imagin.Controls.Extended">
       <HintPath>..\Controls.Extended\bin\Debug\Imagin.Controls.Extended.dll</HintPath>
     </Reference>
-    <Reference Include="Imagin.Themes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Imagin.Themes, Version=2.6.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Imagin.Themes\bin\Debug\Imagin.Themes.dll</HintPath>
+      <HintPath>..\Themes\bin\Debug\Imagin.Themes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

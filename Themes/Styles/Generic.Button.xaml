@@ -44,7 +44,9 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource Brush.Button.Default.Border}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Disabled.Background}" />
+                <Setter Property="BorderBrush" Value="{StaticResource Brush.Button.Disabled.Border}" />
+                <Setter Property="Foreground" Value="{StaticResource Brush.Button.Disabled.Foreground}" />
             </Trigger>
         </Style.Triggers>
     </Style>

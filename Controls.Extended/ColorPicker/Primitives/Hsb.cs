@@ -167,7 +167,7 @@ namespace Imagin.Controls.Extended.Primitives
 
                 // the color wheel consists of 6 sectors. Figure out which sector you're in.
                 double sectorPos = hue / 60.0;
-                int sectorNumber = Math.Floor(sectorPos).ToInt();
+                int sectorNumber = Math.Floor(sectorPos).ToInt32();
                 // get the fractional part of the sector
                 double fractionalSector = sectorPos - sectorNumber;
 

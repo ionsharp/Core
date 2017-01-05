@@ -58,14 +58,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Xyz.FromColor(Color).X * Xyz.MaxValue.X.Shift(2)).Round().ToInt();
+                return (Xyz.FromColor(Color).X * Xyz.MaxValue.X.Shift(2)).Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Xyz Xyz = Xyz.FromColor(Color);
-                int x = (Xyz.Y * 255.0).ToInt();
-                int y = 255 - (Xyz.Z * 255.0).ToInt();
+                int x = (Xyz.Y * 255.0).ToInt32();
+                int y = 255 - (Xyz.Z * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -115,14 +115,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Xyz.FromColor(Color).Y * Xyz.MaxValue.Y.Shift(2)).Round().ToInt();
+                return (Xyz.FromColor(Color).Y * Xyz.MaxValue.Y.Shift(2)).Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Xyz Xyz = Xyz.FromColor(Color);
-                int x = (Xyz.X * 255.0).ToInt();
-                int y = 255 - (Xyz.Z * 255.0).ToInt();
+                int x = (Xyz.X * 255.0).ToInt32();
+                int y = 255 - (Xyz.Z * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -180,14 +180,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Xyz.FromColor(Color).Z * Xyz.MaxValue.Z.Shift(2)).Round().ToInt();
+                return (Xyz.FromColor(Color).Z * Xyz.MaxValue.Z.Shift(2)).Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Xyz Xyz = Xyz.FromColor(Color);
-                int x = (Xyz.X * 255.0).ToInt();
-                int y = 255 - (Xyz.Y * 255.0).ToInt();
+                int x = (Xyz.X * 255.0).ToInt32();
+                int y = 255 - (Xyz.Y * 255.0).ToInt32();
                 return new Point(x, y);
             }
 

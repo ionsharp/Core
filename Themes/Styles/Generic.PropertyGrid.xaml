@@ -1,0 +1,18 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended">
+
+    <Style x:Key="{x:Type Controls.Extended:PropertyGrid}" TargetType="{x:Type Controls.Extended:PropertyGrid}">
+        <Setter Property="PropertyDescriptionStyle">
+            <Setter.Value>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="{DynamicResource Brush.PropertyGrid.Description.Background}"/>
+                    <Setter Property="TextElement.Foreground" Value="{DynamicResource Brush.Text}"/>
+                    <Setter Property="Padding" Value="10"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

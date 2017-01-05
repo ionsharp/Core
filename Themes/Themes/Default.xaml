@@ -8,6 +8,9 @@
     <SolidColorBrush x:Key="Brush.Button.Foreground" Color="#666"/>
     <SolidColorBrush x:Key="Brush.Button.Background" Color="#EEE"/>
     <SolidColorBrush x:Key="Brush.Button.Border" Color="#CCC"/>
+    <SolidColorBrush x:Key="Brush.Button.Disabled.Background" Color="#777"/>
+    <SolidColorBrush x:Key="Brush.Button.Disabled.Border" Color="#777"/>
+    <SolidColorBrush x:Key="Brush.Button.Disabled.Foreground" Color="#BBB"/>
     <SolidColorBrush x:Key="Brush.Button.MouseOver.Background" Color="#FFDDDDDD"/>
     <SolidColorBrush x:Key="Brush.Button.MouseOver.Border" Color="#AAA"/>
     <SolidColorBrush x:Key="Brush.Button.MouseDown.Background" Color="#349ADE"/>
@@ -154,8 +157,8 @@
     <SolidColorBrush x:Key="Brush.MenuItem.TopLevelHeader.Pressed.Border" Color="#FF349ADE"/>
     <SolidColorBrush x:Key="Brush.MenuItem.TopLevelHeader.Pressed.Foreground" Color="#FFF"/>
 
-    <SolidColorBrush x:Key="Brush.MenuItem.SubmenuHeader.Background" Color="#11000000"/>
-    <SolidColorBrush x:Key="Brush.MenuItem.SubmenuHeader.Border" Color="#11000000"/>
+    <SolidColorBrush x:Key="Brush.MenuItem.SubmenuHeader.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.MenuItem.SubmenuHeader.Border" Color="Transparent"/>
     <SolidColorBrush x:Key="Brush.MenuItem.SubmenuHeader.Foreground" Color="#666"/>
     <SolidColorBrush x:Key="Brush.MenuItem.SubmenuHeader.MouseOver.Background" Color="#FF5AA6D8"/>
     <SolidColorBrush x:Key="Brush.MenuItem.SubmenuHeader.MouseOver.Border" Color="#FF5AA6D8"/>
@@ -177,6 +180,8 @@
     <SolidColorBrush x:Key="Brush.ProgressBar.Foreground" Color="#25bd5b"/>
     <SolidColorBrush x:Key="Brush.ProgressBar.Background" Color="#11000000"/>
 
+    <SolidColorBrush x:Key="Brush.PropertyGrid.Description.Background" Color="#05000000"/>
+    
     <SolidColorBrush x:Key="Brush.RadioGroup.MouseOver.Background" Color="#22000000"/>
     <SolidColorBrush x:Key="Brush.RadioGroup.MouseOver.Foreground" Color="#333"/>
     <SolidColorBrush x:Key="Brush.RadioGroup.Checked.Foreground" Color="#FFF"/>

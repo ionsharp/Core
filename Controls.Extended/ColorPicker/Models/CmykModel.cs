@@ -62,7 +62,7 @@ namespace Imagin.Controls.Extended
             {
                 try
                 {
-                    return (Cmyk.FromColor(Color).C * this.MaxValue).Round().ToInt();
+                    return (Cmyk.FromColor(Color).C * this.MaxValue).Round().ToInt32();
                 }
                 catch
                 {
@@ -101,7 +101,7 @@ namespace Imagin.Controls.Extended
             {
                 try
                 {
-                    return (Cmyk.FromColor(Color).M * this.MaxValue).Round().ToInt();
+                    return (Cmyk.FromColor(Color).M * this.MaxValue).Round().ToInt32();
                 }
                 catch
                 {
@@ -140,7 +140,7 @@ namespace Imagin.Controls.Extended
             {
                 try
                 {
-                    return (Cmyk.FromColor(Color).Y * this.MaxValue).Round().ToInt();
+                    return (Cmyk.FromColor(Color).Y * this.MaxValue).Round().ToInt32();
                 }
                 catch
                 {
@@ -179,7 +179,7 @@ namespace Imagin.Controls.Extended
             {
                 try
                 {
-                    return (Cmyk.FromColor(Color).K * this.MaxValue).Round().ToInt();
+                    return (Cmyk.FromColor(Color).K * this.MaxValue).Round().ToInt32();
                 }
                 catch
                 {

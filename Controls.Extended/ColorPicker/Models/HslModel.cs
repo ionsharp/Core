@@ -66,14 +66,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Hsl.FromColor(Color).H * this.MaxValue.ToDouble()).Round().ToInt();
+                return (Hsl.FromColor(Color).H * this.MaxValue.ToDouble()).Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Hsl Hsl = Hsl.FromColor(Color);
-                int x = (Hsl.S * 255.0).ToInt();
-                int y = 255 - (Hsl.L * 255.0).ToInt();
+                int x = (Hsl.S * 255.0).ToInt32();
+                int y = 255 - (Hsl.L * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -122,14 +122,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return ((Hsl.FromColor(Color).S) * this.MaxValue.ToDouble()).ToInt();
+                return ((Hsl.FromColor(Color).S) * this.MaxValue.ToDouble()).ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Hsl Hsl = Hsl.FromColor(Color);
-                int x = (Hsl.H * 255.0).ToInt();
-                int y = 255 - (Hsl.L * 255.0).ToInt();
+                int x = (Hsl.H * 255.0).ToInt32();
+                int y = 255 - (Hsl.L * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -179,14 +179,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Hsl.FromColor(Color).L * this.MaxValue.ToDouble()).ToInt();
+                return (Hsl.FromColor(Color).L * this.MaxValue.ToDouble()).ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Hsl Hsl = Hsl.FromColor(Color);
-                int x = (Hsl.H * 255.0).ToInt();
-                int y = 255 - (Hsl.S * 255.0).ToInt();
+                int x = (Hsl.H * 255.0).ToInt32();
+                int y = 255 - (Hsl.S * 255.0).ToInt32();
                 return new Point(x, y);
             }
 

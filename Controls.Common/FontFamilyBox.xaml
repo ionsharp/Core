@@ -10,4 +10,17 @@
     VerticalAlignment="Center" 
     SelectedIndex="0" 
     ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" 
-    ToolTip="{l:Loc Font}"/>
+    ToolTip="{l:Loc Font}">
+    <ComboBox.ItemTemplate>
+        <DataTemplate>
+            <TextBlock 
+                x:Name="PART_Text"
+                Text="{Binding Mode=OneWay}"/>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding ShowPreview, RelativeSource={RelativeSource AncestorType={x:Type local:FontFamilyBox}}}" Value="True">
+                    <Setter TargetName="PART_Text" Property="FontFamily" Value="{Binding Mode=OneWay}"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </ComboBox.ItemTemplate>
+</ComboBox>

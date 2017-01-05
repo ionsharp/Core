@@ -130,7 +130,9 @@
                 Orientation="Vertical" 
                 Alpha="{Binding ElementName=PART_ColorSelector, Path=Alpha, Mode=OneWay}" />
             <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,5,0" TrimLast="True" Margin="0,10,0,0">
-                <TextBlock Text="#" VerticalAlignment="Center"/>
+                <Label 
+                    Content="#"
+                    VerticalAlignment="Center"/>
                 <Controls.Common:AlphaNumericTextBox 
                     VerticalAlignment="Center"
                     Width="80" 

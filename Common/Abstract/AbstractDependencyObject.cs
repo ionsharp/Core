@@ -10,10 +10,16 @@ using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AbstractDependencyObject : DependencyObject
     {
         #region AbstractDependencyObject
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AbstractDependencyObject() : base()
         {
         }
@@ -22,9 +28,16 @@ namespace Imagin.Common
 
         #region INotifyPropertyChanged
 
+        /// <summary>
+        /// 
+        /// </summary>
         [field: NonSerializedAttribute()]
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propertyName"></param>
         public void OnPropertyChanged(string propertyName)
         {
             if (this.PropertyChanged != null)

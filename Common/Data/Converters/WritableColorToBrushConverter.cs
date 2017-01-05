@@ -12,7 +12,7 @@ namespace Imagin.Common.Data.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value.As<WritableColor>().Hex.ToSolidColorBrush();
+            return value.As<WritableColor>().Value.ToSolidColorBrush();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

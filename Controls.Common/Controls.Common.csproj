@@ -146,7 +146,7 @@
     <Compile Include="Decorators\RippleDecorator.cs" />
     <Compile Include="TextBox\AlphaNumericTextBox.cs" />
     <Compile Include="DragSelection.cs" />
-    <Compile Include="DragSelectionManager.cs" />
+    <Compile Include="DragSelector.cs" />
     <Compile Include="FontFamilyBox.xaml.cs">
       <DependentUpon>FontFamilyBox.xaml</DependentUpon>
     </Compile>
@@ -228,13 +228,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.ButtonChrome.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\Generic.AdvancedTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.ButtonChrome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.AdvancedTreeView.xaml">
       <SubType>Designer</SubType>

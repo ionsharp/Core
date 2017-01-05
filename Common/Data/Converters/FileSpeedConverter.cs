@@ -5,6 +5,9 @@ using System.Windows.Data;
 
 namespace Imagin.Common.Data.Converters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ValueConversion(typeof(double), typeof(string))]
     public class FileSpeedConverter : IValueConverter
     {
@@ -13,12 +16,17 @@ namespace Imagin.Common.Data.Converters
             if (value == null)
                 return string.Empty;
 
-            double Value = 0.0;
-            if (value.Is<string>())
-                Value = value.ToString().ToDouble();
-            else if (value.Is<double>())
-                Value = value.As<double>();
-            return Value == 0 ? string.Empty : string.Concat(Value.ToFileSize(), "/s");
+            var Value = 0L;
+            if (value is string)
+            {
+                Value = value.ToString().ToInt64();
+            }
+            else if (value is double)
+            {
+                Value = value.As<double>().ToInt64();
+            }
+
+            return Value == 0 ? string.Empty : "{0}/s".F(Value.ToFileSize());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

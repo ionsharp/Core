@@ -24,31 +24,32 @@
                             x:Name="PART_Content" 
                             ContentSource="Header" 
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            TextBlock.Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource Brush.TabItem.Selected.Background}" />
-                            <Setter Property="BorderBrush" Value="{DynamicResource Brush.TabItem.Selected.Border}" />
-                            <Setter Property="Foreground" Value="{DynamicResource Brush.TabItem.Selected.Foreground}" />
-                            <Setter Property="Cursor" Value="Arrow" />
-                        </Trigger>
-                        <Trigger Property="IsSelected" Value="False">
-                            <Setter Property="Cursor" Value="Hand" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="False"/>
-                                <Condition Property="IsMouseOver" Value="True"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Background" Value="{DynamicResource Brush.TabItem.MouseOver.Background}" />
-                            <Setter Property="BorderBrush" Value="{DynamicResource Brush.TabItem.MouseOver.Border}" />
-                            <Setter Property="Foreground" Value="{DynamicResource Brush.TabItem.MouseOver.Foreground}" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Brush.TabItem.Selected.Background}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.TabItem.Selected.Border}" />
+                <Setter Property="Foreground" Value="{DynamicResource Brush.TabItem.Selected.Foreground}" />
+                <Setter Property="Cursor" Value="Arrow" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="False">
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="False"/>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource Brush.TabItem.MouseOver.Background}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.TabItem.MouseOver.Border}" />
+                <Setter Property="Foreground" Value="{DynamicResource Brush.TabItem.MouseOver.Foreground}" />
+            </MultiTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="Style.TabControl.Horizontal" TargetType="{x:Type TabControl}">

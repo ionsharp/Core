@@ -68,6 +68,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\Generic.PropertyGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Generic.ToggleSwitch.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -187,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Fonts\lucida-grande.ttf" />
+    <None Include="Fonts\swis721-cn-bt.ttf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +200,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32ArrowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CheckmarkRound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Restore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Triangle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

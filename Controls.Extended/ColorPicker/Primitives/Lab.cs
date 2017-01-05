@@ -179,7 +179,7 @@ namespace Imagin.Controls.Extended.Primitives
                 Clinear[i] = Clinear[i].Coerce(255.0);
             }
 
-            return new Rgba(Clinear[0].ToInt(), Clinear[1].ToInt(), Clinear[2].ToInt());
+            return new Rgba(Clinear[0].ToInt32(), Clinear[1].ToInt32(), Clinear[2].ToInt32());
         }
 
         #endregion

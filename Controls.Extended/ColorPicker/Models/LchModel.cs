@@ -50,14 +50,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return Lch.FromColor(Color).L.Round().ToInt();
+                return Lch.FromColor(Color).L.Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Lch Lch = Lch.FromColor(Color);
-                int x = ((Lch.C / Lch.MaxValue.C) * 255.0).ToInt();
-                int y = 255 - ((Lch.H / Lch.MaxValue.H) * 255.0).ToInt();
+                int x = ((Lch.C / Lch.MaxValue.C) * 255.0).ToInt32();
+                int y = 255 - ((Lch.H / Lch.MaxValue.H) * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -107,14 +107,14 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return Lch.FromColor(Color).C.Round().ToInt();
+                return Lch.FromColor(Color).C.Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Lch Lch = Lch.FromColor(Color);
-                int x = ((Lch.L / Lch.MaxValue.L) * 255.0).ToInt();
-                int y = 255 - ((Lch.H / Lch.MaxValue.H) * 255.0).ToInt();
+                int x = ((Lch.L / Lch.MaxValue.L) * 255.0).ToInt32();
+                int y = 255 - ((Lch.H / Lch.MaxValue.H) * 255.0).ToInt32();
                 return new Point(x, y);
             }
 
@@ -181,14 +181,14 @@ namespace Imagin.Controls.Extended
             public override int GetValue(Color Color)
             {
                 Lch Lch = Lch.FromColor(Color);
-                return Lch.H.Round().ToInt();
+                return Lch.H.Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
             {
                 Lch Lch = Lch.FromColor(Color);
-                int x = ((Lch.L / Lch.MaxValue.L) * 255.0).ToInt();
-                int y = 255 - ((Lch.C / Lch.MaxValue.C) * 255.0).ToInt();
+                int x = ((Lch.L / Lch.MaxValue.L) * 255.0).ToInt32();
+                int y = 255 - ((Lch.C / Lch.MaxValue.C) * 255.0).ToInt32();
                 return new Point(x, y);
             }
 

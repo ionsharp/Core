@@ -29,8 +29,23 @@
         <Controls.Extended.Converters:FeaturedPropertyVisibilityConverter x:Key="FeaturedPropertyVisibilityConverter"/>
         
         <!-- Styles -->
+        <Style 
+            x:Key="Style.Cell"
+            TargetType="{x:Type DataGridCell}" 
+            BasedOn="{StaticResource {x:Type DataGridCell}}">
+            <Setter Property="Padding" Value="10,1"/>
+        </Style>
+
         <Style x:Key="Style.DataGrid.Row" TargetType="{x:Type DataGridRow}">
             <Setter Property="TextElement.Foreground" Value="{Binding Foreground, ElementName=PART_PropertyGrid}" />
+            <Setter Property="Visibility">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource StartsWithToVisibilityMultiValueConverter}">
+                        <Binding Path="Name" Converter="{StaticResource StringToCamelCaseConverter}"/>
+                        <Binding Path="SearchQuery" RelativeSource="{RelativeSource AncestorType={x:Type local:PropertyGrid}}"/>
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <MultiTrigger>
                     <MultiTrigger.Conditions>
@@ -80,7 +95,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style x:Key="Style.DataGrid.GroupHeader" TargetType="{x:Type GroupItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -113,6 +128,7 @@
                                 IsUpDownEnabled="{Binding IsReadOnly}"
                                 Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
+                        <!--
                         <DataTemplate DataType="{x:Type local:CollectionPropertyModel}">
                             <Grid Margin="0,7">
                                 <Grid.ColumnDefinitions>
@@ -129,8 +145,9 @@
                                     Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Pencil.png"/>
                             </Grid>
                         </DataTemplate>
+                        -->
                         <DataTemplate DataType="{x:Type local:DateTimePropertyModel}">
-                            <Controls.Common:DateTimePicker 
+                            <Controls.Common:DateTimeUpDown 
                                 FormatString="{Binding DateTimeFormat, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"
                                 HorizontalAlignment="Stretch" 
                                 IsReadOnly="{Binding IsReadOnly}"
@@ -155,9 +172,8 @@
                                 Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:EnumPropertyModel}">
-                            <Controls.Common:AdvancedComboBox 
-                                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
-                                ItemsSource="{Binding Value, Mode=OneTime, Converter={StaticResource EnumToCollectionConverter}}" 
+                            <ComboBox
+                                ItemsSource="{Binding ValueType, Converter={StaticResource EnumToCollectionConverter}}" 
                                 SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                 VirtualizingPanel.IsVirtualizing="True" 
                                 VirtualizingPanel.VirtualizationMode="Recycling">
@@ -166,7 +182,7 @@
                                         <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource EnumToCamelCaseConverter}}"/>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
-                            </Controls.Common:AdvancedComboBox>
+                            </ComboBox>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:GuidPropertyModel}">
                             <Controls.Common:AdvancedTextBox 
@@ -272,7 +288,7 @@
                                     CheckedToolTip="{l:Loc Unbind}"
                                     IsChecked="{Binding IsBound}"
                                     Padding="7,0"
-                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/LinkHorizontal.png"
+                                    Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/LinkHorizontal.png"
                                     UncheckedToolTip="{l:Loc Bind}"/>
                                 <Controls.Common:DoubleUpDown
                                     Grid.Column="2"
@@ -468,10 +484,10 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock 
+                    <Label 
+                        Content="{Binding SelectedObject, Converter={StaticResource ObjectToTypeConverter}}"
                         FontWeight="Bold"
                         Margin="10,5"
-                        Text="{Binding SelectedObject, Converter={StaticResource ObjectToTypeConverter}}"
                         Visibility="{Binding ShowType, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <Grid 
                         Grid.Row="1"
@@ -506,10 +522,12 @@
                         CanUserAddRows="False"
                         CanUserResizeColumns="False"
                         CanUserResizeRows="False"
+                        CellStyle="{StaticResource Style.Cell}"
                         EnableColumnVirtualization="True"
                         EnableRowVirtualization="True"
                         GridLinesVisibility="{Binding GridLinesVisibility}"
                         HeadersVisibility="{Binding HeadersVisibility}"
+                        ItemContainerStyle="{StaticResource Style.DataGrid.Row}"
                         ItemsSource="{Binding ListCollectionView, IsAsync=True}"
                         Margin="0"
                         Padding="0"
@@ -517,19 +535,14 @@
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         SelectedValue="{Binding Properties.ActiveProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SelectionMode="Single"
+                        Style="{x:Null}"
                         VirtualizingPanel.IsVirtualizing="True"
                         VirtualizingPanel.VirtualizationMode="Recycling"
                         VirtualizingPanel.IsContainerVirtualizable="True">
-                        <DataGrid.CellStyle>
-                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
-                                <Setter Property="Padding" Value="10,1"/>
-                            </Style>
-                        </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="Name" 
                                 SortMemberPath="Name" 
-                                Width="40*"
                                 Binding="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToCamelCaseConverter}}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
@@ -541,7 +554,6 @@
                             </DataGridTextColumn>
                             <DataGridTemplateColumn 
                                 Header="Value" 
-                                Width="60*"
                                 CellTemplate="{StaticResource PropertyModelTemplate}"/>
                         </DataGrid.Columns>
                         <DataGrid.GroupStyle>
@@ -553,18 +565,6 @@
                                 </GroupStyle.Panel>
                             </GroupStyle>
                         </DataGrid.GroupStyle>
-                        <DataGrid.ItemContainerStyle>
-                            <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource Style.DataGrid.Row}">
-                                <Setter Property="Visibility">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource StartsWithToVisibilityMultiValueConverter}">
-                                            <Binding Path="Name" Converter="{StaticResource StringToCamelCaseConverter}"/>
-                                            <Binding Path="SearchQuery" RelativeSource="{RelativeSource AncestorType={x:Type local:PropertyGrid}}"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </DataGrid.ItemContainerStyle>
                     </DataGrid>
                 </Grid>
             </Grid>
