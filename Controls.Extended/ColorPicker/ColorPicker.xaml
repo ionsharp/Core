@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d"
     xmlns:local="clr-namespace:Imagin.Controls.Extended" 
+    xmlns:Common.Data="clr-namespace:Imagin.Common.Data;assembly=Imagin.Common" 
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common" 
     xmlns:Common.Mvvm="clr-namespace:Imagin.Common.Mvvm;assembly=Imagin.Common" 
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common" 
@@ -39,7 +40,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type local:ColorSpaceModel}">
                             <DataTemplate.Resources>
-                                <Common.Mvvm:BindingProxy x:Key="ComponentProxy" Data="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
+                                <Common.Data:BindingProxy x:Key="ComponentProxy" Data="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
                             </DataTemplate.Resources>
                             <local:ColorSpaceView x:Name="PART_Components" ItemsSource="{Binding Components}" Margin="0,0,0,15">
                                 <local:ColorSpaceView.ItemTemplate>

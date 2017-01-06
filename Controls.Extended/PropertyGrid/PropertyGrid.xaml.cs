@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using Imagin.Controls.Common;
 
 namespace Imagin.Controls.Extended
 {
@@ -48,12 +49,12 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public string DateTimeFormat
+        public static DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(DateTimeFormat), typeof(PropertyGrid), new FrameworkPropertyMetadata(DateTimeFormat.FullDateTime, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DateTimeFormat DateTimeFormat
         {
             get
             {
-                return (string)GetValue(DateTimeFormatProperty);
+                return (DateTimeFormat)GetValue(DateTimeFormatProperty);
             }
             set
             {

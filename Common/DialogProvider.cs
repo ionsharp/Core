@@ -19,7 +19,10 @@ namespace Imagin.Common
 
         static CommonFileDialog GetDialog(string Title, DialogProviderMode DialogProviderMode, DialogProviderSelectionMode DialogProviderSelectionMode, IEnumerable<string> Extensions, string DefaultPath)
         {
-            CommonFileDialog Result = null;
+            var Result = default(CommonFileDialog);
+
+            var f = DialogProviderMode == DialogProviderMode.OpenFolder;
+
             switch (DialogProviderMode)
             {
                 case DialogProviderMode.Open:
@@ -28,13 +31,15 @@ namespace Imagin.Common
                     Result = new CommonOpenFileDialog()
                     {
                         AddToMostRecentlyUsedList = true,
+                        AllowNonFileSystemItems = f,
                         DefaultDirectory = Environment.SpecialFolder.Desktop.GetPath(),
                         DefaultFileName = DefaultPath.IsNull() ? string.Empty : DefaultPath,
                         EnsureValidNames = true,
+                        EnsureFileExists = !f,
                         EnsurePathExists = true,
                         InitialDirectory = DefaultPath,
-                        IsFolderPicker = DialogProviderMode == DialogProviderMode.OpenFolder,
-                        Multiselect = DialogProviderSelectionMode == DialogProviderSelectionMode.Multiple,
+                        IsFolderPicker = f,
+                        Multiselect = DialogProviderSelectionMode == DialogProviderSelectionMode.Multiple || f,
                         NavigateToShortcut = true,
                         ShowHiddenItems = true,
                         ShowPlacesList = true,
@@ -58,12 +63,14 @@ namespace Imagin.Common
                     };
                     break;
             }
-            if (Extensions != null)
+            if (Extensions != null && !f)
             {
                 foreach (var i in Extensions)
                     Result.Filters.Add(new CommonFileDialogFilter(i.ToUpper() + " Files", "*." + i));
             }
-            Result.Filters.Add(new CommonFileDialogFilter("(*) All Files", "*"));
+
+            if (!f)
+                Result.Filters.Add(new CommonFileDialogFilter("(*) All Files", "*"));
 
             return Result;
         }
@@ -75,6 +82,7 @@ namespace Imagin.Common
             var Dialog = GetDialog(Title, DialogProviderMode, DialogProviderSelectionMode, Extensions, DefaultPath);
 
             var Result = Dialog.ShowDialog();
+
             if (Result == CommonFileDialogResult.Ok)
             {
                 switch (DialogProviderMode)

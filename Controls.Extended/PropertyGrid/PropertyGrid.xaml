@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
+    xmlns:Common.Data="clr-namespace:Imagin.Common.Data;assembly=Imagin.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
     xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
@@ -25,8 +26,10 @@
         <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
         <Common.Data.Converters:SolidColorBrushToHexConverter x:Key="SolidColorBrushToHexConverter"/>
         <Common.Data.Converters:StartsWithToVisibilityMultiValueConverter x:Key="StartsWithToVisibilityMultiValueConverter"/>
-        
+
         <Controls.Extended.Converters:FeaturedPropertyVisibilityConverter x:Key="FeaturedPropertyVisibilityConverter"/>
+
+        <Common.Data:BindingProxy x:Key="BindingProxy"  Data="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"/>
         
         <!-- Styles -->
         <Style 
@@ -128,7 +131,6 @@
                                 IsUpDownEnabled="{Binding IsReadOnly}"
                                 Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
-                        <!--
                         <DataTemplate DataType="{x:Type local:CollectionPropertyModel}">
                             <Grid Margin="0,7">
                                 <Grid.ColumnDefinitions>
@@ -145,10 +147,9 @@
                                     Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Pencil.png"/>
                             </Grid>
                         </DataTemplate>
-                        -->
                         <DataTemplate DataType="{x:Type local:DateTimePropertyModel}">
                             <Controls.Common:DateTimeUpDown 
-                                FormatString="{Binding DateTimeFormat, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"
+                                Format="{Binding Data.DateTimeFormat, Source={StaticResource BindingProxy}}"
                                 HorizontalAlignment="Stretch" 
                                 IsReadOnly="{Binding IsReadOnly}"
                                 Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -216,7 +217,7 @@
                                                             <TextBlock.Text>
                                                                 <MultiBinding Converter="{StaticResource FileSizeMultiValueConverter}">
                                                                     <Binding Path="Value" Mode="OneWay"/>
-                                                                    <Binding Path="FileSizeFormat" RelativeSource="{RelativeSource AncestorType={x:Type local:PropertyGrid}}"/>
+                                                                    <Binding Path="Data.FileSizeFormat" Source="{StaticResource BindingProxy}"/>
                                                                 </MultiBinding>
                                                             </TextBlock.Text>
                                                         </TextBlock>

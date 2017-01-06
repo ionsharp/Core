@@ -17,11 +17,11 @@
                         Background="{TemplateBinding Background}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition x:Name="PART_Column1" Width="*"/>
+                                <ColumnDefinition x:Name="PART_Column2" Width="Auto"/>
+                                <ColumnDefinition x:Name="PART_Column3" Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid>
+                            <Grid x:Name="PART_Text">
                                 <TextBlock 
                                     Foreground="{TemplateBinding PlaceholderForeground}" 
                                     FontSize="{TemplateBinding FontSize}"
@@ -38,22 +38,39 @@
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Grid>
-                            <Grid Grid.Column="1" Visibility="{TemplateBinding IsDialogEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <local:MaskedImage 
-                                    Margin="5,0,0,0"
-                                    Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
-                                    Visibility="{TemplateBinding PathExists, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            </Grid>
+                            <local:MaskedImage 
+                                Grid.Column="1" 
+                                x:Name="PART_Checked"
+                                Margin="5,0,0,0"
+                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
+                                Visibility="{TemplateBinding PathExists, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <local:MaskedButton 
                                 Grid.Column="2" 
-                                x:Name="PART_BrowseButton"
+                                x:Name="PART_Button"
                                 Focusable="False"
-                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png" 
-                                Margin="5,0" 
-                                ToolTip="Click to browse..."
-                                IsEnabled="{TemplateBinding IsDialogEnabled}"/>
+                                Padding="7,0" 
+                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png"
+                                ToolTip="{TemplateBinding ButtonToolTip}"
+                                Visibility="{TemplateBinding ButtonVisibility}"/>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ButtonPosition" Value="Left">
+                            <Setter TargetName="PART_Column1" Property="Width" Value="Auto"/>
+                            <Setter TargetName="PART_Column2" Property="Width" Value="*"/>
+                            <Setter TargetName="PART_Column3" Property="Width" Value="Auto"/>
+
+                            <Setter TargetName="PART_Button" Property="Padding" Value="7,0,0,0"/>
+
+                            <Setter TargetName="PART_Text" Property="Grid.Column" Value="1"/> 
+                            <Setter TargetName="PART_Checked" Property="Grid.Column" Value="2"/>
+                            <Setter TargetName="PART_Checked" Property="Margin" Value="5,0"/>
+                            <Setter TargetName="PART_Button" Property="Grid.Column" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="PathExists" Value="True">
+                            <Setter TargetName="PART_Checked" Property="ToolTip" Value="{Binding ValidatePathToolTip, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

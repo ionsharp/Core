@@ -1,4 +1,5 @@
-﻿using Imagin.Common.Input;
+﻿using Imagin.Common;
+using Imagin.Common.Input;
 using Imagin.Controls.Common.Extensions;
 using System;
 using System.Windows;
@@ -6,11 +7,18 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    [TemplatePart(Name = "PART_Content", Type = typeof(ContentControl))]
     [TemplatePart(Name = "PART_TreeView", Type = typeof(TreeView))]
     public class TreeViewComboBox : ComboBox
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public event EventHandler<EventArgs<object>> SelectedItemChanged;
 
         bool SelectionChangeHandled
@@ -23,12 +31,23 @@ namespace Imagin.Controls.Common
             get; set;
         }
 
-        TreeView PART_TreeView
+        ContentControl PART_Content
         {
             get; set;
         }
 
+        AdvancedTreeView PART_TreeView
+        {
+            get; set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TreeViewComboBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate ContentTemplate
         {
             get
@@ -45,11 +64,13 @@ namespace Imagin.Controls.Common
 
         #region TreeViewComboBox
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TreeViewComboBox() : base()
         {
-            this.DefaultStyleKey = typeof(TreeViewComboBox);
-
-            this.SelectionChanged += OnSelectionChanged;
+            DefaultStyleKey = typeof(TreeViewComboBox);
+            SelectionChanged += OnSelectionChanged;
         }
 
         #endregion
@@ -58,41 +79,45 @@ namespace Imagin.Controls.Common
 
         protected virtual void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!this.SelectionChangeHandled && e.AddedItems.Count > 0)
+            if (!SelectionChangeHandled && e.AddedItems.Count > 0)
             {
-                this.SelectedItemChangeHandled = true;
-                this.Select(this.PART_TreeView, e.AddedItems[0]);
-                this.SelectedItemChangeHandled = false;
+                MessageBox.Show("OnSelectionChanged");
+                SelectedItemChangeHandled = true;
+                Select(PART_TreeView, e.AddedItems[0]);
+                SelectedItemChangeHandled = false;
             }
         }
 
         protected virtual void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (!this.SelectedItemChangeHandled && !e.Handled)
+            if (!SelectedItemChangeHandled && !e.Handled)
             {
                 e.Handled = true;
 
-                this.SelectionChangeHandled = true;
-                SelectedValue = PART_TreeView.SelectedItem;
-                this.SelectionChangeHandled = false;
+                SelectionChangeHandled = true;
+                SelectedItem = e.NewValue;
+                SelectionChangeHandled = false;
 
-                this.IsDropDownOpen = false;
+                PART_Content.Content = e.NewValue;
+
+                //IsDropDownOpen = false;
             }
 
-            if (this.SelectedItemChanged != null)
-                this.SelectedItemChanged(this, new EventArgs<object>(e.NewValue));
+            if (SelectedItemChanged != null)
+                SelectedItemChanged(this, new EventArgs<object>(e.NewValue));
         }
 
         public override void OnApplyTemplate()
         {
             base.ApplyTemplate();
 
-            var TreeView = this.Template.FindName("PART_TreeView", this) as TreeView;
-            if (TreeView != null)
+            PART_Content = Template.FindName("PART_Content", this) as ContentControl;
+
+            PART_TreeView = Template.FindName("PART_TreeView", this) as AdvancedTreeView;
+            if (PART_TreeView != null)
             {
-                this.PART_TreeView = TreeView;
-                this.PART_TreeView.Resources = this.Resources;
-                this.PART_TreeView.SelectedItemChanged += OnSelectedItemChanged;
+                PART_TreeView.Resources = Resources;
+                PART_TreeView.SelectedItemChanged += OnSelectedItemChanged;
             }
         }
 

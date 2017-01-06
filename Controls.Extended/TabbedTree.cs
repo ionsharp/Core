@@ -9,6 +9,9 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TabbedTree : AdvancedTreeView
     {
         #region Properties
@@ -188,6 +191,9 @@ namespace Imagin.Controls.Extended
         }
 
         public static DependencyProperty MenuPaddingProperty = DependencyProperty.Register("MenuPadding", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Thickness MenuPadding
         {
             get
@@ -201,6 +207,9 @@ namespace Imagin.Controls.Extended
         }
 
         public static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(string), typeof(TabbedTree), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedIndexChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public string SelectedIndex
         {
             get
@@ -221,6 +230,9 @@ namespace Imagin.Controls.Extended
 
         #region TabbedTree
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TabbedTree() : base()
         {
             this.DefaultStyleKey = typeof(TabbedTree);

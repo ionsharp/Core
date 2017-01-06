@@ -1058,6 +1058,11 @@
             <param name="Ppi">Pixels per inch.</param>
             <param name="RoundTo">Decimal places to round to.</param>
         </member>
+        <member name="T:Imagin.Common.LeftRight">
+            <summary>
+            Represents a direction that can only be left or right.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Extensions.PropertyInfoExtensions">
             <summary>
             
@@ -2129,7 +2134,7 @@
         </member>
         <member name="T:Imagin.Common.Span`3">
             <summary>
-            Represents a writable 3-tuple, or pair.
+            Represents a writable 3-tuple.
             </summary>
             <typeparam name="T1"></typeparam>
             <typeparam name="T2"></typeparam>
@@ -2150,7 +2155,7 @@
         </member>
         <member name="T:Imagin.Common.Span`4">
             <summary>
-            Represents a writable 4-tuple, or pair.
+            Represents a writable 4-tuple.
             </summary>
             <typeparam name="T1"></typeparam>
             <typeparam name="T2"></typeparam>
@@ -2173,7 +2178,7 @@
         </member>
         <member name="T:Imagin.Common.Span`5">
             <summary>
-            Represents a writable 5-tuple, or pair.
+            Represents a writable 5-tuple.
             </summary>
             <typeparam name="T1"></typeparam>
             <typeparam name="T2"></typeparam>
@@ -2198,7 +2203,7 @@
         </member>
         <member name="T:Imagin.Common.Span`6">
             <summary>
-            Represents a writable 6-tuple, or pair.
+            Represents a writable 6-tuple.
             </summary>
             <typeparam name="T1"></typeparam>
             <typeparam name="T2"></typeparam>

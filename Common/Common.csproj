@@ -189,6 +189,7 @@
     <Compile Include="Abstract\Entry.cs" />
     <Compile Include="Debug\Error.cs" />
     <Compile Include="Debug\Exception.Generic.cs" />
+    <Compile Include="LeftRight.cs" />
     <Compile Include="Linq\PropertyInfo.cs" />
     <Compile Include="Linq\Bitmap.cs" />
     <Compile Include="Linq\BitmapImage.cs" />

@@ -10,46 +10,42 @@ namespace Imagin.Controls.Common
     {
         #region DependencyProperties
 
-        public static DependencyProperty PathExistsProperty = DependencyProperty.Register("PathExists", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool PathExists
+        public static DependencyProperty ButtonPositionProperty = DependencyProperty.Register("ButtonPosition", typeof(LeftRight), typeof(FileBox), new FrameworkPropertyMetadata(LeftRight.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public LeftRight ButtonPosition
         {
             get
             {
-                return (bool)GetValue(PathExistsProperty);
-            }
-            private set
-            {
-                SetValue(PathExistsProperty, value);
-            }
-        }
-
-        public static DependencyProperty ValidatePathProperty = DependencyProperty.Register("ValidatePath", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValidatePathChanged));
-        public bool ValidatePath
-        {
-            get
-            {
-                return (bool)GetValue(ValidatePathProperty);
-            }
-            set
-            {
-                SetValue(ValidatePathProperty, value);
-            }
-        }
-        static void OnValidatePathChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            ((FileBox)Object).OnValidatePathChanged((bool)e.NewValue);
-        }
-
-        public static DependencyProperty ButtonPositionProperty = DependencyProperty.Register("ButtonPosition", typeof(HorizontalAlignment), typeof(FileBox), new FrameworkPropertyMetadata(HorizontalAlignment.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public HorizontalAlignment ButtonPosition
-        {
-            get
-            {
-                return (HorizontalAlignment)GetValue(ButtonPositionProperty);
+                return (LeftRight)GetValue(ButtonPositionProperty);
             }
             set
             {
                 SetValue(ButtonPositionProperty, value);
+            }
+        }
+        
+        public static DependencyProperty ButtonToolTipProperty = DependencyProperty.Register("ButtonToolTip", typeof(string), typeof(FileBox), new FrameworkPropertyMetadata("Click to browse...", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public string ButtonToolTip
+        {
+            get
+            {
+                return (string)GetValue(ButtonToolTipProperty);
+            }
+            set
+            {
+                SetValue(ButtonToolTipProperty, value);
+            }
+        }
+
+        public static DependencyProperty ButtonVisibilityProperty = DependencyProperty.Register("ButtonVisibility", typeof(Visibility), typeof(FileBox), new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Visibility ButtonVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(ButtonVisibilityProperty);
+            }
+            set
+            {
+                SetValue(ButtonVisibilityProperty, value);
             }
         }
 
@@ -65,7 +61,7 @@ namespace Imagin.Controls.Common
                 SetValue(DialogProviderModeProperty, value);
             }
         }
-
+        
         public static DependencyProperty DialogProviderTitleProperty = DependencyProperty.Register("DialogProviderTitle", typeof(string), typeof(FileBox), new FrameworkPropertyMetadata("Browse...", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public string DialogProviderTitle
         {
@@ -89,6 +85,49 @@ namespace Imagin.Controls.Common
             set
             {
                 SetValue(IsDialogEnabledProperty, value);
+            }
+        }
+
+        public static DependencyProperty PathExistsProperty = DependencyProperty.Register("PathExists", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool PathExists
+        {
+            get
+            {
+                return (bool)GetValue(PathExistsProperty);
+            }
+            private set
+            {
+                SetValue(PathExistsProperty, value);
+            }
+        }
+        
+        public static DependencyProperty ValidatePathProperty = DependencyProperty.Register("ValidatePath", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValidatePathChanged));
+        public bool ValidatePath
+        {
+            get
+            {
+                return (bool)GetValue(ValidatePathProperty);
+            }
+            set
+            {
+                SetValue(ValidatePathProperty, value);
+            }
+        }
+        static void OnValidatePathChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            ((FileBox)Object).OnValidatePathChanged((bool)e.NewValue);
+        }
+
+        public static DependencyProperty ValidatePathToolTipProperty = DependencyProperty.Register("ValidatePathToolTip", typeof(string), typeof(FileBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public string ValidatePathToolTip
+        {
+            get
+            {
+                return (string)GetValue(ValidatePathToolTipProperty);
+            }
+            set
+            {
+                SetValue(ValidatePathToolTipProperty, value);
             }
         }
 
@@ -121,7 +160,7 @@ namespace Imagin.Controls.Common
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            this.Template.FindName("PART_BrowseButton", this).As<MaskedButton>().Click += this.OnClick;
+            Template.FindName("PART_Button", this).As<MaskedButton>().Click += this.OnClick;
         }
 
         protected virtual void OnValidatePathChanged(bool Value)

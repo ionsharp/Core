@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Imagin.Common.Mvvm
+namespace Imagin.Common.Data
 {
     public class BindingProxy : Freezable
     {

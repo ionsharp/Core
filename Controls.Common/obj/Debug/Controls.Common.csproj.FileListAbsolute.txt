@@ -100,4 +100,7 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debu
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.Lang.Main.resources
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csproj.GenerateResource.Cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.XML
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.xml

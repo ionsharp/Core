@@ -75,7 +75,7 @@
                             </ToggleButton.Template>
                         </ToggleButton>
                         <ContentControl 
-                            Content="{TemplateBinding SelectedItem}"
+                            x:Name="PART_Content"
                             Margin="8,0,21,0"
                             IsHitTestVisible="False" 
                             VerticalAlignment="Center" 
@@ -116,7 +116,7 @@
                                     BorderThickness="1" 
                                     BorderBrush="{DynamicResource Brush.ComboBox.DropDown.Border}"
                                     Padding="5">
-                                    <TreeView 
+                                    <local:AdvancedTreeView 
                                         x:Name="PART_TreeView" 
                                         BorderThickness="0" 
                                         ItemBindingGroup="{TemplateBinding ItemBindingGroup}"

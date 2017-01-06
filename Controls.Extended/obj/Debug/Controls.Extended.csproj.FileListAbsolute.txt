@@ -113,3 +113,5 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\De
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Imagin.Controls.Extended.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Imagin.Controls.Extended.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Controls.Extended.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\Debug\Imagin.Controls.Extended.XML
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\Debug\Imagin.Controls.Common.xml

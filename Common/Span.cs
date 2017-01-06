@@ -30,7 +30,7 @@
     }
 
     /// <summary>
-    /// Represents a writable 3-tuple, or pair.
+    /// Represents a writable 3-tuple.
     /// </summary>
     /// <typeparam name="T1"></typeparam>
     /// <typeparam name="T2"></typeparam>
@@ -55,7 +55,7 @@
     }
 
     /// <summary>
-    /// Represents a writable 4-tuple, or pair.
+    /// Represents a writable 4-tuple.
     /// </summary>
     /// <typeparam name="T1"></typeparam>
     /// <typeparam name="T2"></typeparam>
@@ -82,7 +82,7 @@
     }
 
     /// <summary>
-    /// Represents a writable 5-tuple, or pair.
+    /// Represents a writable 5-tuple.
     /// </summary>
     /// <typeparam name="T1"></typeparam>
     /// <typeparam name="T2"></typeparam>
@@ -111,7 +111,7 @@
     }
 
     /// <summary>
-    /// Represents a writable 6-tuple, or pair.
+    /// Represents a writable 6-tuple.
     /// </summary>
     /// <typeparam name="T1"></typeparam>
     /// <typeparam name="T2"></typeparam>

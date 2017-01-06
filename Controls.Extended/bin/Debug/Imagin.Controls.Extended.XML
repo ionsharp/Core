@@ -1,0 +1,471 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Imagin.Controls.Extended</name>
+    </assembly>
+    <members>
+        <member name="T:Imagin.Controls.Extended.GradientChip">
+            <summary>
+            GradientChip
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.GradientChip.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.CollectionEditor">
+            <summary>
+            CollectionEditor
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CollectionEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorComb.InitializeChildren">
+            <summary>
+            Initialize children.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorComb.InitializeChildren(Imagin.Controls.Extended.HexagonButton,System.Int32)">
+            <summary>
+            Initialize surrounding nodes; this method is recursive.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorComb.CascadeChildColors">
+            <summary>
+            Cascade children with color.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorComb.CascadeChildColors(Imagin.Controls.Extended.HexagonButton)">
+            <summary>
+            Cascase children with color; this method is recursive.
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.AlphaSlider">
+            <summary>
+            AlphaSlider
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AlphaSlider.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorChip">
+            <summary>
+            ColorChip
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorChip.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Extended.ColorPicker" -->
+        <member name="M:Imagin.Controls.Extended.ColorPicker.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorSelector">
+            <summary>
+            ColorSelector
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSelector.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorDialog">
+            <summary>
+            ColorDialog
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Extended.CmykModel" -->
+        <member name="P:Imagin.Controls.Extended.ComponentModel.MaxValue">
+            <summary>
+            The largest possible value for a component (value when slider at top)
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.MinValue">
+            <summary>
+            The smallest possible value for a component (value when slider at bottom)
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentModel.GetValue(System.Windows.Media.Color)">
+            <summary>
+            The value of the component for a given color
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.NormalComponentModel.IsNormalIndependantOfColor">
+            <summary>
+            Is the Normal bitmap independent of the specific color (false for all but Hue of HSB)
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NormalComponentModel.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            Gets the color corresponding to a selected point (with 255 alpha)
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NormalComponentModel.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            Gets the point on the color plane that corresponds to the color (alpha ignored)
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NormalComponentModel.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Controls.Extended.Primitives.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            Updates the color plane bitmap (the bitmap where one selects the colors)
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NormalComponentModel.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Controls.Extended.Primitives.Rgba},System.Boolean)">
+            <summary>
+            Updates the normal Bitmap (The bitmap with the slider)
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Luv.L">
+            <summary>
+            Gets or sets the lightness component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Luv.U">
+            <summary>
+            Gets or sets the u component (-1 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Luv.V">
+            <summary>
+            Gets or sets the v component (-1 to 1).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Luv.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a Luv structure.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Cmyk.C">
+            <summary>
+            Gets or sets the cyan component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Cmyk.M">
+            <summary>
+            Gets or sets the magenta component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Cmyk.Y">
+            <summary>
+            Gets or sets the yellow component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Cmyk.K">
+            <summary>
+            Gets or sets the black component (0 to 1).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a Cmyk structure.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Hsb.H">
+            <summary>
+            Gets or sets the hue component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Hsb.S">
+            <summary>
+            Gets or sets the saturation component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Hsb.B">
+            <summary>
+            Gets or sets the brightness component (0 to 1).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a Hsb structure.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Hsl.H">
+            <summary>
+            Gets or sets the hue component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Hsl.S">
+            <summary>
+            Gets or sets the saturation component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Hsl.L">
+            <summary>
+            Gets or sets the lightness component (0 to 1).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsl.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a Hsl structure.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Lab.L">
+            <summary>
+            Gets or sets the luminance component (0 to 100).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Lab.A">
+            <summary>
+            Gets or sets the opposing a component (-127 to 128).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Lab.B">
+            <summary>
+            Gets or sets the opposing b component (-127 to 128).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Lab.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a Lab structure.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Lch.L">
+            <summary>
+            Gets or sets the luminance component (0 to 100).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Lch.C">
+            <summary>
+            Gets or sets the chroma component (0 to 100).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Lch.H">
+            <summary>
+            Gets or sets the hue component (0 to 359).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Lch.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a Lch structure.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Rgba.R">
+            <summary>
+            Gets or sets the red component (0 to 255).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Rgba.G">
+            <summary>
+            Gets or sets the green component (0 to 255).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Rgba.B">
+            <summary>
+            Gets or sets the blue component (0 to 255).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Rgba.A">
+            <summary>
+            Gets or sets the alpha component (0 to 255).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Rgba.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates an instance of a Rgba structure.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Rgba.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates an instance of a Rgba structure.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Xyz.X">
+            <summary>
+            Gets or sets the x component (0 to Illuminant.Max.X).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Xyz.Y">
+            <summary>
+            Gets or sets the y component (0 to Illuminant.Max.Y).
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Primitives.Xyz.Z">
+            <summary>
+            Gets or sets the component (0 to Illuminant.Max.Z).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Xyz.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a Xyz structure.
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.GradientEditor">
+            <summary>
+            GradientEditor
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.GradientEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.GradientDialog">
+            <summary>
+            GradientDialog
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.GradientDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.HexagonButton.Radius">
+            <summary>
+            Corresponds to path geometry in XAML.
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.DualColorChip">
+            <summary>
+            DualColorChip
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.DualColorChip.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.NewCurrent">
+            <summary>
+            NewCurrent
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.NewCurrent.CurrentColor">
+            <summary>
+            The color being selected 
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.NewCurrent.Alpha">
+            <summary>
+            The Alpha Component of the currrent color
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NewCurrent.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.PropertyGrid">
+            <summary>
+            PropertyGrid
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyGrid.SetObject(System.Object)">
+            <summary>
+            Populate this.Properties with PropertyModels representing each member of the SelectedObject.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyGrid.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyModelCollection.Object">
+            <summary>
+            The object to evaluate.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModelCollection.Featured">
+            <summary>
+            The featured property. This property is placed above all other properties.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModelCollection.ActiveProperty">
+            <summary>
+            The active property.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModelCollection.BeginFrom(System.Func{System.Object,System.Collections.Generic.IEnumerable{Imagin.Controls.Extended.PropertyModel}},System.Action)">
+            <summary>
+            Set and add custom properties.
+            </summary>
+            <param name="Source">A function that enumerates an object and returns a list of property models.</param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModelCollection.BeginFromObject(System.Object,System.Action)">
+            <summary>
+            Set properties by enumerating the properties of an object.
+            </summary>
+            <param name="Callback">What to do afterwards.</param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ResourceDictionaryEditor.BeginFromResourceDictionary(System.Windows.ResourceDictionary,System.Action)">
+            <summary>
+            Set properties by enumerating a resource dictionary.
+            </summary>
+            <param name="Dictionary">The dictionary to enumerate.</param>
+            <param name="Callback">What to do afterwards.</param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.TabbedTree">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.MenuPadding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.SelectedIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.TabbedTree.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.TabbedTree.SetSelectedIndex(System.Int32[])">
+            <summary>
+            Set selected index by specifying numeric depth.
+            </summary>
+            <param name="Values"></param>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

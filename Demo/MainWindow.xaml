@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.NET.Demo"
+    xmlns:Common="clr-namespace:Imagin.Common;assembly=Imagin.Common"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
     xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
     xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended"
@@ -141,7 +142,7 @@
                 <Controls.Common:Spacer Spacing="0,0,0,10" Margin="10">
                     <TextBlock Style="{DynamicResource H2}" Text="AdvancedTextBox"/>
                     <Controls.Common:Spacer DataContext="{Binding ElementName=PART_AdvancedTextBox}" Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center" VerticalContentAlignment="Center">
-                        <Label Content="Placeholder"/>
+                        <Label Content="Placeholder:"/>
                         <Controls.Common:AdvancedTextBox Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <CheckBox Content="Select All On Triple Click" IsChecked="{Binding SelectAllOnTripleClick}"/>
                         <CheckBox Content="Select On Focus" IsChecked="{Binding SelectOnFocus}"/>
@@ -167,25 +168,23 @@
                         HorizontalAlignment="Center" 
                         VerticalContentAlignment="Center"
                         Margin="0,10">
-                        <Label Content="{Binding Columns.Count, Mode=OneWay, StringFormat={}Columns: {0}}"/>
-                        <Label Content="{Binding SelectedItems.Count, Mode=OneWay, StringFormat={}Selected Items: {0}, ElementName=PART_AdvancedTreeView}"/>
+                        <Label Content="{Binding Columns.Count, Mode=OneWay}" ContentStringFormat="{}Columns: {0}"/>
+                        <Label Content="{Binding SelectedItems.Count, Mode=OneWay, ElementName=PART_AdvancedTreeView}" ContentStringFormat="{}Selected Items: {0}"/>
                         <CheckBox Content="Expand on click" IsChecked="{Binding ExpandOnClick}"/>
                         <CheckBox Content="Collapse siblings" IsChecked="{Binding CollapseSiblingsOnClick}"/>
                         <CheckBox Content="Select on right click" IsChecked="{Binding SelectOnRightClick}"/>
                         <CheckBox Content="Select none on empty space click" IsChecked="{Binding SelectNoneOnEmptySpaceClick}"/>
                         <CheckBox Content="Show header" IsChecked="{Binding SelectNoneOnEmptySpaceClick}"/>
+
+                        <Label Content="Selection Mode:"/>
                         <ComboBox 
                             SelectedValue="{Binding SelectionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            ItemsSource="{Binding SelectionMode, Converter={StaticResource EnumToCollectionConverter}}"
-                            ToolTip="Selection Mode"/> 
+                            ItemsSource="{Binding Source={x:Type Controls.Common:TreeViewSelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
+                        
+                        <Label Content="Column Header Visibility:"/>
                         <ComboBox 
                             SelectedValue="{Binding ColumnHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            ItemsSource="{Binding ColumnHeaderVisibility, Converter={StaticResource EnumToCollectionConverter}}"
-                            ToolTip="Column Header Visibility"/>
-                        <ComboBox 
-                            SelectedValue="{Binding ColumnVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
-                            ToolTip="Column Visibility"/>
+                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"/>
                     </Controls.Common:Spacer>
                     
                     <Controls.Common:AdvancedTreeView 
@@ -294,21 +293,25 @@
                             Spacing="0,0,15,0" 
                             HorizontalAlignment="Left"
                             VerticalContentAlignment="Center">
-                            <Label Content="Total Hexagons"/>
+                            <Label Content="Total Hexagons:"/>
                             <Controls.Common:AdvancedTextBox 
                                 IsReadOnly="True"
                                 Text="{Binding TotalChildren, Mode=OneWay}"/>
-                            <Label Content="Max Generations"/>
+
+                            <Label Content="Max Generations:"/>
                             <Controls.Common:IntUpDown 
                                 Value="{Binding MaxGenerations}"
                                 Minimum="1"
                                 Maximum="12"/>
-                            <Label Content="Selected Color"/>
+
+                            <Label Content="Selected Color:"/>
                             <Controls.Common:AdvancedTextBox 
                                 IsReadOnly="True"
                                 Text="{Binding SelectedColor, Mode=OneWay, Converter={StaticResource ColorToHexConverter}, StringFormat={}#{0}}"/>
+
                             <CheckBox Content="Uses Gradients" IsChecked="{Binding UsesGradients}"/>
-                            <Label Content="Item Stroke Thickness"/>
+                            <Label Content="Item Stroke Thickness:"/>
+
                             <Controls.Common:DoubleUpDown 
                                 Value="{Binding ItemStrokeThickness}"
                                 Increment="0.01"
@@ -413,9 +416,51 @@
                 </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="FileBox">
-                <Grid Margin="10">
-                    <Controls.Common:FileBox VerticalAlignment="Top"/>
-                </Grid>
+                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
+                    <Controls.Common:Spacer 
+                        DataContext="{Binding ElementName=PART_FileBox}"
+                        Orientation="Horizontal"
+                        Spacing="0,0,10,0" 
+                        TrimLast="True">
+                        <Label Content="ButtonPosition:"/>
+                        <ComboBox 
+                            SelectedValue="{Binding ButtonPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type Common:LeftRight}, Converter={StaticResource EnumToCollectionConverter}}"/>
+
+                        <Label Content="ButtonToolTip:"/>
+                        <Controls.Common:AdvancedTextBox 
+                            Text="{Binding ButtonToolTip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="ButtonVisibility:"/>
+                        <ComboBox 
+                            SelectedValue="{Binding ButtonVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"/>
+                        
+                        <Label Content="DialogProviderMode:"/>
+                        <ComboBox 
+                            SelectedValue="{Binding DialogProviderMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type Common:DialogProviderMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
+                        
+                        <Label Content="DialogProviderTitle:"/>
+                        <Controls.Common:AdvancedTextBox 
+                            Text="{Binding DialogProviderTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <CheckBox 
+                            Content="ValidatePath"
+                            IsChecked="{Binding ValidatePath}"/>
+                    </Controls.Common:Spacer>
+
+                    <Controls.Common:FileBox
+                        x:Name="PART_FileBox"
+                        ButtonPosition="Right"
+                        ButtonToolTip="Click to browse..."
+                        ButtonVisibility="Visible"
+                        DialogProviderMode="OpenFile"
+                        DialogProviderTitle="Open File"
+                        ValidatePath="True"
+                        ValidatePathToolTip="Path is valid"
+                        VerticalAlignment="Top"/>
+                </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="Font">
                 <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
@@ -433,13 +478,13 @@
                         Orientation="Horizontal"
                         Spacing="0,0,10,0" 
                         TrimLast="True">
-                        <Label Content="Wheel Tick"/>
+                        <Label Content="Wheel Tick:"/>
                         <Controls.Common:DoubleUpDown Text="{Binding WheelTick}"/>
 
-                        <Label Content="Wheel Tick (Min)"/>
+                        <Label Content="Wheel Tick (Min):"/>
                         <Controls.Common:DoubleUpDown Text="{Binding WheelTickMin}"/>
 
-                        <Label Content="Wheel Tick (Max)"/>
+                        <Label Content="Wheel Tick (Max):"/>
                         <Controls.Common:DoubleUpDown Text="{Binding WheelTickMax}"/>
                     </Controls.Common:Spacer>
 
@@ -448,6 +493,7 @@
                     <TextBlock 
                         FontFamily="{Binding SelectedItem, Mode=OneWay, ElementName=PART_FontFamilyBox}"
                         FontSize="{Binding Text, Mode=OneWay, ElementName=PART_FontSizeBox}"
+                        Foreground="{DynamicResource Brush.Text}"
                         Text="This is sample text"/>
                 </Controls.Common:Spacer>
             </TabItem>
@@ -641,6 +687,7 @@
                     </Grid.RowDefinitions>
                     <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,15,0">
                         <CheckBox Content="Can enter" IsChecked="{Binding CanEnter, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
+                        <Label Content="Hint:"/>
                         <Controls.Common:AdvancedTextBox Text="{Binding Hint, ElementName=PART_PasswordBox, UpdateSourceTrigger=PropertyChanged}" Placeholder="Enter a hint..." VerticalAlignment="Center" IsEnabled="{Binding ShowHint, ElementName=PART_PasswordBox}"/>
                         <CheckBox Content="Show enter button" IsChecked="{Binding ShowEnterButton, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
                         <CheckBox Content="Show password" IsChecked="{Binding ShowPassword, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
@@ -678,23 +725,25 @@
                             Content="AcceptNullObjects"
                             IsChecked="{Binding AcceptNullObjects}"/>
                         
-                        <Label Content="DateTimeFormat"/>
-                        <Controls.Common:AdvancedTextBox
-                            Text="{Binding DateTimeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        
-                        <Label Content="FileSizeFormat"/>
+                        <Label Content="DateTimeFormat:"/>
+                        <ComboBox 
+                            SelectedValue="{Binding DateTimeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type Controls.Common:DateTimeFormat}, Converter={StaticResource EnumToCollectionConverter}}"
+                            ToolTip="Column Visibility"/>
+
+                        <Label Content="FileSizeFormat:"/>
                         <ComboBox 
                             SelectedValue="{Binding FileSizeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type Common.Data:FileSizeFormat}, Converter={StaticResource EnumToCollectionConverter}}"
                             ToolTip="Column Visibility"/>
 
-                        <Label Content="GridLinesVisibility"/>
+                        <Label Content="GridLinesVisibility:"/>
                         <ComboBox 
                             SelectedValue="{Binding GridLinesVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type DataGridGridLinesVisibility}, Converter={StaticResource EnumToCollectionConverter}}"
                             ToolTip="Column Visibility"/>
 
-                        <Label Content="HeadersVisibility"/>
+                        <Label Content="HeadersVisibility:"/>
                         <ComboBox 
                             SelectedValue="{Binding HeadersVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type DataGridHeadersVisibility}, Converter={StaticResource EnumToCollectionConverter}}"

@@ -70,3 +70,7 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Th
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Common.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Themes.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Common.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Extended.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.xml

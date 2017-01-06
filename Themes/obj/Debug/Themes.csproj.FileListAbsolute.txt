@@ -88,3 +88,5 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.ToggleSwitch.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Imagin.Common.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.PropertyGrid.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Imagin.Controls.Common.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Imagin.Controls.Extended.xml
