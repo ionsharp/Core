@@ -28,6 +28,14 @@ PropertyGrid | ResourceDictionaryEditor |
 -----|-----|
 ClockGadget (in progress) | SearchGadget |
 
+##Dependencies
+  Name  |  Version  |  Url  |
+--------|-----------|-------|
+WindowsAPICodePack-Core | 1.1.2 | https://github.com/aybe/Windows-API-Code-Pack-1.1 |
+WindowsAPICodePack-Shell | 1.1.1 | http://archive.msdn.microsoft.com/WindowsAPICodePack |
+WpfLocalizeExtension | 2.3.2 | https://github.com/SeriousM/WPFLocalizationExtension/ |
+XAMLMarkupExtensions | 1.2.2 | http://xamlmarkupextensions.codeplex.com/ |
+
 ##Donate
 
 [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=AJJG6PWLBYQNG)
