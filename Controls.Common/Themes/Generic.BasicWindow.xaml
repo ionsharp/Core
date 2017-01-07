@@ -60,7 +60,6 @@
                         Orientation="Horizontal" 
                         VerticalAlignment="Top"
                         WindowChrome.IsHitTestVisibleInChrome="True">
-                        <!--
                         <Button 
                             x:Name="PART_MinimizeButton"
                             ToolTip="Minimize" 
@@ -79,14 +78,14 @@
                             x:Name="PART_CloseButton"
                             ToolTip="Close" 
                             Style="{DynamicResource Style.Window.Button.Close}"/>
-                        -->
                     </StackPanel>
                 </Grid>
                 <AdornerDecorator Grid.Row="1" >
                     <Border 
                         x:Name="ContentBorder" 
                         BorderBrush="{DynamicResource Brush.Border.BorderBrush}"
-                        BorderThickness="0,1,0,0">
+                        BorderThickness="0,1,0,0"
+                        Padding="{TemplateBinding Padding}">
                         <ContentPresenter />
                     </Border>
                 </AdornerDecorator>
@@ -112,8 +111,12 @@
             <Trigger Property="local:BasicWindow.Type" Value="Tool">
             </Trigger>
             <Trigger Property="WindowState" Value="Maximized">
+                <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="PART_RestoreButton" Property="Visibility" Value="Visible" />
             </Trigger>
             <Trigger Property="WindowState" Value="Normal">
+                <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Visible" />
+                <Setter TargetName="PART_RestoreButton" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

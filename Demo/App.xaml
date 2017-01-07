@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Imagin.NET.Demo"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     StartupUri="MainWindow.xaml">
@@ -11,34 +12,16 @@
         <ResourceDictionary>
             <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 
-            <!--
-            <System:Double x:Key="DisabledOpacity">0.4</System:Double>
-
-            <Storyboard x:Key="FadeInAnimation">
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1.0" Duration="0:0:0.5" AccelerationRatio="0.4" DecelerationRatio="0.4"/>
-            </Storyboard>
-
-            <Style TargetType="{x:Type GridSplitter}">
-                <Setter Property="Background" Value="{DynamicResource Brush.GridSplitter.Background}" />
-            </Style>
-
-            <Style x:Key="H2" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="16"/>
-                <Setter Property="Foreground" Value="#007acc"/>
-            </Style>
-            -->
-
             <Style x:Key="H2" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="Foreground" Value="#007acc"/>
             </Style>
 
-            <Style x:Key="{x:Type local:MainWindow}" TargetType="{x:Type local:MainWindow}" BasedOn="{StaticResource {x:Type Controls.Common:BasicWindow}}">
-            </Style>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Themes/Default.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.Window.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

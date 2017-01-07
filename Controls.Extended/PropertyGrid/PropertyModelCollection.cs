@@ -1,22 +1,20 @@
-﻿using Imagin.Common.Attributes;
-using Imagin.Common.Collections.Concurrent;
+﻿using Imagin.Common.Collections.Concurrent;
 using Imagin.Common.Extensions;
 using Imagin.Common.Input;
-using Imagin.Common.Scheduling;
 using Imagin.Common.Text;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Imagin.Controls.Extended
 {
-    public sealed class PropertyModelCollection : ConcurrentObservableCollection<PropertyModel>
+    public class PropertyModelCollection : ConcurrentObservableCollection<PropertyModel>
     {
         #region Properties
 
@@ -75,7 +73,6 @@ namespace Imagin.Controls.Extended
                     typeof(long),
                     typeof(LinearGradientBrush),
                     typeof(NetworkCredential),
-                    typeof(RepeatOptions),
                     typeof(short),
                     typeof(Size),
                     typeof(SolidColorBrush),
@@ -127,8 +124,7 @@ namespace Imagin.Controls.Extended
                 }
             });
 
-            if (Callback != null)
-                Callback.Invoke();
+            Callback.InvokeIf(x => !x.IsNull());
         }
 
         /// <summary>
@@ -175,8 +171,40 @@ namespace Imagin.Controls.Extended
                 }
             });
 
-            if (Callback != null)
-                Callback.Invoke();
+            Callback.InvokeIf(x => !x.IsNull());
+        }
+
+        /// <summary>
+        /// Set properties by enumerating a resource dictionary.
+        /// </summary>
+        /// <param name="Dictionary">The dictionary to enumerate.</param>
+        /// <param name="Callback">What to do afterwards.</param>
+        public async Task BeginFromResourceDictionary(ResourceDictionary Dictionary, Action Callback = null)
+        {
+            if (Dictionary == null) return;
+
+            await Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                foreach (DictionaryEntry i in Dictionary)
+                {
+                    if (i.Value != null)
+                    {
+                        var Type = i.Value.GetType();
+                        if (Type.EqualsAny(typeof(LinearGradientBrush), typeof(SolidColorBrush)))
+                        {
+                            Type = PropertyModel.GetType(Type);
+                            if (Type != null)
+                            {
+                                var Result = PropertyModel.New(Type, i.Key.ToString(), i.Value, Type.Name.SplitCamelCase(), string.Empty, false, false);
+                                Result.Object = Object;
+                                Add(Result);
+                            }
+                        }
+                    }
+                }
+            }));
+
+            Callback.InvokeIf(x => !x.IsNull());
         }
 
         #endregion

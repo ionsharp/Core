@@ -2,6 +2,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <SolidColorBrush x:Key="Brush.AnglePicker.Background" Color="#05000000"/>
+    <SolidColorBrush x:Key="Brush.AnglePicker.NeedleStroke" Color="#007acc"/>
+    <SolidColorBrush x:Key="Brush.AnglePicker.OriginFill" Color="#CCC"/>
+    <SolidColorBrush x:Key="Brush.AnglePicker.OriginStroke" Color="#CCC"/>
+
     <SolidColorBrush x:Key="Brush.Border" Color="#DDD"/>
     <SolidColorBrush x:Key="Brush.Border.BorderBrush" Color="#DDD"/>
 
@@ -66,6 +71,12 @@
     <SolidColorBrush x:Key="Brush.DataGrid.GridLines.Horizontal" Color="Transparent"/>
     <SolidColorBrush x:Key="Brush.DataGrid.GridLines.Vertical" Color="#e8f1fb"/>
 
+    <SolidColorBrush x:Key="Brush.DataGridCell.Foreground" Color="#333"/>
+    <SolidColorBrush x:Key="Brush.DataGridCell.MouseOver.Background" Color="#11000000"/>
+    <SolidColorBrush x:Key="Brush.DataGridCell.MouseOver.Foreground" Color="#FCFCFC"/>
+    <SolidColorBrush x:Key="Brush.DataGridCell.Selected.Background" Color="#22000000"/>
+    <SolidColorBrush x:Key="Brush.DataGridCell.Selected.Foreground" Color="#FCFCFC"/>
+
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Background" Color="#FCFCFC"/>
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Border" Color="#CCC"/>
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Foreground" Color="#333"/>
@@ -79,13 +90,10 @@
 
     <SolidColorBrush x:Key="Brush.DataGridRow.Foreground" Color="#333"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Background" Color="#FF6CC6FF"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Foreground" Color="#333"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Background" Color="#60bffb"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Foreground" Color="#333"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Even.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Odd.Background" Color="Gainsboro"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Background" Color="#a9dffe"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Foreground" Color="#333"/>
 
     <SolidColorBrush x:Key="Brush.Error" Color="#900"/>
     <SolidColorBrush x:Key="Brush.Success" Color="#25bd5b"/>

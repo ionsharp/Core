@@ -4,17 +4,27 @@
     /// Provides enumerator for strings 
     /// of various representations.
     /// </summary>
-    /// <remarks>
-    /// 'Unspecified' refers to any kind 
-    /// not specified in enumeration
-    /// and should be the default value.
-    /// </remarks>
     public enum StringRepresentation
     {
+        /// <summary>
+        /// Unspecified string (or default).
+        /// </summary>
         Unspecified = 0,
+        /// <summary>
+        /// Specifies a regular string.
+        /// </summary>
         Regular = 1,
+        /// <summary>
+        /// Specifies a file system path.
+        /// </summary>
         FileSystemPath = 2,
+        /// <summary>
+        /// Specifies a multiline string.
+        /// </summary>
         Multiline = 3,
+        /// <summary>
+        /// Specifies a password string.
+        /// </summary>
         Password = 4
     }
 }

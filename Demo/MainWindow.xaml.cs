@@ -18,6 +18,11 @@ namespace Imagin.NET.Demo
 {
     #region FileSystemEntryModel
 
+    public enum ServerObjectType
+    {
+        Folder,
+        File
+    }
     public class FileSystemEntryModel : NamedObject
     {
         Guid id = Guid.NewGuid();
@@ -424,103 +429,6 @@ namespace Imagin.NET.Demo
     {
         #region Properties
 
-        /*
-        static Random Random = new Random();
-
-        string LastPath = string.Empty;
-
-        public static DependencyProperty ShortValueProperty = DependencyProperty.Register("ShortValue", typeof(short), typeof(MainWindow), new FrameworkPropertyMetadata((short)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public short ShortValue
-        {
-            get
-            {
-                return (short)GetValue(ShortValueProperty);
-            }
-            set
-            {
-                SetValue(ShortValueProperty, value);
-            }
-        }
-
-        public static DependencyProperty IntValueProperty = DependencyProperty.Register("IntValue", typeof(int), typeof(MainWindow), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public int IntValue
-        {
-            get
-            {
-                return (int)GetValue(IntValueProperty);
-            }
-            set
-            {
-                SetValue(IntValueProperty, value);
-            }
-        }
-
-        public static DependencyProperty ByteValueProperty = DependencyProperty.Register("ByteValue", typeof(byte), typeof(MainWindow), new FrameworkPropertyMetadata((byte)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public byte ByteValue
-        {
-            get
-            {
-                return (byte)GetValue(ByteValueProperty);
-            }
-            set
-            {
-                SetValue(ByteValueProperty, value);
-            }
-        }
-
-        public static DependencyProperty LongValueProperty = DependencyProperty.Register("LongValueProperty", typeof(long), typeof(MainWindow), new FrameworkPropertyMetadata(0L, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public long LongValue
-        {
-            get
-            {
-                return (long)GetValue(LongValueProperty);
-            }
-            set
-            {
-                SetValue(LongValueProperty, value);
-            }
-        }
-
-        public static DependencyProperty DoubleValueProperty = DependencyProperty.Register("DoubleValue", typeof(double), typeof(MainWindow), new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public double DoubleValue
-        {
-            get
-            {
-                return (double)GetValue(DoubleValueProperty);
-            }
-            set
-            {
-                SetValue(DoubleValueProperty, value);
-            }
-        }
-
-        public static DependencyProperty DecimalValueProperty = DependencyProperty.Register("DecimalValue", typeof(decimal), typeof(MainWindow), new FrameworkPropertyMetadata(0m, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public decimal DecimalValue
-        {
-            get
-            {
-                return (decimal)GetValue(DecimalValueProperty);
-            }
-            set
-            {
-                SetValue(DecimalValueProperty, value);
-            }
-        }
-
-        public static DependencyProperty SelectedFileSystemEntriesProperty = DependencyProperty.Register("SelectedFileSystemEntries", typeof(ObservableCollection<object>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public ObservableCollection<object> SelectedFileSystemEntries
-        {
-            get
-            {
-                return (ObservableCollection<object>)GetValue(SelectedFileSystemEntriesProperty);
-            }
-            set
-            {
-                SetValue(SelectedFileSystemEntriesProperty, value);
-            }
-        }
-        */
-
         public static DependencyProperty FileSystemCollectionProperty = DependencyProperty.Register("FileSystemCollection", typeof(FileSystemCollection), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public FileSystemCollection FileSystemCollection
         {
@@ -582,12 +490,11 @@ namespace Imagin.NET.Demo
             InitializeComponent();
 
             //AlignableWrapPanel
-            for (int i = 0; i < 100; i++)
+            for (int i = 1; i <= 84; i++)
             {
-                var BaseTitle = i < 25 ? "Title" : (i < 50 ? "Another Title" : (i < 75 ? "Yet Another Title" : "Yet A Longer Title"));
                 PART_AlignableWrapPanel.Children.Add(new Button()
                 {
-                    Content = BaseTitle + i.ToString()
+                    Content = "Button {0}".F(i)
                 });
             }
 

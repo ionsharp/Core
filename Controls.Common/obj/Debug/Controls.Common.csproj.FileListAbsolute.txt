@@ -86,14 +86,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debu
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.DateTimePicker.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.DateTimeUpDown.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TimePicker.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\RepeatBox\RepeatBox.g.cs
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\RepeatBox\RepeatBox.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\CheckableDatePicker\CheckableMonths.g.cs
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\CheckableDatePicker\CheckableWeekDays.g.cs
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\CheckableDatePicker\CheckableDays.g.cs
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\CheckableDatePicker\CheckableMonths.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\CheckableDatePicker\CheckableWeekDays.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\CheckableDatePicker\CheckableDays.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.BasicWindow.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\SelectionCanvas.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\SelectionCanvas.baml
@@ -101,6 +93,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debu
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csproj.GenerateResource.Cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.XML
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache

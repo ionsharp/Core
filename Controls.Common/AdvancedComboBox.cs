@@ -63,8 +63,8 @@ namespace Imagin.Controls.Common
             {
                 PART_TextBox.As<AdvancedTextBox>().Entered += (s, e) =>
                 {
-                    if (this.Entered != null)
-                        this.Entered(this, e);
+                    if (Entered != null)
+                        Entered(this, e);
                 };
             }
         }

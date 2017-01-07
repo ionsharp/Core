@@ -253,17 +253,6 @@
                                     Text="{Binding Value.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:RepeatOptionsPropertyModel}">
-                            <StackPanel>
-                                <CheckBox
-                                    Content="{l:Loc Repeat}"
-                                    IsChecked="{Binding Value.Repeats}"
-                                    Margin="0,7"/>
-                                <Controls.Common:RepeatBox
-                                    HorizontalAlignment="Stretch"
-                                    RepeatOptions="{Binding Value}"/>
-                            </StackPanel>
-                        </DataTemplate>
                         <DataTemplate DataType="{x:Type local:ShortPropertyModel}">
                             <Controls.Common:ShortUpDown 
                                 IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
@@ -503,8 +492,8 @@
                                 <Binding Path="Properties.Featured"/>
                             </MultiBinding>
                         </Grid.Visibility>
-                        <TextBlock 
-                            Text="{Binding Properties.Featured.Name}" 
+                        <Label 
+                            Content="{Binding Properties.Featured.Name}" 
                             Margin="0,0,10,0" 
                             VerticalAlignment="Center"/>
                         <ContentControl
@@ -541,18 +530,19 @@
                         VirtualizingPanel.VirtualizationMode="Recycling"
                         VirtualizingPanel.IsContainerVirtualizable="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn
-                                Header="Name" 
-                                SortMemberPath="Name" 
-                                Binding="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToCamelCaseConverter}}">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-                                        <Setter Property="ToolTip" Value="{Binding Name}" />
-                                        <Setter Property="VerticalAlignment" Value="Center" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </DataGridTextColumn>
+                            <DataGridTemplateColumn 
+                                Header="Name"
+                                SortMemberPath="Name">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock 
+                                            Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToCamelCaseConverter}}"
+                                            TextTrimming="CharacterEllipsis"
+                                            ToolTip=""
+                                            VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTemplateColumn 
                                 Header="Value" 
                                 CellTemplate="{StaticResource PropertyModelTemplate}"/>

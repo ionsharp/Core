@@ -59,19 +59,17 @@ namespace Imagin.Controls.Extended
 
         #region ColorDialog
 
-        public ColorDialog()
+        public ColorDialog() : base()
         {
             InitializeComponent();
-            this.PART_ColorPicker.SelectedColorChanged += OnSelectedColorChanged;
+            PART_ColorPicker.SelectedColorChanged += OnSelectedColorChanged;
         }
 
-        public ColorDialog(string Title, Color InitialColor, ColorChip ColorChip = null)
+        public ColorDialog(string Title, Color InitialColor, ColorChip ColorChip = null) : this()
         {
-            InitializeComponent();
-            this.Title = Title;
-            this.InitialColor = InitialColor;
-            this.ColorChip = ColorChip;
-            this.PART_ColorPicker.SelectedColorChanged += OnSelectedColorChanged;
+            Title = Title;
+            InitialColor = InitialColor;
+            ColorChip = ColorChip;
         }
 
         #endregion

@@ -79,8 +79,8 @@ namespace Imagin.Controls.Common
 
         public CheckerBoard() : base()
         {
-            this.DefaultStyleKey = typeof(CheckerBoard);
-            this.Background = this.DrawingBrush;
+            DefaultStyleKey = typeof(CheckerBoard);
+            Background = this.DrawingBrush;
         }
     }
 }

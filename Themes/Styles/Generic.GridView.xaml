@@ -4,14 +4,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Style x:Key="{x:Type GridViewColumnHeader}" TargetType="GridViewColumnHeader">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Background" Value="#33FFFFFF" />
+        <Setter Property="Background" Value="{DynamicResource Brush.DataGridColumnHeader.Background}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.DataGridColumnHeader.Border}" />
         <Setter Property="BorderThickness" Value="1,0,1,1" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.DataGridColumnHeader.Foreground}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="-1,0,0,0" />
         <Setter Property="MinHeight" Value="30" />
         <Setter Property="Padding" Value="10,0" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -23,8 +22,7 @@
                         Name="HeaderBorder"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        Background="{TemplateBinding Background}"
-                        Padding="{TemplateBinding Padding}">
+                        Background="{TemplateBinding Background}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -32,16 +30,16 @@
                             </Grid.ColumnDefinitions>
                             <ContentPresenter 
                                 Name="HeaderContent"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"
                                 RecognizesAccessKey="True"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <Thumb 
                                 Grid.Column="1"
                                 x:Name="PART_HeaderGripper"
                                 Cursor="SizeWE"
-                                Margin="-8,0,-9,0"
-                                HorizontalAlignment="Right"
+                                Margin="-8,0,-10,0"
                                 Style="{DynamicResource Style.DataGridColumnHeader.Thumb}"/>
                         </Grid>
                     </Border>

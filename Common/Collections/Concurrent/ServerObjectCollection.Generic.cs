@@ -1,5 +1,4 @@
-﻿using Imagin.Common.Data;
-using Imagin.Common.Extensions;
+﻿using Imagin.Common.Extensions;
 using Imagin.Common.Input;
 using Imagin.Common.Web;
 using Imagin.Common.Web.Server;

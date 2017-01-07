@@ -5,6 +5,8 @@
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
     x:Name="PART_GradientEditor">
+    <UserControl.Resources>
+    </UserControl.Resources>
     <Grid DataContext="{Binding ElementName=PART_GradientEditor}" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -93,6 +95,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            
             <Label 
                 Content="Start" 
                 HorizontalAlignment="Center"
@@ -103,25 +106,25 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Controls.Common:DoubleUpDown
-                    Minimum="0"
-                    Maximum="1.0"
-                    Text="{Binding StartPoint.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    MinWidth="30"
-                    Margin="5,0"
                     Increment="0.01"
+                    Margin="5,0"
+                    Maximum="1.0"
+                    Minimum="0"
+                    MinWidth="30"
                     StringFormat="N2"
-                    VerticalAlignment="Center"
-                    TextChanged="OnPointChanged"/>
+                    Text="{Binding StartPoint.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="OnPointChanged"
+                    VerticalAlignment="Center"/>
                 <Controls.Common:DoubleUpDown
                     Grid.Column="1"
-                    Minimum="0"
-                    Maximum="1.0"
-                    Text="{Binding StartPoint.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    MinWidth="30"
                     Increment="0.01"
+                    Maximum="1.0"
+                    Minimum="0"
+                    MinWidth="30"
                     StringFormat="N2"
-                    VerticalAlignment="Center"
-                    TextChanged="OnPointChanged"/>
+                    Text="{Binding StartPoint.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="OnPointChanged"
+                    VerticalAlignment="Center"/>
             </Grid>
 
             <Label 
@@ -139,25 +142,25 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Controls.Common:DoubleUpDown
-                    Minimum="0"
-                    Maximum="1.0"
-                    Text="{Binding EndPoint.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    MinWidth="30"
-                    Margin="5,0"
                     Increment="0.01"
+                    Margin="5,0"
+                    Maximum="1.0"
+                    Minimum="0"
+                    MinWidth="30"
                     StringFormat="N2"
-                    VerticalAlignment="Center"
-                    TextChanged="OnPointChanged"/>
+                    Text="{Binding EndPoint.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="OnPointChanged"
+                    VerticalAlignment="Center"/>
                 <Controls.Common:DoubleUpDown
                     Grid.Column="1"
-                    Minimum="0"
-                    Maximum="1.0"
-                    Text="{Binding EndPoint.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    MinWidth="30"
                     Increment="0.01"
+                    Maximum="1.0"
+                    Minimum="0"
+                    MinWidth="30"
                     StringFormat="N2"
-                    VerticalAlignment="Center"
-                    TextChanged="OnPointChanged"/>
+                    Text="{Binding EndPoint.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="OnPointChanged"
+                    VerticalAlignment="Center"/>
             </Grid>
         </Grid>
     </Grid>

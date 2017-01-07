@@ -54,48 +54,48 @@
             Constraint values are stored as object type because generic types cannot inherit from Attribute.
             </remarks>
         </member>
-        <member name="T:Imagin.Common.Animations.ExpanderDoubleAnimation">
+        <member name="T:Imagin.Common.Media.Animation.ExpanderDoubleAnimation">
             <summary>
             Animates a double value.
             </summary>
         </member>
-        <member name="F:Imagin.Common.Animations.ExpanderDoubleAnimation.FromProperty">
+        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.FromProperty">
             <summary>
             Dependency property for the From property
             </summary>
         </member>
-        <member name="P:Imagin.Common.Animations.ExpanderDoubleAnimation.From">
+        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.From">
             <summary>
             CLR Wrapper for the From depenendency property
             </summary>
         </member>
-        <member name="F:Imagin.Common.Animations.ExpanderDoubleAnimation.ToProperty">
+        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ToProperty">
             <summary>
             Dependency property for the To property
             </summary>
         </member>
-        <member name="P:Imagin.Common.Animations.ExpanderDoubleAnimation.To">
+        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.To">
             <summary>
             CLR Wrapper for the To property
             </summary>
         </member>
-        <member name="P:Imagin.Common.Animations.ExpanderDoubleAnimation.ReverseValue">
+        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ReverseValue">
             <summary>
             Sets the reverse value for the second animation
             </summary>
         </member>
-        <member name="F:Imagin.Common.Animations.ExpanderDoubleAnimation.ReverseValueProperty">
+        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ReverseValueProperty">
             <summary>
             Sets the reverse value for the second animation
             </summary>
         </member>
-        <member name="M:Imagin.Common.Animations.ExpanderDoubleAnimation.CreateInstanceCore">
+        <member name="M:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.CreateInstanceCore">
             <summary>
             Creates an instance of the animation
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Animations.ExpanderDoubleAnimation.GetCurrentValueCore(System.Double,System.Double,System.Windows.Media.Animation.AnimationClock)">
+        <member name="M:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.GetCurrentValueCore(System.Double,System.Double,System.Windows.Media.Animation.AnimationClock)">
             <summary>
             Animates the double value
             </summary>
@@ -104,64 +104,64 @@
             <param name="animationClock">The animation clock (timer)</param>
             <returns>Returns the new double to set</returns>
         </member>
-        <member name="T:Imagin.Common.Animations.GridLengthAnimation">
+        <member name="T:Imagin.Common.Animations.Animation.GridLengthAnimation">
             <summary>
             Animates a grid length value just like the DoubleAnimation animates a double value
             </summary>
         </member>
-        <member name="P:Imagin.Common.Animations.GridLengthAnimation.IsCompleted">
+        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.IsCompleted">
             <summary>
             Marks the animation as completed
             </summary>
         </member>
-        <member name="P:Imagin.Common.Animations.GridLengthAnimation.ReverseValue">
+        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.ReverseValue">
             <summary>
             Sets the reverse value for the second animation
             </summary>
         </member>
-        <member name="F:Imagin.Common.Animations.GridLengthAnimation.ReverseValueProperty">
+        <member name="F:Imagin.Common.Animations.Animation.GridLengthAnimation.ReverseValueProperty">
             <summary>
             Dependency property. Sets the reverse value for the second animation
             </summary>
         </member>
-        <member name="P:Imagin.Common.Animations.GridLengthAnimation.TargetPropertyType">
+        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.TargetPropertyType">
             <summary>
             Returns the type of object to animate
             </summary>
         </member>
-        <member name="M:Imagin.Common.Animations.GridLengthAnimation.CreateInstanceCore">
+        <member name="M:Imagin.Common.Animations.Animation.GridLengthAnimation.CreateInstanceCore">
             <summary>
             Creates an instance of the animation object
             </summary>
             <returns>Returns the instance of the GridLengthAnimation</returns>
         </member>
-        <member name="F:Imagin.Common.Animations.GridLengthAnimation.FromProperty">
+        <member name="F:Imagin.Common.Animations.Animation.GridLengthAnimation.FromProperty">
             <summary>
             Dependency property for the From property
             </summary>
         </member>
-        <member name="P:Imagin.Common.Animations.GridLengthAnimation.From">
+        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.From">
             <summary>
             CLR Wrapper for the From depenendency property
             </summary>
         </member>
-        <member name="F:Imagin.Common.Animations.GridLengthAnimation.ToProperty">
+        <member name="F:Imagin.Common.Animations.Animation.GridLengthAnimation.ToProperty">
             <summary>
             Dependency property for the To property
             </summary>
         </member>
-        <member name="P:Imagin.Common.Animations.GridLengthAnimation.To">
+        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.To">
             <summary>
             CLR Wrapper for the To property
             </summary>
         </member>
-        <member name="M:Imagin.Common.Animations.GridLengthAnimation.VerifyAnimationCompletedStatus(System.Windows.Media.Animation.AnimationClock)">
+        <member name="M:Imagin.Common.Animations.Animation.GridLengthAnimation.VerifyAnimationCompletedStatus(System.Windows.Media.Animation.AnimationClock)">
             <summary>
             registers to the completed event of the animation clock
             </summary>
             <param name="clock">the animation clock to notify completion status</param>
         </member>
-        <member name="M:Imagin.Common.Animations.GridLengthAnimation.GetCurrentValue(System.Object,System.Object,System.Windows.Media.Animation.AnimationClock)">
+        <member name="M:Imagin.Common.Animations.Animation.GridLengthAnimation.GetCurrentValue(System.Object,System.Object,System.Windows.Media.Animation.AnimationClock)">
             <summary>
             Animates the grid let set
             </summary>
@@ -601,107 +601,6 @@
             Disposes of the current object
             </summary>
         </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.cancellationTokenSource">
-            <summary>
-            The cancellation token source used to cancel major asynchronous operations.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.IsRefreshing">
-            <summary>
-            Indicates whether or not the in the process of refreshing.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.IsSearching">
-            <summary>
-            Indicates whether or not in the process of searching.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.SearchHelper">
-            <summary>
-            Utility to search file system.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.size">
-            <summary>
-            Total length in bytes.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.BeginRefresh(Imagin.Common.Web.IClient,System.String)">
-            <summary>
-            Perform asynchronous refresh (cancellation is supported).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.BeginSearch(Imagin.Common.Web.IClient,System.String,Imagin.Common.Data.SearchOptions)">
-            <summary>
-            Begin asynchronous, recursive search (cancellation is supported).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.ExecuteRefresh(Imagin.Common.Web.IClient,System.String,Imagin.Common.Web.ServerObjectType,System.Boolean,System.Threading.CancellationTokenSource)">
-            <summary>
-            Executes a refresh.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.ExecuteSearch(Imagin.Common.Web.IClient,System.String,Imagin.Common.Data.SearchOptions,System.Threading.CancellationTokenSource)">
-            <summary>
-            Executes a search.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.Refresh(System.String)">
-            <summary>
-            Perform slow (synchronous) refresh (cancellation not supported).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.Abort(System.Boolean)">
-            <summary>
-            Abort current operations; optionally, clear.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.GetFirst(System.String)">
-            <summary>
-            Get item with specified path.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.Automate(`0)">
-            <summary>
-            Queue task of adding a newly created item.
-            </summary>
-            <param name="Item"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.BeginRefresh">
-            <summary>
-            Perform asynchronous refresh (cancellation is supported).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.BeginRefresh(System.String)">
-            <summary>
-            Perform asynchronous refresh (cancellation is supported).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.BeginSearch(Imagin.Common.Data.SearchOptions)">
-            <summary>
-            Begin asynchronous, recursive search (cancellation is supported).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.BeginSearch(System.String,Imagin.Common.Data.SearchOptions)">
-            <summary>
-            Begin asynchronous, recursive search (cancellation is supported).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.CancelRefresh">
-            <summary>
-            Cancel current refresh operation.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.CancelSearch">
-            <summary>
-            Cancel current search operation.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ServerObjectCollection`1.Refresh">
-            <summary>
-            Perform slow (synchronous) refresh (cancellation not supported).
-            </summary>
-        </member>
         <member name="T:Imagin.Common.Collections.ObjectModel.ObservableStack`1">
             <summary>
             Based on ObservableCollection, defines methods relative to stack data strcuture.
@@ -812,6 +711,41 @@
             <remarks>
             Field order is important
             </remarks>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.NullConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks>
+            According to https://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.convertback(v=vs.110).aspx#Anchor_1,
+            
+            If you do not support a conversion back, 
+            you should return Binding.DoNothing or
+            DependencyProperty.UnsetValue.
+            </remarks>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.FileSpeedConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Data.MathBinding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MathBinding.Type">
+            <summary>
+            The type of math operation to perform (note, the operation is unknown unless otherwise specified).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MathBinding.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.MathBinding.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
         </member>
         <member name="T:Imagin.Common.Debug.Error">
             <summary>
@@ -1009,59 +943,62 @@
             Remove and dispose plugin.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Data.Converters.NullConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <remarks>
-            According to https://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.convertback(v=vs.110).aspx#Anchor_1,
-            
-            If you do not support a conversion back, 
-            you should return Binding.DoNothing or
-            DependencyProperty.UnsetValue.
-            </remarks>
-        </member>
-        <member name="T:Imagin.Common.Data.Converters.FileSpeedConverter">
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Pixel">
             <summary>
-            
+            Specifies a device pixel as the unit of measure.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Data.SearchHelper.Stopwatch">
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Inch">
             <summary>
-            Stores information about current search, if any.
+            Specifies an inch as the unit of measure.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Data.SearchHelper.Timer">
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Centimeter">
             <summary>
-            Stores information about current search, if any.
+            Specifies a centimeter (1/2.54 inch) as the unit of measure.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Data.SearchHelper.SearchInfo">
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Millimeter">
             <summary>
-            Stores information about current search, if any.
+            Specifies a millimeter (1/25.4 inch) as the unit of measure.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Data.SearchOptions.Evaluate(System.IO.FileSystemInfo)">
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Point">
             <summary>
-            Evaluates given conditions and returns true if all conditions evaluate to true.
+            Specifies a printer's point (1/72 inch) as the unit of measure.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Data.SearchOptions.Evaluate(System.String,System.String,System.String,System.Int64,System.DateTime,System.DateTime,System.DateTime)">
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Pica">
             <summary>
-            Evaluates given conditions and returns true if all conditions evaluate to true.
+            Specifies a pica (1/6 inch) as the unit of measure.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Measurement.Convert.ToUnit(System.Double,Imagin.Common.Measurement.GraphicalUnit,Imagin.Common.Measurement.GraphicalUnit,System.Double,System.Int32)">
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Twip">
             <summary>
-            Converts a graphical unit value to another graphical unit value.
+            Specifies a twip (1/1140 inch) as the unit of measure.
             </summary>
-            <param name="Value">Number of units.</param>
-            <param name="From">The unit to convert from.</param>
-            <param name="To">The unit to convert to.</param>
-            <param name="Ppi">Pixels per inch.</param>
-            <param name="RoundTo">Decimal places to round to.</param>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Character">
+            <summary>
+            Specifies a character (1/12 inch) as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.En">
+            <summary>
+            Specifies an en (1/144.54 inch) as the unit of measure.
+            </summary>
         </member>
         <member name="T:Imagin.Common.LeftRight">
             <summary>
             Represents a direction that can only be left or right.
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.ActionExtensions.InvokeIf(System.Action,System.Func{System.Action,System.Boolean})">
+            <summary>
+            Invoke the given action if predicate.
+            </summary>
+            <param name="Value"></param>
+            <param name="Predicate"></param>
         </member>
         <member name="T:Imagin.Common.Extensions.PropertyInfoExtensions">
             <summary>
@@ -1398,6 +1335,11 @@
             <param name="Decrement"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.DoubleExtensions.ToAngle(System.Double)">
+            <summary>
+            Convert given radians to angle.
+            </summary>
+        </member>
         <member name="M:Imagin.Common.Extensions.DoubleExtensions.ToByte(System.Double)">
             <summary>
             Converts double to byte.
@@ -1417,6 +1359,16 @@
             <summary>
             Converts angle to radians.
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DoubleExtensions.ToUnit(System.Double,Imagin.Common.Drawing.GraphicalUnit,Imagin.Common.Drawing.GraphicalUnit,System.Double)">
+            <summary>
+            Converts a graphical unit value to another graphical unit value.
+            </summary>
+            <param name="Value">Number of units.</param>
+            <param name="From">The unit to convert from.</param>
+            <param name="To">The unit to convert to.</param>
+            <param name="Ppi">Pixels per inch.</param>
+            <param name="RoundTo">Decimal places to round to.</param>
         </member>
         <member name="M:Imagin.Common.Extensions.EnumExtensions.ParseEnum``1(System.String,System.Boolean)">
             <summary>
@@ -2228,16 +2180,51 @@
             <param name="Fifth"></param>
             <param name="Sixth"></param>
         </member>
+        <member name="T:Imagin.Common.Text.Int64Representation">
+            <summary>
+            Provides enumerator for long integers of various representations.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Text.Int64Representation.Default">
+            <summary>
+            Specifies a general Int64.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Text.Int64Representation.FileSize">
+            <summary>
+            Specifies a file size.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Text.StringRepresentation">
             <summary>
             Provides enumerator for strings 
             of various representations.
             </summary>
-            <remarks>
-            'Unspecified' refers to any kind 
-            not specified in enumeration
-            and should be the default value.
-            </remarks>
+        </member>
+        <member name="F:Imagin.Common.Text.StringRepresentation.Unspecified">
+            <summary>
+            Unspecified string (or default).
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Text.StringRepresentation.Regular">
+            <summary>
+            Specifies a regular string.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Text.StringRepresentation.FileSystemPath">
+            <summary>
+            Specifies a file system path.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Text.StringRepresentation.Multiline">
+            <summary>
+            Specifies a multiline string.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Text.StringRepresentation.Password">
+            <summary>
+            Specifies a password string.
+            </summary>
         </member>
         <member name="F:Imagin.Common.Tracing.WarningLevel.None">
             <summary>
@@ -2272,31 +2259,6 @@
         <member name="T:Imagin.Common.RowColumn">
             <summary>
             A data type to represent a row and column pair.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Scheduling.RepeatOptions.Recurrence">
-            <summary>
-            How often something should repeat.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Scheduling.RepeatOptions.RecurrenceValue">
-            <summary>
-            Number of units to observe based on recurrence type (e.g., if daily, every {4} days).
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Scheduling.RepeatOptions.Repeats">
-            <summary>
-            Indicates whether or not something should repeat.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Scheduling.ScheduledEvent.Interval">
-            <summary>
-            Length of time in milliseconds between queries.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Scheduling.ScheduledEvent.OnQuery">
-            <summary>
-            Determines whether or not event should execute based on repeat options.
             </summary>
         </member>
         <member name="P:Imagin.Common.Threading.TaskCompletionNotifier`1.Task">

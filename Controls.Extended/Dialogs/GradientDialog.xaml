@@ -4,8 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
-    Title="Gradient Dialog" 
     Height="380" 
+    Title="Gradient Dialog" 
+    Type="Tool"
     Width="450"
     WindowStartupLocation="CenterScreen"
     x:Name="PART_GradientDialog">

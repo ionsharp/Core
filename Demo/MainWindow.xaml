@@ -26,6 +26,10 @@
         <Common.Data.Converters:FileSizeConverter x:Key="FileSizeConverter"/>
         <Common.Data.Converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
 
+        <!-- ....................................................................................[ResourceDictionaryEditor] -->
+
+        <ResourceDictionary x:Key="Resources.Theme" Source="pack://application:,,,/Imagin.Themes;component/Themes/Default.xaml"/>
+
         <!-- ....................................................................................[Views] -->
 
         <Controls.Common:AbstractView 
@@ -134,9 +138,7 @@
             </Setter>
         </Style>
     </Controls.Common:BasicWindow.Resources>
-    <Grid 
-        DataContext="{Binding ElementName=PART_MainWindow}"
-        Margin="10">
+    <Grid DataContext="{Binding ElementName=PART_MainWindow}">
         <TabControl Background="Transparent">
             <TabItem Header="AdvancedTextBox">
                 <Controls.Common:Spacer Spacing="0,0,0,10" Margin="10">
@@ -258,6 +260,42 @@
                         HorizontalContentAlignment="Center"
                         Margin="0,10,0,0"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="AnglePicker">
+                <Controls.Common:Spacer 
+                    Spacing="0,0,0,10" 
+                    TrimLast="True" 
+                    Margin="10">
+                    <Controls.Common:Spacer 
+                        DataContext="{Binding ElementName=PART_AnglePicker}" 
+                        Orientation="Horizontal" 
+                        Spacing="0,0,10,0" 
+                        TrimLast="True" 
+                        HorizontalAlignment="Center" 
+                        VerticalContentAlignment="Center"
+                        Margin="0,0,0,10">
+                        <Label 
+                            Content="Angle:"/>
+                        <Controls.Common:DoubleUpDown
+                            Maximum="180"
+                            Minimum="-180"
+                            StringFormat="N0"
+                            Value="{Binding Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label 
+                            Content="Radians:"/>
+                        <Controls.Common:DoubleUpDown
+                            Maximum="3.14159"
+                            Minimum="-3.14159"
+                            StringFormat="N6"
+                            Value="{Binding Radians, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Controls.Common:Spacer>
+                    <Controls.Extended:AnglePicker
+                        x:Name="PART_AnglePicker"
+                        Height="100"
+                        HorizontalAlignment="Center"
+                        Width="100"/>
+                </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="Chips">
                 <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
@@ -556,6 +594,8 @@
                         Grid.Row="1"
                         Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled="True"
                         ItemsSource="{Binding FileSystemCollectionView}"
+                        Padding="10"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
                         SelectionMode="Multiple">
                         <ListView.GroupStyle>
                             <GroupStyle HidesIfEmpty="True">
@@ -588,8 +628,6 @@
                         <ListView.Style>
                             <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListView}}">
                                 <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                                <Setter Property="BorderThickness" Value="0"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ListView, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="List">
                                         <Setter Property="View" Value="{DynamicResource View.List}"/>
@@ -792,6 +830,15 @@
                     <RadioButton Content="Fourth"/>
                     <RadioButton Content="Fifth"/>
                 </Controls.Common:RadioGroup>
+            </TabItem>
+            <TabItem Header="ResourceDictionaryEditor">
+                <Controls.Extended:ResourceDictionaryEditor 
+                    Grid.Column="1" 
+                    Grid.Row="1"
+                    x:Name="PART_ResourceDictionaryEditor"
+                    Background="#05000000" 
+                    SelectedObject="{StaticResource Resources.Theme}"
+                    ShowHeader="True"/>
             </TabItem>
             <TabItem Header="Spacer">
                 <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">

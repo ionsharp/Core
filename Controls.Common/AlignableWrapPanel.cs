@@ -56,7 +56,7 @@ namespace Imagin.Controls.Common
                 SetValue(OrientationProperty, value);
             }
         }
-        private static void OnOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        static void OnOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var p = (AlignableWrapPanel)d;
             p.orientation = (Orientation)e.NewValue;

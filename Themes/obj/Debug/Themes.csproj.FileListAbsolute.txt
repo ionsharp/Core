@@ -51,7 +51,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Imagin.
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Imagin.Controls.Extended.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\WPFLocalizeExtension.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Themes.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.Button.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.CheckBox.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.ComboBox.baml
@@ -90,3 +89,5 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Imagin.
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.PropertyGrid.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Imagin.Controls.Common.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\Imagin.Controls.Extended.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Themes.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.AnglePicker.baml

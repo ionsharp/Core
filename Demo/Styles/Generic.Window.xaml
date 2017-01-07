@@ -4,28 +4,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.NET.Demo"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
-    xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended"
-    xmlns:System="clr-namespace:System;assembly=mscorlib">
-    <Style x:Key="{x:Type Window}" TargetType="{x:Type Window}">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="#F0F0F0"/>
-                    <GradientStop Offset="1" Color="#EAEAEA"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="BorderBrush" Value="#777"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Margin" Value="5"/>
-        <Setter Property="Padding" Value="10"/>
-        <Setter Property="ShowInTaskbar" Value="True" />
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
-        <Setter Property="Foreground" Value="{DynamicResource WindowForeground}" />
+    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
+    xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended">
+    <Style x:Key="{x:Type local:MainWindow}" TargetType="{x:Type local:MainWindow}" BasedOn="{StaticResource {x:Type Controls.Common:BasicWindow}}">
+        <Setter Property="Controls.Common.Extensions:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
     </Style>
 
-    <Style x:Key="{x:Type Controls.Extended:ColorDialog}" TargetType="{x:Type Controls.Extended:ColorDialog}" BasedOn="{StaticResource {x:Type Window}}"/>
-    
-    <Style x:Key="{x:Type Controls.Extended:GradientDialog}" TargetType="{x:Type Controls.Extended:GradientDialog}" BasedOn="{StaticResource {x:Type Window}}"/>
+    <Style x:Key="{x:Type Controls.Extended:ColorDialog}" TargetType="{x:Type Controls.Extended:ColorDialog}" BasedOn="{StaticResource {x:Type Controls.Extended:ColorDialog}}">
+        <Setter Property="Controls.Common.Extensions:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
+    </Style>
+
+    <Style x:Key="{x:Type Controls.Extended:GradientDialog}" TargetType="{x:Type Controls.Extended:GradientDialog}" BasedOn="{StaticResource {x:Type Controls.Extended:GradientDialog}}">
+        <Setter Property="Controls.Common.Extensions:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
+    </Style>
 </ResourceDictionary>

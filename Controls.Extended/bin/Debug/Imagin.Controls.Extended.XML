@@ -404,7 +404,7 @@
             </summary>
             <param name="Callback">What to do afterwards.</param>
         </member>
-        <member name="M:Imagin.Controls.Extended.ResourceDictionaryEditor.BeginFromResourceDictionary(System.Windows.ResourceDictionary,System.Action)">
+        <member name="M:Imagin.Controls.Extended.PropertyModelCollection.BeginFromResourceDictionary(System.Windows.ResourceDictionary,System.Action)">
             <summary>
             Set properties by enumerating a resource dictionary.
             </summary>

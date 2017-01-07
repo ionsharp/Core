@@ -164,46 +164,6 @@
             Can decrease.
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Common.CheckableMonths">
-            <summary>
-            CheckableMonths
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.CheckableMonths.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Common.CheckableWeekDays">
-            <summary>
-            CheckableWeekDays
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.CheckableWeekDays.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Common.CheckableDays">
-            <summary>
-            CheckableDays
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.CheckableDays.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Common.RepeatBox">
-            <summary>
-            RepeatBox
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.RepeatBox.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:Imagin.Controls.Common.SelectionCanvas">
             <summary>
             SelectionCanvas

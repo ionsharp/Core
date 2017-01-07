@@ -2,18 +2,15 @@
 using Imagin.Common.Data;
 using Imagin.Common.Extensions;
 using Imagin.Common.Input;
-using Imagin.Common.Scheduling;
+using Imagin.Controls.Common;
 using System;
-using System.Collections;
 using System.ComponentModel;
-using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using Imagin.Controls.Common;
 
 namespace Imagin.Controls.Extended
 {

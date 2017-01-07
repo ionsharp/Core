@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/ColorPicker/Resources/Slider.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/ColorPicker/(Resources)/Slider.xaml"/>
             </ResourceDictionary.MergedDictionaries> 
             <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <Common.Data.Converters:ByteToDoubleConverter x:Key="ByteToDoubleConverter"/>

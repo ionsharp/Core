@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnglePicker.cs" />
     <Compile Include="Chips\GradientChip.xaml.cs">
       <DependentUpon>GradientChip.xaml</DependentUpon>
     </Compile>
@@ -100,24 +101,24 @@
     <Compile Include="ColorPicker\ColorSelector.xaml.cs">
       <DependentUpon>ColorSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\Models\LuvModel.cs" />
-    <Compile Include="Converters\FeaturedPropertyVisibilityConverter.cs" />
+    <Compile Include="ColorPicker\%28Models%29\LuvModel.cs" />
+    <Compile Include="PropertyGrid\%28Converters%29\FeaturedPropertyVisibilityConverter.cs" />
     <Compile Include="Dialogs\ColorDialog.xaml.cs">
       <DependentUpon>ColorDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\ColorSpaceView.cs" />
     <Compile Include="ColorPicker\ComponentCollection.cs" />
-    <Compile Include="ColorPicker\Models\CmykModel.cs" />
-    <Compile Include="ColorPicker\Models\ComponentModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\CmykModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\ComponentModel.cs" />
     <Compile Include="ColorPicker\ComponentView.cs" />
-    <Compile Include="ColorPicker\Models\ColorSpaceModel.cs" />
-    <Compile Include="ColorPicker\Models\HsbModel.cs" />
-    <Compile Include="ColorPicker\Models\HslModel.cs" />
-    <Compile Include="ColorPicker\Models\LabModel.cs" />
-    <Compile Include="ColorPicker\Models\LchModel.cs" />
-    <Compile Include="ColorPicker\Models\RgbModel.cs" />
-    <Compile Include="ColorPicker\Models\XyzModel.cs" />
-    <Compile Include="ColorPicker\Models\NormalComponentModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\ColorSpaceModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\HsbModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\HslModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\LabModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\LchModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\RgbModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\XyzModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\NormalComponentModel.cs" />
     <Compile Include="ColorPicker\Primitives\Luv.cs" />
     <Compile Include="GradientEditor.xaml.cs">
       <DependentUpon>GradientEditor.xaml</DependentUpon>
@@ -142,13 +143,13 @@
     </Compile>
     <Compile Include="ColorPicker\ColorSpace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyGrid\Models\Models.cs" />
+    <Compile Include="PropertyGrid\%28Models%29\Models.cs" />
     <Compile Include="PropertyGrid\PropertyAttributes.cs" />
     <Compile Include="PropertyGrid\PropertyGrid.xaml.cs">
       <DependentUpon>PropertyGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="PropertyGrid\PropertyModelCollection.cs" />
-    <Compile Include="PropertyGrid\Models\PropertyModel.cs" />
+    <Compile Include="PropertyGrid\%28Models%29\PropertyModel.cs" />
     <Compile Include="PropertyGrid\ResourceDictionaryEditor.cs" />
     <Compile Include="TabbedTree.cs" />
   </ItemGroup>
@@ -189,7 +190,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ColorPicker\Resources\Slider.xaml">
+    <Page Include="ColorPicker\%28Resources%29\Slider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -204,6 +205,10 @@
     <Page Include="PropertyGrid\PropertyGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.AnglePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.TabbedTree.xaml">
       <Generator>MSBuild:Compile</Generator>

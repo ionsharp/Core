@@ -93,27 +93,11 @@
     <Compile Include="ButtonSpinner\SpinEventArgs.cs" />
     <Compile Include="ButtonSpinner\Spinner.cs" />
     <Compile Include="ButtonSpinner\ValidSpinDirections.cs" />
-    <Compile Include="CheckableDatePicker\CheckableDatePicker.cs">
-      <Generator>MSBuild:Compile</Generator>
-    </Compile>
-    <Compile Include="CheckableDatePicker\CheckableMonths.xaml.cs">
-      <DependentUpon>CheckableMonths.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CheckableDatePicker\CheckableWeekDays.xaml.cs">
-      <DependentUpon>CheckableWeekDays.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CheckableDatePicker\CheckableDays.xaml.cs">
-      <DependentUpon>CheckableDays.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\CenterToolTipConverter.cs" />
     <Compile Include="Converters\WindowTypeVisibilityConverter.cs" />
     <Compile Include="DateTimePicker\DateTimePicker.cs" />
     <Compile Include="DateTimePicker\DateTimePickerBase.cs" />
     <Compile Include="PaneView.cs" />
-    <Compile Include="RepeatBox\RepeatBox.xaml.cs">
-      <DependentUpon>RepeatBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RepeatBox\RepeatBoxTemplateSelector.cs" />
     <Compile Include="SelectionCanvas.xaml.cs">
       <DependentUpon>SelectionCanvas.xaml</DependentUpon>
     </Compile>
@@ -201,18 +185,6 @@
     <Compile Include="Window\WindowType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CheckableDatePicker\CheckableMonths.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CheckableDatePicker\CheckableWeekDays.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CheckableDatePicker\CheckableDays.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DirectionPad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,10 +194,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FontFamilyBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RepeatBox\RepeatBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

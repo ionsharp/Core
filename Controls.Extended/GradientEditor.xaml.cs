@@ -1,10 +1,8 @@
 ﻿using Imagin.Common.Extensions;
-using System.Collections.Generic;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Linq;
-using System;
 
 namespace Imagin.Controls.Extended
 {
@@ -25,6 +23,23 @@ namespace Imagin.Controls.Extended
                 GradientStops.Add(new GradientStop(Colors.Black, 1.0));
                 return new LinearGradientBrush(GradientStops, new Point(0.0, 0.5), new Point(1.0, 0.5));
             }
+        }
+
+        public static DependencyProperty BandsProperty = DependencyProperty.Register("Bands", typeof(int), typeof(GradientEditor), new PropertyMetadata(2, new PropertyChangedCallback(OnBandsChanged)));
+        public int Bands
+        {
+            get
+            {
+                return (int)GetValue(BandsProperty);
+            }
+            set
+            {
+                SetValue(BandsProperty, value);
+            }
+        }
+        static void OnBandsChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        {
+            ((GradientEditor)Object).OnBandsChanged((int)e.NewValue);
         }
 
         public static DependencyProperty PreviewBorderThicknessProperty = DependencyProperty.Register("PreviewBorderThickness", typeof(Thickness), typeof(GradientEditor), new PropertyMetadata(default(Thickness)));
@@ -130,23 +145,6 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty BandsProperty = DependencyProperty.Register("Bands", typeof(int), typeof(GradientEditor), new PropertyMetadata(2, new PropertyChangedCallback(OnBandsChanged)));
-        public int Bands
-        {
-            get
-            {
-                return (int)GetValue(BandsProperty);
-            }
-            set
-            {
-                SetValue(BandsProperty, value);
-            }
-        }
-        static void OnBandsChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            ((GradientEditor)Object).OnBandsChanged((int)e.NewValue);
-        }
-
         public static DependencyProperty OffsetProperty = DependencyProperty.Register("Offset", typeof(double), typeof(GradientEditor), new PropertyMetadata(0.0, OnOffsetChanged));
         public double Offset
         {
@@ -186,79 +184,94 @@ namespace Imagin.Controls.Extended
 
         #region Methods
 
-        void OnBandsChanged(int Bands)
+        void OnBandsChanged(int Value)
         {
-            this.GradientChangeHandled = true;
-            if (this.Bands > this.Gradient.GradientStops.Count)
+            GradientChangeHandled = true;
+
+            if (Value > Gradient.GradientStops.Count)
             {
                 //Number of bands to add
-                var ToAdd = this.Bands - this.Gradient.GradientStops.Count;
-                for (int i = 0; i < ToAdd; i++)
+                Value -= Gradient.GradientStops.Count;
+
+                for (var i = 0; i < Value; i++)
                 {
-                    this.Gradient.GradientStops.Add(new GradientStop(Color.FromRgb(Random.Next(0, 255).ToByte(), Random.Next(0, 255).ToByte(), Random.Next(0, 255).ToByte()), 1.0));
-                    //First figure out i, then figure out 
-                    var j = this.Gradient.GradientStops.Count - 2;
-                    if (j < 0) continue;
-                    var LastOffset = this.Gradient.GradientStops[j].Offset;
-                    this.Gradient.GradientStops[j].Offset -= LastOffset;
+                    var RandomColor = Color.FromRgb(Random.Next(0, 255).ToByte(), Random.Next(0, 255).ToByte(), Random.Next(0, 255).ToByte());
+
+                    //Add new band with random color
+                    Gradient.GradientStops.Add(new GradientStop(RandomColor, 1d));
+
+                    //If next to last band index is valid
+                    if (Gradient.GradientStops.Count  > 1)
+                        Shift(false);
                 }
             }
-            else if (this.Bands < this.Gradient.GradientStops.Count)
+            else if (Bands < Gradient.GradientStops.Count)
             {
-                for (int i = this.Gradient.GradientStops.Count - 1; i >= this.Bands; i--)
-                    this.Gradient.GradientStops.Remove(this.Gradient.GradientStops[i]);
-                if (this.SelectedBand > this.Gradient.GradientStops.Count)
-                    this.SelectedBand = this.Gradient.GradientStops.Count;
+                for (var i = Gradient.GradientStops.Count - 1; i >= Bands; i--)
+                    Gradient.GradientStops.Remove(Gradient.GradientStops[i]);
+
+                if (SelectedBand > Gradient.GradientStops.Count)
+                    SelectedBand = Gradient.GradientStops.Count;
+
+                Shift(true);
             }
-            this.GradientChangeHandled = true;
+            GradientChangeHandled = true;
         }
 
         void OnGradientChanged(LinearGradientBrush LinearGradientBrush)
         {
             if (LinearGradientBrush == null || this.GradientChangeHandled) return;
-            this.Bands = LinearGradientBrush.GradientStops.Count;
-            this.StartPoint = new Point(LinearGradientBrush.StartPoint.X, LinearGradientBrush.StartPoint.Y);
-            this.EndPoint = new Point(LinearGradientBrush.EndPoint.X, LinearGradientBrush.EndPoint.Y);
-            this.SelectedBand = -1;
-            this.SelectedBand = 1;
-            this.GradientChangeHandled = true;
+            Bands = LinearGradientBrush.GradientStops.Count;
+            StartPoint = new Point(LinearGradientBrush.StartPoint.X, LinearGradientBrush.StartPoint.Y);
+            EndPoint = new Point(LinearGradientBrush.EndPoint.X, LinearGradientBrush.EndPoint.Y);
+            SelectedBand = -1;
+            SelectedBand = 1;
+            GradientChangeHandled = true;
         }
 
         void OnOffsetChanged(double Offset)
         {
-            this.GradientChangeHandled = true;
-            this.Gradient.GradientStops[this.SelectedBand - 1].Offset = Offset;
-            this.GradientChangeHandled = false;
+            GradientChangeHandled = true;
+            Gradient.GradientStops[this.SelectedBand - 1].Offset = Offset;
+            GradientChangeHandled = false;
+        }
+
+        void OnPointChanged(object sender, TextChangedEventArgs e)
+        {
+            GradientChangeHandled = true;
+            Gradient.StartPoint = this.StartPoint;
+            Gradient.EndPoint = this.EndPoint;
+            GradientChangeHandled = false;
         }
 
         void OnSelectedBandChanged(int SelectedBand)
         {
             if (SelectedBand == -1) return;
-            if (this.Gradient == null) return;
+            if (Gradient == null) return;
             var g = this.Gradient.GradientStops[SelectedBand - 1];
-            this.SelectedColor = g.Color;
-            this.Offset = g.Offset;
+            SelectedColor = g.Color;
+            Offset = g.Offset;
         }
 
         void OnSelectedBandChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            this.SelectedBand = e.NewValue.As<int>();
+            SelectedBand = e.NewValue.As<int>();
         }
 
         void OnSelectedColorChanged(Color SelectedColor)
         {
-            if (this.Gradient == null) return;
-            this.GradientChangeHandled = true;
-            this.Gradient.GradientStops[SelectedBand - 1].Color = SelectedColor;
-            this.GradientChangeHandled = false;
+            if (Gradient == null) return;
+            GradientChangeHandled = true;
+            Gradient.GradientStops[SelectedBand - 1].Color = SelectedColor;
+            GradientChangeHandled = false;
         }
 
-        void OnPointChanged(object sender, TextChangedEventArgs e)
+        void Shift(bool ShiftAll)
         {
-            this.GradientChangeHandled = true;
-            this.Gradient.StartPoint = this.StartPoint;
-            this.Gradient.EndPoint = this.EndPoint;
-            this.GradientChangeHandled = false;
+            var Count = Gradient.GradientStops.Count;
+
+            for (var k = 0; k < (ShiftAll ? Count : Count - 1); k++)
+                Gradient.GradientStops[k].Offset = k == 0 ? 0 : Gradient.GradientStops[k - 1].Offset + 1d.Divide(Gradient.GradientStops.Count.ToDouble() - 1d).Round(2);
         }
 
         #endregion

@@ -7,21 +7,13 @@
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
-    Title="Color Dialog" 
+    ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
-    WindowStartupLocation="CenterScreen"
-    ResizeMode="NoResize">
+    Title="Color Dialog" 
+    Type="Tool"
+    WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Common.Data.Converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
-        
-        <Style x:Key="{x:Type RadioButton}" TargetType="RadioButton">
-            <Setter Property="Foreground" Value="Black"/>
-        </Style>
-        <Style x:Key="{x:Type Controls.Common:AdvancedTextBox}" TargetType="Controls.Common:AdvancedTextBox">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1"/>
-        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

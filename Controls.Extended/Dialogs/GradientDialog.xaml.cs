@@ -27,7 +27,7 @@ namespace Imagin.Controls.Extended
 
         public bool Cancel = false;
 
-        public GradientDialog()
+        public GradientDialog() : base()
         {
             InitializeComponent();
         }

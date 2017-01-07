@@ -6,6 +6,7 @@
     xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:local="clr-namespace:Imagin.Controls.Extended">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/Themes/Generic.AnglePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/Themes/Generic.ColorComb.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/Themes/Generic.HexagonButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/Themes/Generic.TabbedTree.xaml" />

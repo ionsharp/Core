@@ -63,7 +63,6 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Extend
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Extended\bin\Debug\XAMLMarkupExtensions.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Chips\GradientChip.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Chips\ColorChip.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\ColorPicker\Resources\Slider.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Chips\GradientChip.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\CollectionEditor.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\ColorPicker\AlphaSlider.g.cs
@@ -115,3 +114,5 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\De
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Controls.Extended.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\Debug\Imagin.Controls.Extended.XML
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\Debug\Imagin.Controls.Common.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Themes\Generic.AnglePicker.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\ColorPicker\(Resources)\Slider.baml

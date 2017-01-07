@@ -14,6 +14,83 @@
     <UserControl.Resources>
         <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Common.Data.Converters:ColorToHexConverter x:Key="ColorToHexConverter"/>
+
+        <DataTemplate 
+            x:Key="DataTemplate.Models"
+            DataType="{x:Type local:ColorSpaceModel}">
+            <DataTemplate.Resources>
+                <Common.Data:BindingProxy x:Key="ComponentProxy" Data="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
+            </DataTemplate.Resources>
+            <local:ColorSpaceView x:Name="PART_Components" ItemsSource="{Binding Components}" Margin="0,0,0,15">
+                <local:ColorSpaceView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type local:ComponentModel}">
+                        <DataTemplate.Resources>
+                            <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                        </DataTemplate.Resources>
+                        <local:ComponentView 
+                            ColorSpaceModel="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ColorSpaceView}}}"
+                            Color="{Binding SelectedColor, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}"
+                            ComponentModel="{Binding Mode=OneWay}"
+                            CurrentValue="{Binding CurrentValue}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="25" />
+                                </Grid.ColumnDefinitions>
+                                <RadioButton 
+                                                    Checked="OnComponentChecked"
+                                                    Content="{Binding ComponentLabel}"
+                                                    GroupName="ColorSpace"
+                                                    IsChecked="{Binding IsEnabled}"
+                                                    HorizontalAlignment="Center"
+                                                    Margin="5,0"
+                                                    VerticalAlignment="Center" 
+                                                    Tag="{Binding Mode=OneWay}"
+                                                    Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                <Label 
+                                                    Content="{Binding ComponentLabel}" 
+                                                    HorizontalAlignment="Center"
+                                                    Margin="5,0"
+                                                    VerticalAlignment="Center" 
+                                                    Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                <Controls.Common:AdvancedTextBox
+                                                    Grid.Column="1" 
+                                                    HorizontalAlignment="Center"  
+                                                    HorizontalContentAlignment="Center" 
+                                                    VerticalAlignment="Center" 
+                                                    Text="{Binding CurrentValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Width="40"/>
+                                <Label 
+                                                    Grid.Column="2"
+                                                    Content="{Binding UnitLabel}"
+                                                    VerticalAlignment="Center"/>
+                            </Grid>
+                        </local:ComponentView>
+                    </DataTemplate>
+                </local:ColorSpaceView.ItemTemplate>
+            </local:ColorSpaceView>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Orientation}" Value="Horizontal">
+                    <Setter TargetName="PART_Components" Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <Controls.Common:Spacer Spacing="0,0,5,0" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Orientation}" Value="Vertical">
+                    <Setter TargetName="PART_Components" Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <Controls.Common:Spacer Spacing="0,0,0,10"/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid DataContext="{Binding ElementName=PART_ColorPicker}">
         <Grid.ColumnDefinitions>
@@ -31,88 +108,15 @@
             MaxHeight="256"
             Margin="10,0,0,0">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Models, ElementName=PART_ColorPicker}" VerticalAlignment="Center">
+                <ItemsControl 
+                    ItemsSource="{Binding Models, ElementName=PART_ColorPicker}" 
+                    ItemTemplate="{StaticResource DataTemplate.Models}"
+                    VerticalAlignment="Center">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type local:ColorSpaceModel}">
-                            <DataTemplate.Resources>
-                                <Common.Data:BindingProxy x:Key="ComponentProxy" Data="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
-                            </DataTemplate.Resources>
-                            <local:ColorSpaceView x:Name="PART_Components" ItemsSource="{Binding Components}" Margin="0,0,0,15">
-                                <local:ColorSpaceView.ItemTemplate>
-                                    <DataTemplate DataType="{x:Type local:ComponentModel}">
-                                        <DataTemplate.Resources>
-                                            <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-                                        </DataTemplate.Resources>
-                                        <local:ComponentView 
-                                            ColorSpaceModel="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ColorSpaceView}}}"
-                                            Color="{Binding SelectedColor, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}"
-                                            ComponentModel="{Binding Mode=OneWay}"
-                                            CurrentValue="{Binding CurrentValue}">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="50" />
-                                                    <ColumnDefinition Width="15" />
-                                                </Grid.ColumnDefinitions>
-                                                <RadioButton 
-                                                    Checked="OnComponentChecked"
-                                                    Content="{Binding ComponentLabel}"
-                                                    GroupName="ColorSpace"
-                                                    IsChecked="{Binding IsEnabled}"
-                                                    HorizontalAlignment="Center"
-                                                    Margin="5,0"
-                                                    VerticalAlignment="Center" 
-                                                    Tag="{Binding Mode=OneWay}"
-                                                    Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                <TextBlock 
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center" 
-                                                    Margin="5,0"
-                                                    Text="{Binding ComponentLabel}" 
-                                                    Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                                <Controls.Common:AdvancedTextBox
-                                                    Grid.Column="1" 
-                                                    HorizontalAlignment="Center"  
-                                                    HorizontalContentAlignment="Center" 
-                                                    VerticalAlignment="Center" 
-                                                    Text="{Binding CurrentValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    Width="40"/>
-                                                <TextBlock 
-                                                    Grid.Column="2"
-                                                    Text="{Binding UnitLabel}"
-                                                    VerticalAlignment="Center"/>
-                                            </Grid>
-                                        </local:ComponentView>
-                                    </DataTemplate>
-                                </local:ColorSpaceView.ItemTemplate>
-                            </local:ColorSpaceView>
-                            <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding Orientation}" Value="Horizontal">
-                                    <Setter TargetName="PART_Components" Property="ItemsPanel">
-                                        <Setter.Value>
-                                            <ItemsPanelTemplate>
-                                                <Controls.Common:Spacer Spacing="0,0,5,0" Orientation="Horizontal"/>
-                                            </ItemsPanelTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Orientation}" Value="Vertical">
-                                    <Setter TargetName="PART_Components" Property="ItemsPanel">
-                                        <Setter.Value>
-                                            <ItemsPanelTemplate>
-                                                <Controls.Common:Spacer Spacing="0,0,0,10"/>
-                                            </ItemsPanelTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
         </Grid>
@@ -123,23 +127,28 @@
             Visibility="{Binding ShowNewCurrent, Converter={StaticResource BooleanToVisibilityConverter}}">
             <local:NewCurrent 
                 x:Name="newCurrent"
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
+                Alpha="{Binding ElementName=PART_ColorSelector, Path=Alpha, Mode=OneWay}" 
                 Height="125" 
-                Width="100" 
+                HorizontalAlignment="Center" 
                 NewColor="{Binding ElementName=PART_ColorSelector, Path=Color}" 
                 Orientation="Vertical" 
-                Alpha="{Binding ElementName=PART_ColorSelector, Path=Alpha, Mode=OneWay}" />
-            <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,5,0" TrimLast="True" Margin="0,10,0,0">
+                VerticalAlignment="Top" 
+                Width="100"/>
+
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <Label 
                     Content="#"
                     VerticalAlignment="Center"/>
                 <Controls.Common:AlphaNumericTextBox 
-                    VerticalAlignment="Center"
-                    Width="80" 
+                    Grid.Column="1"
                     MaxLength="8"
-                    Text="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}}"/>
-            </Controls.Common:Spacer>
+                    Text="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}}"
+                    VerticalAlignment="Center"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>
