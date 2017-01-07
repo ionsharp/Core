@@ -18,7 +18,8 @@ Spacer | ToggleSwitch |
 
   .  |  .  |  .  |  .  |  .  |
 -----|-----|-----|-----|-----|
-AnglePicker | CollectionEditor | ColorChip | ColorComb | ColorDialog | ColorPicker | DualColorChip | GradientChip | GradientDialog | GradientEditor |
+AnglePicker | CollectionEditor | ColorChip | ColorComb | ColorDialog | 
+ColorPicker | DualColorChip | GradientChip | GradientDialog | GradientEditor |
 PropertyGrid | ResourceDictionaryEditor |
 
 ###Gadgets
