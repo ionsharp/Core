@@ -1,12 +1,13 @@
 ﻿#Imagin.NET ![](https://img.shields.io/badge/style-2.7.1-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6.1-red.svg?style=flat&label=.NET)
 Imagin.NET is a library written in C# that provides common WPF controls and utilities.
 
-##Nuget
-###`PM> Install-Package Imagin.Common`
-
 ##[Documentation](http://imagin.tech/docs/imagin) *(under construction)*
 
 ###Common
+
+####*[Nuget](https://www.nuget.org/packages/Imagin.Common/)*: `PM> Install-Package Imagin.Common`
+
+###Controls.Common
   .  |  .  |  .  |  .  |  .  |
 -----|-----|-----|-----|-----|
 AdvancedComboBox | AdvancedTextBox | AdvancedTreeView | AlignableWrapPanel | AlphaNumericTextBox | 
@@ -16,14 +17,15 @@ Gadget | IntUpDown | Line | Link | LongUpDown |
 MaskedButton | MaskedDropDownButton | MaskedImage | MaskedToggleButton | PasswordBox | 
 RadioGroup | ResizableGrid | RippleDecorator | SelectionCanvas | ShortUpDown |
 Spacer | ToggleSwitch | 
+####*[Nuget](https://www.nuget.org/packages/Imagin.Controls.Common/)*: `PM> Install-Package Imagin.Controls.Common`
 
-###Extended
-
+###Controls.Extended
   .  |  .  |  .  |  .  |  .  |
 -----|-----|-----|-----|-----|
 AnglePicker | CollectionEditor | ColorChip | ColorComb | ColorDialog | 
 ColorPicker | DualColorChip | GradientChip | GradientDialog | GradientEditor |
 PropertyGrid | ResourceDictionaryEditor |
+####*[Nuget](https://www.nuget.org/packages/Imagin.Controls.Extended/)*: `PM> Install-Package Imagin.Controls.Extended`
 
 ###Gadgets
 
