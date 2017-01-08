@@ -1,0 +1,104 @@
+﻿<UserControl 
+    x:Class="Imagin.Controls.Extended.ColorSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local="clr-namespace:Imagin.Controls.Extended" 
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common" 
+    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common" 
+    x:Name="PART_ColorSelector">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/(Pickers)/ColorPicker/(Resources)/Slider.xaml"/>
+            </ResourceDictionary.MergedDictionaries> 
+            <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <Common.Data.Converters:ByteToDoubleConverter x:Key="ByteToDoubleConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid DataContext="{Binding ElementName=PART_ColorSelector}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Controls.Common:CheckerBoard  
+            BorderBrush="#000" 
+            BorderThickness="1" 
+            SnapsToDevicePixels="True" 
+            VerticalAlignment="Center" 
+            CheckerForeground="LightGray"
+            ClipToBounds="True">
+            <Grid>
+                <Image 
+                    Name="PART_ColorPlane" 
+                    Stretch="Uniform" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    SnapsToDevicePixels="True" 
+                    Height="256" 
+                    Width="256" 
+                    Opacity="{Binding Alpha, Converter={StaticResource ByteToDoubleConverter}, ElementName=PART_AlphaSlider}"
+                    MouseMove="OnColorPlaneMouseMove" 
+                    MouseUp="OnColorPlaneMouseUp"/>
+                <Ellipse Width="11" Height="11" Stroke="White" Name="PART_SelectionEllipse" />
+                <Ellipse Width="13" Height="13" Stroke="Black" Name="PART_SelectionOuterEllipse" />
+            </Grid>
+        </Controls.Common:CheckerBoard>
+        <Grid 
+            Grid.Column="1" 
+            Margin="15,0,0,0"
+            Visibility="{Binding ShowSlider, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Controls.Common:CheckerBoard 
+                BorderBrush="#000" 
+                BorderThickness="1" 
+                CheckerForeground="LightGray"
+                SnapsToDevicePixels="True" 
+                Width="28"
+                Height="260" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                ClipToBounds="True">
+                <Grid>
+                    <Image 
+                        Name="PART_Image" 
+                        Height="258" 
+                        Stretch="Fill" 
+                        HorizontalAlignment="Left"  
+                        VerticalAlignment="Top" 
+                        Opacity="{Binding Alpha, Converter={StaticResource ByteToDoubleConverter}, ElementName=PART_AlphaSlider}"
+                        Width="26"  
+                        SnapsToDevicePixels="True"
+                        MouseDown="OnColorSliderMouseDown" 
+                        MouseMove="OnColorSliderMouseMove" 
+                        MouseUp="OnColorSliderMouseUp"/>
+                </Grid>
+            </Controls.Common:CheckerBoard>
+            <Slider
+                Grid.Column="1" 
+                Name="PART_Slider" 
+                Margin="-3,0,-5,0" 
+                Height="268"
+                Width="15" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="center" 
+                Maximum="255"
+                Orientation="Vertical"
+                Style="{StaticResource Style.Slider}" 
+                ValueChanged="OnColorSliderValueChanged" />
+        </Grid>
+        <local:AlphaSlider 
+            Grid.Column="2" 
+            x:Name="PART_AlphaSlider" 
+            HorizontalAlignment="Center"
+            Height="269" 
+            Color="{Binding Path=Color, ElementName=PART_ColorSelector}" 
+            ToolTip="Alpha Transparency"
+            AlphaChanged="OnAlphaDisplayAlphaChanged"
+            Visibility="{Binding ShowAlphaSlider, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    </Grid>
+</UserControl>

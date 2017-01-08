@@ -124,6 +124,19 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        public static DependencyProperty GridStyleProperty = DependencyProperty.Register("GridStyle", typeof(Style), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Style GridStyle
+        {
+            get
+            {
+                return (Style)GetValue(GridStyleProperty);
+            }
+            set
+            {
+                SetValue(GridStyleProperty, value);
+            }
+        }
+        
         public static DependencyProperty HeadersVisibilityProperty = DependencyProperty.Register("HeadersVisibility", typeof(DataGridHeadersVisibility), typeof(PropertyGrid), new FrameworkPropertyMetadata(DataGridHeadersVisibility.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public DataGridHeadersVisibility HeadersVisibility
         {

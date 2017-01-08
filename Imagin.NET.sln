@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadgets.Search", "Gadgets.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadgets.Clock", "Gadgets.Clock\Gadgets.Clock.csproj", "{211268C2-535A-49DE-B70E-C3EA8AE017A2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gadgets", "Gadgets", "{98E6F7B8-207A-4C08-BBE8-734D59E7E5F8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Themes", "Themes\Themes.csproj", "{5DE4A2E1-00BD-4D93-9107-059C4171D507}"
 EndProject
 Global
@@ -86,9 +84,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{0E143718-D899-46D5-AAA8-58A6E7E569C1} = {98E6F7B8-207A-4C08-BBE8-734D59E7E5F8}
-		{211268C2-535A-49DE-B70E-C3EA8AE017A2} = {98E6F7B8-207A-4C08-BBE8-734D59E7E5F8}
 	EndGlobalSection
 EndGlobal

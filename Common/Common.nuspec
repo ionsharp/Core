@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Imagin.Common</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://opensource.org/licenses/BSD-2-Clause</licenseUrl>
+    <projectUrl>https://github.com/imagin-tech/Imagin.NET</projectUrl>
+    <iconUrl>https://imagin.tech/apps/net/logo.ico</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A library written in C# that provides common WPF controls and utilities.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Imagin © 2016-2017</copyright>
+    <tags>Imagin Imagin.NET WPF C#</tags>
+  </metadata>
+</package>

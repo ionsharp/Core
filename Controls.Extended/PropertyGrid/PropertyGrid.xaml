@@ -113,8 +113,7 @@
 
         <!-- Templates -->
         <DataTemplate x:Key="PropertyModelTemplate">
-            <ContentControl 
-                Content="{Binding}">
+            <ContentControl Content="{Binding}">
                 <ContentControl.Resources>
                     <ResourceDictionary>
                         <DataTemplate DataType="{x:Type local:BoolPropertyModel}">
@@ -185,6 +184,12 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:GradientPropertyModel}">
+                            <local:GradientChip 
+                                Height="25"
+                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                Width="Auto"/>
+                        </DataTemplate>
                         <DataTemplate DataType="{x:Type local:GuidPropertyModel}">
                             <Controls.Common:AdvancedTextBox 
                                 HorizontalAlignment="Stretch"
@@ -199,11 +204,6 @@
                                 Maximum="{Binding Maximum}"
                                 Minimum="{Binding Minimum}"
                                 Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:LinearGradientPropertyModel}">
-                            <local:GradientChip 
-                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                Height="25"/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:LongPropertyModel}">
                             <ContentControl>
@@ -504,31 +504,21 @@
                     <DataGrid
                         Grid.Row="2"
                         AutoGenerateColumns="False"
-                        BorderThickness="0"
-                        BorderBrush="Transparent"
-                        Background="Transparent"
                         CanUserDeleteRows="False"
                         CanUserReorderColumns="False"
                         CanUserAddRows="False"
                         CanUserResizeColumns="False"
                         CanUserResizeRows="False"
                         CellStyle="{StaticResource Style.Cell}"
-                        EnableColumnVirtualization="True"
-                        EnableRowVirtualization="True"
                         GridLinesVisibility="{Binding GridLinesVisibility}"
                         HeadersVisibility="{Binding HeadersVisibility}"
                         ItemContainerStyle="{StaticResource Style.DataGrid.Row}"
                         ItemsSource="{Binding ListCollectionView, IsAsync=True}"
-                        Margin="0"
-                        Padding="0"
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         SelectedValue="{Binding Properties.ActiveProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SelectionMode="Single"
-                        Style="{x:Null}"
-                        VirtualizingPanel.IsVirtualizing="True"
-                        VirtualizingPanel.VirtualizationMode="Recycling"
-                        VirtualizingPanel.IsContainerVirtualizable="True">
+                        Style="{Binding GridStyle}">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn 
                                 Header="Name"

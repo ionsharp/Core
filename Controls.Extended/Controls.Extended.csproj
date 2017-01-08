@@ -81,70 +81,73 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="%28Pickers%29\IBrushPicker.cs" />
     <Compile Include="AnglePicker.cs" />
-    <Compile Include="Chips\ChipBase.cs" />
-    <Compile Include="Chips\Chip.Generic.cs" />
-    <Compile Include="Chips\ColorChip.cs" />
-    <Compile Include="Chips\GradientChip.cs" />
+    <Compile Include="%28Chips%29\ChipBase.cs" />
+    <Compile Include="%28Chips%29\Chip.Generic.cs" />
+    <Compile Include="%28Chips%29\ColorChip.cs" />
+    <Compile Include="%28Chips%29\GradientChip.cs" />
     <Compile Include="CollectionEditor.xaml.cs">
       <DependentUpon>CollectionEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorComb\ColorComb.cs" />
-    <Compile Include="ColorPicker\AlphaSlider.xaml.cs">
+    <Compile Include="ColorComb.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Components%29\AlphaSlider.xaml.cs">
       <DependentUpon>AlphaSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\ColorPicker.xaml.cs">
+    <Compile Include="%28Pickers%29\ColorPicker\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\ColorSelector.xaml.cs">
+    <Compile Include="%28Pickers%29\ColorPicker\%28Components%29\ColorSelector.xaml.cs">
       <DependentUpon>ColorSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\%28Models%29\LuvModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\LuvModel.cs" />
+    <Compile Include="%28Dialogs%29\BrushDialog.Generic.cs" />
+    <Compile Include="%28Dialogs%29\SolidColorBrushDialog.cs" />
+    <Compile Include="%28Dialogs%29\BrushDialog.cs" />
     <Compile Include="Lang\Main.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Main.resx</DependentUpon>
     </Compile>
     <Compile Include="PropertyGrid\%28Converters%29\FeaturedPropertyVisibilityConverter.cs" />
-    <Compile Include="Dialogs\ColorDialog.xaml.cs">
+    <Compile Include="%28Dialogs%29\ColorDialog.xaml.cs">
       <DependentUpon>ColorDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\ColorSpaceView.cs" />
-    <Compile Include="ColorPicker\ComponentCollection.cs" />
-    <Compile Include="ColorPicker\%28Models%29\CmykModel.cs" />
-    <Compile Include="ColorPicker\%28Models%29\ComponentModel.cs" />
-    <Compile Include="ColorPicker\ComponentView.cs" />
-    <Compile Include="ColorPicker\%28Models%29\ColorSpaceModel.cs" />
-    <Compile Include="ColorPicker\%28Models%29\HsbModel.cs" />
-    <Compile Include="ColorPicker\%28Models%29\HslModel.cs" />
-    <Compile Include="ColorPicker\%28Models%29\LabModel.cs" />
-    <Compile Include="ColorPicker\%28Models%29\LchModel.cs" />
-    <Compile Include="ColorPicker\%28Models%29\RgbModel.cs" />
-    <Compile Include="ColorPicker\%28Models%29\XyzModel.cs" />
-    <Compile Include="ColorPicker\%28Models%29\NormalComponentModel.cs" />
-    <Compile Include="ColorPicker\Primitives\Luv.cs" />
-    <Compile Include="GradientEditor.xaml.cs">
-      <DependentUpon>GradientEditor.xaml</DependentUpon>
+    <Compile Include="%28Pickers%29\ColorPicker\%28Components%29\ColorSpaceView.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\ComponentCollection.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\CmykModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\ComponentModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Components%29\ComponentView.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\ColorSpaceModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\HsbModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\HslModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\LabModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\LchModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\RgbModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\XyzModel.cs" />
+    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\NormalComponentModel.cs" />
+    <Compile Include="Primitives\Luv.cs" />
+    <Compile Include="%28Pickers%29\GradientPicker.xaml.cs">
+      <DependentUpon>GradientPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\GradientDialog.xaml.cs">
+    <Compile Include="%28Dialogs%29\GradientDialog.xaml.cs">
       <DependentUpon>GradientDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorComb\HexagonButton.cs" />
-    <Compile Include="Dialogs\IColorDialog.cs" />
-    <Compile Include="Chips\DualColorChip.xaml.cs">
+    <Compile Include="HexagonButton.cs" />
+    <Compile Include="%28Chips%29\DualColorChip.xaml.cs">
       <DependentUpon>DualColorChip.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\Primitives\Cmyk.cs" />
-    <Compile Include="ColorPicker\Primitives\Hsb.cs" />
-    <Compile Include="ColorPicker\Primitives\Hsl.cs" />
-    <Compile Include="ColorPicker\Primitives\Lab.cs" />
-    <Compile Include="ColorPicker\Primitives\Lch.cs" />
-    <Compile Include="ColorPicker\Primitives\Rgba.cs" />
-    <Compile Include="ColorPicker\Primitives\Xyz.cs" />
-    <Compile Include="ColorPicker\NewCurrent.xaml.cs">
+    <Compile Include="Primitives\Cmyk.cs" />
+    <Compile Include="Primitives\Hsb.cs" />
+    <Compile Include="Primitives\Hsl.cs" />
+    <Compile Include="Primitives\Lab.cs" />
+    <Compile Include="Primitives\Lch.cs" />
+    <Compile Include="Primitives\Rgba.cs" />
+    <Compile Include="Primitives\Xyz.cs" />
+    <Compile Include="NewCurrent.xaml.cs">
       <DependentUpon>NewCurrent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\ColorSpace.cs" />
+    <Compile Include="ColorSpace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyGrid\%28Models%29\Models.cs" />
     <Compile Include="PropertyGrid\PropertyAttributes.cs" />
@@ -161,39 +164,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ColorPicker\AlphaSlider.xaml">
+    <Page Include="%28Pickers%29\ColorPicker\%28Components%29\AlphaSlider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ColorPicker\ColorPicker.xaml">
+    <Page Include="%28Pickers%29\ColorPicker\ColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ColorPicker\ColorSelector.xaml">
+    <Page Include="%28Pickers%29\ColorPicker\%28Components%29\ColorSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\ColorDialog.xaml">
+    <Page Include="%28Dialogs%29\ColorDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Chips\DualColorChip.xaml">
+    <Page Include="%28Chips%29\DualColorChip.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ColorPicker\NewCurrent.xaml">
+    <Page Include="NewCurrent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ColorPicker\%28Resources%29\Slider.xaml">
+    <Page Include="%28Pickers%29\ColorPicker\%28Resources%29\Slider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GradientEditor.xaml">
+    <Page Include="%28Pickers%29\GradientPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\GradientDialog.xaml">
+    <Page Include="%28Dialogs%29\GradientDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -227,7 +230,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ColorPicker\ClassDiagram.cd" />
+    <None Include="%28Pickers%29\ColorPicker\ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

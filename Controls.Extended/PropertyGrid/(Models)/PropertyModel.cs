@@ -210,9 +210,11 @@ namespace Imagin.Controls.Extended
             if (Type == typeof(long))
                 return typeof(LongPropertyModel);
             if (Type == typeof(LinearGradientBrush))
-                return typeof(LinearGradientPropertyModel);
+                return typeof(GradientPropertyModel);
             if (Type == typeof(NetworkCredential))
                 return typeof(NetworkCredentialPropertyModel);
+            if (Type == typeof(RadialGradientBrush))
+                return typeof(GradientPropertyModel);
             if (Type == typeof(short))
                 return typeof(ShortPropertyModel);
             if (Type == typeof(Size))

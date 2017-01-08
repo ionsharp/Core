@@ -534,7 +534,7 @@
                         Text="This is sample text"/>
                 </Controls.Common:Spacer>
             </TabItem>
-            <TabItem Header="GradientEditor">
+            <TabItem Header="GradientPicker">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -547,7 +547,7 @@
                         Margin="0,0,0,10"
                         VerticalContentAlignment="Center">
                     </Controls.Common:Spacer>
-                    <Controls.Extended:GradientEditor Grid.Row="1"/>
+                    <Controls.Extended:GradientPicker Grid.Row="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Line">

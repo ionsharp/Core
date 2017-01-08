@@ -200,7 +200,14 @@
             InitializeComponent
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Extended.ColorPicker" -->
+        <member name="T:Imagin.Controls.Extended.ColorPicker">
+            <summary>
+            A color picker inspired by http://www.codeproject.com/Articles/131708/WPF-Color-Picker-Construction-Kit.
+            </summary>
+            <summary>
+            ColorPicker
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Extended.ColorPicker.InitializeComponent">
             <summary>
             InitializeComponent
@@ -548,12 +555,12 @@
             Creates an instance of a Xyz structure.
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Extended.GradientEditor">
+        <member name="T:Imagin.Controls.Extended.GradientPicker">
             <summary>
-            GradientEditor
+            GradientPicker
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.GradientEditor.InitializeComponent">
+        <member name="M:Imagin.Controls.Extended.GradientPicker.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -601,6 +608,11 @@
         <member name="M:Imagin.Controls.Extended.NewCurrent.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorSpace">
+            <summary>
+            Specifies a color space.
             </summary>
         </member>
         <member name="T:Imagin.Controls.Extended.PropertyGrid">

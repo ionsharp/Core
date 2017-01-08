@@ -44,7 +44,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debu
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.xml
@@ -95,3 +94,4 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debu
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.pdb

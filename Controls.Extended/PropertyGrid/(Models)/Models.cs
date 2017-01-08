@@ -153,14 +153,14 @@ namespace Imagin.Controls.Extended
         }
     }
 
-    public class LinearGradientPropertyModel : PropertyModel
+    public class GradientPropertyModel : PropertyModel
     {
         protected override object OnPreviewValueChanged(object NewValue)
         {
             return NewValue == null ? default(LinearGradientBrush) : (LinearGradientBrush)NewValue;
         }
 
-        public LinearGradientPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        public GradientPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
         {
         }
     }

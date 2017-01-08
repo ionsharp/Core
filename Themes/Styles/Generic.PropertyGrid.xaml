@@ -3,8 +3,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended">
-
     <Style x:Key="{x:Type Controls.Extended:PropertyGrid}" TargetType="{x:Type Controls.Extended:PropertyGrid}">
+        <Setter Property="GridStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type DataGrid}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="EnableColumnVirtualization" Value="True"/>
+                    <Setter Property="EnableRowVirtualization" Value="True"/>
+                    <Setter Property="Margin" Value="10,0,0,0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="VirtualizingPanel.IsContainerVirtualizable" Value="True"/>
+                    <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
+                    <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
         <Setter Property="PropertyDescriptionStyle">
             <Setter.Value>
                 <Style TargetType="Border">

@@ -258,11 +258,23 @@
 
     <!-- ............................................... Dialogs -->
 
-    <Style x:Key="{x:Type Controls.Extended:ColorDialog}" TargetType="{x:Type Controls.Extended:ColorDialog}" BasedOn="{StaticResource Style.BasicWindow}">
-        <Setter Property="Padding" Value="15"/>
+    <Style x:Key="Style.BrushDialog.Footer" TargetType="Border">
+        <Setter Property="Background" Value="#05000000"/>
+        <Setter Property="BorderBrush" Value="#15000000"/>
+        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+        <Setter Property="Margin" Value="-10,10,-10,0"/>
+        <Setter Property="Padding" Value="7"/>
+    </Style>
+    
+    <Style x:Key="Style.BrushDialog" TargetType="{x:Type Controls.Common:BasicWindow}" BasedOn="{StaticResource Style.BasicWindow}">
+        <Setter Property="Padding" Value="10,10,10,0"/>
     </Style>
 
-    <Style x:Key="{x:Type Controls.Extended:GradientDialog}" TargetType="{x:Type Controls.Extended:GradientDialog}" BasedOn="{StaticResource Style.BasicWindow}">
-        <Setter Property="Padding" Value="15"/>
+    <Style x:Key="{x:Type Controls.Extended:ColorDialog}" TargetType="{x:Type Controls.Extended:ColorDialog}" BasedOn="{StaticResource Style.BrushDialog}">
+        <Setter Property="FooterStyle" Value="{StaticResource Style.BrushDialog.Footer}"/>
+    </Style>
+
+    <Style x:Key="{x:Type Controls.Extended:GradientDialog}" TargetType="{x:Type Controls.Extended:GradientDialog}" BasedOn="{StaticResource Style.BrushDialog}">
+        <Setter Property="FooterStyle" Value="{StaticResource Style.BrushDialog.Footer}"/>
     </Style>
 </ResourceDictionary>

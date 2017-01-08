@@ -8,6 +8,8 @@
     <Common.Data.Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
 
     <Style TargetType="local:TreeViewComboBox">
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TreeViewComboBox}">
@@ -76,10 +78,10 @@
                         </ToggleButton>
                         <ContentControl 
                             x:Name="PART_Content"
-                            Margin="8,0,21,0"
-                            IsHitTestVisible="False" 
-                            VerticalAlignment="Center" 
-                            HorizontalAlignment="Left">
+                            IsHitTestVisible="False"  
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <ContentControl.Resources>
                                 <DataTemplate x:Key="DefaultContentTemplate">
                                     <TextBlock Text="{Binding Header}"/>
