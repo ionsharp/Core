@@ -2,7 +2,7 @@
 Imagin.NET is a library written in C# that provides common WPF controls and utilities.
 
 ##[Documentation](http://imagin.tech/docs/imagin) *(under construction)*
-
+ 
 ###Common
 
 ####*[Nuget](https://www.nuget.org/packages/Imagin.Common/)*: `PM> Install-Package Imagin.Common`
