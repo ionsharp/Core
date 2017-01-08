@@ -92,6 +92,10 @@
     <Compile Include="Attributes\Icon.cs" />
     <Compile Include="Attributes\Int64Representation.cs" />
     <Compile Include="Attributes\StringRepresentation.cs" />
+    <Compile Include="Drawing\AngularUnit.cs" />
+    <Compile Include="Extensions\Brush.cs" />
+    <Compile Include="Media\GradientPosition.cs" />
+    <Compile Include="Media\GradientType.cs" />
     <Compile Include="Media\Animation\ExpanderDoubleAnimation.cs" />
     <Compile Include="Media\Animation\GridLengthAnimation.cs" />
     <Compile Include="Attributes\Abbreviation.cs" />
@@ -188,7 +192,6 @@
     <Compile Include="Extensions\Encoding.cs" />
     <Compile Include="Extensions\Float.cs" />
     <Compile Include="Extensions\Generic.cs" />
-    <Compile Include="Extensions\LinearGradientBrush.cs" />
     <Compile Include="Extensions\ModifierKeys.cs" />
     <Compile Include="Extensions\Point.cs" />
     <Compile Include="Extensions\Rect.cs" />

@@ -4,19 +4,46 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Imagin.Common.Extensions;
+using Imagin.Common.Globalization;
 
 namespace Imagin.Controls.Extended
 {
     public partial class DualColorChip : UserControl
     {
-        public DualColorChip()
-        {
-            InitializeComponent();
-        }
-
         public event EventHandler<EventArgs<Color>> ForegroundColorChanged;
 
         public event EventHandler<EventArgs<Color>> BackgroundColorChanged;
+
+        public static DependencyProperty BackgroundColorProperty = DependencyProperty.Register("BackgroundColor", typeof(Color), typeof(DualColorChip), new PropertyMetadata(Colors.White, OnBackgroundColorChanged));
+        public Color BackgroundColor
+        {
+            get
+            {
+                return (Color)GetValue(BackgroundColorProperty);
+            }
+            set
+            {
+                SetValue(BackgroundColorProperty, value);
+            }
+        }
+        static void OnBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.As<DualColorChip>().OnBackgroundColorChanged((Color)e.NewValue);
+        }
+
+        public static DependencyProperty BackgroundToolTipProperty = DependencyProperty.Register("BackgroundToolTip", typeof(string), typeof(DualColorChip), new PropertyMetadata("Background"));
+        public string BackgroundToolTip
+        {
+            get
+            {
+                return (string)GetValue(BackgroundToolTipProperty);
+            }
+            set
+            {
+                SetValue(BackgroundToolTipProperty, value);
+            }
+        }
 
         public static DependencyProperty DefaultForegroundProperty = DependencyProperty.Register("DefaultForeground", typeof(Color), typeof(DualColorChip), new PropertyMetadata(Colors.Black));
         public Color DefaultForeground
@@ -58,41 +85,81 @@ namespace Imagin.Controls.Extended
         }
         static void OnForegroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var DualColorChip = (DualColorChip)d;
-            if (DualColorChip.ForegroundColorChanged != null)
-                DualColorChip.ForegroundColorChanged(DualColorChip, new EventArgs<Color>((Color)e.NewValue));
+            d.As<DualColorChip>().OnForegroundColorChanged((Color)e.NewValue);
         }
 
-        public static DependencyProperty BackgroundColorProperty = DependencyProperty.Register("BackgroundColor", typeof(Color), typeof(DualColorChip), new PropertyMetadata(Colors.White, OnBackgroundColorChanged));
-        public Color BackgroundColor
+        public static DependencyProperty ForegroundToolTipProperty = DependencyProperty.Register("ForegroundToolTip", typeof(string), typeof(DualColorChip), new PropertyMetadata("Foreground"));
+        public string ForegroundToolTip
         {
             get
             {
-                return (Color)GetValue(BackgroundColorProperty);
+                return (string)GetValue(ForegroundToolTipProperty);
             }
             set
             {
-                SetValue(BackgroundColorProperty, value);
+                SetValue(ForegroundToolTipProperty, value);
             }
         }
-        static void OnBackgroundColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+
+        public static DependencyProperty ResetToolTipProperty = DependencyProperty.Register("ResetToolTip", typeof(string), typeof(DualColorChip), new PropertyMetadata("Reset"));
+        public string ResetToolTip
         {
-            var DualColorChip = (DualColorChip)d;
-            if (DualColorChip.BackgroundColorChanged != null)
-                DualColorChip.BackgroundColorChanged(DualColorChip, new EventArgs<Color>((Color)e.NewValue));
+            get
+            {
+                return (string)GetValue(ResetToolTipProperty);
+            }
+            set
+            {
+                SetValue(ResetToolTipProperty, value);
+            }
+        }
+
+        public static DependencyProperty SwitchToolTipProperty = DependencyProperty.Register("SwitchToolTip", typeof(string), typeof(DualColorChip), new PropertyMetadata("Swap"));
+        public string SwitchToolTip
+        {
+            get
+            {
+                return (string)GetValue(SwitchToolTipProperty);
+            }
+            set
+            {
+                SetValue(SwitchToolTipProperty, value);
+            }
+        }
+        
+        public DualColorChip()
+        {
+            InitializeComponent();
         }
 
         void OnDefaultMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.ForegroundColor = Color.FromArgb(this.DefaultForeground.A, this.DefaultForeground.R, this.DefaultForeground.G, this.DefaultForeground.B);
-            this.BackgroundColor = Color.FromArgb(this.DefaultBackground.A, this.DefaultBackground.R, this.DefaultBackground.G, this.DefaultBackground.B);
+            ForegroundColor = DefaultForeground;
+            BackgroundColor = DefaultBackground;
         }
 
         void OnSwitchMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var Foreground = Color.FromArgb(this.ForegroundColor.A, this.ForegroundColor.R, this.ForegroundColor.G, this.ForegroundColor.B);
-            this.ForegroundColor = Color.FromArgb(this.BackgroundColor.A, this.BackgroundColor.R, this.BackgroundColor.G, this.BackgroundColor.B);
-            this.BackgroundColor = Foreground;
+            var a = ForegroundColor;
+            var b = BackgroundColor;
+
+            Console.WriteLine(a);
+            Console.WriteLine(b);
+
+            ForegroundColor = b;
+            BackgroundColor = a;
+        }
+
+        protected virtual void OnBackgroundColorChanged(Color Value)
+        {
+            if (BackgroundColorChanged != null)
+                BackgroundColorChanged(this, new EventArgs<Color>(Value));
+        }
+
+        protected virtual void OnForegroundColorChanged(Color Value)
+        {
+            if (ForegroundColorChanged != null)
+                ForegroundColorChanged(this, new EventArgs<Color>((Color)Value));
         }
     }
 }

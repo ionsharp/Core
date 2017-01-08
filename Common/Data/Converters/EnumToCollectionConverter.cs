@@ -21,14 +21,18 @@ namespace Imagin.Common.Data.Converters
                 EnumType = value.As<Type>();
             else return null;
 
-            ObservableCollection<Enum> Result = new ObservableCollection<Enum>();
-            foreach (object i in Enum.GetValues(EnumType))
-            {
-                var Field = i as Enum;
+            var Result = new ObservableCollection<Enum>();
 
-                var Attribute = Field.GetAttribute<BrowsableAttribute>();
-                if (Attribute == null || Attribute.Browsable)
-                    Result.Add(i.As<Enum>());
+            if (EnumType.IsEnum)
+            {
+                foreach (var i in Enum.GetValues(EnumType))
+                {
+                    var Field = i as Enum;
+
+                    var Attribute = Field.GetAttribute<BrowsableAttribute>();
+                    if (Attribute == null || Attribute.Browsable)
+                        Result.Add(i.As<Enum>());
+                }
             }
 
             return Result;

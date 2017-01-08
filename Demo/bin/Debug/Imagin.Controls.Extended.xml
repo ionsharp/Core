@@ -4,15 +4,160 @@
         <name>Imagin.Controls.Extended</name>
     </assembly>
     <members>
-        <member name="T:Imagin.Controls.Extended.GradientChip">
+        <member name="T:Imagin.Controls.Extended.ChipBase">
             <summary>
-            GradientChip
+            A chip for displaying and selecting a brush.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.GradientChip.InitializeComponent">
+        <member name="P:Imagin.Controls.Extended.ChipBase.DialogEvent">
             <summary>
-            InitializeComponent
+            
             </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ChipBase.IsSynchronizedProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ChipBase.IsSynchronized">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ChipBase.TitleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ChipBase.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ChipBase.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ChipBase.OnMouseDoubleClick(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ChipBase.OnMouseDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ChipBase.OnMouseUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ChipBase.OnIsSynchronizedChanged(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ChipBase.ShowDialog">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Extended.Chip`1">
+            <summary>
+            A chip for displaying and selecting a brush.
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.Chip`1.ValueChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.Chip`1.ValueProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Chip`1.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Chip`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Chip`1.OnValueChanged(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorChip">
+            <summary>
+            A chip for displaying and selecting a SolidColorBrush.
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.ColorChip.ColorChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorChip.ColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorChip.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorChip.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorChip.OnColorChanged(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorChip.OnValueChanged(System.Windows.Media.SolidColorBrush)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorChip.ShowDialog">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Extended.GradientChip">
+            <summary>
+            A chip for displaying and selecting a LinearGradientBrush.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.GradientChip.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.GradientChip.ShowDialog">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Controls.Extended.CollectionEditor">
             <summary>
@@ -55,16 +200,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Extended.ColorChip">
-            <summary>
-            ColorChip
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.ColorChip.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Extended.ColorPicker" -->
         <member name="M:Imagin.Controls.Extended.ColorPicker.InitializeComponent">
             <summary>
@@ -79,6 +214,112 @@
         <member name="M:Imagin.Controls.Extended.ColorSelector.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.Lang.Main">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Ascending">
+            <summary>
+              Looks up a localized string similar to Ascending.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Background">
+            <summary>
+              Looks up a localized string similar to Background.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Bind">
+            <summary>
+              Looks up a localized string similar to Bind.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.CollapseGroups">
+            <summary>
+              Looks up a localized string similar to Collapse Groups.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Collection">
+            <summary>
+              Looks up a localized string similar to Collection.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Descending">
+            <summary>
+              Looks up a localized string similar to Descending.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Foreground">
+            <summary>
+              Looks up a localized string similar to Foreground.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Name">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Options">
+            <summary>
+              Looks up a localized string similar to Options.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Password">
+            <summary>
+              Looks up a localized string similar to Password.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Repeat">
+            <summary>
+              Looks up a localized string similar to Repeat.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Reset">
+            <summary>
+              Looks up a localized string similar to Reset.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Search">
+            <summary>
+              Looks up a localized string similar to Search.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.SortDirection">
+            <summary>
+              Looks up a localized string similar to Sort Direction.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Swap">
+            <summary>
+              Looks up a localized string similar to Swap.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Type">
+            <summary>
+              Looks up a localized string similar to Type.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Unbind">
+            <summary>
+              Looks up a localized string similar to Unbind.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.Lang.Main.Username">
+            <summary>
+              Looks up a localized string similar to Username.
             </summary>
         </member>
         <member name="T:Imagin.Controls.Extended.ColorDialog">

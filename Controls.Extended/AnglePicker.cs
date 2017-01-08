@@ -148,6 +148,7 @@ namespace Imagin.Controls.Extended
             DefaultStyleKey = typeof(AnglePicker);
 
             Background = Brushes.LightGray;
+
             Loaded += AnglePicker_Loaded;
         }
 

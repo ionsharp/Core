@@ -46,9 +46,7 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public bool Save = false;
-
-        public bool Cancel = false;
+        public WindowResult Result = WindowResult.Unknown;
 
         public ColorChip ColorChip
         {
@@ -65,11 +63,11 @@ namespace Imagin.Controls.Extended
             PART_ColorPicker.SelectedColorChanged += OnSelectedColorChanged;
         }
 
-        public ColorDialog(string Title, Color InitialColor, ColorChip ColorChip = null) : this()
+        public ColorDialog(string title, Color initialColor, ColorChip colorChip = null) : this()
         {
-            Title = Title;
-            InitialColor = InitialColor;
-            ColorChip = ColorChip;
+            Title = title;
+            InitialColor = initialColor;
+            ColorChip = colorChip;
         }
 
         #endregion
@@ -78,20 +76,19 @@ namespace Imagin.Controls.Extended
         
         void OnCancel(object sender, RoutedEventArgs e)
         {
-            this.SelectedColor = this.InitialColor;
-            this.Cancel = true;
-            this.Close();
+            Result = WindowResult.Cancel;
+            Close();
         }
 
         void OnOk(object sender, RoutedEventArgs e)
         {
-            this.Save = true;
-            this.Close();
+            Result = WindowResult.Ok;
+            Close();
         }
 
         void OnRevert(object sender, RoutedEventArgs e)
         {
-            this.SelectedColor = this.InitialColor;
+            SelectedColor = InitialColor;
         }
 
         void OnSelectedColorChanged(object sender, EventArgs<Color> e)

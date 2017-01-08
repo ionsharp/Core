@@ -6,7 +6,7 @@ namespace Imagin.Controls.Extended
 {
     public partial class GradientDialog : BasicWindow
     {
-        public LinearGradientBrush Gradient
+        public Brush Gradient
         {
             get
             {
@@ -32,12 +32,13 @@ namespace Imagin.Controls.Extended
             InitializeComponent();
         }
 
-        public GradientDialog(string Title, LinearGradientBrush InitialGradient, GradientChip GradientChip = null)
+        public GradientDialog(string title, Brush initialGradient, GradientChip gradientChip = null)
         {
             InitializeComponent();
-            this.Title = Title;
-            this.Gradient = InitialGradient;
-            this.GradientChip = GradientChip;
+
+            Title = title;
+            Gradient = initialGradient;
+            GradientChip = gradientChip;
         }
 
         void OnSave(object sender, RoutedEventArgs e)

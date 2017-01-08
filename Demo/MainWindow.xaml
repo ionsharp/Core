@@ -5,13 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.NET.Demo"
-    xmlns:Common="clr-namespace:Imagin.Common;assembly=Imagin.Common"
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
-    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
-    xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended"
-    xmlns:Common.Data="clr-namespace:Imagin.Common.Data;assembly=Imagin.Common"
-    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
-    xmlns:Common.Extensions="clr-namespace:Imagin.Common.Extensions;assembly=Imagin.Common"
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
+    xmlns:Controls.Extended="http://imagin.tech/imagin/controls/extended"
     mc:Ignorable="d"
     Height="600" 
     Title="Imagin.NET Demo" 
@@ -19,12 +15,12 @@
     WindowStartupLocation="CenterScreen"
     x:Name="PART_MainWindow">
     <Controls.Common:BasicWindow.Resources>
-        <Common.Data.Converters:ColorToHexConverter x:Key="ColorToHexConverter"/>
-        <Common.Data.Converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
-        <Common.Data.Converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
-        <Common.Data.Converters:FileNameConverter x:Key="FileNameConverter"/>
-        <Common.Data.Converters:FileSizeConverter x:Key="FileSizeConverter"/>
-        <Common.Data.Converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
+        <Common:ColorToHexConverter x:Key="ColorToHexConverter"/>
+        <Common:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
+        <Common:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
+        <Common:FileNameConverter x:Key="FileNameConverter"/>
+        <Common:FileSizeConverter x:Key="FileSizeConverter"/>
+        <Common:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
 
         <!-- ....................................................................................[ResourceDictionaryEditor] -->
 
@@ -193,9 +189,9 @@
                         Grid.Row="1"
                         x:Name="PART_AdvancedTreeView"
                         ColumnHeaderVisibility="Visible"
-                        Controls.Common.Extensions:ItemsControlExtensions.IsColumnMenuEnabled="True"
+                        Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
                         ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}"
-                        Controls.Common.Extensions:TreeViewExtensions.SelectionMode="Extended"
+                        Controls.Common:TreeViewExtensions.SelectionMode="Extended"
                         VirtualizingPanel.IsVirtualizing="True"
                         VirtualizingPanel.VirtualizationMode="Recycling">
                         <Controls.Common:AdvancedTreeView.ColumnHeaderTemplate>
@@ -303,14 +299,17 @@
                     <Controls.Extended:ColorChip HorizontalAlignment="Left"/>
 
                     <TextBlock Style="{DynamicResource H2}" Text="GradientChip"/>
-                    <Controls.Extended:GradientChip Height="30">
-                        <Controls.Extended:GradientChip.Gradient>
+                    <Controls.Extended:GradientChip 
+                        Height="30"
+                        HorizontalAlignment="Left"
+                        Width="150">
+                        <Controls.Extended:GradientChip.Value>
                             <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
                                 <GradientStop Offset="0" Color="Red"/>
                                 <GradientStop Offset="0.5" Color="Green"/>
                                 <GradientStop Offset="1" Color="Yellow"/>
                             </LinearGradientBrush>
-                        </Controls.Extended:GradientChip.Gradient>
+                        </Controls.Extended:GradientChip.Value>
                     </Controls.Extended:GradientChip>
 
                     <TextBlock Style="{DynamicResource H2}" Text="DualColorChip"/>
@@ -409,12 +408,12 @@
                         VerticalAlignment="Center"/>
                     <DataGrid
                         Grid.Row="1"
-                        Controls.Common.Extensions:DataGridExtensions.AutoSizeColumns="True"
-                        Controls.Common.Extensions:DataGridExtensions.DisplayRowNumberOffset="1"
-                        Controls.Common.Extensions:DataGridExtensions.DisplayRowNumber="True"
+                        Controls.Common:DataGridExtensions.AutoSizeColumns="True"
+                        Controls.Common:DataGridExtensions.DisplayRowNumberOffset="1"
+                        Controls.Common:DataGridExtensions.DisplayRowNumber="True"
                         HeadersVisibility="All" 
-                        Controls.Common.Extensions:ItemsControlExtensions.IsColumnMenuEnabled="True"
-                        Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled="True"
+                        Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
+                        Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled="True"
                         ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" SortMemberPath="Name"/>
@@ -592,7 +591,7 @@
                     </Controls.Common:RadioGroup>
                     <ListView
                         Grid.Row="1"
-                        Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled="True"
+                        Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled="True"
                         ItemsSource="{Binding FileSystemCollectionView}"
                         Padding="10"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -772,7 +771,7 @@
                         <Label Content="FileSizeFormat:"/>
                         <ComboBox 
                             SelectedValue="{Binding FileSizeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            ItemsSource="{Binding Source={x:Type Common.Data:FileSizeFormat}, Converter={StaticResource EnumToCollectionConverter}}"
+                            ItemsSource="{Binding Source={x:Type Common:FileSizeFormat}, Converter={StaticResource EnumToCollectionConverter}}"
                             ToolTip="Column Visibility"/>
 
                         <Label Content="GridLinesVisibility:"/>
@@ -797,7 +796,7 @@
                         Background="Transparent" 
                         BorderThickness="0" 
                         ItemsSource="{Binding FileSystemCollection, IsAsync=True}" 
-                        Controls.Common.Extensions:TreeViewExtensions.SelectionMode="Single">
+                        Controls.Common:TreeViewExtensions.SelectionMode="Single">
                         <TreeView.ItemContainerStyle>
                             <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                                 <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -909,49 +908,49 @@
                             </Style>
                         </Controls.Extended:TabbedTree.ItemContainerStyle>
                         <TreeViewItem Header="Option 1">
-                            <Common.Extensions:ControlExtensions.Content>
+                            <Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 1"/>
                                 </Grid>
-                            </Common.Extensions:ControlExtensions.Content>
+                            </Common:ControlExtensions.Content>
                         </TreeViewItem>
                         <TreeViewItem Header="Option 2">
-                            <Common.Extensions:ControlExtensions.Content>
+                            <Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 2"/>
                                 </Grid>
-                            </Common.Extensions:ControlExtensions.Content>
+                            </Common:ControlExtensions.Content>
                         </TreeViewItem>
                         <TreeViewItem Header="Option 3">
-                            <Common.Extensions:ControlExtensions.Content>
+                            <Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 3"/>
                                 </Grid>
-                            </Common.Extensions:ControlExtensions.Content>
+                            </Common:ControlExtensions.Content>
                         </TreeViewItem>
                         <TreeViewItem Header="Option 4">
-                            <Common.Extensions:ControlExtensions.Content>
+                            <Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 4"/>
                                 </Grid>
-                            </Common.Extensions:ControlExtensions.Content>
+                            </Common:ControlExtensions.Content>
                         </TreeViewItem>
                         <TreeViewItem Header="Option 5">
-                            <Common.Extensions:ControlExtensions.Content>
+                            <Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 5"/>
                                 </Grid>
-                            </Common.Extensions:ControlExtensions.Content>
+                            </Common:ControlExtensions.Content>
                         </TreeViewItem>
                     </Controls.Extended:TabbedTree>
 

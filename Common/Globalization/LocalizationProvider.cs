@@ -8,7 +8,7 @@ namespace Imagin.Common.Globalization
     /// </summary>
     public static class LocalizationProvider
     {
-        public static T GetLocalizedValue<T>(string key)
+        public static T GetValue<T>(string key)
         {
             return LocExtension.GetLocalizedValue<T>(Assembly.GetExecutingAssembly().GetName().Name + ":Main:" + key);
         }

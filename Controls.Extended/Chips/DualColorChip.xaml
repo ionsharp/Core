@@ -11,6 +11,7 @@
     x:Name="PART_DualColorChip">
     <UserControl.Resources>
         <Common.Data.Converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
+        
         <DrawingBrush x:Key="SwitchBrush" Viewbox="0,0,11.381,12.011" ViewboxUnits="Absolute"  Stretch="Uniform">
             <DrawingBrush.Drawing>
                 <DrawingGroup>
@@ -40,7 +41,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid ToolTip="Reset">
+        <Grid 
+            Background="Transparent"
+            ToolTip="{Binding ResetToolTip}">
             <Controls.Common:CheckerBoard 
                 Cursor="Hand" 
                 BorderThickness="1"
@@ -76,26 +79,26 @@
                 VerticalAlignment="Top"
                 Height="22" 
                 Width="22" 
-                ToolTip="Background"
-                Color="{Binding BackgroundColor, Mode=TwoWay}"/>
+                ToolTip="{Binding BackgroundToolTip}"
+                Color="{Binding BackgroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <local:ColorChip 
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Height="22" 
                 Width="22" 
-                ToolTip="Foreground"
-                Color="{Binding ForegroundColor, Mode=TwoWay}"/>
+                ToolTip="{Binding ForegroundToolTip}"
+                Color="{Binding ForegroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Rectangle
-                Fill="{StaticResource SwitchBrush}"
-                Margin="20,-10,0,0" 
-                Stroke="{x:Null}" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Width="16"
-                Height="15" 
                 Cursor="Hand" 
-                ToolTip="Swap"
-                PreviewMouseDown="OnSwitchMouseDown" />
+                Fill="{StaticResource SwitchBrush}"
+                Height="15" 
+                HorizontalAlignment="Left" 
+                Margin="20,-10,0,0" 
+                PreviewMouseDown="OnSwitchMouseDown" 
+                Stroke="{x:Null}" 
+                ToolTip="{Binding SwitchToolTip}"
+                VerticalAlignment="Top" 
+                Width="16"/>
         </Grid>
     </Grid>
 </UserControl>

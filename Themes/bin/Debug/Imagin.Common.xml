@@ -54,893 +54,19 @@
             Constraint values are stored as object type because generic types cannot inherit from Attribute.
             </remarks>
         </member>
-        <member name="T:Imagin.Common.Media.Animation.ExpanderDoubleAnimation">
+        <member name="T:Imagin.Common.Drawing.AngularUnit">
             <summary>
-            Animates a double value.
+            Specifies an angular unit.
             </summary>
         </member>
-        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.FromProperty">
+        <member name="F:Imagin.Common.Drawing.AngularUnit.Degree">
             <summary>
-            Dependency property for the From property
+            Specifies a degree as the unit of measure.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.From">
+        <member name="F:Imagin.Common.Drawing.AngularUnit.Radian">
             <summary>
-            CLR Wrapper for the From depenendency property
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ToProperty">
-            <summary>
-            Dependency property for the To property
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.To">
-            <summary>
-            CLR Wrapper for the To property
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ReverseValue">
-            <summary>
-            Sets the reverse value for the second animation
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ReverseValueProperty">
-            <summary>
-            Sets the reverse value for the second animation
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.CreateInstanceCore">
-            <summary>
-            Creates an instance of the animation
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.GetCurrentValueCore(System.Double,System.Double,System.Windows.Media.Animation.AnimationClock)">
-            <summary>
-            Animates the double value
-            </summary>
-            <param name="defaultOriginValue">The original value to animate</param>
-            <param name="defaultDestinationValue">The final value</param>
-            <param name="animationClock">The animation clock (timer)</param>
-            <returns>Returns the new double to set</returns>
-        </member>
-        <member name="T:Imagin.Common.Animations.Animation.GridLengthAnimation">
-            <summary>
-            Animates a grid length value just like the DoubleAnimation animates a double value
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.IsCompleted">
-            <summary>
-            Marks the animation as completed
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.ReverseValue">
-            <summary>
-            Sets the reverse value for the second animation
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Animations.Animation.GridLengthAnimation.ReverseValueProperty">
-            <summary>
-            Dependency property. Sets the reverse value for the second animation
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.TargetPropertyType">
-            <summary>
-            Returns the type of object to animate
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Animations.Animation.GridLengthAnimation.CreateInstanceCore">
-            <summary>
-            Creates an instance of the animation object
-            </summary>
-            <returns>Returns the instance of the GridLengthAnimation</returns>
-        </member>
-        <member name="F:Imagin.Common.Animations.Animation.GridLengthAnimation.FromProperty">
-            <summary>
-            Dependency property for the From property
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.From">
-            <summary>
-            CLR Wrapper for the From depenendency property
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Animations.Animation.GridLengthAnimation.ToProperty">
-            <summary>
-            Dependency property for the To property
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Animations.Animation.GridLengthAnimation.To">
-            <summary>
-            CLR Wrapper for the To property
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Animations.Animation.GridLengthAnimation.VerifyAnimationCompletedStatus(System.Windows.Media.Animation.AnimationClock)">
-            <summary>
-            registers to the completed event of the animation clock
-            </summary>
-            <param name="clock">the animation clock to notify completion status</param>
-        </member>
-        <member name="M:Imagin.Common.Animations.Animation.GridLengthAnimation.GetCurrentValue(System.Object,System.Object,System.Windows.Media.Animation.AnimationClock)">
-            <summary>
-            Animates the grid let set
-            </summary>
-            <param name="defaultOriginValue">The original value to animate</param>
-            <param name="defaultDestinationValue">The final value</param>
-            <param name="animationClock">The animation clock (timer)</param>
-            <returns>Returns the new grid length to set</returns>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1">
-            <summary>
-            This class provides the base for concurrent collections that 
-            can be bound to user interface elements
-            </summary>
-            <notes>
-            Could do with a more performant enumerable implementation
-            but this is what I have so far. I create a snapshot of the collection
-            and use the enumerable from that. When the collection is updated
-            I set a flag indicating that a new snapshot is required.
-            </notes>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.IsDispatcherThread">
-            <summary>
-            Gets if the calling thread is the same as the dispatcher thread
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.ReadWriteLock">
-            <summary>
-            The lock that controls read/write access to the base collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.BaseCollection">
-            <summary>
-            The underlying base enumerable that is used to store the items,
-            used for creating an immutable collection from which an enumerator
-            can be obtained.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.NewSnapshotRequired">
-            <summary>
-            Flag indicating that a write has occured, so anything that depends on
-            taking a snapshot of the collection needs to be updated.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.SnapshotLock">
-            <summary>
-            The enumerable lock to prevent threading conflicts on allocating
-            the enumerable of the fixed collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.BaseSnapshot">
-            <summary>
-            The collection used for generating an enumerable that iterates
-            over a snapshot of the base collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.Subscribers">
-            <summary>
-            A list of observers
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.SubscriberKey">
-            <summary>
-            The key for new observers, incremented with each new observer
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.IsDisposed">
-            <summary>
-            Flag indicating this collection is disposed
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.Snapshot">
-            <summary>
-            Gets an immutable snapshot of the collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.viewModel">
-            <summary>
-            The view model that is used to allow this collection to be bound to the UI.
-            Relevant methods determine if they are being called on the UI thread, and if
-            so then the view model is used.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.ViewModel">
-            <summary>
-            Access this directly if getting the error "An ItemsControl is inconsistent with its items source".
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.WriteCollection">
-            <summary>
-            Gets the base collection that holds the values
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.#ctor">
-            <summary>
-            Default Constructor
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Constructor that takes an eumerable
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseClear(System.Action)" -->
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.HandleBaseCollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
-            <summary>
-            Handles when the base collection changes. Pipes the event through IObservable.OnNext
-            </summary>
-            <remarks>
-            As this is a concurrent collection we don't want a change event to result in the listener
-            later coming back to enumerate over the whole collection again, possible before the listener
-            gets other changed events, but after the collection has been added to.
-            </remarks>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.UpdateSnapshot">
-            <summary>
-            Updates the snapshot that is used to generate an Enumerator
-            </summary>
-            <param name="forceUpdate"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseRead(System.Action)">
-            <summary>
-            Handles read access from the base collection
-            </summary>
-            <param name="readFunc"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseRead``1(System.Func{``0})">
-            <summary>
-            Handles read access from the base collection when a return value is required
-            </summary>
-            <typeparam name="TResult"></typeparam>
-            <param name="readFunc"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseReadWrite``1(System.Func{System.Boolean},System.Func{``0},System.Func{``0})">
-            <summary>
-            Calls the read function passed in, and if it returns true,
-            then calls the next read function, else calls the write
-            function.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseReadWrite``1(System.Func{System.Boolean},System.Func{``0},System.Action,System.Func{``0})">
-            <summary>
-            Calls the read function passed in, and if it returns true,
-            then calls the next read function, else unlocks the collection,
-            calls the pre-write function, then chains to DoBaseReadWrite
-            calls the write
-            function.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseWrite(System.Action)">
-            <summary>
-            Handles write access to the base collection
-            </summary>
-            <param name="writeFunc"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseWrite``1(System.Func{``0})">
-            <summary>
-            Handles write access to the base collection when a return value is required
-            </summary>
-            <typeparam name="TResult"></typeparam>
-            <param name="writeFunc"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DisposeDelegate">
-            <summary>
-            Result returned from "Subscribe" method.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.GetEnumerator">
-            <summary>
-            Gets the enumerator for a snapshot of the collection
-            </summary>
-            <remarks>
-            Note that the Enumerator should really only be used on the Dispatcher thread,
-            if not then should enumerate over the Snapshot instead.
-            
-            </remarks>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            Gets the enumerator for a snapshot of the collection
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1">
-            <summary>
-            This class provides a collection that can be bound to
-            a WPF control, where the collection can be modified from a thread
-            that is not the GUI thread. The notify event is thrown using the
-            dispatcher from the event listener(s).
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemAdded">
-            <summary>
-            Occurs when a single item is added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsAdded">
-            <summary>
-            Occurs when any number of items are added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsChanged">
-            <summary>
-            Occurs when the collection changes.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsCleared">
-            <summary>
-            Occurs when the collection is cleared.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemInserted">
-            <summary>
-            Occurs when a single item is inserted.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemRemoved">
-            <summary>
-            Occurs when a single item is removed.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsRemoved">
-            <summary>
-            Occurs when any number of items are removed.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.AddTo(`0,`0)">
-            <summary>
-            Add item A to B.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginAddTo(`0,`0)">
-            <summary>
-            Add item A to B.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginLevelUp(`0)">
-            <summary>
-            Moves item up one level.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginRemove(`0)">
-            <summary>
-            Removes data item from parent.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginRemove(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Removes data item from parent.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginWrap(`0,`0)">
-            <summary>
-            Wraps item in a virtual folder via recursive search (assumes Parent.Items exists).
-            </summary>
-            <param name="Folder">The container item.</param>
-            <param name="Item">The item to wrap.</param>
-            <returns>Result of wrap attempt; false if failure.</returns>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.RemoveAll(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Removes all occurences of each item in the specified collection.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor">
-            <summary>
-            Executes a stream on actions on the dispatcher thread.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor._instance">
-            <summary>
-            This class is a singleton class. Below is the instance.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionQueue">
-            <summary>
-            A queue of actions to be called on the dispatcher thread
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.SubscriberQueue">
-            <summary>
-            A list of pending subscribers, processed once the Dispather is created.
-            Using a ConcurrentDictionary because this is the only framework collection
-            that has a remove method.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Dispatcher">
-            <summary>
-            The Application Dispatcher
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionWaiting">
-            <summary>
-            The current action that is awaiting processing on the Dispatcher thread
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionWaitingSemaphore">
-            <summary>
-            Semaphore used to prevent a race condition on ActionWaiting 
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Instance">
-            <summary>
-            Gets the instance of the singleton class
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.IsDispatcherThread">
-            <summary>
-            Tests if the calling thread is the same as the dispatcher thread
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.#ctor">
-            <summary>
-            Private constructor for this singleton class. Use the Instance property to
-            get an instance of this class.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.CheckIfDispatcherCreated">
-            <summary>
-            Checks if the dispatcher has been created yet
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.StartQueueProcessing">
-            <summary>
-            Starts the thread that processes the queue of actions that are to be
-            executed on the dispatcher thread.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Add(System.Action)">
-             <summary>
-             Adds an action to the processing queue
-             </summary>
-             <remarks>
-             If we are running on the dispatcher thread, we could call the
-             action directly, but then we've got the problem with queue
-             jumping. It's desirable to immediately update the view model,
-             as if we don't the code that added the item won't see it
-             if an iteration is done over the collection, which would confuse
-             the person using this collection.
-            
-             So, we need to add it to the queue and then process the queue
-             so the view is consistent with the Add action.
-             </remarks>
-             <param name="Action"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.QueueSubscribe(System.Action)">
-            <summary>
-            Adds a subscribe action to the subscriber queue
-            </summary>
-            <remarks>
-            Subscriber queue is set to null after the 
-            Dispatcher has been created. So subscriptions 
-            can be handled directly once the dispatcher 
-            queue is being processed.
-            </remarks>
-            <param name="SubscribeAction"></param>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.DisposeDelegate">
-            <summary>
-            Result returned by "QueueSubscribe" method.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ImmutableCollection`1">
-            <summary>
-            This class provides a functional immutable collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.baseCollection">
-            <summary>
-            The base collection that is wrapped by this class to restrict access
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1">
-            <summary>
-            This class provides the base restrictions for an immutable collection
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "P:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Count" -->
-        <member name="P:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.IsReadOnly">
-            <summary>
-            Gets a value indicating that the collection is read-only.
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Add(`0)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Clear" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Remove(`0)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Contains(`0)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.CopyTo(`0[],System.Int32)" -->
-        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.GetEnumerator">
-            <summary>
-            Gets the enumerator for the collection
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            Gets the enumerator for the collection
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1">
-            <summary>
-            This is the view model for the ConcurrentObservableCollectionBase that can be bound to a view.
-            This is exposed by ConcurrentObservableCollectionBase when it is used from the Dispatcher thread.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <!-- Badly formed XML comment ignored for member "F:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.UnsubscribeToken" -->
-        <member name="F:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.SubscriptionActionToken">
-            <summary>
-            Token for removing the subscription action from the queue
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.ProcessCommand(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
-            <summary>
-            Processes a NotifyCollectionChangedEventArgs event argument
-            </summary>
-            <param name="command"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Dispose(System.Boolean)">
-            <summary>
-            Disposes of this object, and supresses the finalizer
-            </summary>
-            <param name="isDisposing"></param>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.#ctor(System.IObservable{System.Collections.Specialized.NotifyCollectionChangedEventArgs})" -->
-        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Finalize">
-            <summary>
-            Finalizer, disposes of the object
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnCompleted" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnError(System.Exception)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnNext(System.Collections.Specialized.NotifyCollectionChangedEventArgs)" -->
-        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Dispose">
-            <summary>
-            Disposes of the current object
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.ObjectModel.ObservableStack`1">
-            <summary>
-            Based on ObservableCollection, defines methods relative to stack data strcuture.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="T:Imagin.Common.Collections.ObjectModel.TrackableCollection`1">
-            <summary>
-            Based on ObservableCollection; implements ITrackable.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemAdded">
-            <summary>
-            Occurs when a single item is added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsAdded">
-            <summary>
-            Occurs when any number of items are added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsChanged">
-            <summary>
-            Occurs when the collection changes.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsCleared">
-            <summary>
-            Occurs when the collection is cleared.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemInserted">
-            <summary>
-            Occurs when a single item is inserted.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemRemoved">
-            <summary>
-            Occurs when a single item is removed.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsRemoved">
-            <summary>
-            Occurs when any number of items are removed.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Generic.IHierarchialCollection`1">
-            <summary>
-            Defines methods to manipulate hierarchial collections.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="T:Imagin.Common.Collections.Generic.IStackable`1">
-            <summary>
-            Defines methods to manipulate stackable collections.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="T:Imagin.Common.Collections.Generic.ITrackableCollection`1">
-            <summary>
-            Defines methods to manipulate collections that should "watch" collection changes.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="T:Imagin.Common.Collections.TrackableList`1">
-            <summary>
-            Based on List; implements ITrackable.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemAdded">
-            <summary>
-            Occurs when a single item is added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsAdded">
-            <summary>
-            Occurs when any number of items are added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsChanged">
-            <summary>
-            Occurs when the collection changes.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsCleared">
-            <summary>
-            Occurs when the collection is cleared.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemInserted">
-            <summary>
-            Occurs when a single item is inserted.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemRemoved">
-            <summary>
-            Occurs when a single item is removed.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsRemoved">
-            <summary>
-            Occurs when any number of items are removed.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.CompassDirection">
-            <remarks>
-            Field order is important
-            </remarks>
-        </member>
-        <member name="M:Imagin.Common.Data.Converters.NullConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <remarks>
-            According to https://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.convertback(v=vs.110).aspx#Anchor_1,
-            
-            If you do not support a conversion back, 
-            you should return Binding.DoNothing or
-            DependencyProperty.UnsetValue.
-            </remarks>
-        </member>
-        <member name="T:Imagin.Common.Data.Converters.FileSpeedConverter">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Data.MathBinding">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Data.MathBinding.Type">
-            <summary>
-            The type of math operation to perform (note, the operation is unknown unless otherwise specified).
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Data.MathBinding.Value">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Data.MathBinding.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="Path"></param>
-        </member>
-        <member name="T:Imagin.Common.Debug.Error">
-            <summary>
-            Represents a failed result; optionally, encapsulates an exception.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Debug.Result">
-            <summary>
-            Represents the result of something.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Debug.Success">
-            <summary>
-            Represents a successful result.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Configuration.AppDomainContext">
-            <summary>
-            Defines necessary utilities to manage an AppDomain.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Configuration.IApp">
-            <summary>
-            Represents an application.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Configuration.IPlugin">
-            <summary>
-            An indepedent library used to extend functionality in an application.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Author">
-            <summary>
-            The individual who (or organization that) developed the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Description">
-            <summary>
-            A short description explaining what the plugin does.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Icon">
-            <summary>
-            Uri for an icon resource.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.IsEnabled">
-            <summary>
-            Whether or not the plugin is enabled.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Name">
-            <summary>
-            The name of the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Uri">
-            <summary>
-            Website where the plugin is published.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Version">
-            <summary>
-            Plugin version.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.IPlugin.Enable">
-            <summary>
-            Enable the plugin.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.IPlugin.Disable">
-            <summary>
-            Disable the plugin.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Configuration.Plugin">
-            <summary>
-            A wrapper for an independent class library used to extend functionality in an application.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.App">
-            <summary>
-            Get reference to current application as IApp.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Resources">
-            <summary>
-            Resources used by the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Author">
-            <summary>
-            The individual who (or organization that) developed the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Description">
-            <summary>
-            A short description explaining what the plugin does.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Icon">
-            <summary>
-            Uri for an icon resource.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.IsEnabled">
-            <summary>
-            Whether or not the plugin is enabled.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Name">
-            <summary>
-            The name of the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Uri">
-            <summary>
-            Website where the plugin is published.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Version">
-            <summary>
-            Plugin version.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.GetPaneViewModel">
-            <summary>
-            Get pane view model associated with the plugin (if there is one).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.GetResources">
-            <summary>
-            Get resources used by the plugin.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.MergePaneViewModel">
-            <summary>
-            Add pane view model.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.MergeResources">
-            <summary>
-            Merge plugin resources with application.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.ReleasePaneViewModel">
-            <summary>
-            Remove pane view model.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.ReleaseResources">
-            <summary>
-            Remove plugin resources from application.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.Trace(Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryStatus,System.String,System.String)">
-            <summary>
-            Write information to log.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Configuration.PluginManager">
-            <summary>
-            Defines necessary utilites to load and unload plugins.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.GetContext(System.String)">
-            <summary>
-            Return a context with newly created AppDomain.
-            </summary>
-            <param name="Path">Path to the .dll file.</param>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.GetPlugin(Imagin.Common.Configuration.AppDomainContext,System.String)">
-            <summary>
-            Create and return instance of plugin based on specified context.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.GetPluginType(System.Reflection.Assembly)">
-            <summary>
-            Search for and return plugin type defined in specified assembly.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.Install(System.String)">
-            <summary>
-            Create and add plugin.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.Install(System.String,Imagin.Common.Configuration.IPlugin@)">
-            <summary>
-            Create and add plugin.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.Uninstall(Imagin.Common.Configuration.IPlugin)">
-            <summary>
-            Remove and dispose plugin.
+            Specifies a radian as the unit of measure.
             </summary>
         </member>
         <member name="F:Imagin.Common.Drawing.GraphicalUnit.Pixel">
@@ -988,9 +114,14 @@
             Specifies an en (1/144.54 inch) as the unit of measure.
             </summary>
         </member>
-        <member name="T:Imagin.Common.LeftRight">
+        <member name="T:Imagin.Common.Extensions.BrushExtensions">
             <summary>
-            Represents a direction that can only be left or right.
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.BrushExtensions.Duplicate(System.Windows.Media.Brush)">
+            <summary>
+            Creates Brush from specified Brush and it's values.
             </summary>
         </member>
         <member name="M:Imagin.Common.Extensions.ActionExtensions.InvokeIf(System.Action,System.Func{System.Action,System.Boolean})">
@@ -1119,11 +250,6 @@
             <param name="Items"></param>
             <param name="Predicate"></param>
             <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Extensions.LinearGradientBrushExtensions.Duplicate(System.Windows.Media.LinearGradientBrush)">
-            <summary>
-            Creates LinearGradientBrush from specified LinearGradientBrush and it's values.
-            </summary>
         </member>
         <member name="T:Imagin.Common.Extensions.ModifierKeysExtensions">
             <summary>
@@ -2001,6 +1127,915 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:Imagin.Common.Media.GradientPosition">
+            <summary>
+            Specifies a point that determines a gradient's position.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Media.GradientPosition.Start">
+            <summary>
+            Specifies the start point of the gradient.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Media.GradientPosition.End">
+            <summary>
+            Specifies the end point of the gradient.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Media.Animation.ExpanderDoubleAnimation">
+            <summary>
+            Animates a double value.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.FromProperty">
+            <summary>
+            Dependency property for the From property
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.From">
+            <summary>
+            CLR Wrapper for the From depenendency property
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ToProperty">
+            <summary>
+            Dependency property for the To property
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.To">
+            <summary>
+            CLR Wrapper for the To property
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ReverseValue">
+            <summary>
+            Sets the reverse value for the second animation
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.ReverseValueProperty">
+            <summary>
+            Sets the reverse value for the second animation
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.CreateInstanceCore">
+            <summary>
+            Creates an instance of the animation
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Media.Animation.ExpanderDoubleAnimation.GetCurrentValueCore(System.Double,System.Double,System.Windows.Media.Animation.AnimationClock)">
+            <summary>
+            Animates the double value
+            </summary>
+            <param name="defaultOriginValue">The original value to animate</param>
+            <param name="defaultDestinationValue">The final value</param>
+            <param name="animationClock">The animation clock (timer)</param>
+            <returns>Returns the new double to set</returns>
+        </member>
+        <member name="T:Imagin.Common.Media.Animation.GridLengthAnimation">
+            <summary>
+            Animates a grid length value just like the DoubleAnimation animates a double value
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Media.Animation.GridLengthAnimation.IsCompleted">
+            <summary>
+            Marks the animation as completed
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Media.Animation.GridLengthAnimation.ReverseValue">
+            <summary>
+            Sets the reverse value for the second animation
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Media.Animation.GridLengthAnimation.ReverseValueProperty">
+            <summary>
+            Dependency property. Sets the reverse value for the second animation
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Media.Animation.GridLengthAnimation.TargetPropertyType">
+            <summary>
+            Returns the type of object to animate
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Media.Animation.GridLengthAnimation.CreateInstanceCore">
+            <summary>
+            Creates an instance of the animation object
+            </summary>
+            <returns>Returns the instance of the GridLengthAnimation</returns>
+        </member>
+        <member name="F:Imagin.Common.Media.Animation.GridLengthAnimation.FromProperty">
+            <summary>
+            Dependency property for the From property
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Media.Animation.GridLengthAnimation.From">
+            <summary>
+            CLR Wrapper for the From depenendency property
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Media.Animation.GridLengthAnimation.ToProperty">
+            <summary>
+            Dependency property for the To property
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Media.Animation.GridLengthAnimation.To">
+            <summary>
+            CLR Wrapper for the To property
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Media.Animation.GridLengthAnimation.VerifyAnimationCompletedStatus(System.Windows.Media.Animation.AnimationClock)">
+            <summary>
+            registers to the completed event of the animation clock
+            </summary>
+            <param name="clock">the animation clock to notify completion status</param>
+        </member>
+        <member name="M:Imagin.Common.Media.Animation.GridLengthAnimation.GetCurrentValue(System.Object,System.Object,System.Windows.Media.Animation.AnimationClock)">
+            <summary>
+            Animates the grid let set
+            </summary>
+            <param name="defaultOriginValue">The original value to animate</param>
+            <param name="defaultDestinationValue">The final value</param>
+            <param name="animationClock">The animation clock (timer)</param>
+            <returns>Returns the new grid length to set</returns>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1">
+            <summary>
+            This class provides the base for concurrent collections that 
+            can be bound to user interface elements
+            </summary>
+            <notes>
+            Could do with a more performant enumerable implementation
+            but this is what I have so far. I create a snapshot of the collection
+            and use the enumerable from that. When the collection is updated
+            I set a flag indicating that a new snapshot is required.
+            </notes>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.IsDispatcherThread">
+            <summary>
+            Gets if the calling thread is the same as the dispatcher thread
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.ReadWriteLock">
+            <summary>
+            The lock that controls read/write access to the base collection
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.BaseCollection">
+            <summary>
+            The underlying base enumerable that is used to store the items,
+            used for creating an immutable collection from which an enumerator
+            can be obtained.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.NewSnapshotRequired">
+            <summary>
+            Flag indicating that a write has occured, so anything that depends on
+            taking a snapshot of the collection needs to be updated.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.SnapshotLock">
+            <summary>
+            The enumerable lock to prevent threading conflicts on allocating
+            the enumerable of the fixed collection
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.BaseSnapshot">
+            <summary>
+            The collection used for generating an enumerable that iterates
+            over a snapshot of the base collection
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.Subscribers">
+            <summary>
+            A list of observers
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.SubscriberKey">
+            <summary>
+            The key for new observers, incremented with each new observer
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.IsDisposed">
+            <summary>
+            Flag indicating this collection is disposed
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.Snapshot">
+            <summary>
+            Gets an immutable snapshot of the collection
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.viewModel">
+            <summary>
+            The view model that is used to allow this collection to be bound to the UI.
+            Relevant methods determine if they are being called on the UI thread, and if
+            so then the view model is used.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.ViewModel">
+            <summary>
+            Access this directly if getting the error "An ItemsControl is inconsistent with its items source".
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.WriteCollection">
+            <summary>
+            Gets the base collection that holds the values
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Constructor that takes an eumerable
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseClear(System.Action)" -->
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.HandleBaseCollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Handles when the base collection changes. Pipes the event through IObservable.OnNext
+            </summary>
+            <remarks>
+            As this is a concurrent collection we don't want a change event to result in the listener
+            later coming back to enumerate over the whole collection again, possible before the listener
+            gets other changed events, but after the collection has been added to.
+            </remarks>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.UpdateSnapshot">
+            <summary>
+            Updates the snapshot that is used to generate an Enumerator
+            </summary>
+            <param name="forceUpdate"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseRead(System.Action)">
+            <summary>
+            Handles read access from the base collection
+            </summary>
+            <param name="readFunc"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseRead``1(System.Func{``0})">
+            <summary>
+            Handles read access from the base collection when a return value is required
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="readFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseReadWrite``1(System.Func{System.Boolean},System.Func{``0},System.Func{``0})">
+            <summary>
+            Calls the read function passed in, and if it returns true,
+            then calls the next read function, else calls the write
+            function.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseReadWrite``1(System.Func{System.Boolean},System.Func{``0},System.Action,System.Func{``0})">
+            <summary>
+            Calls the read function passed in, and if it returns true,
+            then calls the next read function, else unlocks the collection,
+            calls the pre-write function, then chains to DoBaseReadWrite
+            calls the write
+            function.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseWrite(System.Action)">
+            <summary>
+            Handles write access to the base collection
+            </summary>
+            <param name="writeFunc"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseWrite``1(System.Func{``0})">
+            <summary>
+            Handles write access to the base collection when a return value is required
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="writeFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DisposeDelegate">
+            <summary>
+            Result returned from "Subscribe" method.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.GetEnumerator">
+            <summary>
+            Gets the enumerator for a snapshot of the collection
+            </summary>
+            <remarks>
+            Note that the Enumerator should really only be used on the Dispatcher thread,
+            if not then should enumerate over the Snapshot instead.
+            
+            </remarks>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets the enumerator for a snapshot of the collection
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1">
+            <summary>
+            This class provides a collection that can be bound to
+            a WPF control, where the collection can be modified from a thread
+            that is not the GUI thread. The notify event is thrown using the
+            dispatcher from the event listener(s).
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemAdded">
+            <summary>
+            Occurs when a single item is added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsAdded">
+            <summary>
+            Occurs when any number of items are added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsChanged">
+            <summary>
+            Occurs when the collection changes.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsCleared">
+            <summary>
+            Occurs when the collection is cleared.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemInserted">
+            <summary>
+            Occurs when a single item is inserted.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemRemoved">
+            <summary>
+            Occurs when a single item is removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsRemoved">
+            <summary>
+            Occurs when any number of items are removed.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.AddTo(`0,`0)">
+            <summary>
+            Add item A to B.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginAddTo(`0,`0)">
+            <summary>
+            Add item A to B.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginLevelUp(`0)">
+            <summary>
+            Moves item up one level.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginRemove(`0)">
+            <summary>
+            Removes data item from parent.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginRemove(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes data item from parent.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginWrap(`0,`0)">
+            <summary>
+            Wraps item in a virtual folder via recursive search (assumes Parent.Items exists).
+            </summary>
+            <param name="Folder">The container item.</param>
+            <param name="Item">The item to wrap.</param>
+            <returns>Result of wrap attempt; false if failure.</returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.RemoveAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes all occurences of each item in the specified collection.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor">
+            <summary>
+            Executes a stream on actions on the dispatcher thread.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor._instance">
+            <summary>
+            This class is a singleton class. Below is the instance.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionQueue">
+            <summary>
+            A queue of actions to be called on the dispatcher thread
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.SubscriberQueue">
+            <summary>
+            A list of pending subscribers, processed once the Dispather is created.
+            Using a ConcurrentDictionary because this is the only framework collection
+            that has a remove method.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Dispatcher">
+            <summary>
+            The Application Dispatcher
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionWaiting">
+            <summary>
+            The current action that is awaiting processing on the Dispatcher thread
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionWaitingSemaphore">
+            <summary>
+            Semaphore used to prevent a race condition on ActionWaiting 
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Instance">
+            <summary>
+            Gets the instance of the singleton class
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.IsDispatcherThread">
+            <summary>
+            Tests if the calling thread is the same as the dispatcher thread
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.#ctor">
+            <summary>
+            Private constructor for this singleton class. Use the Instance property to
+            get an instance of this class.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.CheckIfDispatcherCreated">
+            <summary>
+            Checks if the dispatcher has been created yet
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.StartQueueProcessing">
+            <summary>
+            Starts the thread that processes the queue of actions that are to be
+            executed on the dispatcher thread.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Add(System.Action)">
+             <summary>
+             Adds an action to the processing queue
+             </summary>
+             <remarks>
+             If we are running on the dispatcher thread, we could call the
+             action directly, but then we've got the problem with queue
+             jumping. It's desirable to immediately update the view model,
+             as if we don't the code that added the item won't see it
+             if an iteration is done over the collection, which would confuse
+             the person using this collection.
+            
+             So, we need to add it to the queue and then process the queue
+             so the view is consistent with the Add action.
+             </remarks>
+             <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.QueueSubscribe(System.Action)">
+            <summary>
+            Adds a subscribe action to the subscriber queue
+            </summary>
+            <remarks>
+            Subscriber queue is set to null after the 
+            Dispatcher has been created. So subscriptions 
+            can be handled directly once the dispatcher 
+            queue is being processed.
+            </remarks>
+            <param name="SubscribeAction"></param>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.DisposeDelegate">
+            <summary>
+            Result returned by "QueueSubscribe" method.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ImmutableCollection`1">
+            <summary>
+            This class provides a functional immutable collection
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.baseCollection">
+            <summary>
+            The base collection that is wrapped by this class to restrict access
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1">
+            <summary>
+            This class provides the base restrictions for an immutable collection
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Count" -->
+        <member name="P:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.IsReadOnly">
+            <summary>
+            Gets a value indicating that the collection is read-only.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Add(`0)" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Clear" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Remove(`0)" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Contains(`0)" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.CopyTo(`0[],System.Int32)" -->
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.GetEnumerator">
+            <summary>
+            Gets the enumerator for the collection
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets the enumerator for the collection
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1">
+            <summary>
+            This is the view model for the ConcurrentObservableCollectionBase that can be bound to a view.
+            This is exposed by ConcurrentObservableCollectionBase when it is used from the Dispatcher thread.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.UnsubscribeToken" -->
+        <member name="F:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.SubscriptionActionToken">
+            <summary>
+            Token for removing the subscription action from the queue
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.ProcessCommand(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Processes a NotifyCollectionChangedEventArgs event argument
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Dispose(System.Boolean)">
+            <summary>
+            Disposes of this object, and supresses the finalizer
+            </summary>
+            <param name="isDisposing"></param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.#ctor(System.IObservable{System.Collections.Specialized.NotifyCollectionChangedEventArgs})" -->
+        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Finalize">
+            <summary>
+            Finalizer, disposes of the object
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnCompleted" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnError(System.Exception)" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnNext(System.Collections.Specialized.NotifyCollectionChangedEventArgs)" -->
+        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Dispose">
+            <summary>
+            Disposes of the current object
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.ObjectModel.ObservableStack`1">
+            <summary>
+            Based on ObservableCollection, defines methods relative to stack data strcuture.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="T:Imagin.Common.Collections.ObjectModel.TrackableCollection`1">
+            <summary>
+            Based on ObservableCollection; implements ITrackable.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemAdded">
+            <summary>
+            Occurs when a single item is added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsAdded">
+            <summary>
+            Occurs when any number of items are added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsChanged">
+            <summary>
+            Occurs when the collection changes.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsCleared">
+            <summary>
+            Occurs when the collection is cleared.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemInserted">
+            <summary>
+            Occurs when a single item is inserted.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemRemoved">
+            <summary>
+            Occurs when a single item is removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsRemoved">
+            <summary>
+            Occurs when any number of items are removed.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Generic.IHierarchialCollection`1">
+            <summary>
+            Defines methods to manipulate hierarchial collections.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="T:Imagin.Common.Collections.Generic.IStackable`1">
+            <summary>
+            Defines methods to manipulate stackable collections.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="T:Imagin.Common.Collections.Generic.ITrackableCollection`1">
+            <summary>
+            Defines methods to manipulate collections that should "watch" collection changes.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="T:Imagin.Common.Collections.TrackableList`1">
+            <summary>
+            Based on List; implements ITrackable.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemAdded">
+            <summary>
+            Occurs when a single item is added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsAdded">
+            <summary>
+            Occurs when any number of items are added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsChanged">
+            <summary>
+            Occurs when the collection changes.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsCleared">
+            <summary>
+            Occurs when the collection is cleared.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemInserted">
+            <summary>
+            Occurs when a single item is inserted.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemRemoved">
+            <summary>
+            Occurs when a single item is removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsRemoved">
+            <summary>
+            Occurs when any number of items are removed.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.CompassDirection">
+            <remarks>
+            Field order is important
+            </remarks>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.NullConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks>
+            According to https://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.convertback(v=vs.110).aspx#Anchor_1,
+            
+            If you do not support a conversion back, 
+            you should return Binding.DoNothing or
+            DependencyProperty.UnsetValue.
+            </remarks>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.FileSpeedConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Data.MathBinding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MathBinding.Type">
+            <summary>
+            The type of math operation to perform (note, the operation is unknown unless otherwise specified).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MathBinding.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.MathBinding.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+        </member>
+        <member name="T:Imagin.Common.Debug.Error">
+            <summary>
+            Represents a failed result; optionally, encapsulates an exception.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Debug.Result">
+            <summary>
+            Represents the result of something.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Debug.Success">
+            <summary>
+            Represents a successful result.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Configuration.AppDomainContext">
+            <summary>
+            Defines necessary utilities to manage an AppDomain.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Configuration.IApp">
+            <summary>
+            Represents an application.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Configuration.IPlugin">
+            <summary>
+            An indepedent library used to extend functionality in an application.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IPlugin.Author">
+            <summary>
+            The individual who (or organization that) developed the plugin.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IPlugin.Description">
+            <summary>
+            A short description explaining what the plugin does.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IPlugin.Icon">
+            <summary>
+            Uri for an icon resource.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IPlugin.IsEnabled">
+            <summary>
+            Whether or not the plugin is enabled.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IPlugin.Name">
+            <summary>
+            The name of the plugin.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IPlugin.Uri">
+            <summary>
+            Website where the plugin is published.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IPlugin.Version">
+            <summary>
+            Plugin version.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.IPlugin.Enable">
+            <summary>
+            Enable the plugin.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.IPlugin.Disable">
+            <summary>
+            Disable the plugin.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Configuration.Plugin">
+            <summary>
+            A wrapper for an independent class library used to extend functionality in an application.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.App">
+            <summary>
+            Get reference to current application as IApp.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.Resources">
+            <summary>
+            Resources used by the plugin.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.Author">
+            <summary>
+            The individual who (or organization that) developed the plugin.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.Description">
+            <summary>
+            A short description explaining what the plugin does.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.Icon">
+            <summary>
+            Uri for an icon resource.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.IsEnabled">
+            <summary>
+            Whether or not the plugin is enabled.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.Name">
+            <summary>
+            The name of the plugin.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.Uri">
+            <summary>
+            Website where the plugin is published.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.Plugin.Version">
+            <summary>
+            Plugin version.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.Plugin.GetPaneViewModel">
+            <summary>
+            Get pane view model associated with the plugin (if there is one).
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.Plugin.GetResources">
+            <summary>
+            Get resources used by the plugin.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.Plugin.MergePaneViewModel">
+            <summary>
+            Add pane view model.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.Plugin.MergeResources">
+            <summary>
+            Merge plugin resources with application.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.Plugin.ReleasePaneViewModel">
+            <summary>
+            Remove pane view model.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.Plugin.ReleaseResources">
+            <summary>
+            Remove plugin resources from application.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.Plugin.Trace(Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryStatus,System.String,System.String)">
+            <summary>
+            Write information to log.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Configuration.PluginManager">
+            <summary>
+            Defines necessary utilites to load and unload plugins.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.PluginManager.GetContext(System.String)">
+            <summary>
+            Return a context with newly created AppDomain.
+            </summary>
+            <param name="Path">Path to the .dll file.</param>
+        </member>
+        <member name="M:Imagin.Common.Configuration.PluginManager.GetPlugin(Imagin.Common.Configuration.AppDomainContext,System.String)">
+            <summary>
+            Create and return instance of plugin based on specified context.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.PluginManager.GetPluginType(System.Reflection.Assembly)">
+            <summary>
+            Search for and return plugin type defined in specified assembly.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.PluginManager.Install(System.String)">
+            <summary>
+            Create and add plugin.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.PluginManager.Install(System.String,Imagin.Common.Configuration.IPlugin@)">
+            <summary>
+            Create and add plugin.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Configuration.PluginManager.Uninstall(Imagin.Common.Configuration.IPlugin)">
+            <summary>
+            Remove and dispose plugin.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.LeftRight">
+            <summary>
+            Represents a direction that can only be left or right.
+            </summary>
         </member>
         <member name="T:Imagin.Common.Globalization.LocalizationProvider">
             <summary>

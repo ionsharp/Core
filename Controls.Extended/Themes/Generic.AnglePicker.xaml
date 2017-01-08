@@ -6,6 +6,8 @@
     xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:local="clr-namespace:Imagin.Controls.Extended">
     <Style x:Key="{x:Type local:AnglePicker}" TargetType="{x:Type local:AnglePicker}">
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Width" Value="100"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AnglePicker}">

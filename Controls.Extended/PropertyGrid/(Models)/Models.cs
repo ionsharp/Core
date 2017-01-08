@@ -5,149 +5,6 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
-    public sealed class BoolPropertyModel : PropertyModel
-    {
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? false : (bool)NewValue;
-        }
-
-        public BoolPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class BytePropertyModel : NumericPropertyModel<byte>
-    {
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? (byte)0 : (byte)NewValue;
-        }
-
-        public BytePropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class CollectionPropertyModel : PropertyModel
-    {
-        public CollectionPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class DateTimePropertyModel : PropertyModel
-    {
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? default(DateTime) : (DateTime)NewValue;
-        }
-
-        public DateTimePropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class DecimalPropertyModel : NumericPropertyModel<decimal>
-    {
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? 0m : (decimal)NewValue;
-        }
-
-        public DecimalPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class DoublePropertyModel : NumericPropertyModel<double>
-    {
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? 0d : Convert.ToDouble(NewValue);
-        }
-
-        public DoublePropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class EnumPropertyModel : PropertyModel
-    {
-        public EnumPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class GuidPropertyModel : PropertyModel
-    {
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? default(Guid) : (Guid)NewValue;
-        }
-
-        public GuidPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class IntPropertyModel : NumericPropertyModel<int>
-    {
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? 0 : Convert.ToInt32(NewValue);
-        }
-
-        public IntPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class LinearGradientPropertyModel : PropertyModel
-    {
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? default(LinearGradientBrush) : (LinearGradientBrush)NewValue;
-        }
-
-        public LinearGradientPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class LongPropertyModel : NumericPropertyModel<long>
-    {
-        Int64Representation int64Representation = Int64Representation.Default;
-        public Int64Representation Int64Representation
-        {
-            get
-            {
-                return this.int64Representation;
-            }
-            set
-            {
-                this.int64Representation = value;
-                OnPropertyChanged("Int64Representation");
-            }
-        }
-
-        protected override object OnPreviewValueChanged(object NewValue)
-        {
-            return NewValue == null ? 0L : Convert.ToInt64(NewValue);
-        }
-
-        public LongPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
-    public sealed class NetworkCredentialPropertyModel : PropertyModel
-    {
-        public NetworkCredentialPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
-        {
-        }
-    }
-
     public abstract class NumericPropertyModel : PropertyModel
     {
         internal abstract void SetConstraint(object Minimum, object Maximum);
@@ -198,7 +55,150 @@ namespace Imagin.Controls.Extended
         }
     }
 
-    public sealed class ShortPropertyModel : NumericPropertyModel<short>
+    public class BoolPropertyModel : PropertyModel
+    {
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? false : (bool)NewValue;
+        }
+
+        public BoolPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class BytePropertyModel : NumericPropertyModel<byte>
+    {
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? (byte)0 : (byte)NewValue;
+        }
+
+        public BytePropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class CollectionPropertyModel : PropertyModel
+    {
+        public CollectionPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class DateTimePropertyModel : PropertyModel
+    {
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? default(DateTime) : (DateTime)NewValue;
+        }
+
+        public DateTimePropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class DecimalPropertyModel : NumericPropertyModel<decimal>
+    {
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? 0m : (decimal)NewValue;
+        }
+
+        public DecimalPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class DoublePropertyModel : NumericPropertyModel<double>
+    {
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? 0d : Convert.ToDouble(NewValue);
+        }
+
+        public DoublePropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class EnumPropertyModel : PropertyModel
+    {
+        public EnumPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class GuidPropertyModel : PropertyModel
+    {
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? default(Guid) : (Guid)NewValue;
+        }
+
+        public GuidPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class IntPropertyModel : NumericPropertyModel<int>
+    {
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? 0 : Convert.ToInt32(NewValue);
+        }
+
+        public IntPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class LinearGradientPropertyModel : PropertyModel
+    {
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? default(LinearGradientBrush) : (LinearGradientBrush)NewValue;
+        }
+
+        public LinearGradientPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class LongPropertyModel : NumericPropertyModel<long>
+    {
+        Int64Representation int64Representation = Int64Representation.Default;
+        public Int64Representation Int64Representation
+        {
+            get
+            {
+                return this.int64Representation;
+            }
+            set
+            {
+                this.int64Representation = value;
+                OnPropertyChanged("Int64Representation");
+            }
+        }
+
+        protected override object OnPreviewValueChanged(object NewValue)
+        {
+            return NewValue == null ? 0L : Convert.ToInt64(NewValue);
+        }
+
+        public LongPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class NetworkCredentialPropertyModel : PropertyModel
+    {
+        public NetworkCredentialPropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base(Name, Value, Category, Description, IsReadOnly, IsFeatured)
+        {
+        }
+    }
+
+    public class ShortPropertyModel : NumericPropertyModel<short>
     {
         protected override object OnPreviewValueChanged(object NewValue)
         {
@@ -210,7 +210,7 @@ namespace Imagin.Controls.Extended
         }
     }
 
-    public sealed class SizePropertyModel : PropertyModel
+    public class SizePropertyModel : PropertyModel
     {
         double width = 0.0;
         public double Width
@@ -276,7 +276,7 @@ namespace Imagin.Controls.Extended
         }
     }
 
-    public sealed class SolidColorBrushPropertyModel : PropertyModel
+    public class SolidColorBrushPropertyModel : PropertyModel
     {
         protected override object OnPreviewValueChanged(object NewValue)
         {
@@ -314,7 +314,7 @@ namespace Imagin.Controls.Extended
         }
     }
 
-    public sealed class UriPropertyModel : PropertyModel
+    public class UriPropertyModel : PropertyModel
     {
         protected override object OnPreviewValueChanged(object NewValue)
         {
@@ -326,7 +326,7 @@ namespace Imagin.Controls.Extended
         }
     }
 
-    public sealed class VersionPropertyModel : PropertyModel
+    public class VersionPropertyModel : PropertyModel
     {
         protected override object OnPreviewValueChanged(object NewValue)
         {

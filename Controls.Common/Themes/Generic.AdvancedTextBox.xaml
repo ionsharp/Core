@@ -3,9 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
-    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common">
-    <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-    <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+    xmlns:Common="http://imagin.tech/imagin/common">
+    <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <Common:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 
     <Style x:Key="{x:Type local:AdvancedTextBox}" TargetType="{x:Type local:AdvancedTextBox}">
         <Setter Property="Template">

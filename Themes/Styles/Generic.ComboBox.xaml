@@ -19,7 +19,6 @@
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                Padding="{TemplateBinding Padding}"
                 Focusable="false" 
                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
                 ClickMode="Press">
@@ -72,14 +71,14 @@
                 </ToggleButton.Template>
             </ToggleButton>
             <ContentPresenter 
-                Margin="8,0"  
                 x:Name="ContentSite" 
                 IsHitTestVisible="False" 
                 Content="{TemplateBinding SelectionBoxItem}" 
                 ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
                 ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" 
-                VerticalAlignment="Center" 
-                HorizontalAlignment="Left">
+                HorizontalAlignment="Left"
+                Margin="{TemplateBinding Padding}"
+                VerticalAlignment="Center">
             </ContentPresenter>
             <Controls.Common:AdvancedTextBox 
                 x:Name="PART_TextBox" 
@@ -132,7 +131,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.ComboBox.Border}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.ComboBox.Foreground}" />
-        <Setter Property="Height" Value="25" />
+        <Setter Property="Padding" Value="7,5" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />

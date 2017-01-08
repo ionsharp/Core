@@ -38,7 +38,7 @@
     <SolidColorBrush x:Key="Brush.CheckBox.Switch.Checked.Foreground" Color="#55FFFFFF"/>
 
     <SolidColorBrush x:Key="Brush.ComboBox.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Brush.ComboBox.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.ComboBox.Border" Color="#DDD"/>
     <SolidColorBrush x:Key="Brush.ComboBox.Foreground" Color="#777"/>
     <SolidColorBrush x:Key="Brush.ComboBox.MouseOver.Background" Color="#DDD"/>
     <SolidColorBrush x:Key="Brush.ComboBox.MouseOver.Border" Color="#BBB"/>
@@ -107,6 +107,7 @@
     <SolidColorBrush x:Key="Brush.GridView.Background" Color="#11000000"/>
 
     <SolidColorBrush x:Key="Brush.GroupBox.Border" Color="#DDD"/>
+    <SolidColorBrush x:Key="Brush.GroupBox.Foreground" Color="#333"/>
 
     <SolidColorBrush x:Key="Brush.Image" Color="#BBB"/>
     <SolidColorBrush x:Key="Brush.Image.MouseOver" Color="#FF57A7DC"/>

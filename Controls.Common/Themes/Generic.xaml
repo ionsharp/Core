@@ -5,7 +5,6 @@
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedItemsControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedTextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.BasicWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.ButtonChrome.xaml" />

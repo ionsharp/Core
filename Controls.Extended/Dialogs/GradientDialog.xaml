@@ -15,7 +15,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <local:GradientEditor x:Name="PART_GradientEditor" Gradient="{Binding Gradient}"/>
+        <local:GradientEditor 
+            x:Name="PART_GradientEditor"/>
         <Controls.Common:Spacer 
             Grid.Row="1" 
             Orientation="Horizontal" 

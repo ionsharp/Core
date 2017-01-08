@@ -102,14 +102,6 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public Type ValueType
-        {
-            get
-            {
-                return value_.GetType();
-            }
-        }
-
         object object_ = null;
         public object Object
         {
@@ -122,14 +114,6 @@ namespace Imagin.Controls.Extended
                 object_ = value;
                 OnObjectChanged(value);
                 OnPropertyChanged("Object");
-            }
-        }
-
-        public string Type
-        {
-            get
-            {
-                return GetType().ToString();
             }
         }
 

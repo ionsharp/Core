@@ -120,6 +120,9 @@
   <data name="Ascending" xml:space="preserve">
     <value>Ascending</value>
   </data>
+  <data name="Background" xml:space="preserve">
+    <value>Background</value>
+  </data>
   <data name="Bind" xml:space="preserve">
     <value>Bind</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="Descending" xml:space="preserve">
     <value>Descending</value>
+  </data>
+  <data name="Foreground" xml:space="preserve">
+    <value>Foreground</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -152,6 +158,9 @@
   </data>
   <data name="SortDirection" xml:space="preserve">
     <value>Sort Direction</value>
+  </data>
+  <data name="Swap" xml:space="preserve">
+    <value>Swap</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>

@@ -82,18 +82,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnglePicker.cs" />
-    <Compile Include="Chips\GradientChip.xaml.cs">
-      <DependentUpon>GradientChip.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Chips\ChipBase.cs" />
+    <Compile Include="Chips\Chip.Generic.cs" />
+    <Compile Include="Chips\ColorChip.cs" />
+    <Compile Include="Chips\GradientChip.cs" />
     <Compile Include="CollectionEditor.xaml.cs">
       <DependentUpon>CollectionEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorComb\ColorComb.cs" />
     <Compile Include="ColorPicker\AlphaSlider.xaml.cs">
       <DependentUpon>AlphaSlider.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chips\ColorChip.xaml.cs">
-      <DependentUpon>ColorChip.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
@@ -102,6 +100,11 @@
       <DependentUpon>ColorSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\%28Models%29\LuvModel.cs" />
+    <Compile Include="Lang\Main.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Main.resx</DependentUpon>
+    </Compile>
     <Compile Include="PropertyGrid\%28Converters%29\FeaturedPropertyVisibilityConverter.cs" />
     <Compile Include="Dialogs\ColorDialog.xaml.cs">
       <DependentUpon>ColorDialog.xaml</DependentUpon>
@@ -154,19 +157,11 @@
     <Compile Include="TabbedTree.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Chips\GradientChip.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CollectionEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ColorPicker\AlphaSlider.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Chips\ColorChip.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -210,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.Chips.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Generic.TabbedTree.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -248,7 +247,10 @@
     <Resource Include="Images\Pencil.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Lang\Main.resx" />
+    <EmbeddedResource Include="Lang\Main.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Main.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\LinkHorizontal.png" />
