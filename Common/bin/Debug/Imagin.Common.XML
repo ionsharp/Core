@@ -1128,6 +1128,95 @@
             <param name="sender">The sender.</param>
             <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
         </member>
+        <member name="T:Imagin.Common.Input.RelayCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.#ctor(System.Action{System.Object})">
+            <summary>
+            Initializes a new instance of the RelayCommand class.
+            </summary>
+            <param name="execute"></param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.#ctor(System.Action{System.Object},System.Boolean)">
+            <summary>
+            Initializes a new instance of the RelayCommand class.
+            </summary>
+            <param name="execute"></param>
+            <param name="canExecute"></param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.#ctor(System.Action{System.Object},System.Predicate{System.Object})">
+            <summary>
+            Initializes a new instance of the RelayCommand class.
+            </summary>
+            <param name="execute"></param>
+            <param name="canExecute"></param>
+        </member>
+        <member name="T:Imagin.Common.Input.RelayCommand`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Imagin.Common.Input.RelayCommand`1.execute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Input.RelayCommand`1.canExecute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Input.RelayCommand`1.canExecuteTask">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand`1.#ctor(System.Action{`0})">
+            <summary>
+            Initializes a new instance of the RelayCommand class.
+            </summary>
+            <param name="execute"></param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand`1.#ctor(System.Action{`0},System.Boolean)">
+            <summary>
+            Initializes a new instance of the RelayCommand class.
+            </summary>
+            <param name="execute"></param>
+            <param name="canExecute"></param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
+            <summary>
+            Initializes a new instance of the RelayCommand class.
+            </summary>
+            <param name="execute"></param>
+            <param name="canExecute"></param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand`1.CanExecute(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="E:Imagin.Common.Input.RelayCommand`1.CanExecuteChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand`1.Execute(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:Imagin.Common.Input.MouseWheelActiveTrigger">
+            <summary>
+            Mouse wheel active states.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Media.GradientPosition">
             <summary>
             Specifies a point that determines a gradient's position.
@@ -1846,6 +1935,12 @@
             Represents the result of something.
             </summary>
         </member>
+        <member name="M:Imagin.Common.Debug.Result.op_Implicit(Imagin.Common.Debug.Result)~System.Boolean">
+            <summary>
+            If result is success, true; else, false.
+            </summary>
+            <param name="a"></param>
+        </member>
         <member name="T:Imagin.Common.Debug.Success">
             <summary>
             Represents a successful result.
@@ -2042,14 +2137,57 @@
             A utility to access global localization resources.
             </summary>
         </member>
-        <member name="T:Imagin.Common.Input.MouseWheelActiveTrigger">
+        <member name="T:Imagin.Common.Mvvm.ViewModel`1">
             <summary>
-            Mouse wheel active states.
+            Base implementatation for defining view models.
             </summary>
+            <typeparam name="T">The type of an object to model.</typeparam>
+        </member>
+        <member name="P:Imagin.Common.Mvvm.ViewModel`1.Object">
+            <summary>
+            An object to model.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Mvvm.ViewModel`1.#ctor">
+            <summary>
+            Initializes a new instance of the ViewModel class.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Mvvm.ViewModel`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the ViewModel class.
+            </summary>
+            <param name="_object">The object to model.</param>
+        </member>
+        <member name="T:Imagin.Common.Mvvm.ViewModel">
+            <summary>
+            Base implementatation for defining view models.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Mvvm.ViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the ViewModel class.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Mvvm.ViewModel.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the ViewModel class.
+            </summary>
+            <param name="Object">The object to model.</param>
         </member>
         <member name="T:Imagin.Common.NamedObject">
             <summary>
             A named, abstract object.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.NamedFile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.NamedFile.Path">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Common.Primitives.Selection">

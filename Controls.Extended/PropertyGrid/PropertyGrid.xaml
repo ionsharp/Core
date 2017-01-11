@@ -147,11 +147,6 @@
                             </Grid>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:DateTimePropertyModel}">
-                            <Controls.Common:DateTimeUpDown 
-                                Format="{Binding Data.DateTimeFormat, Source={StaticResource BindingProxy}}"
-                                HorizontalAlignment="Stretch" 
-                                IsReadOnly="{Binding IsReadOnly}"
-                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type local:DecimalPropertyModel}">
                             <Controls.Common:DecimalUpDown 

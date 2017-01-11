@@ -330,6 +330,30 @@ namespace Imagin.Controls.Common.Extensions
                 ToEvaluate.As<AdvancedTreeView>().SelectNone();
         }
 
+        public static void Select(this ItemsControl Control, object Item)
+        {
+            if (Control != null)
+            {
+                foreach (var i in Control.Items)
+                {
+                    var j = (TreeViewItem)Control.ItemContainerGenerator.ContainerFromItem(i);
+
+                    if (Item == i)
+                    {
+                        if (j is TreeViewItem)
+                        {
+                            TreeViewItemExtensions.SetIsSelected(j as TreeViewItem, true);
+                        }
+                    }
+                    else 
+                    {
+                        TreeViewItemExtensions.SetIsSelected(j as TreeViewItem, false);
+                        Select(j, Item);
+                    }
+                }
+            }
+        }
+
         public static bool TryClearSelection(this ItemsControl ToEvaluate)
         {
             try

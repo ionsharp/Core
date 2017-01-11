@@ -73,3 +73,5 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Generated
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.Window.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Common.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Extended.xml

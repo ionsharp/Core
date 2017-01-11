@@ -128,7 +128,8 @@
                                         ItemsSource="{TemplateBinding ItemsSource}"
                                         ItemStringFormat="{TemplateBinding ItemStringFormat}"
                                         ItemTemplate="{TemplateBinding ItemTemplate}"
-                                        ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                                        ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                        SelectedObject="{Binding SelectedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}"/>
                                 </Border>
                             </Grid>
                         </Popup>

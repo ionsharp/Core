@@ -32,8 +32,8 @@ using System.Windows.Markup;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.7.2.0")]
-[assembly: AssemblyFileVersion("2.7.2.0")]
+[assembly: AssemblyVersion("2.7.3.0")]
+[assembly: AssemblyFileVersion("2.7.3.0")]
 
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Data.Converters")]
@@ -41,3 +41,4 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Drawing")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Extensions")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Media")]
+[assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Text")]

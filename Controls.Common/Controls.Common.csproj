@@ -87,27 +87,11 @@
     <Compile Include="AbstractView.cs" />
     <Compile Include="AdvancedComboBox.cs" />
     <Compile Include="ButtonChrome.cs" />
-    <Compile Include="ButtonSpinner\ButtonSpinner.cs" />
-    <Compile Include="ButtonSpinner\Location.cs" />
-    <Compile Include="ButtonSpinner\SpinDirection.cs" />
-    <Compile Include="ButtonSpinner\SpinEventArgs.cs" />
-    <Compile Include="ButtonSpinner\Spinner.cs" />
-    <Compile Include="ButtonSpinner\ValidSpinDirections.cs" />
     <Compile Include="Converters\CenterToolTipConverter.cs" />
     <Compile Include="Converters\WindowTypeVisibilityConverter.cs" />
-    <Compile Include="DateTimePicker\DateTimePicker.cs" />
-    <Compile Include="DateTimePicker\DateTimePickerBase.cs" />
-    <Compile Include="PaneView.cs" />
     <Compile Include="SelectionCanvas.xaml.cs">
       <DependentUpon>SelectionCanvas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TextBox\AutoSelectTextBox\AutoSelectBehavior.cs" />
-    <Compile Include="TextBox\AutoSelectTextBox\AutoSelectTextBox.cs" />
-    <Compile Include="TextBox\AutoSelectTextBox\QueryMoveFocusEventArgs.cs" />
-    <Compile Include="TextBox\InputBase.cs" />
-    <Compile Include="TextBox\WatermarkTextBox.cs" />
-    <Compile Include="TimePicker\TimeItem.cs" />
-    <Compile Include="TimePicker\TimePicker.cs" />
     <Compile Include="ToggleSwitch.cs" />
     <Compile Include="TreeView\AdvancedTreeView.cs" />
     <Compile Include="TreeView\%28Converters%29\TreeViewColumnGridLengthConverter.cs" />
@@ -156,12 +140,6 @@
     <Compile Include="Spacer.cs" />
     <Compile Include="TextBox\PasswordBox.cs" />
     <Compile Include="TreeView\TreeViewSelectionMode.cs" />
-    <Compile Include="UpDown\DateTimeUpDown\DateTimeFormat.cs" />
-    <Compile Include="UpDown\DateTimeUpDown\DateTimeInfo.cs" />
-    <Compile Include="UpDown\DateTimeUpDown\DateTimeParser.cs" />
-    <Compile Include="UpDown\DateTimeUpDown\DateTimePart.cs" />
-    <Compile Include="UpDown\DateTimeUpDown\DateTimeUpDown.cs" />
-    <Compile Include="UpDown\DateTimeUpDown\DateTimeUpDownBase.cs" />
     <Compile Include="UpDown\NumericUpDown\DecimalUpDown.cs" />
     <Compile Include="UpDown\NumericUpDown\IrrationalUpDown.cs" />
     <Compile Include="UpDown\NumericUpDown\RationalUpDown.cs" />
@@ -176,7 +154,6 @@
     <Compile Include="UpDown\NumericUpDown\DoubleUpDown.cs" />
     <Compile Include="UpDown\NumericUpDown\IntUpDown.cs" />
     <Compile Include="UpDown\NumericUpDown\LongUpDown.cs" />
-    <Compile Include="UpDown\UpDownBase.cs" />
     <Compile Include="WindowSinker.cs" />
     <Compile Include="Window\BasicWindow.cs" />
     <Compile Include="Window\WindowResult.cs" />
@@ -210,22 +187,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.AdvancedTreeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.ButtonSpinner.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.DateTimePicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.DateTimeUpDown.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.TimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,10 +250,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.WatermarkTextBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -348,6 +305,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Lang\Main.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Maximize.png" />
+    <Resource Include="Images\Minus.png" />
+    <Resource Include="Images\Restore.png" />
+    <Resource Include="Images\X.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

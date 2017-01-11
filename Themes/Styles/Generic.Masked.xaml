@@ -19,6 +19,9 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
         <Style.Triggers>
+            <Trigger Property="DropDownButtonVisibility" Value="Visible">
+                <Setter Property="ContentMargin" Value="5,0"/>
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
             </Trigger>
@@ -28,6 +31,13 @@
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="ImageColor" Value="{DynamicResource Brush.Image.Pressed}"/>
             </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="DropDownButtonVisibility" Value="Visible"/>
+                    <Condition Property="Content" Value="{x:Null}"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ContentMargin" Value="0,0,5,0"/>
+            </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="False"/>

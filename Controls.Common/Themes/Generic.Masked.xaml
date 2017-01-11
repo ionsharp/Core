@@ -43,6 +43,63 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:MaskedButton}">
+                    <ControlTemplate.Resources>
+                        <Style 
+                            x:Key="Style.MaskedButton.DropDownButton"
+                            TargetType="{x:Type ContentControl}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                                        <local:MaskedImage
+                                            x:Name="PART_Rectangle"
+                                            Cursor="Hand"
+                                            ImageColor="{TemplateBinding Foreground}"
+                                            RenderTransformOrigin="0.5,0.5"
+                                            Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDownSmall.png">
+                                            <local:MaskedImage.RenderTransform>
+                                                <RotateTransform Angle="-90"/>
+                                            </local:MaskedImage.RenderTransform>
+                                        </local:MaskedImage>
+                                        <ControlTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" Value="True">
+                                                <DataTrigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation 
+                                                                Duration="0:0:0.25" 
+                                                                Storyboard.TargetName="PART_Rectangle" 
+                                                                Storyboard.TargetProperty="RenderTransform.Angle" 
+                                                                From="-90" 
+                                                                To="0"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </DataTrigger.EnterActions>
+                                                <DataTrigger.ExitActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation 
+                                                                Duration="0:0:0.25" 
+                                                                Storyboard.TargetName="PART_Rectangle" 
+                                                                Storyboard.TargetProperty="RenderTransform.Angle" 
+                                                                From="0" 
+                                                                To="-90"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </DataTrigger.ExitActions>
+                                                <Setter Property="Foreground" Value="{DynamicResource Brush.Image.Pressed}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" Value="False">
+                                                <Setter Property="Foreground" Value="{DynamicResource Brush.Image}"/>
+                                            </DataTrigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource Brush.Image.MouseOver}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ControlTemplate.Resources>
                     <Border  
                         BorderThickness="{TemplateBinding BorderThickness}" 
                         BorderBrush="{TemplateBinding BorderBrush}"  
@@ -69,76 +126,20 @@
                                         ImageColor="{TemplateBinding ImageColor}"
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                         Visibility="{TemplateBinding Source, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                <ContentPresenter 
+                                    Grid.Column="1" 
+                                    x:Name="PART_Content"
+                                    Content="{TemplateBinding Content}" 
+                                    Margin="{TemplateBinding ContentMargin}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding Content, Converter={StaticResource NullToVisibilityConverter}}"/>
                                 <ContentControl 
-                                        Grid.Column="1" 
-                                        x:Name="PART_Content"
-                                        Content="{TemplateBinding Content}" 
-                                        Margin="{TemplateBinding ContentMargin}" 
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Visibility="{TemplateBinding Content, Converter={StaticResource NullToVisibilityConverter}}"/>
-                                <ContentControl 
-                                        Grid.Column="2" 
-                                        x:Name="PART_Dropdown"
-                                        Margin="5,0,0,-1"
-                                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" 
-                                        ToolTip="{TemplateBinding DropDownToolTip}" 
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Visibility="{TemplateBinding DropDownVisibility}">
-                                    <ContentControl.Style>
-                                        <Style TargetType="{x:Type ContentControl}">
-                                            <Setter Property="Cursor" Value="Hand"/>
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="{x:Type ContentControl}">
-                                                        <Rectangle x:Name="PART_Rectangle" Width="12" Height="12" RenderTransformOrigin="0.5,0.5">
-                                                            <Rectangle.OpacityMask>
-                                                                <ImageBrush ImageSource="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDown.png"/>
-                                                            </Rectangle.OpacityMask>
-                                                            <Rectangle.RenderTransform>
-                                                                <RotateTransform Angle="-90"/>
-                                                            </Rectangle.RenderTransform>
-                                                        </Rectangle>
-                                                        <ControlTemplate.Triggers>
-                                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" Value="True">
-                                                                <DataTrigger.EnterActions>
-                                                                    <BeginStoryboard>
-                                                                        <Storyboard>
-                                                                            <DoubleAnimation 
-                                                                                Duration="0:0:0.25" 
-                                                                                Storyboard.TargetName="PART_Rectangle" 
-                                                                                Storyboard.TargetProperty="RenderTransform.Angle" 
-                                                                                From="-90" 
-                                                                                To="0"/>
-                                                                        </Storyboard>
-                                                                    </BeginStoryboard>
-                                                                </DataTrigger.EnterActions>
-                                                                <DataTrigger.ExitActions>
-                                                                    <BeginStoryboard>
-                                                                        <Storyboard>
-                                                                            <DoubleAnimation 
-                                                                                Duration="0:0:0.25" 
-                                                                                Storyboard.TargetName="PART_Rectangle" 
-                                                                                Storyboard.TargetProperty="RenderTransform.Angle" 
-                                                                                From="0" 
-                                                                                To="-90"/>
-                                                                        </Storyboard>
-                                                                    </BeginStoryboard>
-                                                                </DataTrigger.ExitActions>
-                                                                <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImagePressedBrush}"/>
-                                                            </DataTrigger>
-                                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type local:MaskedButton}}}" Value="False">
-                                                                <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageBrush}"/>
-                                                            </DataTrigger>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter TargetName="PART_Rectangle" Property="Fill" Value="{DynamicResource ImageHoverBrush}"/>
-                                                            </Trigger>
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </ContentControl.Style>
-                                </ContentControl>
+                                    Grid.Column="2" 
+                                    x:Name="PART_Dropdown"
+                                    Style="{StaticResource Style.MaskedButton.DropDownButton}"
+                                    ToolTip="{TemplateBinding DropDownButtonToolTip}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{TemplateBinding DropDownButtonVisibility}"/>
                             </Grid>
                         </local:RippleDecorator>
                     </Border>

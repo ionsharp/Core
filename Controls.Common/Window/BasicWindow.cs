@@ -1,38 +1,46 @@
 ﻿using Imagin.Common.Collections.ObjectModel;
-using Imagin.Common.Extensions;
 using Imagin.Common.Input;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BasicWindow : WindowBase
     {
         #region Properties
 
-        bool isInitialLoaded = false;
+        bool isLoaded = false;
 
-        protected virtual CommandBinding[] Commands
-        {
-            get
-            {
-                return new CommandBinding[]
-                {
-                    new CommandBinding(CloseCommand, CloseCommand_Executed, CloseCommand_CanExecute),
-                    new CommandBinding(HideCommand, HideCommand_Executed, HideCommand_CanExecute),
-                    new CommandBinding(MaximizeCommand, MaximizeCommand_Executed, MaximizeCommand_CanExecute),
-                    new CommandBinding(MinimizeCommand, MinimizeCommand_Executed, MinimizeCommand_CanExecute),
-                    new CommandBinding(RestoreCommand, RestoreCommand_Executed, RestoreCommand_CanExecute),
-                    new CommandBinding(ShowCommand, ShowCommand_Executed, ShowCommand_CanExecute),
-                };
-            }
-        }
-
+        /// <summary>
+        /// The result of the window subsequent to closing.
+        /// </summary>
         public WindowResult Result = WindowResult.Unknown;
 
-        #region Dependency
+        /// <summary>
+        /// Occurs when the window is closed.
+        /// </summary>
+        public new event EventHandler<EventArgs<WindowResult>> Closed;
+
+        /// <summary>
+        /// Occurs when the window is loaded for the first time.
+        /// </summary>
+        public event EventHandler<EventArgs> FirstLoad;
+
+        /// <summary>
+        /// Occurs when the window is hidden.
+        /// </summary>
+        public event EventHandler<EventArgs> Hidden;
+
+        /// <summary>
+        /// Occurs when a window is shown.
+        /// </summary>
+        public event EventHandler<EventArgs> Shown;
 
         public static readonly DependencyProperty ButtonsProperty = DependencyProperty.Register("Buttons", typeof(FrameworkElementCollection), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public FrameworkElementCollection Buttons
@@ -47,7 +55,136 @@ namespace Imagin.Controls.Common
             }
         }
 
+        public static readonly DependencyProperty ButtonsPanelProperty = DependencyProperty.Register("ButtonsPanel", typeof(ItemsPanelTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public ItemsPanelTemplate ButtonsPanel
+        {
+            get
+            {
+                return (ItemsPanelTemplate)GetValue(ButtonsPanelProperty);
+            }
+            set
+            {
+                SetValue(ButtonsPanelProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty ButtonsStyleProperty = DependencyProperty.Register("ButtonsStyle", typeof(Style), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Style ButtonsStyle
+        {
+            get
+            {
+                return (Style)GetValue(ButtonsStyleProperty);
+            }
+            set
+            {
+                SetValue(ButtonsStyleProperty, value);
+            }
+        }
+        
+        public static DependencyProperty ContentBorderBrushProperty = DependencyProperty.Register("ContentBorderBrush", typeof(Brush), typeof(BasicWindow), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets the border brush of the content.
+        /// </summary>
+        public Brush ContentBorderBrush
+        {
+            get
+            {
+                return (Brush)GetValue(ContentBorderBrushProperty);
+            }
+            set
+            {
+                SetValue(ContentBorderBrushProperty, value);
+            }
+        }
+
+        public static DependencyProperty ContentBorderThicknessProperty = DependencyProperty.Register("ContentBorderThickness", typeof(Thickness), typeof(BasicWindow), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets the border thickness of the content.
+        /// </summary>
+        public Thickness ContentBorderThickness
+        {
+            get
+            {
+                return (Thickness)GetValue(ContentBorderThicknessProperty);
+            }
+            set
+            {
+                SetValue(ContentBorderThicknessProperty, value);
+            }
+        }
+
+        public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(BasicWindow), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets the outer margin of the content.
+        /// </summary>
+        public Thickness ContentMargin
+        {
+            get
+            {
+                return (Thickness)GetValue(ContentMarginProperty);
+            }
+            set
+            {
+                SetValue(ContentMarginProperty, value);
+            }
+        }
+
+        public static DependencyProperty FooterProperty = DependencyProperty.Register("Footer", typeof(object), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public object Footer
+        {
+            get
+            {
+                return GetValue(FooterProperty);
+            }
+            set
+            {
+                SetValue(FooterProperty, value);
+            }
+        }
+
+        public static DependencyProperty FooterTemplateProperty = DependencyProperty.Register("FooterTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate FooterTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(FooterTemplateProperty);
+            }
+            set
+            {
+                SetValue(FooterTemplateProperty, value);
+            }
+        }
+
+        public static DependencyProperty FooterTemplateSelectorProperty = DependencyProperty.Register("FooterTemplateSelector", typeof(DataTemplateSelector), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplateSelector FooterTemplateSelector
+        {
+            get
+            {
+                return (DataTemplateSelector)GetValue(FooterTemplateSelectorProperty);
+            }
+            set
+            {
+                SetValue(FooterTemplateSelectorProperty, value);
+            }
+        }
+
+        public static DependencyProperty IconTemplateProperty = DependencyProperty.Register("IconTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate IconTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(IconTemplateProperty);
+            }
+            set
+            {
+                SetValue(IconTemplateProperty, value);
+            }
+        }
+
         public static readonly DependencyProperty IsHiddenProperty = DependencyProperty.Register("IsHidden", typeof(bool), typeof(BasicWindow), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Whether or not the window is currently hidden.
+        /// </summary>
         public bool IsHidden
         {
             get
@@ -60,21 +197,62 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty StartupLocationProperty = DependencyProperty.Register("StartupLocation", typeof(WindowLocation), typeof(BasicWindow), new FrameworkPropertyMetadata(WindowLocation.CenterScreen, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnStartupLocationChanged));
-        public WindowLocation StartupLocation
+        public static readonly DependencyProperty OverlayProperty = DependencyProperty.Register("Overlay", typeof(object), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Element to place on top of everything else; element covers entire window.
+        /// </summary>
+        public object Overlay
         {
             get
             {
-                return (WindowLocation)GetValue(StartupLocationProperty);
+                return GetValue(OverlayProperty);
             }
             set
             {
-                SetValue(StartupLocationProperty, value);
+                SetValue(OverlayProperty, value);
             }
         }
-        static void OnStartupLocationChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+
+        public static readonly DependencyProperty OverlayVisibilityProperty = DependencyProperty.Register("OverlayVisibility", typeof(Visibility), typeof(BasicWindow), new FrameworkPropertyMetadata(Visibility.Collapsed, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// The visibility of the overlay element.
+        /// </summary>
+        public Visibility OverlayVisibility
         {
-            Object.As<BasicWindow>().WindowStartupLocation = (WindowStartupLocation)Enum.Parse(typeof(WindowStartupLocation), e.NewValue.As<WindowLocation>().ToString());
+            get
+            {
+                return (Visibility)GetValue(OverlayVisibilityProperty);
+            }
+            set
+            {
+                SetValue(OverlayVisibilityProperty, value);
+            }
+        }
+        
+        public static DependencyProperty ResizeGripTemplateProperty = DependencyProperty.Register("ResizeGripTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate ResizeGripTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(ResizeGripTemplateProperty);
+            }
+            set
+            {
+                SetValue(ResizeGripTemplateProperty, value);
+            }
+        }
+
+        public static DependencyProperty TitleTemplateProperty = DependencyProperty.Register("TitleTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public DataTemplate TitleTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(TitleTemplateProperty);
+            }
+            set
+            {
+                SetValue(TitleTemplateProperty, value);
+            }
         }
 
         public static DependencyProperty TypeProperty = DependencyProperty.Register("Type", typeof(WindowType), typeof(BasicWindow), new FrameworkPropertyMetadata(WindowType.Window, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -92,82 +270,68 @@ namespace Imagin.Controls.Common
 
         #endregion
 
-        #region Events
-
-        public new event EventHandler<EventArgs<WindowResult>> Closed;
-
-        public event EventHandler<EventArgs> Hidden;
-
-        public event EventHandler<EventArgs> InitialLoaded;
-
-        public event EventHandler<EventArgs> Shown;
-
-        #endregion
-
-        #endregion
-
         #region Methods
 
         #region Commands
 
-        public static readonly RoutedUICommand CloseCommand = new RoutedUICommand("CloseCommand", "CloseCommand", typeof(BasicWindow));
-        void CloseCommand_Executed(object sender, RoutedEventArgs e)
+        ICommand closeCommand;
+        public ICommand CloseCommand
         {
-            Close();
-        }
-        void CloseCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        public static readonly RoutedUICommand HideCommand = new RoutedUICommand("HideCommand", "HideCommand", typeof(BasicWindow));
-        void HideCommand_Executed(object sender, RoutedEventArgs e)
-        {
-            Hide();
-        }
-        void HideCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
+            get
+            {
+                closeCommand = closeCommand ?? new RelayCommand(x => Close(), true);
+                return closeCommand;
+            }
         }
 
-        public static readonly RoutedUICommand MaximizeCommand = new RoutedUICommand("MaximizeCommand", "MaximizeCommand", typeof(BasicWindow));
-        void MaximizeCommand_Executed(object sender, RoutedEventArgs e)
+        ICommand hideCommand;
+        public ICommand HideCommand
         {
-            SystemCommands.MaximizeWindow(this);
-        }
-        void MaximizeCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        public static readonly RoutedUICommand MinimizeCommand = new RoutedUICommand("MinimizeCommand", "MinimizeCommand", typeof(BasicWindow));
-        void MinimizeCommand_Executed(object sender, RoutedEventArgs e)
-        {
-            SystemCommands.MinimizeWindow(this);
-        }
-        void MinimizeCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
+            get
+            {
+                hideCommand = hideCommand ?? new RelayCommand(x => Hide(), true);
+                return hideCommand;
+            }
         }
 
-        public static readonly RoutedUICommand RestoreCommand = new RoutedUICommand("RestoreCommand", "RestoreCommand", typeof(BasicWindow));
-        void RestoreCommand_Executed(object sender, RoutedEventArgs e)
+        ICommand maximizeCommand;
+        public ICommand MaximizeCommand
         {
-            SystemCommands.RestoreWindow(this);
-        }
-        void RestoreCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
+            get
+            {
+                maximizeCommand = maximizeCommand ?? new RelayCommand(x => SystemCommands.MaximizeWindow(this), true);
+                return maximizeCommand;
+            }
         }
 
-        public static readonly RoutedUICommand ShowCommand = new RoutedUICommand("ShowCommand", "ShowCommand", typeof(BasicWindow));
-        void ShowCommand_Executed(object sender, RoutedEventArgs e)
+        ICommand minimizeCommand;
+        public ICommand MinimizeCommand
         {
-            Show();
+            get
+            {
+                minimizeCommand = minimizeCommand ?? new RelayCommand(x => SystemCommands.MinimizeWindow(this), true);
+                return minimizeCommand;
+            }
         }
-        void ShowCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+
+        ICommand restoreCommand;
+        public ICommand RestoreCommand
         {
-            e.CanExecute = true;
+            get
+            {
+                restoreCommand = restoreCommand ?? new RelayCommand(x => SystemCommands.RestoreWindow(this), true);
+                return restoreCommand;
+            }
+        }
+
+        ICommand showCommand;
+        public ICommand ShowCommand
+        {
+            get
+            {
+                showCommand = showCommand ?? new RelayCommand(x => Show(), true);
+                return showCommand;
+            }
         }
 
         #endregion
@@ -177,25 +341,27 @@ namespace Imagin.Controls.Common
         public new void Show()
         {
             base.Show();
-            this.OnShown();
+            IsHidden = false;
+            OnShown();
         }
 
         public new void Hide()
         {
             base.Hide();
-            this.OnHidden();
+            IsHidden = true;
+            OnHidden();
         }
 
         public new bool? ShowDialog()
         {
-            this.OnShown();
+            OnShown();
             return base.ShowDialog();
         }
 
         public new void Close()
         {
             base.Close();
-            this.OnClosed();
+            OnClosed();
         }
 
         #endregion
@@ -204,56 +370,36 @@ namespace Imagin.Controls.Common
 
         protected virtual void OnClosed()
         {
-            if (this.Closed != null)
-                this.Closed(this, new EventArgs<WindowResult>(Result));
+            if (Closed != null)
+                Closed(this, new EventArgs<WindowResult>(Result));
         }
 
         protected virtual void OnHidden()
         {
-            this.IsHidden = true;
-            if (this.Hidden != null)
-                this.Hidden(this, new EventArgs());
+            if (Hidden != null)
+                Hidden(this, new EventArgs());
         }
 
         protected virtual void OnInitialized()
         {
             Buttons = new FrameworkElementCollection();
 
-            if (Commands != null)
-            {
-                foreach (var c in Commands)
-                    CommandBindings.Add(c);
-            }
-
             Loaded += (s, e) => OnLoaded(e);
             Unloaded += (s, e) => OnUnloaded(e);
         }
 
-        protected virtual void OnInitialLoaded()
+        protected virtual void OnFirstLoad()
         {
+            if (FirstLoad != null)
+                FirstLoad(this, new EventArgs());
         }
 
         protected virtual void OnLoaded(RoutedEventArgs e)
         {
-            Button MinimizeButton = this.Template.FindName("PART_MinimizeButton", this) as Button;
-            if (MinimizeButton != null)
-                MinimizeButton.Click += (a, b) => this.WindowState = WindowState.Minimized;
-            Button RestoreButton = this.Template.FindName("PART_RestoreButton", this) as Button;
-            if (RestoreButton != null)
-                RestoreButton.Click += (a, b) => this.WindowState = WindowState.Normal;
-            Button MaximizeButton = this.Template.FindName("PART_MaximizeButton", this) as Button;
-            if (MaximizeButton != null)
-                MaximizeButton.Click += (a, b) => this.WindowState = WindowState.Maximized;
-            Button CloseButton = this.Template.FindName("PART_CloseButton", this) as Button;
-            if (CloseButton != null)
-                CloseButton.Click += (a, b) => this.Close();
-
-            if (!this.isInitialLoaded)
+            if (!isLoaded)
             {
-                this.isInitialLoaded = true;
-                if (this.InitialLoaded != null)
-                    this.InitialLoaded(this, new EventArgs());
-                this.OnInitialLoaded();
+                isLoaded = true;
+                OnFirstLoad();
             }
         }
 
@@ -263,9 +409,8 @@ namespace Imagin.Controls.Common
 
         protected virtual void OnShown()
         {
-            this.IsHidden = false;
-            if (this.Shown != null)
-                this.Shown(this, new EventArgs());
+            if (Shown != null)
+                Shown(this, new EventArgs());
         }
 
         #endregion
@@ -280,13 +425,10 @@ namespace Imagin.Controls.Common
             OnInitialized();
         }
 
-        public BasicWindow(Action OnClosed) : base()
+        public BasicWindow(Action OnClosed) : this()
         {
-            DefaultStyleKey = typeof(BasicWindow);
-            OnInitialized();
-
             if (OnClosed != null)
-                this.Closed += (s, e) => OnClosed.Invoke();
+                Closed += (s, e) => OnClosed.Invoke();
         }
 
         #endregion

@@ -20,6 +20,7 @@
     <SolidColorBrush x:Key="Brush.Button.MouseOver.Border" Color="#AAA"/>
     <SolidColorBrush x:Key="Brush.Button.MouseDown.Background" Color="#349ADE"/>
     <SolidColorBrush x:Key="Brush.Button.MouseDown.Border" Color="#349ADE"/>
+    <SolidColorBrush x:Key="Brush.Button.MouseDown.Foreground" Color="#FFF"/>
     <SolidColorBrush x:Key="Brush.Button.Default.Border" Color="#349ADE"/>
     <SolidColorBrush x:Key="Brush.Button.Cancel.Border" Color="#CCC"/>
 
@@ -298,4 +299,6 @@
     <SolidColorBrush x:Key="Brush.Window.Button.Pressed.Border" Color="#007acc"/>
     <SolidColorBrush x:Key="Brush.Window.Button.Pressed.Background" Color="#007acc"/>
     <SolidColorBrush x:Key="Brush.Window.Button.Pressed.Foreground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="Brush.Window.Content.Border" Color="#10000000"/>
 </ResourceDictionary>

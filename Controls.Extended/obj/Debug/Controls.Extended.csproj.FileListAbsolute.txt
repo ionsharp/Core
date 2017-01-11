@@ -112,3 +112,4 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\De
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\NewCurrent.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\GradientPicker.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Dialogs)\GradientDialog.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\Debug\Imagin.Controls.Common.xml

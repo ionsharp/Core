@@ -1,9 +1,10 @@
-﻿using Imagin.Common;
-using Imagin.Common.Input;
+﻿using Imagin.Common.Input;
 using Imagin.Controls.Common.Extensions;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Common
 {
@@ -81,9 +82,14 @@ namespace Imagin.Controls.Common
         {
             if (!SelectionChangeHandled && e.AddedItems.Count > 0)
             {
-                MessageBox.Show("OnSelectionChanged");
+                var i = e.AddedItems[0];
+
                 SelectedItemChangeHandled = true;
-                Select(PART_TreeView, e.AddedItems[0]);
+                PART_TreeView.Select(i);
+
+                if (PART_Content != null)
+                    PART_Content.Content = i;
+
                 SelectedItemChangeHandled = false;
             }
         }
@@ -112,29 +118,13 @@ namespace Imagin.Controls.Common
             base.ApplyTemplate();
 
             PART_Content = Template.FindName("PART_Content", this) as ContentControl;
+            PART_Content.Content = SelectedItem;
 
             PART_TreeView = Template.FindName("PART_TreeView", this) as AdvancedTreeView;
             if (PART_TreeView != null)
             {
                 PART_TreeView.Resources = Resources;
                 PART_TreeView.SelectedItemChanged += OnSelectedItemChanged;
-            }
-        }
-
-        void Select(ItemsControl ItemsControl, object ToSelect)
-        {
-            if (ItemsControl != null)
-            {
-                foreach (var i in ItemsControl.Items)
-                {
-                    var j = (ItemsControl)ItemsControl.ItemContainerGenerator.ContainerFromItem(i);
-                    if (ToSelect == i)
-                    {
-                        TreeViewItemExtensions.SetIsSelected(j as TreeViewItem, true);
-                        break;
-                    }
-                    else Select(j, ToSelect);
-                }
             }
         }
 

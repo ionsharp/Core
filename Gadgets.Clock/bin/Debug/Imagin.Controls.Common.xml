@@ -4,166 +4,6 @@
         <name>Imagin.Controls.Common</name>
     </assembly>
     <members>
-        <member name="T:Imagin.Controls.Common.ButtonSpinner">
-            <summary>
-            Represents a spinner control that includes two Buttons.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.ButtonSpinner.ContentProperty">
-            <summary>
-            Identifies the Content dependency property.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.ButtonSpinner.OnContentPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
-            <summary>
-            ContentProperty property changed handler.
-            </summary>
-            <param name="d">ButtonSpinner that changed its Content.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="P:Imagin.Controls.Common.ButtonSpinner.DecreaseButton">
-            <summary>
-            Gets or sets the DecreaseButton template part.
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.ButtonSpinner.IncreaseButton">
-            <summary>
-            Gets or sets the IncreaseButton template part.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.ButtonSpinner.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            Cancel LeftMouseButtonUp events originating from a button that has
-            been changed to disabled.
-            </summary>
-            <param name="e">The data for the event.</param>
-        </member>
-        <member name="M:Imagin.Controls.Common.ButtonSpinner.OnValidSpinDirectionChanged(Imagin.Controls.Common.ValidSpinDirections,Imagin.Controls.Common.ValidSpinDirections)">
-            <summary>
-            Called when valid spin direction changed.
-            </summary>
-            <param name="oldValue">The old value.</param>
-            <param name="newValue">The new value.</param>
-        </member>
-        <member name="M:Imagin.Controls.Common.ButtonSpinner.OnButtonClick(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handle click event of IncreaseButton and DecreaseButton template parts,
-            translating Click to appropriate Spin event.
-            </summary>
-            <param name="sender">Event sender, should be either IncreaseButton or DecreaseButton template part.</param>
-            <param name="e">Event args.</param>
-        </member>
-        <member name="M:Imagin.Controls.Common.ButtonSpinner.OnContentChanged(System.Object,System.Object)">
-            <summary>
-            Occurs when the Content property value changed.
-            </summary>
-            <param name="oldValue">The old value of the Content property.</param>
-            <param name="newValue">The new value of the Content property.</param>
-        </member>
-        <member name="M:Imagin.Controls.Common.ButtonSpinner.SetButtonUsage">
-            <summary>
-            Disables or enables the buttons based on the valid spin direction.
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Common.SpinDirection">
-            <summary>
-            Represents spin directions that could be initiated by the end-user.
-            </summary>
-            <QualityBand>Preview</QualityBand>
-        </member>
-        <member name="F:Imagin.Controls.Common.SpinDirection.Increase">
-            <summary>
-            Represents a spin initiated by the end-user in order to Increase a value.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.SpinDirection.Decrease">
-            <summary>
-            Represents a spin initiated by the end-user in order to Decrease a value.
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Common.SpinEventArgs">
-            <summary>
-            Provides data for the Spinner.Spin event.
-            </summary>
-            <QualityBand>Preview</QualityBand>
-        </member>
-        <member name="P:Imagin.Controls.Common.SpinEventArgs.Direction">
-            <summary>
-            Gets the SpinDirection for the spin that has been initiated by the 
-            end-user.
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.SpinEventArgs.UsingMouseWheel">
-            <summary>
-            Get or set whheter the spin event originated from a mouse wheel event.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.SpinEventArgs.#ctor(Imagin.Controls.Common.SpinDirection)">
-            <summary>
-            Initializes a new instance of the SpinEventArgs class.
-            </summary>
-            <param name="direction">Spin direction.</param>
-        </member>
-        <member name="T:Imagin.Controls.Common.Spinner">
-            <summary>
-            Base class for controls that represents controls that can spin.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.Spinner.ValidSpinDirectionProperty">
-            <summary>
-            Identifies the ValidSpinDirection dependency property.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.Spinner.OnValidSpinDirectionPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
-            <summary>
-            ValidSpinDirectionProperty property changed handler.
-            </summary>
-            <param name="d">ButtonSpinner that changed its ValidSpinDirection.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="E:Imagin.Controls.Common.Spinner.Spin">
-            <summary>
-            Occurs when spinning is initiated by the end-user.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.Spinner.#ctor">
-            <summary>
-            Initializes a new instance of the Spinner class.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.Spinner.OnSpin(Imagin.Controls.Common.SpinEventArgs)">
-            <summary>
-            Raises the OnSpin event when spinning is initiated by the end-user.
-            </summary>
-            <param name="e">Spin event args.</param>
-        </member>
-        <member name="M:Imagin.Controls.Common.Spinner.OnValidSpinDirectionChanged(Imagin.Controls.Common.ValidSpinDirections,Imagin.Controls.Common.ValidSpinDirections)">
-            <summary>
-            Called when valid spin direction changed.
-            </summary>
-            <param name="oldValue">The old value.</param>
-            <param name="newValue">The new value.</param>
-        </member>
-        <member name="T:Imagin.Controls.Common.ValidSpinDirections">
-            <summary>
-            Represents spin directions that are valid.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.ValidSpinDirections.None">
-            <summary>
-            Can not increase nor decrease.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.ValidSpinDirections.Increase">
-            <summary>
-            Can increase.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.ValidSpinDirections.Decrease">
-            <summary>
-            Can decrease.
-            </summary>
-        </member>
         <member name="T:Imagin.Controls.Common.SelectionCanvas">
             <summary>
             SelectionCanvas
@@ -174,21 +14,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.QueryMoveFocusEventArgs.#ctor">
-            <summary>
-            Default CTOR private to prevent its usage.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.QueryMoveFocusEventArgs.#ctor(System.Windows.Input.FocusNavigationDirection,System.Boolean)">
-            <summary>
-            Internal to prevent anybody from building this type of event.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.QueryMoveFocusEventArgs.m_canMove">
-            <summary>
-            Defaults to true... if nobody does nothing, then its capable of moving focus.
-            </summary>
-        </member>
         <member name="T:Imagin.Controls.Common.AdvancedTreeView">
             <summary>
             An advanced TreeView.
@@ -197,15 +22,173 @@
             Multi selection behavior borrowed from https://github.com/cmyksvoll/MultiSelectTreeView.
             </remarks>
         </member>
+        <member name="E:Imagin.Controls.Common.AdvancedTreeView.SelectedItemsChanged">
+            <summary>
+            Occurs when one or more items are selected or unselected.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.CanResizeColumnsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.CanResizeColumns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderContextMenuProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderContextMenu">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderHeightProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderHeight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStyleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStyleSelectorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStyleSelector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderTemplateSelectorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderTemplateSelector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStringFormatProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStringFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderVisibilityProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderVisibility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.Columns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.SelectedObjectProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedTreeView.SelectedObject">
+            <summary>
+            Get or set selected object.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.SelectedItemsProperty">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Common.AdvancedTreeView.SelectedItems">
             <summary>
-            Gets list of selected items.
+            Get or set list of selected items.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedTreeView.SelectedVisualProperty">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Imagin.Controls.Common.AdvancedTreeView.SelectedVisual">
             <summary>
-            Gets TreeViewItem associated with selected data object.
+            Get or set visual associated with selected object.
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedTreeView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnPreviewMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnPreviewMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnSelectedItemChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnSelectedItemsChanged(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnSelectedObjectChanged(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
         </member>
         <member name="T:Imagin.Controls.Common.TreeViewRowHeader">
             <summary>
@@ -605,65 +588,64 @@
             Set text; string format is not applied to value.
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.UpDownBase`1.PART_TextBox">
+        <member name="T:Imagin.Controls.Common.BasicWindow">
             <summary>
-            Name constant for Text template part.
+            
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.UpDownBase`1.PART_Spinner">
+        <member name="F:Imagin.Controls.Common.BasicWindow.Result">
             <summary>
-            Name constant for Spinner template part.
+            The result of the window subsequent to closing.
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.UpDownBase`1._isSyncingTextAndValueProperties">
+        <member name="E:Imagin.Controls.Common.BasicWindow.Closed">
             <summary>
-            Flags if the Text and Value properties are in the process of being sync'd
+            Occurs when the window is closed.
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.UpDownBase`1.MouseWheelActiveTriggerProperty">
+        <member name="E:Imagin.Controls.Common.BasicWindow.FirstLoad">
             <summary>
-            Identifies the MouseWheelActiveTrigger dependency property
+            Occurs when the window is loaded for the first time.
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Common.UpDownBase`1.MouseWheelActiveTrigger">
+        <member name="E:Imagin.Controls.Common.BasicWindow.Hidden">
             <summary>
-            Get or set when the mouse wheel event should affect the value.
+            Occurs when the window is hidden.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.UpDownBase`1.DoDecrement">
+        <member name="E:Imagin.Controls.Common.BasicWindow.Shown">
             <summary>
-            Performs an increment if conditions allow it.
+            Occurs when a window is shown.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.UpDownBase`1.DoIncrement">
+        <member name="P:Imagin.Controls.Common.BasicWindow.ContentBorderBrush">
             <summary>
-            Performs a decrement if conditions allow it.
+            Gets or sets the border brush of the content.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.UpDownBase`1.ConvertTextToValue(System.String)">
+        <member name="P:Imagin.Controls.Common.BasicWindow.ContentBorderThickness">
             <summary>
-            Converts the formatted text to a value.
+            Gets or sets the border thickness of the content.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.UpDownBase`1.ConvertValueToText">
+        <member name="P:Imagin.Controls.Common.BasicWindow.ContentMargin">
             <summary>
-            Converts the value to formatted text.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Common.UpDownBase`1.OnIncrement">
-            <summary>
-            Called by OnSpin when the spin direction is SpinDirection.Increase.
+            Gets or sets the outer margin of the content.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.UpDownBase`1.OnDecrement">
+        <member name="P:Imagin.Controls.Common.BasicWindow.IsHidden">
             <summary>
-            Called by OnSpin when the spin direction is SpinDirection.Descrease.
+            Whether or not the window is currently hidden.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.UpDownBase`1.SetValidSpinDirection">
+        <member name="P:Imagin.Controls.Common.BasicWindow.Overlay">
             <summary>
-            Sets the valid spin directions.
+            Element to place on top of everything else; element covers entire window.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.OverlayVisibility">
+            <summary>
+            The visibility of the overlay element.
             </summary>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">

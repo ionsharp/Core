@@ -4,13 +4,16 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Data;
 
 namespace Imagin.Controls.Common
 {
     [TemplatePart(Name = "PART_Dropdown", Type = typeof(ContentControl))]
     public class MaskedButton : Button
     {
-        #region DependencyProperties
+        #region Properties
+
+        ContentControl PART_Dropdown { get; set; } = null;
 
         public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(MaskedButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Thickness ContentMargin
@@ -37,16 +40,9 @@ namespace Imagin.Controls.Common
                 SetValue(DropDownProperty, value);
             }
         }
-        static void OnDropDownChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnDropDownChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MaskedButton MaskedButton = (MaskedButton)Object;
-            if (MaskedButton.DropDown != null)
-            {
-                MaskedButton.DropDown.PlacementTarget = MaskedButton;
-                MaskedButton.DropDown.Placement = PlacementMode.Bottom;
-                if (MaskedButton.DropDownDataContext != null)
-                    MaskedButton.DropDown.DataContext = MaskedButton.DropDownDataContext;
-            }
+            d.As<MaskedButton>().OnDropDownChanged((ContextMenu)e.NewValue);
         }
 
         public static DependencyProperty DropDownDataContextProperty = DependencyProperty.Register("DropDownDataContext", typeof(object), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDropDownDataContextChanged));
@@ -61,36 +57,34 @@ namespace Imagin.Controls.Common
                 SetValue(DropDownDataContextProperty, value);
             }
         }
-        static void OnDropDownDataContextChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnDropDownDataContextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MaskedButton MaskedButton = (MaskedButton)Object;
-            if (MaskedButton.DropDown != null)
-                MaskedButton.DropDown.DataContext = MaskedButton.DropDownDataContext;
+            d.As<MaskedButton>().OnDropDownDataContextChanged(e.NewValue);
         }
 
-        public static DependencyProperty DropDownToolTipProperty = DependencyProperty.Register("DropDownToolTip", typeof(string), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public string DropDownToolTip
+        public static DependencyProperty DropDownButtonToolTipProperty = DependencyProperty.Register("DropDownButtonToolTip", typeof(string), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public string DropDownButtonToolTip
         {
             get
             {
-                return (string)GetValue(DropDownToolTipProperty);
+                return (string)GetValue(DropDownButtonToolTipProperty);
             }
             set
             {
-                SetValue(DropDownToolTipProperty, value);
+                SetValue(DropDownButtonToolTipProperty, value);
             }
         }
 
-        public static DependencyProperty DropDownVisibilityProperty = DependencyProperty.Register("DropDownVisibility", typeof(Visibility), typeof(MaskedButton), new FrameworkPropertyMetadata(Visibility.Collapsed, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Visibility DropDownVisibility
+        public static DependencyProperty DropDownButtonVisibilityProperty = DependencyProperty.Register("DropDownButtonVisibility", typeof(Visibility), typeof(MaskedButton), new FrameworkPropertyMetadata(Visibility.Collapsed, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Visibility DropDownButtonVisibility
         {
             get
             {
-                return (Visibility)GetValue(DropDownVisibilityProperty);
+                return (Visibility)GetValue(DropDownButtonVisibilityProperty);
             }
             set
             {
-                SetValue(DropDownVisibilityProperty, value);
+                SetValue(DropDownButtonVisibilityProperty, value);
             }
         }
 
@@ -132,10 +126,9 @@ namespace Imagin.Controls.Common
                 SetValue(SourceProperty, value);
             }
         }
-        private static void OnSourceChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MaskedButton Button = Object as MaskedButton;
-            Button.ImageBrush = new ImageBrush(Button.Source);
+            d.As<MaskedButton>().OnSourceChanged((ImageSource)e.NewValue);
         }
 
         public static DependencyProperty ImageBrushProperty = DependencyProperty.Register("ImageBrush", typeof(ImageBrush), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -194,23 +187,31 @@ namespace Imagin.Controls.Common
 
         #region MaskedButton
 
-        public MaskedButton()
+        public MaskedButton() : base()
         {
-            this.DefaultStyleKey = typeof(MaskedButton);
+            DefaultStyleKey = typeof(MaskedButton);
         }
 
         public override void OnApplyTemplate()
         {
             base.ApplyTemplate();
 
-            var d = this.Template.FindName("PART_Dropdown", this).As<ContentControl>();
-            if (d != null)
-                d.MouseLeftButtonDown += OnDropdownMouseLeftButtonDown;
+            PART_Dropdown = Template.FindName("PART_Dropdown", this).As<ContentControl>();
+
+            if (PART_Dropdown != null)
+                PART_Dropdown.MouseLeftButtonDown += OnDropdownMouseLeftButtonDown;
         }
 
         #endregion
 
         #region Methods
+
+        void OnDropdownMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            if (DropDown != null)
+                DropDown.IsOpen = true;
+        }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
@@ -218,12 +219,32 @@ namespace Imagin.Controls.Common
             if (e.Handled)
                 return;
         }
-
-        void OnDropdownMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        
+        protected virtual void OnDropDownChanged(ContextMenu Value)
         {
-            e.Handled = true;
-            if (this.DropDown != null)
-                this.DropDown.IsOpen = true;
+            if (Value != null)
+            {
+                Value.DataContext = DropDownDataContext;
+                Value.Placement = PlacementMode.Bottom;
+                Value.PlacementTarget = this;
+
+                BindingOperations.SetBinding(Value, ContextMenu.IsOpenProperty, new Binding()
+                {
+                    Path = new PropertyPath("IsChecked"),
+                    Source = this
+                });
+            }
+        }
+
+        protected virtual void OnDropDownDataContextChanged(object Value)
+        {
+            if (DropDown != null)
+                DropDown.DataContext = Value;
+        }
+
+        protected virtual void OnSourceChanged(ImageSource Value)
+        {
+            ImageBrush = new ImageBrush(Value);
         }
 
         #endregion

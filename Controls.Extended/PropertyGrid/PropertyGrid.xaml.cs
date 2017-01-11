@@ -46,6 +46,7 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /*
         public static DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(DateTimeFormat), typeof(PropertyGrid), new FrameworkPropertyMetadata(DateTimeFormat.FullDateTime, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public DateTimeFormat DateTimeFormat
         {
@@ -58,6 +59,7 @@ namespace Imagin.Controls.Extended
                 SetValue(DateTimeFormatProperty, value);
             }
         }
+        */
 
         public static DependencyProperty FileSizeFormatProperty = DependencyProperty.Register("FileSizeFormat", typeof(FileSizeFormat), typeof(PropertyGrid), new FrameworkPropertyMetadata(FileSizeFormat.BinaryUsingSI, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public FileSizeFormat FileSizeFormat

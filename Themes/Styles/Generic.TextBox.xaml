@@ -78,32 +78,4 @@
     <Style x:Key="{x:Type Controls.Common:PasswordBox}" TargetType="{x:Type Controls.Common:PasswordBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
     <Style x:Key="{x:Type Controls.Common:FileBox}" TargetType="{x:Type Controls.Common:FileBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
-
-    <Style x:Key="{x:Type Controls.Common:DateTimeUpDown}" TargetType="{x:Type Controls.Common:DateTimeUpDown}">
-        <Setter Property="Background" Value="{DynamicResource Brush.TextBox.Background}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Brush.TextBox.Border}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
-        <Setter Property="FontSize" Value="15" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="Padding" Value="3" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.TextBox.MouseOver.Border}" />
-            </Trigger>
-            <Trigger Property="IsFocused" Value="True">
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.TextBox.Focused.Border}" />
-            </Trigger>
-            <Trigger Property="IsReadOnly" Value="True">
-                <Setter Property="Opacity" Value="0.6" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="0.6" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="{x:Type Controls.Common:DateTimePicker}" TargetType="{x:Type Controls.Common:DateTimePicker}" BasedOn="{StaticResource {x:Type Controls.Common:DateTimeUpDown}}"/>
 </ResourceDictionary>

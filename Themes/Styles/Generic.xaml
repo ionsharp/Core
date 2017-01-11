@@ -8,11 +8,13 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.AnglePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Border.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Calendar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.ContextMenu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.DataGrid.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Decorators.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.DragSelection.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Expander.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.GridView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.GroupBox.xaml" />
@@ -22,6 +24,7 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Menu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.PropertyGrid.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.RadioButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.RichTextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Slider.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Splitters.xaml" />

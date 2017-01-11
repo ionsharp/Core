@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
@@ -20,7 +21,11 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter Content="{TemplateBinding Content}"/>
+                        <Controls.Common:MaskedImage 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            ImageColor="{TemplateBinding Foreground}"
+                            Source="{Binding Content, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -44,62 +49,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="Style.Window.Button.Minimize" x:Shared="False" TargetType="Button" BasedOn="{StaticResource Style.Window.Button}">
-        <Setter Property="Content">
-            <Setter.Value>
-                <Path 
-                    Data="M0,6 L8,6 Z"
-                    Width="8" 
-                    Height="13" 
-                    Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" 
-                    StrokeThickness="2" />
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="Style.Window.Button.Restore" x:Shared="False" TargetType="Button" BasedOn="{StaticResource Style.Window.Button}">
-        <Setter Property="Content">
-            <Setter.Value>
-                <Controls.Common:MaskedImage 
-                    Source="pack://application:,,,/Imagin.Themes;component/Images/Restore.png" 
-                    ImageWidth="10" 
-                    ImageHeight="10" 
-                    ImageColor="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="Style.Window.Button.Maximize" x:Shared="False" TargetType="Button" BasedOn="{StaticResource Style.Window.Button}">
-        <Setter Property="Content">
-            <Setter.Value>
-                <Path 
-                    Data="M0,1 L9,1 L9,8 L0,8 Z" 
-                    Width="9" 
-                    Height="8" 
-                    Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" 
-                    StrokeThickness="2" />
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="Style.Window.Button.Close" x:Shared="False" TargetType="Button" BasedOn="{StaticResource Style.Window.Button}">
-        <Setter Property="Content">
-            <Setter.Value>
-                <Path 
-                    Data="M0,0 L8,7 M8,0 L0,7 Z" 
-                    Width="8" 
-                    Height="9" 
-                    StrokeStartLineCap="Round"
-                    StrokeEndLineCap="Round"
-                    Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" 
-                    StrokeThickness="1.5"
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center">
-                </Path>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <!-- ............................................... Windows -->
 
     <Style x:Key="Style.Window" TargetType="{x:Type Window}">
@@ -119,6 +68,7 @@
         </Style.Triggers>
     </Style>
 
+    <!--
     <Style x:Key="{x:Type Window}" TargetType="{x:Type Window}" BasedOn="{StaticResource Style.Window}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Controls.Common.Extensions:WindowExtensions.OverridesDefaultBehavior" Value="True"/>
@@ -182,25 +132,29 @@
                                     <Button 
                                         x:Name="PART_MinimizeButton"
                                         Command="{x:Static SystemCommands.MinimizeWindowCommand}"
-                                        ToolTip="Minimize" 
-                                        Style="{DynamicResource Style.Window.Button.Minimize}"/>
+                                        Content="pack://application:,,,/Imagin.Themes;component/Images/Minus.png"
+                                        Style="{DynamicResource Style.Window.Button}"
+                                        ToolTip="{l:Loc Minimize}"/>
                                     <Grid>
                                         <Button 
                                             x:Name="PART_RestoreButton" 
                                             Command="{x:Static SystemCommands.RestoreWindowCommand}"
-                                            ToolTip="Restore" 
-                                            Style="{DynamicResource Style.Window.Button.Restore}"/>
+                                            Content="pack://application:,,,/Imagin.Themes;component/Images/Restore.png"
+                                            Style="{DynamicResource Style.Window.Button}"
+                                            ToolTip="{l:Loc Restore}"/>
                                         <Button 
                                             x:Name="PART_MaximizeButton" 
                                             Command="{x:Static SystemCommands.MaximizeWindowCommand}"
-                                            ToolTip="Maximize" 
-                                            Style="{DynamicResource Style.Window.Button.Maximize}"/>
+                                            Style="{DynamicResource Style.Window.Button}"
+                                            ToolTip="{l:Loc Maximize}" 
+                                            Content="pack://application:,,,/Imagin.Themes;component/Images/Maximize.png"/>
                                     </Grid>
                                     <Button 
                                         x:Name="PART_CloseButton"
                                         Command="{x:Static SystemCommands.CloseWindowCommand}"
-                                        Style="{DynamicResource Style.Window.Button.Close}"
-                                        ToolTip="Close"/>
+                                        Content="pack://application:,,,/Imagin.Themes;component/Images/X.png"
+                                        Style="{DynamicResource Style.Window.Button}"
+                                        ToolTip="{l:Loc Close}"/>
                                 </StackPanel>
                             </Grid>
                             <AdornerDecorator Grid.Row="1" >
@@ -249,9 +203,19 @@
             </Setter.Value>
         </Setter>
     </Style>
+    -->
 
     <Style x:Key="Style.BasicWindow" TargetType="{x:Type Controls.Common:BasicWindow}" BasedOn="{StaticResource Style.Window}">
-        <Setter Property="StartupLocation" Value="CenterScreen" />
+        <Setter Property="ContentBorderBrush" Value="{DynamicResource Brush.Window.Content.Border}"/>
+        <Style.Triggers>
+            <Trigger Property="Controls.Common:BasicWindow.Type" Value="Window">
+                <Setter Property="ContentBorderThickness" Value="1"/>
+                <Setter Property="ContentMargin" Value="5,0,5,5"/>
+            </Trigger>
+            <Trigger Property="Controls.Common:BasicWindow.Type" Value="Tool">
+                <Setter Property="ContentBorderThickness" Value="0,1,0,0"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="{x:Type Controls.Common:BasicWindow}" TargetType="{x:Type Controls.Common:BasicWindow}" BasedOn="{StaticResource Style.BasicWindow}"/>

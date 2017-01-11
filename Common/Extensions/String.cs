@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security;
@@ -143,22 +144,6 @@ namespace Imagin.Common.Extensions
         public static string Capitalize(this string Value)
         {
             return Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Value.ToLower());
-        }
-
-        public static void CreateDirectory(this string Path)
-        {
-            if (!Path.DirectoryExists())
-                Directory.CreateDirectory(Path);
-        }
-
-        public static void DeleteDirectory(this string Path, bool Recursive = true)
-        {
-            Directory.Delete(Path, Recursive);
-        }
-
-        public static void DeleteFile(this string FilePath)
-        {
-            File.Delete(FilePath);
         }
 
         public static bool DirectoryExists(this string DirectoryPath)
@@ -382,48 +367,6 @@ namespace Imagin.Common.Extensions
             return Regex.Replace(Regex.Replace(ToConvert, @"(\P{Ll})(\P{Ll}\p{Ll})", "$1 $2"), @"(\p{Ll})(\P{Ll})", "$1 $2");
         }
 
-        public static bool TryCreateDirectory(this string Path)
-        {
-            if (!Path.DirectoryExists())
-            {
-                try
-                {
-                    Directory.CreateDirectory(Path);
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public static bool TryDeleteDirectory(this string Path, bool Recursive = true)
-        {
-            try
-            {
-                Directory.Delete(Path, Recursive);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static bool TryDeleteFile(this string FilePath)
-        {
-            try
-            {
-                File.Delete(FilePath);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-
         /// <summary>
         /// Attempt to run program at path.
         /// </summary>
@@ -497,6 +440,19 @@ namespace Imagin.Common.Extensions
             long Value = default(long);
             long.TryParse(ToConvert, out Value);
             return Value;
+        }
+
+        public static IEnumerable<int> ToIntArray(this string Value, char Separator = ',')
+        {
+            if (String.IsNullOrEmpty(Value))
+                yield break;
+
+            foreach (var s in Value.Split(Separator))
+            {
+                int n;
+                if (int.TryParse(s, out n))
+                    yield return n;
+            }
         }
 
         /// <summary>

@@ -27,19 +27,19 @@ namespace Imagin.Common.Extensions
 
         public static Task FadeIn(this UIElement Element, Duration Duration = default(Duration))
         {
-            var Child = new DoubleAnimation()
+            var DoubleAnimation = new DoubleAnimation()
             {
                 From = 0.0,
                 To = 1.0,
                 Duration = Duration == default(Duration) ? new Duration(TimeSpan.FromSeconds(0.3)) : Duration
             };
-            Storyboard.SetTarget(Child, Element);
-            Storyboard.SetTargetProperty(Child, new PropertyPath("Opacity"));
+            Storyboard.SetTarget(DoubleAnimation, Element);
+            Storyboard.SetTargetProperty(DoubleAnimation, new PropertyPath("Opacity"));
 
-            var Animation = new Storyboard();
-            Animation.Children.Add(Child);
+            var s = new Storyboard();
+            s.Children.Add(DoubleAnimation);
 
-            return Element.BeginAnimationAsync(Animation);
+            return Element.BeginAnimationAsync(s);
         }
 
         public static Task FadeOut(this UIElement Element, Duration Duration = default(Duration), EventHandler Callback = null)
