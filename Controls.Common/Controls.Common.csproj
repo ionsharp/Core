@@ -53,6 +53,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Common\bin\Debug\Imagin.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
       <Private>True</Private>
@@ -66,6 +70,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -89,9 +97,12 @@
     <Compile Include="ButtonChrome.cs" />
     <Compile Include="Converters\CenterToolTipConverter.cs" />
     <Compile Include="Converters\WindowTypeVisibilityConverter.cs" />
+    <Compile Include="Interactivity\AutoPositionPopupBehavior.cs" />
     <Compile Include="SelectionCanvas.xaml.cs">
       <DependentUpon>SelectionCanvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TextBox\RegexBoxBase.cs" />
+    <Compile Include="TextBox\RegexBox.cs" />
     <Compile Include="ToggleSwitch.cs" />
     <Compile Include="TreeView\AdvancedTreeView.cs" />
     <Compile Include="TreeView\%28Converters%29\TreeViewColumnGridLengthConverter.cs" />
@@ -121,7 +132,7 @@
     </Compile>
     <Compile Include="Gadget.cs" />
     <Compile Include="Decorators\RippleDecorator.cs" />
-    <Compile Include="TextBox\AlphaNumericTextBox.cs" />
+    <Compile Include="TextBox\AlphaNumericBox.cs" />
     <Compile Include="DragSelection.cs" />
     <Compile Include="DragSelector.cs" />
     <Compile Include="FontFamilyBox.xaml.cs">
@@ -140,20 +151,21 @@
     <Compile Include="Spacer.cs" />
     <Compile Include="TextBox\PasswordBox.cs" />
     <Compile Include="TreeView\TreeViewSelectionMode.cs" />
-    <Compile Include="UpDown\NumericUpDown\DecimalUpDown.cs" />
-    <Compile Include="UpDown\NumericUpDown\IrrationalUpDown.cs" />
-    <Compile Include="UpDown\NumericUpDown\RationalUpDown.cs" />
-    <Compile Include="UpDown\NumericUpDown\ByteUpDown.cs" />
-    <Compile Include="UpDown\IUpDown.cs" />
-    <Compile Include="UpDown\NumericUpDown\NumericUpDown.cs" />
-    <Compile Include="UpDown\NumericUpDown\ShortUpDown.cs" />
-    <Compile Include="UpDown\UpDown.cs" />
+    <Compile Include="UpDown\DecimalUpDown.cs" />
+    <Compile Include="UpDown\%28Base%29\IrrationalUpDown.cs" />
+    <Compile Include="UpDown\%28Base%29\RationalUpDown.cs" />
+    <Compile Include="UpDown\ByteUpDown.cs" />
+    <Compile Include="UpDown\%28Base%29\IUpDown.cs" />
+    <Compile Include="UpDown\%28Base%29\NumericUpDown.cs" />
+    <Compile Include="UpDown\DateTimeUpDown.cs" />
+    <Compile Include="UpDown\ShortUpDown.cs" />
+    <Compile Include="UpDown\%28Base%29\UpDown.cs" />
     <Compile Include="TreeViewComboBox.cs" />
     <Compile Include="TextBox\AdvancedTextBox.cs" />
-    <Compile Include="UpDown\UpDown.Generic.cs" />
-    <Compile Include="UpDown\NumericUpDown\DoubleUpDown.cs" />
-    <Compile Include="UpDown\NumericUpDown\IntUpDown.cs" />
-    <Compile Include="UpDown\NumericUpDown\LongUpDown.cs" />
+    <Compile Include="UpDown\%28Base%29\UpDown.Generic.cs" />
+    <Compile Include="UpDown\DoubleUpDown.cs" />
+    <Compile Include="UpDown\IntUpDown.cs" />
+    <Compile Include="UpDown\LongUpDown.cs" />
     <Compile Include="WindowSinker.cs" />
     <Compile Include="Window\BasicWindow.cs" />
     <Compile Include="Window\WindowResult.cs" />

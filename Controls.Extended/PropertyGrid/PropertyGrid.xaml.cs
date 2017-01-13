@@ -20,6 +20,19 @@ namespace Imagin.Controls.Extended
 
         public event EventHandler<EventArgs<object>> SelectedObjectChanged;
 
+        public static DependencyProperty AcceptNullObjectsProperty = DependencyProperty.Register("AcceptNullObjects", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
+        public bool AcceptNullObjects
+        {
+            get
+            {
+                return (bool)GetValue(AcceptNullObjectsProperty);
+            }
+            set
+            {
+                SetValue(AcceptNullObjectsProperty, value);
+            }
+        }
+
         public static DependencyProperty ButtonsProperty = DependencyProperty.Register("Buttons", typeof(FrameworkElementCollection), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public FrameworkElementCollection Buttons
         {
@@ -46,20 +59,18 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        /*
-        public static DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(DateTimeFormat), typeof(PropertyGrid), new FrameworkPropertyMetadata(DateTimeFormat.FullDateTime, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public DateTimeFormat DateTimeFormat
+        public static DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public string DateTimeFormat
         {
             get
             {
-                return (DateTimeFormat)GetValue(DateTimeFormatProperty);
+                return (string)GetValue(DateTimeFormatProperty);
             }
             set
             {
                 SetValue(DateTimeFormatProperty, value);
             }
         }
-        */
 
         public static DependencyProperty FileSizeFormatProperty = DependencyProperty.Register("FileSizeFormat", typeof(FileSizeFormat), typeof(PropertyGrid), new FrameworkPropertyMetadata(FileSizeFormat.BinaryUsingSI, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public FileSizeFormat FileSizeFormat
@@ -73,7 +84,7 @@ namespace Imagin.Controls.Extended
                 SetValue(FileSizeFormatProperty, value);
             }
         }
-        
+
         public static DependencyProperty GridBackgroundProperty = DependencyProperty.Register("GridBackground", typeof(Brush), typeof(PropertyGrid), new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Brush GridBackground
         {
@@ -234,6 +245,19 @@ namespace Imagin.Controls.Extended
                 SetValue(PropertiesProperty, value);
             }
         }
+        
+        public static DependencyProperty PropertyColumnWidthProperty = DependencyProperty.Register("PropertyColumnWidth", typeof(GridLength), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(GridLength), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public GridLength PropertyColumnWidth
+        {
+            get
+            {
+                return (GridLength)GetValue(PropertyColumnWidthProperty);
+            }
+            set
+            {
+                SetValue(PropertyColumnWidthProperty, value);
+            }
+        }
 
         public static DependencyProperty PropertyDescriptionStyleProperty = DependencyProperty.Register("PropertyDescriptionStyle", typeof(Style), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Style PropertyDescriptionStyle
@@ -386,16 +410,16 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty AcceptNullObjectsProperty = DependencyProperty.Register("AcceptNullObjects", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
-        public bool AcceptNullObjects
+        public static DependencyProperty ValueColumnWidthProperty = DependencyProperty.Register("ValueColumnWidth", typeof(GridLength), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(GridLength), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public GridLength ValueColumnWidth
         {
             get
             {
-                return (bool)GetValue(AcceptNullObjectsProperty);
+                return (GridLength)GetValue(ValueColumnWidthProperty);
             }
             set
             {
-                SetValue(AcceptNullObjectsProperty, value);
+                SetValue(ValueColumnWidthProperty, value);
             }
         }
 
@@ -403,16 +427,24 @@ namespace Imagin.Controls.Extended
 
         #region PropertyGrid
 
+        /// <summary>
+        /// 
+        /// </summary>
         public PropertyGrid()
         {
-            InitializeComponent();
+            Buttons = new FrameworkElementCollection();
 
             CommandBindings.Add(new CommandBinding(EditCollectionCommand, this.EditCollectionCommand_Executed, this.EditCollectionCommand_CanExecute));
             CommandBindings.Add(new CommandBinding(ResetCommand, this.ResetCommand_Executed, this.ResetCommand_CanExecute));
 
-            Buttons = new FrameworkElementCollection();
             Properties = new PropertyModelCollection();
             ListCollectionView = new ListCollectionView(Properties);
+
+            PropertyColumnWidth = new GridLength(40d, GridUnitType.Star);
+            ValueColumnWidth = new GridLength(60d, GridUnitType.Star);
+
+            InitializeComponent();
+
             Sort();
         }
 
@@ -476,7 +508,7 @@ namespace Imagin.Controls.Extended
             {
                 ListCollectionView.SortDescriptions.Clear();
 
-                var SortDirection = this.IsSortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+                var SortDirection = IsSortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending;
 
                 if (ShowCategories)
                     ListCollectionView.SortDescriptions.Add(new SortDescription("Category", SortDirection));

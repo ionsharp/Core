@@ -65,7 +65,7 @@
                                     Margin="{TemplateBinding Padding}"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                <Grid Grid.Column="1" Visibility="{TemplateBinding IsClearEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid Grid.Column="1" Visibility="{TemplateBinding CanUserClear, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <local:MaskedButton
                                         x:Name="PART_ClearButton"
                                         Source="pack://application:,,,/Imagin.Controls.Common;component/Images/XRound.png"

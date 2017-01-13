@@ -1,9 +1,20 @@
-﻿using System.Windows;
+﻿using Imagin.Common.Input;
+using System;
+using System.Windows;
 
 namespace Imagin.Common.Primitives
 {
-    public class Position : AbstractObject
+    /// <summary>
+    /// Represents a point with binding support.
+    /// </summary>
+    [Serializable]
+    public class Position : AbstractObject, IVariant<Point>
     {
+        #region Properties
+
+        [field: NonSerialized]
+        public event EventHandler<EventArgs<Point>> Changed;
+
         double x = 0d;
         public double X
         {
@@ -14,6 +25,7 @@ namespace Imagin.Common.Primitives
             set
             {
                 x = value;
+                OnChanged(Point);
                 OnPropertyChanged("X");
             }
         }
@@ -28,6 +40,7 @@ namespace Imagin.Common.Primitives
             set
             {
                 y = value;
+                OnChanged(Point);
                 OnPropertyChanged("Y");
             }
         }
@@ -39,6 +52,10 @@ namespace Imagin.Common.Primitives
                 return new Point(x, y);
             }
         }
+
+        #endregion
+
+        #region Position
 
         public Position() : base()
         {
@@ -59,6 +76,21 @@ namespace Imagin.Common.Primitives
             return new Position(Value);
         }
 
+        #endregion
+
+        #region Methods
+
+        public Point Get()
+        {
+            return Point;
+        }
+
+        public void OnChanged(Point Value)
+        {
+            if (Changed != null)
+                Changed(this, new EventArgs<Point>(Value));
+        }
+
         public void Set(Point Point)
         {
             Set(Point.X, Point.Y);
@@ -74,5 +106,7 @@ namespace Imagin.Common.Primitives
         {
             return Point.ToString();
         }
+
+        #endregion
     }
 }

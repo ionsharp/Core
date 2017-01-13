@@ -2,12 +2,13 @@
 using Imagin.Common.Attributes;
 using Imagin.Common.Collections.Concurrent;
 using Imagin.Common.Extensions;
-using Imagin.Common.Text;
+using Imagin.Common.Primitives;
 using Imagin.Controls.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,42 +25,7 @@ namespace Imagin.NET.Demo
     }
     public class FileSystemEntryModel : NamedObject
     {
-        Guid id = Guid.NewGuid();
-        [Category("General")]
-        [Description("The date the file was last accessed.")]
-        [ReadOnly(true)]
-        public Guid Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
-
-        [Category("General")]
-        [Description("The name of the file.")]
-        [Featured(true)]
-        [ReadOnly(true)]
-        public override string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-
         bool isExpanded = false;
-        [Browsable(false)]
         public bool IsExpanded
         {
             get
@@ -116,10 +82,6 @@ namespace Imagin.NET.Demo
         }
 
         long size = 0L;
-        [Category("Dimensions")]
-        [Description("The size of the file system entry in bytes.")]
-        [Int64Representation(Int64Representation.FileSize)]
-        [ReadOnly(true)]
         public long Size
         {
             get
@@ -133,95 +95,7 @@ namespace Imagin.NET.Demo
             }
         }
 
-        ServerObjectType type;
-        [Category("General")]
-        [Description("The type of the file system entry.")]
-        [ReadOnly(true)]
-        public ServerObjectType Type
-        {
-            get
-            {
-                return type;
-            }
-            set
-            {
-                type = value;
-                OnPropertyChanged("Type");
-            }
-        }
-
-        bool isReadOnly = false;
-        [Category("Attributes")]
-        [Description("Indicates whether or not the file is read-only.")]
-        [ReadOnly(true)]
-        public bool IsReadOnly
-        {
-            get
-            {
-                return isReadOnly;
-            }
-            set
-            {
-                isReadOnly = value;
-                OnPropertyChanged("IsReadOnly");
-            }
-        }
-
-        bool isHidden = false;
-        [Category("Attributes")]
-        [Description("Indicates whether or not the file is hidden.")]
-        [ReadOnly(true)]
-        public bool IsHidden
-        {
-            get
-            {
-                return isHidden;
-            }
-            set
-            {
-                isHidden = value;
-                OnPropertyChanged("IsHidden");
-            }
-        }
-
-        string notes = string.Empty;
-        [Category("Misc")]
-        [Description("File notes.")]
-        [StringRepresentation(StringRepresentation.Multiline)]
-        public string Notes
-        {
-            get
-            {
-                return notes;
-            }
-            set
-            {
-                notes = value;
-                OnPropertyChanged("Notes");
-            }
-        }
-
-        string password = string.Empty;
-        [Category("Misc")]
-        [Description("A password used to lock the file.")]
-        [StringRepresentation(StringRepresentation.Password)]
-        public string Password
-        {
-            get
-            {
-                return password;
-            }
-            set
-            {
-                password = value;
-                OnPropertyChanged("Password");
-            }
-        }
-
         DateTime accessed = default(DateTime);
-        [Category("Date")]
-        [Description("The date the file was last accessed.")]
-        [ReadOnly(true)]
         public DateTime Accessed
         {
             get
@@ -236,9 +110,6 @@ namespace Imagin.NET.Demo
         }
 
         DateTime created = default(DateTime);
-        [Category("Date")]
-        [Description("The date the file was created.")]
-        [ReadOnly(true)]
         public DateTime Created
         {
             get
@@ -253,9 +124,6 @@ namespace Imagin.NET.Demo
         }
 
         DateTime modified = default(DateTime);
-        [Category("Date")]
-        [Description("The date the file was last modified.")]
-        [ReadOnly(true)]
         public DateTime Modified
         {
             get
@@ -270,7 +138,6 @@ namespace Imagin.NET.Demo
         }
 
         ObservableCollection<FileSystemEntryModel> items = new ObservableCollection<FileSystemEntryModel>();
-        [Browsable(false)]
         public ObservableCollection<FileSystemEntryModel> Items
         {
             get
@@ -289,43 +156,45 @@ namespace Imagin.NET.Demo
             return Name;
         }
 
+        async void Set(string Path)
+        {
+            await Task.Run(() => 
+            {
+                bool IsFolder = System.IO.Directory.Exists(Path), IsFile = System.IO.File.Exists(Path);
+
+                if (IsFolder)
+                    Set(new System.IO.DirectoryInfo(Path));
+                else if (IsFile)
+                    Set(new System.IO.FileInfo(Path));
+
+                Name = !IsFolder && !IsFile ? Path : Path.GetFileName();
+            });
+        }
+
         void Set(System.IO.FileSystemInfo Info)
         {
             Path = Info.FullName;
             Accessed = Info.LastAccessTime;
             Created = Info.CreationTime;
             Modified = Info.LastWriteTime;
-            IsHidden = (Info.Attributes & System.IO.FileAttributes.Hidden) == System.IO.FileAttributes.Hidden;
-            IsReadOnly = (Info.Attributes & System.IO.FileAttributes.ReadOnly) == System.IO.FileAttributes.ReadOnly;
         }
 
         void Set(System.IO.DirectoryInfo Info)
         {
-            Type = ServerObjectType.Folder;
-
             Set(Info as System.IO.FileSystemInfo);
         }
 
         void Set(System.IO.FileInfo Info)
         {
-            Type = ServerObjectType.File;
             Size = Info.Length;
 
             Set(Info as System.IO.FileSystemInfo);
         }
 
-        public FileSystemEntryModel(string Path) : base()
+        public FileSystemEntryModel(string path) : base()
         {
-            this.Path = Path;
-
-            bool IsFolder = System.IO.Directory.Exists(Path), IsFile = System.IO.File.Exists(Path);
-
-            if (IsFolder)
-                Set(new System.IO.DirectoryInfo(Path));
-            else if (IsFile)
-                Set(new System.IO.FileInfo(Path));
-
-            Name = !IsFolder && !IsFile ? Path : Path.GetFileName();
+            Path = path;
+            Set(path);
         }
     }
 
@@ -412,6 +281,306 @@ namespace Imagin.NET.Demo
 
     #endregion
 
+    #region WildObject
+
+    public class WildObject : NamedObject
+    {
+        bool boolean = false;
+        [Description("Description for Boolean property.")]
+        public bool Boolean
+        {
+            get
+            {
+                return boolean;
+            }
+            set
+            {
+                boolean = value;
+                OnPropertyChanged("Boolean");
+            }
+        }
+
+        byte _byte = (byte)0;
+        [Description("Description for Byte property.")]
+        public byte Byte
+        {
+            get
+            {
+                return _byte;
+            }
+            set
+            {
+                _byte = value;
+                OnPropertyChanged("Byte");
+            }
+        }
+
+        DateTime dateTime = DateTime.Now;
+        [Description("Description for DateTime property.")]
+        public DateTime DateTime
+        {
+            get
+            {
+                return dateTime;
+            }
+            set
+            {
+                dateTime = value;
+                OnPropertyChanged("DateTime");
+            }
+        }
+
+        decimal _decimal = 0m;
+        [Description("Description for Decimal property.")]
+        public decimal Decimal
+        {
+            get
+            {
+                return _decimal;
+            }
+            set
+            {
+                _decimal = value;
+                OnPropertyChanged("Decimal");
+            }
+        }
+
+        double _double = 0d;
+        [Description("Description for Double property.")]
+        public double Double
+        {
+            get
+            {
+                return _double;
+            }
+            set
+            {
+                _double = value;
+                OnPropertyChanged("Double");
+            }
+        }
+
+        Guid guid = Guid.NewGuid();
+        [Description("Description for Guid property.")]
+        public Guid Guid
+        {
+            get
+            {
+                return guid;
+            }
+            set
+            {
+                guid = value;
+                OnPropertyChanged("Guid");
+            }
+        }
+
+        int _int = 0;
+        [Description("Description for Int property.")]
+        public int Int
+        {
+            get
+            {
+                return _int;
+            }
+            set
+            {
+                _int = value;
+                OnPropertyChanged("Int");
+            }
+        }
+
+        long _long = 0L;
+        [Description("Description for Long property.")]
+        public long Long
+        {
+            get
+            {
+                return _long;
+            }
+            set
+            {
+                _long = value;
+                OnPropertyChanged("Long");
+            }
+        }
+
+        NetworkCredential networkCredential = new NetworkCredential("UserName", "Password");
+        [Description("Description for NetworkCredential property.")]
+        public NetworkCredential NetworkCredential
+        {
+            get
+            {
+                return networkCredential;
+            }
+            set
+            {
+                networkCredential = value;
+                OnPropertyChanged("NetworkCredential");
+            }
+        }
+
+        Point point = new Point(0, 0);
+        [Description("Description for Point property.")]
+        public Point Point
+        {
+            get
+            {
+                return point;
+            }
+            set
+            {
+                point = value;
+                OnPropertyChanged("Point");
+            }
+        }
+
+        short _short = (short)0;
+        [Description("Description for Short property.")]
+        public short Short
+        {
+            get
+            {
+                return _short;
+            }
+            set
+            {
+                _short = value;
+                OnPropertyChanged("Short");
+            }
+        }
+
+        Size size = new Size(0, 0);
+        [Description("Description for Size property.")]
+        public Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+                OnPropertyChanged("Size");
+            }
+        }
+
+        string normalString = string.Empty;
+        [Description("Description for NormalString property.")]
+        public string NormalString
+        {
+            get
+            {
+                return normalString;
+            }
+            set
+            {
+                normalString = value;
+                OnPropertyChanged("NormalString");
+            }
+        }
+
+        string filePathString = string.Empty;
+        [Description("Description for FilePathString property.")]
+        [StringKind(StringKind.FilePath)]
+        public string FilePathString
+        {
+            get
+            {
+                return filePathString;
+            }
+            set
+            {
+                filePathString = value;
+                OnPropertyChanged("FilePathString");
+            }
+        }
+
+        string folderPathString = string.Empty;
+        [Description("Description for FolderPathString property.")]
+        [StringKind(StringKind.FolderPath)]
+        public string FolderPathString
+        {
+            get
+            {
+                return folderPathString;
+            }
+            set
+            {
+                folderPathString = value;
+                OnPropertyChanged("FolderPathString");
+            }
+        }
+
+        string multilineString = string.Empty;
+        [Description("Description for MultilineString property.")]
+        [StringKind(StringKind.Multiline)]
+        public string MultilineString
+        {
+            get
+            {
+                return multilineString;
+            }
+            set
+            {
+                multilineString = value;
+                OnPropertyChanged("MultilineString");
+            }
+        }
+
+        string passwordString = string.Empty;
+        [Description("Description for PasswordString property.")]
+        [StringKind(StringKind.Password)]
+        public string PasswordString
+        {
+            get
+            {
+                return passwordString;
+            }
+            set
+            {
+                passwordString = value;
+                OnPropertyChanged("PasswordString");
+            }
+        }
+
+        Uri uri = new Uri("http://www.google.com");
+        [Description("Description for Uri property.")]
+        public Uri Uri
+        {
+            get
+            {
+                return uri;
+            }
+            set
+            {
+                uri = value;
+                OnPropertyChanged("Uri");
+            }
+        }
+
+        Version version = new Version();
+        [Description("Description for Version property.")]
+        public Version Version
+        {
+            get
+            {
+                return version;
+            }
+            set
+            {
+                version = value;
+                OnPropertyChanged("Version");
+            }
+        }
+
+        public WildObject(string Name) : base(Name)
+        {
+        }
+    }
+
+    #endregion
+
     #region ViewEnum
 
     public enum ViewEnum
@@ -480,6 +649,19 @@ namespace Imagin.NET.Demo
             }
         }
 
+        public static DependencyProperty PropertyGridSourceProperty = DependencyProperty.Register("PropertyGridSource", typeof(ObservableCollection<WildObject>), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public ObservableCollection<WildObject> PropertyGridSource
+        {
+            get
+            {
+                return (ObservableCollection<WildObject>)GetValue(PropertyGridSourceProperty);
+            }
+            set
+            {
+                SetValue(PropertyGridSourceProperty, value);
+            }
+        }
+
         #endregion
 
         #region MainWindow
@@ -518,6 +700,11 @@ namespace Imagin.NET.Demo
 
             //ListView
             FileSystemCollectionView = new ListCollectionView(FileSystemCollection);
+
+            //PropertyGrid
+            PropertyGridSource = new ObservableCollection<WildObject>();
+            for (var i = 0; i < 5; i++)
+                PropertyGridSource.Add(new WildObject("Wild Object " + i));
         }
 
         /*

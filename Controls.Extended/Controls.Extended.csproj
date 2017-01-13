@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="%28Pickers%29\IBrushPicker.cs" />
-    <Compile Include="AnglePicker.cs" />
+    <Compile Include="%28Pickers%29\AnglePicker.cs" />
     <Compile Include="%28Chips%29\ChipBase.cs" />
     <Compile Include="%28Chips%29\Chip.Generic.cs" />
     <Compile Include="%28Chips%29\ColorChip.cs" />
@@ -149,13 +149,16 @@
     </Compile>
     <Compile Include="ColorSpace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyGrid\%28Models%29\Models.cs" />
+    <Compile Include="PropertyGrid\%28Models%29\PropertyModel.Generic.cs" />
+    <Compile Include="PropertyGrid\%28Models%29\CoercedPropertyModel.cs" />
+    <Compile Include="PropertyGrid\%28Models%29\CoercedVariantPropertyModel.cs" />
     <Compile Include="PropertyGrid\PropertyAttributes.cs" />
     <Compile Include="PropertyGrid\PropertyGrid.xaml.cs">
       <DependentUpon>PropertyGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="PropertyGrid\PropertyModelCollection.cs" />
     <Compile Include="PropertyGrid\%28Models%29\PropertyModel.cs" />
+    <Compile Include="PropertyGrid\PropertyTemplateSelector.cs" />
     <Compile Include="PropertyGrid\ResourceDictionaryEditor.cs" />
     <Compile Include="TabbedTree.cs" />
   </ItemGroup>

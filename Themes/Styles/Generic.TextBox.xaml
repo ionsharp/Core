@@ -61,7 +61,7 @@
 
     <Style x:Key="{x:Type Controls.Common:EditableLabel}" TargetType="{x:Type Controls.Common:EditableLabel}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-    <Style x:Key="{x:Type Controls.Common:AlphaNumericTextBox}" TargetType="{x:Type Controls.Common:AlphaNumericTextBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+    <Style x:Key="{x:Type Controls.Common:AlphaNumericBox}" TargetType="{x:Type Controls.Common:AlphaNumericBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
     <Style x:Key="{x:Type Controls.Common:ByteUpDown}" TargetType="{x:Type Controls.Common:ByteUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
@@ -78,4 +78,19 @@
     <Style x:Key="{x:Type Controls.Common:PasswordBox}" TargetType="{x:Type Controls.Common:PasswordBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
     <Style x:Key="{x:Type Controls.Common:FileBox}" TargetType="{x:Type Controls.Common:FileBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+
+    <Style x:Key="{x:Type Controls.Common:RegexBox}" TargetType="{x:Type Controls.Common:RegexBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+
+    <Style x:Key="{x:Type Controls.Common:DateTimeUpDown}" TargetType="{x:Type Controls.Common:DateTimeUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}">
+        <Setter Property="DropDownStyle">
+            <Setter.Value>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="{DynamicResource Brush.Popup.Background}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource Brush.Popup.BorderBrush}"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="10"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

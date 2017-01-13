@@ -8,15 +8,15 @@ namespace Imagin.Common.Primitives
     /// Represents a rect with binding support.
     /// </summary>
     [Serializable]
-    public class Selection : AbstractObject
+    public class Selection : AbstractObject, IVariant<Rect>
     {
         #region Properties
 
         [field: NonSerialized]
-        public event EventHandler<EventArgs<Point>> PositionChanged;
+        public event EventHandler<EventArgs<Rect>> Changed;
 
         [field: NonSerialized]
-        public event EventHandler<EventArgs<Rect>> SelectionChanged;
+        public event EventHandler<EventArgs<Point>> PositionChanged;
 
         [field: NonSerialized]
         public event EventHandler<EventArgs<Size>> SizeChanged;
@@ -32,7 +32,7 @@ namespace Imagin.Common.Primitives
             {
                 width = value;
                 OnPropertyChanged("Width");
-                OnSelectionChanged(Rect);
+                OnChanged(Rect);
                 OnSizeChanged(Size);
             }
         }
@@ -48,7 +48,7 @@ namespace Imagin.Common.Primitives
             {
                 height = value;
                 OnPropertyChanged("Height");
-                OnSelectionChanged(Rect);
+                OnChanged(Rect);
                 OnSizeChanged(Size);
             }
         }
@@ -65,7 +65,7 @@ namespace Imagin.Common.Primitives
                 x = value;
                 OnPropertyChanged("X");
                 OnPositionChanged(Position);
-                OnSelectionChanged(Rect);
+                OnChanged(Rect);
             }
         }
 
@@ -81,7 +81,7 @@ namespace Imagin.Common.Primitives
                 y = value;
                 OnPropertyChanged("Y");
                 OnPositionChanged(Position);
-                OnSelectionChanged(Rect);
+                OnChanged(Rect);
             }
         }
 
@@ -196,16 +196,21 @@ namespace Imagin.Common.Primitives
                 PositionChanged(this, new EventArgs<Point>(Point));
         }
 
-        protected virtual void OnSelectionChanged(Rect Rect)
-        {
-            if (SelectionChanged != null)
-                SelectionChanged(this, new EventArgs<Rect>(Rect));
-        }
-
         protected virtual void OnSizeChanged(Size Size)
         {
             if (SizeChanged != null)
                 SizeChanged(this, new EventArgs<Size>(Size));
+        }
+
+        public Rect Get()
+        {
+            return Rect;
+        }
+
+        public void OnChanged(Rect Value)
+        {
+            if (Changed != null)
+                Changed(this, new EventArgs<Rect>(Value));
         }
 
         /// <summary>

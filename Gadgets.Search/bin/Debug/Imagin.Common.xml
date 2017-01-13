@@ -48,11 +48,43 @@
         </member>
         <member name="T:Imagin.Common.Attributes.ConstraintAttribute">
             <summary>
-            Used to specify a constraint for a property value with both a minimum and maximum value.
+            Specifies a constraint for a property with both a minimum and maximum value.
             </summary>
             <remarks>
             Constraint values are stored as object type because generic types cannot inherit from Attribute.
             </remarks>
+        </member>
+        <member name="T:Imagin.Common.Attributes.Int64KindAttribute">
+            <summary>
+            Specifies how an Int64 field should be displayed.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Attributes.Int64KindAttribute.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Attributes.Int64KindAttribute.#ctor(Imagin.Common.Primitives.Int64Kind)">
+            <summary>
+            
+            </summary>
+            <param name="Representation"></param>
+        </member>
+        <member name="T:Imagin.Common.Attributes.StringKindAttribute">
+            <summary>
+            Specifies how a string field should be displayed.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Attributes.StringKindAttribute.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Attributes.StringKindAttribute.#ctor(Imagin.Common.Primitives.StringKind)">
+            <summary>
+            
+            </summary>
+            <param name="Representation"></param>
         </member>
         <member name="T:Imagin.Common.Drawing.AngularUnit">
             <summary>
@@ -123,6 +155,20 @@
             <summary>
             Creates Brush from specified Brush and it's values.
             </summary>
+        </member>
+        <member name="T:Imagin.Common.Extensions.DecimalExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DecimalExtensions.Coerce(System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Maximum"></param>
+            <param name="Minimum"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.ActionExtensions.InvokeIf(System.Action,System.Func{System.Action,System.Boolean})">
             <summary>
@@ -295,6 +341,15 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DateTimeExtensions.Coerce(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Maximum"></param>
+            <param name="Minimum"></param>
+            <returns></returns>
         </member>
         <member name="P:Imagin.Common.Extensions.DateTimeExtensions.CurrentMonth">
             <summary>
@@ -1212,10 +1267,26 @@
             </summary>
             <param name="parameter"></param>
         </member>
-        <member name="T:Imagin.Common.Input.MouseWheelActiveTrigger">
+        <member name="T:Imagin.Common.Input.ChangedValue">
             <summary>
-            Mouse wheel active states.
+            Represents a value that has changed.
             </summary>
+        </member>
+        <member name="P:Imagin.Common.Input.ChangedValue.OldValue">
+            <summary>
+            The old value.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Input.ChangedValue.NewValue">
+            <summary>
+            The new value.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.IVariant`1">
+            <summary>
+            Represents an object that is a variant of another object.
+            </summary>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="T:Imagin.Common.Media.GradientPosition">
             <summary>
@@ -2137,6 +2208,26 @@
             A utility to access global localization resources.
             </summary>
         </member>
+        <member name="T:Imagin.Common.Meridiem">
+            <summary>
+            Specifies a time before or after midday.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Meridiem.Ante">
+            <summary>
+            Specifies a time BEFORE midday.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Meridiem.Post">
+            <summary>
+            Specifies a time AFTER midday.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Meridiem.Unspecified">
+            <summary>
+            Specifies a time with unspecified meridiem.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Mvvm.ViewModel`1">
             <summary>
             Base implementatation for defining view models.
@@ -2190,6 +2281,61 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Common.Primitives.DateTimePart">
+            <summary>
+            Specifies a part of a DateTime instance.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.DateTimePart.Month">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.DateTimePart.Day">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.DateTimePart.Year">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.DateTimePart.Hour">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.DateTimePart.Minute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.DateTimePart.Second">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.DateTimePart.Millisecond">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.DateTimePart.Meridian">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Primitives.Dimensions">
+            <summary>
+            Represents a size with binding support.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Primitives.Position">
+            <summary>
+            Represents a point with binding support.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Primitives.Selection">
             <summary>
             Represents a rect with binding support.
@@ -2216,6 +2362,57 @@
         <member name="M:Imagin.Common.Primitives.Selection.Set(System.Windows.Rect)">
             <summary>
             Set selection from given Rect.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Primitives.Int64Kind">
+            <summary>
+            Provides enumerator for long integers of various representations.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Int64Kind.Default">
+            <summary>
+            Specifies a general Int64.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Int64Kind.FileSize">
+            <summary>
+            Specifies a file size.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Primitives.StringKind">
+            <summary>
+            Provides enumerator for strings 
+            of various representations.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.StringKind.Unspecified">
+            <summary>
+            Unspecified string (or default).
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.StringKind.Regular">
+            <summary>
+            Specifies a regular string.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.StringKind.FilePath">
+            <summary>
+            Specifies a file path.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.StringKind.FolderPath">
+            <summary>
+            Specifies a folder path.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.StringKind.Multiline">
+            <summary>
+            Specifies a multiline string.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.StringKind.Password">
+            <summary>
+            Specifies a password string.
             </summary>
         </member>
         <member name="T:Imagin.Common.Serialization.WritableColor">
@@ -2352,52 +2549,6 @@
             <param name="Fourth"></param>
             <param name="Fifth"></param>
             <param name="Sixth"></param>
-        </member>
-        <member name="T:Imagin.Common.Text.Int64Representation">
-            <summary>
-            Provides enumerator for long integers of various representations.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Text.Int64Representation.Default">
-            <summary>
-            Specifies a general Int64.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Text.Int64Representation.FileSize">
-            <summary>
-            Specifies a file size.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Text.StringRepresentation">
-            <summary>
-            Provides enumerator for strings 
-            of various representations.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Text.StringRepresentation.Unspecified">
-            <summary>
-            Unspecified string (or default).
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Text.StringRepresentation.Regular">
-            <summary>
-            Specifies a regular string.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Text.StringRepresentation.FileSystemPath">
-            <summary>
-            Specifies a file system path.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Text.StringRepresentation.Multiline">
-            <summary>
-            Specifies a multiline string.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Text.StringRepresentation.Password">
-            <summary>
-            Specifies a password string.
-            </summary>
         </member>
         <member name="F:Imagin.Common.Tracing.WarningLevel.None">
             <summary>

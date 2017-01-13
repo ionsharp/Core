@@ -4,6 +4,11 @@
         <name>Imagin.Controls.Common</name>
     </assembly>
     <members>
+        <member name="T:Imagin.Controls.Common.Interactivity.AutoPositionPopupBehavior">
+            <summary>
+            Auto-positions popup when the parent element's position changes (TO-DO: support scrolling).
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.SelectionCanvas">
             <summary>
             SelectionCanvas
@@ -13,6 +18,27 @@
             <summary>
             InitializeComponent
             </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.RegexBoxBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.RegexBoxBase.regex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RegexBoxBase.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RegexBoxBase.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
         </member>
         <member name="T:Imagin.Controls.Common.AdvancedTreeView">
             <summary>
@@ -447,6 +473,21 @@
             Animation delay in seconds.
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.AlphaNumericBox">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AlphaNumericBox.regex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AlphaNumericBox.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.DragSelector">
             <summary>
             Provides logic for drag selecting over an ItemsControl.
@@ -545,18 +586,150 @@
             When System.Windows.Controls.PasswordBox.Password changes, set this.Text.
             </summary>
         </member>
+        <member name="P:Imagin.Controls.Common.NumericUpDown`1.DefaultIncrement">
+            <summary>
+            The default value to increment by.
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.DateTimeUpDown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.Increment">
+            <summary>
+            The value to increment by (e.g., if <see cref="P:Imagin.Controls.Common.DateTimeUpDown.SelectedPart" /> = <see cref="F:Imagin.Common.Primitives.DateTimePart.Month" /> and <see cref="P:Imagin.Controls.Common.DateTimeUpDown.Increment" /> = 3, increment by 3 months).
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.DateTimeUpDown.IsDropDownOpenProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.DateTimeUpDown.IsDropDownOpen"/> property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.IsDropDownOpen">
+            <summary>
+            Gets or sets whether or not the drop down is open.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.DateTimeUpDown.DropDownAnimationProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.DateTimeUpDown.DropDownAnimation"/> property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.DropDownAnimation">
+            <summary>
+            Gets or sets the drop down animation.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.DateTimeUpDown.DropDownPlacementProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.DateTimeUpDown.DropDownPlacement"/> property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.DropDownPlacement">
+            <summary>
+            Gets or sets the drop down placement.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.DateTimeUpDown.DropDownStretchProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.DateTimeUpDown.DropDownStretch"/> property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.DropDownStretch">
+            <summary>
+            Gets or sets the drop down stretch. If <see cref="F:System.Windows.Media.Stretch.None"/>, drop down width assumes width of it's content; if anything else, drop down width assumes width of parent, <see cref="T:Imagin.Controls.Common.DateTimeUpDown"/>.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.DateTimeUpDown.DropDownStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.DateTimeUpDown.DropDownStyle"/> property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.DropDownStyle">
+            <summary>
+            Gets or sets style of drop down; style must target <see cref="T:System.Windows.Controls.Border"/> control.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.DateTimeUpDown.SelectedPartProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.DateTimeUpDown.SelectedPart"/> property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.SelectedPart">
+            <summary>
+            Gets or sets the selected <see cref="T:Imagin.Common.Primitives.DateTimePart"/> of the <see cref="T:System.DateTime"/> value.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.DateTimeUpDown.StaysOpenProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.DateTimeUpDown.StaysOpen"/> property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.StaysOpen">
+            <summary>
+            Gets or sets whether or not the drop down stays open when clicking neutral area outside of it.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.DateTimeUpDown.StaysOpenOnSelectionProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.DateTimeUpDown.StaysOpenOnSelection"/> property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.StaysOpenOnSelection">
+            <summary>
+            Gets or sets whether or not the drop down stays open after making a selection.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Controls.Common.UpDown"/> class.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.CanDecrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.CanIncrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.Decrease">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.Increase">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Common.UpDown.SetText(System.String)">
             <summary>
             Set text; string format should be applied prior to calling.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.UpDown.OnPreviewMouseLeftButtonDownHandled(System.Windows.Input.MouseButtonEventArgs)">
-            <remarks>
-            Focus is obtained in the base version of this method.
-            Because UpDown contains nonfocusable buttons, we don't 
-            wish to capture focus when parent (relative to actual 
-            clicked visual) is a button.
-            </remarks>
+        <member name="M:Imagin.Controls.Common.UpDown.OnMajorChange(System.Object,System.EventArgs)">
+            <summary>
+            Occurs during a major change.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.OnMajorChangeChanged(System.Double)">
+            <summary>
+            Occurs when <see cref="P:Imagin.Controls.Common.UpDown.MajorChange"/> changes.
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.OnStringFormatChanged">
+            <summary>
+            Occurs when <see cref="P:Imagin.Controls.Common.UpDown.StringFormat"/> changes.
+            </summary>
         </member>
         <member name="T:Imagin.Controls.Common.TreeViewComboBox">
             <summary>
@@ -581,6 +754,37 @@
         <member name="M:Imagin.Controls.Common.TreeViewComboBox.#ctor">
             <summary>
             
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedTextBox.OnPreviewMouseLeftButtonDownHandled(System.Windows.Input.MouseButtonEventArgs,System.Type[])">
+            <remarks>
+            Normally, focus is obtained when left mouse button is pressed.
+            When clicking buttons that might be contained in the template,
+            focus is obtained first, thus, requiring a second click in 
+            order to actually click the button. To prevent this, we must
+            detect whether or not the intention is to click a button or 
+            focus. Therefore, if the element clicked IS a button, handle 
+            the focus; otherwise, focus!
+            </remarks>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown`1.AbsoluteMaximum">
+            <summary>
+            The absolute maximum value possible.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown`1.AbsoluteMinimum">
+            <summary>
+            The absolute minimum value possible.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown`1.DefaultValue">
+            <summary>
+            The default value.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Controls.Common.UpDown"/> class.
             </summary>
         </member>
         <member name="M:Imagin.Controls.Common.UpDown`1.SetText(`0)">

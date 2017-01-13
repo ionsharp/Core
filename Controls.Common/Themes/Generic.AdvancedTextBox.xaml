@@ -22,13 +22,14 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock 
                                 Foreground="{TemplateBinding PlaceholderForeground}" 
-                                FontSize="{TemplateBinding FontSize}"
                                 FontFamily="{TemplateBinding FontFamily}"
+                                FontSize="{TemplateBinding FontSize}"
                                 FontStyle="{TemplateBinding FontStyle}"
                                 FontStretch="{TemplateBinding FontStretch}"
                                 FontWeight="{TemplateBinding FontWeight}" 
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 Margin="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                 Text="{TemplateBinding Placeholder}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
@@ -38,7 +39,7 @@
                                 Margin="{TemplateBinding Padding}"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <Grid Grid.Column="1" Visibility="{TemplateBinding IsClearEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid Grid.Column="1" Visibility="{TemplateBinding CanUserClear, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <local:MaskedButton
                                     x:Name="PART_ClearButton"
                                     Source="pack://application:,,,/Imagin.Controls.Common;component/Images/XRound.png"

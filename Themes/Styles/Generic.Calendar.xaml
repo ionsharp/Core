@@ -484,15 +484,21 @@
         <Setter Property="Foreground" Value="{DynamicResource Brush.Text}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="MinHeight" Value="128"/>
+        <Setter Property="MinWidth" Value="128"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">
-                    <Viewbox Height="350" Width="350">
+                    <Viewbox 
+                        Height="{TemplateBinding Height}"
+                        MinHeight="{TemplateBinding MinHeight}"
+                        MinWidth="{TemplateBinding MinWidth}"
+                        Width="{TemplateBinding Width}">
                         <CalendarItem x:Name="PART_CalendarItem" 
-                                  Background="{TemplateBinding Background}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}" 
-                                  FontStretch="Expanded"  >
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            FontStretch="Expanded"  >
                         </CalendarItem>
                     </Viewbox>
                 </ControlTemplate>

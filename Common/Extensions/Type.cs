@@ -28,5 +28,17 @@ namespace Imagin.Common.Extensions
         {
             return typeof(T).IsAssignableFrom(Value);
         }
+
+        public static T TryCreate<T>(this Type Value)
+        {
+            try
+            {
+                return (T)Activator.CreateInstance(Value);
+            }
+            catch
+            {
+                return default(T);
+            }
+        }
     }
 }

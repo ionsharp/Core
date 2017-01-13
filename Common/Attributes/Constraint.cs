@@ -3,7 +3,7 @@
 namespace Imagin.Common.Attributes
 {
     /// <summary>
-    /// Used to specify a constraint for a property value with both a minimum and maximum value.
+    /// Specifies a constraint for a property with both a minimum and maximum value.
     /// </summary>
     /// <remarks>
     /// Constraint values are stored as object type because generic types cannot inherit from Attribute.

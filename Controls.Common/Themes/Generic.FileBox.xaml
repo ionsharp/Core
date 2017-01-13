@@ -42,8 +42,7 @@
                                 Grid.Column="1" 
                                 x:Name="PART_Checked"
                                 Margin="5,0,0,0"
-                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
-                                Visibility="{TemplateBinding PathExists, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"/>
                             <local:MaskedButton 
                                 Grid.Column="2" 
                                 x:Name="PART_Button"
@@ -66,9 +65,6 @@
                             <Setter TargetName="PART_Checked" Property="Grid.Column" Value="2"/>
                             <Setter TargetName="PART_Checked" Property="Margin" Value="5,0"/>
                             <Setter TargetName="PART_Button" Property="Grid.Column" Value="0"/>
-                        </Trigger>
-                        <Trigger Property="PathExists" Value="True">
-                            <Setter TargetName="PART_Checked" Property="ToolTip" Value="{Binding ValidatePathToolTip, RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

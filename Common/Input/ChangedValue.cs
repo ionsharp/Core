@@ -2,8 +2,14 @@
 
 namespace Imagin.Common.Input
 {
+    /// <summary>
+    /// Represents a value that has changed.
+    /// </summary>
     public class ChangedValue : Tuple<object, object>
     {
+        /// <summary>
+        /// The old value.
+        /// </summary>
         public object OldValue
         {
             get
@@ -12,6 +18,9 @@ namespace Imagin.Common.Input
             }
         }
 
+        /// <summary>
+        /// The new value.
+        /// </summary>
         public object NewValue
         {
             get

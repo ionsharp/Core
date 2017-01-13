@@ -21,16 +21,16 @@ namespace Imagin.Controls.Common
 
         public event EventHandler<RoutedEventArgs> TripleClick;
 
-        public static DependencyProperty IsClearEnabledProperty = DependencyProperty.Register("IsClearEnabled", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool IsClearEnabled
+        public static DependencyProperty CanUserClearProperty = DependencyProperty.Register("CanUserClear", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool CanUserClear
         {
             get
             {
-                return (bool)GetValue(IsClearEnabledProperty);
+                return (bool)GetValue(CanUserClearProperty);
             }
             set
             {
-                SetValue(IsClearEnabledProperty, value);
+                SetValue(CanUserClearProperty, value);
             }
         }
 
@@ -60,6 +60,19 @@ namespace Imagin.Controls.Common
             }
         }
 
+        public static DependencyProperty SelectAllOnFocusProperty = DependencyProperty.Register("SelectAllOnFocus", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public bool SelectAllOnFocus
+        {
+            get
+            {
+                return (bool)GetValue(SelectAllOnFocusProperty);
+            }
+            set
+            {
+                SetValue(SelectAllOnFocusProperty, value);
+            }
+        }
+
         public static DependencyProperty SelectAllOnTripleClickProperty = DependencyProperty.Register("SelectAllOnTripleClick", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool SelectAllOnTripleClick
         {
@@ -73,106 +86,103 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty SelectOnFocusProperty = DependencyProperty.Register("SelectOnFocus", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool SelectAllOnFocus
-        {
-            get
-            {
-                return (bool)GetValue(SelectOnFocusProperty);
-            }
-            set
-            {
-                SetValue(SelectOnFocusProperty, value);
-            }
-        }
-
         #endregion
 
         #region AdvancedTextBox
 
         public AdvancedTextBox() : base()
         {
-            this.DefaultStyleKey = typeof(AdvancedTextBox);
+            DefaultStyleKey = typeof(AdvancedTextBox);
         }
 
         #endregion
 
         #region Methods
 
-        #region Overrides
-
-        public override void OnApplyTemplate()
+        protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
         {
-            base.OnApplyTemplate();
+            base.OnGotKeyboardFocus(e);
 
-            var Button = this.Template.FindName("PART_ClearButton", this);
-            if (Button != null && Button.Is<Button>())
+            if (SelectAllOnFocus)
+                SelectAll();
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+
+            if (e.Key == Key.Enter)
+                OnEntered(e);
+        }
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            if (e.ClickCount == 3)
             {
-                var PART_ClearButton = Button.As<Button>();
-                PART_ClearButton.Click += (s, e) => this.Text = string.Empty;
+                OnTripleClick();
+                if (SelectAllOnTripleClick)
+                    SelectAll();
             }
         }
 
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnPreviewMouseLeftButtonDown(e);
-            if (!this.IsKeyboardFocusWithin && !this.OnPreviewMouseLeftButtonDownHandled(e)) 
-                this.Focus();
-        }
 
-        protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
-        {
-            base.OnGotKeyboardFocus(e);
-            if (this.SelectAllOnFocus)
-                this.SelectAll();
-        }
-
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            base.OnKeyDown(e);
-            if (e.Key == Key.Enter)
-                this.OnEntered(e);
-        }
-
-        protected override void OnMouseDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseDown(e);
-            if (e.ClickCount == 3)
+            if (SelectAllOnFocus && !IsKeyboardFocusWithin && !OnPreviewMouseLeftButtonDownHandled(e))
             {
-                this.OnTripleClick();
-                if (SelectAllOnTripleClick)
-                    this.SelectAll();
+                Focus();
+                e.Handled = true;
             }
         }
 
-        #endregion
-
-        #region Public
-
-
-
-        #endregion
-
-        #region Virtual
-
         protected virtual void OnEntered(KeyEventArgs e)
         {
-            if (this.Entered != null)
-                this.Entered(this, e);
+            if (Entered != null)
+                Entered(this, e);
         }
 
-        protected virtual bool OnPreviewMouseLeftButtonDownHandled(MouseButtonEventArgs e)
+        /// <remarks>
+        /// Normally, focus is obtained when left mouse button is pressed.
+        /// When clicking buttons that might be contained in the template,
+        /// focus is obtained first, thus, requiring a second click in 
+        /// order to actually click the button. To prevent this, we must
+        /// detect whether or not the intention is to click a button or 
+        /// focus. Therefore, if the element clicked IS a button, handle 
+        /// the focus; otherwise, focus!
+        /// </remarks>
+        protected virtual bool OnPreviewMouseLeftButtonDownHandled(MouseButtonEventArgs e, Type[] HandledTypes = null)
         {
-            return e.Handled;
+            var Parent = e.OriginalSource.As<DependencyObject>();
+
+            HandledTypes = HandledTypes == null ? new Type[] { typeof(Button) } : HandledTypes;
+
+            while (!Parent.Is<AdvancedTextBox>())
+            {
+                Parent = Parent.GetParent();
+                if (Parent.IsAny(HandledTypes))
+                    break;
+            }
+
+            return Parent.IsAny(HandledTypes);
         }
 
         protected virtual void OnTripleClick(RoutedEventArgs e = null)
         {
-            if (this.TripleClick != null)
-                this.TripleClick(this, e == null ? new RoutedEventArgs() : e);
+            if (TripleClick != null)
+                TripleClick(this, e == null ? new RoutedEventArgs() : e);
         }
 
-        #endregion
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            PART_ClearButton = Template.FindName("PART_ClearButton", this) as Button;
+            if (PART_ClearButton != null)
+                PART_ClearButton.Click += (s, e) => Text = string.Empty;
+        }
 
         #endregion
     }

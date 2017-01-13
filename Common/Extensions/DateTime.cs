@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Imagin.Common.Extensions
 {
@@ -7,6 +8,18 @@ namespace Imagin.Common.Extensions
     /// </summary>
     public static class DateTimeExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Maximum"></param>
+        /// <param name="Minimum"></param>
+        /// <returns></returns>
+        public static DateTime Coerce(this DateTime Value, DateTime Maximum, DateTime Minimum = default(DateTime))
+        {
+            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -50,6 +63,18 @@ namespace Imagin.Common.Extensions
             if (Kind == DateTimeKind.Unspecified)
                 return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified);
             return (Kind == DateTimeKind.Utc) ? DateTime.UtcNow : DateTime.Now;
+        }
+
+        public static Meridiem GetMeridiem(this DateTime Value)
+        {
+            switch (Value.ToString("tt", CultureInfo.InvariantCulture))
+            {
+                case "am":
+                    return Meridiem.Ante;
+                case "pm":
+                    return Meridiem.Post;
+            }
+            return Meridiem.Unspecified;
         }
 
         /// <summary>

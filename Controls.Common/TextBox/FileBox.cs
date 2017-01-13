@@ -6,9 +6,12 @@ using System.Windows.Controls;
 namespace Imagin.Controls.Common
 {
     [TemplatePart(Name = "PART_BrowseButton", Type = typeof(MaskedButton))]
+    [TemplatePart(Name = "PART_Checked", Type = typeof(UIElement))]
     public class FileBox : AdvancedTextBox
     {
         #region DependencyProperties
+
+        UIElement PART_Checked { get; set; } = null;
 
         public static DependencyProperty ButtonPositionProperty = DependencyProperty.Register("ButtonPosition", typeof(LeftRight), typeof(FileBox), new FrameworkPropertyMetadata(LeftRight.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public LeftRight ButtonPosition
@@ -88,19 +91,6 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty PathExistsProperty = DependencyProperty.Register("PathExists", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool PathExists
-        {
-            get
-            {
-                return (bool)GetValue(PathExistsProperty);
-            }
-            private set
-            {
-                SetValue(PathExistsProperty, value);
-            }
-        }
-        
         public static DependencyProperty ValidatePathProperty = DependencyProperty.Register("ValidatePath", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValidatePathChanged));
         public bool ValidatePath
         {
@@ -118,26 +108,13 @@ namespace Imagin.Controls.Common
             ((FileBox)Object).OnValidatePathChanged((bool)e.NewValue);
         }
 
-        public static DependencyProperty ValidatePathToolTipProperty = DependencyProperty.Register("ValidatePathToolTip", typeof(string), typeof(FileBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public string ValidatePathToolTip
-        {
-            get
-            {
-                return (string)GetValue(ValidatePathToolTipProperty);
-            }
-            set
-            {
-                SetValue(ValidatePathToolTipProperty, value);
-            }
-        }
-
         #endregion
 
         #region FileBox
 
         public FileBox()
         {
-            this.DefaultStyleKey = typeof(FileBox);
+            DefaultStyleKey = typeof(FileBox);
         }
 
         #endregion
@@ -147,31 +124,50 @@ namespace Imagin.Controls.Common
         void OnClick(object sender, RoutedEventArgs e)
         {
             string[] Paths;
-            if (DialogProvider.Show(out Paths, this.DialogProviderTitle, this.DialogProviderMode, DialogProviderSelectionMode.Single, null, this.Text))
-                this.Text = Paths[0];
+            if (DialogProvider.Show(out Paths, DialogProviderTitle, DialogProviderMode, DialogProviderSelectionMode.Single, null, Text))
+                Text = Paths[0];
         }
 
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
             base.OnTextChanged(e);
-            this.OnValidatePathChanged(this.ValidatePath);
+            OnValidatePathChanged(ValidatePath);
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             Template.FindName("PART_Button", this).As<MaskedButton>().Click += this.OnClick;
+
+            PART_Checked = Template.FindName("PART_Checked", this) as UIElement;
         }
 
         protected virtual void OnValidatePathChanged(bool Value)
         {
-            if (Value)
-                this.PathExists = this.Text.DirectoryExists();
+            if (PART_Checked != null)
+            {
+                var Result = false;
+
+                if (Value)
+                {
+                    switch (DialogProviderMode)
+                    {
+                        case DialogProviderMode.OpenFile:
+                            Result = Text.FileExists();
+                            break;
+                        case DialogProviderMode.OpenFolder:
+                            Result = Text.DirectoryExists();
+                            break;
+                    }
+                }
+
+                PART_Checked.Visibility = Result.ToVisibility();
+            }
         }
 
         public void Browse()
         {
-            this.OnClick(this, new RoutedEventArgs());
+            OnClick(this, new RoutedEventArgs());
         }
 
         #endregion

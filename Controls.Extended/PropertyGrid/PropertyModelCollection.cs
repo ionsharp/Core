@@ -1,7 +1,7 @@
 ﻿using Imagin.Common.Collections.Concurrent;
 using Imagin.Common.Extensions;
 using Imagin.Common.Input;
-using Imagin.Common.Text;
+using Imagin.Common.Primitives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,32 +57,6 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public Type[] SupportedTypes
-        {
-            get
-            {
-                return new Type[]
-                {
-                    typeof(bool),
-                    typeof(byte),
-                    typeof(DateTime),
-                    typeof(decimal),
-                    typeof(double),
-                    typeof(Guid),
-                    typeof(int),
-                    typeof(long),
-                    typeof(LinearGradientBrush),
-                    typeof(NetworkCredential),
-                    typeof(short),
-                    typeof(Size),
-                    typeof(SolidColorBrush),
-                    typeof(string),
-                    typeof(Uri),
-                    typeof(Version)
-                };
-            }
-        }
-
         #endregion
 
         #region PropertyModelCollection
@@ -98,7 +72,7 @@ namespace Imagin.Controls.Extended
 
         bool IsSupported(PropertyInfo Property)
         {
-            return Property.IsPublic() && (Property.PropertyType.EqualsAny(SupportedTypes) || Property.PropertyType.IsEnum || Property.PropertyType.Implements<IList>());
+            return Property.IsPublic() && (Property.PropertyType.EqualsAny(PropertyModel.SupportedTypes) || Property.PropertyType.IsEnum || Property.PropertyType.Implements<IList>());
         }
 
         void OnItemAdded(object sender, EventArgs<PropertyModel> e)
@@ -130,13 +104,36 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// Set properties by enumerating the properties of an object.
         /// </summary>
+        /// <param name="Object">The object to examine.</param>
         /// <param name="Callback">What to do afterwards.</param>
+        /// <remarks>
+        /// TO-DO: Evaluate dynamic properties if the object implements a certain interface? 
+        /// 
+        /// Dynamic properties would be properties that don't need to be owned by the object
+        /// and cannot be modified, but should be displayed to the user anyway. 
+        /// 
+        /// The object would have to specify how to get the value for each dynamic property 
+        /// internally using an action; the action simply returns the object we want.
+        /// 
+        /// The interface would expose a method that accepts the latter-described action,
+        /// invokes it, and returns the resulting object (the current value of the 
+        /// dynamic property). Note, this enables you to calculate the value for the 
+        /// dynamic property however you like.
+        /// 
+        /// If the object implements this interface, we can safely check for dynamic 
+        /// properties. While enumerating, we'd get the initial value; subsequently,
+        /// we'd need a way of updating it when it should be (another TO-DO).
+        /// 
+        /// Assuming each dynamic property specifies a general type, we'll know what type
+        /// to cast to when retrieving the it's value.
+        /// 
+        /// Ultimately, this would enable you to display properties in addition to the ones
+        /// the object already owns without the additional overhead.
+        /// </remarks>
         public async Task BeginFromObject(object Object, Action Callback = null)
         {
             await Task.Run(() =>
             {
-                //TO-DO: Evaluate dynamic properties if <Object> implements a certain interface?
-
                 var Properties = Object.GetType().GetProperties();
 
                 for (int i = 0, Length = Properties.Length; i < Length; i++)
@@ -150,13 +147,14 @@ namespace Imagin.Controls.Extended
                     {
                         { "Browsable", "Browsable", true },
                         { "Category", "Category", string.Empty },
-                        { "Constraint", string.Empty, null },
+                        { "Constraint", null, null },
                         { "Description", "Description", string.Empty },
                         { "DisplayName", "DisplayName", false },
                         { "Featured", "IsFeatured", false },
-                        { "Int64Representation", "Representation", Int64Representation.Default },
+                        { "Int64Kind", "Kind", Int64Kind.Default },
                         { "ReadOnly", "IsReadOnly", false },
-                        { "StringRepresentation", "Representation", StringRepresentation.Regular },
+                        { "StringKind", "Kind", StringKind.Regular },
+                        { "DisplayFormat", "DataFormatString", string.Empty },
                     };
 
                     Attributes.ExtractFrom(Property);
@@ -192,13 +190,10 @@ namespace Imagin.Controls.Extended
                         var Type = i.Value.GetType();
                         if (Type.EqualsAny(typeof(LinearGradientBrush), typeof(SolidColorBrush)))
                         {
-                            Type = PropertyModel.GetType(Type);
-                            if (Type != null)
-                            {
-                                var Result = PropertyModel.New(Type, i.Key.ToString(), i.Value, Type.Name.SplitCamelCase(), string.Empty, false, false);
-                                Result.Object = Object;
-                                Add(Result);
-                            }
+                            var Model = PropertyModel.New(Type, Dictionary, i.Key.ToString(), i.Value, Type.Name.SplitCamelCase(), string.Empty, string.Empty, false, false);
+
+                            if (Model != null)
+                                Add(Model);
                         }
                     }
                 }

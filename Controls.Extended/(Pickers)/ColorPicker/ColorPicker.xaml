@@ -143,7 +143,7 @@
                 <Label 
                     Content="#"
                     VerticalAlignment="Center"/>
-                <Controls.Common:AlphaNumericTextBox 
+                <Controls.Common:AlphaNumericBox 
                     Grid.Column="1"
                     MaxLength="8"
                     Text="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}}"

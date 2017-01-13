@@ -18,12 +18,12 @@ namespace Imagin.Controls.Extended
             {
                 var AttributeType = Attribute.GetType().Name.ToString();
 
-                for (var j = 0; j < this.Count; j++)
+                for (var j = 0; j < Count; j++)
                 {
                     if (AttributeType == base[j].First + "Attribute")
                     {
                         var PropertyName = base[j].Second;
-                        base[j].Third = PropertyName.IsNullOrEmpty() ? Attribute : Attribute.GetValue(PropertyName);
+                        base[j].Third = PropertyName == null ? Attribute : Attribute.GetValue(PropertyName);
                         break;
                     }
                 }
@@ -55,6 +55,11 @@ namespace Imagin.Controls.Extended
                     base[i] = New(base[i].First, base[i].Second, value);
                 }
             }
+        }
+
+        public T Get<T>(string Key, bool MemberOrValue)
+        {
+            return this[Key, MemberOrValue].To<T>();
         }
     }
 }

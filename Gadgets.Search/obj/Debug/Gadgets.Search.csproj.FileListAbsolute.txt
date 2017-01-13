@@ -66,3 +66,5 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\WPFLocalizeExtension.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Common.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Controls.Common.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\System.Windows.Interactivity.xml

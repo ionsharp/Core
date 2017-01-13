@@ -11,9 +11,18 @@
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
     xmlns:Controls.Extended.Converters="clr-namespace:Imagin.Controls.Extended.Converters"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:System.2="clr-namespace:System;assembly=System"
+    xmlns:System.Collections="clr-namespace:System.Collections;assembly=mscorlib"
     xmlns:System.ComponentModel="clr-namespace:System.ComponentModel;assembly=System"
+    xmlns:System.Net="clr-namespace:System.Net;assembly=System"
+    xmlns:System.Windows="clr-namespace:System.Windows;assembly=WindowsBase"
+    xmlns:System.Windows.Media="clr-namespace:System.Windows.Media;assembly=PresentationCore"
     x:Name="PART_PropertyGrid">
     <UserControl.Resources>
+        <Common.Data:BindingProxy x:Key="BindingProxy"  Data="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"/>
+
+        <!-- ....................................................... Converters -->
+
         <Common.Data.Converters:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
         <Common.Data.Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
         <Common.Data.Converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
@@ -29,9 +38,8 @@
 
         <Controls.Extended.Converters:FeaturedPropertyVisibilityConverter x:Key="FeaturedPropertyVisibilityConverter"/>
 
-        <Common.Data:BindingProxy x:Key="BindingProxy"  Data="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"/>
-        
-        <!-- Styles -->
+        <!-- ....................................................... Styles -->
+
         <Style 
             x:Key="Style.Cell"
             TargetType="{x:Type DataGridCell}" 
@@ -111,260 +119,309 @@
             </Setter>
         </Style>
 
-        <!-- Templates -->
+        <!-- ....................................................... Templates -->
+        <ResourceDictionary x:Key="Resources.Templates">
+            <DataTemplate x:Key="{x:Type System:Boolean}">
+                <CheckBox 
+                    HorizontalAlignment="Left" 
+                    IsChecked="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    Margin="0,5"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Byte}">
+                <Controls.Common:ByteUpDown 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    StringFormat="{Binding StringFormat}"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System.Collections:IList}">
+                <Grid Margin="0,7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock 
+                        Text="{l:LocText Prefix=(, Key=Collection, Suffix=)}"/>
+                    <Controls.Common:MaskedButton
+                        Grid.Column="1"
+                        Command="{x:Static local:PropertyGrid.EditCollectionCommand}"
+                        CommandParameter="{Binding Value, Mode=OneWay}"
+                        Padding="7,0,0,0"
+                        Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Pencil.png"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:DateTime}">
+                <Controls.Common:DateTimeUpDown 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    StringFormat="{Binding StringFormat}"
+                    Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Decimal}">
+                <Controls.Common:DecimalUpDown 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    StringFormat="{Binding StringFormat}"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Double}">
+                <Controls.Common:DoubleUpDown 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    StringFormat="{Binding StringFormat}"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Enum}">
+                <ComboBox
+                    ItemsSource="{Binding Value, Mode=OneTime, Converter={StaticResource EnumToCollectionConverter}}" 
+                    SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    VirtualizingPanel.IsVirtualizing="True" 
+                    VirtualizingPanel.VirtualizationMode="Recycling">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource EnumToCamelCaseConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System.Windows.Media:LinearGradientBrush}">
+                <local:GradientChip 
+                    Height="25"
+                    Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    Width="Auto"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Guid}">
+                <Controls.Common:RegexBox 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}" 
+                    Pattern="^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Int32}">
+                <Controls.Common:IntUpDown 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    StringFormat="{Binding StringFormat}"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Int64}">
+                <ContentControl x:Name="PART_Content">
+                    <Controls.Common:LongUpDown 
+                        HorizontalAlignment="Stretch"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        Maximum="{Binding Maximum}"
+                        Minimum="{Binding Minimum}"
+                        StringFormat="{Binding StringFormat}"
+                        Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </ContentControl>
+                <DataTemplate.Triggers>
+                    <!--
+                    <DataTrigger Binding="{Binding Tag}" Value="FileSize">
+                        <Setter TargetName="PART_Content" Property="Content">
+                            <Setter.Value>
+                                <TextBlock Margin="0,10">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource FileSizeMultiValueConverter}">
+                                            <Binding Path="Value" Mode="OneWay"/>
+                                            <Binding Path="Data.FileSizeFormat" Source="{StaticResource BindingProxy}"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    -->
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System.Net:NetworkCredential}">
+                <StackPanel IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}">
+                    <Controls.Common:AdvancedTextBox
+                        Margin="0,0,0,5"
+                        Placeholder="{l:Loc Username}"
+                        Text="{Binding Value.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Controls.Common:PasswordBox
+                        Placeholder="{l:Loc Password}"
+                        Text="{Binding Value.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System.Windows:Point}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Controls.Common:DoubleUpDown 
+                        IsReadOnly="{Binding IsReadOnly}"
+                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        Margin="0,0,5,0"
+                        Maximum="{Binding Maximum.X}"
+                        Minimum="{Binding Minimum.X}"
+                        StringFormat="{Binding StringFormat}"
+                        Text="{Binding Variant.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        ToolTip="{l:Loc X}"/>
+                    <Controls.Common:DoubleUpDown 
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        Maximum="{Binding Maximum.Y}"
+                        Minimum="{Binding Minimum.Y}"
+                        StringFormat="{Binding StringFormat}"
+                        Text="{Binding Variant.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        ToolTip="{l:Loc Y}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Int16}">
+                <Controls.Common:ShortUpDown 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    StringFormat="{Binding StringFormat}"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System.Windows:Size}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Controls.Common:DoubleUpDown
+                        x:Name="PART_Width"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        Maximum="{Binding Maximum.Width}"
+                        Minimum="0"
+                        StringFormat="{Binding StringFormat}"
+                        Text="{Binding Variant.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        ToolTip="{l:Loc Width}"/>
+                    <Controls.Common:MaskedToggleButton
+                        Grid.Column="1"
+                        CheckedToolTip="{l:Loc Unbind}"
+                        IsChecked="{Binding Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Padding="7,0"
+                        Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/LinkHorizontal.png"
+                        UncheckedToolTip="{l:Loc Bind}"/>
+                    <Controls.Common:DoubleUpDown
+                        Grid.Column="2"
+                        x:Name="PART_Height"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        Maximum="{Binding Maximum.Height}"
+                        Minimum="0"
+                        StringFormat="{Binding StringFormat}"
+                        Text="{Binding Variant.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        ToolTip="{l:Loc Height}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System.Windows.Media:SolidColorBrush}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <local:ColorChip Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="25" Height="25" Margin="0,0,5,0"/>
+                    <Controls.Common:AlphaNumericBox Grid.Column="1" Text="{Binding Value, Mode=TwoWay, Converter={StaticResource SolidColorBrushToHexConverter}, UpdateSourceTrigger=LostFocus}" MaxLength="8" IsReadOnly="{Binding IsReadOnly}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:String}">
+                <ContentControl x:Name="PART_Content">
+                    <Controls.Common:AdvancedTextBox 
+                        HorizontalAlignment="Stretch"
+                        IsReadOnly="{Binding IsReadOnly}" 
+                        Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </ContentControl>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Tag, UpdateSourceTrigger=PropertyChanged}" Value="FilePath">
+                        <Setter TargetName="PART_Content" Property="Content">
+                            <Setter.Value>
+                                <Controls.Common:FileBox  
+                                    DialogProviderMode="OpenFile"
+                                    HorizontalAlignment="Stretch"
+                                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Tag, UpdateSourceTrigger=PropertyChanged}" Value="FolderPath">
+                        <Setter TargetName="PART_Content" Property="Content">
+                            <Setter.Value>
+                                <Controls.Common:FileBox  
+                                    DialogProviderMode="OpenFolder"
+                                    HorizontalAlignment="Stretch"
+                                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Tag, UpdateSourceTrigger=PropertyChanged}" Value="Multiline">
+                        <Setter TargetName="PART_Content" Property="Content">
+                            <Setter.Value>
+                                <Controls.Common:AdvancedTextBox 
+                                    AcceptsReturn="True"
+                                    IsReadOnly="{Binding IsReadOnly}" 
+                                    Height="Auto"
+                                    HorizontalAlignment="Stretch"
+                                    Padding="3"
+                                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    TextBlock.LineStackingStrategy="BlockLineHeight"
+                                    TextBlock.LineHeight="15"
+                                    VerticalContentAlignment="Top"
+                                    TextWrapping="Wrap"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Tag, UpdateSourceTrigger=PropertyChanged}" Value="Password">
+                        <Setter TargetName="PART_Content" Property="Content">
+                            <Setter.Value>
+                                <Controls.Common:PasswordBox 
+                                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    HorizontalAlignment="Stretch"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System.2:Uri}">
+                <Controls.Common:RegexBox 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}" 
+                    Pattern="^(http|https|ftp|)\://|[a-zA-Z0-9\-\.]+\.[a-zA-Z](:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]$"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Version}">
+                <Controls.Common:RegexBox 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly}" 
+                    Pattern="^(?:0|[1-9][0-9]*)(?:\.(0|[1-9][0-9]*))*$"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
+        </ResourceDictionary>
+
         <DataTemplate x:Key="PropertyModelTemplate">
             <ContentControl Content="{Binding}">
-                <ContentControl.Resources>
-                    <ResourceDictionary>
-                        <DataTemplate DataType="{x:Type local:BoolPropertyModel}">
-                            <CheckBox 
-                                HorizontalAlignment="Left" 
-                                IsChecked="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
-                                Margin="0,5"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:BytePropertyModel}">
-                            <Controls.Common:ByteUpDown 
-                                HorizontalAlignment="Stretch"
-                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
-                                IsUpDownEnabled="{Binding IsReadOnly}"
-                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:CollectionPropertyModel}">
-                            <Grid Margin="0,7">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock 
-                                    Text="{l:LocText Prefix=(, Key=Collection, Suffix=)}"/>
-                                <Controls.Common:MaskedButton
-                                    Grid.Column="1"
-                                    Command="{x:Static local:PropertyGrid.EditCollectionCommand}"
-                                    CommandParameter="{Binding Value, Mode=OneWay}"
-                                    Padding="7,0,0,0"
-                                    Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Pencil.png"/>
-                            </Grid>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:DateTimePropertyModel}">
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:DecimalPropertyModel}">
-                            <Controls.Common:DecimalUpDown 
-                                HorizontalAlignment="Stretch"
-                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
-                                IsUpDownEnabled="{Binding IsReadOnly}"
-                                Maximum="{Binding Maximum}"
-                                Minimum="{Binding Minimum}"
-                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:DoublePropertyModel}">
-                            <Controls.Common:DoubleUpDown 
-                                HorizontalAlignment="Stretch"
-                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
-                                IsUpDownEnabled="{Binding IsReadOnly}"
-                                Maximum="{Binding Maximum}"
-                                Minimum="{Binding Minimum}"
-                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:EnumPropertyModel}">
-                            <ComboBox
-                                ItemsSource="{Binding Value, Mode=OneTime, Converter={StaticResource EnumToCollectionConverter}}" 
-                                SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                VirtualizingPanel.IsVirtualizing="True" 
-                                VirtualizingPanel.VirtualizationMode="Recycling">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource EnumToCamelCaseConverter}}"/>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:GradientPropertyModel}">
-                            <local:GradientChip 
-                                Height="25"
-                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                Width="Auto"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:GuidPropertyModel}">
-                            <Controls.Common:AdvancedTextBox 
-                                HorizontalAlignment="Stretch"
-                                IsReadOnly="{Binding IsReadOnly}"
-                                Text="{Binding Value, Mode=OneWay}" />
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:IntPropertyModel}">
-                            <Controls.Common:IntUpDown 
-                                HorizontalAlignment="Stretch"
-                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
-                                IsUpDownEnabled="{Binding IsReadOnly}"
-                                Maximum="{Binding Maximum}"
-                                Minimum="{Binding Minimum}"
-                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:LongPropertyModel}">
-                            <ContentControl>
-                                <ContentControl.Style>
-                                    <Style TargetType="ContentControl">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Int64Representation}" Value="FileSize">
-                                                <Setter Property="Content">
-                                                    <Setter.Value>
-                                                        <TextBlock Margin="0,10">
-                                                            <TextBlock.Text>
-                                                                <MultiBinding Converter="{StaticResource FileSizeMultiValueConverter}">
-                                                                    <Binding Path="Value" Mode="OneWay"/>
-                                                                    <Binding Path="Data.FileSizeFormat" Source="{StaticResource BindingProxy}"/>
-                                                                </MultiBinding>
-                                                            </TextBlock.Text>
-                                                        </TextBlock>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Int64Representation}" Value="Default">
-                                                <Setter Property="Content">
-                                                    <Setter.Value>
-                                                        <Controls.Common:LongUpDown 
-                                                            IsReadOnly="{Binding IsReadOnly}" 
-                                                            IsUpDownEnabled="{Binding IsReadOnly}"
-                                                            HorizontalAlignment="Stretch"
-                                                            Maximum="{Binding Maximum}"
-                                                            Minimum="{Binding Minimum}"
-                                                            Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ContentControl.Style>
-                            </ContentControl>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:NetworkCredentialPropertyModel}">
-                            <StackPanel IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}">
-                                <Controls.Common:AdvancedTextBox
-                                    Margin="0,0,0,5"
-                                    Placeholder="{l:Loc Username}"
-                                    Text="{Binding Value.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Controls.Common:PasswordBox
-                                    Placeholder="{l:Loc Password}"
-                                    Text="{Binding Value.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:ShortPropertyModel}">
-                            <Controls.Common:ShortUpDown 
-                                IsReadOnly="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}" 
-                                IsUpDownEnabled="{Binding IsReadOnly}"
-                                HorizontalAlignment="Stretch"
-                                Maximum="{Binding Maximum}"
-                                Minimum="{Binding Minimum}"
-                                Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:SizePropertyModel}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Controls.Common:DoubleUpDown
-                                    Maximum="{x:Static System:Double.MaxValue}"
-                                    Minimum="0"
-                                    Value="{Binding Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Controls.Common:MaskedToggleButton
-                                    Grid.Column="1"
-                                    CheckedToolTip="{l:Loc Unbind}"
-                                    IsChecked="{Binding IsBound}"
-                                    Padding="7,0"
-                                    Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/LinkHorizontal.png"
-                                    UncheckedToolTip="{l:Loc Bind}"/>
-                                <Controls.Common:DoubleUpDown
-                                    Grid.Column="2"
-                                    Maximum="{x:Static System:Double.MaxValue}"
-                                    Minimum="0"
-                                    Value="{Binding Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            </Grid>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:SolidColorBrushPropertyModel}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <local:ColorChip Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="25" Height="25" Margin="0,0,5,0"/>
-                                <Controls.Common:AlphaNumericTextBox Grid.Column="1" Text="{Binding Value, Mode=TwoWay, Converter={StaticResource SolidColorBrushToHexConverter}, UpdateSourceTrigger=LostFocus}" MaxLength="8" IsReadOnly="{Binding IsReadOnly}"/>
-                            </Grid>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:StringPropertyModel}">
-                            <DataTemplate.Resources>
-                                <DataTemplate x:Key="DataTemplate.Default">
-                                    <Controls.Common:AdvancedTextBox 
-                                        HorizontalAlignment="Stretch"
-                                        IsReadOnly="{Binding IsReadOnly}" 
-                                        Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                </DataTemplate>
-                            </DataTemplate.Resources>
-                            <ContentControl>
-                                <ContentControl.Style>
-                                    <Style TargetType="ContentControl">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="Regular">
-                                                <Setter Property="ContentTemplate" Value="{StaticResource DataTemplate.Default}"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="Unspecified">
-                                                <Setter Property="ContentTemplate" Value="{StaticResource DataTemplate.Default}"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="FileSystemPath">
-                                                <Setter Property="Content">
-                                                    <Setter.Value>
-                                                        <Controls.Common:FileBox  
-                                                            HorizontalAlignment="Stretch"
-                                                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="Multiline">
-                                                <Setter Property="Content">
-                                                    <Setter.Value>
-                                                        <Controls.Common:AdvancedTextBox 
-                                                            AcceptsReturn="True"
-                                                            IsReadOnly="{Binding IsReadOnly}" 
-                                                            Height="Auto"
-                                                            HorizontalAlignment="Stretch"
-                                                            Padding="3"
-                                                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                            TextBlock.LineStackingStrategy="BlockLineHeight"
-                                                            TextBlock.LineHeight="15"
-                                                            VerticalContentAlignment="Top"
-                                                            TextWrapping="Wrap"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Representation, UpdateSourceTrigger=PropertyChanged}" Value="Password">
-                                                <Setter Property="Content">
-                                                    <Setter.Value>
-                                                        <Controls.Common:PasswordBox 
-                                                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                            HorizontalAlignment="Stretch"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ContentControl.Style>
-                            </ContentControl>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:UriPropertyModel}">
-                            <Controls.Common:AdvancedTextBox 
-                                HorizontalAlignment="Stretch"
-                                IsReadOnly="{Binding IsReadOnly}" 
-                                Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type local:VersionPropertyModel}">
-                            <Controls.Common:AdvancedTextBox 
-                                HorizontalAlignment="Stretch"
-                                IsReadOnly="{Binding IsReadOnly}" 
-                                Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </ResourceDictionary>
-                </ContentControl.Resources>
+                <ContentControl.ContentTemplateSelector>
+                    <local:PropertyTemplateSelector Resources="{StaticResource Resources.Templates}"/>
+                </ContentControl.ContentTemplateSelector>
             </ContentControl>
         </DataTemplate>
     </UserControl.Resources>
@@ -424,7 +481,7 @@
                     Margin="0,0,5,0"/>
                 <Controls.Common:AdvancedTextBox
                     Grid.Column="4"
-                    IsClearEnabled="True"
+                    CanUserClear="True"
                     Placeholder="{l:Loc Search}"
                     Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     ToolTip="{l:Loc Search}"
@@ -499,11 +556,8 @@
                     <DataGrid
                         Grid.Row="2"
                         AutoGenerateColumns="False"
-                        CanUserDeleteRows="False"
-                        CanUserReorderColumns="False"
                         CanUserAddRows="False"
-                        CanUserResizeColumns="False"
-                        CanUserResizeRows="False"
+                        CanUserDeleteRows="False"
                         CellStyle="{StaticResource Style.Cell}"
                         GridLinesVisibility="{Binding GridLinesVisibility}"
                         HeadersVisibility="{Binding HeadersVisibility}"
@@ -515,9 +569,10 @@
                         SelectionMode="Single"
                         Style="{Binding GridStyle}">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn 
+                            <DataGridTemplateColumn
                                 Header="Name"
-                                SortMemberPath="Name">
+                                SortMemberPath="Name" 
+                                Width="{Binding PropertyColumnWidth, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock 
@@ -529,8 +584,9 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTemplateColumn 
+                                CellTemplate="{StaticResource PropertyModelTemplate}" 
                                 Header="Value" 
-                                CellTemplate="{StaticResource PropertyModelTemplate}"/>
+                                Width="{Binding ValueColumnWidth, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"/>
                         </DataGrid.Columns>
                         <DataGrid.GroupStyle>
                             <GroupStyle ContainerStyle="{StaticResource Style.DataGrid.GroupHeader}">

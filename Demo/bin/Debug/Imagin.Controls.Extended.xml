@@ -615,9 +615,43 @@
             Specifies a color space.
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Extended.PropertyModel`1">
+            <summary>
+            Represents an object property with specific type.
+            </summary>
+            <typeparam name="T">The type of the property.</typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel`1.Default">
+            <summary>
+            Gets the default value of the property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel`1.Primitive">
+            <summary>
+            Gets the underlying property type.
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.CoercedPropertyModel`1">
+            <summary>
+            Represents a property that has both a minimum and maximum value.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Imagin.Controls.Extended.CoercedVariantPropertyModel`2">
+            <summary>
+            Represents a property with a type that uses another type to modify it, and has both a minimum and maximum value.
+            </summary>
+            <typeparam name="T1">The type used to modify the property.</typeparam>
+            <typeparam name="T2">The actual type of the property.</typeparam>
+        </member>
         <member name="T:Imagin.Controls.Extended.PropertyGrid">
             <summary>
             PropertyGrid
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyGrid.#ctor">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyGrid.SetObject(System.Object)">
@@ -655,7 +689,32 @@
             <summary>
             Set properties by enumerating the properties of an object.
             </summary>
+            <param name="Object">The object to examine.</param>
             <param name="Callback">What to do afterwards.</param>
+            <remarks>
+            TO-DO: Evaluate dynamic properties if the object implements a certain interface? 
+            
+            Dynamic properties would be properties that don't need to be owned by the object
+            and cannot be modified, but should be displayed to the user anyway. 
+            
+            The object would have to specify how to get the value for each dynamic property 
+            internally using an action; the action simply returns the object we want.
+            
+            The interface would expose a method that accepts the latter-described action,
+            invokes it, and returns the resulting object (the current value of the 
+            dynamic property). Note, this enables you to calculate the value for the 
+            dynamic property however you like.
+            
+            If the object implements this interface, we can safely check for dynamic 
+            properties. While enumerating, we'd get the initial value; subsequently,
+            we'd need a way of updating it when it should be (another TO-DO).
+            
+            Assuming each dynamic property specifies a general type, we'll know what type
+            to cast to when retrieving the it's value.
+            
+            Ultimately, this would enable you to display properties in addition to the ones
+            the object already owns without the additional overhead.
+            </remarks>
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyModelCollection.BeginFromResourceDictionary(System.Windows.ResourceDictionary,System.Action)">
             <summary>
@@ -663,6 +722,109 @@
             </summary>
             <param name="Dictionary">The dictionary to enumerate.</param>
             <param name="Callback">What to do afterwards.</param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.PropertyModel">
+            <summary>
+            The base implementation to represent an object property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.SupportedTypes">
+            <summary>
+            A list of all supported types.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.Category">
+            <summary>
+            Gets or sets the property category.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.Description">
+            <summary>
+            Gets or sets the property description.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.Host">
+            <summary>
+            Gets or sets the object this property belongs to.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.Info">
+            <summary>
+            Gets the <see cref="T:System.Reflection.PropertyInfo"/> for the property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.IsFeatured">
+            <summary>
+            Gets or sets whether or not the property is featured.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.IsReadOnly">
+            <summary>
+            Gets or sets whether or not the property is readonly.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.Primitive">
+            <summary>
+            Gets the type of the property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.StringFormat">
+            <summary>
+            Gets or sets the string format for the property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.Tag">
+            <summary>
+            An object for general use.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.Type">
+            <summary>
+            Gets the string representation of the property's type.
+            </summary>
+            <remarks>
+            Used for sorting only.
+            </remarks>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.Value">
+            <summary>
+            Gets or sets the current value for the property.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.New(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Controls.Extended.PropertyModel"/> class based on given type. 
+            </summary>
+            <param name="Type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.New(System.Object,System.Reflection.PropertyInfo,Imagin.Controls.Extended.PropertyAttributes)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Controls.Extended.PropertyModel"/> class based on given object, property, and attributes.
+            </summary>
+            <param name="Object"></param>
+            <param name="Property"></param>
+            <param name="Attributes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.OnHostChanged(System.Object)">
+            <summary>
+            Occurs when the host object changes.
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.OnPreviewValueChanged(System.Object,System.Object)">
+            <summary>
+            Occurs just before setting the value.
+            </summary>
+            <param name="Value">The original value.</param>
+            <returns>The actual value to set for the property.</returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.OnValueChanged(System.Object)">
+            <summary>
+            Occurs when the value changes.
+            </summary>
+            <param name="Value">The new value.</param>
         </member>
         <member name="T:Imagin.Controls.Extended.TabbedTree">
             <summary>

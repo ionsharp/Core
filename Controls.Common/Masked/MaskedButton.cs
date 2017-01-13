@@ -45,7 +45,7 @@ namespace Imagin.Controls.Common
             d.As<MaskedButton>().OnDropDownChanged((ContextMenu)e.NewValue);
         }
 
-        public static DependencyProperty DropDownDataContextProperty = DependencyProperty.Register("DropDownDataContext", typeof(object), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDropDownDataContextChanged));
+        public static DependencyProperty DropDownDataContextProperty = DependencyProperty.Register("DropDownDataContext", typeof(object), typeof(MaskedButton), new FrameworkPropertyMetadata(null, OnDropDownDataContextChanged));
         public object DropDownDataContext
         {
             get

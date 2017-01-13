@@ -1,8 +1,9 @@
 ﻿using Imagin.Common;
 using Imagin.Common.Attributes;
 using Imagin.Common.Extensions;
-using Imagin.Common.Text;
+using Imagin.Common.Primitives;
 using System;
+using System.Linq;
 using System.Collections;
 using System.Net;
 using System.Reflection;
@@ -11,11 +12,47 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// The base implementation to represent an object property.
+    /// </summary>
     public abstract class PropertyModel : NamedObject
     {
-        #region Properties
+        /// <summary>
+        /// A list of all supported types.
+        /// </summary>
+        public static Type[] SupportedTypes
+        {
+            get
+            {
+                return new Type[]
+                {
+                    typeof(bool),
+                    typeof(byte),
+                    typeof(DateTime),
+                    typeof(decimal),
+                    typeof(double),
+                    typeof(Guid),
+                    typeof(int),
+                    typeof(long),
+                    typeof(LinearGradientBrush),
+                    typeof(NetworkCredential),
+                    typeof(System.Drawing.Point),
+                    typeof(System.Windows.Point),
+                    typeof(RadialGradientBrush),
+                    typeof(short),
+                    typeof(Size),
+                    typeof(SolidColorBrush),
+                    typeof(string),
+                    typeof(Uri),
+                    typeof(Version)
+                };
+            }
+        }
 
         string category = string.Empty;
+        /// <summary>
+        /// Gets or sets the property category.
+        /// </summary>
         public string Category
         {
             get
@@ -30,6 +67,9 @@ namespace Imagin.Controls.Extended
         }
 
         string description = string.Empty;
+        /// <summary>
+        /// Gets or sets the property description.
+        /// </summary>
         public string Description
         {
             get
@@ -43,7 +83,28 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        object host = null;
+        /// <summary>
+        /// Gets or sets the object this property belongs to.
+        /// </summary>
+        public object Host
+        {
+            get
+            {
+                return host;
+            }
+            set
+            {
+                host = value;
+                OnHostChanged(host);
+                OnPropertyChanged("Host");
+            }
+        }
+
         PropertyInfo info = null;
+        /// <summary>
+        /// Gets the <see cref="PropertyInfo"/> for the property.
+        /// </summary>
         public PropertyInfo Info
         {
             get
@@ -54,11 +115,13 @@ namespace Imagin.Controls.Extended
             {
                 info = value;
                 OnPropertyChanged("Info");
-                OnInfoChanged(value);
             }
         }
 
         bool isFeatured = false;
+        /// <summary>
+        /// Gets or sets whether or not the property is featured.
+        /// </summary>
         public bool IsFeatured
         {
             get
@@ -73,6 +136,9 @@ namespace Imagin.Controls.Extended
         }
 
         bool isReadOnly = false;
+        /// <summary>
+        /// Gets or sets whether or not the property is readonly.
+        /// </summary>
         public bool IsReadOnly
         {
             get
@@ -86,149 +152,249 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        object value_ = null;
+        /// <summary>
+        /// Gets the type of the property.
+        /// </summary>
+        public abstract Type Primitive
+        {
+            get;
+        }
+
+        string stringFormat = string.Empty;
+        /// <summary>
+        /// Gets or sets the string format for the property.
+        /// </summary>
+        public string StringFormat
+        {
+            get
+            {
+                return stringFormat;
+            }
+            set
+            {
+                stringFormat = value;
+                OnPropertyChanged("StringFormat");
+            }
+        }
+
+        object tag = null;
+        /// <summary>
+        /// An object for general use.
+        /// </summary>
+        public object Tag
+        {
+            get
+            {
+                return tag;
+            }
+            set
+            {
+                tag = value;
+                OnPropertyChanged("Tag");
+            }
+        }
+
+        /// <summary>
+        /// Gets the string representation of the property's type.
+        /// </summary>
+        /// <remarks>
+        /// Used for sorting only.
+        /// </remarks>
+        public string Type
+        {
+            get
+            {
+                return Primitive.ToString();
+            }
+        }
+
+        object _value = null;
+        /// <summary>
+        /// Gets or sets the current value for the property.
+        /// </summary>
         public object Value
         {
             get
             {
-                return value_;
+                return _value;
             }
             set
             {
-                value_ = OnPreviewValueChanged(value);
+                _value = OnPreviewValueChanged(_value, value);
                 OnPropertyChanged("Value");
-                OnPropertyChanged("ValueType");
-                OnValueChanged(value);
+                OnValueChanged(_value);
             }
         }
 
-        object object_ = null;
-        public object Object
+        internal PropertyModel() : base()
         {
-            get
-            {
-                return object_;
-            }
-            set
-            {
-                object_ = value;
-                OnObjectChanged(value);
-                OnPropertyChanged("Object");
-            }
-        }
-
-        #endregion
-
-        #region PropertyModel
-
-        protected PropertyModel(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) : base()
-        {
-            this.Name = Name;
-            this.Value = Value;
-            this.Category = Category;
-            this.Description = Description;
-            this.IsReadOnly = IsReadOnly;
-            this.IsFeatured = IsFeatured;
-
             OnPropertyChanged("Type");
         }
 
-        #endregion
-
-        #region Methods
-        
-        protected virtual object OnPreviewValueChanged(object Value)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PropertyModel"/> class based on given type. 
+        /// </summary>
+        /// <param name="Type"></param>
+        /// <returns></returns>
+        static PropertyModel New(Type Type)
         {
-            return Value;
+            if (Type == typeof(bool))
+                return new PropertyModel<bool>();
+
+            if (Type == typeof(byte))
+                return new CoercedPropertyModel<byte>();
+
+            if (typeof(IList).IsAssignableFrom(Type))
+                return new PropertyModel<IList>();
+
+            if (Type == typeof(DateTime))
+                return new CoercedPropertyModel<DateTime>();
+
+            if (Type == typeof(decimal))
+                return new CoercedPropertyModel<decimal>();
+
+            if (Type == typeof(double))
+                return new CoercedPropertyModel<double>();
+
+            if (Type.IsEnum)
+                return new PropertyModel<Enum>();
+
+            if (Type == typeof(Guid))
+                return new PropertyModel<Guid>();
+
+            if (Type == typeof(int))
+                return new CoercedPropertyModel<int>();
+
+            if (Type == typeof(long))
+                return new CoercedPropertyModel<long>();
+
+            if (Type == typeof(LinearGradientBrush))
+                return new PropertyModel<Brush>();
+
+            if (Type == typeof(NetworkCredential))
+                return new PropertyModel<NetworkCredential>();
+
+            if (Type == typeof(System.Windows.Point))
+                return new CoercedVariantPropertyModel<Position, System.Windows.Point>();
+
+            if (Type == typeof(RadialGradientBrush))
+                return new PropertyModel<Brush>();
+
+            if (Type == typeof(short))
+                return new CoercedPropertyModel<short>();
+
+            if (Type == typeof(Size))
+                return new CoercedVariantPropertyModel<Dimensions, Size>();
+
+            if (Type == typeof(SolidColorBrush))
+                return new PropertyModel<SolidColorBrush>();
+
+            if (Type == typeof(string))
+                return new PropertyModel<string>();
+
+            if (Type == typeof(Uri))
+                return new PropertyModel<Uri>();
+
+            if (Type == typeof(Version))
+                return new PropertyModel<Version>();
+
+            return null;
         }
 
-        protected virtual void OnObjectChanged(object Value)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PropertyModel"/> class based on given object, property, and attributes.
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <param name="Property"></param>
+        /// <param name="Attributes"></param>
+        /// <returns></returns>
+        internal static PropertyModel New(object Host, PropertyInfo Property, PropertyAttributes Attributes)
         {
-            Info = Value.NullOr<PropertyInfo>(Value.GetType().GetProperty(Name, BindingFlags.Public | BindingFlags.Instance));
-        }
+            var Result = PropertyModel.New(Property.PropertyType);
 
-        protected virtual void OnValueChanged(object Value)
-        {
-            if (Info != null)
-                Info.SetValue(Object, Value, null);
-        }
+            if (Result != null)
+            {
+                Result.Info = Property;
 
-        protected virtual void OnInfoChanged(PropertyInfo Value)
-        {
-        }
+                Result.Set(Host, Property.Name, Property.GetValue(Host), Attributes.Get<string>("Category", false), Attributes.Get<string>("Description", false), Attributes.Get<string>("DisplayFormat", false), Attributes.Get<bool>("ReadOnly", false), Attributes.Get<bool>("Featured", false));
 
-        public static T New<T>(string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured) where T : PropertyModel
-        {
-            return (T)PropertyModel.New(typeof(T), Name, Value, Category, Description, IsReadOnly, IsFeatured);
-        }
+                if (Result is PropertyModel<string>)
+                    Result.As<PropertyModel<string>>().Tag = Attributes.Get<StringKind>("StringKind", false);
 
-        public static PropertyModel New(Type Type, string Name, object Value, string Category, string Description, bool IsReadOnly, bool IsFeatured)
-        {
-            if (Type == typeof(PropertyModel))
-                throw new InvalidCastException("Cannot create instance of abstract class 'PropertyModel.'");
-            if (!Type.IsSubclassOf(typeof(PropertyModel)))
-                throw new InvalidCastException("Specified type must inherit 'PropertyModel' type.");
-            return (PropertyModel)Activator.CreateInstance(Type, Name, Value, Category, Description, IsReadOnly, IsFeatured);
-        }
+                if (Result is PropertyModel<long>)
+                    Result.As<PropertyModel<long>>().Tag = Attributes.Get<Int64Kind>("Int64Kind", false);
 
-        public static PropertyModel New(object Object, PropertyInfo Property, PropertyAttributes Attributes)
-        {
-            var Result = PropertyModel.New(PropertyModel.GetType(Property.PropertyType), Property.Name, Property.GetValue(Object), Attributes["Category", false].ToString(), Attributes["Description", false].ToString(), Attributes["ReadOnly", false].To<bool>(), Attributes["Featured", false].To<bool>());
+                if (Result is ICoercable)
+                {
+                    var Constraint = Attributes.Get<ConstraintAttribute>("Constraint", false);
 
-            if (Result is StringPropertyModel)
-                Result.As<StringPropertyModel>().Representation = Attributes["StringRepresentation", false].To<StringRepresentation>();
-            else if (Result is NumericPropertyModel && Attributes["Constraint", false] != null)
-                Result.As<NumericPropertyModel>().SetConstraint(Attributes["Constraint", false].To<ConstraintAttribute>().Minimum, Attributes["Constraint", false].To<ConstraintAttribute>().Maximum);
-            else if (Result is LongPropertyModel)
-                Result.As<LongPropertyModel>().Int64Representation = Attributes["Int64Representation", false].To<Int64Representation>();
-
-            Result.Object = Object;
+                    if (Constraint != null)
+                        Result.As<ICoercable>().SetConstraint(Constraint.Minimum, Constraint.Maximum);
+                }
+            }
 
             return Result;
         }
 
-        public static Type GetType(Type Type)
+        internal static PropertyModel New(Type Type, object host, string name, object value, string category, string description, string stringFormat, bool isReadOnly, bool isFeatured)
         {
-            if (Type == typeof(bool))
-                return typeof(BoolPropertyModel);
-            if (Type == typeof(byte))
-                return typeof(BytePropertyModel);
-            if (typeof(IList).IsAssignableFrom(Type))
-                return typeof(CollectionPropertyModel);
-            if (Type == typeof(DateTime))
-                return typeof(DateTimePropertyModel);
-            if (Type == typeof(decimal))
-                return typeof(DecimalPropertyModel);
-            if (Type == typeof(double))
-                return typeof(DoublePropertyModel);
-            if (Type.IsEnum)
-                return typeof(EnumPropertyModel);
-            if (Type == typeof(Guid))
-                return typeof(GuidPropertyModel);
-            if (Type == typeof(int))
-                return typeof(IntPropertyModel);
-            if (Type == typeof(long))
-                return typeof(LongPropertyModel);
-            if (Type == typeof(LinearGradientBrush))
-                return typeof(GradientPropertyModel);
-            if (Type == typeof(NetworkCredential))
-                return typeof(NetworkCredentialPropertyModel);
-            if (Type == typeof(RadialGradientBrush))
-                return typeof(GradientPropertyModel);
-            if (Type == typeof(short))
-                return typeof(ShortPropertyModel);
-            if (Type == typeof(Size))
-                return typeof(SizePropertyModel);
-            if (Type == typeof(SolidColorBrush))
-                return typeof(SolidColorBrushPropertyModel);
-            if (Type == typeof(string))
-                return typeof(StringPropertyModel);
-            if (Type == typeof(Uri))
-                return typeof(UriPropertyModel);
-            if (Type == typeof(Version))
-                return typeof(VersionPropertyModel);
-            return default(Type);
-    }
-    #endregion
+            var Result = PropertyModel.New(Type);
+
+            if (Result != null)
+                Result.Set(host, name, value, category, description, stringFormat, isReadOnly, isFeatured);
+
+            return Result;
+        }
+
+        internal void Set(object host, string name, object value, string category, string description, string stringFormat, bool isReadOnly, bool isFeatured)
+        {
+            Host = host;
+            Name = name;
+            Value = value;
+            Category = category;
+            Description = description;
+            StringFormat = stringFormat;
+            IsReadOnly = isReadOnly;
+            IsFeatured = isFeatured;
+        }
+
+        /// <summary>
+        /// Occurs when the host object changes.
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnHostChanged(object Value)
+        {
+        }
+
+        /// <summary>
+        /// Occurs just before setting the value.
+        /// </summary>
+        /// <param name="Value">The original value.</param>
+        /// <returns>The actual value to set for the property.</returns>
+        protected virtual object OnPreviewValueChanged(object OldValue, object NewValue)
+        {
+            return NewValue == null ? default(object) : NewValue;
+        }
+
+        /// <summary>
+        /// Occurs when the value changes.
+        /// </summary>
+        /// <param name="Value">The new value.</param>
+        protected virtual void OnValueChanged(object Value)
+        {
+            if (Host is ResourceDictionary)
+            {
+                Console.WriteLine("OnValueChanged => Host is ResourceDictionary");
+                if (Host.As<ResourceDictionary>().Contains(Name))
+                {
+                    Console.WriteLine("Host.As<ResourceDictionary>().Contains(Name)");
+                    Host.As<ResourceDictionary>()[Name] = Value;
+                }
+            }
+            else if (Info != null)
+            {
+                Info.SetValue(Host, Value, null);
+            }
+        }
     }
 }
