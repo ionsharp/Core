@@ -40,6 +40,7 @@ WindowsAPICodePack-Core | 1.1.2 | https://github.com/aybe/Windows-API-Code-Pack-
 WindowsAPICodePack-Shell | 1.1.1 | http://archive.msdn.microsoft.com/WindowsAPICodePack |
 WpfLocalizeExtension | 2.3.2 | https://github.com/SeriousM/WPFLocalizationExtension/ |
 XAMLMarkupExtensions | 1.2.2 | http://xamlmarkupextensions.codeplex.com/ |
+System.Windows.Interactivity | 2.0.20525 | http://www.microsoft.com/en-us/download/details.aspx?id=10801 |
 
 ##Donate
 
