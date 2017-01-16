@@ -400,6 +400,16 @@ namespace Imagin.Controls.Common
             }
         }
 
+        ICommand collapseAllCommand;
+        public ICommand CollapseAllCommand
+        {
+            get
+            {
+                collapseAllCommand = collapseAllCommand ?? new RelayCommand(x => this.CollapseAll(), true);
+                return collapseAllCommand;
+            }
+        }
+
         #endregion
     }
 }

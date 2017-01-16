@@ -79,7 +79,7 @@
     <SolidColorBrush x:Key="Brush.DataGridCell.Selected.Foreground" Color="#FCFCFC"/>
 
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Background" Color="#FCFCFC"/>
-    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Border" Color="#CCC"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Border" Color="#10000000"/>
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Foreground" Color="#333"/>
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.MouseOver.Background" Color="#b9e9fc"/>
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.MouseOver.Border" Color="#69bbe3"/>
@@ -87,7 +87,7 @@
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Pressed.Background" Color="#ddeff8"/>
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Pressed.Border" Color="#96d9f9"/>
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Pressed.Foreground" Color="#333"/>
-    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Thumb" Color="#22000000"/>
+    <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Thumb" Color="#05000000"/>
 
     <SolidColorBrush x:Key="Brush.DataGridRow.Foreground" Color="#333"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Background" Color="#FF6CC6FF"/>

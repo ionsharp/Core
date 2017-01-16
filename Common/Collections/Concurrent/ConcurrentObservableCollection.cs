@@ -429,44 +429,32 @@ namespace Imagin.Common.Collections.Concurrent
 
                     if (Parent == this)
                     {
-                        Console.WriteLine("Parent == this");
                         IList = this as IList;
                     }
                     else if (Parent is IContainer)
                     {
-                        Console.WriteLine("Parent is IContainer");
                         IList = ((IContainer)Parent).Items;
                     }
                     else return;
 
-                    Console.WriteLine("");
-
                     var j = 1;
                     foreach (var i in IList)
                     {
-                        Console.WriteLine("Loop #" + j + ": " +  i.ToString());
                         if (i.Equals(ToEvaluate))
                         {
-                            Console.WriteLine("i.Equals(ToEvaluate)");
                             Result = Parent;
                             break;
                         }
                         else
                         {
-                            Console.WriteLine("!i.Equals(ToEvaluate)");
                             if ((Result = await this.BeginGetParent(ToEvaluate, i)) != null)
                                 break;
                         }
                         j++;
                     }
-                    Console.WriteLine("End Loop");
-                    Console.WriteLine("");
                 }));
             } 
-            else
-            {
-                Console.WriteLine("ToEvaluate == null");
-            }
+
             return Result;
         }
 
@@ -601,13 +589,8 @@ namespace Imagin.Common.Collections.Concurrent
         /// <returns>Result of wrap attempt; false if failure.</returns>
         public async Task<bool> BeginWrap(T Folder, T Item)
         {
-            Console.WriteLine("\n\n");
-
             if (Folder == null || Item == null)
-            {
-                Console.WriteLine("Folder == null || Item == null");
                 return false;
-            }
 
             var Parent = await this.BeginGetParent(Item);
 
@@ -615,31 +598,24 @@ namespace Imagin.Common.Collections.Concurrent
 
             if (Parent == null)
             {
-                Console.WriteLine("Parent == null");
                 return false;
             }
             else if (Parent == this)
             {
-                Console.WriteLine("Parent == this");
                 IList = this as IList;
             }
             else if (Parent is IContainer)
             {
-                Console.WriteLine("Parent is IContainer");
                 IList = ((IContainer)Parent).Items;
             }
             else
             {
-                Console.WriteLine("Nothing evaluated");
                 return false;
             }
 
             if (IList != null)
             {
-                Console.WriteLine("IList != null");
-
                 var Index = IList.IndexOf(Item);
-                Console.WriteLine("Index = IList.IndexOf(Item) = " + Index);
 
                 var IContainer = (IContainer)Folder;
 
@@ -651,7 +627,6 @@ namespace Imagin.Common.Collections.Concurrent
             }
             else
             {
-                Console.WriteLine("IList == null");
                 return false;
             }
         }

@@ -21,15 +21,10 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock 
-                                Foreground="{TemplateBinding PlaceholderForeground}" 
-                                FontFamily="{TemplateBinding FontFamily}"
-                                FontSize="{TemplateBinding FontSize}"
-                                FontStyle="{TemplateBinding FontStyle}"
-                                FontStretch="{TemplateBinding FontStretch}"
-                                FontWeight="{TemplateBinding FontWeight}" 
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 Margin="{TemplateBinding Padding}"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                Style="{TemplateBinding PlaceholderStyle}"
                                 Text="{TemplateBinding Placeholder}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>

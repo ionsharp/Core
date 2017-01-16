@@ -34,19 +34,6 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty PlaceholderForegroundProperty = DependencyProperty.Register("PlaceholderForeground", typeof(Brush), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(Brushes.LightGray, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public Brush PlaceholderForeground
-        {
-            get
-            {
-                return (Brush)GetValue(PlaceholderForegroundProperty);
-            }
-            set
-            {
-                SetValue(PlaceholderForegroundProperty, value);
-            }
-        }
-
         public static DependencyProperty PlaceholderProperty = DependencyProperty.Register("Placeholder", typeof(string), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public string Placeholder
         {
@@ -57,6 +44,19 @@ namespace Imagin.Controls.Common
             set
             {
                 SetValue(PlaceholderProperty, value);
+            }
+        }
+
+        public static DependencyProperty PlaceholderStyleProperty = DependencyProperty.Register("PlaceholderStyle", typeof(Style), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Style PlaceholderStyle
+        {
+            get
+            {
+                return (Style)GetValue(PlaceholderStyleProperty);
+            }
+            set
+            {
+                SetValue(PlaceholderStyleProperty, value);
             }
         }
 
@@ -157,7 +157,10 @@ namespace Imagin.Controls.Common
         {
             var Parent = e.OriginalSource.As<DependencyObject>();
 
-            HandledTypes = HandledTypes == null ? new Type[] { typeof(Button) } : HandledTypes;
+            HandledTypes = HandledTypes == null ? new Type[]
+            {
+                typeof(Button)
+            } : HandledTypes;
 
             while (!Parent.Is<AdvancedTextBox>())
             {

@@ -78,8 +78,8 @@ namespace Imagin.Controls.Common
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             e.Handled = true;
-            if (this.DropDown != null)
-                this.DropDown.IsOpen = true;
+            if (DropDown != null)
+                DropDown.IsOpen = true;
         }
 
         #endregion

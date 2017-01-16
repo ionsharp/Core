@@ -204,7 +204,7 @@ namespace Imagin.Controls.Extended
         {
             get
             {
-                return Primitive.ToString();
+                return Primitive.Name;
             }
         }
 
@@ -384,17 +384,11 @@ namespace Imagin.Controls.Extended
         {
             if (Host is ResourceDictionary)
             {
-                Console.WriteLine("OnValueChanged => Host is ResourceDictionary");
                 if (Host.As<ResourceDictionary>().Contains(Name))
-                {
-                    Console.WriteLine("Host.As<ResourceDictionary>().Contains(Name)");
                     Host.As<ResourceDictionary>()[Name] = Value;
-                }
             }
             else if (Info != null)
-            {
                 Info.SetValue(Host, Value, null);
-            }
         }
     }
 }

@@ -220,6 +220,13 @@
 
     <Style x:Key="{x:Type Controls.Common:BasicWindow}" TargetType="{x:Type Controls.Common:BasicWindow}" BasedOn="{StaticResource Style.BasicWindow}"/>
 
+    <Style x:Key="{x:Type Controls.Common:Gadget}" TargetType="{x:Type Controls.Common:BasicWindow}">
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
+        <Setter Property="ShowInTaskbar" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+    </Style>
+    
     <!-- ............................................... Dialogs -->
 
     <Style x:Key="Style.BrushDialog.Footer" TargetType="Border">

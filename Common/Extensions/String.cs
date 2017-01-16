@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagin.Common.Debug;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -370,16 +371,16 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Attempt to run program at path.
         /// </summary>
-        public static bool TryRun(this string ToRun)
+        public static Result TryRun(this string Value, string Parameter = null)
         {
             try
             {
-                System.Diagnostics.Process.Start(ToRun);
-                return true;
+                System.Diagnostics.Process.Start(Value, Parameter);
+                return new Success();
             }
-            catch
+            catch (Exception e)
             {
-                return false;
+                return new Error(e);
             }
         }
 

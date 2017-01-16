@@ -3,12 +3,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common">
+    <Style x:Key="Style.TextBox.Placeholder" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#Swis721 Cn BT"/>
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.TextBox.Placeholder}" />
+    </Style>
+    
     <Style x:Key="Style.TextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{DynamicResource Brush.TextBox.Background}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.TextBox.Border}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
+        <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#Swis721 Cn BT"/>
         <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Padding" Value="3" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
@@ -56,7 +63,7 @@
     <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}" BasedOn="{StaticResource Style.TextBox}"/>
 
     <Style x:Key="{x:Type Controls.Common:AdvancedTextBox}" TargetType="{x:Type Controls.Common:AdvancedTextBox}" BasedOn="{StaticResource Style.TextBox}">
-        <Setter Property="PlaceholderForeground" Value="{DynamicResource Brush.TextBox.Placeholder}"/>
+        <Setter Property="PlaceholderStyle" Value="{StaticResource Style.TextBox.Placeholder}"/>
     </Style>
 
     <Style x:Key="{x:Type Controls.Common:EditableLabel}" TargetType="{x:Type Controls.Common:EditableLabel}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
@@ -75,7 +82,16 @@
 
     <Style x:Key="{x:Type Controls.Common:DecimalUpDown}" TargetType="{x:Type Controls.Common:DecimalUpDown}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 
-    <Style x:Key="{x:Type Controls.Common:PasswordBox}" TargetType="{x:Type Controls.Common:PasswordBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
+    <Style x:Key="{x:Type Controls.Common:PasswordBox}" TargetType="{x:Type Controls.Common:PasswordBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}">
+        <Setter Property="DotForeground" Value="{DynamicResource Brush.Text}"/>
+        <Setter Property="DotSize" Value="6"/>
+        <Setter Property="DotSpacing" Value="0,0,2,0"/>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="DotForeground" Value="{DynamicResource Brush.TextBox.Focused.Border}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="{x:Type Controls.Common:FileBox}" TargetType="{x:Type Controls.Common:FileBox}" BasedOn="{StaticResource {x:Type Controls.Common:AdvancedTextBox}}"/>
 

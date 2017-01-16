@@ -96,13 +96,10 @@ namespace Imagin.Controls.Common
         /// </summary>
         bool IsDragging { get; set; } = false;
 
-        /// <summary>
-        /// Stores reference to previously selected area.
-        /// </summary>
         List<Rect> Selections { get; set; } = new List<Rect>();
 
         /// <summary>
-        /// Point indicating where the drag started.
+        /// Stores reference to previously selected area.
         /// </summary>
         Rect PreviousSelection { get; set; } = new Rect();
 
@@ -154,9 +151,7 @@ namespace Imagin.Controls.Common
             IsDragging = true;
 
             if (!ModifierKeys.Control.IsPressed() && !ModifierKeys.Shift.IsPressed())
-            {
-                Selections.Clear();
-            }
+                Selections.TryClear();
 
             PreviousSelection = new Rect();
         }
@@ -179,13 +174,18 @@ namespace Imagin.Controls.Common
             if (PART_Grid.IsMouseCaptured)
                 PART_Grid.ReleaseMouseCapture();
 
-            Selections.Add(PreviousSelection);
+            if (!Selections.TryAdd(PreviousSelection))
+                Selections.TryClear();
 
             Selection.Set(0d, 0d, 0d, 0d);
 
             StartPoint = default(Point);
         }
 
+        /// <summary>
+        /// Scroll based on current position.
+        /// </summary>
+        /// <param name="Position"></param>
         void Scroll(Point Position)
         {
             double HorizontalPosition = Position.X, VerticalPosition = Position.Y;
@@ -208,8 +208,55 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
-        /// Updates selection when drag selection is enabled and active.
+        /// Gets whether or not the given <see cref="Rect"/> intersects with either of the other two given <see cref="Rect"/>s: True if first, false if second, null if neither.
         /// </summary>
+        /// <param name="Rect1"></param>
+        /// <param name="Rect2"></param>
+        /// <param name="Rect3"></param>
+        /// <returns></returns>
+        bool? IntersectsWith(Rect Rect1, Rect Rect2, Rect Rect3)
+        {
+            if (Rect1.IntersectsWith(Rect2))
+            {
+                return true;
+            }
+            else if (Rect1.IntersectsWith(Rect3))
+            {
+                return false;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets whether or not the given <see cref="Rect"/> intersects with any previous selection.
+        /// </summary>
+        /// <param name="Bounds"></param>
+        /// <returns></returns>
+        bool? IntersectedWith(Rect Bounds)
+        {
+            var u = 0;
+            var v = false;
+
+            Selections.TryForEach<Rect>(y =>
+            {
+                if (Bounds.IntersectsWith(y))
+                {
+                    v = u % 2 == 0;
+                    u++;
+                }
+            });
+
+            return u == 0 ? null : (bool?)v;
+        }
+
+        /// <summary>
+        /// Select items in control based on given area.
+        /// </summary>
+        /// <param name="Control"></param>
+        /// <param name="Area"></param>
         void Select(ItemsControl Control, Rect Area)
         {
             foreach (var i in Control.Items)
@@ -224,25 +271,9 @@ namespace Imagin.Controls.Common
                 var TopLeft = Item.TranslatePoint(new Point(0, 0), PART_Grid);
                 var ItemBounds = new Rect(TopLeft.X, TopLeft.Y, Item.ActualWidth, Item.ActualHeight);
 
-                var Intersects = new Func<Rect, Rect, Rect, bool>((q, r, s) =>
-                {
-                    if (q.IntersectsWith(r))
-                    {
-                        Selector.SetIsSelected(Item, true);
-                        return true;
-                    }
-                    else if (q.IntersectsWith(s))
-                    {
-                        Selector.SetIsSelected(Item, false);
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                });
-
                 var Hierarchial = Control is TreeView || Control is TreeViewItem;
+
+                var Result = default(bool?);
 
                 if ((ModifierKeys.Control.IsPressed() || ModifierKeys.Shift.IsPressed()))
                 {
@@ -252,17 +283,24 @@ namespace Imagin.Controls.Common
                     }
                     else
                     {
-                        var u = 0;
-                        foreach (var y in Selections)
+                        //Get whether or not the current item intersects with any previous selection
+                        var intersectedWith = IntersectedWith(ItemBounds);
+
+                        //If current item has never insected with a previous selection...
+                        if (intersectedWith == null)
                         {
-                            if (ItemBounds.IntersectsWith(y))
-                            {
-                                Selector.SetIsSelected(Item, u % 2 == 0);
-                                u++;
-                            }
+                            Result = IntersectsWith(ItemBounds, Area, PreviousSelection);
                         }
-                        if (u == 0)
-                            Intersects(ItemBounds, Area, PreviousSelection);
+                        else
+                        {
+                            Result = intersectedWith.Value;
+
+                            var w = IntersectsWith(ItemBounds, Area, PreviousSelection);
+
+                            //If current item also intersects with current selection, flip it once more
+                            if (w != null && w.Value)
+                                Result = !Result;
+                        }
                     }
                 }
                 else
@@ -271,12 +309,21 @@ namespace Imagin.Controls.Common
                     {
                         Select(Item as TreeViewItem, true, Area);
                     }
-                    else Intersects(ItemBounds, Area, PreviousSelection);
+                    else Result = IntersectsWith(ItemBounds, Area, PreviousSelection);
                 }
+
+                if (Result != null)
+                    Item.TrySelect(Result.Value);
             }
             PreviousSelection = Area;
         }
 
+        /// <summary>
+        /// Select items in <see cref="TreeViewItem"/> based on given area.
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="IsSelected"></param>
+        /// <param name="Area"></param>
         void Select(TreeViewItem Item, bool IsSelected, Rect Area)
         {
             TreeViewItemExtensions.SetIsSelected(Item, IsSelected);
@@ -285,7 +332,7 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
-        /// Find and set ScrollContentPresenter element in ScrollViewer template.
+        /// Find and store reference to <see cref="ScrollContentPresenter"/> by searching <see cref="ScrollViewer"/> template.
         /// </summary>
         void SetPresenter()
         {

@@ -4,30 +4,17 @@ using System.Windows;
 
 namespace Imagin.Controls.Common
 {
-    public class Gadget : Window
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Gadget : WindowBase
     {
-        #region Gadget
-
+        /// <summary>
+        /// 
+        /// </summary>
         public Gadget() : base()
         {
-            this.DefaultStyleKey = typeof(Gadget);
+            DefaultStyleKey = typeof(Gadget);
         }
-
-        #endregion
-
-        #region INotifyPropertyChanged
-
-        [field: NonSerializedAttribute()]
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
     }
 }

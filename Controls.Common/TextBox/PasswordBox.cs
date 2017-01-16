@@ -1,25 +1,22 @@
 ﻿using Imagin.Common.Extensions;
+using System;
 using System.Windows;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    [TemplatePart(Name = "PART_EnterButton", Type = typeof(MaskedButton))]
-    [TemplatePart(Name = "PART_PasswordBox", Type = typeof(PasswordBox))]
+    [TemplatePart(Name = "PART_Dots", Type = typeof(ItemsControl))]
+    [TemplatePart(Name = "PART_EnterButton", Type = typeof(Button))]
     public class PasswordBox : AdvancedTextBox
     {
-        #region Properties
-
-        bool IgnorePasswordChange = false;
-
-        bool IgnoreTextChange = false;
-
-        System.Windows.Controls.PasswordBox PART_PasswordBox
+        Button PART_EnterButton
         {
             get; set;
         }
-
-        #region Dependency 
 
         public static DependencyProperty CanEnterProperty = DependencyProperty.Register("CanEnter", typeof(bool), typeof(PasswordBox), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool CanEnter
@@ -31,6 +28,45 @@ namespace Imagin.Controls.Common
             set
             {
                 SetValue(CanEnterProperty, value);
+            }
+        }
+
+        public static DependencyProperty DotForegroundProperty = DependencyProperty.Register("DotForeground", typeof(Brush), typeof(PasswordBox), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Brush DotForeground
+        {
+            get
+            {
+                return (Brush)GetValue(DotForegroundProperty);
+            }
+            set
+            {
+                SetValue(DotForegroundProperty, value);
+            }
+        }
+
+        public static DependencyProperty DotSizeProperty = DependencyProperty.Register("DotSize", typeof(double), typeof(PasswordBox), new FrameworkPropertyMetadata(6d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public double DotSize
+        {
+            get
+            {
+                return (double)GetValue(DotSizeProperty);
+            }
+            set
+            {
+                SetValue(DotSizeProperty, value);
+            }
+        }
+
+        public static DependencyProperty DotSpacingProperty = DependencyProperty.Register("DotSpacing", typeof(Thickness), typeof(PasswordBox), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public Thickness DotSpacing
+        {
+            get
+            {
+                return (Thickness)GetValue(DotSpacingProperty);
+            }
+            set
+            {
+                SetValue(DotSpacingProperty, value);
             }
         }
 
@@ -73,34 +109,9 @@ namespace Imagin.Controls.Common
             }
         }
         
-        #endregion
-
-        #endregion
-
-        #region PasswordBox
-
         public PasswordBox()
         {
-            this.DefaultStyleKey = typeof(PasswordBox);
-        }
-
-        #endregion
-
-        #region Methods
-
-        #region Overrides
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            this.PART_PasswordBox = this.Template.FindName("PART_PasswordBox", this).As<System.Windows.Controls.PasswordBox>();
-            this.PART_PasswordBox.PasswordChanged += OnPasswordChanged;
-
-            this.IgnorePasswordChange = true;
-            this.PART_PasswordBox.Password = this.Text;
-
-            this.Template.FindName("PART_EnterButton", this).As<MaskedButton>().Click += (s, e) => this.OnEntered(null);
+            DefaultStyleKey = typeof(PasswordBox);
         }
 
         /// <summary>
@@ -109,37 +120,24 @@ namespace Imagin.Controls.Common
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
             base.OnTextChanged(e);
-            if (this.PART_PasswordBox == null)
-                return;
-            if (this.IgnoreTextChange)
-            {
-                this.IgnoreTextChange = false;
-                return;
-            }
-            this.IgnorePasswordChange = true;
-            this.PART_PasswordBox.Password = this.Text;
         }
 
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// When System.Windows.Controls.PasswordBox.Password changes, set this.Text.
-        /// </summary>
-        void OnPasswordChanged(object sender, RoutedEventArgs e)
+        public override void OnApplyTemplate()
         {
-            if (this.IgnorePasswordChange)
-            {
-                this.IgnorePasswordChange = false;
-                return;
-            }
-            this.IgnoreTextChange = true;
-            this.Text = sender.As<System.Windows.Controls.PasswordBox>().Password;
+            base.OnApplyTemplate();
+
+            PART_EnterButton = Template.FindName("PART_EnterButton", this) as Button;
+            if (PART_EnterButton != null)
+                PART_EnterButton.Click += (s, e) => OnEntered(null);
         }
 
-        #endregion
-
-        #endregion
+        protected override bool OnPreviewMouseLeftButtonDownHandled(MouseButtonEventArgs e, Type[] HandledTypes = null)
+        {
+            return base.OnPreviewMouseLeftButtonDownHandled(e, new Type[] 
+            {
+                typeof(Button),
+                typeof(ToggleButton),
+            });
+        }
     }
 }

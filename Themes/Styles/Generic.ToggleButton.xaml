@@ -37,7 +37,7 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource Brush.ToggleButton.Checked.Border}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+                <Setter Property="Opacity" Value="0.6" />
             </Trigger>
         </Style.Triggers>
     </Style>

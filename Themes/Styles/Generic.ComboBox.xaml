@@ -196,8 +196,9 @@
                             <Controls.Common:MaskedImage
                                 Grid.Column="1"
                                 x:Name="PART_Checkmark"
+                                ImageColor="{TemplateBinding Foreground}"
                                 Margin="5,0,0,0"
-                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
+                                Source="pack://application:,,,/Imagin.Themes;component/Images/CheckmarkRound.png"
                                 VerticalAlignment="Center"
                                 Visibility="Collapsed"/>
                         </Grid>

@@ -91,6 +91,8 @@
     <Compile Include="Attributes\Icon.cs" />
     <Compile Include="Attributes\Int64Kind.cs" />
     <Compile Include="Attributes\StringKind.cs" />
+    <Compile Include="Debug\Result.Generic.cs" />
+    <Compile Include="Debug\Success.Generic.cs" />
     <Compile Include="Drawing\AngularUnit.cs" />
     <Compile Include="Extensions\Brush.cs" />
     <Compile Include="Extensions\Decimal.cs" />
@@ -153,7 +155,7 @@
     <Compile Include="Converters\GraphicalUnitConverter.cs" />
     <Compile Include="Converters\OrientationToBooleanConverter.cs" />
     <Compile Include="Converters\OrientationToVisibilityConverter.cs" />
-    <Compile Include="Converters\SolidColorBrushToColorConverter.cs" />
+    <Compile Include="Converters\BrushToColorConverter.cs" />
     <Compile Include="Converters\SolidColorBrushToHexConverter.cs" />
     <Compile Include="Converters\ColorToSolidColorBrushConverter.cs" />
     <Compile Include="Converters\ColorToHexConverter.cs" />

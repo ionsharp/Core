@@ -4,6 +4,9 @@ using System.Windows.Input;
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ControlExtensions
     {
         #region Properties

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Imagin.Common.Debug;
+using System;
+using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Controls.Primitives;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace Imagin.Common.Extensions
 {
@@ -171,6 +173,25 @@ namespace Imagin.Common.Extensions
                             t.IsExpanded = IsExpanded;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Attempt to select the given object using <see cref="Selector.SetIsSelected(DependencyObject, bool)"/>.
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <param name="IsSelected"></param>
+        /// <returns></returns>
+        public static Result TrySelect(this DependencyObject Object, bool IsSelected)
+        {
+            try
+            {
+                Selector.SetIsSelected(Object, IsSelected);
+                return new Success();
+            }
+            catch (Exception e)
+            {
+                return new Error(e);
             }
         }
     }

@@ -46,7 +46,7 @@
                                     HorizontalContentAlignment="Center"
                                     ImageColor="{TemplateBinding Foreground}"
                                     ImageWidth="8"
-                                    Source="/Images/Dot.png" 
+                                    Source="pack://application:,,,/Imagin.Themes;component/Images/Dot.png" 
                                     VerticalAlignment="Stretch"
                                     Visibility="Collapsed"/>
                                 <Controls.Common:MaskedImage 

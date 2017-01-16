@@ -186,6 +186,7 @@
             </DataTemplate>
             <DataTemplate x:Key="{x:Type System:Enum}">
                 <ComboBox
+                    IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                     ItemsSource="{Binding Value, Mode=OneTime, Converter={StaticResource EnumToCollectionConverter}}" 
                     SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                     VirtualizingPanel.IsVirtualizing="True" 
@@ -232,7 +233,6 @@
                         Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </ContentControl>
                 <DataTemplate.Triggers>
-                    <!--
                     <DataTrigger Binding="{Binding Tag}" Value="FileSize">
                         <Setter TargetName="PART_Content" Property="Content">
                             <Setter.Value>
@@ -247,7 +247,6 @@
                             </Setter.Value>
                         </Setter>
                     </DataTrigger>
-                    -->
                 </DataTemplate.Triggers>
             </DataTemplate>
             <DataTemplate x:Key="{x:Type System.Net:NetworkCredential}">

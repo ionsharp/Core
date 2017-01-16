@@ -19,12 +19,6 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock 
-                                Foreground="{TemplateBinding PlaceholderForeground}" 
-                                FontSize="{TemplateBinding FontSize}"
-                                FontFamily="{TemplateBinding FontFamily}"
-                                FontStyle="{TemplateBinding FontStyle}"
-                                FontStretch="{TemplateBinding FontStretch}"
-                                FontWeight="{TemplateBinding FontWeight}" 
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 Margin="{TemplateBinding Padding}"
                                 Text="{Binding Text, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -48,21 +42,18 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock 
-                                    Foreground="{TemplateBinding PlaceholderForeground}" 
-                                    FontSize="{TemplateBinding FontSize}"
-                                    FontFamily="{TemplateBinding FontFamily}"
-                                    FontStyle="{TemplateBinding FontStyle}"
-                                    FontStretch="{TemplateBinding FontStretch}"
-                                    FontWeight="{TemplateBinding FontWeight}" 
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                     Margin="{TemplateBinding Padding}"
+                                    Style="{TemplateBinding PlaceholderStyle}"
                                     Text="{TemplateBinding Placeholder}"
+                                    TextTrimming="{TemplateBinding TextTrimming}"
+                                    TextWrapping="{TemplateBinding TextWrapping}"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                     Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
                                 <ScrollViewer 
                                     x:Name="PART_ContentHost" 
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                    Margin="{TemplateBinding Padding}"
+                                    Padding="{TemplateBinding Padding}"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 <Grid Grid.Column="1" Visibility="{TemplateBinding CanUserClear, Converter={StaticResource BooleanToVisibilityConverter}}">

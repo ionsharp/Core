@@ -73,6 +73,66 @@
 
     <Style x:Key="{x:Type ListViewItem}" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}"/>
 
+    <Style x:Key="Style.ListView.ScrollViewer" TargetType="{x:Type ScrollViewer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollViewer">
+                    <Border Padding="{TemplateBinding Padding}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Border 
+                                Grid.ColumnSpan="2" 
+                                Background="{DynamicResource Brush.GridView.Background}"/>
+                            <GridViewHeaderRowPresenter 
+                                Grid.ColumnSpan="2" 
+                                HorizontalAlignment="Stretch"
+                                Columns="{Binding TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}"
+                                ColumnHeaderContainerStyle="{Binding TemplatedParent.View.ColumnHeaderContainerStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                ColumnHeaderTemplate="{Binding TemplatedParent.View.ColumnHeaderTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                ColumnHeaderTemplateSelector="{Binding TemplatedParent.View.ColumnHeaderTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
+                                AllowsColumnReorder="{Binding TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
+                                ColumnHeaderContextMenu="{Binding TemplatedParent.View.ColumnHeaderContextMenu, RelativeSource={RelativeSource TemplatedParent}}"
+                                ColumnHeaderToolTip="{Binding TemplatedParent.View.ColumnHeaderToolTip, RelativeSource={RelativeSource TemplatedParent}}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+
+                            <ScrollContentPresenter 
+                                Grid.Row="1" 
+                                Grid.ColumnSpan="2" 
+                                Name="PART_ScrollContentPresenter" 
+                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                KeyboardNavigation.DirectionalNavigation="Local"/>
+                            
+                            <ScrollBar 
+                                Name="PART_HorizontalScrollBar"
+                                Orientation="Horizontal"
+                                Grid.Row="2"
+                                Maximum="{TemplateBinding ScrollableWidth}"
+                                ViewportSize="{TemplateBinding ViewportWidth}"
+                                Value="{TemplateBinding HorizontalOffset}"
+                                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                            <ScrollBar 
+                                Name="PART_VerticalScrollBar"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Maximum="{TemplateBinding ScrollableHeight}"
+                                ViewportSize="{TemplateBinding ViewportHeight}"
+                                Value="{TemplateBinding VerticalOffset}"
+                                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="{x:Type ListBox}" TargetType="{x:Type ListBox}">
         <Setter Property="Background" Value="{DynamicResource Brush.ListBox.Background}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.ListBox.Border}"/>
@@ -88,64 +148,6 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBox}">
-                    <ControlTemplate.Resources>
-                        <Style x:Key="Style.ListView.ScrollViewer" TargetType="{x:Type ScrollViewer}">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="ScrollViewer">
-                                        <Border Padding="{TemplateBinding Padding}">
-                                            <Grid Background="{TemplateBinding Background}">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                </Grid.RowDefinitions>
-                                                <Border 
-                                                    Grid.ColumnSpan="2" 
-                                                    Background="{DynamicResource Brush.GridView.Background}">
-                                                    <GridViewHeaderRowPresenter 
-                                                        HorizontalAlignment="Stretch"
-                                                        Columns="{Binding TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}"
-                                                        ColumnHeaderContainerStyle="{Binding TemplatedParent.View.ColumnHeaderContainerStyle, RelativeSource={RelativeSource TemplatedParent}}"
-                                                        ColumnHeaderTemplate="{Binding TemplatedParent.View.ColumnHeaderTemplate, RelativeSource={RelativeSource TemplatedParent}}"
-                                                        ColumnHeaderTemplateSelector="{Binding TemplatedParent.View.ColumnHeaderTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
-                                                        AllowsColumnReorder="{Binding TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
-                                                        ColumnHeaderContextMenu="{Binding TemplatedParent.View.ColumnHeaderContextMenu, RelativeSource={RelativeSource TemplatedParent}}"
-                                                        ColumnHeaderToolTip="{Binding TemplatedParent.View.ColumnHeaderToolTip, RelativeSource={RelativeSource TemplatedParent}}"
-                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                                                </Border>
-                                                <ScrollContentPresenter 
-                                                    Grid.Row="1" 
-                                                    Grid.ColumnSpan="2" 
-                                                    Name="PART_ScrollContentPresenter" 
-                                                    KeyboardNavigation.DirectionalNavigation="Local"/>
-                                                <ScrollBar 
-                                                    Name="PART_HorizontalScrollBar"
-                                                    Orientation="Horizontal"
-                                                    Grid.Row="2"
-                                                    Maximum="{TemplateBinding ScrollableWidth}"
-                                                    ViewportSize="{TemplateBinding ViewportWidth}"
-                                                    Value="{TemplateBinding HorizontalOffset}"
-                                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
-                                                <ScrollBar 
-                                                    Name="PART_VerticalScrollBar"
-                                                    Grid.Row="1"
-                                                    Grid.Column="1"
-                                                    Maximum="{TemplateBinding ScrollableHeight}"
-                                                    ViewportSize="{TemplateBinding ViewportHeight}"
-                                                    Value="{TemplateBinding VerticalOffset}"
-                                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
-                                            </Grid>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ControlTemplate.Resources>
                     <ScrollViewer 
                         x:Name="PART_ScrollViewer" 
                         Background="{TemplateBinding Background}"

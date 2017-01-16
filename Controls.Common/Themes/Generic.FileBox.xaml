@@ -23,11 +23,9 @@
                             </Grid.ColumnDefinitions>
                             <Grid x:Name="PART_Text">
                                 <TextBlock 
-                                    Foreground="{TemplateBinding PlaceholderForeground}" 
-                                    FontSize="{TemplateBinding FontSize}"
-                                    FontFamily="{TemplateBinding FontFamily}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                     Margin="{TemplateBinding Padding}"
+                                    Style="{TemplateBinding PlaceholderStyle}"
                                     Text="{TemplateBinding Placeholder}" 
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                     Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
@@ -42,7 +40,8 @@
                                 Grid.Column="1" 
                                 x:Name="PART_Checked"
                                 Margin="5,0,0,0"
-                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"/>
+                                Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
+                                Visibility="Collapsed"/>
                             <local:MaskedButton 
                                 Grid.Column="2" 
                                 x:Name="PART_Button"

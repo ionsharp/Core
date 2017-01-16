@@ -61,6 +61,12 @@
     <Reference Include="Imagin.Controls.Common">
       <HintPath>..\Controls.Common\bin\Debug\Imagin.Controls.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Imagin.Controls.Extended">
+      <HintPath>..\Controls.Extended\bin\Debug\Imagin.Controls.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="Imagin.Themes">
+      <HintPath>..\Themes\bin\Debug\Imagin.Themes.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />

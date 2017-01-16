@@ -9,8 +9,6 @@ namespace Imagin.Common.Collections.ObjectModel
     /// <typeparam name="T">The type of the elements in the collection.</typeparam>
     public class ObservableStack<T> : ObservableCollection<T>, IStackable<T>
     {
-        #region Methods
-
         public void Push(T item)
         {
             this.Add(item);
@@ -32,14 +30,8 @@ namespace Imagin.Common.Collections.ObjectModel
             else return default(T);
         }
 
-        #endregion
-
-        #region ObservableStack
-
         public ObservableStack()
         {
         }
-
-        #endregion
     }
 }

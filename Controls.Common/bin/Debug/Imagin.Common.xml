@@ -86,6 +86,32 @@
             </summary>
             <param name="Representation"></param>
         </member>
+        <member name="T:Imagin.Common.Debug.Result`1">
+            <summary>
+            Represents a result with data.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Result`1.op_Implicit(Imagin.Common.Debug.Result{`0})~System.Boolean">
+            <summary>
+            If result is success, true; else, false.
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="T:Imagin.Common.Debug.Error">
+            <summary>
+            Represents a failed result; optionally, encapsulates an exception.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Debug.Result">
+            <summary>
+            Represents a result.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Debug.Success">
+            <summary>
+            Represents a successful result.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Drawing.AngularUnit">
             <summary>
             Specifies an angular unit.
@@ -257,7 +283,7 @@
         </member>
         <member name="M:Imagin.Common.Extensions.GenericExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
-            
+            Perform for each loop on given <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Source"></param>
@@ -287,6 +313,14 @@
             </summary>
             <param name="Object">The item to check for nullity.</param>
             <param name="Name">The name to use when throwing an exception, if necessary</param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.TryForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Attempt to perform for each loop on given <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Action"></param>
         </member>
         <member name="M:Imagin.Common.Extensions.GenericExtensions.WhereFirst``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
             <summary>
@@ -428,6 +462,14 @@
             <summary>
             Sets IsExpanded property to specified value on all TreeViewItems found.
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.TrySelect(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Attempt to select the given object using <see cref="M:System.Windows.Controls.Primitives.Selector.SetIsSelected(System.Windows.DependencyObject,System.Boolean)"/>.
+            </summary>
+            <param name="Object"></param>
+            <param name="IsSelected"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Extensions.DoubleExtensions">
             <summary>
@@ -1048,7 +1090,7 @@
             Parses string to boolean.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Extensions.StringExtensions.TryRun(System.String)">
+        <member name="M:Imagin.Common.Extensions.StringExtensions.TryRun(System.String,System.String)">
             <summary>
             Attempt to run program at path.
             </summary>
@@ -1141,6 +1183,11 @@
             <typeparam name="T"></typeparam>
             <param name="Value"></param>
             <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Extensions.ControlExtensions">
+            <summary>
+            
+            </summary>
         </member>
         <member name="F:Imagin.Common.Extensions.ControlExtensions.IsPossibleDropTarget">
             <summary>
@@ -1995,27 +2042,6 @@
             
             </summary>
             <param name="Path"></param>
-        </member>
-        <member name="T:Imagin.Common.Debug.Error">
-            <summary>
-            Represents a failed result; optionally, encapsulates an exception.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Debug.Result">
-            <summary>
-            Represents the result of something.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Debug.Result.op_Implicit(Imagin.Common.Debug.Result)~System.Boolean">
-            <summary>
-            If result is success, true; else, false.
-            </summary>
-            <param name="a"></param>
-        </member>
-        <member name="T:Imagin.Common.Debug.Success">
-            <summary>
-            Represents a successful result.
-            </summary>
         </member>
         <member name="T:Imagin.Common.Configuration.AppDomainContext">
             <summary>

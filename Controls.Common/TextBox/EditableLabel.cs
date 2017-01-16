@@ -1,8 +1,7 @@
 ﻿using Imagin.Common.Input;
+using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Data;
 
 namespace Imagin.Controls.Common
 {
@@ -11,11 +10,15 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
+        int down = 0;
+
         MaskedButton PART_Button
         {
             get; set;
         }
-        
+
+        public event EventHandler<EventArgs<string>> Edited;
+
         public static DependencyProperty ButtonHorizontalAlignmentProperty = DependencyProperty.Register("ButtonHorizontalAlignment", typeof(HorizontalAlignment), typeof(EditableLabel), new FrameworkPropertyMetadata(HorizontalAlignment.Left, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public HorizontalAlignment ButtonHorizontalAlignment
         {
@@ -68,6 +71,19 @@ namespace Imagin.Controls.Common
             }
         }
 
+        public static DependencyProperty TextTrimmingProperty = DependencyProperty.Register("TextTrimming", typeof(TextTrimming), typeof(EditableLabel), new FrameworkPropertyMetadata(TextTrimming.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public TextTrimming TextTrimming
+        {
+            get
+            {
+                return (TextTrimming)GetValue(TextTrimmingProperty);
+            }
+            set
+            {
+                SetValue(TextTrimmingProperty, value);
+            }
+        }
+        
         #endregion
 
         #region EditableLabel
@@ -81,25 +97,53 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
-        protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
+        protected override void OnPreviewMouseDoubleClick(MouseButtonEventArgs e)
         {
-            base.OnMouseDoubleClick(e);
-            if (!this.IsEditable && this.MouseEvent == MouseEvent.MouseDoubleClick)
+            base.OnPreviewMouseDoubleClick(e);
+            if (!IsEditable && MouseEvent == MouseEvent.MouseDoubleClick)
+            {
                 OnEdited(true);
+                e.Handled = true;
+            }
         }
 
-        protected override void OnMouseDown(MouseButtonEventArgs e)
+        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
-            base.OnMouseDown(e);
-            if (!this.IsEditable && this.MouseEvent == MouseEvent.MouseDown)
-                OnEdited(true);
+            base.OnPreviewMouseDown(e);
+            if (!IsEditable)
+            {
+                var d = false;
+                switch (MouseEvent)
+                {
+                    case MouseEvent.DelayedMouseDown:
+                        if (down == 1)
+                        {
+                            down = 0;
+                            d = true;
+                        }
+                        else down++;
+                        break;
+                    case MouseEvent.MouseDown:
+                        d = true;
+                        break;
+                }
+
+                if (d)
+                {
+                    OnEdited(true);
+                    e.Handled = true;
+                }
+            }
         }
 
-        protected override void OnMouseUp(MouseButtonEventArgs e)
+        protected override void OnPreviewMouseUp(MouseButtonEventArgs e)
         {
-            base.OnMouseUp(e);
-            if (!this.IsEditable && this.MouseEvent == MouseEvent.MouseUp)
+            base.OnPreviewMouseUp(e);
+            if (!IsEditable && MouseEvent == MouseEvent.MouseUp)
+            {
                 OnEdited(true);
+                e.Handled = true;
+            }
         }
 
         protected override void OnEntered(KeyEventArgs e)
@@ -124,8 +168,17 @@ namespace Imagin.Controls.Common
 
         protected virtual void OnEdited(bool Value)
         {
-            this.IsEditable = Value;
-            if (Value) this.Focus();
+            IsEditable = Value;
+
+            if (Value)
+            {
+                Focus();
+            }
+            else
+            {
+                if (Edited != null)
+                    Edited(this, new EventArgs<string>(Text));
+            }
         }
 
         #endregion

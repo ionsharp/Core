@@ -4,13 +4,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common">
     <Style x:Key="{x:Type local:Gadget}" TargetType="{x:Type local:Gadget}">
-        <Setter Property="ResizeMode" Value="CanResize" />
-        <Setter Property="ShowInTaskbar" Value="True" />
         <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="ResizeMode" Value="CanResize" />
         <Setter Property="WindowStyle" Value="None" />
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
-        <Setter Property="Foreground" Value="{DynamicResource WindowForeground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Gadget}">
@@ -29,7 +25,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             ClipToBounds="True"
-                            CornerRadius="5">
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <AdornerDecorator>
                                 <ContentPresenter VerticalAlignment="Center"/>
                             </AdornerDecorator>
@@ -40,7 +36,10 @@
         </Setter>
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome GlassFrameThickness="5" UseAeroCaptionButtons="False" />
+                <WindowChrome
+                    GlassFrameThickness="5"
+                    ResizeBorderThickness="10"
+                    UseAeroCaptionButtons="False" />
             </Setter.Value>
         </Setter>
     </Style>

@@ -54,7 +54,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search_MarkupCompile.lref
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\App.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\SearchGadget.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Styles\Brushes.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search.g.resources
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Imagin.Gadgets.Search.Properties.Resources.resources
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\obj\Debug\Gadgets.Search.csproj.GenerateResource.Cache
@@ -68,3 +67,8 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Controls.Common.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Themes.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Themes.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Controls.Extended.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Controls.Extended.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Gadgets.Search\bin\Debug\Imagin.Controls.Extended.xml

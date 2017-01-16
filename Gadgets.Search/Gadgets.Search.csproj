@@ -67,6 +67,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Controls.Common\bin\Debug\Imagin.Controls.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Imagin.Controls.Extended">
+      <HintPath>..\Controls.Extended\bin\Debug\Imagin.Controls.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="Imagin.Themes">
+      <HintPath>..\Themes\bin\Debug\Imagin.Themes.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -87,8 +93,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SearchEngine.cs" />
-    <Compile Include="SearchEngineToImageConverter.cs" />
+    <Compile Include="SearchProvider.cs" />
+    <Compile Include="SearchProviderToImageConverter.cs" />
     <Page Include="SearchGadget.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,10 +107,6 @@
       <DependentUpon>SearchGadget.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Styles\Brushes.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -146,6 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\XRound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ArrowDownSmall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

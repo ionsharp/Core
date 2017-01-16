@@ -5,7 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Gadgets.Search"
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
     mc:Ignorable="d"
     Title="Search"
     x:Name="PART_MainWindow"
@@ -15,45 +16,86 @@
     Width="525"
     MaxWidth="1200"
     SizeToContent="Height"
-    WindowStartupLocation="CenterScreen"
-    Foreground="#666">
+    WindowStartupLocation="CenterScreen">
     <Controls.Common:Gadget.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Offset="0" Color="#CCF0F0F0"/>
-            <GradientStop Offset="1" Color="#CCEAEAEA"/>
+            <GradientStop Offset="0" Color="#DDF0F0F0"/>
+            <GradientStop Offset="1" Color="#DDEAEAEA"/>
         </LinearGradientBrush>
     </Controls.Common:Gadget.Background>
     <Controls.Common:Gadget.Resources>
-        <local:SearchEngineToImageConverter x:Key="SearchEngineToImageConverter"/>
+        <local:SearchProviderToImageConverter x:Key="SearchEngineToImageConverter"/>
     </Controls.Common:Gadget.Resources>
     <Border
+        DataContext="{Binding ElementName=PART_MainWindow}"
         MinWidth="250"
         MaxWidth="1200"
-        Background="{DynamicResource WindowBackgroundGradient}"
-        DataContext="{Binding ElementName=PART_MainWindow}">
+        Padding="7">
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Controls.Common:MaskedImage Grid.Column="0" Margin="7,0,0,0" Source="{Binding SearchEngine.Type, Converter={StaticResource SearchEngineToImageConverter}}" MouseDown="OnImageMouseDown"/>
+            <Rectangle 
+                Fill="{DynamicResource Brush.Image.MouseOver}"
+                Margin="-7,-7,7,-7"
+                Width="7"/>
+            
+            <Controls.Common:MaskedImage 
+                Grid.Column="1" 
+                Cursor="Hand"
+                Common:ControlExtensions.IsDragMoveEnabled="True"
+                Margin="0,0,5,0"
+                Source="{Binding Provider.Base, Converter={StaticResource SearchEngineToImageConverter}}"/>
+
             <ComboBox 
-                Grid.Column="1"
-                ItemsSource="{Binding SearchEngines}" 
-                SelectedValue="{Binding SearchEngine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Margin="5,0">
+                Grid.Column="2"
+                x:Name="PART_Providers"
+                BorderThickness="0"
+                ItemsSource="{Binding Providers}" 
+                SelectedValue="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Controls.Common:AdvancedTextBox Grid.Column="2" Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="What would you like to search?" PreviewKeyDown="OnTextBoxPreviewKeyDown"/>
-            <Controls.Common:MaskedButton Grid.Column="3" Padding="0,0,7,0" Source="/Images/Search.png" Click="OnSearchClick" ToolTip="Search"/>
-            <Controls.Common:MaskedButton Grid.Column="4" Padding="0,0,7,0" Source="/Images/XRound.png" Click="OnCloseClick" ToolTip="Close"/>
+            
+            <Controls.Common:AdvancedTextBox 
+                Grid.Column="3"
+                BorderThickness="0"
+                CanUserClear="True"
+                Entered="OnEntered"
+                Margin="7,0,0,0"
+                Padding="0"
+                Placeholder="What would you like to search?"
+                Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <Controls.Common:MaskedButton 
+                Grid.Column="4" 
+                Click="OnSearched" 
+                Padding="7,0" 
+                Source="/Images/Search.png" 
+                ToolTip="Search"/>
+
+            <Controls.Common:MaskedDropDownButton 
+                Grid.Column="5" 
+                DropDownDataContext="{Binding Mode=OneWay}"
+                Padding="7,0,0,0" 
+                Source="/Images/ArrowDownSmall.png" 
+                ToolTip="Close">
+                <Controls.Common:MaskedDropDownButton.DropDown>
+                    <ContextMenu>
+                        <MenuItem 
+                            Command="{Binding CloseCommand}"
+                            Header="Close"/>
+                    </ContextMenu>
+                </Controls.Common:MaskedDropDownButton.DropDown>
+            </Controls.Common:MaskedDropDownButton>
         </Grid>
     </Border>
 </Controls.Common:Gadget>

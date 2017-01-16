@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ItemsControlExtensions
     {
         #region Properties

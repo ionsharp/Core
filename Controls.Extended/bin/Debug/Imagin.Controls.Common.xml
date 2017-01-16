@@ -269,6 +269,11 @@
             Determines whether or not to scroll newly added items into view.
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.Extensions.ItemsControlExtensions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.IsColumnMenuEnabledProperty">
             <summary>
             Determines whether or not to add a ContextMenu to the column header for toggling column visibility.
@@ -458,6 +463,16 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.Gadget">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Gadget.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.RippleDecorator">
             <summary>
             A container that applies a ripple effect to content.
@@ -503,14 +518,9 @@
             Indicates if we're currently dragging.
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Common.DragSelector.Selections">
-            <summary>
-            Stores reference to previously selected area.
-            </summary>
-        </member>
         <member name="P:Imagin.Controls.Common.DragSelector.PreviousSelection">
             <summary>
-            Point indicating where the drag started.
+            Stores reference to previously selected area.
             </summary>
         </member>
         <member name="P:Imagin.Controls.Common.DragSelector.StartPoint">
@@ -518,14 +528,46 @@
             Point indicating where the drag started.
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Common.DragSelector.Scroll(System.Windows.Point)">
+            <summary>
+            Scroll based on current position.
+            </summary>
+            <param name="Position"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.DragSelector.IntersectsWith(System.Windows.Rect,System.Windows.Rect,System.Windows.Rect)">
+            <summary>
+            Gets whether or not the given <see cref="T:System.Windows.Rect"/> intersects with either of the other two given <see cref="T:System.Windows.Rect"/>s: True if first, false if second, null if neither.
+            </summary>
+            <param name="Rect1"></param>
+            <param name="Rect2"></param>
+            <param name="Rect3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DragSelector.IntersectedWith(System.Windows.Rect)">
+            <summary>
+            Gets whether or not the given <see cref="T:System.Windows.Rect"/> intersects with any previous selection.
+            </summary>
+            <param name="Bounds"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Controls.Common.DragSelector.Select(System.Windows.Controls.ItemsControl,System.Windows.Rect)">
             <summary>
-            Updates selection when drag selection is enabled and active.
+            Select items in control based on given area.
             </summary>
+            <param name="Control"></param>
+            <param name="Area"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.DragSelector.Select(System.Windows.Controls.TreeViewItem,System.Boolean,System.Windows.Rect)">
+            <summary>
+            Select items in <see cref="T:System.Windows.Controls.TreeViewItem"/> based on given area.
+            </summary>
+            <param name="Item"></param>
+            <param name="IsSelected"></param>
+            <param name="Area"></param>
         </member>
         <member name="M:Imagin.Controls.Common.DragSelector.SetPresenter">
             <summary>
-            Find and set ScrollContentPresenter element in ScrollViewer template.
+            Find and store reference to <see cref="P:Imagin.Controls.Common.DragSelector.ScrollContentPresenter"/> by searching <see cref="T:System.Windows.Controls.ScrollViewer"/> template.
             </summary>
         </member>
         <member name="M:Imagin.Controls.Common.DragSelector.OnMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
@@ -579,11 +621,6 @@
         <member name="M:Imagin.Controls.Common.PasswordBox.OnTextChanged(System.Windows.Controls.TextChangedEventArgs)">
             <summary>
             When this.Text changes, set System.Windows.Controls.PasswordBox.Password.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.PasswordBox.OnPasswordChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            When System.Windows.Controls.PasswordBox.Password changes, set this.Text.
             </summary>
         </member>
         <member name="P:Imagin.Controls.Common.NumericUpDown`1.DefaultIncrement">
@@ -797,31 +834,6 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.BasicWindow.Result">
-            <summary>
-            The result of the window subsequent to closing.
-            </summary>
-        </member>
-        <member name="E:Imagin.Controls.Common.BasicWindow.Closed">
-            <summary>
-            Occurs when the window is closed.
-            </summary>
-        </member>
-        <member name="E:Imagin.Controls.Common.BasicWindow.FirstLoad">
-            <summary>
-            Occurs when the window is loaded for the first time.
-            </summary>
-        </member>
-        <member name="E:Imagin.Controls.Common.BasicWindow.Hidden">
-            <summary>
-            Occurs when the window is hidden.
-            </summary>
-        </member>
-        <member name="E:Imagin.Controls.Common.BasicWindow.Shown">
-            <summary>
-            Occurs when a window is shown.
-            </summary>
-        </member>
         <member name="P:Imagin.Controls.Common.BasicWindow.ContentBorderBrush">
             <summary>
             Gets or sets the border brush of the content.
@@ -837,11 +849,6 @@
             Gets or sets the outer margin of the content.
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Common.BasicWindow.IsHidden">
-            <summary>
-            Whether or not the window is currently hidden.
-            </summary>
-        </member>
         <member name="P:Imagin.Controls.Common.BasicWindow.Overlay">
             <summary>
             Element to place on top of everything else; element covers entire window.
@@ -850,6 +857,46 @@
         <member name="P:Imagin.Controls.Common.BasicWindow.OverlayVisibility">
             <summary>
             The visibility of the overlay element.
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.WindowBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.WindowBase.Result">
+            <summary>
+            The result of the window subsequent to closing.
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Common.WindowBase.Closed">
+            <summary>
+            Occurs when the window is closed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Common.WindowBase.FirstLoad">
+            <summary>
+            Occurs when the window is loaded for the first time.
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Common.WindowBase.Hidden">
+            <summary>
+            Occurs when the window is hidden.
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Common.WindowBase.Shown">
+            <summary>
+            Occurs when a window is shown.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.WindowBase.IsHidden">
+            <summary>
+            Whether or not the window is currently hidden.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.WindowBase.#ctor">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">

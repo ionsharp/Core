@@ -1,53 +1,64 @@
 ﻿using System;
-using System.Windows.Input;
-using Imagin.Common.Primitives;
 
 namespace Imagin.Common.Debug
 {
-    /// <summary>
-    /// Represents a failed result; optionally, encapsulates an exception.
-    /// </summary>
-    public class Error : Result
+    public class Error<T> : Error
     {
-        Exception exception = default(Exception);
-        public Exception Exception
+        public new T Data
         {
-            get
-            {
-                return exception;
-            }
-            set
-            {
-                exception = value;
-            }
+            get; set;
         }
 
         public Error() : base()
         {
         }
 
-        public Error(object Data) : base(Data)
+        public Error(Exception Exception) : base(Exception)
         {
         }
 
-        public Error(Exception exception) : base()
+        public Error(Exception Exception, T Data) : base(Exception, Data)
+        {
+        }
+
+        public Error(string Message) : base(Message)
+        {
+        }
+
+        public Error(string Message, T Data) : base(Message, Data)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Represents a failed result; optionally, encapsulates an exception.
+    /// </summary>
+    public class Error : Result
+    {
+        public Exception Exception
+        {
+            get; set;
+        }
+
+        public Error() : this(string.Empty)
+        {
+        }
+
+        public Error(Exception Exception) : this(Exception, null)
+        {
+        }
+
+        public Error(Exception exception, object data) : base(data)
         {
             Exception = exception;
         }
 
-        public Error(Exception exception, object Data) : base(Data)
+        public Error(string Message) : this(Message, null)
         {
-            Exception = exception;
         }
 
-        public Error(string Message) : base()
+        public Error(string Message, object data) : this(new Exception<string>(Message), null)
         {
-            Exception = new Exception<string>(Message);
-        }
-
-        public Error(string Message, object Data) : base(Data)
-        {
-            Exception = new Exception<string>(Message);
         }
     }
 }

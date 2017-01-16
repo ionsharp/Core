@@ -8,6 +8,7 @@
     xmlns:Controls.Common.Interactivity="clr-namespace:Imagin.Controls.Common.Interactivity"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <Common.Data.Converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
     <Common.Data.Converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
     
@@ -25,23 +26,12 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid>
-                                <TextBlock 
-                                    Foreground="{TemplateBinding PlaceholderForeground}" 
-                                    FontSize="{TemplateBinding FontSize}"
-                                    FontFamily="{TemplateBinding FontFamily}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                    Margin="{TemplateBinding Padding}"
-                                    Text="{TemplateBinding Placeholder}" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                <ScrollViewer 
-                                    x:Name="PART_ContentHost" 
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                    Margin="{TemplateBinding Padding}"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Grid>
+                            <ScrollViewer 
+                                x:Name="PART_ContentHost" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                Margin="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <Grid 
                                 Grid.Column="1"
                                 Margin="0,0,5,0"
@@ -93,23 +83,12 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid>
-                                <TextBlock 
-                                    Foreground="{TemplateBinding PlaceholderForeground}" 
-                                    FontSize="{TemplateBinding FontSize}"
-                                    FontFamily="{TemplateBinding FontFamily}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                    Margin="{TemplateBinding Padding}"
-                                    Text="{TemplateBinding Placeholder}" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Visibility="{TemplateBinding Text, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                <ScrollViewer 
-                                    x:Name="PART_ContentHost" 
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                    Margin="{TemplateBinding Padding}"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Grid>
+                            <ScrollViewer 
+                                x:Name="PART_ContentHost" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                Margin="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <Grid 
                                 Grid.Column="1"
                                 Visibility="{Binding IsUpDownEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -142,7 +121,7 @@
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                                 Padding="5,0"
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDownSmall.png"
-                                Visibility="Visible"/>
+                                Visibility="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InverseBooleanConverter}}"/>
                             <Popup
                                 x:Name="PART_DropDown"
                                 Placement="{TemplateBinding DropDownPlacement}"

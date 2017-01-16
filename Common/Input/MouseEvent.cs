@@ -7,8 +7,9 @@ namespace Imagin.Common.Input
     {
         None = 0,
         Default = 1,
-        MouseDown = 2,
-        MouseUp = 4,
-        MouseDoubleClick = 8
+        DelayedMouseDown = 2,
+        MouseDown = 4,
+        MouseUp = 8,
+        MouseDoubleClick = 16
     }
 }

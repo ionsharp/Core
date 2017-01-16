@@ -137,6 +137,20 @@ namespace Imagin.NET.Demo
             }
         }
 
+        string type = default(string);
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+                OnPropertyChanged("Type");
+            }
+        }
+
         ObservableCollection<FileSystemEntryModel> items = new ObservableCollection<FileSystemEntryModel>();
         public ObservableCollection<FileSystemEntryModel> Items
         {
@@ -181,13 +195,14 @@ namespace Imagin.NET.Demo
 
         void Set(System.IO.DirectoryInfo Info)
         {
+            Type = "Folder";
             Set(Info as System.IO.FileSystemInfo);
         }
 
         void Set(System.IO.FileInfo Info)
         {
             Size = Info.Length;
-
+            Type = "File";
             Set(Info as System.IO.FileSystemInfo);
         }
 
@@ -357,6 +372,21 @@ namespace Imagin.NET.Demo
             {
                 _double = value;
                 OnPropertyChanged("Double");
+            }
+        }
+
+        Visibility _enum = Visibility.Visible;
+        [Description("Description for Enum property.")]
+        public Visibility Enum
+        {
+            get
+            {
+                return _enum;
+            }
+            set
+            {
+                _enum = value;
+                OnPropertyChanged("Enum");
             }
         }
 

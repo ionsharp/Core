@@ -10,6 +10,13 @@ namespace Imagin.Common.Extensions
     /// </summary>
     public static class GenericExtensions
     {
+        public static void Add<T>(this T[] Value, T Item)
+        {
+            var i = Value.Length;
+            Array.Resize(ref Value, i + 1);
+            Value[i - 1] = Item;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -21,8 +28,44 @@ namespace Imagin.Common.Extensions
             return Value ?? Enumerable.Empty<T>();
         }
 
+        public static void For<T>(this IList<T> Source, int From, Action<IList<T>, int> Action)
+        {
+            for (var i = From; i < Source.Count(); i++)
+                Action(Source, i);
+        }
+
+        public static void For<T>(this IList<T> Source, int From, int Until, Action<IList<T>, int> Action)
+        {
+            for (var i = From; i < Until; i++)
+                Action(Source, i);
+        }
+
+        public static void For<T>(this IList<T> Source, int From, Predicate<int> Until, Action<IList<T>, int> Action)
+        {
+            for (var i = From; Until(i); i++)
+                Action(Source, i);
+        }
+
+        public static void For<T>(this IEnumerable<T> Source, int From, Action<IEnumerable<T>, int> Action)
+        {
+            for (var i = From; i < Source.Count(); i++)
+                Action(Source, i);
+        }
+
+        public static void For<T>(this IEnumerable<T> Source, int From, int Until, Action<IEnumerable<T>, int> Action)
+        {
+            for (var i = From; i < Until; i++)
+                Action(Source, i);
+        }
+
+        public static void For<T>(this IEnumerable<T> Source, int From, Predicate<int> Until, Action<IEnumerable<T>, int> Action)
+        {
+            for (var i = From; Until(i); i++)
+                Action(Source, i);
+        }
+
         /// <summary>
-        /// 
+        /// Perform for each loop on given <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="Source"></param>
@@ -73,6 +116,52 @@ namespace Imagin.Common.Extensions
         {
             if (Object == null)
                 throw Name.IsNullOrEmpty() ? new ArgumentNullException() : new ArgumentNullException(Name);
+        }
+
+        public static bool TryAdd<T>(this IList<T> Items, T Item)
+        {
+            try
+            {
+                Items.Add(Item);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool TryClear<T>(this IList<T> Items)
+        {
+            try
+            {
+                Items.Clear();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Attempt to perform for each loop on given <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <param name="Action"></param>
+        public static bool TryForEach<T>(this IEnumerable<T> Source, Action<T> Action)
+        {
+            try
+            {
+                foreach (var i in Source)
+                    Action(i);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>

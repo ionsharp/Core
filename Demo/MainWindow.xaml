@@ -21,7 +21,8 @@
         <Common:FileNameConverter x:Key="FileNameConverter"/>
         <Common:FileSizeConverter x:Key="FileSizeConverter"/>
         <Common:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
-
+        <Common:BrushToColorConverter x:Key="BrushToColorConverter"/>
+        
         <!-- ....................................................................................[ResourceDictionaryEditor] -->
 
         <ResourceDictionary x:Key="Resources.Theme" Source="pack://application:,,,/Imagin.Themes;component/Themes/Default.xaml"/>
@@ -177,13 +178,13 @@
                         VerticalContentAlignment="Center"
                         Margin="0,10">
                         <Label Content="{Binding Columns.Count, Mode=OneWay}" ContentStringFormat="{}Columns: {0}"/>
-                        <Label Content="{Binding SelectedItems.Count, Mode=OneWay, ElementName=PART_AdvancedTreeView}" ContentStringFormat="{}Selected Items: {0}"/>
+                        <Label Content="{Binding SelectedItems.Count, Mode=OneWay}" ContentStringFormat="{}Selected Items: {0}"/>
 
                         <Label Content="Selection Mode:"/>
                         <ComboBox 
-                            SelectedValue="{Binding SelectionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            SelectedValue="{Binding Path=(Controls.Common:TreeViewExtensions.SelectionMode), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type Controls.Common:TreeViewSelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
-                        
+
                         <Label Content="Column Header Visibility:"/>
                         <ComboBox 
                             SelectedValue="{Binding ColumnHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -593,10 +594,25 @@
                         <RadioButton Content="Details" IsChecked="True" Checked="OnViewChanged" GroupName="View"/>
                         <RadioButton Content="List" Checked="OnViewChanged" GroupName="View"/>
                     </Controls.Common:RadioGroup>
+                    <Controls.Common:Spacer 
+                        DataContext="{Binding ElementName=PART_ListView}" 
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal" 
+                        Spacing="10,0,0,0" 
+                        TrimFirst="True" 
+                        VerticalContentAlignment="Center">
+                        <Label Content="Selection Mode:"/>
+                        <ComboBox 
+                            SelectedValue="{Binding SelectionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type SelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
+                    </Controls.Common:Spacer>
+
                     <ListView
                         Grid.Row="1"
+                        x:Name="PART_ListView"
                         Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled="True"
                         ItemsSource="{Binding FileSystemCollectionView}"
+                        Margin="0,10,0,0"
                         Padding="10"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         SelectionMode="Multiple">
@@ -726,13 +742,32 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Controls.Common:Spacer Orientation="Horizontal" Spacing="0,0,15,0">
-                        <CheckBox Content="Can enter" IsChecked="{Binding CanEnter, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
+                    
+                    <Controls.Common:Spacer 
+                        DataContext="{Binding ElementName=PART_PasswordBox}"
+                        Orientation="Horizontal" 
+                        Spacing="0,0,15,0">
+                        <CheckBox 
+                            Content="Can enter"
+                            IsChecked="{Binding CanEnter}" 
+                            VerticalAlignment="Center"/>
+                        
                         <Label Content="Hint:"/>
-                        <Controls.Common:AdvancedTextBox Text="{Binding Hint, ElementName=PART_PasswordBox, UpdateSourceTrigger=PropertyChanged}" Placeholder="Enter a hint..." VerticalAlignment="Center" IsEnabled="{Binding ShowHint, ElementName=PART_PasswordBox}"/>
-                        <CheckBox Content="Show enter button" IsChecked="{Binding ShowEnterButton, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
-                        <CheckBox Content="Show password" IsChecked="{Binding ShowPassword, ElementName=PART_PasswordBox}" VerticalAlignment="Center"/>
+                        <Controls.Common:AdvancedTextBox 
+                            Text="{Binding Hint, ElementName=PART_PasswordBox, UpdateSourceTrigger=PropertyChanged}" 
+                            Placeholder="Enter a hint..." 
+                            VerticalAlignment="Center"/>
+                        
+                        <CheckBox
+                            Content="Show enter button" 
+                            IsChecked="{Binding ShowEnterButton}" 
+                            VerticalAlignment="Center"/>
+                        <CheckBox 
+                            Content="Show password" 
+                            IsChecked="{Binding ShowPassword}" 
+                            VerticalAlignment="Center"/>
                     </Controls.Common:Spacer>
+                    
                     <Controls.Common:PasswordBox 
                         Grid.Row="1"
                         x:Name="PART_PasswordBox"

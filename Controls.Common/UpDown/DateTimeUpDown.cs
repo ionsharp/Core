@@ -276,7 +276,11 @@ namespace Imagin.Controls.Common
 
         protected override bool OnPreviewMouseLeftButtonDownHandled(MouseButtonEventArgs e, Type[] HandledTypes = null)
         {
-            return base.OnPreviewMouseLeftButtonDownHandled(e, new Type[] { typeof(Button), typeof(ToggleButton) });
+            return base.OnPreviewMouseLeftButtonDownHandled(e, new Type[] 
+            {
+                typeof(Button),
+                typeof(ToggleButton),
+            });
         }
 
         protected virtual void OnDropDownClosed(object sender, EventArgs e)

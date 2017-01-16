@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Gadgets.Alarm"
              StartupUri="ClockGadget.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Themes/Default.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

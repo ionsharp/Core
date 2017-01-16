@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("manifest.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/arrowdownsmall.png")]
 
 

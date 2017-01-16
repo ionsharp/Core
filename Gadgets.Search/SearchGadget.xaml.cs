@@ -6,29 +6,29 @@ namespace Imagin.Gadgets.Search
 {
     public partial class SearchGadget : Gadget
     {
-        public static DependencyProperty TypeProperty = DependencyProperty.Register("SearchEngines", typeof(ObservableCollection<SearchEngine>), typeof(SearchGadget), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public ObservableCollection<SearchEngine> SearchEngines
+        public static DependencyProperty ProvidersProperty = DependencyProperty.Register("Providers", typeof(ObservableCollection<SearchProvider>), typeof(SearchGadget), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public ObservableCollection<SearchProvider> Providers
         {
             get
             {
-                return (ObservableCollection<SearchEngine>)GetValue(TypeProperty);
+                return (ObservableCollection<SearchProvider>)GetValue(ProvidersProperty);
             }
             set
             {
-                SetValue(TypeProperty, value);
+                SetValue(ProvidersProperty, value);
             }
         }
 
-        public static DependencyProperty SearchEngineProperty = DependencyProperty.Register("SearchEngine", typeof(SearchEngine), typeof(SearchGadget), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public SearchEngine SearchEngine
+        public static DependencyProperty ProviderProperty = DependencyProperty.Register("Provider", typeof(SearchProvider), typeof(SearchGadget), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public SearchProvider Provider
         {
             get
             {
-                return (SearchEngine)GetValue(SearchEngineProperty);
+                return (SearchProvider)GetValue(ProviderProperty);
             }
             set
             {
-                SetValue(SearchEngineProperty, value);
+                SetValue(ProviderProperty, value);
             }
         }
 
@@ -45,44 +45,34 @@ namespace Imagin.Gadgets.Search
             }
         }
 
-        public SearchGadget()
+        public SearchGadget() : base()
         {
+            Providers = new ObservableCollection<SearchProvider>();
+
+            Providers.Add(new SearchProvider("Bing", @"http://www.bing.com/search?q="));
+            Providers.Add(new SearchProvider("Google", @"https://www.google.com/#q="));
+            Providers.Add(new SearchProvider("Yahoo", @"https://search.yahoo.com/search;?p="));
+
+            Provider = Providers[1];
+
             InitializeComponent();
-
-            this.SearchEngines = new ObservableCollection<SearchEngine>();
-            this.SearchEngines.Add(new SearchEngine(SearchEngineType.Google));
-            this.SearchEngines.Add(new SearchEngine(SearchEngineType.Bing));
-            this.SearchEngines.Add(new SearchEngine(SearchEngineType.Yahoo));
-
-            this.SearchEngine = this.SearchEngines[0];
         }
 
         void ExecuteQuery()
         {
-            string Query = this.Query;
-            this.SearchEngine.Query(Query);
-            this.Query = string.Empty;
+            var query = Query;
+            Provider.Query(query);
+            Query = string.Empty;
         }
 
-        void OnTextBoxPreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        void OnEntered(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter)
-                this.ExecuteQuery();
+            ExecuteQuery();
         }
 
-        void OnSearchClick(object sender, RoutedEventArgs e)
+        void OnSearched(object sender, RoutedEventArgs e)
         {
-            this.ExecuteQuery();
-        }
-
-        void OnCloseClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        void OnImageMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            this.DragMove();
+            ExecuteQuery();
         }
     }
 }
