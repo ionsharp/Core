@@ -284,7 +284,7 @@ namespace Imagin.Controls.Extended
                 return new CoercedPropertyModel<short>();
 
             if (Type == typeof(Size))
-                return new CoercedVariantPropertyModel<Dimensions, Size>();
+                return new CoercedVariantPropertyModel<Proportions, Size>();
 
             if (Type == typeof(SolidColorBrush))
                 return new PropertyModel<SolidColorBrush>();
@@ -316,7 +316,10 @@ namespace Imagin.Controls.Extended
             {
                 Result.Info = Property;
 
-                Result.Set(Host, Property.Name, Property.GetValue(Host), Attributes.Get<string>("Category", false), Attributes.Get<string>("Description", false), Attributes.Get<string>("DisplayFormat", false), Attributes.Get<bool>("ReadOnly", false), Attributes.Get<bool>("Featured", false));
+                var Name = Attributes.Get<string>("DisplayName", false);
+                Name = Name.IsNullOrEmpty() ? Property.Name : Name;
+
+                Result.Set(Host, Name, Property.GetValue(Host), Attributes.Get<string>("Category", false), Attributes.Get<string>("Description", false), Attributes.Get<string>("DisplayFormat", false), Attributes.Get<bool>("ReadOnly", false), Attributes.Get<bool>("Featured", false));
 
                 if (Result is PropertyModel<string>)
                     Result.As<PropertyModel<string>>().Tag = Attributes.Get<StringKind>("StringKind", false);

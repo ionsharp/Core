@@ -91,6 +91,22 @@
             Represents a result with data.
             </summary>
         </member>
+        <member name="P:Imagin.Common.Debug.Result`1.Data">
+            <summary>
+            Abitrary data to store a reference to based on the result.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Result`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Debug.Result"/> class.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Result`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Debug.Result"/> class.
+            </summary>
+            <param name="data"></param>
+        </member>
         <member name="M:Imagin.Common.Debug.Result`1.op_Implicit(Imagin.Common.Debug.Result{`0})~System.Boolean">
             <summary>
             If result is success, true; else, false.
@@ -188,6 +204,27 @@
             </summary>
         </member>
         <member name="M:Imagin.Common.Extensions.DecimalExtensions.Coerce(System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Maximum"></param>
+            <param name="Minimum"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Extensions.Int16Extensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.Int16Extensions.Abs(System.Int16)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.Int16Extensions.Coerce(System.Int16,System.Int16,System.Int16)">
             <summary>
             
             </summary>
@@ -305,6 +342,22 @@
             <typeparam name="T"></typeparam>
             <param name="a"></param>
             <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.Second``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Gets the second item in a sequence.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.Third``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Gets the last item in a sequence.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Value"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.GenericExtensions.ThrowIfNull``1(``0,System.String)">
@@ -484,6 +537,13 @@
             <param name="Increment"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.DoubleExtensions.Abs(System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.DoubleExtensions.Coerce(System.Double,System.Double,System.Double)">
             <summary>
             
@@ -616,6 +676,13 @@
             <param name="Increment"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.Int32Extensions.Abs(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.Int32Extensions.Coerce(System.Int32,System.Int32,System.Int32)">
             <summary>
             
@@ -726,6 +793,13 @@
             </summary>
             <param name="Value"></param>
             <param name="Increment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.Int64Extensions.Abs(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.Int64Extensions.Coerce(System.Int64,System.Int64,System.Int64)">
@@ -1179,6 +1253,22 @@
         <member name="M:Imagin.Common.Extensions.TypeExtensions.Implements``1(System.Type)">
             <summary>
             Checks if given type implements interface (T).
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.TypeExtensions.IsAssignableFrom``1(System.Type)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.TypeExtensions.TryCreate``1(System.Type)">
+            <summary>
+            
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Value"></param>
@@ -2043,185 +2133,59 @@
             </summary>
             <param name="Path"></param>
         </member>
-        <member name="T:Imagin.Common.Configuration.AppDomainContext">
+        <member name="T:Imagin.Common.Config.IApp">
             <summary>
-            Defines necessary utilities to manage an AppDomain.
+            Specifies an application.
             </summary>
         </member>
-        <member name="T:Imagin.Common.Configuration.IApp">
+        <member name="T:Imagin.Common.Config.IPlugin">
             <summary>
-            Represents an application.
+            An independent library used to extend functionality of an application.
             </summary>
         </member>
-        <member name="T:Imagin.Common.Configuration.IPlugin">
-            <summary>
-            An indepedent library used to extend functionality in an application.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Author">
+        <member name="P:Imagin.Common.Config.IPlugin.Author">
             <summary>
             The individual who (or organization that) developed the plugin.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Description">
+        <member name="P:Imagin.Common.Config.IPlugin.Description">
             <summary>
             A short description explaining what the plugin does.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Icon">
+        <member name="P:Imagin.Common.Config.IPlugin.Icon">
             <summary>
             Uri for an icon resource.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.IsEnabled">
+        <member name="P:Imagin.Common.Config.IPlugin.IsEnabled">
             <summary>
             Whether or not the plugin is enabled.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Name">
+        <member name="P:Imagin.Common.Config.IPlugin.Name">
             <summary>
             The name of the plugin.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Uri">
+        <member name="P:Imagin.Common.Config.IPlugin.Uri">
             <summary>
             Website where the plugin is published.
             </summary>
         </member>
-        <member name="P:Imagin.Common.Configuration.IPlugin.Version">
+        <member name="P:Imagin.Common.Config.IPlugin.Version">
             <summary>
             Plugin version.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Configuration.IPlugin.Enable">
+        <member name="M:Imagin.Common.Config.IPlugin.Enable">
             <summary>
             Enable the plugin.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Configuration.IPlugin.Disable">
+        <member name="M:Imagin.Common.Config.IPlugin.Disable">
             <summary>
             Disable the plugin.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Configuration.Plugin">
-            <summary>
-            A wrapper for an independent class library used to extend functionality in an application.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.App">
-            <summary>
-            Get reference to current application as IApp.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Resources">
-            <summary>
-            Resources used by the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Author">
-            <summary>
-            The individual who (or organization that) developed the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Description">
-            <summary>
-            A short description explaining what the plugin does.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Icon">
-            <summary>
-            Uri for an icon resource.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.IsEnabled">
-            <summary>
-            Whether or not the plugin is enabled.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Name">
-            <summary>
-            The name of the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Uri">
-            <summary>
-            Website where the plugin is published.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Configuration.Plugin.Version">
-            <summary>
-            Plugin version.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.GetPaneViewModel">
-            <summary>
-            Get pane view model associated with the plugin (if there is one).
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.GetResources">
-            <summary>
-            Get resources used by the plugin.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.MergePaneViewModel">
-            <summary>
-            Add pane view model.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.MergeResources">
-            <summary>
-            Merge plugin resources with application.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.ReleasePaneViewModel">
-            <summary>
-            Remove pane view model.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.ReleaseResources">
-            <summary>
-            Remove plugin resources from application.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.Plugin.Trace(Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryStatus,System.String,System.String)">
-            <summary>
-            Write information to log.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Configuration.PluginManager">
-            <summary>
-            Defines necessary utilites to load and unload plugins.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.GetContext(System.String)">
-            <summary>
-            Return a context with newly created AppDomain.
-            </summary>
-            <param name="Path">Path to the .dll file.</param>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.GetPlugin(Imagin.Common.Configuration.AppDomainContext,System.String)">
-            <summary>
-            Create and return instance of plugin based on specified context.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.GetPluginType(System.Reflection.Assembly)">
-            <summary>
-            Search for and return plugin type defined in specified assembly.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.Install(System.String)">
-            <summary>
-            Create and add plugin.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.Install(System.String,Imagin.Common.Configuration.IPlugin@)">
-            <summary>
-            Create and add plugin.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Configuration.PluginManager.Uninstall(Imagin.Common.Configuration.IPlugin)">
-            <summary>
-            Remove and dispose plugin.
             </summary>
         </member>
         <member name="T:Imagin.Common.LeftRight">
@@ -2232,6 +2196,16 @@
         <member name="T:Imagin.Common.Globalization.LocalizationProvider">
             <summary>
             A utility to access global localization resources.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.IProportional">
+            <summary>
+            Specifies an object that has proportions.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.IProportional.Proportions">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Common.Meridiem">
@@ -2352,14 +2326,14 @@
             
             </summary>
         </member>
-        <member name="T:Imagin.Common.Primitives.Dimensions">
+        <member name="T:Imagin.Common.Primitives.Proportions">
             <summary>
-            Represents a size with binding support.
+            Represents <see cref="T:System.Windows.Size"/> with binding support; variant of <see cref="T:System.Windows.Size"/>.
             </summary>
         </member>
         <member name="T:Imagin.Common.Primitives.Position">
             <summary>
-            Represents a point with binding support.
+            Represents <see cref="T:System.Windows.Point"/> in two-dimensional space with binding support; variant of <see cref="T:System.Windows.Point"/>.
             </summary>
         </member>
         <member name="T:Imagin.Common.Primitives.Selection">
@@ -2388,6 +2362,11 @@
         <member name="M:Imagin.Common.Primitives.Selection.Set(System.Windows.Rect)">
             <summary>
             Set selection from given Rect.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Primitives.Position3D">
+            <summary>
+            Represents <see cref="T:System.Windows.Point"/> in three-dimensional space with binding support; variant of <see cref="T:System.Windows.Media.Media3D.Point3D"/>.
             </summary>
         </member>
         <member name="T:Imagin.Common.Primitives.Int64Kind">

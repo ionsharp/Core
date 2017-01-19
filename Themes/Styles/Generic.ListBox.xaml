@@ -105,7 +105,6 @@
 
                             <ScrollContentPresenter 
                                 Grid.Row="1" 
-                                Grid.ColumnSpan="2" 
                                 Name="PART_ScrollContentPresenter" 
                                 CanContentScroll="{TemplateBinding CanContentScroll}"
                                 KeyboardNavigation.DirectionalNavigation="Local"/>

@@ -20,16 +20,16 @@ namespace Imagin.Controls.Extended
 
         public event EventHandler<EventArgs<object>> SelectedObjectChanged;
 
-        public static DependencyProperty AcceptNullObjectsProperty = DependencyProperty.Register("AcceptNullObjects", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
-        public bool AcceptNullObjects
+        public static DependencyProperty AcceptsNullObjectsProperty = DependencyProperty.Register("AcceptsNullObjects", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSortChanged));
+        public bool AcceptsNullObjects
         {
             get
             {
-                return (bool)GetValue(AcceptNullObjectsProperty);
+                return (bool)GetValue(AcceptsNullObjectsProperty);
             }
             set
             {
-                SetValue(AcceptNullObjectsProperty, value);
+                SetValue(AcceptsNullObjectsProperty, value);
             }
         }
 
@@ -329,7 +329,7 @@ namespace Imagin.Controls.Extended
         }
         static void OnShowCategoriesChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            Object.As<PropertyGrid>().Group("Category");
+            Object.As<PropertyGrid>().OnShowCategoriesChanged((bool)e.NewValue);
         }
 
         public static DependencyProperty ShowFeaturedProperty = DependencyProperty.Register("ShowFeatured", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -523,25 +523,24 @@ namespace Imagin.Controls.Extended
 
         protected virtual async Task OnSelectedObjectChanged(object Value)
         {
-            if (SelectedObjectChanged != null)
-                SelectedObjectChanged(this, new EventArgs<object>(Value));
-
             if (Value != null)
             {
-                Properties.Featured = null;
-                Properties.Object = Value;
-                Properties.Clear();
+                Properties.Reset(Value);
 
                 IsLoading = true;
                 await SetObject(Value);
                 IsLoading = false;
             }
-            else if (AcceptNullObjects)
-            {
-                Properties.Featured = null;
-                Properties.Object = null;
-                Properties.Clear();
-            }
+            else if (AcceptsNullObjects)
+                Properties.Reset(null);
+
+            SelectedObjectChanged?.Invoke(this, new EventArgs<object>(Value));
+        }
+
+        protected virtual void OnShowCategoriesChanged(bool Value)
+        {
+            Group("Category");
+            Sort();
         }
 
         protected virtual void OnSortChanged()

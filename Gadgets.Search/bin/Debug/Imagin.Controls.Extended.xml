@@ -723,6 +723,12 @@
             <param name="Dictionary">The dictionary to enumerate.</param>
             <param name="Callback">What to do afterwards.</param>
         </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModelCollection.Reset(System.Object)">
+            <summary>
+            Clear all properties and assign a reference to the given object, if any.
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.PropertyModel">
             <summary>
             The base implementation to represent an object property.

@@ -1,4 +1,6 @@
-﻿namespace Imagin.Common
+﻿using System;
+
+namespace Imagin.Common
 {
     public interface ILockable
     {

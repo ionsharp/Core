@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Imagin.Common.Configuration
+namespace Imagin.Common.Config
 {
     /// <summary>
-    /// An indepedent library used to extend functionality in an application.
+    /// An independent library used to extend functionality of an application.
     /// </summary>
     public interface IPlugin
     {
@@ -14,7 +14,7 @@ namespace Imagin.Common.Configuration
         /// </summary>
         string Author
         {
-            get; 
+            get;
         }
 
         /// <summary>

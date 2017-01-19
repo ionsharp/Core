@@ -29,6 +29,23 @@ namespace Imagin.Common.Extensions
             return typeof(T).IsAssignableFrom(Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Type"></param>
+        /// <returns></returns>
+        public static bool IsAssignableFrom<T>(this Type Type)
+        {
+            return Type.IsAssignableFrom(typeof(T));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         public static T TryCreate<T>(this Type Value)
         {
             try

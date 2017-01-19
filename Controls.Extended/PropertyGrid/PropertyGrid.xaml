@@ -530,6 +530,7 @@
                         FontWeight="Bold"
                         Margin="10,5"
                         Visibility="{Binding ShowType, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    
                     <Grid 
                         Grid.Row="1"
                         Margin="10,5,5,10">
@@ -552,6 +553,7 @@
                             Content="{Binding Properties.Featured}"
                             ContentTemplate="{StaticResource PropertyModelTemplate}"/>
                     </Grid>
+                    
                     <DataGrid
                         Grid.Row="2"
                         AutoGenerateColumns="False"
@@ -571,13 +573,13 @@
                             <DataGridTemplateColumn
                                 Header="Name"
                                 SortMemberPath="Name" 
-                                Width="{Binding PropertyColumnWidth, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}">
+                                Width="40*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock 
                                             Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToCamelCaseConverter}}"
                                             TextTrimming="CharacterEllipsis"
-                                            ToolTip=""
+                                            ToolTip="{Binding Text, Mode=OneWay, RelativeSource={RelativeSource Self}}"
                                             VerticalAlignment="Center"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -585,7 +587,7 @@
                             <DataGridTemplateColumn 
                                 CellTemplate="{StaticResource PropertyModelTemplate}" 
                                 Header="Value" 
-                                Width="{Binding ValueColumnWidth, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"/>
+                                Width="60*"/>
                         </DataGrid.Columns>
                         <DataGrid.GroupStyle>
                             <GroupStyle ContainerStyle="{StaticResource Style.DataGrid.GroupHeader}">

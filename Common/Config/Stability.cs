@@ -1,4 +1,4 @@
-﻿namespace Imagin.Common.Configuration
+﻿namespace Imagin.Common.Config
 {
     public enum Stability
     {

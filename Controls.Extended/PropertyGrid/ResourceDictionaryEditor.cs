@@ -7,17 +7,11 @@ namespace Imagin.Controls.Extended
 {
     public class ResourceDictionaryEditor : PropertyGrid
     {
-        #region ResourceDictionaryEditor
-
         public ResourceDictionaryEditor() : base()
         {
         }
 
-        #endregion
-
-        #region Methods
-
-        protected override async Task SetObject(object Value)
+        protected sealed override async Task SetObject(object Value)
         {
             var Result = Value as ResourceDictionary;
 
@@ -33,7 +27,5 @@ namespace Imagin.Controls.Extended
             if (Result != null)
                 await Properties.BeginFromResourceDictionary(Result);
         }
-
-        #endregion
     }
 }

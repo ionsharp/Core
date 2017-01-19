@@ -871,7 +871,12 @@
         </member>
         <member name="E:Imagin.Controls.Common.WindowBase.Closed">
             <summary>
-            Occurs when the window is closed.
+            Occurs when the window is about to close.
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Common.WindowBase.Closing">
+            <summary>
+            Occurs directly after <see cref="M:System.Windows.Window.Close"/> is called, and can be handled to cancel window closure.
             </summary>
         </member>
         <member name="E:Imagin.Controls.Common.WindowBase.FirstLoad">
@@ -889,6 +894,21 @@
             Occurs when a window is shown.
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Common.WindowBase.CornerRadiusProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.WindowBase.CornerRadius"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.WindowBase.CornerRadius">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.WindowBase.IsHiddenProperty">
+            <summary>
+            Identifies the <see cref="P:Imagin.Controls.Common.WindowBase.IsHidden"/> dependency property.
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Common.WindowBase.IsHidden">
             <summary>
             Whether or not the window is currently hidden.
@@ -897,6 +917,32 @@
         <member name="M:Imagin.Controls.Common.WindowBase.#ctor">
             <summary>
             
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.WindowBase.Close(System.Boolean)">
+            <summary>
+            Manually closes a window.
+            </summary>
+            <param name="SupportsCancellation">Whether or not cancellation is supported.</param>
+        </member>
+        <member name="M:Imagin.Controls.Common.WindowBase.OnBeginClosed(Imagin.Controls.Common.WindowResult)">
+            <summary>
+            Occurs when the window is about to close (async).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.WindowBase.OnBeginClosing(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Occurs directly after <see cref="M:System.Windows.Window.Close"/> is called, and can be handled to cancel window closure (async).
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.WindowBase.OnClosed(Imagin.Controls.Common.WindowResult)">
+            <summary>
+            Occurs when the window is about to close.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.WindowBase.OnClosing(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Occurs directly after <see cref="M:System.Windows.Window.Close"/> is called, and can be handled to cancel window closure.
             </summary>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">

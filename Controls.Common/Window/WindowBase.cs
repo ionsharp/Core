@@ -3,6 +3,8 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Threading.Tasks;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Common
 {
@@ -21,9 +23,14 @@ namespace Imagin.Controls.Common
         public WindowResult Result = WindowResult.Unknown;
 
         /// <summary>
-        /// Occurs when the window is closed.
+        /// Occurs when the window is about to close.
         /// </summary>
         public new event EventHandler<EventArgs<WindowResult>> Closed;
+
+        /// <summary>
+        /// Occurs directly after <see cref="Window.Close"/> is called, and can be handled to cancel window closure.
+        /// </summary>
+        public new event CancelEventHandler Closing;
 
         /// <summary>
         /// Occurs when the window is loaded for the first time.
@@ -40,7 +47,13 @@ namespace Imagin.Controls.Common
         /// </summary>
         public event EventHandler<EventArgs> Shown;
 
+        /// <summary>
+        /// Identifies the <see cref="CornerRadius"/> dependency property.
+        /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(WindowBase), new FrameworkPropertyMetadata(default(CornerRadius), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get
@@ -53,6 +66,9 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// Identifies the <see cref="IsHidden"/> dependency property.
+        /// </summary>
         public static readonly DependencyProperty IsHiddenProperty = DependencyProperty.Register("IsHidden", typeof(bool), typeof(WindowBase), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Whether or not the window is currently hidden.
@@ -71,9 +87,32 @@ namespace Imagin.Controls.Common
 
         #endregion
 
+        #region WindowBase
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public WindowBase() : base()
+        {
+            Loaded += (s, e) => OnLoaded(e);
+            Unloaded += (s, e) => OnUnloaded(e);
+        }
+
+        #endregion
+
         #region Methods
 
         #region Commands
+        
+        ICommand beginCloseCommand;
+        public ICommand BeginCloseCommand
+        {
+            get
+            {
+                beginCloseCommand = beginCloseCommand ?? new RelayCommand(async x => await BeginClose(x != null ? x.To<bool>() : true), x => x == null || x is bool);
+                return beginCloseCommand;
+            }
+        }
 
         ICommand closeCommand;
         public ICommand CloseCommand
@@ -137,13 +176,45 @@ namespace Imagin.Controls.Common
 
         #endregion
 
-        #region New
+        #region Public
 
-        public new void Show()
+        public async Task BeginClose(bool SupportsCancellation = true)
         {
-            base.Show();
-            IsHidden = false;
-            OnShown();
+            var e = new CancelEventArgs(false);
+
+            await OnBeginClosing(e);
+
+            if (!e.Cancel)
+            {
+                await OnBeginClosed(Result);
+                base.Close();
+            }
+        }
+
+        public new void Close()
+        {
+            var e = new CancelEventArgs(false);
+
+            OnClosing(e);
+
+            if (!e.Cancel)
+            {
+                OnClosed(Result);
+                base.Close();
+            }
+        }
+
+        /// <summary>
+        /// Manually closes a window.
+        /// </summary>
+        /// <param name="SupportsCancellation">Whether or not cancellation is supported.</param>
+        public void Close(bool SupportsCancellation)
+        {
+            if (!SupportsCancellation)
+            {
+                base.Close();
+            }
+            else Close();
         }
 
         public new void Hide()
@@ -153,38 +224,68 @@ namespace Imagin.Controls.Common
             OnHidden();
         }
 
+        public new void Show()
+        {
+            base.Show();
+            IsHidden = false;
+            OnShown();
+        }
+
         public new bool? ShowDialog()
         {
             OnShown();
             return base.ShowDialog();
         }
 
-        public new void Close()
-        {
-            base.Close();
-            OnClosed();
-        }
-
         #endregion
 
         #region Virtual
 
-        protected virtual void OnClosed()
+        /// <summary>
+        /// Occurs when the window is about to close (async).
+        /// </summary>
+        protected virtual async Task OnBeginClosed(WindowResult Result)
         {
-            if (Closed != null)
-                Closed(this, new EventArgs<WindowResult>(Result));
+            await Task.Run(() => Closed?.Invoke(this, new EventArgs<WindowResult>(Result)));
+        }
+
+        /// <summary>
+        /// Occurs directly after <see cref="Window.Close"/> is called, and can be handled to cancel window closure (async).
+        /// </summary>
+        protected virtual async Task OnBeginClosing(CancelEventArgs e)
+        {
+            await Task.Run(() => Closing?.Invoke(this, e));
+        }
+
+        [Obsolete("Do not use.", true)]
+        protected sealed override void OnClosed(EventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// Occurs when the window is about to close.
+        /// </summary>
+        protected virtual void OnClosed(WindowResult Result)
+        {
+            Closed?.Invoke(this, new EventArgs<WindowResult>(Result));
+        }
+
+        /// <summary>
+        /// Occurs directly after <see cref="Window.Close"/> is called, and can be handled to cancel window closure.
+        /// </summary>
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            Closing?.Invoke(this, e);
         }
 
         protected virtual void OnFirstLoad()
         {
-            if (FirstLoad != null)
-                FirstLoad(this, new EventArgs());
+            FirstLoad?.Invoke(this, new EventArgs());
         }
 
         protected virtual void OnHidden()
         {
-            if (Hidden != null)
-                Hidden(this, new EventArgs());
+            Hidden?.Invoke(this, new EventArgs());
         }
 
         protected virtual void OnLoaded(RoutedEventArgs e)
@@ -198,8 +299,7 @@ namespace Imagin.Controls.Common
 
         protected virtual void OnShown()
         {
-            if (Shown != null)
-                Shown(this, new EventArgs());
+            Shown?.Invoke(this, new EventArgs());
         }
 
         protected virtual void OnUnloaded(RoutedEventArgs e)
@@ -207,19 +307,6 @@ namespace Imagin.Controls.Common
         }
 
         #endregion
-
-        #endregion
-
-        #region WindowBase
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public WindowBase() : base()
-        {
-            Loaded += (s, e) => OnLoaded(e);
-            Unloaded += (s, e) => OnUnloaded(e);
-        }
 
         #endregion
 

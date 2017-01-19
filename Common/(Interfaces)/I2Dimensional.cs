@@ -2,7 +2,7 @@
 
 namespace Imagin.Common
 {
-    public interface IPositionable
+    public interface I2Dimensional
     {
         Position Position
         {

@@ -108,6 +108,40 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
+        /// Gets the second item in a sequence.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static T Second<T>(this IEnumerable<T> Value)
+        {
+            var j = 0;
+            foreach (var i in Value)
+            {
+                if (j == 1) return i;
+                j++;
+            }
+            return default(T);
+        }
+
+        /// <summary>
+        /// Gets the last item in a sequence.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static T Third<T>(this IEnumerable<T> Value)
+        {
+            var j = 0;
+            foreach (var i in Value)
+            {
+                if (j == 2) return i;
+                j++;
+            }
+            return default(T);
+        }
+
+        /// <summary>
         /// Throws an ArgumentNullException if the given data item is null.
         /// </summary>
         /// <param name="Object">The item to check for nullity.</param>

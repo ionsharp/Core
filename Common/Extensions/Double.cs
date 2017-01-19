@@ -22,6 +22,16 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static double Abs(this double Value)
+        {
+            return Math.Abs(Value);
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="ToCoerce"></param>
         /// <param name="Maximum"></param>
         /// <param name="Minimum"></param>

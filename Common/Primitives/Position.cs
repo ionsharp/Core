@@ -1,11 +1,12 @@
 ﻿using Imagin.Common.Input;
 using System;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace Imagin.Common.Primitives
 {
     /// <summary>
-    /// Represents a point with binding support.
+    /// Represents <see cref="System.Windows.Point"/> in two-dimensional space with binding support; variant of <see cref="System.Windows.Point"/>.
     /// </summary>
     [Serializable]
     public class Position : AbstractObject, IVariant<Point>
@@ -15,7 +16,7 @@ namespace Imagin.Common.Primitives
         [field: NonSerialized]
         public event EventHandler<EventArgs<Point>> Changed;
 
-        double x = 0d;
+        protected double x = 0d;
         public double X
         {
             get
@@ -30,7 +31,7 @@ namespace Imagin.Common.Primitives
             }
         }
 
-        double y = 0d;
+        protected double y = 0d;
         public double Y
         {
             get
@@ -45,6 +46,7 @@ namespace Imagin.Common.Primitives
             }
         }
 
+        [XmlIgnore]
         public Point Point
         {
             get
@@ -87,8 +89,7 @@ namespace Imagin.Common.Primitives
 
         public void OnChanged(Point Value)
         {
-            if (Changed != null)
-                Changed(this, new EventArgs<Point>(Value));
+            Changed?.Invoke(this, new EventArgs<Point>(Value));
         }
 
         public void Set(Point Point)

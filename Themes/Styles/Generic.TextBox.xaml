@@ -13,11 +13,14 @@
         <Setter Property="Background" Value="{DynamicResource Brush.TextBox.Background}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.TextBox.Border}" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CaretBrush" Value="{DynamicResource Brush.TextBox.Caret}" />
         <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#Swis721 Cn BT"/>
         <Setter Property="FontSize" Value="15" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Padding" Value="3" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource Brush.TextBox.Selection}" />
+        <Setter Property="SelectionOpacity" Value="0.4" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Style.Triggers>
@@ -28,13 +31,15 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource Brush.TextBox.Focused.Border}" />
             </Trigger>
             <Trigger Property="IsReadOnly" Value="True">
-                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="SelectionBrush" Value="{DynamicResource Brush.TextBox.Disabled.Selection}" />
+                <Setter Property="Opacity" Value="0.8" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="SelectionBrush" Value="{DynamicResource Brush.TextBox.Disabled.Selection}" />
+                <Setter Property="Opacity" Value="0.8" />
             </Trigger>
         </Style.Triggers>
-    </Style>
+    </Style> 
 
     <Style x:Key="Style.TextBox.Large" TargetType="{x:Type TextBox}" BasedOn="{StaticResource Style.TextBox}">
         <Setter Property="AcceptsReturn" Value="True" />

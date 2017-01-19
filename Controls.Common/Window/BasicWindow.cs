@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Common
 {
@@ -238,7 +239,7 @@ namespace Imagin.Controls.Common
         public BasicWindow(Action OnClosed) : this()
         {
             if (OnClosed != null)
-                Closed += (s, e) => OnClosed.Invoke();
+                Closed += (s, e) => OnClosed();
         }
 
         #endregion

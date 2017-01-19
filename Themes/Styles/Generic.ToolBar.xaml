@@ -7,6 +7,7 @@
     <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
     <Style x:Key="{x:Type ToolBar}" TargetType="{x:Type ToolBar}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="{DynamicResource Brush.ToolBar.Background}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.ToolBar.Border}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -52,8 +53,7 @@
                                         <RotateTransform Angle="-90"/>
                                     </Controls.Common:MaskedToggleButton.RenderTransform>
                                 </Controls.Common:MaskedToggleButton>
-                                <!--
-                                <Controls:AdvancedPopup 
+                                <Popup 
                                     x:Name="PART_OverflowPopup"
 								    AllowsTransparency="true"
 								    Focusable="false"
@@ -67,6 +67,7 @@
                                         BorderThickness="1" 
                                         Padding="5" 
                                         Margin="5,0,5,5">
+                                        <!--
                                         <Controls:AdvancedToolBarOverflowPanel 
                                             x:Name="PART_ToolBarOverflowPanel"
 										    Focusable="True"
@@ -76,23 +77,23 @@
 										    Margin="2"
 										    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
 										    WrapWidth="200" />
+                                        -->
                                         <Border.Effect>
                                             <DropShadowEffect Color="{DynamicResource Brush.ContextMenu.DropShadow}" Opacity="0.40" BlurRadius="6" ShadowDepth="3"/>
                                         </Border.Effect>
                                     </Border>
-                                </Controls:AdvancedPopup>
-                                -->
+                                </Popup>
                             </Grid>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <!--<Trigger SourceName="PART_OverflowPopup" Property="HasDropShadow" Value="True" />-->
+                        <Trigger SourceName="PART_OverflowPopup" Property="HasDropShadow" Value="True" />
                         <Trigger Property="Orientation" Value="Vertical">
                             <Setter TargetName="Grid" Property="Margin" Value="1,3,1,1" />
                             <Setter TargetName="PART_Panel" Property="Margin" Value="1,0,2,2" />
                             <Setter TargetName="PART_OverflowGrid" Property="HorizontalAlignment" Value="Stretch" />
                             <Setter TargetName="PART_OverflowGrid" Property="VerticalAlignment" Value="Bottom" />
-                            <!--<Setter TargetName="PART_OverflowPopup" Property="Placement" Value="Right" /> -->
+                            <Setter TargetName="PART_OverflowPopup" Property="Placement" Value="Right" />
                             <Setter TargetName="PART_OverflowButton" Property="Style">
                                 <Setter.Value>
                                     <Style TargetType="{x:Type ToggleButton}">

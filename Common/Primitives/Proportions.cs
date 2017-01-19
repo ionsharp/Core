@@ -6,10 +6,10 @@ using System.Windows;
 namespace Imagin.Common.Primitives
 {
     /// <summary>
-    /// Represents a size with binding support.
+    /// Represents <see cref="System.Windows.Size"/> with binding support; variant of <see cref="System.Windows.Size"/>.
     /// </summary>
     [Serializable]
-    public class Dimensions : AbstractObject, IVariant<Size>
+    public class Proportions : AbstractObject, IVariant<Size>
     {
         #region Properties
 
@@ -56,25 +56,25 @@ namespace Imagin.Common.Primitives
 
         #endregion
 
-        #region Dimensions
+        #region Proportions
 
-        public Dimensions() : base()
+        public Proportions() : base()
         {
         }
 
-        public Dimensions(Size Size) : base()
+        public Proportions(Size Size) : base()
         {
             Set(Size);
         }
 
-        public Dimensions(double Width, double Height) : base()
+        public Proportions(double Width, double Height) : base()
         {
             Set(Width, Height);
         }
 
-        public static implicit operator Dimensions(Size Value)
+        public static implicit operator Proportions(Size Value)
         {
-            return new Dimensions(Value);
+            return new Proportions(Value);
         }
 
         #endregion

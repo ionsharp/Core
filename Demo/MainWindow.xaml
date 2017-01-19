@@ -25,7 +25,7 @@
         
         <!-- ....................................................................................[ResourceDictionaryEditor] -->
 
-        <ResourceDictionary x:Key="Resources.Theme" Source="pack://application:,,,/Imagin.Themes;component/Themes/Default.xaml"/>
+        <ResourceDictionary x:Key="Resources.Theme" Source="pack://application:,,,/Imagin.Themes;component/Styles/Brushes.xaml"/>
 
         <!-- ....................................................................................[Views] -->
 
@@ -869,6 +869,10 @@
                     Background="#05000000" 
                     SelectedObject="{StaticResource Resources.Theme}"
                     ShowHeader="True"/>
+            </TabItem>
+            <TabItem Header="SelectionCanvas">
+                <Controls.Common:SelectionCanvas
+                    ClipToBounds="True"/>
             </TabItem>
             <TabItem Header="Spacer">
                 <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">

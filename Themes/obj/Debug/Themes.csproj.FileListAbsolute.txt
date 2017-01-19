@@ -72,7 +72,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.TreeView.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.Window.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Themes\Default.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Imagin.Themes_MarkupCompile.cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Imagin.Themes.g.resources
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Imagin.Themes.dll
@@ -96,3 +95,4 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Themes.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Brushes.baml

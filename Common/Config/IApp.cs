@@ -3,10 +3,10 @@ using Imagin.Common.Tracing;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Imagin.Common.Configuration
+namespace Imagin.Common.Config
 {
     /// <summary>
-    /// Represents an application.
+    /// Specifies an application.
     /// </summary>
     public interface IApp
     {

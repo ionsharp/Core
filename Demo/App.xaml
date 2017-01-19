@@ -18,7 +18,7 @@
             </Style>
 
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Themes/Default.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Brushes.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.xaml" />
 
                 <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Generic.Window.xaml" />

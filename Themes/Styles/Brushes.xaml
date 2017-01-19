@@ -96,6 +96,9 @@
     <SolidColorBrush x:Key="Brush.DataGridRow.Odd.Background" Color="Gainsboro"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Background" Color="#a9dffe"/>
 
+    <SolidColorBrush x:Key="Brush.DragSelection.Border" Color="#55349ADE"/>
+    <SolidColorBrush x:Key="Brush.DragSelection.Background" Color="#552489cd"/>
+
     <SolidColorBrush x:Key="Brush.Error" Color="#900"/>
     <SolidColorBrush x:Key="Brush.Success" Color="#25bd5b"/>
 
@@ -237,6 +240,9 @@
     <SolidColorBrush x:Key="Brush.TextBox.MouseOver.Border" Color="#AAA"/>
     <SolidColorBrush x:Key="Brush.TextBox.Focused.Border" Color="#007ACC"/>
     <SolidColorBrush x:Key="Brush.TextBox.Placeholder" Color="#AA666666"/>
+    <SolidColorBrush x:Key="Brush.TextBox.Caret" Color="#555"/>
+    <SolidColorBrush x:Key="Brush.TextBox.Selection" Color="#007ACC"/>
+    <SolidColorBrush x:Key="Brush.TextBox.Disabled.Selection" Color="#22000000"/>
 
     <SolidColorBrush x:Key="Brush.ToggleButton.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="Brush.ToggleButton.BorderBrush" Color="Transparent"/>
@@ -246,7 +252,7 @@
     <SolidColorBrush x:Key="Brush.ToggleButton.Checked.Border" Color="#DDD"/>
 
     <SolidColorBrush x:Key="Brush.ToolBar.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Brush.ToolBar.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.ToolBar.Border" Color="#DDD"/>
     <SolidColorBrush x:Key="Brush.ToolBarTray.Background" Color="Transparent"/>
 
     <SolidColorBrush x:Key="Brush.ToolTip.Background" Color="#fdf4bf"/>

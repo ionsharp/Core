@@ -149,7 +149,7 @@ namespace Imagin.Controls.Extended
                         { "Category", "Category", string.Empty },
                         { "Constraint", null, null },
                         { "Description", "Description", string.Empty },
-                        { "DisplayName", "DisplayName", false },
+                        { "DisplayName", "DisplayName", string.Empty },
                         { "Featured", "IsFeatured", false },
                         { "Int64Kind", "Kind", Int64Kind.Default },
                         { "ReadOnly", "IsReadOnly", false },
@@ -200,6 +200,17 @@ namespace Imagin.Controls.Extended
             }));
 
             Callback.InvokeIf(x => !x.IsNull());
+        }
+
+        /// <summary>
+        /// Clear all properties and assign a reference to the given object, if any.
+        /// </summary>
+        /// <param name="Value"></param>
+        public void Reset(object Value = null)
+        {
+            Featured = null;
+            Object = Value;
+            Clear();
         }
 
         #endregion
