@@ -86,6 +86,66 @@
             </summary>
             <param name="Representation"></param>
         </member>
+        <member name="T:Imagin.Common.Data.Converters.ArrayToStringConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ArrayToStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ArrayToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.NullConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks>
+            According to https://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.convertback(v=vs.110).aspx#Anchor_1,
+            
+            If you do not support a conversion back, 
+            you should return Binding.DoNothing or
+            DependencyProperty.UnsetValue.
+            </remarks>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.FileSpeedConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Data.MathBinding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MathBinding.Type">
+            <summary>
+            The type of math operation to perform (note, the operation is unknown unless otherwise specified).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MathBinding.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.MathBinding.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+        </member>
         <member name="T:Imagin.Common.Debug.Result`1">
             <summary>
             Represents a result with data.
@@ -647,14 +707,6 @@
             <summary>
             Sets IsExpanded property to specified value on all TreeViewItems found.
             </summary>
-        </member>
-        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.TrySelect(System.Windows.DependencyObject,System.Boolean)">
-            <summary>
-            Attempt to select the given object using <see cref="M:System.Windows.Controls.Primitives.Selector.SetIsSelected(System.Windows.DependencyObject,System.Boolean)"/>.
-            </summary>
-            <param name="Object"></param>
-            <param name="IsSelected"></param>
-            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Extensions.DoubleExtensions">
             <summary>
@@ -1315,6 +1367,13 @@
             <summary>
             Parses string to byte.
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.ToChar(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.ToInt16(System.String)">
             <summary>
@@ -2188,41 +2247,6 @@
             <remarks>
             Field order is important
             </remarks>
-        </member>
-        <member name="M:Imagin.Common.Data.Converters.NullConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <remarks>
-            According to https://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.convertback(v=vs.110).aspx#Anchor_1,
-            
-            If you do not support a conversion back, 
-            you should return Binding.DoNothing or
-            DependencyProperty.UnsetValue.
-            </remarks>
-        </member>
-        <member name="T:Imagin.Common.Data.Converters.FileSpeedConverter">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Data.MathBinding">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Data.MathBinding.Type">
-            <summary>
-            The type of math operation to perform (note, the operation is unknown unless otherwise specified).
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Data.MathBinding.Value">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Data.MathBinding.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="Path"></param>
         </member>
         <member name="T:Imagin.Common.Config.IApp">
             <summary>

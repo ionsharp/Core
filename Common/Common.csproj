@@ -91,6 +91,7 @@
     <Compile Include="Attributes\Icon.cs" />
     <Compile Include="Attributes\Int64Kind.cs" />
     <Compile Include="Attributes\StringKind.cs" />
+    <Compile Include="Converters\ArrayToStringConverter.cs" />
     <Compile Include="Debug\Result.Generic.cs" />
     <Compile Include="Drawing\AngularUnit.cs" />
     <Compile Include="Extensions\Brush.cs" />

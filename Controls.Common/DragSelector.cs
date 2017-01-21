@@ -412,7 +412,7 @@ namespace Imagin.Controls.Common
         {
             ItemsControl = itemsControl;
 
-            ScrollViewer = ItemsControl.Template.FindName("ScrollViewer", ItemsControl) as ScrollViewer;
+            ScrollViewer = ItemsControl.Template.FindName("PART_ScrollViewer", ItemsControl) as ScrollViewer;
             if (ScrollViewer == null)
                 throw new KeyNotFoundException("ScrollViewer cannot be null.");
 

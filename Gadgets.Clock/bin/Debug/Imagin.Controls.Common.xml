@@ -50,6 +50,26 @@
             <param name="sender">The sender.</param>
             <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
         </member>
+        <member name="T:Imagin.Controls.Common.Extensions.DependencyObjectExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DependencyObjectExtensions.Select(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Select the given element, if supported; element is valid if supports <see cref="M:System.Windows.Controls.Primitives.Selector.SetIsSelected(System.Windows.DependencyObject,System.Boolean)"/> or is <see cref="T:System.Windows.Controls.TreeViewItem"/>.
+            </summary>
+            <param name="Value"></param>
+            <param name="IsSelected"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DependencyObjectExtensions.TrySelect(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Attempt to select the given element, if supported; element is valid if supports <see cref="M:System.Windows.Controls.Primitives.Selector.SetIsSelected(System.Windows.DependencyObject,System.Boolean)"/> or is <see cref="T:System.Windows.Controls.TreeViewItem"/>.
+            </summary>
+            <param name="Object"></param>
+            <param name="IsSelected"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Controls.Common.Extensions.DataGridExtensions">
             <summary>
             
@@ -139,6 +159,44 @@
             been set. 
             </remarks>
         </member>
+        <member name="T:Imagin.Controls.Common.Extensions.TreeViewExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate(System.Windows.Controls.ItemsControl,System.Action{System.Object,System.Windows.Controls.ItemsControl})">
+            <summary>
+            Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child.
+            </summary>
+            <param name="Control"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate(System.Windows.Controls.ItemsControl,System.Func{System.Object,System.Windows.Controls.ItemsControl,System.Nullable{System.Boolean}})">
+            <summary>
+            Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally).
+            </summary>
+            <param name="Control"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate``1(System.Windows.Controls.ItemsControl,System.Action{``0,System.Windows.Controls.ItemsControl})">
+            <summary>
+            Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child.
+            </summary>
+            <param name="Control"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate``1(System.Windows.Controls.ItemsControl,System.Func{``0,System.Windows.Controls.ItemsControl,System.Nullable{System.Boolean}})">
+            <summary>
+            Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally).
+            </summary>
+            <param name="Control"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.Extensions.TreeViewItemExtensions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Common.Extensions.TreeViewItemExtensions.CollapseSiblings(System.Windows.Controls.TreeViewItem)">
             <summary>
             Collapses siblings of <param name="Item"/>.
@@ -146,7 +204,7 @@
         </member>
         <member name="M:Imagin.Controls.Common.Extensions.TreeViewItemExtensions.GetDepth(System.Windows.Controls.TreeViewItem)">
             <summary>
-            Get node depth for specified TreeViewItem.
+            Get depth for given node.
             </summary>
         </member>
         <member name="F:Imagin.Controls.Common.Extensions.WindowExtensions.IconProperty">
@@ -390,14 +448,14 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.TreeViewExt.SelectedObjectProperty">
+        <member name="F:Imagin.Controls.Common.TreeViewExt.SelectedIndexProperty">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Common.TreeViewExt.SelectedObject">
+        <member name="P:Imagin.Controls.Common.TreeViewExt.SelectedIndex">
             <summary>
-            Get or set selected object.
+            
             </summary>
         </member>
         <member name="F:Imagin.Controls.Common.TreeViewExt.SelectedItemsProperty">
@@ -408,6 +466,16 @@
         <member name="P:Imagin.Controls.Common.TreeViewExt.SelectedItems">
             <summary>
             Get or set list of selected items.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.SelectedObjectProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.SelectedObject">
+            <summary>
+            Get or set selected object.
             </summary>
         </member>
         <member name="F:Imagin.Controls.Common.TreeViewExt.SelectedVisualProperty">
@@ -435,6 +503,12 @@
             
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Common.TreeViewExt.OnSelectedIndexChanged(System.Int32[])">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="M:Imagin.Controls.Common.TreeViewExt.OnSelectedItemChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Object})">
             <summary>
             
@@ -452,6 +526,11 @@
             
             </summary>
             <param name="Value"></param>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.CollapseAllCommand">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Controls.Common.TreeViewRowHeader">
             <summary>
@@ -581,6 +660,21 @@
             Provides logic for drag selecting over an ItemsControl.
             </summary>
         </member>
+        <member name="P:Imagin.Controls.Common.DragSelector.Grid">
+            <summary>
+            Element defined in template that wraps <see cref="T:System.Windows.Controls.ItemsPresenter"/>; used for mouse events.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DragSelector.ScrollContentPresenter">
+            <summary>
+            <see cref="T:System.Windows.Controls.ScrollContentPresenter"/> associated with <see cref="P:Imagin.Controls.Common.DragSelector.ScrollViewer"/>.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DragSelector.ScrollViewer">
+            <summary>
+            Scrolling element defined in template.
+            </summary>
+        </member>
         <member name="F:Imagin.Controls.Common.DragSelector.Hash">
             <summary>
             Stores reference to ScrollViewer's style's hash code.
@@ -618,7 +712,7 @@
         </member>
         <member name="M:Imagin.Controls.Common.DragSelector.FindPresenter">
             <summary>
-            Find and store reference to <see cref="P:Imagin.Controls.Common.DragSelector.ScrollContentPresenter"/> by searching <see cref="T:System.Windows.Controls.ScrollViewer"/> template.
+            Find and store reference to <see cref="P:Imagin.Controls.Common.DragSelector.ScrollContentPresenter"/> by searching <see cref="P:Imagin.Controls.Common.DragSelector.ScrollViewer"/> template.
             </summary>
         </member>
         <member name="M:Imagin.Controls.Common.DragSelector.Scroll(System.Windows.Point)">
@@ -648,14 +742,6 @@
             Select items in control based on given area.
             </summary>
             <param name="Control"></param>
-            <param name="Area"></param>
-        </member>
-        <member name="M:Imagin.Controls.Common.DragSelector.Select(System.Windows.Controls.TreeViewItem,System.Boolean,System.Windows.Rect)">
-            <summary>
-            Select items in <see cref="T:System.Windows.Controls.TreeViewItem"/> based on given area.
-            </summary>
-            <param name="Item"></param>
-            <param name="IsSelected"></param>
             <param name="Area"></param>
         </member>
         <member name="T:Imagin.Controls.Common.FontFamilyBox">

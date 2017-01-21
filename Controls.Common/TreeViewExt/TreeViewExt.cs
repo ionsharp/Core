@@ -1,9 +1,11 @@
-﻿using Imagin.Common.Collections.ObjectModel;
+﻿using Imagin.Common;
+using Imagin.Common.Collections.ObjectModel;
 using Imagin.Common.Extensions;
 using Imagin.Common.Input;
 using Imagin.Controls.Common.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,6 +23,8 @@ namespace Imagin.Controls.Common
         #region Properties
 
         static TreeViewItem SelectedItemOnMouseUp;
+
+        bool SelectedIndexChangeHandled = false;
 
         bool SelectedItemChangeHandled = false;
 
@@ -224,24 +228,24 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty SelectedObjectProperty = DependencyProperty.Register("SelectedObject", typeof(object), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedObjectChanged));
+        public static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int[]), typeof(TreeViewExt), new FrameworkPropertyMetadata(default(int[]), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedIndexChanged));
         /// <summary>
-        /// Get or set selected object.
+        /// 
         /// </summary>
-        public object SelectedObject
+        public int[] SelectedIndex
         {
             get
             {
-                return GetValue(SelectedObjectProperty);
+                return (int[])GetValue(SelectedIndexProperty);
             }
             set
             {
-                SetValue(SelectedObjectProperty, value);
+                SetValue(SelectedIndexProperty, value);
             }
         }
-        static void OnSelectedObjectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        static void OnSelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.As<TreeViewExt>().OnSelectedObjectChanged(e.NewValue);
+            d.As<TreeViewExt>().OnSelectedIndexChanged((int[])e.NewValue);
         }
 
         /// <summary>
@@ -261,6 +265,29 @@ namespace Imagin.Controls.Common
             {
                 SetValue(SelectedItemsProperty, value);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty SelectedObjectProperty = DependencyProperty.Register("SelectedObject", typeof(object), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedObjectChanged));
+        /// <summary>
+        /// Get or set selected object.
+        /// </summary>
+        public object SelectedObject
+        {
+            get
+            {
+                return GetValue(SelectedObjectProperty);
+            }
+            set
+            {
+                SetValue(SelectedObjectProperty, value);
+            }
+        }
+        static void OnSelectedObjectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.As<TreeViewExt>().OnSelectedObjectChanged(e.NewValue);
         }
 
         /// <summary>
@@ -294,12 +321,12 @@ namespace Imagin.Controls.Common
             DefaultStyleKey = typeof(TreeViewExt);
 
             Columns = new TreeViewColumnCollection();
+            SelectedIndex = new int[1] { -1 };
+            SelectedItems = new TrackableCollection<object>();
 
             GotFocus += OnGotFocus;
 
             SelectedItemChanged += OnSelectedItemChanged;
-
-            SelectedItems = new TrackableCollection<object>();
             SelectedItems.ItemsChanged += OnSelectedItemsChanged;
 
             this.Bind(TreeViewExtensions.SelectedItemsProperty, this, "SelectedItems");
@@ -353,6 +380,23 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnSelectedIndexChanged(int[] Value)
+        {
+            if (!SelectedIndexChangeHandled)
+            {
+                if (Items.Count > 0)
+                {
+                    var Result = default(object);
+                    //TO-DO: Find object based on given index
+                    //SelectedObject = Result;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected virtual void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -363,7 +407,46 @@ namespace Imagin.Controls.Common
                 SelectedObject = e.NewValue;
                 SelectedObjectChangeHandled = false;
 
-                SelectedVisual = ItemContainerGenerator.ContainerFromItem(e.NewValue).As<TreeViewItem>();
+                SelectedVisual = null;
+
+                this.Enumerate((i, j) =>
+                {
+                    if (i == e.NewValue)
+                    {
+                        SelectedVisual = j as TreeViewItem;
+                        return null;
+                    }
+                    return true;
+                });
+
+                if (SelectedVisual != null)
+                {
+                    var m = new List<int>();
+
+                    var c = SelectedVisual.To<ItemsControl>();
+                    var p = default(ItemsControl);
+
+                    while (true)
+                    {
+                        p = c.As<DependencyObject>().GetParent<ItemsControl>();
+
+                        if (p != null)
+                        {
+                            m.Add(p.Items.IndexOf(c.DataContext));
+                            c = p;
+                        }
+                        if (p == null || p is TreeView)
+                            break;
+                    }
+
+                    SelectedIndexChangeHandled = true;
+                    SelectedIndex = m.Reverse<int>().ToArray<int>();
+                    SelectedIndexChangeHandled = false;
+                }
+                else
+                {
+                    Console.WriteLine("SelectedVisual == null");
+                }
             }
         }
 
@@ -392,6 +475,9 @@ namespace Imagin.Controls.Common
         }
 
         ICommand collapseAllCommand;
+        /// <summary>
+        /// 
+        /// </summary>
         public ICommand CollapseAllCommand
         {
             get

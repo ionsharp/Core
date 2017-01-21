@@ -414,6 +414,18 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static char ToChar(this string Value)
+        {
+            var Result = default(char);
+            char.TryParse(Value, out Result);
+            return Result;
+        }
+
+        /// <summary>
         /// Parses string to short.
         /// </summary>
         public static short ToInt16(this string ToConvert)
@@ -443,7 +455,7 @@ namespace Imagin.Common.Extensions
             return Value;
         }
 
-        public static IEnumerable<int> ToIntArray(this string Value, char Separator = ',')
+        public static IEnumerable<int> ToInt32Array(this string Value, char Separator = ',')
         {
             if (String.IsNullOrEmpty(Value))
                 yield break;

@@ -4,6 +4,9 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TreeViewItemExtensions
     {
         #region Methods
@@ -24,20 +27,21 @@ namespace Imagin.Controls.Common.Extensions
         }
 
         /// <summary>
-        /// Get node depth for specified TreeViewItem.
+        /// Get depth for given node.
         /// </summary>
         public static int GetDepth(this TreeViewItem Item)
         {
-            int Depth = 0;
+            int i = 0;
 
             var Temp = Item as DependencyObject;
             while (Temp != null && !Temp.Is<TreeView>())
             {
-                if (Temp.Is<TreeViewItem>()) Depth++;
+                if (Temp.Is<TreeViewItem>())
+                    i++;
                 Temp = Temp.GetParent();
             }
 
-            return Depth;
+            return i;
         }
 
         #endregion

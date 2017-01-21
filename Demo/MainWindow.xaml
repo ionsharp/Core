@@ -15,6 +15,7 @@
     WindowStartupLocation="CenterScreen"
     x:Name="PART_MainWindow">
     <Controls.Common:BasicWindow.Resources>
+        <Common:ArrayToStringConverter x:Key="ArrayToStringConverter"/>
         <Common:ColorToHexConverter x:Key="ColorToHexConverter"/>
         <Common:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
         <Common:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
@@ -895,10 +896,6 @@
                             ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
                             SelectedValue="{Binding ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="ContentHeaderVisibility"/>
-                        <Controls.Common:TextBoxExt 
-                            IsReadOnly="True"
-                            ToolTip="SelectedIndex"
-                            Text="{Binding SelectedIndex, Mode=OneWay}"/>
                     </Controls.Common:Spacer>
                     <Controls.Common:Spacer 
                         Grid.Column="1"
@@ -917,10 +914,6 @@
                             ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
                             SelectedValue="{Binding ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="ContentHeaderVisibility"/>
-                        <Controls.Common:TextBoxExt 
-                            IsReadOnly="True"
-                            ToolTip="SelectedIndex"
-                            Text="{Binding SelectedIndex, Mode=OneWay}"/>
                     </Controls.Common:Spacer>
                     
                     <Label
@@ -1094,8 +1087,10 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Controls.Common:TreeViewExt 
                         ItemsSource="{Binding HierarchialCollection}"
+                        Margin="0,0,5,0"
                         Controls.Common:TreeViewExtensions.SelectionMode="Single"
                         SelectedObject="{Binding SelectedItem, Mode=TwoWay, ElementName=PART_TreeViewComboBox}">
                         <Controls.Common:TreeViewExt.ColumnHeaderTemplate>
@@ -1109,7 +1104,6 @@
                             </HierarchicalDataTemplate>
                         </Controls.Common:TreeViewExt.ItemTemplate>
                     </Controls.Common:TreeViewExt>
-                    
                     <Controls.Common:TreeViewComboBox 
                         Grid.Column="1"
                         x:Name="PART_TreeViewComboBox"
@@ -1162,6 +1156,12 @@
                         <CheckBox
                             Content="IsColumnMenuEnabled"
                             IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled), Mode=TwoWay}"/>
+
+                        <Controls.Common:TextBoxExt
+                            IsReadOnly="True"
+                            MinWidth="75"
+                            Text="{Binding SelectedIndex, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ArrayToStringConverter}, ConverterParameter=\,}"
+                            ToolTip="SelectedIndex"/>
                     </Controls.Common:Spacer>
 
                     <Controls.Common:TreeViewExt 

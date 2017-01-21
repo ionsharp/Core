@@ -1,4 +1,5 @@
 ﻿using Imagin.Common.Extensions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
@@ -7,9 +8,91 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TreeViewExtensions
     {
         #region Methods
+
+        /// <summary>
+        /// Enumerate <see cref="ItemsControl"/> performing given action for each child.
+        /// </summary>
+        /// <param name="Control"></param>
+        /// <param name="Action"></param>
+        public static void Enumerate(this ItemsControl Control, Action<object, ItemsControl> Action)
+        {
+            Control.Enumerate<object>(Action);
+        }
+
+        /// <summary>
+        /// Enumerate <see cref="ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally).
+        /// </summary>
+        /// <param name="Control"></param>
+        /// <param name="Action"></param>
+        public static void Enumerate(this ItemsControl Control, Func<object, ItemsControl, bool?> Action)
+        {
+            Control.Enumerate<object>(Action);
+        }
+
+        /// <summary>
+        /// Enumerate <see cref="ItemsControl"/> performing given action for each child.
+        /// </summary>
+        /// <param name="Control"></param>
+        /// <param name="Action"></param>
+        public static void Enumerate<T>(this ItemsControl Control, Action<T, ItemsControl> Action)
+        {
+            if (Control == null)
+                throw new ArgumentNullException("Control can't be null.");
+
+            if (Control.Items != null)
+            {
+                foreach (var i in Control.Items)
+                {
+                    if (i.IsNot<T>())
+                        throw new InvalidCastException("Item must be of type T");
+
+                    var j = Control.ItemContainerGenerator.ContainerFromItem(i).To<ItemsControl>();
+                    Action(i.As<T>(), j);
+
+                    if (j != null)
+                        j.Enumerate(Action);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Enumerate <see cref="ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally).
+        /// </summary>
+        /// <param name="Control"></param>
+        /// <param name="Action"></param>
+        public static void Enumerate<T>(this ItemsControl Control, Func<T, ItemsControl, bool?> Action)
+        {
+            if (Control == null)
+                throw new ArgumentNullException("Control can't be null.");
+
+            if (Control.Items != null)
+            {
+                foreach (var i in Control.Items)
+                {
+                    if (i.IsNot<T>())
+                        throw new InvalidCastException("Item must be of type T");
+
+                    var j = Control.ItemContainerGenerator.ContainerFromItem(i).To<ItemsControl>();
+
+                    var Result = Action(i.As<T>(), j);
+
+                    if (Result == null)
+                        break;
+
+                    if (!Result.Value)
+                        continue;
+
+                    if (j != null)
+                        j.Enumerate(Action);
+                }
+            }
+        }
 
         public static void GetAllItems(ItemsControl Control, ICollection<TreeViewItem> AllItems)
         {
