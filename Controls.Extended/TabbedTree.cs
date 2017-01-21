@@ -6,13 +6,14 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Extended
 {
     /// <summary>
     /// 
     /// </summary>
-    public class TabbedTree : AdvancedTreeView
+    public class TabbedTree : TreeViewExt
     {
         #region Properties
 
@@ -206,7 +207,7 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(string), typeof(TabbedTree), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedIndexChanged));
+        public static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(string), typeof(TabbedTree), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -221,10 +222,6 @@ namespace Imagin.Controls.Extended
                 SetValue(SelectedIndexProperty, value);
             }
         }
-        static void OnSelectedIndexChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            ((TabbedTree)Object).OnSelectedIndexChanged((string)e.NewValue);
-        }
 
         #endregion
 
@@ -235,75 +232,24 @@ namespace Imagin.Controls.Extended
         /// </summary>
         public TabbedTree() : base()
         {
-            this.DefaultStyleKey = typeof(TabbedTree);
-
-            this.SelectedItemChanged += OnSelectedItemChanged;
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.ApplyTemplate();
-
-            this.PART_ContentHeader = this.Template.FindName("PART_ContentHeader", this) as ContentControl;
+            DefaultStyleKey = typeof(TabbedTree);
+            SelectedItemChanged += OnSelectedItemChanged;
         }
 
         #endregion
 
         #region Methods
 
-        IEnumerable<int> GetIndices(string Index)
-        {
-            var Indices = Index.Split(',');
-            foreach (var i in Indices)
-            {
-                var j = 0;
-                if (!int.TryParse(i, out j))
-                    continue;
-                yield return j;
-            }
-        }
-
-        void SelectTarget(IEnumerable<int> Indices, ItemsControl Control = null)
-        {
-            if (Indices != null)
-            {
-                var Target = this as ItemsControl;
-                foreach (var i in Indices)
-                {
-                    if (Target.Items.Count > i)
-                        Target = Target.Items[i] as ItemsControl;
-                    else break;
-                }
-                if (Target != null && Target is TreeViewItem)
-                    TreeViewItemExtensions.SetIsSelected(Target as TreeViewItem, true);
-            }
-        }
-
-        protected virtual void OnSelectedIndexChanged(string Value)
-        {
-            this.SelectTarget(this.GetIndices(Value));
-        }
-
         protected virtual void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (this.PART_ContentHeader != null)
-            {
-                if (e.NewValue is TreeViewItem)
-                    this.PART_ContentHeader.Content = (e.NewValue as TreeViewItem).Header.ToString();
-                else this.PART_ContentHeader.Content = e.NewValue;
-            }
+            if (PART_ContentHeader != null)
+                PART_ContentHeader.Content = e.NewValue is TreeViewItem ? e.NewValue.As<TreeViewItem>().Header.ToString() : e.NewValue;
         }
 
-        /// <summary>
-        /// Set selected index by specifying numeric depth.
-        /// </summary>
-        /// <param name="Values"></param>
-        public void SetSelectedIndex(params int[] Values)
+        public override void OnApplyTemplate()
         {
-            var Result = string.Empty;
-            foreach (var i in Values)
-                Result += i.ToString() + ",";
-            this.SelectedIndex = Result.TrimEnd(',');
+            base.ApplyTemplate();
+            PART_ContentHeader = Template.FindName("PART_ContentHeader", this) as ContentControl;
         }
 
         #endregion

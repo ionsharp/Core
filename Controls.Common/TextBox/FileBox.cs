@@ -7,7 +7,7 @@ namespace Imagin.Controls.Common
 {
     [TemplatePart(Name = "PART_BrowseButton", Type = typeof(MaskedButton))]
     [TemplatePart(Name = "PART_Checked", Type = typeof(UIElement))]
-    public class FileBox : AdvancedTextBox
+    public class FileBox : TextBoxExt
     {
         #region DependencyProperties
 

@@ -6,7 +6,7 @@ using System.Windows.Input;
 namespace Imagin.Controls.Common
 {
     [TemplatePart(Name = "PART_Button", Type = typeof(MaskedButton))]
-    public class EditableLabel : AdvancedTextBox
+    public class EditableLabel : TextBoxExt
     {
         #region Properties
 

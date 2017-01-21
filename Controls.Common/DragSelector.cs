@@ -7,63 +7,56 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Data;
-using System.Linq;
 
 namespace Imagin.Controls.Common
 {
     /// <summary>
     /// Provides logic for drag selecting over an ItemsControl.
     /// </summary>
-    [TemplatePart(Name = "PART_Grid", Type = typeof(Grid))]
-    [TemplatePart(Name = "PART_ScrollViewer", Type = typeof(ScrollViewer))]
+    [TemplatePart(Name = "ScrollViewer", Type = typeof(ScrollViewer))]
     internal sealed class DragSelector : AbstractObject
     {
         #region Properties
+
+        #region Parts
+
+        /// <summary>
+        /// Element defined in template that wraps <see cref="ItemsPresenter"/>; used for mouse events.
+        /// </summary>
+        Grid Grid { get; set; } = default(Grid);
 
         ItemsControl ItemsControl
         {
             get; set;
         }
 
-        Selection selection;
-        public Selection Selection
+        ScrollContentPresenter scrollContentPresenter = null;
+        /// <summary>
+        /// <see cref="System.Windows.Controls.ScrollContentPresenter"/> associated with <see cref="ScrollViewer"/>.
+        /// </summary>
+        ScrollContentPresenter ScrollContentPresenter
         {
             get
             {
-                return selection;
+                return scrollContentPresenter;
             }
             set
             {
-                selection = value;
-                OnPropertyChanged("Selection");
+                if (scrollContentPresenter != value)
+                {
+                    scrollContentPresenter = value;
+                    if (value != null)
+                        Hash = ScrollViewer.Style.GetHashCode();
+                }
             }
         }
 
-        #region Parts
-
-        DragSelection PART_DragSelection
-        {
-            get; set;
-        }
-
-        Grid PART_Grid
-        {
-            get; set;
-        }
-
-        ScrollContentPresenter ScrollContentPresenter
-        {
-            get; set;
-        }
-
-        ScrollViewer PART_ScrollViewer
-        {
-            get; set;
-        }
+        /// <summary>
+        /// Scrolling element defined in template.
+        /// </summary>
+        ScrollViewer ScrollViewer { get; set; } = default(ScrollViewer);
 
         #endregion
 
@@ -73,6 +66,11 @@ namespace Imagin.Controls.Common
         /// Stores reference to ScrollViewer's style's hash code.
         /// </summary>
         int? Hash = null;
+
+        /// <summary>
+        /// Indicates if we're currently dragging.
+        /// </summary>
+        bool IsDragging { get; set; } = false;
 
         bool IsSingleMode
         {
@@ -92,16 +90,25 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
-        /// Indicates if we're currently dragging.
-        /// </summary>
-        bool IsDragging { get; set; } = false;
-
-        List<Rect> Selections { get; set; } = new List<Rect>();
-
-        /// <summary>
         /// Stores reference to previously selected area.
         /// </summary>
         Rect PreviousSelection { get; set; } = new Rect();
+
+        Selection selection;
+        public Selection Selection
+        {
+            get
+            {
+                return selection;
+            }
+            set
+            {
+                selection = value;
+                OnPropertyChanged("Selection");
+            }
+        }
+
+        List<Rect> Selections { get; set; } = new List<Rect>();
 
         /// <summary>
         /// Point indicating where the drag started.
@@ -116,6 +123,42 @@ namespace Imagin.Controls.Common
         #endregion
 
         #region Methods
+
+        #region Handlers
+
+        void FindPresenter(object sender, EventArgs e)
+        {
+            FindPresenter();
+        }
+
+        /// <summary>
+        /// Occurs when mouse is down; begins drag.
+        /// </summary>
+        async void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && !IsSingleMode)
+                await OnDragStarted(e);
+        }
+
+        /// <summary>
+        /// Ocurrs whenever mouse moves; drag is evaluated.
+        /// </summary>
+        async void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (IsDragging)
+                await OnDrag(e);
+        }
+
+        /// <summary>
+        /// Occurs when mouse is up; ends drag.
+        /// </summary>
+        async void OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Released && IsDragging)
+                await OnDragEnded(e);
+        }
+
+        #endregion
 
         #region Private
 
@@ -144,9 +187,9 @@ namespace Imagin.Controls.Common
 
         async Task OnDragStarted(MouseButtonEventArgs e)
         {
-            PART_Grid.CaptureMouse();
+            Grid.CaptureMouse();
 
-            StartPoint = e.GetPosition(PART_Grid);
+            StartPoint = e.GetPosition(Grid);
 
             IsDragging = true;
 
@@ -158,7 +201,7 @@ namespace Imagin.Controls.Common
 
         async Task OnDrag(MouseEventArgs e)
         {
-            var Rect = await GetRect(StartPoint, e.GetPosition(PART_Grid));
+            var Rect = await GetRect(StartPoint, e.GetPosition(Grid));
             if (IsDragging)
             {
                 Selection.Set(Rect.X, Rect.Y, Rect.Width, Rect.Height);
@@ -171,8 +214,8 @@ namespace Imagin.Controls.Common
         {
             IsDragging = false;
 
-            if (PART_Grid.IsMouseCaptured)
-                PART_Grid.ReleaseMouseCapture();
+            if (Grid.IsMouseCaptured)
+                Grid.ReleaseMouseCapture();
 
             if (!Selections.TryAdd(PreviousSelection))
                 Selections.TryClear();
@@ -180,6 +223,30 @@ namespace Imagin.Controls.Common
             Selection.Set(0d, 0d, 0d, 0d);
 
             StartPoint = default(Point);
+        }
+
+        /// <summary>
+        /// Find and store reference to <see cref="ScrollContentPresenter"/> by searching <see cref="ScrollViewer"/> template.
+        /// </summary>
+        void FindPresenter()
+        {
+            if (ScrollViewer != null && ScrollViewer.Style != null && (Hash == null || ScrollViewer.Style.GetHashCode() != Hash.Value))
+            {
+                foreach (var e in ScrollViewer.GetVisualChildren<FrameworkElement>())
+                {
+                    if (e.Is<ScrollContentPresenter>())
+                    {
+                        ScrollContentPresenter = e as ScrollContentPresenter;
+                        break;
+                    }
+                }
+            }
+        }
+
+        Rect GetItemBounds(FrameworkElement Item)
+        {
+            var TopLeft = Item.TranslatePoint(new Point(0, 0), Grid);
+            return new Rect(TopLeft.X, TopLeft.Y, Item.ActualWidth, Item.ActualHeight);
         }
 
         /// <summary>
@@ -195,16 +262,16 @@ namespace Imagin.Controls.Common
 
             //Cursor is at top, scroll up.
             if (VerticalPosition < ScrollTolerance)
-                PART_ScrollViewer.ScrollToVerticalOffset(PART_ScrollViewer.VerticalOffset - ScrollOffset);
+                ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - ScrollOffset);
             //Cursor is at bottom, scroll down.  
             else if (VerticalPosition > ItemsControl.ActualHeight - ScrollTolerance) //Bottom of visible list?
-                PART_ScrollViewer.ScrollToVerticalOffset(PART_ScrollViewer.VerticalOffset + ScrollOffset);
+                ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset + ScrollOffset);
             //Cursor is at left, scroll left.  
             else if (HorizontalPosition < ScrollTolerance)
-                PART_ScrollViewer.ScrollToHorizontalOffset(PART_ScrollViewer.HorizontalOffset - ScrollOffset);
+                ScrollViewer.ScrollToHorizontalOffset(ScrollViewer.HorizontalOffset - ScrollOffset);
             //Cursor is at right, scroll right.  
             else if (HorizontalPosition > ItemsControl.ActualWidth - ScrollTolerance)
-                PART_ScrollViewer.ScrollToHorizontalOffset(PART_ScrollViewer.HorizontalOffset + ScrollOffset);
+                ScrollViewer.ScrollToHorizontalOffset(ScrollViewer.HorizontalOffset + ScrollOffset);
         }
 
         /// <summary>
@@ -262,92 +329,48 @@ namespace Imagin.Controls.Common
             foreach (var i in Control.Items)
             {
                 //Get visual object from data object
-                var Item = Control.ItemContainerGenerator.ContainerFromItem(i) as FrameworkElement;
+                var Item = i is FrameworkElement ? i as FrameworkElement : Control.ItemContainerGenerator.ContainerFromItem(i) as FrameworkElement;
 
-                if (Item == null || Item.Visibility.EqualsAny(Visibility.Collapsed))
+                if (Item == null || Item.Visibility != Visibility.Visible)
                     continue;
 
-                //Evaluate item
-                var TopLeft = Item.TranslatePoint(new Point(0, 0), PART_Grid);
-                var ItemBounds = new Rect(TopLeft.X, TopLeft.Y, Item.ActualWidth, Item.ActualHeight);
+                //Get item bounds
+                var ItemBounds = GetItemBounds(Item);
 
-                var Hierarchial = Control is TreeView || Control is TreeViewItem;
+                //Check if current (or previous) selection intersects with item bounds
+                var intersectsWith = IntersectsWith(ItemBounds, Area, PreviousSelection);
 
                 var Result = default(bool?);
-
                 if ((ModifierKeys.Control.IsPressed() || ModifierKeys.Shift.IsPressed()))
                 {
-                    if (Hierarchial)
+                    //Check whether or not the current item intersects with any previous selection
+                    var intersectedWith = IntersectedWith(ItemBounds);
+
+                    //If current item has never insected with a previous selection...
+                    if (intersectedWith == null)
                     {
-                        Select(Item as TreeViewItem, true, Area);
+                        Result = intersectsWith;
                     }
                     else
                     {
-                        //Get whether or not the current item intersects with any previous selection
-                        var intersectedWith = IntersectedWith(ItemBounds);
+                        Result = intersectedWith.Value;
 
-                        //If current item has never insected with a previous selection...
-                        if (intersectedWith == null)
-                        {
-                            Result = IntersectsWith(ItemBounds, Area, PreviousSelection);
-                        }
-                        else
-                        {
-                            Result = intersectedWith.Value;
-
-                            var w = IntersectsWith(ItemBounds, Area, PreviousSelection);
-
-                            //If current item also intersects with current selection, flip it once more
-                            if (w != null && w.Value)
-                                Result = !Result;
-                        }
+                        //If current item also intersects with current (or previous) selection, flip it once more
+                        if (intersectsWith != null && intersectsWith.Value)
+                            Result = !Result;
                     }
                 }
-                else
-                {
-                    if (Hierarchial)
-                    {
-                        Select(Item as TreeViewItem, true, Area);
-                    }
-                    else Result = IntersectsWith(ItemBounds, Area, PreviousSelection);
-                }
+                else Result = intersectsWith;
 
+                //If we are allowed to make a selection, make it
                 if (Result != null)
                     Item.TrySelect(Result.Value);
+
+                //If visible TreeViewItem, enumerate its children
+                if (Item is TreeViewItem)
+                    Select(Item as ItemsControl, Area);
             }
             PreviousSelection = Area;
-        }
-
-        /// <summary>
-        /// Select items in <see cref="TreeViewItem"/> based on given area.
-        /// </summary>
-        /// <param name="Item"></param>
-        /// <param name="IsSelected"></param>
-        /// <param name="Area"></param>
-        void Select(TreeViewItem Item, bool IsSelected, Rect Area)
-        {
-            TreeViewItemExtensions.SetIsSelected(Item, IsSelected);
-            if (Item.IsExpanded && Item.Items.Count > 0)
-                Select(Item, Area);
-        }
-
-        /// <summary>
-        /// Find and store reference to <see cref="ScrollContentPresenter"/> by searching <see cref="ScrollViewer"/> template.
-        /// </summary>
-        void SetPresenter()
-        {
-            if (PART_ScrollViewer != null && PART_ScrollViewer.Style != null && (Hash == null || PART_ScrollViewer.Style.GetHashCode() != Hash.Value))
-            {
-                foreach (var Element in PART_ScrollViewer.GetVisualChildren<FrameworkElement>())
-                {
-                    if (Element.Is<ScrollContentPresenter>())
-                    {
-                        ScrollContentPresenter = Element as ScrollContentPresenter;
-                        Hash = PART_ScrollViewer.Style.GetHashCode();
-                        break;
-                    }
-                }
-            }
         }
 
         #endregion
@@ -361,58 +384,22 @@ namespace Imagin.Controls.Common
 
         public void Register()
         {
-            PART_Grid.MouseDown += this.OnMouseDown;
-            PART_Grid.MouseMove += this.OnMouseMove;
-            PART_Grid.MouseUp += this.OnMouseUp;
+            Grid.MouseDown += OnMouseDown;
+            Grid.MouseMove += OnMouseMove;
+            Grid.MouseUp += OnMouseUp;
 
-            PART_ScrollViewer.LayoutUpdated += SetPresenter;
-            PART_ScrollViewer.Loaded += SetPresenter;
+            ScrollViewer.LayoutUpdated += FindPresenter;
+            ScrollViewer.Loaded += FindPresenter;
         }
 
         public void Deregister()
         {
-            PART_Grid.MouseDown -= this.OnMouseDown;
-            PART_Grid.MouseMove -= this.OnMouseMove;
-            PART_Grid.MouseUp -= this.OnMouseUp;
+            Grid.MouseDown -= OnMouseDown;
+            Grid.MouseMove -= OnMouseMove;
+            Grid.MouseUp -= OnMouseUp;
 
-            PART_ScrollViewer.LayoutUpdated -= SetPresenter;
-            PART_ScrollViewer.Loaded -= SetPresenter;
-        }
-
-        #endregion
-
-        #region Events
-
-        void SetPresenter(object sender, EventArgs e)
-        {
-            this.SetPresenter();
-        }
-
-        /// <summary>
-        /// Occurs when mouse is down; begins drag.
-        /// </summary>
-        async void OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left && !IsSingleMode)
-                await OnDragStarted(e);
-        }
-
-        /// <summary>
-        /// Ocurrs whenever mouse moves; drag is evaluated.
-        /// </summary>
-        async void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            if (IsDragging)
-                await OnDrag(e);
-        }
-
-        /// <summary>
-        /// Occurs when mouse is up; ends drag.
-        /// </summary>
-        async void OnMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Released && IsDragging)
-                await OnDragEnded(e);
+            ScrollViewer.LayoutUpdated -= FindPresenter;
+            ScrollViewer.Loaded -= FindPresenter;
         }
 
         #endregion
@@ -425,31 +412,21 @@ namespace Imagin.Controls.Common
         {
             ItemsControl = itemsControl;
 
-            PART_Grid = ItemsControl.Template.FindName("PART_Grid", ItemsControl) as Grid;
-            if (PART_Grid == null)
-                throw new KeyNotFoundException("Grid cannot be null.");
-
-            //Required for mouse events
-            PART_Grid.Background = Brushes.Transparent;
-
-            PART_ScrollViewer = ItemsControl.Template.FindName("PART_ScrollViewer", ItemsControl) as ScrollViewer;
-            if (PART_ScrollViewer == null)
+            ScrollViewer = ItemsControl.Template.FindName("ScrollViewer", ItemsControl) as ScrollViewer;
+            if (ScrollViewer == null)
                 throw new KeyNotFoundException("ScrollViewer cannot be null.");
 
-            PART_ScrollViewer.Background = Brushes.Transparent;
+            if (ScrollViewer.Content.IsNot<Grid>())
+                throw new KeyNotFoundException("ItemsPresenter must be wrapped.");
+
+            Grid = ScrollViewer.Content as Grid;
+            Grid.Background = Brushes.Transparent; //Required for mouse events
 
             Selection = new Rect(0d, 0d, 0d, 0d);
-
-            //Create and add selection control to grid
-            PART_DragSelection = new DragSelection();
-            BindingOperations.SetBinding(PART_DragSelection, DragSelection.SelectionProperty, new Binding()
-            {
-                Mode = BindingMode.TwoWay,
-                Path = new PropertyPath("Selection"),
-                Source = this
-            });
-
-            PART_Grid.Children.Add(PART_DragSelection);
+            
+            var Temp = new DragSelection();
+            Temp.Bind(DragSelection.SelectionProperty, this, "Selection");
+            Grid.Children.Add(Temp);
         }
 
         #endregion

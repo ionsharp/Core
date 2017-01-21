@@ -7,8 +7,11 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TemplatePart(Name = "PART_ClearButton", Type = typeof(Button))]
-    public class AdvancedTextBox : TextBox
+    public class TextBoxExt : TextBox
     {
         #region Properties
 
@@ -21,7 +24,7 @@ namespace Imagin.Controls.Common
 
         public event EventHandler<RoutedEventArgs> TripleClick;
 
-        public static DependencyProperty CanUserClearProperty = DependencyProperty.Register("CanUserClear", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty CanUserClearProperty = DependencyProperty.Register("CanUserClear", typeof(bool), typeof(TextBoxExt), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool CanUserClear
         {
             get
@@ -34,7 +37,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty PlaceholderProperty = DependencyProperty.Register("Placeholder", typeof(string), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty PlaceholderProperty = DependencyProperty.Register("Placeholder", typeof(string), typeof(TextBoxExt), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public string Placeholder
         {
             get
@@ -47,7 +50,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty PlaceholderStyleProperty = DependencyProperty.Register("PlaceholderStyle", typeof(Style), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty PlaceholderStyleProperty = DependencyProperty.Register("PlaceholderStyle", typeof(Style), typeof(TextBoxExt), new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Style PlaceholderStyle
         {
             get
@@ -60,7 +63,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty SelectAllOnFocusProperty = DependencyProperty.Register("SelectAllOnFocus", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty SelectAllOnFocusProperty = DependencyProperty.Register("SelectAllOnFocus", typeof(bool), typeof(TextBoxExt), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool SelectAllOnFocus
         {
             get
@@ -73,7 +76,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty SelectAllOnTripleClickProperty = DependencyProperty.Register("SelectAllOnTripleClick", typeof(bool), typeof(AdvancedTextBox), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty SelectAllOnTripleClickProperty = DependencyProperty.Register("SelectAllOnTripleClick", typeof(bool), typeof(TextBoxExt), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public bool SelectAllOnTripleClick
         {
             get
@@ -88,11 +91,11 @@ namespace Imagin.Controls.Common
 
         #endregion
 
-        #region AdvancedTextBox
+        #region TextBoxExt
 
-        public AdvancedTextBox() : base()
+        public TextBoxExt() : base()
         {
-            DefaultStyleKey = typeof(AdvancedTextBox);
+            DefaultStyleKey = typeof(TextBoxExt);
         }
 
         #endregion
@@ -162,7 +165,7 @@ namespace Imagin.Controls.Common
                 typeof(Button)
             } : HandledTypes;
 
-            while (!Parent.Is<AdvancedTextBox>())
+            while (!Parent.Is<TextBoxExt>())
             {
                 Parent = Parent.GetParent();
                 if (Parent.IsAny(HandledTypes))

@@ -11,7 +11,7 @@ namespace Imagin.Controls.Common
 {
     [TemplatePart(Name = "PART_Dots", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_EnterButton", Type = typeof(Button))]
-    public class PasswordBox : AdvancedTextBox
+    public class PasswordBox : TextBoxExt
     {
         Button PART_EnterButton
         {

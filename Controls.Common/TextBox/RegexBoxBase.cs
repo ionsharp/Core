@@ -6,7 +6,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public abstract class RegexBoxBase : AdvancedTextBox
+    public abstract class RegexBoxBase : TextBoxExt
     {
         /// <summary>
         /// 

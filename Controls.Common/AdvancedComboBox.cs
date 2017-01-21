@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    [TemplatePart(Name = "PART_TextBox", Type = typeof(AdvancedTextBox))]
+    [TemplatePart(Name = "PART_TextBox", Type = typeof(TextBoxExt))]
     public class AdvancedComboBox : ComboBox
     {
         public event EventHandler<KeyEventArgs> Entered;
@@ -59,9 +59,9 @@ namespace Imagin.Controls.Common
             base.OnApplyTemplate();
 
             var PART_TextBox = this.Template.FindName("PART_TextBox", this);
-            if (PART_TextBox != null && PART_TextBox.Is<AdvancedTextBox>())
+            if (PART_TextBox != null && PART_TextBox.Is<TextBoxExt>())
             {
-                PART_TextBox.As<AdvancedTextBox>().Entered += (s, e) =>
+                PART_TextBox.As<TextBoxExt>().Entered += (s, e) =>
                 {
                     if (Entered != null)
                         Entered(this, e);

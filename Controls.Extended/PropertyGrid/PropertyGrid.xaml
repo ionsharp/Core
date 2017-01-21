@@ -251,7 +251,7 @@
             </DataTemplate>
             <DataTemplate x:Key="{x:Type System.Net:NetworkCredential}">
                 <StackPanel IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}">
-                    <Controls.Common:AdvancedTextBox
+                    <Controls.Common:TextBoxExt
                         Margin="0,0,0,5"
                         Placeholder="{l:Loc Username}"
                         Text="{Binding Value.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -346,7 +346,7 @@
             </DataTemplate>
             <DataTemplate x:Key="{x:Type System:String}">
                 <ContentControl x:Name="PART_Content">
-                    <Controls.Common:AdvancedTextBox 
+                    <Controls.Common:TextBoxExt 
                         HorizontalAlignment="Stretch"
                         IsReadOnly="{Binding IsReadOnly}" 
                         Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -375,7 +375,7 @@
                     <DataTrigger Binding="{Binding Tag, UpdateSourceTrigger=PropertyChanged}" Value="Multiline">
                         <Setter TargetName="PART_Content" Property="Content">
                             <Setter.Value>
-                                <Controls.Common:AdvancedTextBox 
+                                <Controls.Common:TextBoxExt 
                                     AcceptsReturn="True"
                                     IsReadOnly="{Binding IsReadOnly}" 
                                     Height="Auto"
@@ -478,7 +478,7 @@
                     Grid.Column="3"
                     Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Search.png"
                     Margin="0,0,5,0"/>
-                <Controls.Common:AdvancedTextBox
+                <Controls.Common:TextBoxExt
                     Grid.Column="4"
                     CanUserClear="True"
                     Placeholder="{l:Loc Search}"
@@ -573,7 +573,7 @@
                             <DataGridTemplateColumn
                                 Header="Name"
                                 SortMemberPath="Name" 
-                                Width="40*">
+                                Width="{Binding Data.PropertyColumnWidth, Source={StaticResource BindingProxy}}">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock 
@@ -587,7 +587,7 @@
                             <DataGridTemplateColumn 
                                 CellTemplate="{StaticResource PropertyModelTemplate}" 
                                 Header="Value" 
-                                Width="60*"/>
+                                Width="{Binding Data.ValueColumnWidth, Source={StaticResource BindingProxy}}"/>
                         </DataGrid.Columns>
                         <DataGrid.GroupStyle>
                             <GroupStyle ContainerStyle="{StaticResource Style.DataGrid.GroupHeader}">

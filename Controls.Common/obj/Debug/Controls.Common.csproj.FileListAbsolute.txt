@@ -56,8 +56,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debu
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.AdvancedTextBox.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.AdvancedTreeView.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.RippleDecorator.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.CheckerBoard.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.EditableLabel.baml
@@ -89,8 +87,10 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debu
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.pdb
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.Expression.Interactions.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.Expression.Interactions.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TreeViewExt.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TextBoxExt.baml

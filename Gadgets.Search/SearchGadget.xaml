@@ -48,7 +48,7 @@
             <Controls.Common:MaskedImage 
                 Grid.Column="1" 
                 Cursor="Hand"
-                Common:ControlExtensions.IsDragMoveEnabled="True"
+                Controls.Common:ControlExtensions.IsDragMoveEnabled="True"
                 Margin="0,0,5,0"
                 Source="{Binding Provider.Base, Converter={StaticResource SearchEngineToImageConverter}}"/>
 
@@ -65,7 +65,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             
-            <Controls.Common:AdvancedTextBox 
+            <Controls.Common:TextBoxExt 
                 Grid.Column="3"
                 BorderThickness="0"
                 CanUserClear="True"

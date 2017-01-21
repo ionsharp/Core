@@ -4,8 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
     xmlns:Common.Extensions="clr-namespace:Imagin.Common.Extensions;assembly=Imagin.Common"
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
-    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common">
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common">
     <Common.Data.Converters:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
 
     <Storyboard x:Key="FadeInAnimation">
@@ -64,7 +63,7 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource Brush.ListBoxItem.MouseOver.Border}"/>
                 <Setter Property="Foreground" Value="{DynamicResource Brush.ListBoxItem.MouseOver.Foreground}"/>
             </MultiTrigger>
-            <Trigger Property="Common.Extensions:ControlExtensions.IsPossibleDropTarget" Value="True">
+            <Trigger Property="Controls.Common:ControlExtensions.IsPossibleDropTarget" Value="True">
                 <Setter Property="Background" Value="{DynamicResource Brush.ListBoxItem.DropTarget.Background}" />
                 <Setter Property="BorderBrush" Value="Red" />
             </Trigger>
@@ -74,11 +73,16 @@
     <Style x:Key="{x:Type ListViewItem}" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}"/>
 
     <Style x:Key="Style.ListView.ScrollViewer" TargetType="{x:Type ScrollViewer}">
+        <Setter Property="CanContentScroll" Value="True"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ScrollViewer">
-                    <Border Padding="{TemplateBinding Padding}">
-                        <Grid Background="{TemplateBinding Background}">
+                    <Border 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
@@ -88,6 +92,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
+                            
                             <Border 
                                 Grid.ColumnSpan="2" 
                                 Background="{DynamicResource Brush.GridView.Background}"/>
@@ -104,11 +109,11 @@
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
 
                             <ScrollContentPresenter 
-                                Grid.Row="1" 
+                                Grid.Row="1"
                                 Name="PART_ScrollContentPresenter" 
                                 CanContentScroll="{TemplateBinding CanContentScroll}"
                                 KeyboardNavigation.DirectionalNavigation="Local"/>
-                            
+
                             <ScrollBar 
                                 Name="PART_HorizontalScrollBar"
                                 Orientation="Horizontal"
@@ -137,11 +142,13 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.ListBox.Border}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="Controls.Common.Extensions:ListBoxExtensions.IsDirectionalSelectionEnabled" Value="True"/>
+        <Setter Property="Controls.Common:ListBoxExtensions.IsDirectionalSelectionEnabled" Value="True"/>
         <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
         <Setter Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="True"/>
-        <Setter Property="Controls.Common.Extensions:ItemsControlExtensions.SelectNoneOnEmptySpaceClick" Value="True"/>
-        <Setter Property="Controls.Common.Extensions:ListBoxExtensions.SelectionWrap" Value="True"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel"/>
+        <Setter Property="Controls.Common:ItemsControlExtensions.SelectNoneOnEmptySpaceClick" Value="True"/>
+        <Setter Property="Controls.Common:ListBoxExtensions.SelectionWrap" Value="True"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
         <Setter Property="Template">
@@ -152,9 +159,8 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid x:Name="PART_Grid">
-                            <ItemsPresenter 
-                                Margin="{TemplateBinding Padding}"/>
+                        <Grid>
+                            <ItemsPresenter Margin="{TemplateBinding Padding}"/>
                         </Grid>
                     </ScrollViewer>
                     <ControlTemplate.Triggers>

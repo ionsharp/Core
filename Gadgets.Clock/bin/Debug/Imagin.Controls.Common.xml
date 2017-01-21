@@ -4,264 +4,55 @@
         <name>Imagin.Controls.Common</name>
     </assembly>
     <members>
-        <member name="T:Imagin.Controls.Common.Interactivity.AutoPositionPopupBehavior">
-            <summary>
-            Auto-positions popup when the parent element's position changes (TO-DO: support scrolling).
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Common.SelectionCanvas">
-            <summary>
-            SelectionCanvas
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.SelectionCanvas.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Common.RegexBoxBase">
+        <member name="T:Imagin.Controls.Common.Extensions.ControlExtensions">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Common.RegexBoxBase.regex">
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsPossibleDropTarget">
+            <summary>
+            Indicates whether or not the current item is a possible drop target
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsMouseDirectlyOverItemKey">
+            <summary>
+            Indicates whether or not the mouse is directly over an item.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsPossibleDropTargetKey">
+            <summary>
+            Indicates whether or not the current item is a possible drop target
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.OnUpdateOverItem(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is a listener for the UpdateOverItemEvent.  
+            When it is received, it means that the sender is the 
+            closest item to the mouse (closest logically, not visually).
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.Content">
+            <summary>
+            Enables assigning any FrameworkElement a 'content' object.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.OnDragEvent(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            Called when an item is dragged over the control.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.OnDragLeave(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            Called when the drag cursor leaves the control.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:Imagin.Controls.Common.Extensions.DataGridExtensions">
             <summary>
             
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.RegexBoxBase.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.RegexBoxBase.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs)">
-            <summary>
-            
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="T:Imagin.Controls.Common.AdvancedTreeView">
-            <summary>
-            An advanced TreeView.
-            </summary>
-            <remarks>
-            Multi selection behavior borrowed from https://github.com/cmyksvoll/MultiSelectTreeView.
-            </remarks>
-        </member>
-        <member name="E:Imagin.Controls.Common.AdvancedTreeView.SelectedItemsChanged">
-            <summary>
-            Occurs when one or more items are selected or unselected.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.CanResizeColumnsProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.CanResizeColumns">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderContextMenuProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderContextMenu">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderHeightProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderHeight">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStyleProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStyle">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStyleSelectorProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStyleSelector">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderTemplateProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderTemplate">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderTemplateSelectorProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderTemplateSelector">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStringFormatProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderStringFormat">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderVisibilityProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.ColumnHeaderVisibility">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.ColumnsProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.Columns">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.SelectedObjectProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.SelectedObject">
-            <summary>
-            Get or set selected object.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.SelectedItemsProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.SelectedItems">
-            <summary>
-            Get or set list of selected items.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.AdvancedTreeView.SelectedVisualProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.AdvancedTreeView.SelectedVisual">
-            <summary>
-            Get or set visual associated with selected object.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.AdvancedTreeView.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnPreviewMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnPreviewMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnSelectedItemChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Object})">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnSelectedItemsChanged(System.Object,System.EventArgs)">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.AdvancedTreeView.OnSelectedObjectChanged(System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="Value"></param>
-        </member>
-        <member name="T:Imagin.Controls.Common.TreeViewRowHeader">
-            <summary>
-            A container used to present a TreeViewItem's header.
-            </summary>
-            <remarks>
-            This is only needed if item is hosted in AdvancedTreeView
-            and, therefore, supports showing multiple columns. If 
-            columns should be hidden or otherwise aren't present,
-            the item's header is shown by default.
-            </remarks>
-        </member>
-        <member name="M:Imagin.Controls.Common.TreeViewRowHeader.GetColumnContent(Imagin.Controls.Common.TreeViewColumn,System.Windows.Controls.TreeViewItem)">
-            <summary>
-            Get content for specified item based on specified column.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.TreeViewRowHeader.GetDefaultHeader(System.Windows.Controls.TreeViewItem)">
-            <summary>
-            If not hosted in AdvancedTreeView or shouldn't show multiple columns, display default header.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.TreeViewRowHeader.GetHeader(System.Windows.Controls.TreeView,System.Windows.Controls.TreeViewItem)">
-            <summary>
-            Gets header for the specified item; columns are optional.
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Common.AlignableWrapPanel" -->
-        <member name="T:Imagin.Controls.Common.DirectionPad">
-            <summary>
-            A rectangular control that enables specifying a 
-            direction by clicking a directional arrow. Directional 
-            arrows make all arrows shift in corresponding direction
-             when clicked.
-            </summary>
-            <summary>
-            DirectionPad
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.DirectionPad.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.AutoSizeColumnsProperty">
-            <summary>
-            Applies GridUnit.Star GridLength to all columns.
             </summary>
         </member>
         <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.ScrollAddedIntoViewProperty">
@@ -272,6 +63,11 @@
         <member name="T:Imagin.Controls.Common.Extensions.ItemsControlExtensions">
             <summary>
             
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.AutoSizeColumnsProperty">
+            <summary>
+            Applies GridUnit.Star GridLength to all columns.
             </summary>
         </member>
         <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.IsColumnMenuEnabledProperty">
@@ -445,6 +241,283 @@
         <member name="M:Imagin.Controls.Common.Extensions.WindowExtensions.RECT.op_Inequality(Imagin.Controls.Common.Extensions.WindowExtensions.RECT,Imagin.Controls.Common.Extensions.WindowExtensions.RECT)">
             <summary> Determine if 2 RECT are different(deep compare)</summary>
         </member>
+        <member name="T:Imagin.Controls.Common.Interactivity.AutoPositionPopupBehavior">
+            <summary>
+            Auto-positions popup when the parent element's position changes (TO-DO: support scrolling).
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.SelectionCanvas">
+            <summary>
+            SelectionCanvas
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.SelectionCanvas.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.RegexBoxBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.RegexBoxBase.regex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RegexBoxBase.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RegexBoxBase.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.TreeViewExt">
+            <summary>
+            An extended version of <see cref="T:System.Windows.Controls.TreeView"/>.
+            </summary>
+            <remarks>
+            Multi-selection borrowed from https://github.com/cmyksvoll/MultiSelectTreeView.
+            </remarks>
+        </member>
+        <member name="E:Imagin.Controls.Common.TreeViewExt.SelectedItemsChanged">
+            <summary>
+            Occurs when one or more items are selected or unselected.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.CanResizeColumnsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.CanResizeColumns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnHeaderContextMenuProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.ColumnHeaderContextMenu">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnHeaderHeightProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.ColumnHeaderHeight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnHeaderStyleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.ColumnHeaderStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnHeaderStyleSelectorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.ColumnHeaderStyleSelector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnHeaderTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.ColumnHeaderTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnHeaderTemplateSelectorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.ColumnHeaderTemplateSelector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnHeaderStringFormatProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.ColumnHeaderStringFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnHeaderVisibilityProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.ColumnHeaderVisibility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.ColumnsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.Columns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.SelectedObjectProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.SelectedObject">
+            <summary>
+            Get or set selected object.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.SelectedItemsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.SelectedItems">
+            <summary>
+            Get or set list of selected items.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewExt.SelectedVisualProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewExt.SelectedVisual">
+            <summary>
+            Get or set visual associated with selected object.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewExt.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewExt.OnPreviewMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewExt.OnPreviewMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewExt.OnSelectedItemChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewExt.OnSelectedItemsChanged(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewExt.OnSelectedObjectChanged(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.TreeViewRowHeader">
+            <summary>
+            A container used to present a TreeViewItem's header.
+            </summary>
+            <remarks>
+            This is only needed if item is hosted in TreeViewExt
+            and, therefore, supports showing multiple columns. If 
+            columns should be hidden or otherwise aren't present,
+            the item's header is shown by default.
+            </remarks>
+        </member>
+        <member name="F:Imagin.Controls.Common.TreeViewRowHeader.ColumnOffsetProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TreeViewRowHeader.ColumnOffset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewRowHeader.GetColumnContent(Imagin.Controls.Common.TreeViewColumn,System.Windows.Controls.TreeViewItem)">
+            <summary>
+            Get content for specified item based on specified column.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewRowHeader.GetDefaultHeader(System.Windows.Controls.TreeViewItem)">
+            <summary>
+            If not hosted in TreeViewExt or shouldn't show multiple columns, display default header.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewRowHeader.GetHeader(System.Windows.Controls.TreeView,System.Windows.Controls.TreeViewItem)">
+            <summary>
+            Gets header for the specified item; columns are optional.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewRowHeader.OnLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hide the item while fetching the header; display item when finished. 
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewRowHeader.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Common.AlignableWrapPanel" -->
+        <member name="T:Imagin.Controls.Common.DirectionPad">
+            <summary>
+            A rectangular control that enables specifying a 
+            direction by clicking a directional arrow. Directional 
+            arrows make all arrows shift in corresponding direction
+             when clicked.
+            </summary>
+            <summary>
+            DirectionPad
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DirectionPad.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.FontSizeBox">
             <summary>
             A ComboBox containing traditional font sizes.
@@ -528,6 +601,26 @@
             Point indicating where the drag started.
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Common.DragSelector.OnMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Occurs when mouse is down; begins drag.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DragSelector.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Ocurrs whenever mouse moves; drag is evaluated.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DragSelector.OnMouseUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Occurs when mouse is up; ends drag.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DragSelector.FindPresenter">
+            <summary>
+            Find and store reference to <see cref="P:Imagin.Controls.Common.DragSelector.ScrollContentPresenter"/> by searching <see cref="T:System.Windows.Controls.ScrollViewer"/> template.
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Common.DragSelector.Scroll(System.Windows.Point)">
             <summary>
             Scroll based on current position.
@@ -565,26 +658,6 @@
             <param name="IsSelected"></param>
             <param name="Area"></param>
         </member>
-        <member name="M:Imagin.Controls.Common.DragSelector.SetPresenter">
-            <summary>
-            Find and store reference to <see cref="P:Imagin.Controls.Common.DragSelector.ScrollContentPresenter"/> by searching <see cref="T:System.Windows.Controls.ScrollViewer"/> template.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.DragSelector.OnMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            Occurs when mouse is down; begins drag.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.DragSelector.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            Ocurrs whenever mouse moves; drag is evaluated.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.DragSelector.OnMouseUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            Occurs when mouse is up; ends drag.
-            </summary>
-        </member>
         <member name="T:Imagin.Controls.Common.FontFamilyBox">
             <summary>
             A ComboBox containing system font families.
@@ -611,6 +684,126 @@
         <member name="T:Imagin.Controls.Common.RadioGroup">
             <summary>
             A container for similar RadioButtons.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ResizableGrid.ItemContainerStyleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ResizableGrid.ItemContainerStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ResizableGrid.ItemTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ResizableGrid.ItemTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ResizableGrid.ItemsSourceProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ResizableGrid.ItemsSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ResizableGrid.ColumnWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.SetColumnWidth(System.Windows.DependencyObject,System.Windows.GridLength)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.GetColumnWidth(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ResizableGrid.MinColumnWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.SetMinColumnWidth(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.GetMinColumnWidth(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ResizableGrid.MaxColumnWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.SetMaxColumnWidth(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.GetMaxColumnWidth(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ResizableGrid.ShowSplitterProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ResizableGrid.ShowSplitter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ResizableGrid.SplitterWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ResizableGrid.SplitterWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.GetColumnDefinition(System.Windows.Controls.ContentPresenter,System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.OnItemContainerStyleChanged(System.Windows.Style)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.OnItemsSourceChange(System.Collections.IEnumerable)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.OnItemTemplateChanged(System.Windows.DataTemplate)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ResizableGrid.OnSplitterWidthChanged(System.Double)">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Controls.Common.Spacer">
@@ -793,7 +986,12 @@
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.AdvancedTextBox.OnPreviewMouseLeftButtonDownHandled(System.Windows.Input.MouseButtonEventArgs,System.Type[])">
+        <member name="T:Imagin.Controls.Common.TextBoxExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TextBoxExt.OnPreviewMouseLeftButtonDownHandled(System.Windows.Input.MouseButtonEventArgs,System.Type[])">
             <remarks>
             Normally, focus is obtained when left mouse button is pressed.
             When clicking buttons that might be contained in the template,

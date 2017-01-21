@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Common
 {
@@ -11,41 +12,36 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
-        public static readonly DependencyProperty ShowSplitterProperty = DependencyProperty.Register("ShowSplitter", typeof(bool), typeof(ResizableGrid), new PropertyMetadata(true, OnShowSplitterChanged));
-        public bool ShowSplitter
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty ItemContainerStyleProperty = DependencyProperty.Register("ItemContainerStyle", typeof(Style), typeof(ResizableGrid), new PropertyMetadata(default(Style), OnItemContainerStyleChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public Style ItemContainerStyle
         {
             get
             {
-                return (bool)GetValue(ShowSplitterProperty);
+                return (Style)GetValue(ItemContainerStyleProperty);
             }
             set
             {
-                SetValue(ShowSplitterProperty, value);
+                SetValue(ItemContainerStyleProperty, value);
             }
         }
-        static void OnShowSplitterChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        static void OnItemContainerStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            d.As<ResizableGrid>().OnItemContainerStyleChanged((Style)e.NewValue);
         }
 
-        public static readonly DependencyProperty SplitterWidthProperty = DependencyProperty.Register("SplitterWidth", typeof(double), typeof(ResizableGrid), new PropertyMetadata(3.0, OnSplitterWidthChanged));
-        public double SplitterWidth
-        {
-            get
-            {
-                return (double)GetValue(SplitterWidthProperty);
-            }
-            set
-            {
-                SetValue(SplitterWidthProperty, value);
-            }
-        }
-        static void OnSplitterWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            foreach (var i in ((ResizableGrid)d).Children.OfType<GridSplitter>())
-                i.Width = (double)e.NewValue;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(ResizableGrid), new PropertyMetadata(default(DataTemplate), OnItemTemplateChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate ItemTemplate
         {
             get
@@ -59,29 +55,16 @@ namespace Imagin.Controls.Common
         }
         static void OnItemTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            foreach (var child in ((ResizableGrid)d).Children.OfType<ContentPresenter>())
-                child.ContentTemplate = (DataTemplate)e.NewValue;
+            d.As<ResizableGrid>().OnItemTemplateChanged((DataTemplate)e.NewValue);
         }
 
-        public static readonly DependencyProperty ItemContainerStyleProperty = DependencyProperty.Register("ItemContainerStyle", typeof(Style), typeof(ResizableGrid), new PropertyMetadata(default(Style), OnContainerStyleChanged));
-        public Style ItemContainerStyle
-        {
-            get
-            {
-                return (Style)GetValue(ItemContainerStyleProperty);
-            }
-            set
-            {
-                SetValue(ItemContainerStyleProperty, value);
-            }
-        }
-        static void OnContainerStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            foreach (var Child in ((ResizableGrid)d).Children.OfType<ContentPresenter>())
-                Child.Style = (Style)e.NewValue;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(ResizableGrid), new PropertyMetadata(null, OnItemsSourceChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public IEnumerable ItemsSource
         {
             get
@@ -95,54 +78,23 @@ namespace Imagin.Controls.Common
         }
         static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var ResizableGrid = (ResizableGrid)d;
-
-            ResizableGrid.Children.Clear();
-            ResizableGrid.ColumnDefinitions.Clear();
-
-            var Items = e.NewValue as IEnumerable;
-            if (Items == null) return;
-
-            var Children = Items.Cast<object>().Select(ResizableGrid.GenerateContainer).ToArray();
-            if (Children.Count() == 0) return;
-
-            Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-            {
-                for (int i = 0; ; i++)
-                {
-                    var Child = Children[i];
-                    var Column = ResizableGrid.GetColumnDefinition(Child, i);
-
-                    Child.ClipToBounds = true;
-
-                    ResizableGrid.ColumnDefinitions.Add(Column);
-                    ResizableGrid.Children.Add(Child);
-
-                    SetColumn(Child, i);
-
-                    if (i == Children.Length - 1) break;
-
-                    var Splitter = new GridSplitter
-                    {
-                        Width = ResizableGrid.SplitterWidth,
-                        ResizeBehavior = GridResizeBehavior.CurrentAndNext,
-                        VerticalAlignment = VerticalAlignment.Stretch,
-                        HorizontalAlignment = HorizontalAlignment.Right
-                    };
-                    if (!ResizableGrid.ShowSplitter)
-                        Splitter.Background = Brushes.Transparent;
-
-                    SetColumn(Splitter, i);
-                    ResizableGrid.Children.Add(Splitter);
-                }
-            }));
+            d.As<ResizableGrid>().OnItemsSourceChange((IEnumerable)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ColumnWidthProperty = DependencyProperty.RegisterAttached("ColumnWidth", typeof(GridLength), typeof(ResizableGrid), new PropertyMetadata(new GridLength(1, GridUnitType.Star), OnColumnWidthChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public static void SetColumnWidth(DependencyObject Object, GridLength Value)
         {
             Object.SetValue(ColumnWidthProperty, Value);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public static GridLength GetColumnWidth(DependencyObject Object)
         {
             return (GridLength)Object.GetValue(ColumnWidthProperty);
@@ -152,11 +104,20 @@ namespace Imagin.Controls.Common
             UpdateColumnDefinition(Object, Column => Column.Width = (GridLength)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty MinColumnWidthProperty = DependencyProperty.RegisterAttached("MinColumnWidth", typeof(double), typeof(ResizableGrid), new PropertyMetadata(100d, OnMinColumnWidthChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public static void SetMinColumnWidth(DependencyObject Object, double Value)
         {
             Object.SetValue(MinColumnWidthProperty, Value);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public static double GetMinColumnWidth(DependencyObject Object)
         {
             return (double)Object.GetValue(MinColumnWidthProperty);
@@ -166,11 +127,20 @@ namespace Imagin.Controls.Common
             UpdateColumnDefinition(Object, Column => Column.MinWidth = (double)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty MaxColumnWidthProperty = DependencyProperty.RegisterAttached("MaxColumnWidth", typeof(double), typeof(ResizableGrid), new PropertyMetadata(double.MaxValue, OnMaxColumnWidthChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public static void SetMaxColumnWidth(DependencyObject Object, double Value)
         {
             Object.SetValue(MaxColumnWidthProperty, Value);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public static double GetMaxColumnWidth(DependencyObject Object)
         {
             return (double)Object.GetValue(MaxColumnWidthProperty);
@@ -178,6 +148,48 @@ namespace Imagin.Controls.Common
         static void OnMaxColumnWidthChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             UpdateColumnDefinition(Object, column => column.MaxWidth = (double)e.NewValue);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty ShowSplitterProperty = DependencyProperty.Register("ShowSplitter", typeof(bool), typeof(ResizableGrid), new PropertyMetadata(true));
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ShowSplitter
+        {
+            get
+            {
+                return (bool)GetValue(ShowSplitterProperty);
+            }
+            set
+            {
+                SetValue(ShowSplitterProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty SplitterWidthProperty = DependencyProperty.Register("SplitterWidth", typeof(double), typeof(ResizableGrid), new PropertyMetadata(3.0, OnSplitterWidthChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public double SplitterWidth
+        {
+            get
+            {
+                return (double)GetValue(SplitterWidthProperty);
+            }
+            set
+            {
+                SetValue(SplitterWidthProperty, value);
+            }
+        }
+        static void OnSplitterWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.As<ResizableGrid>().OnSplitterWidthChanged((double)e.NewValue);
         }
 
         #endregion
@@ -204,6 +216,9 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual ColumnDefinition GetColumnDefinition(ContentPresenter Child, int Index)
         {
             return new ColumnDefinition
@@ -212,6 +227,73 @@ namespace Imagin.Controls.Common
                 MinWidth = GetMinColumnWidth(Child),
                 Width = GetColumnWidth(Child),
             };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnItemContainerStyleChanged(Style Value)
+        {
+            Children.OfType<ContentPresenter>().ForEach(i => i.Style = Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnItemsSourceChange(IEnumerable Value)
+        {
+            Children.Clear();
+            ColumnDefinitions.Clear();
+
+            if (Value != null)
+            {
+                var Columns = Value.Cast<object>().Select(GenerateContainer).ToArray();
+                if (Columns.Count() > 0)
+                {
+                    Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+                    {
+                        for (int i = 0; ; i++)
+                        {
+                            var Child = Columns[i];
+                            Child.ClipToBounds = true;
+                            SetColumn(Child, i);
+                            Children.Add(Child);
+
+                            ColumnDefinitions.Add(GetColumnDefinition(Child, i));
+
+                            if (i == Columns.Length - 1) break;
+
+                            var s = new GridSplitter
+                            {
+                                HorizontalAlignment = HorizontalAlignment.Right,
+                                ResizeBehavior = GridResizeBehavior.CurrentAndNext,
+                                VerticalAlignment = VerticalAlignment.Stretch,
+                                Visibility = ShowSplitter.ToVisibility(),
+                                Width = SplitterWidth,
+                            };
+
+                            SetColumn(s, i);
+                            Children.Add(s);
+                        }
+                    }));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnItemTemplateChanged(DataTemplate Value)
+        {
+            Children.OfType<ContentPresenter>().ForEach(i => i.ContentTemplate = Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnSplitterWidthChanged(double Value)
+        {
+            Children.OfType<GridSplitter>().ForEach(i => i.Width = Value);
         }
 
         #endregion

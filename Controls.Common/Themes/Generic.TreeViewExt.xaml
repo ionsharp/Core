@@ -63,15 +63,16 @@
         </Setter>
     </Style>
 
-    <Style x:Key="Style.AdvancedTreeView.ScrollViewer" TargetType="ScrollViewer">
+    <Style x:Key="Style.TreeViewExt.ScrollViewer" TargetType="ScrollViewer">
+        <Setter Property="CanContentScroll" Value="True"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ScrollViewer">
                     <Border 
                         Background="{TemplateBinding Background}" 
                         BorderBrush="{TemplateBinding BorderBrush}" 
-                        BorderThickness="{TemplateBinding BorderThickness}" 
-                        Padding="{TemplateBinding Padding}">
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid Background="{TemplateBinding Background}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -82,6 +83,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
+                            
                             <local:TreeViewColumnHeadersPresenter
                                 Grid.Row="0"
                                 Grid.ColumnSpan="2"
@@ -104,11 +106,14 @@
                                     </DataTemplate>
                                 </local:TreeViewColumnHeadersPresenter.ItemTemplate>
                             </local:TreeViewColumnHeadersPresenter>
+                            
                             <ScrollContentPresenter 
                                 Grid.ColumnSpan="2"
                                 Grid.Row="1" 
-                                Name="PART_ScrollContentPresenter" 
-                                KeyboardNavigation.DirectionalNavigation="Local"/>
+                                x:Name="PART_ScrollContentPresenter" 
+                                KeyboardNavigation.DirectionalNavigation="Local"
+                                Margin="{TemplateBinding Padding}"/>
+                            
                             <ScrollBar 
                                 Grid.Column="1"
                                 Grid.Row="1"
@@ -132,7 +137,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{x:Type local:AdvancedTreeView}" TargetType="{x:Type local:AdvancedTreeView}">
+    <Style x:Key="{x:Type local:TreeViewExt}" TargetType="{x:Type local:TreeViewExt}">
         <Setter Property="Controls.Common.Extensions:ItemsControlExtensions.SelectNoneOnEmptySpaceClick" Value="True"/>
         <Setter Property="Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled" Value="True"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -144,19 +149,19 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:AdvancedTreeView}">
-                    <ScrollViewer 
-                        x:Name="PART_ScrollViewer"
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}" 
-                        BorderThickness="{TemplateBinding BorderThickness}" 
-                        CanContentScroll="True"
-                        Focusable="False" 
-                        Padding="{TemplateBinding Padding}" 
-                        Style="{StaticResource Style.AdvancedTreeView.ScrollViewer}">
-                        <Grid x:Name="PART_Grid">
-                            <ItemsPresenter HorizontalAlignment="Stretch"/>
-                        </Grid>
+                <ControlTemplate TargetType="{x:Type local:TreeViewExt}">
+                        <ScrollViewer 
+                            x:Name="PART_ScrollViewer"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CanContentScroll="True"
+                            Focusable="False" 
+                            Padding="{TemplateBinding Padding}" 
+                            Style="{StaticResource Style.TreeViewExt.ScrollViewer}">
+                            <Grid>
+                                <ItemsPresenter HorizontalAlignment="Stretch"/>
+                            </Grid>
                     </ScrollViewer>
                 </ControlTemplate>
             </Setter.Value>

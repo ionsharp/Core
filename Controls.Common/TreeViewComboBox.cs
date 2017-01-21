@@ -37,7 +37,7 @@ namespace Imagin.Controls.Common
             get; set;
         }
 
-        AdvancedTreeView PART_TreeView
+        TreeViewExt PART_TreeView
         {
             get; set;
         }
@@ -120,7 +120,7 @@ namespace Imagin.Controls.Common
             PART_Content = Template.FindName("PART_Content", this) as ContentControl;
             PART_Content.Content = SelectedItem;
 
-            PART_TreeView = Template.FindName("PART_TreeView", this) as AdvancedTreeView;
+            PART_TreeView = Template.FindName("PART_TreeView", this) as TreeViewExt;
             if (PART_TreeView != null)
             {
                 PART_TreeView.Resources = Resources;

@@ -97,6 +97,8 @@
     <Compile Include="ButtonChrome.cs" />
     <Compile Include="Converters\CenterToolTipConverter.cs" />
     <Compile Include="Converters\WindowTypeVisibilityConverter.cs" />
+    <Compile Include="Extensions\Control.cs" />
+    <Compile Include="Extensions\DependencyObject.cs" />
     <Compile Include="Interactivity\AutoPositionPopupBehavior.cs" />
     <Compile Include="SelectionCanvas.xaml.cs">
       <DependentUpon>SelectionCanvas.xaml</DependentUpon>
@@ -104,16 +106,16 @@
     <Compile Include="TextBox\RegexBoxBase.cs" />
     <Compile Include="TextBox\RegexBox.cs" />
     <Compile Include="ToggleSwitch.cs" />
-    <Compile Include="TreeView\AdvancedTreeView.cs" />
-    <Compile Include="TreeView\%28Converters%29\TreeViewColumnGridLengthConverter.cs" />
-    <Compile Include="TreeView\%28Converters%29\TreeViewColumnDoubleConverter.cs" />
-    <Compile Include="TreeView\%28Columns%29\TreeViewTemplateColumn.cs" />
-    <Compile Include="TreeView\%28Columns%29\TreeViewColumn.cs" />
-    <Compile Include="TreeView\%28Columns%29\TreeViewColumnCollection.cs" />
-    <Compile Include="TreeView\%28Presenters%29\TreeViewColumnHeadersPresenter.cs" />
-    <Compile Include="TreeView\%28Presenters%29\TreeViewRowHeader.cs" />
-    <Compile Include="TreeView\%28Columns%29\TreeViewTextColumn.cs" />
-    <Compile Include="TreeView\%28Presenters%29\TreeViewColumnHeader.cs" />
+    <Compile Include="TreeViewExt\TreeViewExt.cs" />
+    <Compile Include="TreeViewExt\%28Converters%29\TreeViewColumnGridLengthConverter.cs" />
+    <Compile Include="TreeViewExt\%28Converters%29\TreeViewColumnDoubleConverter.cs" />
+    <Compile Include="TreeViewExt\%28Columns%29\TreeViewTemplateColumn.cs" />
+    <Compile Include="TreeViewExt\%28Columns%29\TreeViewColumn.cs" />
+    <Compile Include="TreeViewExt\%28Columns%29\TreeViewColumnCollection.cs" />
+    <Compile Include="TreeViewExt\%28Presenters%29\TreeViewColumnHeadersPresenter.cs" />
+    <Compile Include="TreeViewExt\%28Presenters%29\TreeViewRowHeader.cs" />
+    <Compile Include="TreeViewExt\%28Columns%29\TreeViewTextColumn.cs" />
+    <Compile Include="TreeViewExt\%28Presenters%29\TreeViewColumnHeader.cs" />
     <Compile Include="AlignableWrapPanel.cs" />
     <Compile Include="CheckerBoard.cs" />
     <Compile Include="DirectionPad.xaml.cs">
@@ -150,7 +152,7 @@
     <Compile Include="ResizableGrid.cs" />
     <Compile Include="Spacer.cs" />
     <Compile Include="TextBox\PasswordBox.cs" />
-    <Compile Include="TreeView\TreeViewSelectionMode.cs" />
+    <Compile Include="TreeViewExt\TreeViewSelectionMode.cs" />
     <Compile Include="UpDown\DecimalUpDown.cs" />
     <Compile Include="UpDown\%28Base%29\IrrationalUpDown.cs" />
     <Compile Include="UpDown\%28Base%29\RationalUpDown.cs" />
@@ -161,7 +163,7 @@
     <Compile Include="UpDown\ShortUpDown.cs" />
     <Compile Include="UpDown\%28Base%29\UpDown.cs" />
     <Compile Include="TreeViewComboBox.cs" />
-    <Compile Include="TextBox\AdvancedTextBox.cs" />
+    <Compile Include="TextBox\TextBoxExt.cs" />
     <Compile Include="UpDown\%28Base%29\UpDown.Generic.cs" />
     <Compile Include="UpDown\DoubleUpDown.cs" />
     <Compile Include="UpDown\IntUpDown.cs" />
@@ -190,7 +192,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.AdvancedTextBox.xaml">
+    <Page Include="Themes\Generic.TextBoxExt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,7 +200,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.AdvancedTreeView.xaml">
+    <Page Include="Themes\Generic.TreeViewExt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -295,6 +297,7 @@
     <Resource Include="Images\ArrowW.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="TreeViewExt\TreeViewExt.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

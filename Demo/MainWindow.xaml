@@ -137,113 +137,6 @@
     </Controls.Common:BasicWindow.Resources>
     <Grid DataContext="{Binding ElementName=PART_MainWindow}">
         <TabControl Background="Transparent">
-            <TabItem Header="AdvancedTextBox">
-                <Controls.Common:Spacer Spacing="0,0,0,10" Margin="10">
-                    <TextBlock Style="{DynamicResource H2}" Text="AdvancedTextBox"/>
-                    <Controls.Common:Spacer DataContext="{Binding ElementName=PART_AdvancedTextBox}" Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center" VerticalContentAlignment="Center">
-                        <Label Content="Placeholder:"/>
-                        <Controls.Common:AdvancedTextBox Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <CheckBox Content="Select All On Focus" IsChecked="{Binding SelectAllOnFocus}"/>
-                        <CheckBox Content="Select All On Triple Click" IsChecked="{Binding SelectAllOnTripleClick}"/>
-                        <CheckBox Content="Show Clear Button" IsChecked="{Binding CanUserClear}"/>
-                    </Controls.Common:Spacer>
-                    <Controls.Common:AdvancedTextBox x:Name="PART_AdvancedTextBox" Text="" Placeholder="Enter text here"/>
-
-                    <TextBlock Style="{DynamicResource H2}" Text="AlphaNumericBox"/>
-                    <Controls.Common:AlphaNumericBox Text="Whole integers and letters 0 1 2 3 4 5 6"/>
-
-                    <TextBlock Style="{DynamicResource H2}" Text="RegexBox"/>
-                    <Controls.Common:Spacer
-                        Orientation="Horizontal"
-                        Spacing="0,0,10,0">
-                        <Label Content="Pattern:"/>
-                        <Controls.Common:AdvancedTextBox
-                            Text="{Binding Pattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_RegexBox}"/>
-                    </Controls.Common:Spacer>
-                    <Controls.Common:RegexBox x:Name="PART_RegexBox"/>
-                </Controls.Common:Spacer>
-            </TabItem>
-            <TabItem Header="AdvancedTreeView">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Controls.Common:Spacer 
-                        DataContext="{Binding ElementName=PART_AdvancedTreeView}" 
-                        Orientation="Horizontal" 
-                        Spacing="0,0,10,0" 
-                        TrimLast="True" 
-                        HorizontalAlignment="Center" 
-                        VerticalContentAlignment="Center"
-                        Margin="0,10">
-                        <Label Content="{Binding Columns.Count, Mode=OneWay}" ContentStringFormat="{}Columns: {0}"/>
-                        <Label Content="{Binding SelectedItems.Count, Mode=OneWay}" ContentStringFormat="{}Selected Items: {0}"/>
-
-                        <Label Content="Selection Mode:"/>
-                        <ComboBox 
-                            SelectedValue="{Binding Path=(Controls.Common:TreeViewExtensions.SelectionMode), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            ItemsSource="{Binding Source={x:Type Controls.Common:TreeViewSelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
-
-                        <Label Content="Column Header Visibility:"/>
-                        <ComboBox 
-                            SelectedValue="{Binding ColumnHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"/>
-                    </Controls.Common:Spacer>
-                    
-                    <Controls.Common:AdvancedTreeView 
-                        Grid.Row="1"
-                        x:Name="PART_AdvancedTreeView"
-                        ColumnHeaderVisibility="Visible"
-                        Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
-                        ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}"
-                        Controls.Common:TreeViewExtensions.SelectionMode="Extended"
-                        VirtualizingPanel.IsVirtualizing="True"
-                        VirtualizingPanel.VirtualizationMode="Recycling">
-                        <Controls.Common:AdvancedTreeView.ColumnHeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Header}"/>
-                            </DataTemplate>
-                        </Controls.Common:AdvancedTreeView.ColumnHeaderTemplate>
-                        <Controls.Common:AdvancedTreeView.Columns>
-                            <Controls.Common:TreeViewTextColumn 
-                                Header="Name" 
-                                MemberPath="Name"
-                                MinWidth="200"
-                                MaxWidth="325"/>
-                            <Controls.Common:TreeViewTextColumn 
-                                Header="Type"
-                                MemberPath="Type"/>
-                            <Controls.Common:TreeViewTextColumn 
-                                Converter="{StaticResource FileSizeConverter}"
-                                Header="Size"
-                                MemberPath="Size"/>
-                            <Controls.Common:TreeViewTextColumn 
-                                Converter="{StaticResource RelativeTimeConverter}"
-                                Header="Accessed"
-                                MemberPath="Accessed"/>
-                            <Controls.Common:TreeViewTextColumn 
-                                Converter="{StaticResource RelativeTimeConverter}"
-                                Header="Created"
-                                MemberPath="Created"/>
-                            <Controls.Common:TreeViewTextColumn 
-                                Converter="{StaticResource RelativeTimeConverter}"
-                                Header="Modified"
-                                MemberPath="Modified"/>
-                        </Controls.Common:AdvancedTreeView.Columns>
-                        <Controls.Common:AdvancedTreeView.ItemTemplate>
-                            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
-                                <TextBlock Text="{Binding Name}"/>
-                            </HierarchicalDataTemplate>
-                        </Controls.Common:AdvancedTreeView.ItemTemplate>
-                        <Controls.Common:AdvancedTreeView.ItemContainerStyle>
-                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            </Style>
-                        </Controls.Common:AdvancedTreeView.ItemContainerStyle>
-                    </Controls.Common:AdvancedTreeView>
-                </Grid>
-            </TabItem>
             <TabItem Header="AlignableWrapPanel">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
@@ -337,7 +230,7 @@
                             HorizontalAlignment="Left"
                             VerticalContentAlignment="Center">
                             <Label Content="Total Hexagons:"/>
-                            <Controls.Common:AdvancedTextBox 
+                            <Controls.Common:TextBoxExt 
                                 IsReadOnly="True"
                                 Text="{Binding TotalChildren, Mode=OneWay}"/>
 
@@ -348,7 +241,7 @@
                                 Maximum="12"/>
 
                             <Label Content="Selected Color:"/>
-                            <Controls.Common:AdvancedTextBox 
+                            <Controls.Common:TextBoxExt 
                                 IsReadOnly="True"
                                 Text="{Binding SelectedColor, Mode=OneWay, Converter={StaticResource ColorToHexConverter}, StringFormat={}#{0}}"/>
 
@@ -409,18 +302,61 @@
                     <Controls.Common:MaskedButton
                         Click="OnGetParentPath"
                         HorizontalAlignment="Left"
-                        Padding="7,0"
                         Source="/Images/UpArrow.png"
                         VerticalAlignment="Center"/>
+
+                    <Controls.Common:Spacer 
+                        DataContext="{Binding ElementName=PART_DataGrid}" 
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal" 
+                        Spacing="10,0,0,0" 
+                        TrimFirst="True" 
+                        VerticalContentAlignment="Center">
+
+                        <CheckBox
+                            Content="AutoSizeColumns"
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.AutoSizeColumns), Mode=TwoWay}"/>
+
+                        <CheckBox
+                            Content="DisplayRowNumber"
+                            IsChecked="{Binding Path=(Controls.Common:DataGridExtensions.DisplayRowNumber), Mode=TwoWay}"/>
+
+                        <Controls.Common:IntUpDown
+                            ToolTip="DisplayRowNumberOffset"
+                            Value="{Binding Path=(Controls.Common:DataGridExtensions.DisplayRowNumberOffset), Mode=TwoWay}"/>
+
+                        <Controls.Common:DoubleUpDown
+                            ToolTip="DragScrollOffset"
+                            Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollOffset), Mode=TwoWay}"/>
+
+                        <Controls.Common:DoubleUpDown
+                            ToolTip="DragScrollTolerance"
+                            Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollTolerance), Mode=TwoWay}"/>
+
+                        <CheckBox
+                            Content="IsColumnMenuEnabled"
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled), Mode=TwoWay}"/>
+
+                        <CheckBox 
+                            Content="IsDragSelectionEnabled" 
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled), Mode=TwoWay}"/>
+
+                        <CheckBox 
+                            Content="SelectNoneOnEmptySpaceClick" 
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.SelectNoneOnEmptySpaceClick), Mode=TwoWay}"/>
+                    </Controls.Common:Spacer>
+
                     <DataGrid
                         Grid.Row="1"
-                        Controls.Common:DataGridExtensions.AutoSizeColumns="True"
+                        x:Name="PART_DataGrid"
+                        Controls.Common:ItemsControlExtensions.AutoSizeColumns="True"
                         Controls.Common:DataGridExtensions.DisplayRowNumberOffset="1"
                         Controls.Common:DataGridExtensions.DisplayRowNumber="True"
                         HeadersVisibility="All" 
                         Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
                         Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled="True"
-                        ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}">
+                        ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="0,10,0,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" SortMemberPath="Name"/>
                             <DataGridTextColumn Header="Type" Binding="{Binding Type}" SortMemberPath="Type"/>
@@ -471,7 +407,7 @@
                             ItemsSource="{Binding Source={x:Type Common:LeftRight}, Converter={StaticResource EnumToCollectionConverter}}"/>
 
                         <Label Content="ButtonToolTip:"/>
-                        <Controls.Common:AdvancedTextBox 
+                        <Controls.Common:TextBoxExt 
                             Text="{Binding ButtonToolTip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Label Content="ButtonVisibility:"/>
@@ -485,7 +421,7 @@
                             ItemsSource="{Binding Source={x:Type Common:DialogProviderMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
                         
                         <Label Content="DialogProviderTitle:"/>
-                        <Controls.Common:AdvancedTextBox 
+                        <Controls.Common:TextBoxExt 
                             Text="{Binding DialogProviderTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <CheckBox 
@@ -582,18 +518,7 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Controls.Common:MaskedButton
-                        Click="OnGetParentPath"
-                        HorizontalAlignment="Left"
-                        Padding="7,0"
-                        Source="/Images/UpArrow.png"
-                        VerticalAlignment="Center"/>
-                    <Controls.Common:RadioGroup
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-                        <RadioButton Content="Details" IsChecked="True" Checked="OnViewChanged" GroupName="View"/>
-                        <RadioButton Content="List" Checked="OnViewChanged" GroupName="View"/>
-                    </Controls.Common:RadioGroup>
+                    
                     <Controls.Common:Spacer 
                         DataContext="{Binding ElementName=PART_ListView}" 
                         HorizontalAlignment="Right"
@@ -601,10 +526,45 @@
                         Spacing="10,0,0,0" 
                         TrimFirst="True" 
                         VerticalContentAlignment="Center">
-                        <Label Content="Selection Mode:"/>
-                        <ComboBox 
-                            SelectedValue="{Binding SelectionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            ItemsSource="{Binding Source={x:Type SelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
+                        <Controls.Common:MaskedButton
+                            Click="OnGetParentPath"
+                            HorizontalAlignment="Left"
+                            Padding="7,0"
+                            Source="/Images/UpArrow.png"
+                            ToolTip="Go Up"
+                            VerticalAlignment="Center"/>
+                        
+                        <Controls.Common:RadioGroup
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <RadioButton Content="Details" IsChecked="True" Checked="OnViewChanged" GroupName="View"/>
+                            <RadioButton Content="List" Checked="OnViewChanged" GroupName="View"/>
+                        </Controls.Common:RadioGroup>
+
+                        <Controls.Common:DoubleUpDown
+                            ToolTip="DragScrollOffset"
+                            Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollOffset), Mode=TwoWay}"/>
+
+                        <Controls.Common:DoubleUpDown
+                            ToolTip="DragScrollTolerance"
+                            Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollTolerance), Mode=TwoWay}"/>
+
+                        <CheckBox 
+                            Content="IsDragSelectionEnabled" 
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled), Mode=TwoWay}"/>
+
+                        <CheckBox 
+                            Content="IsDirectionalSelectionEnabled" 
+                            IsChecked="{Binding Path=(Controls.Common:ListBoxExtensions.IsDirectionalSelectionEnabled), Mode=TwoWay}"/>
+                        
+                        <CheckBox 
+                            Content="SelectNoneOnEmptySpaceClick" 
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.SelectNoneOnEmptySpaceClick), Mode=TwoWay}"/>
+
+                        <ComboBox  
+                            ItemsSource="{Binding Source={x:Type SelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"
+                            SelectedValue="{Binding SelectionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="Selection Mode"/>
                     </Controls.Common:Spacer>
 
                     <ListView
@@ -613,7 +573,6 @@
                         Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled="True"
                         ItemsSource="{Binding FileSystemCollectionView}"
                         Margin="0,10,0,0"
-                        Padding="10"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         SelectionMode="Multiple">
                         <ListView.GroupStyle>
@@ -753,7 +712,7 @@
                             VerticalAlignment="Center"/>
                         
                         <Label Content="Hint:"/>
-                        <Controls.Common:AdvancedTextBox 
+                        <Controls.Common:TextBoxExt 
                             Text="{Binding Hint, ElementName=PART_PasswordBox, UpdateSourceTrigger=PropertyChanged}" 
                             Placeholder="Enter a hint..." 
                             VerticalAlignment="Center"/>
@@ -799,8 +758,8 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center">
                         <CheckBox 
-                            Content="AcceptNullObjects"
-                            IsChecked="{Binding AcceptNullObjects}"/>
+                            Content="AcceptsNullObjects"
+                            IsChecked="{Binding AcceptsNullObjects}"/>
                         
                         <Label Content="DateTimeFormat:"/>
                         <ComboBox/>
@@ -916,17 +875,64 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <Controls.Common:Spacer 
+                        DataContext="{Binding ElementName=PART_Tabbed1}"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,10"
+                        Orientation="Horizontal" 
+                        Spacing="0,0,10,0" 
+                        TrimLast="True"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center">
+                        <CheckBox 
+                            Content="CanResizeContent"
+                            IsChecked="{Binding CanResizeContent}"/>
+                        <ComboBox 
+                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
+                            SelectedValue="{Binding ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="ContentHeaderVisibility"/>
+                        <Controls.Common:TextBoxExt 
+                            IsReadOnly="True"
+                            ToolTip="SelectedIndex"
+                            Text="{Binding SelectedIndex, Mode=OneWay}"/>
+                    </Controls.Common:Spacer>
+                    <Controls.Common:Spacer 
+                        Grid.Column="1"
+                        DataContext="{Binding ElementName=PART_Tabbed2}"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,10"
+                        Orientation="Horizontal" 
+                        Spacing="0,0,10,0" 
+                        TrimLast="True"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center">
+                        <CheckBox 
+                            Content="CanResizeContent"
+                            IsChecked="{Binding CanResizeContent}"/>
+                        <ComboBox 
+                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
+                            SelectedValue="{Binding ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="ContentHeaderVisibility"/>
+                        <Controls.Common:TextBoxExt 
+                            IsReadOnly="True"
+                            ToolTip="SelectedIndex"
+                            Text="{Binding SelectedIndex, Mode=OneWay}"/>
+                    </Controls.Common:Spacer>
+                    
                     <Label
+                        Grid.Row="1"
                         FontSize="17"
                         FontWeight="Bold"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,15"
                         Content="Static"/>
                     <Controls.Extended:TabbedTree 
-                        Grid.Row="1"
+                        Grid.Row="2"
+                        x:Name="PART_Tabbed1"
                         ContentWidth="70*" 
                         ContentBorderThickness="1" 
                         ContentBorderBrush="#10000000" 
@@ -943,54 +949,55 @@
                             </Style>
                         </Controls.Extended:TabbedTree.ItemContainerStyle>
                         <TreeViewItem Header="Option 1">
-                            <Common:ControlExtensions.Content>
+                            <Controls.Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 1"/>
                                 </Grid>
-                            </Common:ControlExtensions.Content>
+                            </Controls.Common:ControlExtensions.Content>
                         </TreeViewItem>
                         <TreeViewItem Header="Option 2">
-                            <Common:ControlExtensions.Content>
+                            <Controls.Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 2"/>
                                 </Grid>
-                            </Common:ControlExtensions.Content>
+                            </Controls.Common:ControlExtensions.Content>
                         </TreeViewItem>
                         <TreeViewItem Header="Option 3">
-                            <Common:ControlExtensions.Content>
+                            <Controls.Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 3"/>
                                 </Grid>
-                            </Common:ControlExtensions.Content>
+                            </Controls.Common:ControlExtensions.Content>
                         </TreeViewItem>
                         <TreeViewItem Header="Option 4">
-                            <Common:ControlExtensions.Content>
+                            <Controls.Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 4"/>
                                 </Grid>
-                            </Common:ControlExtensions.Content>
+                            </Controls.Common:ControlExtensions.Content>
                         </TreeViewItem>
                         <TreeViewItem Header="Option 5">
-                            <Common:ControlExtensions.Content>
+                            <Controls.Common:ControlExtensions.Content>
                                 <Grid>
                                     <TextBlock 
                                         FontSize="32"
                                         Text="Content 5"/>
                                 </Grid>
-                            </Common:ControlExtensions.Content>
+                            </Controls.Common:ControlExtensions.Content>
                         </TreeViewItem>
                     </Controls.Extended:TabbedTree>
 
                     <Label
                         Grid.Column="1"
+                        Grid.Row="1"
                         FontSize="17"
                         FontWeight="Bold"
                         HorizontalAlignment="Center"
@@ -998,7 +1005,8 @@
                         Content="Dynamic"/>
                     <Controls.Extended:TabbedTree 
                         Grid.Column="1"
-                        Grid.Row="1"
+                        Grid.Row="2"
+                        x:Name="PART_Tabbed2"
                         CanResizeContent="True"
                         ContentBorderBrush="#10000000" 
                         ContentBorderThickness="1" 
@@ -1013,22 +1021,29 @@
                             <DataTemplate>
                                 <ScrollViewer>
                                     <Controls.Common:Spacer Spacing="0,0,0,10" TrimLast="True">
-                                        <Label Content="Name:"/>
+                                        <Label 
+                                            Content="Name:"
+                                            FontWeight="Bold"/>
                                         <Label Content="{Binding Path, Converter={StaticResource FileNameConverter}}"/>
 
-                                        <Label Content="Path:"/>
+                                        <Label Content="Path:"
+                                            FontWeight="Bold"/>
                                         <Label Content="{Binding Path}"/>
 
-                                        <Label Content="Size:"/>
+                                        <Label Content="Size:"
+                                            FontWeight="Bold"/>
                                         <Label Content="{Binding Size, Converter={StaticResource FileSizeConverter}}"/>
 
-                                        <Label Content="Accessed:"/>
+                                        <Label Content="Accessed:"
+                                            FontWeight="Bold"/>
                                         <Label Content="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}}"/>
 
-                                        <Label Content="Created:"/>
+                                        <Label Content="Created:"
+                                            FontWeight="Bold"/>
                                         <Label Content="{Binding Created, Converter={StaticResource RelativeTimeConverter}}"/>
 
-                                        <Label Content="Modified:"/>
+                                        <Label Content="Modified:"
+                                            FontWeight="Bold"/>
                                         <Label Content="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}"/>
                                     </Controls.Common:Spacer>
                                 </ScrollViewer>
@@ -1047,27 +1062,53 @@
                     </Controls.Extended:TabbedTree>
                 </Grid>
             </TabItem>
+            <TabItem Header="TextBoxExt">
+                <Controls.Common:Spacer Spacing="0,0,0,10" Margin="10">
+                    <TextBlock Style="{DynamicResource H2}" Text="TextBoxExt"/>
+                    <Controls.Common:Spacer DataContext="{Binding ElementName=PART_TextBoxExt}" Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center" VerticalContentAlignment="Center">
+                        <Label Content="Placeholder:"/>
+                        <Controls.Common:TextBoxExt Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox Content="Select All On Focus" IsChecked="{Binding SelectAllOnFocus}"/>
+                        <CheckBox Content="Select All On Triple Click" IsChecked="{Binding SelectAllOnTripleClick}"/>
+                        <CheckBox Content="Show Clear Button" IsChecked="{Binding CanUserClear}"/>
+                    </Controls.Common:Spacer>
+                    <Controls.Common:TextBoxExt x:Name="PART_TextBoxExt" Text="" Placeholder="Enter text here"/>
+
+                    <TextBlock Style="{DynamicResource H2}" Text="AlphaNumericBox"/>
+                    <Controls.Common:AlphaNumericBox Text="Whole integers and letters 0 1 2 3 4 5 6"/>
+
+                    <TextBlock Style="{DynamicResource H2}" Text="RegexBox"/>
+                    <Controls.Common:Spacer
+                        Orientation="Horizontal"
+                        Spacing="0,0,10,0">
+                        <Label Content="Pattern:"/>
+                        <Controls.Common:TextBoxExt
+                            Text="{Binding Pattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_RegexBox}"/>
+                    </Controls.Common:Spacer>
+                    <Controls.Common:RegexBox x:Name="PART_RegexBox"/>
+                </Controls.Common:Spacer>
+            </TabItem>
             <TabItem Header="TreeViewComboBox">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Controls.Common:AdvancedTreeView 
+                    <Controls.Common:TreeViewExt 
                         ItemsSource="{Binding HierarchialCollection}"
                         Controls.Common:TreeViewExtensions.SelectionMode="Single"
                         SelectedObject="{Binding SelectedItem, Mode=TwoWay, ElementName=PART_TreeViewComboBox}">
-                        <Controls.Common:AdvancedTreeView.ColumnHeaderTemplate>
+                        <Controls.Common:TreeViewExt.ColumnHeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Header}"/>
                             </DataTemplate>
-                        </Controls.Common:AdvancedTreeView.ColumnHeaderTemplate>
-                        <Controls.Common:AdvancedTreeView.ItemTemplate>
+                        </Controls.Common:TreeViewExt.ColumnHeaderTemplate>
+                        <Controls.Common:TreeViewExt.ItemTemplate>
                             <HierarchicalDataTemplate ItemsSource="{Binding Items}">
                                 <TextBlock Text="{Binding Name}"/>
                             </HierarchicalDataTemplate>
-                        </Controls.Common:AdvancedTreeView.ItemTemplate>
-                    </Controls.Common:AdvancedTreeView>
+                        </Controls.Common:TreeViewExt.ItemTemplate>
+                    </Controls.Common:TreeViewExt>
                     
                     <Controls.Common:TreeViewComboBox 
                         Grid.Column="1"
@@ -1087,6 +1128,95 @@
                     </Controls.Common:TreeViewComboBox>
                 </Grid>
             </TabItem>
+            <TabItem Header="TreeViewExt">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Controls.Common:Spacer 
+                        DataContext="{Binding ElementName=PART_TreeViewExt}" 
+                        Orientation="Horizontal" 
+                        Spacing="0,0,10,0" 
+                        TrimLast="True" 
+                        HorizontalAlignment="Center" 
+                        VerticalContentAlignment="Center"
+                        Margin="0,10">
+                        <Label Content="{Binding Columns.Count, Mode=OneWay}" ContentStringFormat="{}Columns: {0}"/>
+                        <Label Content="{Binding SelectedItems.Count, Mode=OneWay}" ContentStringFormat="{}Selected Items: {0}"/>
+
+                        <CheckBox
+                            Content="AutoSizeColumns"
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.AutoSizeColumns), Mode=TwoWay}"/>
+
+                        <Label Content="Selection Mode:"/>
+                        <ComboBox 
+                            SelectedValue="{Binding Path=(Controls.Common:TreeViewExtensions.SelectionMode), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type Controls.Common:TreeViewSelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
+
+                        <Label Content="Column Header Visibility:"/>
+                        <ComboBox 
+                            SelectedValue="{Binding ColumnHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"/>
+
+                        <CheckBox
+                            Content="IsColumnMenuEnabled"
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled), Mode=TwoWay}"/>
+                    </Controls.Common:Spacer>
+
+                    <Controls.Common:TreeViewExt 
+                        Grid.Row="1"
+                        x:Name="PART_TreeViewExt"
+                        ColumnHeaderVisibility="Visible"
+                        Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
+                        ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}"
+                        Controls.Common:TreeViewExtensions.SelectionMode="Extended"
+                        VirtualizingPanel.IsVirtualizing="True"
+                        VirtualizingPanel.VirtualizationMode="Recycling">
+                        <Controls.Common:TreeViewExt.ColumnHeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Header}"/>
+                            </DataTemplate>
+                        </Controls.Common:TreeViewExt.ColumnHeaderTemplate>
+                        <Controls.Common:TreeViewExt.Columns>
+                            <Controls.Common:TreeViewTextColumn 
+                                Header="Name" 
+                                MemberPath="Name"
+                                MinWidth="200"
+                                MaxWidth="325"/>
+                            <Controls.Common:TreeViewTextColumn 
+                                Header="Type"
+                                MemberPath="Type"/>
+                            <Controls.Common:TreeViewTextColumn 
+                                Converter="{StaticResource FileSizeConverter}"
+                                Header="Size"
+                                MemberPath="Size"/>
+                            <Controls.Common:TreeViewTextColumn 
+                                Converter="{StaticResource RelativeTimeConverter}"
+                                Header="Accessed"
+                                MemberPath="Accessed"/>
+                            <Controls.Common:TreeViewTextColumn 
+                                Converter="{StaticResource RelativeTimeConverter}"
+                                Header="Created"
+                                MemberPath="Created"/>
+                            <Controls.Common:TreeViewTextColumn 
+                                Converter="{StaticResource RelativeTimeConverter}"
+                                Header="Modified"
+                                MemberPath="Modified"/>
+                        </Controls.Common:TreeViewExt.Columns>
+                        <Controls.Common:TreeViewExt.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </HierarchicalDataTemplate>
+                        </Controls.Common:TreeViewExt.ItemTemplate>
+                        <Controls.Common:TreeViewExt.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Style>
+                        </Controls.Common:TreeViewExt.ItemContainerStyle>
+                    </Controls.Common:TreeViewExt>
+                </Grid>
+            </TabItem>
             <TabItem Header="UpDown">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
@@ -1098,7 +1228,7 @@
                             VerticalAlignment="Center"
                             VerticalContentAlignment="Center">
                             <Label Content="Value"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
                             <Label Content="Increment"/>
                             <Controls.Common:ByteUpDown Value="{Binding Increment}" Minimum="0" Maximum="255"/>
                             <Label Content="Minimum"/>
@@ -1108,7 +1238,7 @@
                             <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
                             <Label Content="String Format"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
                         <Controls.Common:ByteUpDown x:Name="PART_ByteUpDown" StringFormat="N0" Increment="1" Minimum="0" Maximum="255"/>
 
@@ -1119,7 +1249,7 @@
                             Orientation="Horizontal" 
                             VerticalContentAlignment="Center">
                             <Label Content="Value"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
                             <Label Content="Minimum"/>
                             <Controls.Common:DateTimeUpDown Value="{Binding Minimum}"/>
                             <Label Content="Maximum"/>
@@ -1127,7 +1257,7 @@
                             <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
                             <Label Content="String Format"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
                         <Controls.Common:DateTimeUpDown 
                             x:Name="PART_DateTimeUpDown"/>
@@ -1139,7 +1269,7 @@
                             Orientation="Horizontal" 
                             VerticalContentAlignment="Center">
                             <Label Content="Value"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
                             <Label Content="Increment"/>
                             <Controls.Common:DecimalUpDown Value="{Binding Increment}" Minimum="-1000000.0" Maximum="1000000.0"/>
                             <Label Content="Minimum"/>
@@ -1149,7 +1279,7 @@
                             <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
                             <Label Content="String Format"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
                         <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" StringFormat="N3" Increment="10.25"/>
 
@@ -1160,7 +1290,7 @@
                             Orientation="Horizontal" 
                             VerticalContentAlignment="Center">
                             <Label Content="Value"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
                             <Label Content="Increment"/>
                             <Controls.Common:DoubleUpDown Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
                             <Label Content="Minimum"/>
@@ -1170,7 +1300,7 @@
                             <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
                             <Label Content="String Format"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
                         <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" StringFormat="N3" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
 
@@ -1182,7 +1312,7 @@
                             VerticalAlignment="Center" 
                             VerticalContentAlignment="Center">
                             <Label Content="Value"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
                             <Label Content="Increment"/>
                             <Controls.Common:IntUpDown Value="{Binding Increment}" Minimum="-10000" Maximum="10000"/>
                             <Label Content="Minimum"/>
@@ -1192,7 +1322,7 @@
                             <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
                             <Label Content="String Format"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
                         <Controls.Common:IntUpDown x:Name="PART_IntUpDown" StringFormat="N0" Increment="10" Minimum="-100" Maximum="100"/>
 
@@ -1203,7 +1333,7 @@
                             Orientation="Horizontal" 
                             VerticalContentAlignment="Center">
                             <Label Content="Value"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
                             <Label Content="Increment"/>
                             <Controls.Common:LongUpDown Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
                             <Label Content="Minimum"/>
@@ -1213,7 +1343,7 @@
                             <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
                             <Label Content="String Format"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
                         <Controls.Common:LongUpDown x:Name="PART_LongUpDown" StringFormat="N0" Increment="100" Minimum="-1000000" Maximum="1000000"/>
 
@@ -1225,7 +1355,7 @@
                             VerticalAlignment="Center"
                             VerticalContentAlignment="Center">
                             <Label Content="Value"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
                             <Label Content="Increment"/>
                             <Controls.Common:ShortUpDown Value="{Binding Increment}" Minimum="-255" Maximum="255"/>
                             <Label Content="Minimum"/>
@@ -1235,7 +1365,7 @@
                             <Label Content="Major Change"/>
                             <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
                             <Label Content="String Format"/>
-                            <Controls.Common:AdvancedTextBox Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
                         </Controls.Common:Spacer>
                         <Controls.Common:ShortUpDown x:Name="PART_ShortUpDown" StringFormat="N0" Increment="1" Minimum="-100" Maximum="100"/>
                     </Controls.Common:Spacer>

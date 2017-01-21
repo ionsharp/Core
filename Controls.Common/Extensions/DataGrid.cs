@@ -8,50 +8,25 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class DataGridExtensions
     {
-        #region AutoSizeColumns
-
-        /// <summary>
-        /// Applies GridUnit.Star GridLength to all columns.
-        /// </summary>
-        public static readonly DependencyProperty AutoSizeColumnsProperty = DependencyProperty.RegisterAttached("AutoSizeColumns", typeof(bool), typeof(DataGridExtensions), new PropertyMetadata(false, OnAutoSizeColumnsChanged));
-        public static bool GetAutoSizeColumns(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(AutoSizeColumnsProperty);
-        }
-        public static void SetAutoSizeColumns(DependencyObject obj, bool value)
-        {
-            obj.SetValue(AutoSizeColumnsProperty, value);
-        }
-
-        static void OnAutoSizeColumnsChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (sender is DataGrid)
-            {
-                var DataGrid = sender as DataGrid;
-                var Length = (bool)e.NewValue ? new DataGridLength(1.0, DataGridLengthUnitType.Star) : new DataGridLength(1.0, DataGridLengthUnitType.Auto);
-                foreach (var i in DataGrid.Columns)
-                    i.Width = Length;
-            }
-        }
-
-        #endregion
-
         #region DisplayRowNumber
 
         public static DependencyProperty DisplayRowNumberProperty = DependencyProperty.RegisterAttached("DisplayRowNumber", typeof(bool), typeof(DataGridExtensions), new FrameworkPropertyMetadata(false, OnDisplayRowNumberChanged));
-        public static bool GetDisplayRowNumber(DependencyObject Object)
+        public static bool GetDisplayRowNumber(DataGrid d)
         {
-            return (bool)Object.GetValue(DisplayRowNumberProperty);
+            return (bool)d.GetValue(DisplayRowNumberProperty);
         }
-        public static void SetDisplayRowNumber(DependencyObject Object, bool value)
+        public static void SetDisplayRowNumber(DataGrid d, bool value)
         {
-            Object.SetValue(DisplayRowNumberProperty, value);
+            d.SetValue(DisplayRowNumberProperty, value);
         }
-        static void OnDisplayRowNumberChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnDisplayRowNumberChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var DataGrid = Object as DataGrid;
+            var DataGrid = d as DataGrid;
             if ((bool)e.NewValue == true)
             {
                 EventHandler<DataGridRowEventArgs> LoadedRowHandler = null;
@@ -62,7 +37,7 @@ namespace Imagin.Controls.Common.Extensions
                         DataGrid.LoadingRow -= LoadedRowHandler;
                         return;
                     }
-                    b.Row.Header = b.Row.GetIndex() + GetDisplayRowNumberOffset(DataGrid);
+                    b.Row.Header = b.Row.GetIndex() + GetDisplayRowNumberOffset(d);
                 };
                 DataGrid.LoadingRow += LoadedRowHandler;
 
@@ -74,9 +49,13 @@ namespace Imagin.Controls.Common.Extensions
                         DataGrid.ItemContainerGenerator.ItemsChanged -= ItemsChangedHandler;
                         return;
                     }
-                    DataGrid.GetVisualChildren<DataGridRow>().ToList<DataGridRow>().ForEach(d => d.Header = d.GetIndex() + GetDisplayRowNumberOffset(DataGrid));
+                    DataGrid.GetVisualChildren<DataGridRow>().ToList<DataGridRow>().ForEach(f => f.Header = f.GetIndex() + GetDisplayRowNumberOffset(DataGrid));
                 };
                 DataGrid.ItemContainerGenerator.ItemsChanged += ItemsChangedHandler;
+            }
+            else
+            {
+
             }
         }
 
@@ -85,21 +64,21 @@ namespace Imagin.Controls.Common.Extensions
         #region DisplayRowNumberOffset
 
         public static DependencyProperty DisplayRowNumberOffsetProperty = DependencyProperty.RegisterAttached("DisplayRowNumberOffset", typeof(int), typeof(DataGridExtensions), new FrameworkPropertyMetadata(0, OnDisplayRowNumberOffsetChanged));
-        public static int GetDisplayRowNumberOffset(DependencyObject Object)
+        public static int GetDisplayRowNumberOffset(DependencyObject d)
         {
-            return (int)Object.GetValue(DisplayRowNumberOffsetProperty);
+            return (int)d.GetValue(DisplayRowNumberOffsetProperty);
         }
-        public static void SetDisplayRowNumberOffset(DependencyObject Object, int value)
+        public static void SetDisplayRowNumberOffset(DependencyObject d, int value)
         {
-            Object.SetValue(DisplayRowNumberOffsetProperty, value);
+            d.SetValue(DisplayRowNumberOffsetProperty, value);
         }
-        static void OnDisplayRowNumberOffsetChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnDisplayRowNumberOffsetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var DataGrid = Object as DataGrid;
+            var DataGrid = d as DataGrid;
             var Offset = (int)e.NewValue;
 
-            if (GetDisplayRowNumber(Object))
-                DataGrid.GetVisualChildren<DataGridRow>().ToList<DataGridRow>().ForEach(d => d.Header = d.GetIndex() + Offset);
+            if (GetDisplayRowNumber(DataGrid))
+                DataGrid.GetVisualChildren<DataGridRow>().ToList<DataGridRow>().ForEach(i => i.Header = i.GetIndex() + Offset);
         }
 
         #endregion

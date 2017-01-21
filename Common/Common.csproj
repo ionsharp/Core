@@ -217,7 +217,6 @@
     <Compile Include="Extensions\String.cs" />
     <Compile Include="Extensions\Type.cs" />
     <Compile Include="Extensions\TimeSpan.cs" />
-    <Compile Include="Extensions\Control.cs" />
     <Compile Include="Extensions\UIElement.cs" />
     <Compile Include="Extensions\Visibility.cs" />
     <Compile Include="Globalization\LocalizationProvider.cs" />

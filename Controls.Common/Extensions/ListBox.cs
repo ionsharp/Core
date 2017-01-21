@@ -24,13 +24,13 @@ namespace Imagin.Controls.Common.Extensions
         /// select first.
         /// </pseudo>
         public static readonly DependencyProperty IsDirectionalSelectionEnabledProperty = DependencyProperty.RegisterAttached("IsDirectionalSelectionEnabled", typeof(bool), typeof(ListBoxExtensions), new PropertyMetadata(false, OnIsDirectionalSelectionEnabled));
-        public static bool GetIsDirectionalSelectionEnabled(DependencyObject obj)
+        public static bool GetIsDirectionalSelectionEnabled(ListBox d)
         {
-            return (bool)obj.GetValue(IsDirectionalSelectionEnabledProperty);
+            return (bool)d.GetValue(IsDirectionalSelectionEnabledProperty);
         }
-        public static void SetIsDirectionalSelectionEnabled(DependencyObject obj, bool value)
+        public static void SetIsDirectionalSelectionEnabled(ListBox d, bool value)
         {
-            obj.SetValue(IsDirectionalSelectionEnabledProperty, value);
+            d.SetValue(IsDirectionalSelectionEnabledProperty, value);
         }
         static void OnIsDirectionalSelectionEnabled(object sender, DependencyPropertyChangedEventArgs e)
         {

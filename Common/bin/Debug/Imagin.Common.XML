@@ -492,6 +492,92 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Common.Extensions.DependencyObjectExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.Bind(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Object,System.String,System.Windows.Data.BindingMode,System.Windows.Data.UpdateSourceTrigger)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Property"></param>
+            <param name="Source"></param>
+            <param name="Path"></param>
+            <param name="Mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.Bind(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Object,System.Windows.PropertyPath,System.Windows.Data.BindingMode,System.Windows.Data.UpdateSourceTrigger)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Property"></param>
+            <param name="Source"></param>
+            <param name="Path"></param>
+            <param name="Mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.Bind(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Object,System.String,System.Windows.Data.IValueConverter,System.Object,System.Windows.Data.BindingMode,System.Windows.Data.UpdateSourceTrigger)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Property"></param>
+            <param name="Source"></param>
+            <param name="Path"></param>
+            <param name="Converter"></param>
+            <param name="ConverterParameter"></param>
+            <param name="Mode"></param>
+            <param name="UpdateSourceTrigger"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.Bind(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Object,System.Windows.PropertyPath,System.Windows.Data.IValueConverter,System.Object,System.Windows.Data.BindingMode,System.Windows.Data.UpdateSourceTrigger)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Property"></param>
+            <param name="Source"></param>
+            <param name="Path"></param>
+            <param name="Converter"></param>
+            <param name="ConverterParameter"></param>
+            <param name="Mode"></param>
+            <param name="UpdateSourceTrigger"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.Bind(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.String,System.Windows.Data.RelativeSourceMode,System.Windows.Data.BindingMode,System.Windows.Data.UpdateSourceTrigger)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Property"></param>
+            <param name="Path"></param>
+            <param name="RelativeSourceMode"></param>
+            <param name="Mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.CollapseAll(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.ExpandAll(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetChildOfType``1(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetParent(System.Windows.DependencyObject)">
             <summary>
             Attempts to find parent for specified object in following order: 
@@ -502,6 +588,52 @@
             If the logical parent is not found, we try TemplatedParent
             </remarks>
             <param name="Object">The object to get the parent for.</param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetParent``1(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetLogicalParent(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="Child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetLogicalParent``1(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetVisualChildren``1(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetVisualParent(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="Child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetVisualParent``1(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Child"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.IsDescendantOf(System.Windows.DependencyObject,System.Windows.DependencyObject)">
             <summary>
@@ -515,14 +647,6 @@
             <summary>
             Sets IsExpanded property to specified value on all TreeViewItems found.
             </summary>
-        </member>
-        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.TrySelect(System.Windows.DependencyObject,System.Boolean)">
-            <summary>
-            Attempt to select the given object using <see cref="M:System.Windows.Controls.Primitives.Selector.SetIsSelected(System.Windows.DependencyObject,System.Boolean)"/>.
-            </summary>
-            <param name="Object"></param>
-            <param name="IsSelected"></param>
-            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Extensions.DoubleExtensions">
             <summary>
@@ -984,6 +1108,11 @@
             Checks if specified object is of specified type.
             </summary>
         </member>
+        <member name="M:Imagin.Common.Extensions.ObjectExtensions.IsNot``1(System.Object)">
+            <summary>
+            Checks if specified object is NOT of specified type.
+            </summary>
+        </member>
         <member name="M:Imagin.Common.Extensions.ObjectExtensions.IsNull(System.Object)">
             <summary>
             Checks if specified object is null.
@@ -1273,52 +1402,6 @@
             <typeparam name="T"></typeparam>
             <param name="Value"></param>
             <returns></returns>
-        </member>
-        <member name="T:Imagin.Common.Extensions.ControlExtensions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Extensions.ControlExtensions.IsPossibleDropTarget">
-            <summary>
-            Indicates whether or not the current item is a possible drop target
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Extensions.ControlExtensions.IsMouseDirectlyOverItemKey">
-            <summary>
-            Indicates whether or not the mouse is directly over an item.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Extensions.ControlExtensions.IsPossibleDropTargetKey">
-            <summary>
-            Indicates whether or not the current item is a possible drop target
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Extensions.ControlExtensions.OnUpdateOverItem(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is a listener for the UpdateOverItemEvent.  
-            When it is received, it means that the sender is the 
-            closest item to the mouse (closest logically, not visually).
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Extensions.ControlExtensions.Content">
-            <summary>
-            Enables assigning any FrameworkElement a 'content' object.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Extensions.ControlExtensions.OnDragEvent(System.Object,System.Windows.DragEventArgs)">
-            <summary>
-            Called when an item is dragged over the control.
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:Imagin.Common.Extensions.ControlExtensions.OnDragLeave(System.Object,System.Windows.DragEventArgs)">
-            <summary>
-            Called when the drag cursor leaves the control.
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
         </member>
         <member name="T:Imagin.Common.Input.RelayCommand">
             <summary>

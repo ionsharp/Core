@@ -15,16 +15,48 @@ namespace Imagin.Controls.Common.Extensions
     {
         #region Properties
 
+        #region AutoSizeColumns
+
+        /// <summary>
+        /// Applies GridUnit.Star GridLength to all columns.
+        /// </summary>
+        public static readonly DependencyProperty AutoSizeColumnsProperty = DependencyProperty.RegisterAttached("AutoSizeColumns", typeof(bool), typeof(ItemsControlExtensions), new PropertyMetadata(false, OnAutoSizeColumnsChanged));
+        public static bool GetAutoSizeColumns(ItemsControl d)
+        {
+            return (bool)d.GetValue(AutoSizeColumnsProperty);
+        }
+        public static void SetAutoSizeColumns(ItemsControl d, bool value)
+        {
+            d.SetValue(AutoSizeColumnsProperty, value);
+        }
+        static void OnAutoSizeColumnsChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is DataGrid)
+            {
+                var d = sender as DataGrid;
+                var l = (bool)e.NewValue ? new DataGridLength(1.0, DataGridLengthUnitType.Star) : new DataGridLength(1.0, DataGridLengthUnitType.Auto);
+                d.Columns.ForEach(i => i.Width = l);
+            }
+            else if (sender is TreeViewExt)
+            {
+                var t = sender as TreeViewExt;
+                var l = (bool)e.NewValue ? new GridLength(1.0, GridUnitType.Star) : new GridLength(1.0, GridUnitType.Auto);
+                t.Columns.ForEach(i => i.Width = l);
+            }
+        }
+
+        #endregion
+
         #region DragSelector
 
-        internal static readonly DependencyProperty DragSelectionManagerProperty = DependencyProperty.RegisterAttached("DragSelectionManager", typeof(DragSelector), typeof(ItemsControlExtensions), new PropertyMetadata(null));
-        internal static DragSelector GetDragSelectionManager(DependencyObject obj)
+        internal static readonly DependencyProperty DragSelectorProperty = DependencyProperty.RegisterAttached("DragSelector", typeof(DragSelector), typeof(ItemsControlExtensions), new PropertyMetadata(null));
+        internal static DragSelector GetDragSelector(ItemsControl d)
         {
-            return (DragSelector)obj.GetValue(DragSelectionManagerProperty);
+            return (DragSelector)d.GetValue(DragSelectorProperty);
         }
-        internal static void SetDragSelectionManager(DependencyObject obj, DragSelector value)
+        internal static void SetDragSelector(ItemsControl d, DragSelector value)
         {
-            obj.SetValue(DragSelectionManagerProperty, value);
+            d.SetValue(DragSelectorProperty, value);
         }
 
         #endregion
@@ -34,19 +66,19 @@ namespace Imagin.Controls.Common.Extensions
         /// <summary>
         /// Determines whether or not to add a ContextMenu to the column header for toggling column visibility.
         /// </summary>
-        public static readonly DependencyProperty IsColumnMenuEnabledProperty = DependencyProperty.RegisterAttached("IsColumnMenuEnabled", typeof(bool), typeof(DataGridExtensions), new PropertyMetadata(false, IsColumnMenuEnabledChanged));
-        public static bool GetIsColumnMenuEnabled(DependencyObject obj)
+        public static readonly DependencyProperty IsColumnMenuEnabledProperty = DependencyProperty.RegisterAttached("IsColumnMenuEnabled", typeof(bool), typeof(ItemsControlExtensions), new PropertyMetadata(false, IsColumnMenuEnabledChanged));
+        public static bool GetIsColumnMenuEnabled(ItemsControl d)
         {
-            return (bool)obj.GetValue(IsColumnMenuEnabledProperty);
+            return (bool)d.GetValue(IsColumnMenuEnabledProperty);
         }
-        public static void SetIsColumnMenuEnabled(DependencyObject obj, bool value)
+        public static void SetIsColumnMenuEnabled(ItemsControl d, bool value)
         {
-            obj.SetValue(IsColumnMenuEnabledProperty, value);
+            d.SetValue(IsColumnMenuEnabledProperty, value);
         }
 
         static void IsColumnMenuEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (sender is DataGrid || sender is AdvancedTreeView)
+            if (sender is DataGrid || sender is TreeViewExt)
             {
                 var ItemsControl = sender as ItemsControl;
                 if ((bool)e.NewValue)
@@ -67,9 +99,9 @@ namespace Imagin.Controls.Common.Extensions
                 if (DataGrid.Columns != null || DataGrid.Columns.Count >= 0)
                     DataGrid.Style = GetStyle(DataGrid);
             }
-            else if (sender is AdvancedTreeView)
+            else if (sender is TreeViewExt)
             {
-                var TreeView = sender as AdvancedTreeView;
+                var TreeView = sender as TreeViewExt;
                 TreeView.ColumnHeaderContextMenu = GetContextMenu(TreeView); 
             }
         }
@@ -81,7 +113,7 @@ namespace Imagin.Controls.Common.Extensions
             //Bind model boolean to menu item's check state
             BindingOperations.SetBinding(Result, MenuItem.IsCheckedProperty, new Binding()
             {
-                Path = new PropertyPath("(0)", Imagin.Common.Extensions.ControlExtensions.IsVisibleProperty),
+                Path = new PropertyPath("(0)", ControlExtensions.IsVisibleProperty),
                 Mode = BindingMode.TwoWay,
                 Source = Column
             });
@@ -98,10 +130,10 @@ namespace Imagin.Controls.Common.Extensions
             return Result;
         }
 
-        static ContextMenu GetContextMenu(AdvancedTreeView AdvancedTreeView)
+        static ContextMenu GetContextMenu(TreeViewExt TreeViewExt)
         {
             var Result = new ContextMenu();
-            foreach (var Column in AdvancedTreeView.Columns)
+            foreach (var Column in TreeViewExt.Columns)
             {
                 if (Column is TreeViewTextColumn || Column is TreeViewTemplateColumn && (Column.Header != null && !Column.Header.ToString().IsEmpty()))
                 {
@@ -207,10 +239,10 @@ namespace Imagin.Controls.Common.Extensions
                 {
                     ItemsControl.Loaded -= RegisterIsDragSelectionEnabled;
 
-                    if (GetDragSelectionManager(ItemsControl) != null)
-                        GetDragSelectionManager(ItemsControl).Deregister();
+                    if (GetDragSelector(ItemsControl) != null)
+                        GetDragSelector(ItemsControl).Deregister();
 
-                    SetDragSelectionManager(ItemsControl, null);
+                    SetDragSelector(ItemsControl, null);
                 }
             }
         }
@@ -218,14 +250,14 @@ namespace Imagin.Controls.Common.Extensions
         static void RegisterIsDragSelectionEnabled(object sender, RoutedEventArgs e)
         {
             var ItemsControl = sender as ItemsControl;
-            if (GetDragSelectionManager(ItemsControl) == null)
+            if (GetDragSelector(ItemsControl) == null)
             {
                 ItemsControl.ApplyTemplate();
 
                 var Manager = DragSelector.New(ItemsControl);
                 Manager.Register();
 
-                SetDragSelectionManager(ItemsControl, Manager);
+                SetDragSelector(ItemsControl, Manager);
             }
         }
 
@@ -329,8 +361,8 @@ namespace Imagin.Controls.Common.Extensions
                 if (Item != null)
                     Item.As<TreeViewItem>().IsSelected = false;
             }
-            else if (ToEvaluate is AdvancedTreeView)
-                ToEvaluate.As<AdvancedTreeView>().SelectNone();
+            else if (ToEvaluate is TreeViewExt)
+                ToEvaluate.As<TreeViewExt>().SelectNone();
         }
 
         public static void Select(this ItemsControl Control, object Item)

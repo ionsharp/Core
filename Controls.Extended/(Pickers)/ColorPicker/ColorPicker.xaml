@@ -54,7 +54,7 @@
                                                     Margin="5,0"
                                                     VerticalAlignment="Center" 
                                                     Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                <Controls.Common:AdvancedTextBox
+                                <Controls.Common:TextBoxExt
                                                     Grid.Column="1" 
                                                     HorizontalAlignment="Center"  
                                                     HorizontalContentAlignment="Center" 

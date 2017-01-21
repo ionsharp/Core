@@ -21,7 +21,7 @@
     <Border 
         DataContext="{Binding ElementName=PART_ClockGadget}"
         Background="Black"
-        Common:ControlExtensions.IsDragMoveEnabled="True">
+        Controls.Common:ControlExtensions.IsDragMoveEnabled="True">
         <Viewbox TextOptions.TextFormattingMode="Ideal">
             <TextBlock 
                 FontFamily="pack://application:,,,/Fonts/#SF Digital Readout"

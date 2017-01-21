@@ -80,7 +80,7 @@
                 Margin="{TemplateBinding Padding}"
                 VerticalAlignment="Center">
             </ContentPresenter>
-            <Controls.Common:AdvancedTextBox 
+            <Controls.Common:TextBoxExt 
                 x:Name="PART_TextBox" 
                 Focusable="True" 
                 Background="Transparent" 

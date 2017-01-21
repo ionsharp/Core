@@ -118,7 +118,7 @@
                                     BorderThickness="1" 
                                     BorderBrush="{DynamicResource Brush.ComboBox.DropDown.Border}"
                                     Padding="5">
-                                    <local:AdvancedTreeView 
+                                    <local:TreeViewExt 
                                         x:Name="PART_TreeView" 
                                         BorderThickness="0" 
                                         ItemBindingGroup="{TemplateBinding ItemBindingGroup}"

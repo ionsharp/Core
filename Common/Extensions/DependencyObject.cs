@@ -1,25 +1,129 @@
-﻿using Imagin.Common.Debug;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class DependencyObjectExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Property"></param>
+        /// <param name="Source"></param>
+        /// <param name="Path"></param>
+        /// <param name="Mode"></param>
+        /// <returns></returns>
+        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, string Path, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
+        {
+            return Value.Bind(Property, Source, new PropertyPath(Path), null, null, Mode, UpdateSourceTrigger);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Property"></param>
+        /// <param name="Source"></param>
+        /// <param name="Path"></param>
+        /// <param name="Mode"></param>
+        /// <returns></returns>
+        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, PropertyPath Path, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
+        {
+            return Value.Bind(Property, Source, new PropertyPath(Path), null, null, Mode, UpdateSourceTrigger);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Property"></param>
+        /// <param name="Source"></param>
+        /// <param name="Path"></param>
+        /// <param name="Converter"></param>
+        /// <param name="ConverterParameter"></param>
+        /// <param name="Mode"></param>
+        /// <param name="UpdateSourceTrigger"></param>
+        /// <returns></returns>
+        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, string Path, IValueConverter Converter, object ConverterParameter = null, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
+        {
+            return Value.Bind(Property, Source, new PropertyPath(Path), Converter, ConverterParameter, Mode, UpdateSourceTrigger);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Property"></param>
+        /// <param name="Source"></param>
+        /// <param name="Path"></param>
+        /// <param name="Converter"></param>
+        /// <param name="ConverterParameter"></param>
+        /// <param name="Mode"></param>
+        /// <param name="UpdateSourceTrigger"></param>
+        /// <returns></returns>
+        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, PropertyPath Path, IValueConverter Converter, object ConverterParameter = null, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
+        {
+            return BindingOperations.SetBinding(Value, Property, new Binding()
+            {
+                Converter = Converter,
+                ConverterParameter = ConverterParameter,
+                Source = Source,
+                Path = Path,
+                Mode = Mode
+            });
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Property"></param>
+        /// <param name="Path"></param>
+        /// <param name="RelativeSourceMode"></param>
+        /// <param name="Mode"></param>
+        /// <returns></returns>
+        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, string Path, RelativeSourceMode RelativeSourceMode = RelativeSourceMode.Self, BindingMode Mode = BindingMode.OneWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
+        {
+            return BindingOperations.SetBinding(Value, Property, new Binding()
+            {
+                RelativeSource = new RelativeSource(RelativeSourceMode),
+                Path = new PropertyPath(Path),
+                Mode = Mode
+            });
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Object"></param>
         public static void CollapseAll(this DependencyObject Object)
         {
             Object.ToggleAll(false);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Object"></param>
         public static void ExpandAll(this DependencyObject Object)
         {
             Object.ToggleAll(true);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Object"></param>
+        /// <returns></returns>
         public static T GetChildOfType<T>(this DependencyObject Object) where T : DependencyObject
         {
             if (Object == null)
@@ -78,6 +182,12 @@ namespace Imagin.Common.Extensions
             return Parent;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Object"></param>
+        /// <returns></returns>
         public static T GetParent<T>(this DependencyObject Object) where T : DependencyObject
         {
             var Parent = Object.GetParent();
@@ -86,11 +196,22 @@ namespace Imagin.Common.Extensions
             return Parent.As<T>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Child"></param>
+        /// <returns></returns>
         public static DependencyObject GetLogicalParent(this DependencyObject Child)
         {
             return LogicalTreeHelper.GetParent(Child);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Child"></param>
+        /// <returns></returns>
         public static T GetLogicalParent<T>(this DependencyObject Child) where T : DependencyObject
         {
             do
@@ -102,6 +223,12 @@ namespace Imagin.Common.Extensions
             return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Parent"></param>
+        /// <returns></returns>
         public static IEnumerable<T> GetVisualChildren<T>(this DependencyObject Parent) where T : DependencyObject
         {
             if (Parent != null)
@@ -117,11 +244,22 @@ namespace Imagin.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Child"></param>
+        /// <returns></returns>
         public static DependencyObject GetVisualParent(this DependencyObject Child)
         {
             return VisualTreeHelper.GetParent(Child);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Child"></param>
+        /// <returns></returns>
         public static T GetVisualParent<T>(this DependencyObject Child) where T : DependencyObject
         {
             do
@@ -173,25 +311,6 @@ namespace Imagin.Common.Extensions
                             t.IsExpanded = IsExpanded;
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Attempt to select the given object using <see cref="Selector.SetIsSelected(DependencyObject, bool)"/>.
-        /// </summary>
-        /// <param name="Object"></param>
-        /// <param name="IsSelected"></param>
-        /// <returns></returns>
-        public static Result TrySelect(this DependencyObject Object, bool IsSelected)
-        {
-            try
-            {
-                Selector.SetIsSelected(Object, IsSelected);
-                return new Success();
-            }
-            catch (Exception e)
-            {
-                return new Error(e);
             }
         }
     }

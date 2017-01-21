@@ -195,6 +195,14 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
+        /// Checks if specified object is NOT of specified type.
+        /// </summary>
+        public static bool IsNot<T>(this object Value)
+        {
+            return !Value.Is<T>();
+        }
+
+        /// <summary>
         /// Checks if specified object is null.
         /// </summary>
         public static bool IsNull(this object Value)

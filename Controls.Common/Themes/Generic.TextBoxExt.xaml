@@ -7,10 +7,10 @@
     <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <Common:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
 
-    <Style x:Key="{x:Type local:AdvancedTextBox}" TargetType="{x:Type local:AdvancedTextBox}">
+    <Style x:Key="{x:Type local:TextBoxExt}" TargetType="{x:Type local:TextBoxExt}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:AdvancedTextBox}">
+                <ControlTemplate TargetType="{x:Type local:TextBoxExt}">
                     <Border 
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Background="{TemplateBinding Background}" 

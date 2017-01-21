@@ -4,16 +4,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
     xmlns:Common.Extensions="clr-namespace:Imagin.Common.Extensions;assembly=Imagin.Common"
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
-    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
     xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended">
     <Common.Data.Converters:IntToBooleanConverter x:Key="IntToBooleanConverter"/>
     <Common.Data.Converters:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
 
     <Style x:Key="{x:Type TreeView}" TargetType="{x:Type TreeView}">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Controls.Common.Extensions:TreeViewExtensions.SelectionMode" Value="Single"/>
+        <Setter Property="Background" Value="{DynamicResource Brush.TreeView.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.TreeView.Border}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Controls.Common:TreeViewExtensions.SelectionMode" Value="Single"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.6" />
@@ -21,7 +23,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{x:Type Controls.Common:AdvancedTreeView}" TargetType="{x:Type Controls.Common:AdvancedTreeView}" BasedOn="{StaticResource {x:Type TreeView}}">
+    <Style x:Key="{x:Type Controls.Common:TreeViewExt}" TargetType="{x:Type Controls.Common:TreeViewExt}" BasedOn="{StaticResource {x:Type TreeView}}">
         <Setter Property="ColumnHeaderHeight" Value="30"/>
     </Style>
 
@@ -54,10 +56,10 @@
         <Setter Property="TextBlock.Foreground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="IsExpanded" Value="False" />
-        <Setter Property="Controls.Common.Extensions:TreeViewItemExtensions.IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
-        <Setter Property="Controls.Common.Extensions:TreeViewItemExtensions.ExpandOnClick" Value="True" />
-        <Setter Property="Controls.Common.Extensions:TreeViewItemExtensions.CollapseSiblingsOnClick" Value="True" />
-        <Setter Property="Controls.Common.Extensions:TreeViewItemExtensions.SelectOnRightClick" Value="True" />
+        <Setter Property="Controls.Common:TreeViewItemExtensions.IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+        <Setter Property="Controls.Common:TreeViewItemExtensions.ExpandOnClick" Value="True" />
+        <Setter Property="Controls.Common:TreeViewItemExtensions.CollapseSiblingsOnClick" Value="True" />
+        <Setter Property="Controls.Common:TreeViewItemExtensions.SelectOnRightClick" Value="True" />
         <Setter Property="Opacity" Value="0" />
         <Setter Property="Padding" Value="10,5" />
         <Setter Property="Template">
@@ -73,6 +75,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
+                        
                         <ToggleButton 
                             x:Name="PART_Expander" 
                             Background="{DynamicResource Brush.TreeViewItem.ToggleButton.Empty.Fill}" 
@@ -112,16 +115,9 @@
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             Padding="{TemplateBinding Padding}" 
                             SnapsToDevicePixels="True">
-                            <ContentPresenter 
+                            <Controls.Common:TreeViewRowHeader
                                 x:Name="PART_Header"
-                                ContentSource="Header"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
-                            <!--
-                            <ContentPresenter 
-                                x:Name="PART_Header" 
-                                ContentSource="Header"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
-                            -->
                         </Border>
                         <ItemsPresenter 
                             Grid.Row="1" 
@@ -130,13 +126,6 @@
                             x:Name="ItemsHost"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Columns.Total, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type Controls.Common:AdvancedTreeView}}, Converter={StaticResource IntToBooleanConverter}}" Value="True">
-                            <Setter TargetName="PART_Header" Property="Content">
-                                <Setter.Value>
-                                    <Controls.Common:TreeViewRowHeader ColumnOffset="15"/>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
                         <DataTrigger Binding="{Binding Mode=OneWay, Converter={StaticResource ObjectToTypeConverter}}" Value="{x:Type Controls.Common:Line}">
                             <Setter TargetName="PART_Expander" Property="Visibility" Value="Collapsed"/>
                             <Setter Property="IsEnabled" Value="False"/>
@@ -179,7 +168,7 @@
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="Controls.Common.Extensions:TreeViewItemExtensions.IsSelected" Value="False"/>
+                                <Condition Property="Controls.Common:TreeViewItemExtensions.IsSelected" Value="False"/>
                                 <Condition SourceName="PART_Border" Property="IsMouseOver" Value="True"/>
                             </MultiTrigger.Conditions>
                             <Setter Property="Background" Value="{DynamicResource Brush.TreeViewItem.MouseOver.Background}"/>
@@ -189,7 +178,7 @@
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="Controls.Common.Extensions:TreeViewItemExtensions.IsSelected" Value="True"/>
+                                <Condition Property="Controls.Common:TreeViewItemExtensions.IsSelected" Value="True"/>
                             </MultiTrigger.Conditions>
                             <Setter TargetName="PART_Expander" Property="Background" Value="{DynamicResource Brush.TreeViewItem.Selected.Background}"/>
                             <Setter TargetName="PART_Expander" Property="BorderBrush" Value="{DynamicResource Brush.TreeViewItem.Selected.Background}"/>
@@ -199,11 +188,11 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="Common.Extensions:ControlExtensions.IsPossibleDropTarget" Value="True">
+            <Trigger Property="Controls.Common:ControlExtensions.IsPossibleDropTarget" Value="True">
                 <Setter Property="Background" Value="{DynamicResource Brush.TreeViewItem.DropTarget.Background}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource Brush.TreeViewItem.DropTarget.BorderBrush}" />
             </Trigger>
-            <Trigger Property="Controls.Common.Extensions:TreeViewItemExtensions.IsSelected" Value="True">
+            <Trigger Property="Controls.Common:TreeViewItemExtensions.IsSelected" Value="True">
                 <Setter Property="Background" Value="{DynamicResource Brush.TreeViewItem.Selected.Background}"/>
                 <Setter Property="TextBlock.Foreground" Value="{DynamicResource Brush.TreeViewItem.Selected.Foreground}"/>
             </Trigger>

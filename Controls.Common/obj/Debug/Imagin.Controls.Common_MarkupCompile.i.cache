@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-231780263327
+232009288326
 
-761625629423
+78-766902432
 211826753825
-DirectionPad.xaml;FontSizeBox.xaml;FontFamilyBox.xaml;SelectionCanvas.xaml;Themes\Generic.AdvancedTextBox.xaml;Themes\Generic.ButtonChrome.xaml;Themes\Generic.AdvancedTreeView.xaml;Themes\Generic.ToggleSwitch.xaml;Themes\Generic.RippleDecorator.xaml;Themes\Generic.CheckerBoard.xaml;Themes\Generic.EditableLabel.xaml;Themes\Generic.Gadget.xaml;Themes\Generic.Masked.xaml;Themes\Generic.DragSelection.xaml;Themes\Generic.FileBox.xaml;Themes\Generic.Line.xaml;Themes\Generic.Link.xaml;Themes\Generic.PasswordBox.xaml;Themes\Generic.RadioGroup.xaml;Themes\Generic.TreeViewComboBox.xaml;Themes\Generic.UpDown.xaml;Themes\Generic.BasicWindow.xaml;Themes\Generic.xaml;
+DirectionPad.xaml;FontSizeBox.xaml;FontFamilyBox.xaml;SelectionCanvas.xaml;Themes\Generic.TextBoxExt.xaml;Themes\Generic.ButtonChrome.xaml;Themes\Generic.TreeViewExt.xaml;Themes\Generic.ToggleSwitch.xaml;Themes\Generic.RippleDecorator.xaml;Themes\Generic.CheckerBoard.xaml;Themes\Generic.EditableLabel.xaml;Themes\Generic.Gadget.xaml;Themes\Generic.Masked.xaml;Themes\Generic.DragSelection.xaml;Themes\Generic.FileBox.xaml;Themes\Generic.Line.xaml;Themes\Generic.Link.xaml;Themes\Generic.PasswordBox.xaml;Themes\Generic.RadioGroup.xaml;Themes\Generic.TreeViewComboBox.xaml;Themes\Generic.UpDown.xaml;Themes\Generic.BasicWindow.xaml;Themes\Generic.xaml;
 
-False
+True
 

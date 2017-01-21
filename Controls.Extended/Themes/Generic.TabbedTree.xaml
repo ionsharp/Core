@@ -85,7 +85,7 @@
                                         Content="{TemplateBinding SelectedItem}">
                                         <ContentControl.Resources>
                                             <DataTemplate x:Key="DefaultContentTemplate">
-                                                <ContentControl Content="{Binding Path=(Common.Extensions:ControlExtensions.Content), Mode=OneWay}"/>
+                                                <ContentControl Content="{Binding Path=(Controls.Common.Extensions:ControlExtensions.Content), Mode=OneWay}"/>
                                             </DataTemplate>
                                         </ContentControl.Resources>
                                         <ContentControl.Style>

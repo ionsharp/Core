@@ -365,94 +365,106 @@
         </Style.Triggers>
     </Style>
 
-    <ControlTemplate x:Key="ControlTemplate.DataGrid.ScrollViewer" TargetType="{x:Type ScrollViewer}">
-        <Grid ClipToBounds="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="{Binding ElementName=PART_VerticalScrollBar, Path=ActualWidth, Mode=OneWay}"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="{Binding ElementName=PART_HorizontalScrollBar, Path=ActualHeight, Mode=OneWay}"/>
-            </Grid.RowDefinitions>
+    <Style x:Key="Style.DataGrid.ScrollViewer" TargetType="{x:Type ScrollViewer}">
+        <Setter Property="CanContentScroll" Value="True"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        SnapsToDevicePixels="True">
+                        <Grid ClipToBounds="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="{Binding ElementName=PART_VerticalScrollBar, Path=ActualWidth, Mode=OneWay}"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="{Binding ElementName=PART_HorizontalScrollBar, Path=ActualHeight, Mode=OneWay}"/>
+                            </Grid.RowDefinitions>
 
-            <Button
-                Command="{x:Static DataGrid.SelectAllCommand}"
-                Focusable="False"
-                Style="{StaticResource Style.DataGrid.SelectAll}"
-                Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
-                <Controls.Common:MaskedImage Source="pack://application:,,,/Imagin.Themes;component/Images/BottomRightTriangle.png"/>
-            </Button>
-            <DataGridColumnHeadersPresenter
-                Panel.ZIndex="0" 
-                Grid.Column="1" 
-                Grid.ColumnSpan="2"
-                x:Name="PART_ColumnHeadersPresenter" 
-                Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
-            <Controls.Common:MaskedButton
-                Grid.Column="1" 
-                Grid.ColumnSpan="2"
-                Command="{x:Static Controls.Common.Extensions:DataGridExtensions.AddCommand}"
-                CommandTarget="{Binding Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                HorizontalAlignment="Right"
-                Padding="7,0"
-                Source="pack://application:,,,/Imagin.Themes;component/Images/PlusRound.png"
-                VerticalAlignment="Center"
-                Visibility="{Binding CanUserAddRows, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
-            <ScrollContentPresenter
-                Grid.ColumnSpan="3"
-                Grid.Row="1"
-                x:Name="PART_ScrollContentPresenter"
-                CanContentScroll="{TemplateBinding CanContentScroll}"/>
+                            <Button
+                                Command="{x:Static DataGrid.SelectAllCommand}"
+                                Focusable="False"
+                                Style="{StaticResource Style.DataGrid.SelectAll}"
+                                Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
+                                <Controls.Common:MaskedImage Source="pack://application:,,,/Imagin.Themes;component/Images/BottomRightTriangle.png"/>
+                            </Button>
+                            <DataGridColumnHeadersPresenter
+                                Panel.ZIndex="0" 
+                                Grid.Column="1" 
+                                Grid.ColumnSpan="2"
+                                x:Name="PART_ColumnHeadersPresenter" 
+                                Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            <Controls.Common:MaskedButton
+                                Grid.Column="1" 
+                                Grid.ColumnSpan="2"
+                                Command="{x:Static Controls.Common.Extensions:DataGridExtensions.AddCommand}"
+                                CommandTarget="{Binding Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                HorizontalAlignment="Right"
+                                Padding="7,0"
+                                Source="pack://application:,,,/Imagin.Themes;component/Images/PlusRound.png"
+                                VerticalAlignment="Center"
+                                Visibility="{Binding CanUserAddRows, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            <ScrollContentPresenter
+                                Grid.ColumnSpan="3"
+                                Grid.Row="1"
+                                x:Name="PART_ScrollContentPresenter"
+                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                Margin="{TemplateBinding Padding}"/>
 
-            <ScrollBar
-                Grid.Row="1"
-                Grid.Column="2"
-                Grid.RowSpan="1"
-                x:Name="PART_VerticalScrollBar"
-                Maximum="{TemplateBinding ScrollableHeight}"
-                HorizontalAlignment="Right"
-                Margin="0,0,-5,0"
-                Orientation="Vertical"
-                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                ViewportSize="{TemplateBinding ViewportHeight}"/>
-            <ScrollBar
-                Grid.Row="2"
-                Grid.ColumnSpan="2"
-                x:Name="PART_HorizontalScrollBar"
-                Margin="0,0,0,-5"
-                Maximum="{TemplateBinding ScrollableWidth}"
-                Orientation="Horizontal"
-                Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                VerticalAlignment="Bottom"
-                ViewportSize="{TemplateBinding ViewportWidth}"
-                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
-        </Grid>
-    </ControlTemplate>
-
+                            <ScrollBar
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Grid.RowSpan="1"
+                                x:Name="PART_VerticalScrollBar"
+                                Maximum="{TemplateBinding ScrollableHeight}"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,-5,0"
+                                Orientation="Vertical"
+                                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                ViewportSize="{TemplateBinding ViewportHeight}"/>
+                            <ScrollBar
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                x:Name="PART_HorizontalScrollBar"
+                                Margin="0,0,0,-5"
+                                Maximum="{TemplateBinding ScrollableWidth}"
+                                Orientation="Horizontal"
+                                Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalAlignment="Bottom"
+                                ViewportSize="{TemplateBinding ViewportWidth}"
+                                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                        </Grid>
+                    </Border> 
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <ControlTemplate x:Key="ControlTemplate.DataGrid" TargetType="{x:Type DataGrid}">
-        <Border
+        <ScrollViewer 
+            x:Name="PART_ScrollViewer" 
+            Panel.ZIndex="1"
+            Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
-            Background="{TemplateBinding Background}"
+            Focusable="False"
             Padding="{TemplateBinding Padding}"
-            SnapsToDevicePixels="True">
-            <ScrollViewer 
-                x:Name="PART_ScrollViewer" 
-                Panel.ZIndex="1"
-                Focusable="false"
-                Template="{StaticResource ControlTemplate.DataGrid.ScrollViewer}">
-                <Grid x:Name="PART_Grid">
-                    <ItemsPresenter 
-                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                        Margin="{TemplateBinding Padding}"/>
-                </Grid>
-            </ScrollViewer>
-        </Border>
+            Style="{StaticResource Style.DataGrid.ScrollViewer}">
+            <Grid>
+                <ItemsPresenter 
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                    Margin="{TemplateBinding Padding}"/>
+            </Grid>
+        </ScrollViewer>
     </ControlTemplate>
 
     <Style x:Key="{x:Type DataGrid}" TargetType="{x:Type DataGrid}">
@@ -473,6 +485,7 @@
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource Brush.DataGrid.GridLines.Horizontal}"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+        <Setter Property="Padding" Value="5"/>
         <Setter Property="Controls.Common.Extensions:DataGridExtensions.RegisterAddCommand" Value="True"/>
         <Setter Property="SelectionMode" Value="Extended"/>
         <Setter Property="SelectionUnit" Value="FullRow"/>

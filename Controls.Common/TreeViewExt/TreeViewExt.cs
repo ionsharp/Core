@@ -6,18 +6,17 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
     /// <summary>
-    /// An advanced TreeView.
+    /// An extended version of <see cref="TreeView"/>.
     /// </summary>
     /// <remarks>
-    /// Multi selection behavior borrowed from https://github.com/cmyksvoll/MultiSelectTreeView.
+    /// Multi-selection borrowed from https://github.com/cmyksvoll/MultiSelectTreeView.
     /// </remarks>
-    public class AdvancedTreeView : TreeView
+    public class TreeViewExt : TreeView
     {
         #region Properties
 
@@ -35,7 +34,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty CanResizeColumnsProperty = DependencyProperty.Register("CanResizeColumns", typeof(bool), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty CanResizeColumnsProperty = DependencyProperty.Register("CanResizeColumns", typeof(bool), typeof(TreeViewExt), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -54,7 +53,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnHeaderContextMenuProperty = DependencyProperty.Register("ColumnHeaderContextMenu", typeof(ContextMenu), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnHeaderContextMenuProperty = DependencyProperty.Register("ColumnHeaderContextMenu", typeof(ContextMenu), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -73,7 +72,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnHeaderHeightProperty = DependencyProperty.Register("ColumnHeaderHeight", typeof(double), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnHeaderHeightProperty = DependencyProperty.Register("ColumnHeaderHeight", typeof(double), typeof(TreeViewExt), new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -92,7 +91,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnHeaderStyleProperty = DependencyProperty.Register("ColumnHeaderStyle", typeof(Style), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnHeaderStyleProperty = DependencyProperty.Register("ColumnHeaderStyle", typeof(Style), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -111,7 +110,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnHeaderStyleSelectorProperty = DependencyProperty.Register("ColumnHeaderStyleSelector", typeof(StyleSelector), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnHeaderStyleSelectorProperty = DependencyProperty.Register("ColumnHeaderStyleSelector", typeof(StyleSelector), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -130,7 +129,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnHeaderTemplateProperty = DependencyProperty.Register("ColumnHeaderTemplate", typeof(DataTemplate), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnHeaderTemplateProperty = DependencyProperty.Register("ColumnHeaderTemplate", typeof(DataTemplate), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -149,7 +148,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnHeaderTemplateSelectorProperty = DependencyProperty.Register("ColumnHeaderTemplateSelector", typeof(DataTemplateSelector), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnHeaderTemplateSelectorProperty = DependencyProperty.Register("ColumnHeaderTemplateSelector", typeof(DataTemplateSelector), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -168,7 +167,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnHeaderStringFormatProperty = DependencyProperty.Register("ColumnHeaderStringFormat", typeof(string), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnHeaderStringFormatProperty = DependencyProperty.Register("ColumnHeaderStringFormat", typeof(string), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -187,7 +186,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnHeaderVisibilityProperty = DependencyProperty.Register("ColumnHeaderVisibility", typeof(Visibility), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(Visibility.Collapsed, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnHeaderVisibilityProperty = DependencyProperty.Register("ColumnHeaderVisibility", typeof(Visibility), typeof(TreeViewExt), new FrameworkPropertyMetadata(Visibility.Collapsed, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -206,7 +205,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ColumnsProperty = DependencyProperty.Register("Columns", typeof(TreeViewColumnCollection), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnsProperty = DependencyProperty.Register("Columns", typeof(TreeViewColumnCollection), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -225,7 +224,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty SelectedObjectProperty = DependencyProperty.Register("SelectedObject", typeof(object), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedObjectChanged));
+        public static DependencyProperty SelectedObjectProperty = DependencyProperty.Register("SelectedObject", typeof(object), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedObjectChanged));
         /// <summary>
         /// Get or set selected object.
         /// </summary>
@@ -242,13 +241,13 @@ namespace Imagin.Controls.Common
         }
         static void OnSelectedObjectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.As<AdvancedTreeView>().OnSelectedObjectChanged(e.NewValue);
+            d.As<TreeViewExt>().OnSelectedObjectChanged(e.NewValue);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty SelectedItemsProperty = DependencyProperty.Register("SelectedItems", typeof(TrackableCollection<object>), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty SelectedItemsProperty = DependencyProperty.Register("SelectedItems", typeof(TrackableCollection<object>), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Get or set list of selected items.
         /// </summary>
@@ -267,7 +266,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty SelectedVisualProperty = DependencyProperty.Register("SelectedVisual", typeof(TreeViewItem), typeof(AdvancedTreeView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty SelectedVisualProperty = DependencyProperty.Register("SelectedVisual", typeof(TreeViewItem), typeof(TreeViewExt), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Get or set visual associated with selected object.
         /// </summary>
@@ -285,14 +284,14 @@ namespace Imagin.Controls.Common
 
         #endregion
 
-        #region AdvancedTreeView
+        #region TreeViewExt
 
         /// <summary>
         /// 
         /// </summary>
-        public AdvancedTreeView()
+        public TreeViewExt() : base()
         {
-            DefaultStyleKey = typeof(AdvancedTreeView);
+            DefaultStyleKey = typeof(TreeViewExt);
 
             Columns = new TreeViewColumnCollection();
 
@@ -303,12 +302,7 @@ namespace Imagin.Controls.Common
             SelectedItems = new TrackableCollection<object>();
             SelectedItems.ItemsChanged += OnSelectedItemsChanged;
 
-            BindingOperations.SetBinding(this, TreeViewExtensions.SelectedItemsProperty, new Binding()
-            {
-                Mode = BindingMode.TwoWay,
-                Path = new PropertyPath("SelectedItems"),
-                Source = this
-            });
+            this.Bind(TreeViewExtensions.SelectedItemsProperty, this, "SelectedItems");
         }
 
         #endregion
@@ -325,9 +319,9 @@ namespace Imagin.Controls.Common
                 {
                     if (Mouse.LeftButton == MouseButtonState.Pressed && TreeViewItemExtensions.GetIsSelected(Item) && Keyboard.Modifiers != ModifierKeys.Control)
                         SelectedItemOnMouseUp = Item;
-                    else if (sender is AdvancedTreeView && TreeViewExtensions.GetSelectionMode(sender as TreeView) == TreeViewSelectionMode.Single)
+                    else if (sender is TreeViewExt && TreeViewExtensions.GetSelectionMode(sender as TreeView) == TreeViewSelectionMode.Single)
                         TreeViewExtensions.SelectItem(sender as TreeView, Item);
-                    else (sender as AdvancedTreeView).SelectItems(Item);
+                    else (sender as TreeViewExt).SelectItems(Item);
                 }
             }
         }
@@ -379,11 +373,8 @@ namespace Imagin.Controls.Common
         protected virtual void OnSelectedItemsChanged(object sender, EventArgs e)
         {
             var Collection = new List<object>();
-            foreach (var i in SelectedItems)
-                Collection.Add(i);
-
-            if (this.SelectedItemsChanged != null)
-                this.SelectedItemsChanged(this, new EventArgs<IList<object>>(Collection));
+            SelectedItems.ForEach(i => Collection.Add(i));
+            SelectedItemsChanged?.Invoke(this, new EventArgs<IList<object>>(Collection));
         }
 
         /// <summary>

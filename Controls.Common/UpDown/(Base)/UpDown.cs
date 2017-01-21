@@ -12,7 +12,7 @@ namespace Imagin.Controls.Common
 {
     [TemplatePart(Name = "PART_Down", Type = typeof(Button))]
     [TemplatePart(Name = "PART_Up", Type = typeof(Button))]
-    public abstract class UpDown : AdvancedTextBox, INotifyPropertyChanged
+    public abstract class UpDown : TextBoxExt, INotifyPropertyChanged
     {
         #region Properties
 

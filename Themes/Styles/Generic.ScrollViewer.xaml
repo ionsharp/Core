@@ -21,12 +21,12 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <ScrollContentPresenter 
-                                x:Name="PART_ScrollContent" 
-                                Grid.ColumnSpan="2"
-                                Grid.RowSpan="2"
-                                CanContentScroll="True"
-                                Margin="{TemplateBinding Padding}"/>
+                            <Grid>
+                                <ScrollContentPresenter 
+                                    x:Name="PART_ScrollContent" 
+                                    CanContentScroll="True"
+                                    Margin="{TemplateBinding Padding}"/>
+                            </Grid>
                             <ScrollBar 
                                 Grid.Row="0" 
                                 Grid.Column="1" 

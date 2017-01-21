@@ -5,7 +5,7 @@
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedTextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.TextBoxExt.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.BasicWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.ButtonChrome.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.CheckerBoard.xaml" />
@@ -13,7 +13,6 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Line.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Link.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.DragSelection.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.AdvancedTreeView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.EditableLabel.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.FileBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Gadget.xaml" /> 
@@ -22,6 +21,7 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.RippleDecorator.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.ToggleSwitch.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.TreeViewComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.TreeViewExt.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.UpDown.xaml" />
     </ResourceDictionary.MergedDictionaries> 
 </ResourceDictionary> 

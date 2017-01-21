@@ -91,10 +91,14 @@
 
     <SolidColorBrush x:Key="Brush.DataGridRow.Foreground" Color="#333"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Background" Color="#FF6CC6FF"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Border" Color="#FF6CC6FF"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Background" Color="#60bffb"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Border" Color="#60bffb"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Foreground" Color="#FFF"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Even.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Odd.Background" Color="Gainsboro"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Background" Color="#a9dffe"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Border" Color="#a9dffe"/>
 
     <SolidColorBrush x:Key="Brush.DragSelection.Border" Color="#55349ADE"/>
     <SolidColorBrush x:Key="Brush.DragSelection.Background" Color="#552489cd"/>
@@ -259,6 +263,8 @@
     <SolidColorBrush x:Key="Brush.ToolTip.Border" Color="#8b8040"/>
     <SolidColorBrush x:Key="Brush.ToolTip.Foreground" Color="#284d6f"/>
 
+    <SolidColorBrush x:Key="Brush.TreeView.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="Brush.TreeView.Border" Color="#CCC"/>
     <SolidColorBrush x:Key="Brush.TreeView.ColumnHeader.Background" Color="#11000000"/>
     <SolidColorBrush x:Key="Brush.TreeView.Column.MouseOver.Background" Color="#11000000"/>
     <SolidColorBrush x:Key="Brush.TreeView.Column.MouseOver.Foreground" Color="#444"/>
