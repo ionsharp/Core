@@ -8,14 +8,17 @@ namespace Imagin.Controls.Extended
     /// <summary>
     /// Represents a property with a type that uses another type to modify it, and has both a minimum and maximum value.
     /// </summary>
-    /// <typeparam name="T1">The type used to modify the property.</typeparam>
-    /// <typeparam name="T2">The actual type of the property.</typeparam>
-    public class CoercedVariantPropertyModel<T1, T2> : CoercedPropertyModel<T2> where T1 : IVariant<T2>
+    /// <typeparam name="TVariant">The type used to modify the property.</typeparam>
+    /// <typeparam name="TPrimitive">The actual type of the property.</typeparam>
+    public class CoercedVariantPropertyModel<TVariant, TPrimitive> : CoercedPropertyModel<TPrimitive> where TVariant : IVariant<TPrimitive>
     {
         bool ValueChangeHandled = false;
 
-        T1 variant = default(T1);
-        public T1 Variant
+        TVariant variant = default(TVariant);
+        /// <summary>
+        /// 
+        /// </summary>
+        public TVariant Variant
         {
             get
             {
@@ -30,18 +33,27 @@ namespace Imagin.Controls.Extended
 
         internal CoercedVariantPropertyModel() : base()
         {
-            Variant = typeof(T1).TryCreate<T1>();
+            Variant = typeof(TVariant).TryCreate<TVariant>();
             Variant.Changed += OnVariantChanged;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected override void OnValueChanged(object Value)
         {
             base.OnValueChanged(Value);
             if (!ValueChangeHandled)
-                Variant.Set(Value.As<T2>());
+                Variant.Set(Value.As<TPrimitive>());
         }
 
-        protected virtual void OnVariantChanged(object sender, EventArgs<T2> e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void OnVariantChanged(object sender, EventArgs<TPrimitive> e)
         {
             ValueChangeHandled = true;
             Value = e.Value;

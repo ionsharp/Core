@@ -46,6 +46,16 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Common.IChangeable">
+            <summary>
+            Specifies an object that can observe changes to itself.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IChangeable.Changed">
+            <summary>
+            Occurs when the object is changed in any way.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Attributes.ConstraintAttribute">
             <summary>
             Specifies a constraint for a property with both a minimum and maximum value.
@@ -86,6 +96,144 @@
             </summary>
             <param name="Representation"></param>
         </member>
+        <member name="T:Imagin.Common.Config.IAppStarter">
+            <summary>
+            Specifies a control responsible for starting up an application.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IAppStarter.Progress">
+            <summary>
+            A value indicating the current progress.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IAppStarter.Status">
+            <summary>
+            A message indicating the current status.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Config.IAppStarter.Set(System.Double,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Progress"></param>
+            <param name="Status"></param>
+        </member>
+        <member name="T:Imagin.Common.Config.IMainModule">
+            <summary>
+            Specifies the main graphical interface of an application (<see cref="T:System.Windows.Window"/>, if WPF).
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Config.AppInitializerDelegate">
+            <summary>
+            
+            </summary>
+            <param name="Source"></param>
+        </member>
+        <member name="T:Imagin.Common.Config.IApp">
+            <summary>
+            Specifies an application.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Config.IApp.Ran">
+            <summary>
+            Occurs just after <see cref="M:System.Windows.Application.Run"/> is called.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Config.IApp.Started">
+            <summary>
+            Occurs when the application has finished all startup tasks and is ready to display the main module.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IApp.Arguments">
+            <summary>
+            Gets or sets command line arguments passed to the current application instance.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IApp.Initializer">
+            <summary>
+            Gets or sets delegate for assisting with initialization.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IApp.Log">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IApp.MainModule">
+            <summary>
+            Gets or sets the main module (<see cref="T:System.Windows.Window"/>, if WPF).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IApp.Resources">
+            <summary>
+            Gets or sets the resources of the application.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Config.IPlugin">
+            <summary>
+            An independent library used to extend functionality of an application.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Config.IPlugin.Enabled">
+            <summary>
+            Occurs when the plugin is enabled.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Config.IPlugin.Disabled">
+            <summary>
+            Occurs when the plugin is disabled.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IPlugin.Author">
+            <summary>
+            Gets the name of the individual who, or organization that, developed the plugin.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IPlugin.Description">
+            <summary>
+            Gets short description explaining what the plugin does.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IPlugin.Icon">
+            <summary>
+            Gets <see cref="T:System.Uri"/> that points to an icon resource.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IPlugin.IsEnabled">
+            <summary>
+            Gets or sets whether or not the plugin is enabled.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IPlugin.Name">
+            <summary>
+            Gets the name of the plugin.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IPlugin.Resources">
+            <summary>
+            Gets resources used just for the plugin.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IPlugin.Uri">
+            <summary>
+            Gets a web address where the plugin might be published.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Config.IPlugin.Version">
+            <summary>
+            Gets the version of the plugin.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Config.IPlugin.OnEnabled">
+            <summary>
+            Occurs when the plugin is enabled.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Config.IPlugin.OnDisabled">
+            <summary>
+            Occurs when the plugin is disabled.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Data.Converters.ArrayToStringConverter">
             <summary>
             
@@ -119,6 +267,31 @@
             you should return Binding.DoNothing or
             DependencyProperty.UnsetValue.
             </remarks>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.ColorToHexConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ColorToHexConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ColorToHexConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Data.Converters.FileSpeedConverter">
             <summary>
@@ -292,6 +465,16 @@
             <param name="Maximum"></param>
             <param name="Minimum"></param>
             <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Extensions.UriExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.UriExtensions.GetResourceStream(System.Uri)">
+            <summary>
+            Returns a Uri that represents a resource.
+            </summary>
         </member>
         <member name="M:Imagin.Common.Extensions.ActionExtensions.InvokeIf(System.Action,System.Func{System.Action,System.Boolean})">
             <summary>
@@ -1056,10 +1239,17 @@
             <param name="RoundTo"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Extensions.IntPtrExtensions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Common.Extensions.IntPtrExtensions.DeleteObject(System.IntPtr)">
             <summary>
-            Imagin.Common
+            
             </summary>
+            <param name="Ptr"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Extensions.ObjectExtensions">
             <summary>
@@ -1291,12 +1481,7 @@
         </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.GetResourceUri(System.String,System.String)">
             <summary>
-            Returns a Uri that represents a resource.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Extensions.StringExtensions.GetResource(System.Uri)">
-            <summary>
-            Returns a BitmapImage from resource Uri.
+            Returns <see cref="T:System.Uri"/> of resource defined in assembly with given path; note, path must NOT begin with slash and slashes must be forward-facing.
             </summary>
         </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.IsDouble(System.String)">
@@ -2248,61 +2433,6 @@
             Field order is important
             </remarks>
         </member>
-        <member name="T:Imagin.Common.Config.IApp">
-            <summary>
-            Specifies an application.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Config.IPlugin">
-            <summary>
-            An independent library used to extend functionality of an application.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IPlugin.Author">
-            <summary>
-            The individual who (or organization that) developed the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IPlugin.Description">
-            <summary>
-            A short description explaining what the plugin does.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IPlugin.Icon">
-            <summary>
-            Uri for an icon resource.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IPlugin.IsEnabled">
-            <summary>
-            Whether or not the plugin is enabled.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IPlugin.Name">
-            <summary>
-            The name of the plugin.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IPlugin.Uri">
-            <summary>
-            Website where the plugin is published.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IPlugin.Version">
-            <summary>
-            Plugin version.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Config.IPlugin.Enable">
-            <summary>
-            Enable the plugin.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Config.IPlugin.Disable">
-            <summary>
-            Disable the plugin.
-            </summary>
-        </member>
         <member name="T:Imagin.Common.LeftRight">
             <summary>
             Represents a direction that can only be left or right.
@@ -2311,6 +2441,26 @@
         <member name="T:Imagin.Common.Globalization.LocalizationProvider">
             <summary>
             A utility to access global localization resources.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.INotifiable">
+            <summary>
+            Specifies an object capable of raising notifications.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.INotifiable.Notified">
+            <summary>
+            Occurs when <see cref="T:System.Timers.Timer"/> elapses.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.INotifiable.Enabled">
+            <summary>
+            Gets or sets whether or not to enable notifications.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.INotifiable.Interval">
+            <summary>
+            The period of time (in milliseconds) between notifications.
             </summary>
         </member>
         <member name="T:Imagin.Common.IProportional">
@@ -2341,6 +2491,11 @@
         <member name="F:Imagin.Common.Meridiem.Unspecified">
             <summary>
             Specifies a time with unspecified meridiem.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Mvvm.IMainViewModel">
+            <summary>
+            Specifies a view model that corresponds to the main module.
             </summary>
         </member>
         <member name="T:Imagin.Common.Mvvm.ViewModel`1">
@@ -2381,6 +2536,36 @@
             </summary>
             <param name="Object">The object to model.</param>
         </member>
+        <member name="T:Imagin.Common.NamedNotifiableObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.NamedNotifiableObject.name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.NamedNotifiableObject.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.NamedNotifiableObject.#ctor(System.Double,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="interval"></param>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:Imagin.Common.NamedNotifiableObject.#ctor(System.String,System.Double,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="interval"></param>
+            <param name="enabled"></param>
+        </member>
         <member name="T:Imagin.Common.NamedObject">
             <summary>
             A named, abstract object.
@@ -2395,6 +2580,83 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:Imagin.Common.NotifiableObject">
+            <summary>
+            An object capable of raising notifications using <see cref="T:System.Timers.Timer"/>.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.NotifiableObject.DefaultInterval">
+            <summary>
+            The default interval to use.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.NotifiableObject.Notified">
+            <summary>
+            Occurs when <see cref="P:Imagin.Common.NotifiableObject.Timer"/> elapses.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.NotifiableObject.Timer">
+            <summary>
+            A timer used for automating notifications.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.NotifiableObject.Enabled">
+            <summary>
+            Gets or sets whether or not to enable notifications.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.NotifiableObject.Interval">
+            <summary>
+            The period of time (in milliseconds) between notifications.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.NotifiableObject.OnNotified(System.Timers.ElapsedEventArgs)">
+            <summary>
+            Occurs when <see cref="P:Imagin.Common.NotifiableObject.Timer"/> elapses.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Common.NotifiableObject.#ctor(System.Double,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.NotifiableObject"/> class and enables (or disables) timer with given interval.
+            </summary>
+            <param name="interval"></param>
+            <param name="enabled"></param>
+        </member>
+        <member name="T:Imagin.Common.NamedFileEntry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.NamedFileEntry.Path">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.NamedFileEntry.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.NamedFileEntry.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+        </member>
+        <member name="M:Imagin.Common.NamedFileEntry.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="path"></param>
+        </member>
+        <member name="M:Imagin.Common.NamedFileEntry.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Primitives.DateTimePart">
             <summary>
@@ -2669,6 +2931,52 @@
             <param name="Fourth"></param>
             <param name="Fifth"></param>
             <param name="Sixth"></param>
+        </member>
+        <member name="T:Imagin.Common.Tracing.Log">
+            <summary>
+            A facility for accessing the log of an application (if it exists) globally; note, <see cref="P:System.Windows.Application.Current"/> must implement <see cref="T:Imagin.Common.Config.IApp"/>.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Tracing.ILog">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Tracing.ILog.Load">
+            <summary>
+            Load current instance with data from file it is associated with.
+            </summary>
+            <returns>The result of the task.</returns>
+        </member>
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Source"></param>
+            <param name="Message"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.ILog.Write(Imagin.Common.Tracing.LogEntryStatus,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Status"></param>
+            <param name="Source"></param>
+            <param name="Message"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.ILog.Write(Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryStatus,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="WarningLevel"></param>
+            <param name="Status"></param>
+            <param name="Source"></param>
+            <param name="Message"></param>
         </member>
         <member name="F:Imagin.Common.Tracing.WarningLevel.None">
             <summary>

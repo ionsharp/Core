@@ -13,9 +13,6 @@
     <SolidColorBrush x:Key="Brush.Button.Foreground" Color="#666"/>
     <SolidColorBrush x:Key="Brush.Button.Background" Color="#EEE"/>
     <SolidColorBrush x:Key="Brush.Button.Border" Color="#CCC"/>
-    <SolidColorBrush x:Key="Brush.Button.Disabled.Background" Color="#777"/>
-    <SolidColorBrush x:Key="Brush.Button.Disabled.Border" Color="#777"/>
-    <SolidColorBrush x:Key="Brush.Button.Disabled.Foreground" Color="#BBB"/>
     <SolidColorBrush x:Key="Brush.Button.MouseOver.Background" Color="#FFDDDDDD"/>
     <SolidColorBrush x:Key="Brush.Button.MouseOver.Border" Color="#AAA"/>
     <SolidColorBrush x:Key="Brush.Button.MouseDown.Background" Color="#349ADE"/>
@@ -102,7 +99,9 @@
 
     <SolidColorBrush x:Key="Brush.DragSelection.Border" Color="#55349ADE"/>
     <SolidColorBrush x:Key="Brush.DragSelection.Background" Color="#552489cd"/>
-
+    
+    <SolidColorBrush x:Key="Brush.DropTarget.Border" Color="#007acc"/>
+    
     <SolidColorBrush x:Key="Brush.Error" Color="#900"/>
     <SolidColorBrush x:Key="Brush.Success" Color="#25bd5b"/>
 
@@ -142,8 +141,6 @@
     <SolidColorBrush x:Key="Brush.ListBoxItem.Matched.Background" Color="#AA25bd5b"/>
     <SolidColorBrush x:Key="Brush.ListBoxItem.Matched.Border" Color="#129d43"/>
     <SolidColorBrush x:Key="Brush.ListBoxItem.Matched.Foreground" Color="#129d43"/>
-    <SolidColorBrush x:Key="Brush.ListBoxItem.DropTarget.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Brush.ListBoxItem.DropTarget.Border" Color="#FF349ADE"/>
 
     <SolidColorBrush x:Key="Brush.Menu.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="Brush.Menu.Foreground" Color="#666"/>
@@ -286,8 +283,6 @@
     <SolidColorBrush x:Key="Brush.TreeViewItem.MouseOver.ToggleButton.Stroke" Color="#afdaf5"/>
     <SolidColorBrush x:Key="Brush.TreeViewItem.Selected.Background" Color="#FF349ADE"/>
     <SolidColorBrush x:Key="Brush.TreeViewItem.Selected.Foreground" Color="#FFF"/>
-    <SolidColorBrush x:Key="Brush.TreeViewItem.DropTarget.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Brush.TreeViewItem.DropTarget.BorderBrush" Color="#FF349ADE"/>
 
     <SolidColorBrush x:Key="Brush.Window.About.Top.Background" Color="#11000000"/>
     <SolidColorBrush x:Key="Brush.Window.About.Top.Foreground" Color="#22000000"/>
@@ -295,8 +290,8 @@
     <SolidColorBrush x:Key="Brush.Window.About.Bullet.Foreground" Color="#FFF"/>
 
     <LinearGradientBrush x:Key="Brush.Window.Background" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="#F0F0F0"/>
-        <GradientStop Offset="1" Color="#EAEAEA"/>
+        <GradientStop Offset="0" Color="#F5F5F5"/>
+        <GradientStop Offset="1" Color="#EFEFEF"/>
     </LinearGradientBrush>
     <SolidColorBrush x:Key="Brush.Window.Active.Border" Color="#FF349ADE"/>
     <SolidColorBrush x:Key="Brush.Window.Border" Color="#DDD"/>

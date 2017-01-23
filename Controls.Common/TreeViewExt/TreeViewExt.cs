@@ -456,7 +456,7 @@ namespace Imagin.Controls.Common
         protected virtual void OnSelectedItemsChanged(object sender, EventArgs e)
         {
             var Collection = new List<object>();
-            SelectedItems.ForEach(i => Collection.Add(i));
+            SelectedItems.ForEach<object>(i => Collection.Add(i));
             SelectedItemsChanged?.Invoke(this, new EventArgs<IList<object>>(Collection));
         }
 

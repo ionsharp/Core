@@ -37,7 +37,7 @@
             BorderBrush="Black"
             BorderThickness="1"
             CheckerForeground="LightGray"
-            ToolTip="{Binding NewColor, Converter={StaticResource ColorToHexConverter}, StringFormat={}#{0}}">
+            ToolTip="{Binding NewColor, Converter={StaticResource ColorToHexConverter}, ConverterParameter=WithAlpha, StringFormat={}#{0}}">
             <Rectangle Name="PART_NewRectangle" Fill="{Binding NewColor, Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
         </Controls.Common:CheckerBoard>
         <Controls.Common:CheckerBoard 
@@ -47,7 +47,7 @@
             BorderThickness="1"
             CheckerForeground="LightGray"
             Margin="0,-1,0,0"
-            ToolTip="{Binding CurrentColor, Converter={StaticResource ColorToHexConverter}, StringFormat={}#{0}}">
+            ToolTip="{Binding CurrentColor, Converter={StaticResource ColorToHexConverter}, ConverterParameter=WithAlpha, StringFormat={}#{0}}">
             <Rectangle Name="PART_CurrentRectangle" Fill="{Binding CurrentColor, Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
         </Controls.Common:CheckerBoard>
         <Label 

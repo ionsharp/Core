@@ -10,6 +10,9 @@ using System.Windows.Controls.Primitives;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TemplatePart(Name = "PART_Down", Type = typeof(Button))]
     [TemplatePart(Name = "PART_Up", Type = typeof(Button))]
     public abstract class UpDown : TextBoxExt, INotifyPropertyChanged

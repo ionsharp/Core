@@ -5,43 +5,86 @@ using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
+    /// <summary>
+    /// An object capable of raising notifications using <see cref="System.Timers.Timer"/>.
+    /// </summary>
     [Serializable]
     public class NotifiableObject : AbstractObject, INotifiable
     {
-        [Browsable(false)]
+        /// <summary>
+        /// The default interval to use.
+        /// </summary>
+        [field: NonSerialized]
+        public const double DefaultInterval = 1000d;
+
+        /// <summary>
+        /// Occurs when <see cref="Timer"/> elapses.
+        /// </summary>
+        [field:NonSerialized]
+        public event ElapsedEventHandler Notified;
+
+        /// <summary>
+        /// A timer used for automating notifications.
+        /// </summary>
         [XmlIgnore]
-        public Timer NotifyTimer
+        protected Timer Timer
         {
             get; private set;
         }
 
-        protected virtual void OnInitialized()
+        /// <summary>
+        /// Gets or sets whether or not to enable notifications.
+        /// </summary>
+        public virtual bool Enabled
         {
-            this.NotifyTimer = new Timer();
-            this.NotifyTimer.Interval = 1000.0;
-            this.NotifyTimer.Elapsed += (s, e) => this.OnNotified(e);
+            get
+            {
+                return Timer.Enabled;
+            }
+            set
+            {
+                Timer.Enabled = value;
+                OnPropertyChanged("Enabled");
+            }
         }
 
-        public virtual void OnNotified(ElapsedEventArgs e)
+        /// <summary>
+        /// The period of time (in milliseconds) between notifications.
+        /// </summary>
+        public virtual double Interval
         {
+            get
+            {
+                return Timer.Interval;
+            }
+            set
+            {
+                Timer.Interval = value;
+                OnPropertyChanged("Interval");
+            }
         }
 
-        public NotifiableObject() : base()
+        /// <summary>
+        /// Occurs when <see cref="Timer"/> elapses.
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnNotified(ElapsedEventArgs e)
         {
-            this.OnInitialized();
+            Notified?.Invoke(this, e);
         }
 
-        public NotifiableObject(bool IsNotifyEnabled) : base()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotifiableObject"/> class and enables (or disables) timer with given interval.
+        /// </summary>
+        /// <param name="interval"></param>
+        /// <param name="enabled"></param>
+        public NotifiableObject(double interval = DefaultInterval, bool enabled = false) : base()
         {
-            this.OnInitialized();
-            this.NotifyTimer.Enabled = IsNotifyEnabled;
-        }
+            Timer = new Timer();
+            Timer.Elapsed += (s, e) => OnNotified(e);
 
-        public NotifiableObject(double Interval, bool IsNotifyEnabled = false) : base()
-        {
-            this.OnInitialized();
-            this.NotifyTimer.Interval = Interval;
-            this.NotifyTimer.Enabled = IsNotifyEnabled;
+            Interval = interval;
+            Enabled = enabled;
         }
     }
 }

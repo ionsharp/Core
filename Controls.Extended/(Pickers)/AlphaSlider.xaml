@@ -1,0 +1,55 @@
+﻿<UserControl 
+    x:Class="Imagin.Controls.Extended.AlphaSlider"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:Imagin.Controls.Extended" 
+    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    mc:Ignorable="d" 
+    d:DesignHeight="100">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/(Pickers)/ColorPicker/(Resources)/Slider.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Width="48">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Controls.Common:CheckerBoard 
+            Grid.Column="0" 
+            BorderBrush="#000" 
+            BorderThickness="1" 
+            CheckerForeground="LightGray"
+            Margin="0,4,0,4"  
+            SnapsToDevicePixels="True" 
+            Width="28" 
+            HorizontalAlignment="Center"  
+            VerticalAlignment="Stretch"  >
+            <Image 
+                Name="PART_Image" 
+                Stretch="Fill" 
+                MouseDown="OnMouseDown" 
+                MouseMove="OnMouseMove" 
+                MouseUp="OnMouseUp"/>
+        </Controls.Common:CheckerBoard>
+        <Slider 
+            Name="PART_Slider" 
+            Margin="35,0,0,0" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Stretch" 
+            Orientation="Vertical"  
+            Width="28" 
+            Style="{StaticResource Style.Slider}" 
+            Maximum="100" 
+            Minimum="0" 
+            IsSnapToTickEnabled="True" 
+            Value="100" 
+            ValueChanged="OnSliderChanged" 
+            TickPlacement="None"/>
+    </Grid>
+</UserControl>

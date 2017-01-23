@@ -416,8 +416,7 @@
                                 Grid.ColumnSpan="3"
                                 Grid.Row="1"
                                 x:Name="PART_ScrollContentPresenter"
-                                CanContentScroll="{TemplateBinding CanContentScroll}"
-                                Margin="{TemplateBinding Padding}"/>
+                                CanContentScroll="{TemplateBinding CanContentScroll}"/>
 
                             <ScrollBar
                                 Grid.Row="1"
@@ -443,7 +442,15 @@
                                 ViewportSize="{TemplateBinding ViewportWidth}"
                                 Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
                         </Grid>
-                    </Border> 
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding TemplatedParent.SelectionMode, RelativeSource={RelativeSource TemplatedParent}}" Value="Extended">
+                            <Setter TargetName="PART_ScrollContentPresenter" Property="Margin" Value="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TemplatedParent.SelectionMode, RelativeSource={RelativeSource TemplatedParent}}" Value="Multiple">
+                            <Setter TargetName="PART_ScrollContentPresenter" Property="Margin" Value="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

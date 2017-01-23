@@ -3,14 +3,19 @@ using System;
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class IntPtrExtensions
     {
         /// <summary>
-        /// Imagin.Common
+        /// 
         /// </summary>
+        /// <param name="Ptr"></param>
+        /// <returns></returns>
         public static bool DeleteObject(this IntPtr Ptr)
         {
-            return NativeUtilities.DeleteObject(Ptr);
+            return Utilities.DeleteObject(Ptr);
         }
     }
 }

@@ -1,18 +1,22 @@
-﻿using Imagin.Common.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System;
 using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class NamedNotifiableObject : NotifiableObject, INamable
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         protected string name = string.Empty;
-        [Category("General")]
-        [Description("The name of the object.")]
-        [Featured(true)]
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual string Name
         {
             get
@@ -26,22 +30,24 @@ namespace Imagin.Common
             }
         }
 
-        public NamedNotifiableObject() : base()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="interval"></param>
+        /// <param name="enabled"></param>
+        public NamedNotifiableObject(double interval = DefaultInterval, bool enabled = false) : base(interval, enabled)
         {
         }
 
-        public NamedNotifiableObject(bool IsNotifyEnabled) : base(IsNotifyEnabled)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="interval"></param>
+        /// <param name="enabled"></param>
+        public NamedNotifiableObject(string name, double interval = DefaultInterval, bool enabled = false) : base(interval, enabled)
         {
-        }
-
-        public NamedNotifiableObject(string Name, bool IsNotifyEnabled = false) : base(IsNotifyEnabled)
-        {
-            this.Name = Name;
-        }
-
-        public NamedNotifiableObject(string Name, double Interval, bool IsNotifyEnabled = false) : base(Interval, IsNotifyEnabled)
-        {
-            this.Name = Name;
+            Name = name;
         }
     }
 }

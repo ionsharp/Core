@@ -71,7 +71,7 @@ namespace Imagin.Controls.Common
                 BindingOperations.SetBinding(Child, ContentPresenter.VisibilityProperty, new Binding()
                 {
                     Converter = new BooleanToVisibilityConverter(),
-                    Path = new PropertyPath("(0)", ControlExtensions.IsVisibleProperty),
+                    Path = new PropertyPath("(0)", DependencyObjectExtensions.IsVisibleProperty),
                     Mode = BindingMode.OneWay,
                     Source = Column
                 });

@@ -2,13 +2,30 @@
 
 namespace Imagin.Common
 {
+    /// <summary>
+    /// Specifies an object capable of raising notifications.
+    /// </summary>
     public interface INotifiable
     {
-        Timer NotifyTimer
+        /// <summary>
+        /// Occurs when <see cref="Timer"/> elapses.
+        /// </summary>
+        event ElapsedEventHandler Notified;
+
+        /// <summary>
+        /// Gets or sets whether or not to enable notifications.
+        /// </summary>
+        bool Enabled
         {
-            get; 
+            get; set;
         }
 
-        void OnNotified(ElapsedEventArgs e);
+        /// <summary>
+        /// The period of time (in milliseconds) between notifications.
+        /// </summary>
+        double Interval
+        {
+            get; set;
+        }
     }
 }

@@ -67,6 +67,9 @@
     <Reference Include="Imagin.Controls.Extended">
       <HintPath>..\Controls.Extended\bin\Debug\Imagin.Controls.Extended.dll</HintPath>
     </Reference>
+    <Reference Include="Imagin.Gadgets">
+      <HintPath>..\Gadgets\bin\Debug\Imagin.Gadgets.dll</HintPath>
+    </Reference>
     <Reference Include="Imagin.Themes, Version=2.6.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Themes\bin\Debug\Imagin.Themes.dll</HintPath>

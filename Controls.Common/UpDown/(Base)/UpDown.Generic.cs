@@ -4,6 +4,10 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class UpDown<T> : UpDown, IUpDown<T>
     {
         #region Properties
@@ -32,7 +36,13 @@ namespace Imagin.Controls.Common
             get;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(T), typeof(UpDown<T>), new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMaximumChanged, new CoerceValueCallback(OnMaximumCoerced)));
+        /// <summary>
+        /// 
+        /// </summary>
         public T Maximum
         {
             get
@@ -53,7 +63,13 @@ namespace Imagin.Controls.Common
             return d.As<UpDown<T>>().OnMaximumCoerced(Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(T), typeof(UpDown<T>), new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMinimumChanged, new CoerceValueCallback(OnMinimumCoerced)));
+        /// <summary>
+        /// 
+        /// </summary>
         public T Minimum
         {
             get
@@ -74,7 +90,13 @@ namespace Imagin.Controls.Common
             return Object.As<UpDown<T>>().OnMinimumCoerced(Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(T), typeof(UpDown<T>), new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged, new CoerceValueCallback(OnValueCoerced)));
+        /// <summary>
+        /// 
+        /// </summary>
         public T Value
         {
             get

@@ -16,8 +16,18 @@ namespace Imagin.Controls.Extended
     {
         #region Properties
 
+        byte? LastAlpha = null;
+
+        double? LastComponentsWidth = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public event EventHandler<EventArgs<Color>> SelectedColorChanged;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ColorSelector.SelectionRingType SelectionRing
         {
             get
@@ -30,11 +40,32 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        #region Dependency
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty AlphaProperty = DependencyProperty.Register("Alpha", typeof(byte), typeof(ColorPicker), new FrameworkPropertyMetadata((byte)255, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte Alpha
+        {
+            get
+            {
+                return (byte)GetValue(AlphaProperty);
+            }
+            set
+            {
+                SetValue(AlphaProperty, value);
+            }
+        }
 
-        double? LastComponentsWidth = null;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ComponentsWidthProperty = DependencyProperty.Register("ComponentsWidth", typeof(double), typeof(ColorPicker), new FrameworkPropertyMetadata(425.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public double ComponentsWidth
         {
             get
@@ -47,7 +78,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty InitialColorProperty = DependencyProperty.Register("InitialColor", typeof(Color), typeof(ColorPicker), new FrameworkPropertyMetadata(Colors.Transparent, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnInitialColorChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public Color InitialColor
         {
             get
@@ -61,11 +98,35 @@ namespace Imagin.Controls.Extended
         }
         static void OnInitialColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var cpf = (ColorPicker)d;
-            cpf.newCurrent.CurrentColor = (Color)e.NewValue;
+            d.As<ColorPicker>().OnInitialColorChanged((Color)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty IsAsyncProperty = DependencyProperty.Register("IsAsync", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets whether or not to use asynchronous bindings.
+        /// </summary>
+        public bool IsAsync
+        {
+            get
+            {
+                return (bool)GetValue(IsAsyncProperty);
+            }
+            set
+            {
+                SetValue(IsAsyncProperty, value);
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ModelsProperty = DependencyProperty.Register("Models", typeof(ObservableCollection<ColorSpaceModel>), typeof(ColorPicker), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public ObservableCollection<ColorSpaceModel> Models
         {
             get
@@ -78,7 +139,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty SelectedColorProperty = DependencyProperty.Register("SelectedColor", typeof(Color), typeof(ColorPicker), new FrameworkPropertyMetadata(Colors.Transparent, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedColorChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public Color SelectedColor
         {
             get
@@ -90,14 +157,18 @@ namespace Imagin.Controls.Extended
                 SetValue(SelectedColorProperty, value);
             }
         }
-        static void OnSelectedColorChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnSelectedColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var ColorPicker = (ColorPicker)Object;
-            ColorPicker.PART_ColorSelector.Color = (Color)e.NewValue;
-            ColorPicker.OnSelectedColorChanged((Color)e.NewValue);
+            d.As<ColorPicker>().OnSelectedColorChanged((Color)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ShowComponentsProperty = DependencyProperty.Register("ShowComponents", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnShowComponentsChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool ShowComponents
         {
             get
@@ -109,23 +180,18 @@ namespace Imagin.Controls.Extended
                 SetValue(ShowComponentsProperty, value);
             }
         }
-        static void OnShowComponentsChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnShowComponentsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var This = Object.As<ColorPicker>();
-
-            if (!e.NewValue.To<bool>())
-            {
-                This.LastComponentsWidth = This.ComponentsWidth;
-                This.ComponentsWidth = 0d;
-            }
-            else if (This.ComponentsWidth == 0 && This.LastComponentsWidth != null)
-            {
-                This.ComponentsWidth = This.LastComponentsWidth.Value;
-                This.LastComponentsWidth = null;
-            }
+            d.As<ColorPicker>().OnShowComponentsChanged((bool)e.NewValue);
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ShowNewCurrentProperty = DependencyProperty.Register("ShowNewCurrent", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool ShowNewCurrent
         {
             get
@@ -138,7 +204,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ShowSliderProperty = DependencyProperty.Register("ShowSlider", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool ShowSlider
         {
             get
@@ -151,29 +223,38 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty ShowAlphaSliderProperty = DependencyProperty.Register("ShowAlphaSlider", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool ShowAlphaSlider
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty ShowAlphaProperty = DependencyProperty.Register("ShowAlpha", typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnShowAlphaChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ShowAlpha
         {
             get
             {
-                return (bool)GetValue(ShowAlphaSliderProperty);
+                return (bool)GetValue(ShowAlphaProperty);
             }
             set
             {
-                SetValue(ShowAlphaSliderProperty, value);
+                SetValue(ShowAlphaProperty, value);
             }
         }
-
-        #endregion
+        static void OnShowAlphaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.As<ColorPicker>().OnShowAlphaChanged((bool)e.NewValue);
+        }
 
         #endregion
 
         #region ColorPicker
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ColorPicker()
         {
-            InitializeComponent();
-
             Models = new ObservableCollection<ColorSpaceModel>();
             Models.Add(new RgbModel());
             Models.Add(new HsbModel());
@@ -181,38 +262,90 @@ namespace Imagin.Controls.Extended
             Models.Add(new XyzModel());
             Models.Add(new LabModel());
             Models.Add(new LchModel());
-            //this.Models.Add(new LuvModel());
-            //this.Models.Add(new CmykModel());
+            //Models.Add(new LuvModel());
+            //Models.Add(new CmykModel());
 
-            PART_ColorSelector.ColorChanged += OnColorSelectorColorChanged;
+            InitializeComponent();
 
-            LayoutUpdated += (s, e) =>
-            {
-                if (!IsLoaded || PART_ColorSelector.NormalComponent != null) return;
-                if (PART_ColorSelector.NormalComponent == null)
-                    Models.Where(x => x.Is<HsbModel>()).First().Components[typeof(HsbModel.HComponent)].As<NormalComponentModel>().IsEnabled = true;
-            };
+            LayoutUpdated += OnLayoutUpdated;
         }
 
         #endregion
 
-        #region Events
-
-        void OnColorSelectorColorChanged(object sender, EventArgs<Color> e)
-        {
-            SetValue(SelectedColorProperty, e.Value);
-            this.OnSelectedColorChanged(e.Value.As<Color>());
-        }
+        #region Methods
 
         void OnComponentChecked(object sender, RoutedEventArgs e)
         {
-            this.PART_ColorSelector.NormalComponent = sender.As<FrameworkElement>().Tag.As<NormalComponentModel>();
+            PART_ColorSelector.NormalComponent = sender.As<FrameworkElement>().Tag.As<NormalComponentModel>();
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnInitialColorChanged(Color Value)
+        {
+            newCurrent.CurrentColor = Value;
         }
 
-        protected virtual void OnSelectedColorChanged(Color Color)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void OnLayoutUpdated(object sender, EventArgs e)
         {
-            if (this.SelectedColorChanged != null)
-                this.SelectedColorChanged(this, new EventArgs<Color>(Color));
+            if (!IsLoaded || PART_ColorSelector.NormalComponent != null) return;
+            if (PART_ColorSelector.NormalComponent == null)
+                Models.Where(x => x.Is<HsbModel>()).First().Components[typeof(HsbModel.HComponent)].As<NormalComponentModel>().IsEnabled = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnSelectedColorChanged(Color Value)
+        {
+            SelectedColorChanged?.Invoke(this, new EventArgs<Color>(Value));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnShowAlphaChanged(bool Value)
+        {
+            if (Value)
+            {
+                if (LastAlpha != null)
+                {
+                    Alpha = LastAlpha.Value;
+                    LastAlpha = null;
+                }
+            }
+            else
+            {
+                LastAlpha = Alpha;
+                Alpha = 255;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnShowComponentsChanged(bool Value)
+        {
+            if (!Value)
+            {
+                LastComponentsWidth = ComponentsWidth;
+                ComponentsWidth = 0d;
+            }
+            else if (ComponentsWidth == 0 && LastComponentsWidth != null)
+            {
+                ComponentsWidth = LastComponentsWidth.Value;
+                LastComponentsWidth = null;
+            }
         }
 
         #endregion

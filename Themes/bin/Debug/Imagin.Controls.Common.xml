@@ -14,15 +14,77 @@
             Indicates whether or not the current item is a possible drop target
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsMouseDirectlyOverItemKey">
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.ContentProperty">
+            <summary>
+            Enables assigning any FrameworkElement a 'content' object.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.GetContent(System.Windows.Controls.Control)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.SetContent(System.Windows.Controls.Control,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsDraggingOverKey">
+            <summary>
+            Indicates whether or not the current item is a possible drop target
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsDraggingOverProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.GetIsDraggingOver(System.Windows.Controls.Control)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsMouseDirectlyOverKey">
             <summary>
             Indicates whether or not the mouse is directly over an item.
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsPossibleDropTargetKey">
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsMouseDirectlyOverProperty">
             <summary>
-            Indicates whether or not the current item is a possible drop target
+            
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.GetIsMouseDirectlyOver(System.Windows.Controls.Control)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.IsReadOnlyProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.SetIsReadOnly(System.Windows.Controls.Control,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.GetIsReadOnly(System.Windows.Controls.Control)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.OnUpdateOverItem(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
@@ -31,12 +93,7 @@
             closest item to the mouse (closest logically, not visually).
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.Extensions.ControlExtensions.Content">
-            <summary>
-            Enables assigning any FrameworkElement a 'content' object.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.OnDragEvent(System.Object,System.Windows.DragEventArgs)">
+        <member name="M:Imagin.Controls.Common.Extensions.ControlExtensions.OnDragOver(System.Object,System.Windows.DragEventArgs)">
             <summary>
             Called when an item is dragged over the control.
             </summary>
@@ -50,10 +107,53 @@
             <param name="sender">The sender.</param>
             <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
         </member>
+        <member name="T:Imagin.Controls.Common.Extensions.FrameworkElementExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.IsDragMoveEnabledProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.GetIsDragMoveEnabled(System.Windows.FrameworkElement)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.SetIsDragMoveEnabled(System.Windows.FrameworkElement,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:Imagin.Controls.Common.Extensions.DependencyObjectExtensions">
             <summary>
             
             </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.DependencyObjectExtensions.IsVisibleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DependencyObjectExtensions.SetIsVisible(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DependencyObjectExtensions.GetIsVisible(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Controls.Common.Extensions.DependencyObjectExtensions.Select(System.Windows.DependencyObject,System.Boolean)">
             <summary>
@@ -314,6 +414,21 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.HexBox">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.HexBox.regex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.HexBox.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.RegexBoxBase">
             <summary>
             
@@ -330,6 +445,37 @@
             </summary>
         </member>
         <member name="M:Imagin.Controls.Common.RegexBoxBase.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.RegexBox">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.RegexBox.regex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.RegexBox.PatternProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.RegexBox.Pattern">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RegexBox.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RegexBox.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs)">
             <summary>
             
             </summary>
@@ -902,10 +1048,55 @@
             When this.Text changes, set System.Windows.Controls.PasswordBox.Password.
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.NumericUpDown`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="P:Imagin.Controls.Common.NumericUpDown`1.DefaultIncrement">
             <summary>
             The default value to increment by.
             </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.NumericUpDown`1.Expression">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.NumericUpDown`1.IncrementProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.NumericUpDown`1.Increment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.NumericUpDown`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.NumericUpDown`1.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.NumericUpDown`1.OnIncrementChanged(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.NumericUpDown`1.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs,System.Text.RegularExpressions.Regex)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+            <param name="Expression"></param>
         </member>
         <member name="T:Imagin.Controls.Common.DateTimeUpDown">
             <summary>
@@ -995,6 +1186,11 @@
         <member name="P:Imagin.Controls.Common.DateTimeUpDown.StaysOpenOnSelection">
             <summary>
             Gets or sets whether or not the drop down stays open after making a selection.
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.UpDown">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Common.UpDown.#ctor">
@@ -1088,6 +1284,12 @@
             the focus; otherwise, focus!
             </remarks>
         </member>
+        <member name="T:Imagin.Controls.Common.UpDown`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="P:Imagin.Controls.Common.UpDown`1.AbsoluteMaximum">
             <summary>
             The absolute maximum value possible.
@@ -1101,6 +1303,36 @@
         <member name="P:Imagin.Controls.Common.UpDown`1.DefaultValue">
             <summary>
             The default value.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown`1.MaximumProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown`1.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown`1.MinimumProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown`1.Minimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown`1.ValueProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown`1.Value">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Common.UpDown`1.#ctor">

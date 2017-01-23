@@ -95,17 +95,13 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\De
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Themes\Generic.AnglePicker.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Themes\Generic.Chips.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorPicker\(Resources)\Slider.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorPicker\(Components)\AlphaSlider.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorPicker\ColorPicker.g.cs
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorPicker\(Components)\ColorSelector.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Dialogs)\ColorDialog.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Chips)\DualColorChip.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\GradientPicker.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Dialogs)\GradientDialog.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\NewCurrent.g.cs
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorPicker\(Components)\AlphaSlider.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorPicker\ColorPicker.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorPicker\(Components)\ColorSelector.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Dialogs)\ColorDialog.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Chips)\DualColorChip.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\NewCurrent.baml
@@ -114,4 +110,8 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\De
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\Debug\Imagin.Controls.Common.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\AlphaSlider.g.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorSelector.g.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\AlphaSlider.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\(Pickers)\ColorSelector.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Extended\obj\Debug\Controls.Extended.csprojResolveAssemblyReference.cache

@@ -1,4 +1,5 @@
 ﻿using Imagin.Common.Collections.Generic;
+using Imagin.Common.Extensions;
 using Imagin.Common.Input;
 using System;
 using System.Collections.Generic;
@@ -153,10 +154,9 @@ namespace Imagin.Common.Collections.ObjectModel
 
         public void Add(IEnumerable<T> Items)
         {
-            foreach (var i in Items)
-                base.Add(i);
-            this.OnItemsAdded(Items);
-            this.OnItemsChanged();
+            Items.ForEach(i => base.Add(i));
+            OnItemsAdded(Items);
+            OnItemsChanged();
         }
 
         public new void Clear()

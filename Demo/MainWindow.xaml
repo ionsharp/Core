@@ -281,15 +281,33 @@
                             Content="Select" 
                             HorizontalAlignment="Left"
                             Click="OnColorSelected"/>
-                        <CheckBox Content="Show Slider" IsChecked="{Binding ShowSlider}"/>
-                        <CheckBox Content="Show Alpha Slider" IsChecked="{Binding ShowAlphaSlider}"/>
-                        <CheckBox Content="Show Components" IsChecked="{Binding ShowComponents}"/>
-                        <CheckBox Content="Show New/Current" IsChecked="{Binding ShowNewCurrent}"/>
+
+                        <Controls.Common:ByteUpDown
+                            Text="{Binding Alpha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="Alpha"/>
+                        <Controls.Common:DoubleUpDown
+                            Text="{Binding ComponentsWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="Components Width"/>
+
+                        <CheckBox 
+                            Content="Is Async" 
+                            IsChecked="{Binding IsAsync}"/>
+                        <CheckBox 
+                            Content="Show Slider" 
+                            IsChecked="{Binding ShowSlider}"/>
+                        <CheckBox 
+                            Content="Show Alpha" 
+                            IsChecked="{Binding ShowAlpha}"/>
+                        <CheckBox 
+                            Content="Show Components" 
+                            IsChecked="{Binding ShowComponents}"/>
+                        <CheckBox 
+                            Content="Show New/Current" 
+                            IsChecked="{Binding ShowNewCurrent}"/>
                     </Controls.Common:Spacer>
                     <Controls.Extended:ColorPicker
                         Grid.Row="1"
                         x:Name="PART_ColorPicker"
-                        ComponentsWidth="475"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"/>
                 </Grid>
@@ -474,6 +492,18 @@
                         FontSize="{Binding Text, Mode=OneWay, ElementName=PART_FontSizeBox}"
                         Foreground="{DynamicResource Brush.Text}"
                         Text="This is sample text"/>
+                </Controls.Common:Spacer>
+            </TabItem>
+            <TabItem Header="Gadgets">
+                <Controls.Common:Spacer
+                    Spacing="0,0,0,10"
+                    TrimLast="True">
+                    <Button 
+                        Click="ShowClockGadget" 
+                        Content="Show Clock"/>
+                    <Button 
+                        Click="ShowSearchGadget" 
+                        Content="Show Search"/>
                 </Controls.Common:Spacer>
             </TabItem>
             <TabItem Header="GradientPicker">

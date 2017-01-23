@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 
 namespace Imagin.Common.Config
 {
@@ -7,10 +8,18 @@ namespace Imagin.Common.Config
     /// </summary>
     public interface IPlugin
     {
+        /// <summary>
+        /// Occurs when the plugin is enabled.
+        /// </summary>
         event EventHandler<EventArgs> Enabled;
 
         /// <summary>
-        /// The individual who (or organization that) developed the plugin.
+        /// Occurs when the plugin is disabled.
+        /// </summary>
+        event EventHandler<EventArgs> Disabled;
+
+        /// <summary>
+        /// Gets the name of the individual who, or organization that, developed the plugin.
         /// </summary>
         string Author
         {
@@ -18,7 +27,7 @@ namespace Imagin.Common.Config
         }
 
         /// <summary>
-        /// A short description explaining what the plugin does.
+        /// Gets short description explaining what the plugin does.
         /// </summary>
         string Description
         {
@@ -26,7 +35,7 @@ namespace Imagin.Common.Config
         }
 
         /// <summary>
-        /// Uri for an icon resource.
+        /// Gets <see cref="System.Uri"/> that points to an icon resource.
         /// </summary>
         string Icon
         {
@@ -34,7 +43,7 @@ namespace Imagin.Common.Config
         }
 
         /// <summary>
-        /// Whether or not the plugin is enabled.
+        /// Gets or sets whether or not the plugin is enabled.
         /// </summary>
         bool IsEnabled
         {
@@ -42,7 +51,7 @@ namespace Imagin.Common.Config
         }
 
         /// <summary>
-        /// The name of the plugin.
+        /// Gets the name of the plugin.
         /// </summary>
         string Name
         {
@@ -50,7 +59,15 @@ namespace Imagin.Common.Config
         }
 
         /// <summary>
-        /// Website where the plugin is published.
+        /// Gets resources used just for the plugin.
+        /// </summary>
+        ResourceDictionary Resources
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets a web address where the plugin might be published.
         /// </summary>
         string Uri
         {
@@ -58,7 +75,7 @@ namespace Imagin.Common.Config
         }
 
         /// <summary>
-        /// Plugin version.
+        /// Gets the version of the plugin.
         /// </summary>
         Version Version
         {
@@ -66,13 +83,13 @@ namespace Imagin.Common.Config
         }
 
         /// <summary>
-        /// Enable the plugin.
+        /// Occurs when the plugin is enabled.
         /// </summary>
-        void Enable();
+        void OnEnabled();
 
         /// <summary>
-        /// Disable the plugin.
+        /// Occurs when the plugin is disabled.
         /// </summary>
-        void Disable();
+        void OnDisabled();
     }
 }

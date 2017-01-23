@@ -188,9 +188,8 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="Controls.Common:ControlExtensions.IsPossibleDropTarget" Value="True">
-                <Setter Property="Background" Value="{DynamicResource Brush.TreeViewItem.DropTarget.Background}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.TreeViewItem.DropTarget.BorderBrush}" />
+            <Trigger Property="Controls.Common:ControlExtensions.IsDraggingOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.DropTarget.Border}" />
             </Trigger>
             <Trigger Property="Controls.Common:TreeViewItemExtensions.IsSelected" Value="True">
                 <Setter Property="Background" Value="{DynamicResource Brush.TreeViewItem.Selected.Background}"/>

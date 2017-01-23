@@ -96,3 +96,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Themes.
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\System.Windows.Interactivity.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Brushes.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\bin\Debug\XAMLMarkupExtensions.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Themes\obj\Debug\Styles\Generic.ColorPicker.baml

@@ -12,6 +12,8 @@ namespace Imagin.Controls.Common.Extensions
     {
         #region Properties
 
+        #region Static
+
         static Control CurrentDropTarget = null;
 
         static Control CurrentItem = null;
@@ -21,61 +23,31 @@ namespace Imagin.Controls.Common.Extensions
         /// </summary>
         static bool IsPossibleDropTarget;
 
-        /// <summary>
-        /// Indicates whether or not the mouse is directly over an item.
-        /// </summary>
-        static readonly DependencyPropertyKey IsMouseDirectlyOverItemKey = DependencyProperty.RegisterAttachedReadOnly("IsMouseDirectlyOverItem", typeof(bool), typeof(ControlExtensions), new FrameworkPropertyMetadata(null, new CoerceValueCallback(CalculateIsMouseDirectlyOverItem)));
-        public static readonly DependencyProperty IsMouseDirectlyOverItemProperty = IsMouseDirectlyOverItemKey.DependencyProperty;
-        public static bool GetIsMouseDirectlyOverItem(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(IsMouseDirectlyOverItemProperty);
-        }
-        static object CalculateIsMouseDirectlyOverItem(DependencyObject item, object value)
-        {
-            return item == CurrentItem;
-        }
+        #endregion
 
-        /// <summary>
-        /// Indicates whether or not the current item is a possible drop target
-        /// </summary>
-        static readonly DependencyPropertyKey IsPossibleDropTargetKey = DependencyProperty.RegisterAttachedReadOnly("IsPossibleDropTarget", typeof(bool), typeof(ControlExtensions), new FrameworkPropertyMetadata(null, new CoerceValueCallback(CalculateIsPossibleDropTarget)));
-        public static readonly DependencyProperty IsPossibleDropTargetProperty = IsPossibleDropTargetKey.DependencyProperty;
-        public static bool GetIsPossibleDropTarget(DependencyObject Object)
-        {
-            return (bool)Object.GetValue(IsPossibleDropTargetProperty);
-        }
-        static object CalculateIsPossibleDropTarget(DependencyObject Item, object value)
-        {
-            return Item == CurrentDropTarget && IsPossibleDropTarget ? true : false;
-        }
-
-        static readonly RoutedEvent UpdateOverItemEvent = EventManager.RegisterRoutedEvent("UpdateOverItem", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ControlExtensions));
-        /// <summary>
-        /// This method is a listener for the UpdateOverItemEvent.  
-        /// When it is received, it means that the sender is the 
-        /// closest item to the mouse (closest logically, not visually).
-        /// </summary>
-        static void OnUpdateOverItem(object sender, RoutedEventArgs args)
-        {
-            //Mark this object as the tree view item over which the mouse is currently positioned.
-            CurrentItem = sender as TreeViewItem;
-            //Tell that item to recalculate
-            CurrentItem.InvalidateProperty(IsMouseDirectlyOverItemProperty);
-            //Prevent this event from notifying other items higher in tree
-            args.Handled = true;
-        }
+        #region Content
 
         /// <summary>
         /// Enables assigning any FrameworkElement a 'content' object.
         /// </summary>
-        public static readonly DependencyProperty Content = DependencyProperty.RegisterAttached("Content", typeof(object), typeof(ControlExtensions), new PropertyMetadata(null, OnContentChanged));
-        public static object GetContent(DependencyObject obj)
+        public static readonly DependencyProperty ContentProperty = DependencyProperty.RegisterAttached("Content", typeof(object), typeof(ControlExtensions), new PropertyMetadata(null, OnContentChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static object GetContent(Control d)
         {
-            return (object)obj.GetValue(Content);
+            return d.GetValue(ContentProperty);
         }
-        public static void SetContent(DependencyObject obj, object value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        public static void SetContent(Control d, object value)
         {
-            obj.SetValue(Content, value);
+            d.SetValue(ContentProperty, value);
         }
         static void OnContentChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -87,47 +59,106 @@ namespace Imagin.Controls.Common.Extensions
             }
         }
 
-        public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached("IsVisible", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(true));
-        public static void SetIsVisible(DependencyObject obj, bool value)
+        #endregion
+
+        #region IsDraggingOver
+
+        /// <summary>
+        /// Indicates whether or not the current item is a possible drop target
+        /// </summary>
+        static readonly DependencyPropertyKey IsDraggingOverKey = DependencyProperty.RegisterAttachedReadOnly("IsDraggingOver", typeof(bool), typeof(ControlExtensions), new FrameworkPropertyMetadata(null, new CoerceValueCallback(OnIsDraggingOverCoerced)));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty IsDraggingOverProperty = IsDraggingOverKey.DependencyProperty;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static bool GetIsDraggingOver(Control d)
         {
-            obj.SetValue(IsVisibleProperty, value);
+            return (bool)d.GetValue(IsDraggingOverProperty);
         }
-        public static bool GetIsVisible(DependencyObject obj)
+        static object OnIsDraggingOverCoerced(DependencyObject Item, object value)
         {
-            return (bool)obj.GetValue(IsVisibleProperty);
+            return Item == CurrentDropTarget && IsPossibleDropTarget ? true : false;
         }
 
+        #endregion
+
+        #region IsMouseDirectlyOver
+
+        /// <summary>
+        /// Indicates whether or not the mouse is directly over an item.
+        /// </summary>
+        static readonly DependencyPropertyKey IsMouseDirectlyOverKey = DependencyProperty.RegisterAttachedReadOnly("IsMouseDirectlyOver", typeof(bool), typeof(ControlExtensions), new FrameworkPropertyMetadata(null, new CoerceValueCallback(OnIsMouseDirectlyOverCoerced)));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty IsMouseDirectlyOverProperty = IsMouseDirectlyOverKey.DependencyProperty;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static bool GetIsMouseDirectlyOver(Control d)
+        {
+            return (bool)d.GetValue(IsMouseDirectlyOverProperty);
+        }
+        static object OnIsMouseDirectlyOverCoerced(DependencyObject item, object value)
+        {
+            return item == CurrentItem;
+        }
+
+        #endregion
+
+        #region IsReadOnly
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.RegisterAttached("IsReadOnly", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false));
-        public static void SetIsReadOnly(DependencyObject obj, bool value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        public static void SetIsReadOnly(Control d, bool value)
         {
-            obj.SetValue(IsReadOnlyProperty, value);
+            d.SetValue(IsReadOnlyProperty, value);
         }
-        public static bool GetIsReadOnly(DependencyObject obj)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static bool GetIsReadOnly(Control d)
         {
-            return (bool)obj.GetValue(IsReadOnlyProperty);
+            return (bool)d.GetValue(IsReadOnlyProperty);
         }
 
-        public static readonly DependencyProperty IsDragMoveEnabled = DependencyProperty.RegisterAttached("IsDragMoveEnabled", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false, OnIsDragMoveEnabledChanged));
-        public static bool GetIsDragMoveEnabled(DependencyObject obj)
+        #endregion
+
+        #region UpdateOverItem
+
+        static readonly RoutedEvent UpdateOverItemEvent = EventManager.RegisterRoutedEvent("UpdateOverItem", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ControlExtensions));
+        /// <summary>
+        /// This method is a listener for the UpdateOverItemEvent.  
+        /// When it is received, it means that the sender is the 
+        /// closest item to the mouse (closest logically, not visually).
+        /// </summary>
+        static void OnUpdateOverItem(object sender, RoutedEventArgs args)
         {
-            return (bool)obj.GetValue(IsDragMoveEnabled);
+            //Mark this object as the tree view item over which the mouse is currently positioned.
+            CurrentItem = sender as Control;
+            //Tell that item to recalculate
+            CurrentItem.InvalidateProperty(IsMouseDirectlyOverProperty);
+            //Prevent this event from notifying other items higher in tree
+            args.Handled = true;
         }
-        public static void SetIsDragMoveEnabled(DependencyObject obj, bool value)
-        {
-            obj.SetValue(IsDragMoveEnabled, value);
-        }
-        static void OnIsDragMoveEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            var Window = (sender as DependencyObject).GetParent<Window>();
-            if (Window != null && (bool)e.NewValue)
-            {
-                (sender as FrameworkElement).MouseDown += (a, b) =>
-                {
-                    if (b.LeftButton == MouseButtonState.Pressed)
-                        Window.DragMove();
-                };
-            }
-        }
+
+        #endregion
 
         #endregion
 
@@ -135,13 +166,13 @@ namespace Imagin.Controls.Common.Extensions
 
         static ControlExtensions()
         {
-            EventManager.RegisterClassHandler(typeof(TreeViewItem), TreeViewItem.PreviewDragEnterEvent, new DragEventHandler(OnDragEvent), true);
-            EventManager.RegisterClassHandler(typeof(TreeViewItem), TreeViewItem.PreviewDragLeaveEvent, new DragEventHandler(OnDragLeave), true);
-            EventManager.RegisterClassHandler(typeof(TreeViewItem), TreeViewItem.PreviewDragOverEvent, new DragEventHandler(OnDragEvent), true);
-            EventManager.RegisterClassHandler(typeof(TreeViewItem), TreeViewItem.PreviewDropEvent, new DragEventHandler(OnDrop), true);
-            EventManager.RegisterClassHandler(typeof(TreeViewItem), TreeViewItem.MouseEnterEvent, new MouseEventHandler(OnMouseTransition), true);
-            EventManager.RegisterClassHandler(typeof(TreeViewItem), TreeViewItem.MouseLeaveEvent, new MouseEventHandler(OnMouseTransition), true);
-            EventManager.RegisterClassHandler(typeof(TreeViewItem), UpdateOverItemEvent, new RoutedEventHandler(OnUpdateOverItem));
+            EventManager.RegisterClassHandler(typeof(Control), Control.PreviewDragEnterEvent, new DragEventHandler(OnDragOver), true);
+            EventManager.RegisterClassHandler(typeof(Control), Control.PreviewDragLeaveEvent, new DragEventHandler(OnDragLeave), true);
+            EventManager.RegisterClassHandler(typeof(Control), Control.PreviewDragOverEvent, new DragEventHandler(OnDragOver), true);
+            EventManager.RegisterClassHandler(typeof(Control), Control.PreviewDropEvent, new DragEventHandler(OnDrop), true);
+            EventManager.RegisterClassHandler(typeof(Control), Control.MouseEnterEvent, new MouseEventHandler(OnMouseTransition), true);
+            EventManager.RegisterClassHandler(typeof(Control), Control.MouseLeaveEvent, new MouseEventHandler(OnMouseTransition), true);
+            EventManager.RegisterClassHandler(typeof(Control), UpdateOverItemEvent, new RoutedEventHandler(OnUpdateOverItem));
         }
 
         #endregion
@@ -150,16 +181,16 @@ namespace Imagin.Controls.Common.Extensions
 
         static void OnDrop(object sender, DragEventArgs args)
         {
-            lock (IsPossibleDropTargetProperty)
+            lock (IsDraggingOverProperty)
             {
                 IsPossibleDropTarget = false;
                 if (CurrentDropTarget != null)
-                    CurrentDropTarget.InvalidateProperty(IsPossibleDropTargetProperty);
+                    CurrentDropTarget.InvalidateProperty(IsDraggingOverProperty);
                 var Item = sender as Control;
                 if (Item != null)
                 {
                     CurrentDropTarget = Item;
-                    Item.InvalidateProperty(IsPossibleDropTargetProperty);
+                    Item.InvalidateProperty(IsDraggingOverProperty);
                 }
             }
         }
@@ -169,26 +200,26 @@ namespace Imagin.Controls.Common.Extensions
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The <see cref="System.Windows.DragEventArgs"/> instance containing the event data.</param>
-        static void OnDragEvent(object sender, DragEventArgs Args)
+        static void OnDragOver(object sender, DragEventArgs e)
         {
-            lock (IsPossibleDropTargetProperty)
+            lock (IsDraggingOverProperty)
             {
                 IsPossibleDropTarget = false;
                 if (CurrentDropTarget != null)
                 {
                     var OldItem = CurrentDropTarget;
                     CurrentDropTarget = null;
-                    OldItem.InvalidateProperty(IsPossibleDropTargetProperty);
+                    OldItem.InvalidateProperty(IsDraggingOverProperty);
                 }
 
-                if (Args.Effects != DragDropEffects.None)
+                if (e.Effects != DragDropEffects.None)
                     IsPossibleDropTarget = true;
 
                 var Control = sender as Control;
                 if (Control != null)
                 {
                     CurrentDropTarget = Control;
-                    CurrentDropTarget.InvalidateProperty(IsPossibleDropTargetProperty);
+                    CurrentDropTarget.InvalidateProperty(IsDraggingOverProperty);
                 }
             }
         }
@@ -200,33 +231,33 @@ namespace Imagin.Controls.Common.Extensions
         /// <param name="args">The <see cref="System.Windows.DragEventArgs"/> instance containing the event data.</param>
         static void OnDragLeave(object sender, DragEventArgs args)
         {
-            lock (IsPossibleDropTargetProperty)
+            lock (IsDraggingOverProperty)
             {
                 IsPossibleDropTarget = false;
                 if (CurrentDropTarget != null)
                 {
                     var OldItem = CurrentDropTarget;
                     CurrentDropTarget = null;
-                    OldItem.InvalidateProperty(IsPossibleDropTargetProperty);
+                    OldItem.InvalidateProperty(IsDraggingOverProperty);
                 }
                 var Control = sender as Control;
                 if (Control != null)
                 {
                     CurrentDropTarget = Control;
-                    CurrentDropTarget.InvalidateProperty(IsPossibleDropTargetProperty);
+                    CurrentDropTarget.InvalidateProperty(IsDraggingOverProperty);
                 }
             }
         }
 
         static void OnMouseTransition(object sender, MouseEventArgs args)
         {
-            lock (IsMouseDirectlyOverItemProperty)
+            lock (IsMouseDirectlyOverProperty)
             {
                 if (CurrentItem != null)
                 {
                     var OldItem = CurrentItem;
                     CurrentItem = null;
-                    OldItem.InvalidateProperty(IsMouseDirectlyOverItemProperty);
+                    OldItem.InvalidateProperty(IsMouseDirectlyOverProperty);
                 }
                 //Get the element that is currently under the mouse.
                 var CurrentPosition = Mouse.DirectlyOver;

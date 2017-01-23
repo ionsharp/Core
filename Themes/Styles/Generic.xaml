@@ -4,12 +4,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Masked.xaml" />
-
+        
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.AnglePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Border.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Button.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Calendar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.CheckBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.ColorPicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.ContextMenu.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.DataGrid.xaml" />

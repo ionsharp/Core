@@ -234,19 +234,11 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Returns a Uri that represents a resource.
+        /// Returns <see cref="Uri"/> of resource defined in assembly with given path; note, path must NOT begin with slash and slashes must be forward-facing.
         /// </summary>
         public static Uri GetResourceUri(this string AssemblyName, string ResourcePath)
         {
             return new Uri("pack://application:,,,/" + AssemblyName + ";component/" + ResourcePath, UriKind.Absolute);
-        }
-
-        /// <summary>
-        /// Returns a BitmapImage from resource Uri.
-        /// </summary>
-        public static BitmapImage GetResource(this Uri Uri)
-        {
-            return new BitmapImage(Uri);
         }
 
         public static Type FindType(this string TypeName)

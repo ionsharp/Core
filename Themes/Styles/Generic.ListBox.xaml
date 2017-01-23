@@ -36,13 +36,15 @@
             <EventTrigger RoutedEvent="ListBoxItem.Loaded">
                 <BeginStoryboard Storyboard="{StaticResource FadeInAnimation}"/>
             </EventTrigger>
+            <Trigger Property="Controls.Common:ControlExtensions.IsDraggingOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.DropTarget.Border}" />
+            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsSelected" Value="True"/>
                     <Condition Property="Selector.IsSelectionActive" Value="True"/>
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="{DynamicResource Brush.ListBoxItem.Selected.Active.Background}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.ListBoxItem.Selected.Active.Border}"/>
                 <Setter Property="Foreground" Value="{DynamicResource Brush.ListBoxItem.Selected.Active.Foreground}"/>
             </MultiTrigger>
             <MultiTrigger>
@@ -51,7 +53,6 @@
                     <Condition Property="Selector.IsSelectionActive" Value="False"/>
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="{DynamicResource Brush.ListBoxItem.Selected.Background}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.ListBoxItem.Selected.Border}"/>
                 <Setter Property="Foreground" Value="{DynamicResource Brush.ListBoxItem.Selected.Foreground}"/>
             </MultiTrigger>
             <MultiTrigger>
@@ -60,13 +61,8 @@
                     <Condition Property="IsMouseOver" Value="True"/>
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="{DynamicResource Brush.ListBoxItem.MouseOver.Background}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.ListBoxItem.MouseOver.Border}"/>
                 <Setter Property="Foreground" Value="{DynamicResource Brush.ListBoxItem.MouseOver.Foreground}"/>
             </MultiTrigger>
-            <Trigger Property="Controls.Common:ControlExtensions.IsPossibleDropTarget" Value="True">
-                <Setter Property="Background" Value="{DynamicResource Brush.ListBoxItem.DropTarget.Background}" />
-                <Setter Property="BorderBrush" Value="Red" />
-            </Trigger>
         </Style.Triggers>
     </Style>
 

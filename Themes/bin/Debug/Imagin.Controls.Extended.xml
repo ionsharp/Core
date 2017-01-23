@@ -192,8 +192,60 @@
         </member>
         <member name="T:Imagin.Controls.Extended.AlphaSlider">
             <summary>
+            
+            </summary>
+            <summary>
             AlphaSlider
             </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.AlphaSlider.AlphaChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AlphaSlider.ColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AlphaSlider.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AlphaSlider.AlphaProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AlphaSlider.Alpha">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AlphaSlider.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AlphaSlider.OnAlphaChanged(System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AlphaSlider.OnColorChanged(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AlphaSlider.OnSliderChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
         <member name="M:Imagin.Controls.Extended.AlphaSlider.InitializeComponent">
             <summary>
@@ -208,6 +260,152 @@
             ColorPicker
             </summary>
         </member>
+        <member name="E:Imagin.Controls.Extended.ColorPicker.SelectedColorChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.SelectionRing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.AlphaProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.Alpha">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ComponentsWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.ComponentsWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.InitialColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.InitialColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.IsAsyncProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.IsAsync">
+            <summary>
+            Gets or sets whether or not to use asynchronous bindings.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ModelsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.Models">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.SelectedColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.SelectedColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ShowComponentsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.ShowComponents">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ShowNewCurrentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.ShowNewCurrent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ShowSliderProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.ShowSlider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ShowAlphaProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.ShowAlpha">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorPicker.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorPicker.OnInitialColorChanged(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorPicker.OnLayoutUpdated(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorPicker.OnSelectedColorChanged(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorPicker.OnShowAlphaChanged(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorPicker.OnShowComponentsChanged(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="M:Imagin.Controls.Extended.ColorPicker.InitializeComponent">
             <summary>
             InitializeComponent
@@ -215,8 +413,137 @@
         </member>
         <member name="T:Imagin.Controls.Extended.ColorSelector">
             <summary>
+            
+            </summary>
+            <summary>
             ColorSelector
             </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorSelector.SelectionRingType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingType.White">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingType.Black">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingType.BlackAndWhite">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingType.BlackOrWhite">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.ColorSelector.AlphaChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.ColorSelector.ColorChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.ColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.NormalComponentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.NormalComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.SelectionRing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.AlphaProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.Alpha">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.ShowSliderProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.ShowSlider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.ShowAlphaProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.ShowAlpha">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSelector.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSelector.OnAlphaChanged(System.Object,Imagin.Common.Input.EventArgs{System.Byte})">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSelector.OnColorChanged(System.Windows.Media.Color,System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSelector.OnComponentChanged(Imagin.Controls.Extended.NormalComponentModel)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSelector.OnSelectionRingChanged(Imagin.Controls.Extended.ColorSelector.SelectionRingType)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
         </member>
         <member name="M:Imagin.Controls.Extended.ColorSelector.InitializeComponent">
             <summary>
@@ -592,17 +919,65 @@
         </member>
         <member name="T:Imagin.Controls.Extended.NewCurrent">
             <summary>
+            
+            </summary>
+            <summary>
             NewCurrent
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.NewCurrent.NewColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.NewCurrent.NewColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.NewCurrent.CurrentColorProperty">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.NewCurrent.CurrentColor">
             <summary>
-            The color being selected 
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.NewCurrent.AlphaProperty">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.NewCurrent.Alpha">
             <summary>
-            The Alpha Component of the currrent color
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.NewCurrent.OrientationProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.NewCurrent.Orientation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NewCurrent.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NewCurrent.OnAlphaChanged(System.Byte)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NewCurrent.OnOrientationChanged(System.Windows.Controls.Orientation,System.Windows.Controls.Orientation)">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.NewCurrent.InitializeComponent">
@@ -635,14 +1010,94 @@
             <summary>
             Represents a property that has both a minimum and maximum value.
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="TPrimitive"></typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CoercedPropertyModel`1.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CoercedPropertyModel`1.Minimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CoercedPropertyModel`1.SetConstraint(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="minimum"></param>
+            <param name="maximum"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.CoercedVariantPropertyModel`2">
             <summary>
             Represents a property with a type that uses another type to modify it, and has both a minimum and maximum value.
             </summary>
-            <typeparam name="T1">The type used to modify the property.</typeparam>
-            <typeparam name="T2">The actual type of the property.</typeparam>
+            <typeparam name="TVariant">The type used to modify the property.</typeparam>
+            <typeparam name="TPrimitive">The actual type of the property.</typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CoercedVariantPropertyModel`2.Variant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CoercedVariantPropertyModel`2.OnValueChanged(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CoercedVariantPropertyModel`2.OnVariantChanged(System.Object,Imagin.Common.Input.EventArgs{`1})">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.PropertyAttributes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyAttributes.Add(System.String,System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="c"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyAttributes.ExtractFrom(System.Reflection.PropertyInfo)">
+            <summary>
+            
+            </summary>
+            <param name="Property"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyAttributes.New(System.String,System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyAttributes.Item(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Key"></param>
+            <param name="MemberOrValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyAttributes.Get``1(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Key"></param>
+            <param name="MemberOrValue"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Controls.Extended.PropertyGrid">
             <summary>

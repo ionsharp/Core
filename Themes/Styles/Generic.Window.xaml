@@ -56,7 +56,6 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.Window.Border}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
-        <Setter Property="Icon" Value="/Manifest.ico"/>
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         <Setter Property="Padding" Value="10"/>
@@ -67,143 +66,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--
-    <Style x:Key="{x:Type Window}" TargetType="{x:Type Window}" BasedOn="{StaticResource Style.Window}">
-        <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Controls.Common.Extensions:WindowExtensions.OverridesDefaultBehavior" Value="True"/>
-        <Setter Property="AllowsTransparency" Value="True"/>
-        <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
-        <Setter Property="WindowStyle" Value="None"/>
-        <Setter Property="WindowChrome.WindowChrome">
-            <Setter.Value>
-                <WindowChrome
-                    CaptionHeight="35"
-                    CornerRadius="0"
-                    GlassFrameThickness="0,0,0,1"
-                    ResizeBorderThickness="5"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Window}">
-                    <Border 
-                        x:Name="PART_Border" 
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
-                        <Grid x:Name="LayoutRoot">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="32" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Grid 
-                                    Margin="10,0" 
-                                    VerticalAlignment="Center">
-                                    <Controls.Common:MaskedImage Source="{Binding Path=(Controls.Common.Extensions:WindowExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"/>
-                                </Grid>
-                                <Grid 
-                                    Grid.Column="1" 
-                                    x:Name="PART_TitleGrid" 
-                                    Background="Transparent"
-                                    Common.Extensions:ControlExtensions.IsDragMoveEnabled="True">
-                                    <TextBlock 
-                                        x:Name="titleTextBlock" 
-                                        Margin="0,-1,0,0" 
-                                        Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
-                                        TextTrimming="CharacterEllipsis" 
-                                        HorizontalAlignment="Left" 
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource Brush.Text}" 
-                                        FontSize="13"/>
-                                </Grid>
-                                <StackPanel
-                                    Grid.Column="2" 
-                                    Orientation="Horizontal" 
-                                    VerticalAlignment="Top"
-                                    WindowChrome.IsHitTestVisibleInChrome="True">
-                                    <Button 
-                                        x:Name="PART_MinimizeButton"
-                                        Command="{x:Static SystemCommands.MinimizeWindowCommand}"
-                                        Content="pack://application:,,,/Imagin.Themes;component/Images/Minus.png"
-                                        Style="{DynamicResource Style.Window.Button}"
-                                        ToolTip="{l:Loc Minimize}"/>
-                                    <Grid>
-                                        <Button 
-                                            x:Name="PART_RestoreButton" 
-                                            Command="{x:Static SystemCommands.RestoreWindowCommand}"
-                                            Content="pack://application:,,,/Imagin.Themes;component/Images/Restore.png"
-                                            Style="{DynamicResource Style.Window.Button}"
-                                            ToolTip="{l:Loc Restore}"/>
-                                        <Button 
-                                            x:Name="PART_MaximizeButton" 
-                                            Command="{x:Static SystemCommands.MaximizeWindowCommand}"
-                                            Style="{DynamicResource Style.Window.Button}"
-                                            ToolTip="{l:Loc Maximize}" 
-                                            Content="pack://application:,,,/Imagin.Themes;component/Images/Maximize.png"/>
-                                    </Grid>
-                                    <Button 
-                                        x:Name="PART_CloseButton"
-                                        Command="{x:Static SystemCommands.CloseWindowCommand}"
-                                        Content="pack://application:,,,/Imagin.Themes;component/Images/X.png"
-                                        Style="{DynamicResource Style.Window.Button}"
-                                        ToolTip="{l:Loc Close}"/>
-                                </StackPanel>
-                            </Grid>
-                            <AdornerDecorator Grid.Row="1" >
-                                <Border 
-                                    x:Name="ContentBorder" 
-                                    BorderBrush="{DynamicResource Brush.Border.BorderBrush}"
-                                    BorderThickness="0,1,0,0"
-                                    Padding="{TemplateBinding Padding}">
-                                    <ContentPresenter />
-                                </Border>
-                            </AdornerDecorator>
-
-                            <Path 
-                                Grid.Row="1" 
-                                x:Name="ResizeGrip" 
-                                Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3"
-                                Height="12" 
-                                HorizontalAlignment="Right" 
-                                Margin="0,0,4,4" 
-                                Stroke="{TemplateBinding Foreground}" 
-                                StrokeThickness="1" 
-                                Stretch="None" 
-                                VerticalAlignment="Bottom"
-                                Visibility="Collapsed"
-                                Width="12"/>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="WindowState" Value="Maximized">
-                            <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="PART_RestoreButton" Property="Visibility" Value="Visible" />
-                        </Trigger>
-                        <Trigger Property="WindowState" Value="Normal">
-                            <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="PART_RestoreButton" Property="Visibility" Value="Collapsed" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
-                                <Condition Property="WindowState" Value="Normal" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="ResizeGrip" Property="Visibility" Value="Visible" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    -->
 
     <Style x:Key="Style.BasicWindow" TargetType="{x:Type Controls.Common:BasicWindow}" BasedOn="{StaticResource Style.Window}">
         <Setter Property="ContentBorderBrush" Value="{DynamicResource Brush.Window.Content.Border}"/>
@@ -220,13 +82,10 @@
 
     <Style x:Key="{x:Type Controls.Common:BasicWindow}" TargetType="{x:Type Controls.Common:BasicWindow}" BasedOn="{StaticResource Style.BasicWindow}"/>
 
-    <Style x:Key="{x:Type Controls.Common:Gadget}" TargetType="{x:Type Controls.Common:BasicWindow}">
-        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
-        <Setter Property="ShowInTaskbar" Value="True" />
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+    <Style x:Key="{x:Type Controls.Common:Gadget}" TargetType="{x:Type Controls.Common:Gadget}" BasedOn="{StaticResource Style.Window}">
+        <Setter Property="Padding" Value="0"/>
     </Style>
-    
+
     <!-- ............................................... Dialogs -->
 
     <Style x:Key="Style.BrushDialog.Footer" TargetType="Border">

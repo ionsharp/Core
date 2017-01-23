@@ -86,20 +86,26 @@
   <ItemGroup>
     <Compile Include="%28Abstract%29\AbstractDependencyObject.cs" />
     <Compile Include="%28Abstract%29\AbstractObject.cs" />
+    <Compile Include="%28Interfaces%29\IChangeable.cs" />
     <Compile Include="Attributes\Constraint.cs" />
     <Compile Include="Attributes\Alias.cs" />
     <Compile Include="Attributes\Icon.cs" />
     <Compile Include="Attributes\Int64Kind.cs" />
     <Compile Include="Attributes\StringKind.cs" />
+    <Compile Include="Config\IAppStarter.cs" />
+    <Compile Include="Config\IMainModule.cs" />
     <Compile Include="Converters\ArrayToStringConverter.cs" />
     <Compile Include="Debug\Result.Generic.cs" />
     <Compile Include="Drawing\AngularUnit.cs" />
+    <Compile Include="Extensions\Assembly.cs" />
     <Compile Include="Extensions\Brush.cs" />
     <Compile Include="Extensions\Decimal.cs" />
+    <Compile Include="Extensions\IList.cs" />
     <Compile Include="Extensions\Int16.cs" />
     <Compile Include="%28Interfaces%29\I3Dimensional.cs" />
     <Compile Include="%28Interfaces%29\ICoercable.Generic.cs" />
     <Compile Include="%28Interfaces%29\ICoercable.cs" />
+    <Compile Include="Extensions\Uri.cs" />
     <Compile Include="Input\RelayCommand.cs" />
     <Compile Include="Input\RelayCommand.Generic.cs" />
     <Compile Include="%28Interfaces%29\ISelectable.cs" />
@@ -237,7 +243,7 @@
     <Compile Include="%28Interfaces%29\IProportional.cs" />
     <Compile Include="%28Interfaces%29\ITaggable.cs" />
     <Compile Include="Meridiem.cs" />
-    <Compile Include="Mvvm\IMainWindowViewModel.cs" />
+    <Compile Include="Mvvm\IMainViewModel.cs" />
     <Compile Include="Mvvm\ViewModel.Generic.cs" />
     <Compile Include="%28Abstract%29\NamedEntry.cs" />
     <Compile Include="%28Abstract%29\NamedNotifiableObject.cs" />
@@ -264,6 +270,7 @@
     <Compile Include="Mvvm\IDocumentViewModel.cs" />
     <Compile Include="Mvvm\IPaneViewModelCollection.cs" />
     <Compile Include="Mvvm\IDocumentViewModelCollection.cs" />
+    <Compile Include="Tracing\Log.cs" />
     <Compile Include="Tracing\LogEntry.cs" />
     <Compile Include="Tracing\LogEntryStatus.cs" />
     <Compile Include="Data\BindingProxy.cs" />

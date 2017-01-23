@@ -1,17 +1,25 @@
 ﻿using Imagin.Common.Extensions;
 using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class NewCurrent : UserControl
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty NewColorProperty = DependencyProperty.Register("NewColor", typeof(Color), typeof(NewCurrent), new FrameworkPropertyMetadata(Colors.Gray, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Color NewColor
         {
             get
@@ -24,9 +32,12 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty CurrentColorProperty = DependencyProperty.Register("CurrentColor", typeof(Color), typeof(NewCurrent), new FrameworkPropertyMetadata(Colors.Black, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
-        /// The color being selected 
+        /// 
         /// </summary>
         public Color CurrentColor
         {
@@ -40,9 +51,12 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty AlphaProperty = DependencyProperty.Register("Alpha", typeof(byte), typeof(NewCurrent), new PropertyMetadata((byte)255, new PropertyChangedCallback(OnAlphaChanged)));
         /// <summary>
-        /// The Alpha Component of the currrent color
+        /// 
         /// </summary>
         public byte Alpha
         {
@@ -57,11 +71,16 @@ namespace Imagin.Controls.Extended
         }
         static void OnAlphaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var NewCurrent = (NewCurrent)d;
-            NewCurrent.NewColor = NewCurrent.NewColor.WithAlpha(Convert.ToByte(e.NewValue));
+            d.As<NewCurrent>().OnAlphaChanged((byte)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register("Orientation", typeof(Orientation), typeof(NewCurrent), new FrameworkPropertyMetadata(Orientation.Vertical, FrameworkPropertyMetadataOptions.AffectsMeasure, OnOrientationChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public Orientation Orientation
         {
             get { return (Orientation)GetValue(OrientationProperty); }
@@ -69,19 +88,16 @@ namespace Imagin.Controls.Extended
         }
         static void OnOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var Orientation = (Orientation)e.NewValue;
-            if (Orientation != (Orientation)e.OldValue)
-            {
-                var NewCurrent = (NewCurrent)d;
-                if (Orientation == Orientation.Horizontal)
-                    NewCurrent.SetOrientationToHorizontal();
-                else NewCurrent.SetOrientationToVertical();
-            }
+            d.As<NewCurrent>().OnOrientationChanged((Orientation)e.OldValue, (Orientation)e.NewValue);
         }
 
         #endregion
 
         #region NewCurrent
+
+        /// <summary>
+        /// 
+        /// </summary>
 
         public NewCurrent()
         {
@@ -92,7 +108,7 @@ namespace Imagin.Controls.Extended
 
         #region Methods
 
-        void SetOrientationToHorizontal()
+        void SetHorizontal()
         {
             var star = new GridLength(50, GridUnitType.Star);
             var auto = GridLength.Auto;
@@ -122,7 +138,7 @@ namespace Imagin.Controls.Extended
             PART_CurrentCheckered.SetValue(Grid.ColumnProperty, 0);
         }
 
-        void SetOrientationToVertical()
+        void SetVertical()
         {
             var star = new GridLength(35, GridUnitType.Star);
             var auto = GridLength.Auto;
@@ -150,6 +166,29 @@ namespace Imagin.Controls.Extended
 
             PART_CurrentLabel.SetValue(Grid.RowProperty, 3);
             PART_CurrentLabel.SetValue(Grid.ColumnProperty, 0);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnAlphaChanged(byte Value)
+        {
+            NewColor = NewColor.WithAlpha(Convert.ToByte(Value));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnOrientationChanged(Orientation OldValue, Orientation NewValue)
+        {
+            if (OldValue != NewValue)
+            {
+                if (NewValue == Orientation.Horizontal)
+                {
+                    SetHorizontal();
+                }
+                else SetVertical();
+            }
         }
 
         #endregion

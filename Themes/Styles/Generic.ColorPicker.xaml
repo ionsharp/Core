@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Extended="http://imagin.tech/imagin/controls/extended">
+    <Style x:Key="{x:Type Extended:ColorPicker}" TargetType="{x:Type Extended:ColorPicker}">
+        <Setter Property="ComponentsWidth" Value="400" />
+    </Style>
+</ResourceDictionary>

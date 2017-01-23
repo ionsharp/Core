@@ -92,7 +92,7 @@ namespace Imagin.Controls.Common
             BindingOperations.SetBinding(a, FrameworkElement.VisibilityProperty, new Binding()
             {
                 Converter = new BooleanToVisibilityConverter(),
-                Path = new PropertyPath("(0)", ControlExtensions.IsVisibleProperty),
+                Path = new PropertyPath("(0)", Extensions.DependencyObjectExtensions.IsVisibleProperty),
                 Mode = BindingMode.OneWay,
                 Source = Column
             });

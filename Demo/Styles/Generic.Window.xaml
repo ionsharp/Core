@@ -3,18 +3,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.NET.Demo"
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
-    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions;assembly=Imagin.Controls.Common"
-    xmlns:Controls.Extended="clr-namespace:Imagin.Controls.Extended;assembly=Imagin.Controls.Extended">
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
+    xmlns:Controls.Extended="http://imagin.tech/imagin/controls/extended"
+    xmlns:Gadgets="http://imagin.tech/imagin/gadgets">
+    <Style x:Key="{x:Type Controls.Common:BasicWindow}" TargetType="{x:Type Controls.Common:BasicWindow}" BasedOn="{StaticResource {x:Type Controls.Common:BasicWindow}}">
+        <Setter Property="Icon" Value="/Manifest.ico"/>
+    </Style>
+    
     <Style x:Key="{x:Type local:MainWindow}" TargetType="{x:Type local:MainWindow}" BasedOn="{StaticResource {x:Type Controls.Common:BasicWindow}}">
-        <Setter Property="Controls.Common.Extensions:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
+        <Setter Property="Controls.Common:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
     </Style>
 
     <Style x:Key="{x:Type Controls.Extended:ColorDialog}" TargetType="{x:Type Controls.Extended:ColorDialog}" BasedOn="{StaticResource {x:Type Controls.Extended:ColorDialog}}">
-        <Setter Property="Controls.Common.Extensions:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
+        <Setter Property="Controls.Common:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
     </Style>
 
     <Style x:Key="{x:Type Controls.Extended:GradientDialog}" TargetType="{x:Type Controls.Extended:GradientDialog}" BasedOn="{StaticResource {x:Type Controls.Extended:GradientDialog}}">
-        <Setter Property="Controls.Common.Extensions:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
+        <Setter Property="Controls.Common:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
+    </Style>
+
+    <Style x:Key="{x:Type Gadgets:ClockGadget}" TargetType="{x:Type Gadgets:ClockGadget}" BasedOn="{StaticResource {x:Type Controls.Common:Gadget}}">
+        <Setter Property="Controls.Common:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
+    </Style>
+
+    <Style x:Key="{x:Type Gadgets:SearchGadget}" TargetType="{x:Type Gadgets:SearchGadget}" BasedOn="{StaticResource {x:Type Controls.Common:Gadget}}">
+        <Setter Property="Controls.Common:WindowExtensions.Icon" Value="/Images/16Logo.png"/>
     </Style>
 </ResourceDictionary>

@@ -5,13 +5,26 @@ using System.Reflection;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PropertyAttributes : List<Span<string, string, object>>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
         public void Add(string a, string b, object c)
         {
             Add(New(a, b, c));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Property"></param>
         public void ExtractFrom(PropertyInfo Property)
         {
             foreach (var Attribute in Property.GetCustomAttributes(true))
@@ -30,11 +43,24 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public Span<string, string, object> New(string a, string b, object c)
         {
             return new Span<string, string, object>(a, b, c);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Key"></param>
+        /// <param name="MemberOrValue"></param>
+        /// <returns></returns>
         public object this[string Key, bool MemberOrValue]
         {
             get
@@ -57,6 +83,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Key"></param>
+        /// <param name="MemberOrValue"></param>
+        /// <returns></returns>
         public T Get<T>(string Key, bool MemberOrValue)
         {
             return this[Key, MemberOrValue].To<T>();

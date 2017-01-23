@@ -12,6 +12,39 @@ namespace Imagin.Controls.Common.Extensions
     /// </summary>
     public static class DependencyObjectExtensions
     {
+        #region Properties
+
+        #region IsVisible
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached("IsVisible", typeof(bool), typeof(DependencyObjectExtensions), new PropertyMetadata(true));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        public static void SetIsVisible(DependencyObject d, bool value)
+        {
+            d.SetValue(IsVisibleProperty, value);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static bool GetIsVisible(DependencyObject d)
+        {
+            return (bool)d.GetValue(IsVisibleProperty);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Select the given element, if supported; element is valid if supports <see cref="Selector.SetIsSelected(DependencyObject, bool)"/> or is <see cref="TreeViewItem"/>.
         /// </summary>
@@ -48,5 +81,7 @@ namespace Imagin.Controls.Common.Extensions
                 return new Error(e);
             }
         }
+
+        #endregion
     }
 }

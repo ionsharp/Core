@@ -4,6 +4,7 @@ using Imagin.Common.Collections.Concurrent;
 using Imagin.Common.Extensions;
 using Imagin.Common.Primitives;
 using Imagin.Controls.Common;
+using Imagin.Gadgets;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -805,6 +806,16 @@ namespace Imagin.NET.Demo
         void OnViewChanged(object sender, RoutedEventArgs e)
         {
             ListView = sender.As<RadioButton>().Content.ToString().ParseEnum<ViewEnum>();
+        }
+
+        void ShowClockGadget(object sender, RoutedEventArgs e)
+        {
+            new ClockGadget().Show();
+        }
+
+        void ShowSearchGadget(object sender, RoutedEventArgs e)
+        {
+            new SearchGadget().Show();
         }
 
         #endregion

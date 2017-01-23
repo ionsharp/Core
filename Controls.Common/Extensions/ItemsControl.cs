@@ -113,7 +113,7 @@ namespace Imagin.Controls.Common.Extensions
             //Bind model boolean to menu item's check state
             BindingOperations.SetBinding(Result, MenuItem.IsCheckedProperty, new Binding()
             {
-                Path = new PropertyPath("(0)", ControlExtensions.IsVisibleProperty),
+                Path = new PropertyPath("(0)", DependencyObjectExtensions.IsVisibleProperty),
                 Mode = BindingMode.TwoWay,
                 Source = Column
             });

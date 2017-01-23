@@ -5,11 +5,14 @@ namespace Imagin.Controls.Extended
     /// <summary>
     /// Represents a property that has both a minimum and maximum value.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class CoercedPropertyModel<T> : PropertyModel<T>, ICoercable, ICoercable<T>
+    /// <typeparam name="TPrimitive"></typeparam>
+    public class CoercedPropertyModel<TPrimitive> : PropertyModel<TPrimitive>, ICoercable, ICoercable<TPrimitive>
     {
-        T maximum = default(T);
-        public T Maximum
+        TPrimitive maximum = default(TPrimitive);
+        /// <summary>
+        /// 
+        /// </summary>
+        public TPrimitive Maximum
         {
             get
             {
@@ -22,8 +25,11 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        T minimum = default(T);
-        public T Minimum
+        TPrimitive minimum = default(TPrimitive);
+        /// <summary>
+        /// 
+        /// </summary>
+        public TPrimitive Minimum
         {
             get
             {
@@ -36,10 +42,15 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="minimum"></param>
+        /// <param name="maximum"></param>
         public void SetConstraint(object minimum, object maximum)
         {
-            Maximum = (T)maximum;
-            Minimum = (T)minimum;
+            Maximum = (TPrimitive)maximum;
+            Minimum = (TPrimitive)minimum;
         }
 
         internal CoercedPropertyModel() : base()

@@ -39,34 +39,43 @@
                                     <ColumnDefinition Width="25" />
                                 </Grid.ColumnDefinitions>
                                 <RadioButton 
-                                                    Checked="OnComponentChecked"
-                                                    Content="{Binding ComponentLabel}"
-                                                    GroupName="ColorSpace"
-                                                    IsChecked="{Binding IsEnabled}"
-                                                    HorizontalAlignment="Center"
-                                                    Margin="5,0"
-                                                    VerticalAlignment="Center" 
-                                                    Tag="{Binding Mode=OneWay}"
-                                                    Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    Checked="OnComponentChecked"
+                                    Content="{Binding ComponentLabel}"
+                                    GroupName="ColorSpace"
+                                    IsChecked="{Binding IsEnabled}"
+                                    HorizontalAlignment="Center"
+                                    Margin="5,0"
+                                    VerticalAlignment="Center" 
+                                    Tag="{Binding Mode=OneWay}"
+                                    Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                 <Label 
-                                                    Content="{Binding ComponentLabel}" 
-                                                    HorizontalAlignment="Center"
-                                                    Margin="5,0"
-                                                    VerticalAlignment="Center" 
-                                                    Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                                    Content="{Binding ComponentLabel}" 
+                                    HorizontalAlignment="Center"
+                                    Margin="5,0"
+                                    VerticalAlignment="Center" 
+                                    Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
                                 <Controls.Common:TextBoxExt
-                                                    Grid.Column="1" 
-                                                    HorizontalAlignment="Center"  
-                                                    HorizontalContentAlignment="Center" 
-                                                    VerticalAlignment="Center" 
-                                                    Text="{Binding CurrentValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    Width="40"/>
+                                    Grid.Column="1" 
+                                    x:Name="PART_Text"
+                                    HorizontalAlignment="Center"  
+                                    HorizontalContentAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Width="40">
+                                </Controls.Common:TextBoxExt>
                                 <Label 
-                                                    Grid.Column="2"
-                                                    Content="{Binding UnitLabel}"
-                                                    VerticalAlignment="Center"/>
+                                    Grid.Column="2"
+                                    Content="{Binding UnitLabel}"
+                                    VerticalAlignment="Center"/>
                             </Grid>
                         </local:ComponentView>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True">
+                                <Setter TargetName="PART_Text" Property="Text" Value="{Binding CurrentValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False">
+                                <Setter TargetName="PART_Text" Property="Text" Value="{Binding CurrentValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=False}"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
                     </DataTemplate>
                 </local:ColorSpaceView.ItemTemplate>
             </local:ColorSpaceView>
@@ -100,8 +109,10 @@
         </Grid.ColumnDefinitions>
         <local:ColorSelector 
             x:Name="PART_ColorSelector"
+            Alpha="{Binding Alpha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Color="{Binding SelectedColor}"
             ShowSlider="{Binding ShowSlider}"
-            ShowAlphaSlider="{Binding ShowAlphaSlider}"/>
+            ShowAlpha="{Binding ShowAlpha}"/>
         <Grid 
             Grid.Column="1" 
             Visibility="{Binding ShowComponents, Converter={StaticResource BooleanToVisibilityConverter}}" 
@@ -134,7 +145,6 @@
                 Orientation="Vertical" 
                 VerticalAlignment="Top" 
                 Width="100"/>
-
             <Grid Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -143,11 +153,50 @@
                 <Label 
                     Content="#"
                     VerticalAlignment="Center"/>
-                <Controls.Common:AlphaNumericBox 
+                <Controls.Common:HexBox 
                     Grid.Column="1"
-                    MaxLength="8"
-                    Text="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}}"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center">
+                    <Controls.Common:HexBox.Style>
+                        <Style TargetType="Controls.Common:HexBox" BasedOn="{StaticResource {x:Type Controls.Common:HexBox}}">
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True"/>
+                                        <Condition Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Text" Value="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}, ConverterParameter=WithAlpha, IsAsync=True}"/>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True"/>
+                                        <Condition Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Text" Value="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}, ConverterParameter=WithAlpha}"/>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False"/>
+                                        <Condition Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Text" Value="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}, IsAsync=True}"/>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False"/>
+                                        <Condition Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Text" Value="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}}"/>
+                                </MultiDataTrigger>
+                                <DataTrigger Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True">
+                                    <Setter Property="MaxLength" Value="8"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False">
+                                    <Setter Property="MaxLength" Value="6"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Controls.Common:HexBox.Style>
+                </Controls.Common:HexBox>
             </Grid>
         </StackPanel>
     </Grid>
