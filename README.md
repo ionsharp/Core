@@ -13,10 +13,10 @@ Imagin.NET is a library written in C# that provides common WPF controls and util
 AdvancedComboBox | AdvancedTextBox | AdvancedTreeView | AlignableWrapPanel | AlphaNumericBox | 
 BasicWindow | ByteUpDown | CheckerBoard | DateTimeUpDown | DecimalUpDown | 
 DirectionPad | DoubleUpDown | EditableLabel | FileBox | FontFamilyBox | 
-FontSizeBox | Gadget | IntUpDown | Line | Link | 
-LongUpDown | MaskedButton | MaskedDropDownButton | MaskedImage | MaskedToggleButton | 
-PasswordBox | RadioGroup | RegexBox | ResizableGrid | RippleDecorator | 
-SelectionCanvas | ShortUpDown | Spacer | ToggleSwitch | 
+FontSizeBox | Gadget | HexBox | IntUpDown | Line | 
+Link | LongUpDown | MaskedButton | MaskedDropDownButton | MaskedImage | 
+MaskedToggleButton | PasswordBox | RadioGroup | RegexBox | ResizableGrid | 
+RippleDecorator | SelectionCanvas | ShortUpDown | Spacer | ToggleSwitch | 
 ####*[Nuget](https://www.nuget.org/packages/Imagin.Controls.Common/)*: `PM> Install-Package Imagin.Controls.Common`
 
 ###Controls.Extended
