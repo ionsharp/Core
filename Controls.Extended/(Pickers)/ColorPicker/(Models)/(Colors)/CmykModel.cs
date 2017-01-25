@@ -17,23 +17,36 @@ namespace Imagin.Controls.Extended
     /// </summary>
     public class CmykModel : ColorSpaceModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override Color GetColor()
         {
-            return Cmyk.ToColor(this.Components[typeof(CComponent)].CurrentValue, this.Components[typeof(MComponent)].CurrentValue, this.Components[typeof(YComponent)].CurrentValue, this.Components[typeof(KComponent)].CurrentValue);
+            return Cmyk.ToColor(Components[typeof(CComponent)].Value, Components[typeof(MComponent)].Value, Components[typeof(YComponent)].Value, Components[typeof(KComponent)].Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public CmykModel() : base()
         {
-            this.Components.Add(new CComponent());
-            this.Components.Add(new YComponent());
-            this.Components.Add(new MComponent());
-            this.Components.Add(new KComponent());
+            Components.Add(new CComponent());
+            Components.Add(new YComponent());
+            Components.Add(new MComponent());
+            Components.Add(new KComponent());
 
-            this.Orientation = Orientation.Horizontal;
+            Orientation = Orientation.Horizontal;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class CComponent : ComponentModel
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public override bool CanSelect
             {
                 get
@@ -42,6 +55,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string ComponentLabel
             {
                 get
@@ -50,6 +66,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string UnitLabel
             {
                 get
@@ -58,21 +77,25 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Color"></param>
+            /// <returns></returns>
             public override int GetValue(Color Color)
             {
-                try
-                {
-                    return (Cmyk.FromColor(Color).C * this.MaxValue).Round().ToInt32();
-                }
-                catch
-                {
-                    return 0;
-                }
+                return (Cmyk.FromColor(Color).C * Maximum).Round().ToInt32();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class MComponent : ComponentModel
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public override bool CanSelect
             {
                 get
@@ -81,6 +104,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string ComponentLabel
             {
                 get
@@ -89,6 +115,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string UnitLabel
             {
                 get
@@ -97,21 +126,25 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Color"></param>
+            /// <returns></returns>
             public override int GetValue(Color Color)
             {
-                try
-                {
-                    return (Cmyk.FromColor(Color).M * this.MaxValue).Round().ToInt32();
-                }
-                catch
-                {
-                    return 0;
-                }
+                return (Cmyk.FromColor(Color).M * Maximum).Round().ToInt32();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class YComponent : ComponentModel
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public override bool CanSelect
             {
                 get
@@ -120,6 +153,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string ComponentLabel
             {
                 get
@@ -128,6 +164,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string UnitLabel
             {
                 get
@@ -136,21 +175,25 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Color"></param>
+            /// <returns></returns>
             public override int GetValue(Color Color)
             {
-                try
-                {
-                    return (Cmyk.FromColor(Color).Y * this.MaxValue).Round().ToInt32();
-                }
-                catch
-                {
-                    return 0;
-                }
+                return (Cmyk.FromColor(Color).Y * Maximum).Round().ToInt32();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class KComponent : ComponentModel
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public override bool CanSelect
             {
                 get
@@ -159,6 +202,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string ComponentLabel
             {
                 get
@@ -167,6 +213,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string UnitLabel
             {
                 get
@@ -175,16 +224,14 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Color"></param>
+            /// <returns></returns>
             public override int GetValue(Color Color)
             {
-                try
-                {
-                    return (Cmyk.FromColor(Color).K * this.MaxValue).Round().ToInt32();
-                }
-                catch
-                {
-                    return 0;
-                }
+                return (Cmyk.FromColor(Color).K * Maximum).Round().ToInt32();
             }
         }
     }

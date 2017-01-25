@@ -29,6 +29,11 @@ namespace Imagin.Common.Input
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="OldValue"></param>
+        /// <param name="NewValue"></param>
         public ChangedValue(object OldValue, object NewValue) : base(OldValue, NewValue)
         {
         }

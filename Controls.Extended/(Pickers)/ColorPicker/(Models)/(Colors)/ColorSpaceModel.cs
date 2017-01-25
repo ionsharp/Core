@@ -4,9 +4,15 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class ColorSpaceModel : NamedObject
     {
-        ComponentCollection components = null;
+        ComponentCollection components = new ComponentCollection();
+        /// <summary>
+        /// 
+        /// </summary>
         public ComponentCollection Components
         {
             get
@@ -21,6 +27,9 @@ namespace Imagin.Controls.Extended
         }
 
         Orientation orientation = Orientation.Vertical;
+        /// <summary>
+        /// 
+        /// </summary>
         public Orientation Orientation
         {
             get
@@ -34,11 +43,17 @@ namespace Imagin.Controls.Extended
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public abstract Color GetColor();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ColorSpaceModel() : base()
         {
-            this.Components = new ComponentCollection();
         }
     }
 }

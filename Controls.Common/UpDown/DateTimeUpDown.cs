@@ -25,6 +25,9 @@ namespace Imagin.Controls.Common
 
         ComboBox PART_TimeBox { get; set; } = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override DateTime AbsoluteMaximum
         {
             get
@@ -33,6 +36,9 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override DateTime AbsoluteMinimum
         {
             get
@@ -41,6 +47,9 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override DateTime DefaultValue
         {
             get
@@ -316,13 +325,12 @@ namespace Imagin.Controls.Common
                 case DateTimePart.Hour:
                     return Value.AddHours(i);
                 case DateTimePart.Meridian:
-                    var j = 12d;
                     switch (Value.GetMeridiem())
                     {
                         case Imagin.Common.Meridiem.Ante:
-                            return Value.AddHours(j);
+                            return Value.AddHours(12d);
                         case Imagin.Common.Meridiem.Post:
-                            return Value.AddHours(-j);
+                            return Value.AddHours(-12d);
                     }
                     return Value;
                 case DateTimePart.Millisecond:

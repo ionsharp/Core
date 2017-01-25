@@ -9,13 +9,28 @@ using Imagin.Common.Globalization;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class DualColorChip : UserControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public event EventHandler<EventArgs<Color>> ForegroundColorChanged;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public event EventHandler<EventArgs<Color>> BackgroundColorChanged;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty BackgroundColorProperty = DependencyProperty.Register("BackgroundColor", typeof(Color), typeof(DualColorChip), new PropertyMetadata(Colors.White, OnBackgroundColorChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public Color BackgroundColor
         {
             get
@@ -32,7 +47,13 @@ namespace Imagin.Controls.Extended
             d.As<DualColorChip>().OnBackgroundColorChanged((Color)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty BackgroundToolTipProperty = DependencyProperty.Register("BackgroundToolTip", typeof(string), typeof(DualColorChip), new PropertyMetadata("Background"));
+        /// <summary>
+        /// 
+        /// </summary>
         public string BackgroundToolTip
         {
             get
@@ -45,20 +66,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty DefaultForegroundProperty = DependencyProperty.Register("DefaultForeground", typeof(Color), typeof(DualColorChip), new PropertyMetadata(Colors.Black));
-        public Color DefaultForeground
-        {
-            get
-            {
-                return (Color)GetValue(DefaultForegroundProperty);
-            }
-            set
-            {
-                SetValue(DefaultForegroundProperty, value);
-            }
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty DefaultBackgroundProperty = DependencyProperty.Register("DefaultBackground", typeof(Color), typeof(DualColorChip), new PropertyMetadata(Colors.White));
+        /// <summary>
+        /// 
+        /// </summary>
         public Color DefaultBackground
         {
             get
@@ -71,7 +85,32 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty DefaultForegroundProperty = DependencyProperty.Register("DefaultForeground", typeof(Color), typeof(DualColorChip), new PropertyMetadata(Colors.Black));
+        /// <summary>
+        /// 
+        /// </summary>
+        public Color DefaultForeground
+        {
+            get
+            {
+                return (Color)GetValue(DefaultForegroundProperty);
+            }
+            set
+            {
+                SetValue(DefaultForegroundProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ForegroundColorProperty = DependencyProperty.Register("ForegroundColor", typeof(Color), typeof(DualColorChip), new PropertyMetadata(Colors.Black, OnForegroundColorChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public Color ForegroundColor
         {
             get
@@ -88,7 +127,13 @@ namespace Imagin.Controls.Extended
             d.As<DualColorChip>().OnForegroundColorChanged((Color)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ForegroundToolTipProperty = DependencyProperty.Register("ForegroundToolTip", typeof(string), typeof(DualColorChip), new PropertyMetadata("Foreground"));
+        /// <summary>
+        /// 
+        /// </summary>
         public string ForegroundToolTip
         {
             get
@@ -101,7 +146,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ResetToolTipProperty = DependencyProperty.Register("ResetToolTip", typeof(string), typeof(DualColorChip), new PropertyMetadata("Reset"));
+        /// <summary>
+        /// 
+        /// </summary>
         public string ResetToolTip
         {
             get
@@ -114,7 +165,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty SwitchToolTipProperty = DependencyProperty.Register("SwitchToolTip", typeof(string), typeof(DualColorChip), new PropertyMetadata("Swap"));
+        /// <summary>
+        /// 
+        /// </summary>
         public string SwitchToolTip
         {
             get
@@ -126,7 +183,10 @@ namespace Imagin.Controls.Extended
                 SetValue(SwitchToolTipProperty, value);
             }
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
         public DualColorChip()
         {
             InitializeComponent();
@@ -134,8 +194,8 @@ namespace Imagin.Controls.Extended
 
         void OnDefaultMouseDown(object sender, MouseButtonEventArgs e)
         {
-            ForegroundColor = DefaultForeground;
             BackgroundColor = DefaultBackground;
+            ForegroundColor = DefaultForeground;
         }
 
         void OnSwitchMouseDown(object sender, MouseButtonEventArgs e)
@@ -143,20 +203,27 @@ namespace Imagin.Controls.Extended
             var a = ForegroundColor;
             var b = BackgroundColor;
 
+            Console.WriteLine("Foreground => {0}".F(a));
+            Console.WriteLine("Background => {0}".F(b));
+
             ForegroundColor = b;
             BackgroundColor = a;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void OnBackgroundColorChanged(Color Value)
         {
-            if (BackgroundColorChanged != null)
-                BackgroundColorChanged(this, new EventArgs<Color>(Value));
+            BackgroundColorChanged?.Invoke(this, new EventArgs<Color>(Value));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void OnForegroundColorChanged(Color Value)
         {
-            if (ForegroundColorChanged != null)
-                ForegroundColorChanged(this, new EventArgs<Color>((Color)Value));
+            ForegroundColorChanged?.Invoke(this, new EventArgs<Color>(Value));
         }
     }
 }

@@ -185,6 +185,8 @@ namespace Imagin.Controls.Common
             return Result;
         }
 
+        //....................................................................
+
         async Task OnDragStarted(MouseButtonEventArgs e)
         {
             Grid.CaptureMouse();
@@ -224,6 +226,8 @@ namespace Imagin.Controls.Common
 
             StartPoint = default(Point);
         }
+
+        //....................................................................
 
         /// <summary>
         /// Find and store reference to <see cref="ScrollContentPresenter"/> by searching <see cref="ScrollViewer"/> template.

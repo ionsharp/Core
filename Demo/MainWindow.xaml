@@ -158,17 +158,17 @@
                 </Grid>
             </TabItem>
             <TabItem Header="AnglePicker">
-                <Controls.Common:Spacer 
-                    Spacing="0,0,0,10" 
-                    TrimLast="True" 
+                <StackPanel 
+                    Controls.Common:PanelExtensions.Spacing="0,0,0,10" 
+                    Controls.Common:PanelExtensions.TrimLast="True" 
                     Margin="10">
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_AnglePicker}" 
                         Orientation="Horizontal" 
-                        Spacing="0,0,10,0" 
-                        TrimLast="True" 
+                        Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                        Controls.Common:PanelExtensions.TrimLast="True" 
                         HorizontalAlignment="Center" 
-                        VerticalContentAlignment="Center"
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center"
                         Margin="0,0,0,10">
                         <Label 
                             Content="Angle:"/>
@@ -185,20 +185,20 @@
                             Minimum="-3.14159"
                             StringFormat="N6"
                             Value="{Binding Radians, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Controls.Common:Spacer>
+                    </StackPanel>
                     <Controls.Extended:AnglePicker
                         x:Name="PART_AnglePicker"
                         Height="100"
                         HorizontalAlignment="Center"
                         Width="100"/>
-                </Controls.Common:Spacer>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Chips">
-                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                    <TextBlock Style="{DynamicResource H2}" Text="ColorChip"/>
+                <StackPanel Margin="10" Controls.Common:PanelExtensions.Spacing="0,0,0,10" Controls.Common:PanelExtensions.TrimLast="True">
+                    <Label Style="{DynamicResource H2}" Content="ColorChip"/>
                     <Controls.Extended:ColorChip HorizontalAlignment="Left"/>
 
-                    <TextBlock Style="{DynamicResource H2}" Text="GradientChip"/>
+                    <Label Style="{DynamicResource H2}" Content="GradientChip"/>
                     <Controls.Extended:GradientChip 
                         Height="30"
                         HorizontalAlignment="Left"
@@ -212,9 +212,9 @@
                         </Controls.Extended:GradientChip.Value>
                     </Controls.Extended:GradientChip>
 
-                    <TextBlock Style="{DynamicResource H2}" Text="DualColorChip"/>
+                    <Label Style="{DynamicResource H2}" Content="DualColorChip"/>
                     <Controls.Extended:DualColorChip HorizontalAlignment="Left"/>
-                </Controls.Common:Spacer>
+                </StackPanel>
             </TabItem>
             <TabItem Header="ColorComb">
                 <Border Background="{Binding SelectedColor, ElementName=PART_ColorComb, Mode=OneWay, Converter={StaticResource ColorToSolidColorBrushConverter}}">
@@ -223,13 +223,13 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Controls.Common:Spacer 
+                        <StackPanel 
                             DataContext="{Binding ElementName=PART_ColorComb}" 
                             Orientation="Horizontal" 
                             Margin="10"
-                            Spacing="0,0,15,0" 
+                            Controls.Common:PanelExtensions.Spacing="0,0,15,0" 
                             HorizontalAlignment="Left"
-                            VerticalContentAlignment="Center">
+                            Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                             <Label Content="Total Hexagons:"/>
                             <Controls.Common:TextBoxExt 
                                 IsReadOnly="True"
@@ -237,9 +237,9 @@
 
                             <Label Content="Max Generations:"/>
                             <Controls.Common:IntUpDown 
-                                Value="{Binding MaxGenerations}"
                                 Minimum="1"
-                                Maximum="12"/>
+                                Maximum="12"
+                                Value="{Binding MaxGenerations}"/>
 
                             <Label Content="Selected Color:"/>
                             <Controls.Common:TextBoxExt 
@@ -254,7 +254,7 @@
                                 Increment="0.01"
                                 Minimum="0.01"
                                 Maximum="5"/>
-                        </Controls.Common:Spacer>
+                        </StackPanel>
                         <ScrollViewer Grid.Row="1">
                             <Controls.Extended:ColorComb
                                 x:Name="PART_ColorComb"
@@ -271,20 +271,25 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_ColorPicker}"
-                        Spacing="0,0,15,0" 
+                        Controls.Common:PanelExtensions.Spacing="0,0,15,0" 
                         Orientation="Horizontal"
                         Margin="0,0,0,10"
-                        VerticalContentAlignment="Center">
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <Button 
                             Content="Select" 
                             HorizontalAlignment="Left"
                             Click="OnColorSelected"/>
 
+                        <Controls.Common:AdvancedComboBox
+                            ItemsSource="{Binding Source={x:Type Controls.Extended:ColorSelectorRing}, Converter={StaticResource EnumToCollectionConverter}}"
+                            SelectedValue="{Binding SelectionRing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
                         <Controls.Common:ByteUpDown
                             Text="{Binding Alpha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="Alpha"/>
+                        
                         <Controls.Common:DoubleUpDown
                             Text="{Binding ComponentsWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="Components Width"/>
@@ -304,7 +309,7 @@
                         <CheckBox 
                             Content="Show New/Current" 
                             IsChecked="{Binding ShowNewCurrent}"/>
-                    </Controls.Common:Spacer>
+                    </StackPanel>
                     <Controls.Extended:ColorPicker
                         Grid.Row="1"
                         x:Name="PART_ColorPicker"
@@ -324,56 +329,66 @@
                         Source="/Images/UpArrow.png"
                         VerticalAlignment="Center"/>
 
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_DataGrid}" 
                         HorizontalAlignment="Right"
                         Orientation="Horizontal" 
-                        Spacing="10,0,0,0" 
-                        TrimFirst="True" 
-                        VerticalContentAlignment="Center">
+                        Controls.Common:PanelExtensions.Spacing="10,0,0,0" 
+                        Controls.Common:PanelExtensions.TrimFirst="True" 
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
 
                         <CheckBox
                             Content="AutoSizeColumns"
                             IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.AutoSizeColumns), Mode=TwoWay}"/>
 
+                        <CheckBox 
+                            Content="CanDragSelect" 
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.CanDragSelect), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <CheckBox 
+                            Content="CanUserAddRows" 
+                            IsChecked="{Binding CanUserAddRows, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
                         <CheckBox
                             Content="DisplayRowNumber"
-                            IsChecked="{Binding Path=(Controls.Common:DataGridExtensions.DisplayRowNumber), Mode=TwoWay}"/>
+                            IsChecked="{Binding Path=(Controls.Common:DataGridExtensions.DisplayRowNumber), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Controls.Common:IntUpDown
                             ToolTip="DisplayRowNumberOffset"
-                            Value="{Binding Path=(Controls.Common:DataGridExtensions.DisplayRowNumberOffset), Mode=TwoWay}"/>
+                            Text="{Binding Path=(Controls.Common:DataGridExtensions.DisplayRowNumberOffset), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Controls.Common:DoubleUpDown
                             ToolTip="DragScrollOffset"
-                            Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollOffset), Mode=TwoWay}"/>
+                            Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollOffset), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Controls.Common:DoubleUpDown
                             ToolTip="DragScrollTolerance"
-                            Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollTolerance), Mode=TwoWay}"/>
+                            Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollTolerance), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <CheckBox
                             Content="IsColumnMenuEnabled"
-                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled), Mode=TwoWay}"/>
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <CheckBox 
-                            Content="IsDragSelectionEnabled" 
-                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled), Mode=TwoWay}"/>
+                            Content="ScrollAddedIntoView" 
+                            IsChecked="{Binding Path=(Controls.Common:DataGridExtensions.ScrollAddedIntoView), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <CheckBox 
                             Content="SelectNoneOnEmptySpaceClick" 
-                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.SelectNoneOnEmptySpaceClick), Mode=TwoWay}"/>
-                    </Controls.Common:Spacer>
-
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.SelectNoneOnEmptySpaceClick), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    
                     <DataGrid
                         Grid.Row="1"
                         x:Name="PART_DataGrid"
                         Controls.Common:ItemsControlExtensions.AutoSizeColumns="True"
+                        CanUserAddRows="True"
                         Controls.Common:DataGridExtensions.DisplayRowNumberOffset="1"
                         Controls.Common:DataGridExtensions.DisplayRowNumber="True"
                         HeadersVisibility="All" 
                         Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
-                        Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled="True"
+                        Controls.Common:ItemsControlExtensions.CanDragSelect="True"
+                        Controls.Common:DataGridExtensions.ScrollAddedIntoView="True"
                         ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}"
                         Margin="0,10,0,0">
                         <DataGrid.Columns>
@@ -407,19 +422,115 @@
                 </StackPanel>
             </TabItem>
             <TabItem Header="EditableLabel">
-                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
+                <StackPanel Margin="10" Controls.Common:PanelExtensions.Spacing="0,0,0,10" Controls.Common:PanelExtensions.TrimLast="True">
                     <Controls.Common:EditableLabel Text="Edit this on mouse down" HorizontalAlignment="Left" ShowButton="True" MouseEvent="MouseDown"/>
                     <Controls.Common:EditableLabel Text="Edit this on mouse up" ButtonHorizontalAlignment="Right" ShowButton="True"/>
                     <Controls.Common:EditableLabel Text="Edit this on mouse double click" MouseEvent="MouseDoubleClick"/>
-                </Controls.Common:Spacer>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Extensions">
+                <TabControl>
+                    <TabItem Header="Panel">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel 
+                                x:Name="PART_Panel"
+                                Orientation="Horizontal"
+                                Controls.Common:PanelExtensions.VerticalContentAlignment="Bottom">
+                                <Button 
+                                    Content="First"
+                                    Height="45"/>
+                                <Button 
+                                    Content="Second"
+                                    Height="65"/>
+                                <Button 
+                                    Content="Third"
+                                    Height="50"/>
+                                <Button 
+                                    Content="Fourth"
+                                    Height="80"/>
+                            </StackPanel>
+                            <StackPanel
+                                Grid.Row="1"
+                                DataContext="{Binding ElementName=PART_Panel}"
+                                Controls.Common:PanelExtensions.Spacing="0,0,0,10" 
+                                Controls.Common:PanelExtensions.TrimLast="True"
+                                Margin="0,10,0,0">
+                                <Label 
+                                    Content="Horizontal Content Alignment"
+                                    Style="{DynamicResource H2}"/>
+                                <ComboBox
+                                    ItemsSource="{Binding Source={x:Type HorizontalAlignment}, Converter={StaticResource EnumToCollectionConverter}}"
+                                    SelectedValue="{Binding Path=(Controls.Common:PanelExtensions.HorizontalContentAlignment), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <Label 
+                                    Content="Spacing"
+                                    Style="{DynamicResource H2}"/>
+                                <StackPanel 
+                                    Orientation="Horizontal" 
+                                    Controls.Common:PanelExtensions.Spacing="0,0,5,0" 
+                                    Controls.Common:PanelExtensions.TrimLast="True"
+                                    Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Label Content="Left"/>
+                                    <Controls.Common:DoubleUpDown
+                                        x:Name="PART_SpacerThicknessLeft"
+                                        Minimum="0"
+                                        TextChanged="OnPanelThicknessChanged"
+                                        Value="15"/>
+                                    <Label Content="Top"/>
+                                    <Controls.Common:DoubleUpDown
+                                        x:Name="PART_SpacerThicknessTop"
+                                        Minimum="0"
+                                        TextChanged="OnPanelThicknessChanged"
+                                        Value="15"/>
+                                    <Label Content="Right"/>
+                                    <Controls.Common:DoubleUpDown
+                                        x:Name="PART_SpacerThicknessRight"
+                                        Minimum="0"
+                                        TextChanged="OnPanelThicknessChanged"
+                                        Value="15"/>
+                                    <Label Content="Bottom"/>
+                                    <Controls.Common:DoubleUpDown
+                                        x:Name="PART_SpacerThicknessBottom"
+                                        Minimum="0"
+                                        TextChanged="OnPanelThicknessChanged"
+                                        Value="15"/>
+                                </StackPanel>
+
+                                <Label 
+                                    Content="Trim First"
+                                    Style="{DynamicResource H2}"/>
+                                <CheckBox 
+                                    IsChecked="{Binding Path=(Controls.Common:PanelExtensions.TrimFirst), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <Label 
+                                    Content="Trim Last"
+                                    Style="{DynamicResource H2}"/>
+                                <CheckBox 
+                                    IsChecked="{Binding Path=(Controls.Common:PanelExtensions.TrimLast), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <Label 
+                                    Content="Vertical Content Alignment"
+                                    Style="{DynamicResource H2}"/>
+                                <ComboBox
+                                    ItemsSource="{Binding Source={x:Type VerticalAlignment}, Converter={StaticResource EnumToCollectionConverter}}"
+                                    SelectedValue="{Binding Path=(Controls.Common:PanelExtensions.VerticalContentAlignment), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
             </TabItem>
             <TabItem Header="FileBox">
-                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                    <Controls.Common:Spacer 
+                <StackPanel Margin="10" Controls.Common:PanelExtensions.Spacing="0,0,0,10" Controls.Common:PanelExtensions.TrimLast="True">
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_FileBox}"
                         Orientation="Horizontal"
-                        Spacing="0,0,10,0" 
-                        TrimLast="True">
+                        Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                        Controls.Common:PanelExtensions.TrimLast="True"
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <Label Content="ButtonPosition:"/>
                         <ComboBox 
                             SelectedValue="{Binding ButtonPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -433,48 +544,61 @@
                         <ComboBox 
                             SelectedValue="{Binding ButtonVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"/>
-                        
-                        <Label Content="DialogProviderMode:"/>
+
+                        <Label Content="BrowseMode:"/>
                         <ComboBox 
-                            SelectedValue="{Binding DialogProviderMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            SelectedValue="{Binding BrowseMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type Common:DialogProviderMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
-                        
-                        <Label Content="DialogProviderTitle:"/>
+
+                        <Label Content="BrowseTitle:"/>
                         <Controls.Common:TextBoxExt 
-                            Text="{Binding DialogProviderTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding BrowseTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <CheckBox 
-                            Content="ValidatePath"
-                            IsChecked="{Binding ValidatePath}"/>
-                    </Controls.Common:Spacer>
+                            Content="CanBrowse"
+                            IsChecked="{Binding CanBrowse}"/>
+
+                        <CheckBox 
+                            Content="CanValidate"
+                            IsChecked="{Binding CanValidate}"/>
+
+                        <CheckBox 
+                            Content="IsValid"
+                            IsChecked="{Binding IsValid}"
+                            IsEnabled="False"/>
+                    </StackPanel>
 
                     <Controls.Common:FileBox
                         x:Name="PART_FileBox"
+                        CanBrowse="True"
+                        BrowseMode="OpenFile"
+                        BrowseTitle="Open File"
                         ButtonPosition="Right"
                         ButtonToolTip="Click to browse..."
                         ButtonVisibility="Visible"
-                        DialogProviderMode="OpenFile"
-                        DialogProviderTitle="Open File"
-                        ValidatePath="True"
+                        CanValidate="True"
                         VerticalAlignment="Top"/>
-                </Controls.Common:Spacer>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Font">
-                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                    <TextBlock Style="{DynamicResource H2}" Text="FontFamilyBox"/>
+                <StackPanel
+                    Controls.Common:PanelExtensions.Spacing="0,0,0,10" 
+                    Controls.Common:PanelExtensions.TrimLast="True">
+                    <Label Style="{DynamicResource H2}" Content="FontFamilyBox"/>
                     <CheckBox 
                         DataContext="{Binding ElementName=PART_FontFamilyBox}"
                         Content="Show preview"
                         IsChecked="{Binding ShowPreview}"/>
                     <Controls.Common:FontFamilyBox 
                         x:Name="PART_FontFamilyBox"/>
-                    
-                    <TextBlock Style="{DynamicResource H2}" Text="FontSizeBox"/>
-                    <Controls.Common:Spacer 
+
+                    <Label Style="{DynamicResource H2}" Content="FontSizeBox"/>
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_FontSizeBox}"
                         Orientation="Horizontal"
-                        Spacing="0,0,10,0" 
-                        TrimLast="True">
+                        Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                        Controls.Common:PanelExtensions.TrimLast="True"
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <Label Content="Wheel Tick:"/>
                         <Controls.Common:DoubleUpDown Text="{Binding WheelTick}"/>
 
@@ -483,7 +607,7 @@
 
                         <Label Content="Wheel Tick (Max):"/>
                         <Controls.Common:DoubleUpDown Text="{Binding WheelTickMax}"/>
-                    </Controls.Common:Spacer>
+                    </StackPanel>
 
                     <Controls.Common:FontSizeBox x:Name="PART_FontSizeBox" IsEditable="True"/>
 
@@ -492,19 +616,19 @@
                         FontSize="{Binding Text, Mode=OneWay, ElementName=PART_FontSizeBox}"
                         Foreground="{DynamicResource Brush.Text}"
                         Text="This is sample text"/>
-                </Controls.Common:Spacer>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Gadgets">
-                <Controls.Common:Spacer
-                    Spacing="0,0,0,10"
-                    TrimLast="True">
+                <StackPanel
+                    Controls.Common:PanelExtensions.Spacing="0,0,0,10"
+                    Controls.Common:PanelExtensions.TrimLast="True">
                     <Button 
                         Click="ShowClockGadget" 
                         Content="Show Clock"/>
                     <Button 
                         Click="ShowSearchGadget" 
                         Content="Show Search"/>
-                </Controls.Common:Spacer>
+                </StackPanel>
             </TabItem>
             <TabItem Header="GradientPicker">
                 <Grid Margin="10">
@@ -512,13 +636,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_ColorPicker}"
-                        Spacing="0,0,15,0" 
+                        Controls.Common:PanelExtensions.Spacing="0,0,15,0" 
                         Orientation="Horizontal"
                         Margin="0,0,0,10"
-                        VerticalContentAlignment="Center">
-                    </Controls.Common:Spacer>
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                    </StackPanel>
                     <Controls.Extended:GradientPicker Grid.Row="1"/>
                 </Grid>
             </TabItem>
@@ -550,13 +674,13 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_ListView}" 
                         HorizontalAlignment="Right"
                         Orientation="Horizontal" 
-                        Spacing="10,0,0,0" 
-                        TrimFirst="True" 
-                        VerticalContentAlignment="Center">
+                        Controls.Common:PanelExtensions.Spacing="10,0,0,0" 
+                        Controls.Common:PanelExtensions.TrimFirst="True" 
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <Controls.Common:MaskedButton
                             Click="OnGetParentPath"
                             HorizontalAlignment="Left"
@@ -581,8 +705,8 @@
                             Value="{Binding Path=(Controls.Common:ItemsControlExtensions.DragScrollTolerance), Mode=TwoWay}"/>
 
                         <CheckBox 
-                            Content="IsDragSelectionEnabled" 
-                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled), Mode=TwoWay}"/>
+                            Content="CanDragSelect" 
+                            IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.CanDragSelect), Mode=TwoWay}"/>
 
                         <CheckBox 
                             Content="IsDirectionalSelectionEnabled" 
@@ -596,12 +720,12 @@
                             ItemsSource="{Binding Source={x:Type SelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"
                             SelectedValue="{Binding SelectionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="Selection Mode"/>
-                    </Controls.Common:Spacer>
+                    </StackPanel>
 
                     <ListView
                         Grid.Row="1"
                         x:Name="PART_ListView"
-                        Controls.Common:ItemsControlExtensions.IsDragSelectionEnabled="True"
+                        Controls.Common:ItemsControlExtensions.CanDragSelect="True"
                         ItemsSource="{Binding FileSystemCollectionView}"
                         Margin="0,10,0,0"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -657,20 +781,20 @@
             </TabItem>
             <TabItem Header="Masked">
                 <ScrollViewer Margin="10">
-                    <Controls.Common:Spacer Spacing="0,0,0,10" VerticalAlignment="Top">
+                    <StackPanel Controls.Common:PanelExtensions.Spacing="0,0,0,10" VerticalAlignment="Top">
                         <StackPanel.Resources>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                             </Style>
                         </StackPanel.Resources>
-                        <TextBlock Text="MaskedImage" Style="{DynamicResource H2}"/>
+                        <Label Content="MaskedImage" Style="{DynamicResource H2}"/>
                         <Controls.Common:MaskedImage 
                             Grid.Row="1"
                             Source="/Images/Gear.png" 
                             HorizontalAlignment="Left"/>
 
-                        <TextBlock Grid.Column="1" Text="MaskedButton" Style="{DynamicResource H2}"/>
+                        <Label Grid.Column="1" Content="MaskedButton" Style="{DynamicResource H2}"/>
                         <Controls.Common:MaskedButton 
                             Grid.Row="1"
                             Grid.Column="1"
@@ -695,7 +819,7 @@
                             </Controls.Common:MaskedButton.DropDown>
                         </Controls.Common:MaskedButton>
 
-                        <TextBlock Grid.Column="2" Text="MaskedToggleButton" Style="{DynamicResource H2}"/>
+                        <Label Grid.Column="2" Content="MaskedToggleButton" Style="{DynamicResource H2}"/>
                         <Controls.Common:MaskedToggleButton 
                             Grid.Row="1"
                             Grid.Column="2"
@@ -705,7 +829,7 @@
                             CheckedToolTip="Options are checked"
                             UncheckedToolTip="Options are not checked"/>
 
-                        <TextBlock Grid.Column="3" Text="MaskedDropDownButton" Style="{DynamicResource H2}"/>
+                        <Label Grid.Column="3" Content="MaskedDropDownButton" Style="{DynamicResource H2}"/>
                         <Controls.Common:MaskedDropDownButton 
                             Grid.Row="1"
                             Grid.Column="3"
@@ -722,7 +846,7 @@
                                 </ContextMenu>
                             </Controls.Common:MaskedDropDownButton.DropDown>
                         </Controls.Common:MaskedDropDownButton>
-                    </Controls.Common:Spacer>
+                    </StackPanel>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="PasswordBox">
@@ -733,30 +857,27 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_PasswordBox}"
                         Orientation="Horizontal" 
-                        Spacing="0,0,15,0">
+                        Controls.Common:PanelExtensions.Spacing="0,0,15,0"
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <CheckBox 
                             Content="Can enter"
-                            IsChecked="{Binding CanEnter}" 
-                            VerticalAlignment="Center"/>
+                            IsChecked="{Binding CanEnter}"/>
                         
                         <Label Content="Hint:"/>
                         <Controls.Common:TextBoxExt 
                             Text="{Binding Hint, ElementName=PART_PasswordBox, UpdateSourceTrigger=PropertyChanged}" 
-                            Placeholder="Enter a hint..." 
-                            VerticalAlignment="Center"/>
+                            Placeholder="Enter a hint..."/>
                         
                         <CheckBox
                             Content="Show enter button" 
-                            IsChecked="{Binding ShowEnterButton}" 
-                            VerticalAlignment="Center"/>
+                            IsChecked="{Binding ShowEnterButton}"/>
                         <CheckBox 
                             Content="Show password" 
-                            IsChecked="{Binding ShowPassword}" 
-                            VerticalAlignment="Center"/>
-                    </Controls.Common:Spacer>
+                            IsChecked="{Binding ShowPassword}"/>
+                    </StackPanel>
                     
                     <Controls.Common:PasswordBox 
                         Grid.Row="1"
@@ -780,14 +901,14 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         Grid.ColumnSpan="2"
                         DataContext="{Binding ElementName=PART_PropertyGrid}" 
                         Margin="0,0,0,10"
                         Orientation="Horizontal" 
-                        Spacing="0,0,10,0" 
+                        Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
                         VerticalAlignment="Center"
-                        VerticalContentAlignment="Center">
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <CheckBox 
                             Content="AcceptsNullObjects"
                             IsChecked="{Binding AcceptsNullObjects}"/>
@@ -816,7 +937,7 @@
                         <CheckBox 
                             Content="ShowType"
                             IsChecked="{Binding ShowType}"/>
-                    </Controls.Common:Spacer> 
+                    </StackPanel> 
                     
                     <ListBox
                         Grid.Row="1"
@@ -861,42 +982,46 @@
                     ShowHeader="True"/>
             </TabItem>
             <TabItem Header="SelectionCanvas">
-                <Controls.Common:SelectionCanvas
-                    ClipToBounds="True"/>
-            </TabItem>
-            <TabItem Header="Spacer">
-                <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                    <TextBlock Style="{DynamicResource H2}" Text="Spacer"/>
-                    <Controls.Common:Spacer x:Name="PART_Spacer" Orientation="Horizontal" Spacing="0,0,10,0">
-                        <Button Content="First"/>
-                        <Button Content="Second"/>
-                        <Button Content="Third"/>
-                        <Button Content="Fourth"/>
-                    </Controls.Common:Spacer>
-                    <Controls.Common:Spacer 
-                        Orientation="Horizontal" 
-                        Spacing="0,0,5,0" 
-                        TrimLast="True"
-                        VerticalContentAlignment="Center">
-                        <Label Content="Left"/>
-                        <Controls.Common:DoubleUpDown
-                            x:Name="PART_SpacerThicknessLeft"
-                            TextChanged="OnSpacerThicknessChanged"/>
-                        <Label Content="Top"/>
-                        <Controls.Common:DoubleUpDown
-                            x:Name="PART_SpacerThicknessTop"
-                            TextChanged="OnSpacerThicknessChanged"/>
-                        <Label Content="Right"/>
-                        <Controls.Common:DoubleUpDown
-                            x:Name="PART_SpacerThicknessRight"
-                            TextChanged="OnSpacerThicknessChanged"
-                            Value="10"/>
-                        <Label Content="Bottom"/>
-                        <Controls.Common:DoubleUpDown
-                            x:Name="PART_SpacerThicknessBottom"
-                            TextChanged="OnSpacerThicknessChanged"/>
-                    </Controls.Common:Spacer>
-                </Controls.Common:Spacer>
+                <Grid>
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Controls.Common:PanelExtensions.HorizontalContentAlignment="Center"
+                        Controls.Common:PanelExtensions.Spacing="0,0,0,15"
+                        Controls.Common:PanelExtensions.TrimLast="True"
+                        VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                FontSize="32"
+                                Foreground="#22000000"
+                                Text="{Binding Selection.X, ElementName=PART_SelectionCanvas, Mode=OneWay, StringFormat={}X: {0}}"/>
+                            <TextBlock
+                                FontSize="32"
+                                Foreground="#22000000"
+                                Text=", "/>
+                            <TextBlock
+                                FontSize="32"
+                                Foreground="#22000000"
+                                Text="{Binding Selection.X, ElementName=PART_SelectionCanvas, Mode=OneWay, StringFormat={}Y: {0}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                FontSize="48"
+                                Foreground="#007acc"
+                                Text="{Binding Selection.Width, ElementName=PART_SelectionCanvas, Mode=OneWay, StringFormat={}Width: {0}}"/>
+                            <TextBlock
+                                FontSize="48"
+                                Foreground="#007acc"
+                                Text=", "/>
+                            <TextBlock
+                                FontSize="48"
+                                Foreground="#007acc"
+                                Text="{Binding Selection.Height, ElementName=PART_SelectionCanvas, Mode=OneWay, StringFormat={}Height: {0}}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Controls.Common:SelectionCanvas
+                        x:Name="PART_SelectionCanvas"
+                        ClipToBounds="True"/>
+                </Grid>
             </TabItem>
             <TabItem Header="TabbedTree">
                 <Grid Margin="10">
@@ -910,15 +1035,15 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_Tabbed1}"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,10"
                         Orientation="Horizontal" 
-                        Spacing="0,0,10,0" 
-                        TrimLast="True"
+                        Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                        Controls.Common:PanelExtensions.TrimLast="True"
                         VerticalAlignment="Center"
-                        VerticalContentAlignment="Center">
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <CheckBox 
                             Content="CanResizeContent"
                             IsChecked="{Binding CanResizeContent}"/>
@@ -926,17 +1051,17 @@
                             ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
                             SelectedValue="{Binding ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="ContentHeaderVisibility"/>
-                    </Controls.Common:Spacer>
-                    <Controls.Common:Spacer 
+                    </StackPanel>
+                    <StackPanel 
                         Grid.Column="1"
                         DataContext="{Binding ElementName=PART_Tabbed2}"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,10"
                         Orientation="Horizontal" 
-                        Spacing="0,0,10,0" 
-                        TrimLast="True"
+                        Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                        Controls.Common:PanelExtensions.TrimLast="True"
                         VerticalAlignment="Center"
-                        VerticalContentAlignment="Center">
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <CheckBox 
                             Content="CanResizeContent"
                             IsChecked="{Binding CanResizeContent}"/>
@@ -944,14 +1069,13 @@
                             ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
                             SelectedValue="{Binding ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="ContentHeaderVisibility"/>
-                    </Controls.Common:Spacer>
-                    
+                    </StackPanel>
+
                     <Label
                         Grid.Row="1"
-                        FontSize="17"
-                        FontWeight="Bold"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,15"
+                        Style="{DynamicResource H2}"
                         Content="Static"/>
                     <Controls.Extended:TabbedTree 
                         Grid.Row="2"
@@ -1021,10 +1145,9 @@
                     <Label
                         Grid.Column="1"
                         Grid.Row="1"
-                        FontSize="17"
-                        FontWeight="Bold"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,15"
+                        Style="{DynamicResource H2}"
                         Content="Dynamic"/>
                     <Controls.Extended:TabbedTree 
                         Grid.Column="1"
@@ -1043,7 +1166,7 @@
                         <Controls.Extended:TabbedTree.ContentTemplate>
                             <DataTemplate>
                                 <ScrollViewer>
-                                    <Controls.Common:Spacer Spacing="0,0,0,10" TrimLast="True">
+                                    <StackPanel Controls.Common:PanelExtensions.Spacing="0,0,0,10" Controls.Common:PanelExtensions.TrimLast="True">
                                         <Label 
                                             Content="Name:"
                                             FontWeight="Bold"/>
@@ -1068,7 +1191,7 @@
                                         <Label Content="Modified:"
                                             FontWeight="Bold"/>
                                         <Label Content="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}"/>
-                                    </Controls.Common:Spacer>
+                                    </StackPanel>
                                 </ScrollViewer>
                             </DataTemplate>
                         </Controls.Extended:TabbedTree.ContentTemplate>
@@ -1086,30 +1209,30 @@
                 </Grid>
             </TabItem>
             <TabItem Header="TextBoxExt">
-                <Controls.Common:Spacer Spacing="0,0,0,10" Margin="10">
-                    <TextBlock Style="{DynamicResource H2}" Text="TextBoxExt"/>
-                    <Controls.Common:Spacer DataContext="{Binding ElementName=PART_TextBoxExt}" Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center" VerticalContentAlignment="Center">
+                <StackPanel Controls.Common:PanelExtensions.Spacing="0,0,0,10" Margin="10">
+                    <Label Style="{DynamicResource H2}" Content="TextBoxExt"/>
+                    <StackPanel DataContext="{Binding ElementName=PART_TextBoxExt}" Controls.Common:PanelExtensions.Spacing="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Center" Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                         <Label Content="Placeholder:"/>
                         <Controls.Common:TextBoxExt Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <CheckBox Content="Select All On Focus" IsChecked="{Binding SelectAllOnFocus}"/>
                         <CheckBox Content="Select All On Triple Click" IsChecked="{Binding SelectAllOnTripleClick}"/>
                         <CheckBox Content="Show Clear Button" IsChecked="{Binding CanUserClear}"/>
-                    </Controls.Common:Spacer>
+                    </StackPanel>
                     <Controls.Common:TextBoxExt x:Name="PART_TextBoxExt" Text="" Placeholder="Enter text here"/>
 
-                    <TextBlock Style="{DynamicResource H2}" Text="AlphaNumericBox"/>
+                    <Label Style="{DynamicResource H2}" Content="AlphaNumericBox"/>
                     <Controls.Common:AlphaNumericBox Text="Whole integers and letters 0 1 2 3 4 5 6"/>
 
-                    <TextBlock Style="{DynamicResource H2}" Text="RegexBox"/>
-                    <Controls.Common:Spacer
+                    <Label Style="{DynamicResource H2}" Content="RegexBox"/>
+                    <StackPanel
                         Orientation="Horizontal"
-                        Spacing="0,0,10,0">
+                        Controls.Common:PanelExtensions.Spacing="0,0,10,0">
                         <Label Content="Pattern:"/>
                         <Controls.Common:TextBoxExt
                             Text="{Binding Pattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=PART_RegexBox}"/>
-                    </Controls.Common:Spacer>
+                    </StackPanel>
                     <Controls.Common:RegexBox x:Name="PART_RegexBox"/>
-                </Controls.Common:Spacer>
+                </StackPanel>
             </TabItem>
             <TabItem Header="TreeViewComboBox">
                 <Grid Margin="10">
@@ -1158,13 +1281,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Controls.Common:Spacer 
+                    <StackPanel 
                         DataContext="{Binding ElementName=PART_TreeViewExt}" 
                         Orientation="Horizontal" 
-                        Spacing="0,0,10,0" 
-                        TrimLast="True" 
+                        Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                        Controls.Common:PanelExtensions.TrimLast="True" 
                         HorizontalAlignment="Center" 
-                        VerticalContentAlignment="Center"
+                        Controls.Common:PanelExtensions.VerticalContentAlignment="Center"
                         Margin="0,10">
                         <Label Content="{Binding Columns.Count, Mode=OneWay}" ContentStringFormat="{}Columns: {0}"/>
                         <Label Content="{Binding SelectedItems.Count, Mode=OneWay}" ContentStringFormat="{}Selected Items: {0}"/>
@@ -1192,7 +1315,7 @@
                             MinWidth="75"
                             Text="{Binding SelectedIndex, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ArrayToStringConverter}, ConverterParameter=\,}"
                             ToolTip="SelectedIndex"/>
-                    </Controls.Common:Spacer>
+                    </StackPanel>
 
                     <Controls.Common:TreeViewExt 
                         Grid.Row="1"
@@ -1248,158 +1371,294 @@
                 </Grid>
             </TabItem>
             <TabItem Header="UpDown">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                    <Controls.Common:Spacer Margin="10" Spacing="0,0,0,10" TrimLast="True">
-                        <TextBlock Style="{DynamicResource H2}" Text="ByteUpDown"/>
-                        <Controls.Common:Spacer 
-                            DataContext="{Binding ElementName=PART_ByteUpDown}" 
-                            Spacing="0,0,10,0" 
-                            Orientation="Horizontal" 
-                            VerticalAlignment="Center"
-                            VerticalContentAlignment="Center">
-                            <Label Content="Value"/>
-                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <Label Content="Increment"/>
-                            <Controls.Common:ByteUpDown Value="{Binding Increment}" Minimum="0" Maximum="255"/>
-                            <Label Content="Minimum"/>
-                            <Controls.Common:ByteUpDown Value="{Binding Minimum}" Minimum="0" Maximum="255"/>
-                            <Label Content="Maximum"/>
-                            <Controls.Common:ByteUpDown Value="{Binding Maximum}" Minimum="0" Maximum="255"/>
-                            <Label Content="Major Change"/>
-                            <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <Label Content="String Format"/>
-                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:ByteUpDown x:Name="PART_ByteUpDown" StringFormat="N0" Increment="1" Minimum="0" Maximum="255"/>
+                <TabControl>
+                    <TabItem Header="DateTimeUpDown">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label  
+                                Grid.Row="0"
+                                Content="DateTimeUpDown"
+                                Style="{DynamicResource H2}"/>
+                            <Controls.Common:DateTimeUpDown 
+                                Grid.Row="1"
+                                x:Name="PART_DateTimeUpDown"
+                                Margin="0,10,0,0"/>
 
-                        <TextBlock Style="{DynamicResource H2}" Text="DateTimeUpDown"/>
-                        <Controls.Common:Spacer 
-                            DataContext="{Binding ElementName=PART_DateTimeUpDown}" 
-                            Spacing="0,0,10,0" 
-                            Orientation="Horizontal" 
-                            VerticalContentAlignment="Center">
-                            <Label Content="Value"/>
-                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <Label Content="Minimum"/>
-                            <Controls.Common:DateTimeUpDown Value="{Binding Minimum}"/>
-                            <Label Content="Maximum"/>
-                            <Controls.Common:DateTimeUpDown Value="{Binding Maximum}"/>
-                            <Label Content="Major Change"/>
-                            <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <Label Content="String Format"/>
-                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:DateTimeUpDown 
-                            x:Name="PART_DateTimeUpDown"/>
+                            <Label 
+                                Grid.Row="2" 
+                                Content="Options"
+                                Margin="0,10,0,0"
+                                Style="{DynamicResource H3}"/>
+                            <ScrollViewer 
+                                Grid.Row="3"
+                                HorizontalScrollBarVisibility="Auto"
+                                Margin="0,10,0,0">
+                                <Grid 
+                                    DataContext="{Binding ElementName=PART_DateTimeUpDown}"
+                                    Controls.Common:PanelExtensions.Spacing="0,0,0,10"
+                                    Controls.Common:PanelExtensions.TrimLast="True"
+                                    Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25*"/>
+                                        <ColumnDefinition Width="75*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                        <TextBlock Style="{DynamicResource H2}" Text="DecimalUpDown"/>
-                        <Controls.Common:Spacer 
-                            DataContext="{Binding ElementName=PART_DecimalUpDown}" 
-                            Spacing="0,0,10,0" 
-                            Orientation="Horizontal" 
-                            VerticalContentAlignment="Center">
-                            <Label Content="Value"/>
-                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <Label Content="Increment"/>
-                            <Controls.Common:DecimalUpDown Value="{Binding Increment}" Minimum="-1000000.0" Maximum="1000000.0"/>
-                            <Label Content="Minimum"/>
-                            <Controls.Common:DecimalUpDown Value="{Binding Minimum}" Minimum="-1000000.0" Maximum="1000000.0"/>
-                            <Label Content="Maximum"/>
-                            <Controls.Common:DecimalUpDown Value="{Binding Maximum}" Minimum="-1000000.0" Maximum="1000000.0"/>
-                            <Label Content="Major Change"/>
-                            <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <Label Content="String Format"/>
-                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" StringFormat="N3" Increment="10.25"/>
+                                    <Label 
+                                        Grid.Row="0"
+                                        Content="SelectedPart"/>
+                                    <ComboBox 
+                                        Grid.Column="1"
+                                        ItemsSource="{Binding Source={x:Type Common:DateTimePart}, Converter={StaticResource EnumToCollectionConverter}}"
+                                        SelectedValue="{Binding SelectedPart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Style="{DynamicResource H2}" Text="DoubleUpDown"/>
-                        <Controls.Common:Spacer 
-                            DataContext="{Binding ElementName=PART_DoubleUpDown}" 
-                            Spacing="0,0,10,0" 
-                            Orientation="Horizontal" 
-                            VerticalContentAlignment="Center">
-                            <Label Content="Value"/>
-                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <Label Content="Increment"/>
-                            <Controls.Common:DoubleUpDown Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
-                            <Label Content="Minimum"/>
-                            <Controls.Common:DoubleUpDown Value="{Binding Minimum}" Minimum="-1000000" Maximum="1000000"/>
-                            <Label Content="Maximum"/>
-                            <Controls.Common:DoubleUpDown Value="{Binding Maximum}" Minimum="-1000000" Maximum="1000000"/>
-                            <Label Content="Major Change"/>
-                            <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <Label Content="String Format"/>
-                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" StringFormat="N3" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
+                                    <Label 
+                                        Grid.Row="1"
+                                        Content="Value"/>
+                                    <Controls.Common:TextBoxExt 
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Text="{Binding Value, Mode=OneWay}" 
+                                        IsReadOnly="True"/>
 
-                        <TextBlock Style="{DynamicResource H2}" Text="IntUpDown"/>
-                        <Controls.Common:Spacer 
-                            DataContext="{Binding ElementName=PART_IntUpDown}" 
-                            Spacing="0,0,10,0" 
-                            Orientation="Horizontal" 
-                            VerticalAlignment="Center" 
-                            VerticalContentAlignment="Center">
-                            <Label Content="Value"/>
-                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <Label Content="Increment"/>
-                            <Controls.Common:IntUpDown Value="{Binding Increment}" Minimum="-10000" Maximum="10000"/>
-                            <Label Content="Minimum"/>
-                            <Controls.Common:IntUpDown Value="{Binding Minimum}" Minimum="-10000" Maximum="10000"/>
-                            <Label Content="Maximum"/>
-                            <Controls.Common:IntUpDown Value="{Binding Maximum}" Minimum="-10000" Maximum="10000"/>
-                            <Label Content="Major Change"/>
-                            <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <Label Content="String Format"/>
-                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:IntUpDown x:Name="PART_IntUpDown" StringFormat="N0" Increment="10" Minimum="-100" Maximum="100"/>
+                                    <Label 
+                                        Grid.Row="2"
+                                        Content="Minimum"/>
+                                    <Controls.Common:DateTimeUpDown 
+                                        Grid.Column="1"
+                                        Grid.Row="2"
+                                        Value="{Binding Minimum}"/>
 
-                        <TextBlock Style="{DynamicResource H2}" Text="LongUpDown"/>
-                        <Controls.Common:Spacer 
-                            DataContext="{Binding ElementName=PART_LongUpDown}" 
-                            Spacing="0,0,10,0" 
-                            Orientation="Horizontal" 
-                            VerticalContentAlignment="Center">
-                            <Label Content="Value"/>
-                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <Label Content="Increment"/>
-                            <Controls.Common:LongUpDown Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
-                            <Label Content="Minimum"/>
-                            <Controls.Common:LongUpDown Value="{Binding Minimum}" Minimum="-1000000" Maximum="1000000"/>
-                            <Label Content="Maximum"/>
-                            <Controls.Common:LongUpDown Value="{Binding Maximum}" Minimum="-1000000" Maximum="1000000"/>
-                            <Label Content="Major Change"/>
-                            <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <Label Content="String Format"/>
-                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:LongUpDown x:Name="PART_LongUpDown" StringFormat="N0" Increment="100" Minimum="-1000000" Maximum="1000000"/>
+                                    <Label 
+                                        Grid.Row="3"
+                                        Content="Maximum"/>
+                                    <Controls.Common:DateTimeUpDown 
+                                        Grid.Column="1"
+                                        Grid.Row="3"
+                                        Value="{Binding Maximum}"/>
 
-                        <TextBlock Style="{DynamicResource H2}" Text="ShortUpDown"/>
-                        <Controls.Common:Spacer 
-                            DataContext="{Binding ElementName=PART_ShortUpDown}" 
-                            Spacing="0,0,10,0" 
-                            Orientation="Horizontal" 
-                            VerticalAlignment="Center"
-                            VerticalContentAlignment="Center">
-                            <Label Content="Value"/>
-                            <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
-                            <Label Content="Increment"/>
-                            <Controls.Common:ShortUpDown Value="{Binding Increment}" Minimum="-255" Maximum="255"/>
-                            <Label Content="Minimum"/>
-                            <Controls.Common:ShortUpDown Value="{Binding Minimum}" Minimum="-255" Maximum="255"/>
-                            <Label Content="Maximum"/>
-                            <Controls.Common:ShortUpDown Value="{Binding Maximum}" Minimum="-255" Maximum="255"/>
-                            <Label Content="Major Change"/>
-                            <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
-                            <Label Content="String Format"/>
-                            <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Controls.Common:Spacer>
-                        <Controls.Common:ShortUpDown x:Name="PART_ShortUpDown" StringFormat="N0" Increment="1" Minimum="-100" Maximum="100"/>
-                    </Controls.Common:Spacer>
-                </ScrollViewer>
+                                    <Label 
+                                        Grid.Row="4"
+                                        Content="Major Change"/>
+                                    <Controls.Common:IntUpDown 
+                                        Grid.Column="1"
+                                        Grid.Row="4"
+                                        Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+
+                                    <Label 
+                                        Grid.Row="5"
+                                        Content="String Format"/>
+                                    <Controls.Common:TextBoxExt 
+                                        Grid.Column="1"
+                                        Grid.Row="5"
+                                        Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <CheckBox 
+                                        Grid.Column="1"
+                                        Grid.Row="6"
+                                        Content="Show Dropdown"
+                                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay}"/>
+
+                                    <Label 
+                                        Grid.Row="7"
+                                        Content="Dropdown Animation"/>
+                                    <ComboBox 
+                                        Grid.Column="1"
+                                        Grid.Row="7"
+                                        ItemsSource="{Binding Source={x:Type PopupAnimation}, Converter={StaticResource EnumToCollectionConverter}}"
+                                        SelectedValue="{Binding DropDownAnimation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <Label 
+                                        Grid.Row="8"
+                                        Content="Dropdown Placement"/>
+                                    <ComboBox 
+                                        Grid.Column="1"
+                                        Grid.Row="8"
+                                        ItemsSource="{Binding Source={x:Type PlacementMode}, Converter={StaticResource EnumToCollectionConverter}}"
+                                        SelectedValue="{Binding DropDownPlacement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <CheckBox 
+                                        Grid.Column="1"
+                                        Grid.Row="9"
+                                        Content="Dropdown Stays Open"
+                                        IsChecked="{Binding StaysOpen, Mode=TwoWay}"/>
+
+                                    <CheckBox 
+                                        Grid.Column="1"
+                                        Grid.Row="10"
+                                        Content="Dropdown Stays Open On Selection"
+                                        IsChecked="{Binding StaysOpenOnSelection, Mode=TwoWay}"/>
+
+                                    <Label 
+                                        Grid.Row="11"
+                                        Content="Dropdown Stretch"/>
+                                    <ComboBox 
+                                        Grid.Column="1"
+                                        Grid.Row="11"
+                                        ItemsSource="{Binding Source={x:Type Stretch}, Converter={StaticResource EnumToCollectionConverter}}"
+                                        SelectedValue="{Binding DropDownStretch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Misc">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                            <StackPanel Margin="10" Controls.Common:PanelExtensions.Spacing="0,0,0,10" Controls.Common:PanelExtensions.TrimLast="True">
+                                <Label Style="{DynamicResource H2}" Content="ByteUpDown"/>
+                                <StackPanel 
+                                    DataContext="{Binding ElementName=PART_ByteUpDown}" 
+                                    Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                                    Orientation="Horizontal" 
+                                    VerticalAlignment="Center"
+                                    Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Label Content="Value"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                                    <Label Content="Increment"/>
+                                    <Controls.Common:ByteUpDown Value="{Binding Increment}"/>
+                                    <Label Content="Minimum"/>
+                                    <Controls.Common:ByteUpDown Value="{Binding Minimum}"/>
+                                    <Label Content="Maximum"/>
+                                    <Controls.Common:ByteUpDown Value="{Binding Maximum}"/>
+                                    <Label Content="Major Change"/>
+                                    <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                                    <Label Content="String Format"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                                <Controls.Common:ByteUpDown 
+                                    x:Name="PART_ByteUpDown" 
+                                    StringFormat="N0" 
+                                    Increment="1" 
+                                    Minimum="0" 
+                                    Maximum="255"/>
+
+                                <Label Style="{DynamicResource H2}" Content="DecimalUpDown"/>
+                                <StackPanel 
+                                    DataContext="{Binding ElementName=PART_DecimalUpDown}" 
+                                    Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                                    Orientation="Horizontal" 
+                                    Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Label Content="Value"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                                    <Label Content="Increment"/>
+                                    <Controls.Common:DecimalUpDown Value="{Binding Increment}" Minimum="-1000000.0" Maximum="1000000.0"/>
+                                    <Label Content="Minimum"/>
+                                    <Controls.Common:DecimalUpDown Value="{Binding Minimum}" Minimum="-1000000.0" Maximum="1000000.0"/>
+                                    <Label Content="Maximum"/>
+                                    <Controls.Common:DecimalUpDown Value="{Binding Maximum}" Minimum="-1000000.0" Maximum="1000000.0"/>
+                                    <Label Content="Major Change"/>
+                                    <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                                    <Label Content="String Format"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                                <Controls.Common:DecimalUpDown x:Name="PART_DecimalUpDown" StringFormat="N3" Increment="10.25"/>
+
+                                <Label Style="{DynamicResource H2}" Content="DoubleUpDown"/>
+                                <StackPanel 
+                                    DataContext="{Binding ElementName=PART_DoubleUpDown}" 
+                                    Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                                    Orientation="Horizontal" 
+                                    Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Label Content="Value"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                                    <Label Content="Increment"/>
+                                    <Controls.Common:DoubleUpDown Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
+                                    <Label Content="Minimum"/>
+                                    <Controls.Common:DoubleUpDown Value="{Binding Minimum}" Minimum="-1000000" Maximum="1000000"/>
+                                    <Label Content="Maximum"/>
+                                    <Controls.Common:DoubleUpDown Value="{Binding Maximum}" Minimum="-1000000" Maximum="1000000"/>
+                                    <Label Content="Major Change"/>
+                                    <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                                    <Label Content="String Format"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                                <Controls.Common:DoubleUpDown x:Name="PART_DoubleUpDown" StringFormat="N3" Increment="10.3" Minimum="-1000.0" Maximum="1000.0"/>
+
+                                <Label Style="{DynamicResource H2}" Content="IntUpDown"/>
+                                <StackPanel 
+                                    DataContext="{Binding ElementName=PART_IntUpDown}" 
+                                    Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                                    Orientation="Horizontal" 
+                                    VerticalAlignment="Center" 
+                                    Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Label Content="Value"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                                    <Label Content="Increment"/>
+                                    <Controls.Common:IntUpDown Value="{Binding Increment}" Minimum="-10000" Maximum="10000"/>
+                                    <Label Content="Minimum"/>
+                                    <Controls.Common:IntUpDown Value="{Binding Minimum}" Minimum="-10000" Maximum="10000"/>
+                                    <Label Content="Maximum"/>
+                                    <Controls.Common:IntUpDown Value="{Binding Maximum}" Minimum="-10000" Maximum="10000"/>
+                                    <Label Content="Major Change"/>
+                                    <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                                    <Label Content="String Format"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                                <Controls.Common:IntUpDown x:Name="PART_IntUpDown" StringFormat="N0" Increment="10" Minimum="-100" Maximum="100"/>
+
+                                <Label Style="{DynamicResource H2}" Content="LongUpDown"/>
+                                <StackPanel 
+                                    DataContext="{Binding ElementName=PART_LongUpDown}" 
+                                    Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                                    Orientation="Horizontal" 
+                                    Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Label Content="Value"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                                    <Label Content="Increment"/>
+                                    <Controls.Common:LongUpDown Value="{Binding Increment}" Minimum="-1000000" Maximum="1000000"/>
+                                    <Label Content="Minimum"/>
+                                    <Controls.Common:LongUpDown Value="{Binding Minimum}" Minimum="-1000000" Maximum="1000000"/>
+                                    <Label Content="Maximum"/>
+                                    <Controls.Common:LongUpDown Value="{Binding Maximum}" Minimum="-1000000" Maximum="1000000"/>
+                                    <Label Content="Major Change"/>
+                                    <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                                    <Label Content="String Format"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                                <Controls.Common:LongUpDown x:Name="PART_LongUpDown" StringFormat="N0" Increment="100" Minimum="-1000000" Maximum="1000000"/>
+
+                                <Label Style="{DynamicResource H2}" Content="ShortUpDown"/>
+                                <StackPanel 
+                                    DataContext="{Binding ElementName=PART_ShortUpDown}" 
+                                    Controls.Common:PanelExtensions.Spacing="0,0,10,0" 
+                                    Orientation="Horizontal" 
+                                    VerticalAlignment="Center"
+                                    Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Label Content="Value"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding Value, Mode=OneWay}" IsReadOnly="True"/>
+                                    <Label Content="Increment"/>
+                                    <Controls.Common:ShortUpDown Value="{Binding Increment}" Minimum="-255" Maximum="255"/>
+                                    <Label Content="Minimum"/>
+                                    <Controls.Common:ShortUpDown Value="{Binding Minimum}" Minimum="-255" Maximum="255"/>
+                                    <Label Content="Maximum"/>
+                                    <Controls.Common:ShortUpDown Value="{Binding Maximum}" Minimum="-255" Maximum="255"/>
+                                    <Label Content="Major Change"/>
+                                    <Controls.Common:IntUpDown Value="{Binding MajorChange}" Minimum="1" Maximum="2500"/>
+                                    <Label Content="String Format"/>
+                                    <Controls.Common:TextBoxExt Text="{Binding StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                                <Controls.Common:ShortUpDown x:Name="PART_ShortUpDown" StringFormat="N0" Increment="1" Minimum="-100" Maximum="100"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
             </TabItem>
         </TabControl>
     </Grid>

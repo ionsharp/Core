@@ -207,6 +207,10 @@ namespace Imagin.NET.Demo
             Set(Info as System.IO.FileSystemInfo);
         }
 
+        public FileSystemEntryModel() : base("New File System Entry")
+        {
+        }
+
         public FileSystemEntryModel(string path) : base()
         {
             Path = path;
@@ -627,7 +631,7 @@ namespace Imagin.NET.Demo
     public partial class MainWindow : BasicWindow
     {
         #region Properties
-
+        
         public static DependencyProperty FileSystemCollectionProperty = DependencyProperty.Register("FileSystemCollection", typeof(FileSystemCollection), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public FileSystemCollection FileSystemCollection
         {
@@ -777,9 +781,12 @@ namespace Imagin.NET.Demo
 
         void OnMouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            var Path = (sender as FrameworkElement).Tag.ToString();
-            if (Path.DirectoryExists())
-                FileSystemCollection.Set(Path);
+            if (sender.As<FrameworkElement>()?.Tag != null)
+            {
+                var Path = (sender as FrameworkElement).Tag.ToString();
+                if (Path.DirectoryExists())
+                    FileSystemCollection.Set(Path);
+            }
         }
 
         void OnPasswordEntered(object sender, System.Windows.Input.KeyEventArgs e)
@@ -792,14 +799,20 @@ namespace Imagin.NET.Demo
             PART_ColorPicker.InitialColor = PART_ColorPicker.SelectedColor;
         }
 
-        void OnSpacerThicknessChanged(object sender, TextChangedEventArgs e)
+        void OnPanelThicknessChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                PART_Spacer.Spacing = new Thickness(PART_SpacerThicknessLeft.Value, PART_SpacerThicknessTop.Value, PART_SpacerThicknessRight.Value, PART_SpacerThicknessBottom.Value);
+                var a = PART_SpacerThicknessLeft.Value;
+                var b = PART_SpacerThicknessTop.Value;
+                var c = PART_SpacerThicknessRight.Value;
+                var d = PART_SpacerThicknessBottom.Value;
+
+                Controls.Common.Extensions.PanelExtensions.SetSpacing(PART_Panel, new Thickness(a, b, c, d));
             }
-            catch
+            catch (Exception f)
             {
+                Console.WriteLine(f.Message);
             }
         }
 

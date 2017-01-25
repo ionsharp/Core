@@ -56,6 +56,18 @@
             Occurs when the object is changed in any way.
             </summary>
         </member>
+        <member name="T:Imagin.Common.IValidate`1">
+            <summary>
+            Specifies a handler that validates a series of arguments and produces a <see cref="T:System.Boolean"/> result.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.IValidate`1.Validate(`0[])">
+            <summary>
+            
+            </summary>
+            <param name="Arguments"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Attributes.ConstraintAttribute">
             <summary>
             Specifies a constraint for a property with both a minimum and maximum value.
@@ -78,7 +90,7 @@
             <summary>
             
             </summary>
-            <param name="Representation"></param>
+            <param name="kind"></param>
         </member>
         <member name="T:Imagin.Common.Attributes.StringKindAttribute">
             <summary>
@@ -94,7 +106,7 @@
             <summary>
             
             </summary>
-            <param name="Representation"></param>
+            <param name="kind"></param>
         </member>
         <member name="T:Imagin.Common.Config.IAppStarter">
             <summary>
@@ -338,7 +350,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Imagin.Common.Debug.Result"/> class.
             </summary>
-            <param name="data"></param>
+            <param name="Data"></param>
         </member>
         <member name="M:Imagin.Common.Debug.Result`1.op_Implicit(Imagin.Common.Debug.Result{`0})~System.Boolean">
             <summary>
@@ -356,10 +368,32 @@
             Represents a result.
             </summary>
         </member>
+        <member name="M:Imagin.Common.Debug.Result.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Result.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Data"></param>
+        </member>
         <member name="T:Imagin.Common.Debug.Success">
             <summary>
             Represents a successful result.
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Success.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Success.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Data"></param>
         </member>
         <member name="T:Imagin.Common.Drawing.AngularUnit">
             <summary>
@@ -701,6 +735,13 @@
             
             </summary>
             <param name="Kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DateTimeExtensions.GetMeridiem(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.DateTimeExtensions.IsEqualTo(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
@@ -1739,6 +1780,29 @@
             </summary>
             <param name="parameter"></param>
         </member>
+        <member name="T:Imagin.Common.Input.EventArgs`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Imagin.Common.Input.EventArgs`1.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Input.EventArgs`1.Parameter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Input.EventArgs`1.#ctor(`0,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Parameter"></param>
+        </member>
         <member name="T:Imagin.Common.Input.ChangedValue">
             <summary>
             Represents a value that has changed.
@@ -1753,6 +1817,13 @@
             <summary>
             The new value.
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Input.ChangedValue.#ctor(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
         </member>
         <member name="T:Imagin.Common.IVariant`1">
             <summary>
@@ -2767,12 +2838,7 @@
             of various representations.
             </summary>
         </member>
-        <member name="F:Imagin.Common.Primitives.StringKind.Unspecified">
-            <summary>
-            Unspecified string (or default).
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Primitives.StringKind.Regular">
+        <member name="F:Imagin.Common.Primitives.StringKind.Default">
             <summary>
             Specifies a regular string.
             </summary>

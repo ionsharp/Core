@@ -8,22 +8,38 @@ using System.Windows.Media.Imaging;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class LabModel : ColorSpaceModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override Color GetColor()
         {
-            return Lab.ToColor(this.Components[typeof(LComponent)].CurrentValue, this.Components[typeof(AComponent)].CurrentValue, this.Components[typeof(BComponent)].CurrentValue);
+            return Lab.ToColor(Components[typeof(LComponent)].Value, Components[typeof(AComponent)].Value, Components[typeof(BComponent)].Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public LabModel() : base()
         {
-            this.Components.Add(new LComponent());
-            this.Components.Add(new AComponent());
-            this.Components.Add(new BComponent());
+            Components.Add(new LComponent());
+            Components.Add(new AComponent());
+            Components.Add(new BComponent());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class LComponent : NormalComponentModel
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public override string ComponentLabel
             {
                 get
@@ -32,6 +48,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string UnitLabel
             {
                 get
@@ -79,8 +98,14 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class AComponent : NormalComponentModel
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public override string ComponentLabel
             {
                 get
@@ -89,6 +114,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string UnitLabel
             {
                 get
@@ -97,7 +125,10 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MinValue
+            /// <summary>
+            /// 
+            /// </summary>
+            public override int Minimum
             {
                 get
                 {
@@ -105,7 +136,10 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MaxValue
+            /// <summary>
+            /// 
+            /// </summary>
+            public override int Maximum
             {
                 get
                 {
@@ -153,8 +187,14 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class BComponent : NormalComponentModel
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public override string ComponentLabel
             {
                 get
@@ -163,6 +203,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string UnitLabel
             {
                 get
@@ -171,7 +214,10 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MinValue
+            /// <summary>
+            /// 
+            /// </summary>
+            public override int Minimum
             {
                 get
                 {
@@ -179,7 +225,10 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MaxValue
+            /// <summary>
+            /// 
+            /// </summary>
+            public override int Maximum
             {
                 get
                 {

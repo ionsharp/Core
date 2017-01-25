@@ -17,32 +17,111 @@ namespace Imagin.Controls.Common
     [TemplatePart(Name = "PART_Up", Type = typeof(Button))]
     public abstract class UpDown : TextBoxExt, INotifyPropertyChanged
     {
-        #region Properties
+        #region Classes
 
-        protected Button PART_Down { get; private set; } = null;
-
-        protected Button PART_Up { get; private set; } = null;
-
-        protected UpDownTimer Timer { get; private set; } = null;
-
-        protected bool OnTextChangedHandled { get; set; } = false;
-
-        protected bool OnValueChangedHandled { get; set; } = false;
-
-        public static DependencyProperty IsUpDownEnabledProperty = DependencyProperty.Register("IsUpDownEnabled", typeof(bool), typeof(UpDown), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool IsUpDownEnabled
+        /// <summary>
+        /// 
+        /// </summary>
+        protected class UpDownTimer : DispatcherTimer
         {
-            get
+            /// <summary>
+            /// 
+            /// </summary>
+            public double Milliseconds
             {
-                return (bool)GetValue(IsUpDownEnabledProperty);
+                get; set;
             }
-            set
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public UpDownDirection Direction
             {
-                SetValue(IsUpDownEnabledProperty, value);
+                get; set;
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            internal UpDownTimer() : base()
+            {
+                Milliseconds = 0.0;
             }
         }
 
+        #endregion
+
+        #region Enums
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected enum UpDownDirection
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            None,
+            /// <summary>
+            /// 
+            /// </summary>
+            Up,
+            /// <summary>
+            /// 
+            /// </summary>
+            Down
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected Button PART_Down { get; private set; } = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected Button PART_Up { get; private set; } = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected UpDownTimer Timer { get; private set; } = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty CanUpDownProperty = DependencyProperty.Register("CanUpDown", typeof(bool), typeof(UpDown), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool CanUpDown
+        {
+            get
+            {
+                return (bool)GetValue(CanUpDownProperty);
+            }
+            set
+            {
+                SetValue(CanUpDownProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MajorChangeProperty = DependencyProperty.Register("MajorChange", typeof(double), typeof(UpDown), new FrameworkPropertyMetadata(100.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMajorChangeChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public double MajorChange
         {
             get
@@ -59,7 +138,13 @@ namespace Imagin.Controls.Common
             d.As<UpDown>().OnMajorChangeChanged((double)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MajorChangeDelayProperty = DependencyProperty.Register("MajorChangeDelay", typeof(double), typeof(UpDown), new FrameworkPropertyMetadata(500.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public double MajorChangeDelay
         {
             get
@@ -72,7 +157,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty StringFormatProperty = DependencyProperty.Register("StringFormat", typeof(string), typeof(UpDown), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnStringFormatChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public string StringFormat
         {
             get
@@ -109,24 +200,24 @@ namespace Imagin.Controls.Common
         #region Abstract
 
         /// <summary>
-        /// 
+        /// Gets whether or not decreasing is enabled.
         /// </summary>
         /// <returns></returns>
         protected abstract bool CanDecrease();
 
         /// <summary>
-        /// 
+        /// Gets whether or not increasing is enabled.
         /// </summary>
         /// <returns></returns>
         protected abstract bool CanIncrease();
 
         /// <summary>
-        /// 
+        /// Decreases value by some value.
         /// </summary>
         public abstract void Decrease();
 
         /// <summary>
-        /// 
+        /// Increases value by some value.
         /// </summary>
         public abstract void Increase();
 
@@ -135,21 +226,27 @@ namespace Imagin.Controls.Common
         #region Commands
 
         ICommand downCommand;
+        /// <summary>
+        /// 
+        /// </summary>
         public ICommand DownCommand
         {
             get
             {
-                downCommand = downCommand ?? new RelayCommand(x => Decrease(), x => IsUpDownEnabled && CanDecrease());
+                downCommand = downCommand ?? new RelayCommand(x => Decrease(), x => CanUpDown && CanDecrease());
                 return downCommand;
             }
         }
 
         ICommand upCommand;
+        /// <summary>
+        /// 
+        /// </summary>
         public ICommand UpCommand
         {
             get
             {
-                upCommand = upCommand ?? new RelayCommand(x => Increase(), x => IsUpDownEnabled && CanIncrease());
+                upCommand = upCommand ?? new RelayCommand(x => Increase(), x => CanUpDown && CanIncrease());
                 return upCommand;
             }
         }
@@ -167,15 +264,22 @@ namespace Imagin.Controls.Common
 
         #region Protected
 
+        /// <summary>
+        /// Increase or decrease based on given direction.
+        /// </summary>
+        /// <param name="Direction"></param>
         protected void Change(UpDownDirection Direction)
         {
-            if (Direction == UpDownDirection.Up)
+            if (Direction == UpDownDirection.Up && CanIncrease())
                 Increase();
 
-            else if (Direction == UpDownDirection.Down)
+            else if (Direction == UpDownDirection.Down && CanDecrease())
                 Decrease();
         }
 
+        /// <summary>
+        /// Reset the timer used for making major changes.
+        /// </summary>
         protected void ResetTimer()
         {
             Timer = new UpDownTimer();
@@ -197,39 +301,48 @@ namespace Imagin.Controls.Common
 
         #region Overrides
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            PART_Up = Template.FindName("PART_Up", this).As<Button>();
-            PART_Up.PreviewMouseDown += OnButtonMouseDown;
-            PART_Up.PreviewMouseUp += OnButtonMouseUp;
-            PART_Up.MouseDoubleClick += Handle;
-            PART_Up.MouseDown += Handle;
-            PART_Up.MouseUp += Handle;
-
             PART_Down = Template.FindName("PART_Down", this).As<Button>();
+
             PART_Down.PreviewMouseDown += OnButtonMouseDown;
             PART_Down.PreviewMouseUp += OnButtonMouseUp;
+
             PART_Down.MouseDoubleClick += Handle;
             PART_Down.MouseDown += Handle;
             PART_Down.MouseUp += Handle;
+
+            PART_Up = Template.FindName("PART_Up", this).As<Button>();
+
+            PART_Up.PreviewMouseDown += OnButtonMouseDown;
+            PART_Up.PreviewMouseUp += OnButtonMouseUp;
+
+            PART_Up.MouseDoubleClick += Handle;
+            PART_Up.MouseDown += Handle;
+            PART_Up.MouseUp += Handle;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
         {
             base.OnPreviewMouseWheel(e);
-
             if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
             {
-                if (e.Delta > 0)
+                if (e.Delta > 0 && CanIncrease())
                 {
                     Increase();
                 }
-                else
-                {
+                else if (CanDecrease())
                     Decrease();
-                }
+
                 e.Handled = true;
             }
         }
@@ -238,12 +351,22 @@ namespace Imagin.Controls.Common
 
         #region Virtual
 
+        /// <summary>
+        /// Occurs when the mouse presses the increase or decrease button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnButtonMouseDown(object sender, MouseButtonEventArgs e)
         {
             Timer.Direction = sender.As<MaskedButton>().CommandParameter.ToString().ParseEnum<UpDownDirection>();
             Timer.Start();
         }
 
+        /// <summary>
+        /// Occurs when the mouse releases the increase or decrease button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
         {
             Timer.Stop();
@@ -259,7 +382,10 @@ namespace Imagin.Controls.Common
         protected virtual void OnMajorChange(object sender, EventArgs e)
         {
             Timer.Milliseconds += Timer.Interval.TotalMilliseconds;
-            if (Timer.Milliseconds < MajorChangeDelay) return;
+
+            if (Timer.Milliseconds < MajorChangeDelay)
+                return;
+
             Change(Timer.Direction);
         }
 
@@ -279,51 +405,16 @@ namespace Imagin.Controls.Common
         {
         }
 
-        #endregion
-
-        #endregion
-
-        #region Types
-
-        protected enum UpDownDirection
+        /// <summary>
+        /// Occurs when a property changes.
+        /// </summary>
+        /// <param name="Name"></param>
+        public virtual void OnPropertyChanged(string Name)
         {
-            None,
-            Up,
-            Down
-        }
-
-        protected class UpDownTimer : DispatcherTimer
-        {
-            public double Milliseconds
-            {
-                get; set;
-            }
-
-            public UpDownDirection Direction
-            {
-                get; set;
-            }
-
-            internal UpDownTimer() : base()
-            {
-                Milliseconds = 0.0;
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(Name));
         }
 
         #endregion
-
-        #region INotifyPropertyChanged
-
-        [field: NonSerializedAttribute()]
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
         #endregion
     }

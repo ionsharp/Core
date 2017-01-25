@@ -3,6 +3,7 @@ C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\bin\Debu
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.dll
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.pdb
 C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.XML
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Microsoft.WindowsAPICodePack.dll
@@ -16,4 +17,3 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\XAMLMar
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\XAMLMarkupExtensions.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.pdb
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.XML

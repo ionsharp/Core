@@ -14,6 +14,29 @@ namespace Imagin.Controls.Extended
     /// <summary>
     /// 
     /// </summary>
+    public enum ColorSelectorRing
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        White,
+        /// <summary>
+        /// 
+        /// </summary>
+        Black,
+        /// <summary>
+        /// 
+        /// </summary>
+        BlackAndWhite,
+        /// <summary>
+        /// 
+        /// </summary>
+        BlackOrWhite
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class ColorSelector : UserControl
     {
         #region Enums
@@ -25,72 +48,9 @@ namespace Imagin.Controls.Extended
             SliderMove,
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum SelectionRingType
-        {
-            /// <summary>
-            /// 
-            /// </summary>
-            White,
-            /// <summary>
-            /// 
-            /// </summary>
-            Black,
-            /// <summary>
-            /// 
-            /// </summary>
-            BlackAndWhite,
-            /// <summary>
-            /// 
-            /// </summary>
-            BlackOrWhite
-        }
-
         #endregion
 
         #region Properties
-
-        #region Private
-
-        readonly TranslateTransform SelectionTransform = new TranslateTransform();
-
-        readonly WriteableBitmap SelectionPane = new WriteableBitmap(256, 256, 96, 96, PixelFormats.Bgr24, null);
-
-        readonly WriteableBitmap NormalPane = new WriteableBitmap(24, 256, 96, 96, PixelFormats.Bgr24, null);
-
-        ColorChangeSourceType ColorChangeSource = ColorChangeSourceType.ColorPropertySet;
-
-        bool ProcessSliderEvents
-        {
-            get; set;
-        }
-
-        int LastComponentValue = -1;
-
-        int LastComponentHashCode = 0;
-
-        Point SelectionPoint
-        {
-            get; set;
-        }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public event EventHandler<EventArgs<byte>> AlphaChanged;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public event EventHandler<EventArgs<Color>> ColorChanged;
-
-        #endregion
 
         #region Dependency
 
@@ -143,15 +103,15 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty SelectionRingProperty = DependencyProperty.Register("SelectionRing", typeof(SelectionRingType), typeof(ColorSelector), new PropertyMetadata(SelectionRingType.BlackAndWhite, OnSelectionRingChanged));
+        public static DependencyProperty SelectionRingProperty = DependencyProperty.Register("SelectionRing", typeof(ColorSelectorRing), typeof(ColorSelector), new PropertyMetadata(ColorSelectorRing.BlackAndWhite, OnSelectionRingChanged));
         /// <summary>
         /// 
         /// </summary>
-        public SelectionRingType SelectionRing
+        public ColorSelectorRing SelectionRing
         {
             get
             {
-                return (SelectionRingType)GetValue(SelectionRingProperty);
+                return (ColorSelectorRing)GetValue(SelectionRingProperty);
             }
             set
             {
@@ -160,7 +120,7 @@ namespace Imagin.Controls.Extended
         }
         static void OnSelectionRingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.As<ColorSelector>().OnSelectionRingChanged((SelectionRingType)e.NewValue);
+            d.As<ColorSelector>().OnSelectionRingChanged((ColorSelectorRing)e.NewValue);
         }
 
         /// <summary>
@@ -222,6 +182,46 @@ namespace Imagin.Controls.Extended
 
         #endregion
 
+        #region Events
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler<EventArgs<byte>> AlphaChanged;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event EventHandler<EventArgs<Color>> ColorChanged;
+
+        #endregion
+
+        #region Private
+
+        readonly TranslateTransform SelectionTransform = new TranslateTransform();
+
+        readonly WriteableBitmap SelectionPane = new WriteableBitmap(256, 256, 96, 96, PixelFormats.Bgr24, null);
+
+        readonly WriteableBitmap NormalPane = new WriteableBitmap(24, 256, 96, 96, PixelFormats.Bgr24, null);
+
+        ColorChangeSourceType ColorChangeSource = ColorChangeSourceType.ColorPropertySet;
+
+        bool ProcessSliderEvents
+        {
+            get; set;
+        }
+
+        int LastComponentValue = -1;
+
+        int LastComponentHashCode = 0;
+
+        Point SelectionPoint
+        {
+            get; set;
+        }
+
+        #endregion
+
         #endregion
 
         #region ColorSelector
@@ -231,6 +231,8 @@ namespace Imagin.Controls.Extended
         /// </summary>
         public ColorSelector()
         {
+            IsEnabled = false;
+
             InitializeComponent();
 
             PART_ColorPlane.Source = SelectionPane;
@@ -290,9 +292,9 @@ namespace Imagin.Controls.Extended
             var y = (e.GetPosition((IInputElement)sender)).Y;
 
             var proportion = 1 - y / 255;
-            var range = NormalComponent.MaxValue - NormalComponent.MinValue;
+            var range = NormalComponent.Maximum - NormalComponent.Minimum;
 
-            PART_Slider.Value = NormalComponent.MinValue + proportion * range;
+            PART_Slider.Value = NormalComponent.Minimum + proportion * range;
         }
 
         void OnSliderMouseMove(object sender, MouseEventArgs e)
@@ -304,9 +306,9 @@ namespace Imagin.Controls.Extended
                 var y = (e.GetPosition((IInputElement)sender)).Y;
 
                 var proportion = 1 - y / 255;
-                var range = NormalComponent.MaxValue - NormalComponent.MinValue;
+                var range = NormalComponent.Maximum - NormalComponent.Minimum;
 
-                PART_Slider.Value = NormalComponent.MinValue + proportion * range;
+                PART_Slider.Value = NormalComponent.Minimum + proportion * range;
             }
         }
 
@@ -326,20 +328,23 @@ namespace Imagin.Controls.Extended
 
         void OnPlaneMouseDown(Point selectionPoint)
         {
-            SelectionPoint = selectionPoint;
+            if (NormalComponent != null)
+            {
+                SelectionPoint = selectionPoint;
 
-            double w = PART_ColorPlane.ActualWidth / 2, h = PART_ColorPlane.ActualHeight / 2;
+                double w = PART_ColorPlane.ActualWidth / 2, h = PART_ColorPlane.ActualHeight / 2;
 
-            SelectionTransform.X = (SelectionPoint.X - w).Coerce(w, -w);
-            SelectionTransform.Y = (SelectionPoint.Y - h).Coerce(h, -h);
+                SelectionTransform.X = (SelectionPoint.X - w).Coerce(w, -w);
+                SelectionTransform.Y = (SelectionPoint.Y - h).Coerce(h, -h);
 
-            SelectionPoint = new Point(SelectionPoint.X.Coerce(255d), SelectionPoint.Y.Coerce(255d));
+                SelectionPoint = new Point(SelectionPoint.X.Coerce(255d), SelectionPoint.Y.Coerce(255d));
 
-            var NewColor = NormalComponent.ColorAtPoint(SelectionPoint, (int)PART_Slider.Value);
-            if (!NormalComponent.IsNormalIndependantOfColor)
-                NormalComponent.UpdateSlider(NormalPane, NewColor);
+                var NewColor = NormalComponent.ColorAtPoint(SelectionPoint, (int)PART_Slider.Value);
+                if (!NormalComponent.IsNormalIndependantOfColor)
+                    NormalComponent.UpdateSlider(NormalPane, NewColor);
 
-            Color = NewColor.WithAlpha(PART_AlphaSlider.Alpha);
+                Color = NewColor.WithAlpha(PART_AlphaSlider.Alpha);
+            }
         }
 
         void UpdatePlane(int ComponentValue)
@@ -356,6 +361,9 @@ namespace Imagin.Controls.Extended
 
         #region Public
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void IncrementSlider()
         {
             PART_Slider.Value++;
@@ -401,7 +409,7 @@ namespace Imagin.Controls.Extended
                         if (!NormalComponent.IsNormalIndependantOfColor)
                             NormalComponent.UpdateSlider(NormalPane, NewValue);
                     }
-                    if (SelectionRing == SelectionRingType.BlackOrWhite)
+                    if (SelectionRing == ColorSelectorRing.BlackOrWhite)
                         AdjustRing(NewValue);
                 }
                 PART_AlphaSlider.Alpha = NewValue.A;
@@ -422,8 +430,8 @@ namespace Imagin.Controls.Extended
 
             ProcessSliderEvents = false;
 
-            PART_Slider.Minimum = Value.MinValue;
-            PART_Slider.Maximum = Value.MaxValue;
+            PART_Slider.Minimum = Value.Minimum;
+            PART_Slider.Maximum = Value.Maximum;
             PART_Slider.Value = Value.GetValue(Color);
 
             ProcessSliderEvents = true;
@@ -436,23 +444,23 @@ namespace Imagin.Controls.Extended
         /// 
         /// </summary>
         /// <param name="Value"></param>
-        protected virtual void OnSelectionRingChanged(SelectionRingType Value)
+        protected virtual void OnSelectionRingChanged(ColorSelectorRing Value)
         {
             switch (Value)
             {
-                case SelectionRingType.Black:
+                case ColorSelectorRing.Black:
                     PART_SelectionEllipse.Stroke = new SolidColorBrush(Colors.Black);
                     PART_SelectionOuterEllipse.Visibility = Visibility.Collapsed;
                     break;
-                case SelectionRingType.White:
+                case ColorSelectorRing.White:
                     PART_SelectionEllipse.Stroke = new SolidColorBrush(Colors.White);
                     PART_SelectionOuterEllipse.Visibility = Visibility.Collapsed;
                     break;
-                case SelectionRingType.BlackAndWhite:
+                case ColorSelectorRing.BlackAndWhite:
                     PART_SelectionEllipse.Stroke = new SolidColorBrush(Colors.White);
                     PART_SelectionOuterEllipse.Visibility = Visibility.Visible;
                     break;
-                case SelectionRingType.BlackOrWhite:
+                case ColorSelectorRing.BlackOrWhite:
                     AdjustRing(Color);
                     PART_SelectionOuterEllipse.Visibility = Visibility.Collapsed;
                     break;

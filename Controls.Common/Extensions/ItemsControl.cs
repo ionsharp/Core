@@ -21,10 +21,20 @@ namespace Imagin.Controls.Common.Extensions
         /// Applies GridUnit.Star GridLength to all columns.
         /// </summary>
         public static readonly DependencyProperty AutoSizeColumnsProperty = DependencyProperty.RegisterAttached("AutoSizeColumns", typeof(bool), typeof(ItemsControlExtensions), new PropertyMetadata(false, OnAutoSizeColumnsChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
         public static bool GetAutoSizeColumns(ItemsControl d)
         {
             return (bool)d.GetValue(AutoSizeColumnsProperty);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
         public static void SetAutoSizeColumns(ItemsControl d, bool value)
         {
             d.SetValue(AutoSizeColumnsProperty, value);
@@ -42,6 +52,66 @@ namespace Imagin.Controls.Common.Extensions
                 var t = sender as TreeViewExt;
                 var l = (bool)e.NewValue ? new GridLength(1.0, GridUnitType.Star) : new GridLength(1.0, GridUnitType.Auto);
                 t.Columns.ForEach(i => i.Width = l);
+            }
+        }
+
+        #endregion
+
+        #region CanDragSelect
+
+        /// <summary>
+        /// Gets or sets value indicating whether ItemsControl should allow drag selecting items.
+        /// </summary>
+        public static readonly DependencyProperty CanDragSelectProperty = DependencyProperty.RegisterAttached("CanDragSelect", typeof(bool), typeof(ItemsControlExtensions), new PropertyMetadata(false, OnCanDragSelectChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool GetCanDragSelect(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(CanDragSelectProperty);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
+        public static void SetCanDragSelect(DependencyObject obj, bool value)
+        {
+            obj.SetValue(CanDragSelectProperty, value);
+        }
+
+        static void OnCanDragSelectChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var ItemsControl = sender as ItemsControl;
+            if (ItemsControl != null)
+            {
+                if ((bool)e.NewValue)
+                    ItemsControl.Loaded += RegisterCanDragSelect;
+                else
+                {
+                    ItemsControl.Loaded -= RegisterCanDragSelect;
+
+                    if (GetDragSelector(ItemsControl) != null)
+                        GetDragSelector(ItemsControl).Deregister();
+
+                    SetDragSelector(ItemsControl, null);
+                }
+            }
+        }
+
+        static void RegisterCanDragSelect(object sender, RoutedEventArgs e)
+        {
+            var ItemsControl = sender as ItemsControl;
+            if (GetDragSelector(ItemsControl) == null)
+            {
+                ItemsControl.ApplyTemplate();
+
+                var Manager = DragSelector.New(ItemsControl);
+                Manager.Register();
+
+                SetDragSelector(ItemsControl, Manager);
             }
         }
 
@@ -67,10 +137,20 @@ namespace Imagin.Controls.Common.Extensions
         /// Determines whether or not to add a ContextMenu to the column header for toggling column visibility.
         /// </summary>
         public static readonly DependencyProperty IsColumnMenuEnabledProperty = DependencyProperty.RegisterAttached("IsColumnMenuEnabled", typeof(bool), typeof(ItemsControlExtensions), new PropertyMetadata(false, IsColumnMenuEnabledChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
         public static bool GetIsColumnMenuEnabled(ItemsControl d)
         {
             return (bool)d.GetValue(IsColumnMenuEnabledProperty);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
         public static void SetIsColumnMenuEnabled(ItemsControl d, bool value)
         {
             d.SetValue(IsColumnMenuEnabledProperty, value);
@@ -213,63 +293,26 @@ namespace Imagin.Controls.Common.Extensions
 
         #endregion
 
-        #region IsDragSelectionEnabled
-
-        /// <summary>
-        /// Gets or sets value indicating whether ItemsControl should allow drag selecting items.
-        /// </summary>
-        public static readonly DependencyProperty IsDragSelectionEnabledProperty = DependencyProperty.RegisterAttached("IsDragSelectionEnabled", typeof(bool), typeof(ItemsControlExtensions), new PropertyMetadata(false, OnIsDragSelectionEnabledChanged));
-        public static bool GetIsDragSelectionEnabled(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(IsDragSelectionEnabledProperty);
-        }
-        public static void SetIsDragSelectionEnabled(DependencyObject obj, bool value)
-        {
-            obj.SetValue(IsDragSelectionEnabledProperty, value);
-        }
-
-        static void OnIsDragSelectionEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            var ItemsControl = sender as ItemsControl;
-            if (ItemsControl != null)
-            {
-                if ((bool)e.NewValue)
-                    ItemsControl.Loaded += RegisterIsDragSelectionEnabled;
-                else
-                {
-                    ItemsControl.Loaded -= RegisterIsDragSelectionEnabled;
-
-                    if (GetDragSelector(ItemsControl) != null)
-                        GetDragSelector(ItemsControl).Deregister();
-
-                    SetDragSelector(ItemsControl, null);
-                }
-            }
-        }
-
-        static void RegisterIsDragSelectionEnabled(object sender, RoutedEventArgs e)
-        {
-            var ItemsControl = sender as ItemsControl;
-            if (GetDragSelector(ItemsControl) == null)
-            {
-                ItemsControl.ApplyTemplate();
-
-                var Manager = DragSelector.New(ItemsControl);
-                Manager.Register();
-
-                SetDragSelector(ItemsControl, Manager);
-            }
-        }
-
-        #endregion
-
         #region DragScrollOffset
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty DragScrollOffsetProperty = DependencyProperty.RegisterAttached("DragScrollOffset", typeof(double), typeof(ItemsControlExtensions), new PropertyMetadata(10.0));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static double GetDragScrollOffset(DependencyObject obj)
         {
             return (double)obj.GetValue(DragScrollOffsetProperty);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetDragScrollOffset(DependencyObject obj, double value)
         {
             obj.SetValue(DragScrollOffsetProperty, value);
@@ -279,11 +322,24 @@ namespace Imagin.Controls.Common.Extensions
 
         #region DragScrollTolerance
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty DragScrollToleranceProperty = DependencyProperty.RegisterAttached("DragScrollTolerance", typeof(double), typeof(ItemsControlExtensions), new PropertyMetadata(5.0));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static double GetDragScrollTolerance(DependencyObject obj)
         {
             return (double)obj.GetValue(DragScrollToleranceProperty);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetDragScrollTolerance(DependencyObject obj, double value)
         {
             obj.SetValue(DragScrollToleranceProperty, value);
@@ -293,11 +349,24 @@ namespace Imagin.Controls.Common.Extensions
 
         #region SelectNoneOnEmptySpaceClick
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty SelectNoneOnEmptySpaceClickProperty = DependencyProperty.RegisterAttached("SelectNoneOnEmptySpaceClick", typeof(bool), typeof(ItemsControlExtensions), new PropertyMetadata(false, OnSelectNoneOnEmptySpaceClickChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static bool GetSelectNoneOnEmptySpaceClick(DependencyObject obj)
         {
             return (bool)obj.GetValue(SelectNoneOnEmptySpaceClickProperty);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetSelectNoneOnEmptySpaceClick(DependencyObject obj, bool value)
         {
             obj.SetValue(SelectNoneOnEmptySpaceClickProperty, value);
@@ -348,6 +417,10 @@ namespace Imagin.Controls.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ToEvaluate"></param>
         public static void ClearSelection(this ItemsControl ToEvaluate)
         {
             if (ToEvaluate is ListBox)
@@ -365,6 +438,11 @@ namespace Imagin.Controls.Common.Extensions
                 ToEvaluate.As<TreeViewExt>().SelectNone();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Control"></param>
+        /// <param name="Item"></param>
         public static void Select(this ItemsControl Control, object Item)
         {
             if (Control != null)
@@ -389,6 +467,11 @@ namespace Imagin.Controls.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ToEvaluate"></param>
+        /// <returns></returns>
         public static bool TryClearSelection(this ItemsControl ToEvaluate)
         {
             try

@@ -38,14 +38,15 @@
                             </Grid>
                             <local:MaskedImage 
                                 Grid.Column="1" 
-                                x:Name="PART_Checked"
+                                x:Name="PART_Indicator"
                                 Margin="5,0,0,0"
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
-                                Visibility="Collapsed"/>
+                                Visibility="{Binding IsValid, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
                             <local:MaskedButton 
                                 Grid.Column="2" 
                                 x:Name="PART_Button"
                                 Focusable="False"
+                                IsEnabled="{TemplateBinding CanBrowse}"
                                 Padding="7,0" 
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png"
                                 ToolTip="{TemplateBinding ButtonToolTip}"
@@ -60,9 +61,9 @@
 
                             <Setter TargetName="PART_Button" Property="Padding" Value="7,0,0,0"/>
 
-                            <Setter TargetName="PART_Text" Property="Grid.Column" Value="1"/> 
-                            <Setter TargetName="PART_Checked" Property="Grid.Column" Value="2"/>
-                            <Setter TargetName="PART_Checked" Property="Margin" Value="5,0"/>
+                            <Setter TargetName="PART_Text" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="PART_Indicator" Property="Grid.Column" Value="2"/>
+                            <Setter TargetName="PART_Indicator" Property="Margin" Value="5,0"/>
                             <Setter TargetName="PART_Button" Property="Grid.Column" Value="0"/>
                         </Trigger>
                     </ControlTemplate.Triggers>

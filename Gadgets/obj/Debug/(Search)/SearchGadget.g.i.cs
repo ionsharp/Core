@@ -15,6 +15,7 @@ using Imagin.Common.Data.Converters;
 using Imagin.Common.Drawing;
 using Imagin.Common.Extensions;
 using Imagin.Common.Media;
+using Imagin.Common.Primitives;
 using Imagin.Common.Text;
 using Imagin.Controls.Common;
 using Imagin.Controls.Common.Converters;

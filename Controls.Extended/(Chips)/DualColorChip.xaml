@@ -41,6 +41,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <Grid 
             Background="Transparent"
             ToolTip="{Binding ResetToolTip}">
@@ -72,7 +73,9 @@
                     Fill="{Binding DefaultForeground, Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
             </Controls.Common:CheckerBoard>
         </Grid>
-        <Grid Grid.Row="1" Margin="0,5,0,0">
+        <Grid 
+            Grid.Row="1" 
+            Margin="0,5,0,0">
             <local:ColorChip 
                 HorizontalAlignment="Left"
                 Margin="10,10,0,0" 
@@ -88,6 +91,7 @@
                 Width="22" 
                 ToolTip="{Binding ForegroundToolTip}"
                 Color="{Binding ForegroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            
             <Rectangle
                 Cursor="Hand" 
                 Fill="{StaticResource SwitchBrush}"

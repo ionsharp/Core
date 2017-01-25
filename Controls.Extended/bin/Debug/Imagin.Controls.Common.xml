@@ -170,15 +170,191 @@
             <param name="IsSelected"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Controls.Common.Extensions.PanelExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.PanelExtensions.HorizontalContentAlignmentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.SetHorizontalContentAlignment(System.Windows.Controls.Panel,System.Windows.HorizontalAlignment)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.GetHorizontalContentAlignment(System.Windows.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.PanelExtensions.SpacingProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.SetSpacing(System.Windows.Controls.Panel,System.Windows.Thickness)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.GetSpacing(System.Windows.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.PanelExtensions.TrimFirstProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.SetTrimFirst(System.Windows.Controls.Panel,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.GetTrimFirst(System.Windows.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.PanelExtensions.TrimLastProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.SetTrimLast(System.Windows.Controls.Panel,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.GetTrimLast(System.Windows.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.PanelExtensions.VerticalContentAlignmentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.SetVerticalContentAlignment(System.Windows.Controls.Panel,System.Windows.VerticalAlignment)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.PanelExtensions.GetVerticalContentAlignment(System.Windows.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Controls.Common.Extensions.DataGridExtensions">
             <summary>
             
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.ExtendsDefaultBehaviorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.GetExtendsDefaultBehavior(System.Windows.Controls.DataGrid)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.SetExtendsDefaultBehavior(System.Windows.Controls.DataGrid,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.AddCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.DisplayRowNumberProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.GetDisplayRowNumber(System.Windows.Controls.DataGrid)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.SetDisplayRowNumber(System.Windows.Controls.DataGrid,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.DisplayRowNumberOffsetProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.GetDisplayRowNumberOffset(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.SetDisplayRowNumberOffset(System.Windows.DependencyObject,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
         <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.ScrollAddedIntoViewProperty">
             <summary>
             Determines whether or not to scroll newly added items into view.
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.GetScrollAddedIntoView(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.SetScrollAddedIntoView(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
         </member>
         <member name="T:Imagin.Controls.Common.Extensions.ItemsControlExtensions">
             <summary>
@@ -190,20 +366,139 @@
             Applies GridUnit.Star GridLength to all columns.
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.GetAutoSizeColumns(System.Windows.Controls.ItemsControl)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.SetAutoSizeColumns(System.Windows.Controls.ItemsControl,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.CanDragSelectProperty">
+            <summary>
+            Gets or sets value indicating whether ItemsControl should allow drag selecting items.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.GetCanDragSelect(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.SetCanDragSelect(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
         <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.IsColumnMenuEnabledProperty">
             <summary>
             Determines whether or not to add a ContextMenu to the column header for toggling column visibility.
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.IsDragSelectionEnabledProperty">
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.GetIsColumnMenuEnabled(System.Windows.Controls.ItemsControl)">
             <summary>
-            Gets or sets value indicating whether ItemsControl should allow drag selecting items.
+            
             </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.SetIsColumnMenuEnabled(System.Windows.Controls.ItemsControl,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.DragScrollOffsetProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.GetDragScrollOffset(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.SetDragScrollOffset(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.DragScrollToleranceProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.GetDragScrollTolerance(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.SetDragScrollTolerance(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.ItemsControlExtensions.SelectNoneOnEmptySpaceClickProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.GetSelectNoneOnEmptySpaceClick(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.SetSelectNoneOnEmptySpaceClick(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
         </member>
         <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.CollapseSiblings(System.Windows.Controls.ItemsControl,System.Windows.Controls.TreeViewItem)">
             <summary>
             Collapse all items in ItemsControl (siblings of <param name="Source"/>).
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.ClearSelection(System.Windows.Controls.ItemsControl)">
+            <summary>
+            
+            </summary>
+            <param name="ToEvaluate"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.Select(System.Windows.Controls.ItemsControl,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Control"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.ItemsControlExtensions.TryClearSelection(System.Windows.Controls.ItemsControl)">
+            <summary>
+            
+            </summary>
+            <param name="ToEvaluate"></param>
+            <returns></returns>
         </member>
         <member name="F:Imagin.Controls.Common.Extensions.ListBoxExtensions.IsDirectionalSelectionEnabledProperty">
             <summary>
@@ -908,6 +1203,157 @@
             Opens up a web link in default browser when clicked.
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.FileBox">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.FileBox.ValidatePathHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FileBox.ValidatePathHandler.Validate(System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="Arguments"></param>
+            <returns></returns>
+        </member>
+        <member name="E:Imagin.Controls.Common.FileBox.DialogOpened">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.BrowseModeProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.BrowseMode">
+            <summary>
+            Gets or sets the type of mode to browse in.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.BrowseTitleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.BrowseTitle">
+            <summary>
+            Gets or sets the title of the dialog used to select a path.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.ButtonPositionProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.ButtonPosition">
+            <summary>
+            Gets or sets the position of the button used to show a dialog.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.ButtonToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.ButtonToolTip">
+            <summary>
+            Gets or sets the tool tip of the button used to show a dialog.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.ButtonVisibilityProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.ButtonVisibility">
+            <summary>
+            Gets or sets the visibility of the button used to show a dialog.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.CanBrowseProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.CanBrowse">
+            <summary>
+            Gets or sets whether or not the button used to show a dialog is enabled.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.CanValidateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.CanValidate">
+            <summary>
+            Gets or sets whether or not the path should be validated.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.IsValidProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.IsValid">
+            <summary>
+            Gets whether or not the path is valid, if validation is enabled.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FileBox.ValidateHandlerProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FileBox.ValidateHandler">
+            <summary>
+            Gets an object that implements <see cref="T:Imagin.Common.IValidate`1"/> and handles validation when enabled.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FileBox.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FileBox.OnBrowseModeChanged(Imagin.Common.DialogProviderMode)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FileBox.OnDialogOpened(System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FileBox.OnTextChanged(System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FileBox.OnCanValidateChanged(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FileBox.OnApplyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FileBox.Browse">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.Line">
             <summary>
              A flexible separator.
@@ -1038,14 +1484,129 @@
             
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Common.Spacer">
-            <summary>
-            A StackPanel that applies spacing to each of it's items.
-            </summary>
-        </member>
         <member name="M:Imagin.Controls.Common.PasswordBox.OnTextChanged(System.Windows.Controls.TextChangedEventArgs)">
             <summary>
             When this.Text changes, set System.Windows.Controls.PasswordBox.Password.
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.IrrationalUpDown`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Common.IrrationalUpDown`1.Expression">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.IrrationalUpDown`1.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:Imagin.Controls.Common.RationalUpDown`1.Expression">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RationalUpDown`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.ByteUpDown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ByteUpDown.AbsoluteMaximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ByteUpDown.AbsoluteMinimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ByteUpDown.DefaultIncrement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ByteUpDown.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.GetValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.ToString(System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.CanIncrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.CanDecrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.OnMaximumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.OnMinimumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.OnValueCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.Increase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ByteUpDown.Decrease">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Controls.Common.NumericUpDown`1">
@@ -1087,18 +1648,26 @@
         </member>
         <member name="M:Imagin.Controls.Common.NumericUpDown`1.OnIncrementChanged(`0)">
             <summary>
-            
+            Occurs when the increment value changes.
             </summary>
             <param name="Value"></param>
         </member>
-        <member name="M:Imagin.Controls.Common.NumericUpDown`1.OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs,System.Text.RegularExpressions.Regex)">
+        <member name="T:Imagin.Controls.Common.DateTimeUpDown">
             <summary>
             
             </summary>
-            <param name="e"></param>
-            <param name="Expression"></param>
         </member>
-        <member name="T:Imagin.Controls.Common.DateTimeUpDown">
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.AbsoluteMaximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.AbsoluteMinimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DateTimeUpDown.DefaultValue">
             <summary>
             
             </summary>
@@ -1193,6 +1762,106 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.UpDown.UpDownTimer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.UpDownTimer.Milliseconds">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.UpDownTimer.Direction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.UpDownTimer.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.UpDown.UpDownDirection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown.UpDownDirection.None">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown.UpDownDirection.Up">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown.UpDownDirection.Down">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.PART_Down">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.PART_Up">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.Timer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Common.UpDown.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown.CanUpDownProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.CanUpDown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown.MajorChangeProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.MajorChange">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown.MajorChangeDelayProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.MajorChangeDelay">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.UpDown.StringFormatProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.StringFormat">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Common.UpDown.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Imagin.Controls.Common.UpDown"/> class.
@@ -1200,30 +1869,76 @@
         </member>
         <member name="M:Imagin.Controls.Common.UpDown.CanDecrease">
             <summary>
-            
+            Gets whether or not decreasing is enabled.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Imagin.Controls.Common.UpDown.CanIncrease">
             <summary>
-            
+            Gets whether or not increasing is enabled.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Imagin.Controls.Common.UpDown.Decrease">
             <summary>
-            
+            Decreases value by some value.
             </summary>
         </member>
         <member name="M:Imagin.Controls.Common.UpDown.Increase">
             <summary>
+            Increases value by some value.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.DownCommand">
+            <summary>
             
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown.UpCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.Change(Imagin.Controls.Common.UpDown.UpDownDirection)">
+            <summary>
+            Increase or decrease based on given direction.
+            </summary>
+            <param name="Direction"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.ResetTimer">
+            <summary>
+            Reset the timer used for making major changes.
             </summary>
         </member>
         <member name="M:Imagin.Controls.Common.UpDown.SetText(System.String)">
             <summary>
             Set text; string format should be applied prior to calling.
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.OnApplyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.OnPreviewMouseWheel(System.Windows.Input.MouseWheelEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.OnButtonMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Occurs when the mouse presses the increase or decrease button.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.OnButtonMouseUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Occurs when the mouse releases the increase or decrease button.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
         <member name="M:Imagin.Controls.Common.UpDown.OnMajorChange(System.Object,System.EventArgs)">
             <summary>
@@ -1242,6 +1957,12 @@
             <summary>
             Occurs when <see cref="P:Imagin.Controls.Common.UpDown.StringFormat"/> changes.
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown.OnPropertyChanged(System.String)">
+            <summary>
+            Occurs when a property changes.
+            </summary>
+            <param name="Name"></param>
         </member>
         <member name="T:Imagin.Controls.Common.TreeViewComboBox">
             <summary>
@@ -1289,6 +2010,16 @@
             
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown`1.TextChangeHandled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.UpDown`1.ValueChangeHandled">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:Imagin.Controls.Common.UpDown`1.AbsoluteMaximum">
             <summary>
@@ -1340,9 +2071,67 @@
             Initializes a new instance of the <see cref="T:Imagin.Controls.Common.UpDown"/> class.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.UpDown`1.SetText(`0)">
+        <member name="M:Imagin.Controls.Common.UpDown`1.GetValue(System.String)">
             <summary>
-            Set text; string format is not applied to value.
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.OnMaximumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.OnMinimumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.OnValueCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.ToString(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.OnStringFormatChanged">
+            <summary>
+            Occurs when the string format changes.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.OnTextChanged(System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            Occurs when the text changes.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.OnMaximumChanged(`0)">
+            <summary>
+            Occurs when the maximum value changes.
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.OnMinimumChanged(`0)">
+            <summary>
+            Occurs when the minimum value changes.
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.UpDown`1.OnValueChanged(`0)">
+            <summary>
+            Occurs when the value changes.
             </summary>
         </member>
         <member name="T:Imagin.Controls.Common.BasicWindow">

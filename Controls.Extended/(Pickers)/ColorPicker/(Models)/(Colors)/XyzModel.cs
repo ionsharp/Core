@@ -8,20 +8,33 @@ using System.Windows.Media.Imaging;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class XyzModel : ColorSpaceModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override Color GetColor()
         {
-            return Xyz.ToColor(this.Components[typeof(XComponent)].CurrentValue, this.Components[typeof(YComponent)].CurrentValue, this.Components[typeof(ZComponent)].CurrentValue);
+            return Xyz.ToColor(Components[typeof(XComponent)].Value, Components[typeof(YComponent)].Value, Components[typeof(ZComponent)].Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public XyzModel() : base()
         {
-            this.Components.Add(new XComponent());
-            this.Components.Add(new YComponent());
-            this.Components.Add(new ZComponent());
+            Components.Add(new XComponent());
+            Components.Add(new YComponent());
+            Components.Add(new ZComponent());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class XComponent : NormalComponentModel
         {
             public override string ComponentLabel
@@ -40,7 +53,7 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MaxValue
+            public override int Maximum
             {
                 get
                 {
@@ -87,6 +100,9 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class YComponent : NormalComponentModel
         {
             public override string ComponentLabel
@@ -144,6 +160,9 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class ZComponent : NormalComponentModel
         {
             public override string ComponentLabel
@@ -162,7 +181,7 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MaxValue
+            public override int Maximum
             {
                 get
                 {

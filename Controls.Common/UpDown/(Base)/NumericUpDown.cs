@@ -65,25 +65,15 @@ namespace Imagin.Controls.Common
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
             base.OnPreviewTextInput(e);
-            OnPreviewTextInput(e, Expression);
+            e.Handled = CaretIndex == 0 && e.Text == "-" ? Text.Contains("-") : !Expression.IsMatch(e.Text);
         }
 
         /// <summary>
-        /// 
+        /// Occurs when the increment value changes.
         /// </summary>
         /// <param name="Value"></param>
         protected virtual void OnIncrementChanged(T Value)
         {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="Expression"></param>
-        protected virtual void OnPreviewTextInput(TextCompositionEventArgs e, Regex Expression)
-        {
-            e.Handled = CaretIndex == 0 && e.Text == "-" ? Text.Contains("-") : !Expression.IsMatch(e.Text);
         }
     }
 }

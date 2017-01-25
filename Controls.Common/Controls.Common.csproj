@@ -100,6 +100,7 @@
     <Compile Include="Extensions\Control.cs" />
     <Compile Include="Extensions\FrameworkElement.cs" />
     <Compile Include="Extensions\DependencyObject.cs" />
+    <Compile Include="Extensions\Panel.cs" />
     <Compile Include="Interactivity\AutoPositionPopupBehavior.cs" />
     <Compile Include="SelectionCanvas.xaml.cs">
       <DependentUpon>SelectionCanvas.xaml</DependentUpon>
@@ -152,7 +153,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadioGroup.cs" />
     <Compile Include="ResizableGrid.cs" />
-    <Compile Include="Spacer.cs" />
     <Compile Include="TextBoxExt\PasswordBox.cs" />
     <Compile Include="TreeViewExt\TreeViewSelectionMode.cs" />
     <Compile Include="UpDown\DecimalUpDown.cs" />

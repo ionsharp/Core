@@ -28,7 +28,7 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// 
         /// </summary>
-        public ColorSelector.SelectionRingType SelectionRing
+        public ColorSelectorRing SelectionRing
         {
             get
             {
@@ -263,7 +263,7 @@ namespace Imagin.Controls.Extended
             Models.Add(new LabModel());
             Models.Add(new LchModel());
             //Models.Add(new LuvModel());
-            //Models.Add(new CmykModel());
+            Models.Add(new CmykModel());
 
             InitializeComponent();
 
@@ -295,9 +295,11 @@ namespace Imagin.Controls.Extended
         /// <param name="e"></param>
         protected virtual void OnLayoutUpdated(object sender, EventArgs e)
         {
-            if (!IsLoaded || PART_ColorSelector.NormalComponent != null) return;
-            if (PART_ColorSelector.NormalComponent == null)
+            if (IsLoaded && PART_ColorSelector.NormalComponent == null)
+            {
                 Models.Where(x => x.Is<HsbModel>()).First().Components[typeof(HsbModel.HComponent)].As<NormalComponentModel>().IsEnabled = true;
+                PART_ColorSelector.IsEnabled = true;
+            }
         }
 
         /// <summary>

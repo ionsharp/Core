@@ -139,7 +139,7 @@
 
     <Style x:Key="{x:Type local:TreeViewExt}" TargetType="{x:Type local:TreeViewExt}">
         <Setter Property="Controls.Common.Extensions:ItemsControlExtensions.SelectNoneOnEmptySpaceClick" Value="True"/>
-        <Setter Property="Controls.Common.Extensions:ItemsControlExtensions.IsDragSelectionEnabled" Value="True"/>
+        <Setter Property="Controls.Common.Extensions:ItemsControlExtensions.CanDragSelect" Value="True"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>

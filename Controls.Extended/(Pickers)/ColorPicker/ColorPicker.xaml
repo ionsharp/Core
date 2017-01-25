@@ -6,74 +6,77 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d"
     xmlns:local="clr-namespace:Imagin.Controls.Extended" 
-    xmlns:Common.Data="clr-namespace:Imagin.Common.Data;assembly=Imagin.Common" 
-    xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common" 
-    xmlns:Common.Mvvm="clr-namespace:Imagin.Common.Mvvm;assembly=Imagin.Common" 
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common" 
+    xmlns:Common="http://imagin.tech/imagin/common" 
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common" 
     x:Name="PART_ColorPicker">
     <UserControl.Resources>
-        <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <Common.Data.Converters:ColorToHexConverter x:Key="ColorToHexConverter"/>
+        <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Common:ColorToHexConverter x:Key="ColorToHexConverter"/>
 
         <DataTemplate 
             x:Key="DataTemplate.Models"
             DataType="{x:Type local:ColorSpaceModel}">
             <DataTemplate.Resources>
-                <Common.Data:BindingProxy x:Key="ComponentProxy" Data="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
+                <Common:BindingProxy x:Key="ComponentProxy" Data="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
             </DataTemplate.Resources>
             <local:ColorSpaceView x:Name="PART_Components" ItemsSource="{Binding Components}" Margin="0,0,0,15">
                 <local:ColorSpaceView.ItemTemplate>
                     <DataTemplate DataType="{x:Type local:ComponentModel}">
                         <DataTemplate.Resources>
-                            <Common.Data.Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                            <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
                         </DataTemplate.Resources>
                         <local:ComponentView 
+                            x:Name="PART_ComponentView"
                             ColorSpaceModel="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ColorSpaceView}}}"
                             Color="{Binding SelectedColor, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}"
                             ComponentModel="{Binding Mode=OneWay}"
-                            CurrentValue="{Binding CurrentValue}">
-                            <Grid>
+                            Value="{Binding Value}">
+                            <Grid 
+                                Controls.Common:PanelExtensions.Spacing="0,0,7,0"
+                                Controls.Common:PanelExtensions.TrimLast="True"
+                                Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="PART_Column0"/>
+                                    <ColumnDefinition Width="70" />
                                     <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="25" />
                                 </Grid.ColumnDefinitions>
+                                
                                 <RadioButton 
                                     Checked="OnComponentChecked"
                                     Content="{Binding ComponentLabel}"
                                     GroupName="ColorSpace"
                                     IsChecked="{Binding IsEnabled}"
                                     HorizontalAlignment="Center"
-                                    Margin="5,0"
-                                    VerticalAlignment="Center" 
                                     Tag="{Binding Mode=OneWay}"
                                     Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                 <Label 
                                     Content="{Binding ComponentLabel}" 
                                     HorizontalAlignment="Center"
-                                    Margin="5,0"
-                                    VerticalAlignment="Center" 
                                     Visibility="{Binding CanSelect, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                                <Controls.Common:TextBoxExt
+
+                                <Controls.Common:IntUpDown
                                     Grid.Column="1" 
-                                    x:Name="PART_Text"
-                                    HorizontalAlignment="Center"  
-                                    HorizontalContentAlignment="Center" 
-                                    VerticalAlignment="Center" 
-                                    Width="40">
-                                </Controls.Common:TextBoxExt>
+                                    x:Name="PART_Value"
+                                    Maximum="{Binding Maximum, Mode=OneWay}"
+                                    Minimum="{Binding Minimum, Mode=OneWay}"/>
+                                
                                 <Label 
                                     Grid.Column="2"
-                                    Content="{Binding UnitLabel}"
-                                    VerticalAlignment="Center"/>
+                                    Content="{Binding UnitLabel}"/>
                             </Grid>
                         </local:ComponentView>
                         <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding CanSelect}" Value="True">
+                                <Setter TargetName="PART_Column0" Property="Width" Value="50"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CanSelect}" Value="False">
+                                <Setter TargetName="PART_Column0" Property="Width" Value="25"/>
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True">
-                                <Setter TargetName="PART_Text" Property="Text" Value="{Binding CurrentValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"/>
+                                <Setter TargetName="PART_Value" Property="Text" Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False">
-                                <Setter TargetName="PART_Text" Property="Text" Value="{Binding CurrentValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=False}"/>
+                                <Setter TargetName="PART_Value" Property="Text" Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=False}"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
@@ -81,19 +84,33 @@
             </local:ColorSpaceView>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Orientation}" Value="Horizontal">
+                    <Setter TargetName="PART_Components" Property="ItemContainerStyle">
+                        <Setter.Value>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Margin" Value="0,0,10,0"/>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
                     <Setter TargetName="PART_Components" Property="ItemsPanel">
                         <Setter.Value>
                             <ItemsPanelTemplate>
-                                <Controls.Common:Spacer Spacing="0,0,5,0" Orientation="Horizontal"/>
+                                <StackPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Orientation}" Value="Vertical">
+                    <Setter TargetName="PART_Components" Property="ItemContainerStyle">
+                        <Setter.Value>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Margin" Value="0,0,7,7"/>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
                     <Setter TargetName="PART_Components" Property="ItemsPanel">
                         <Setter.Value>
                             <ItemsPanelTemplate>
-                                <Controls.Common:Spacer Spacing="0,0,0,10"/>
+                                <StackPanel/>
                             </ItemsPanelTemplate>
                         </Setter.Value>
                     </Setter>
@@ -155,7 +172,8 @@
                     VerticalAlignment="Center"/>
                 <Controls.Common:HexBox 
                     Grid.Column="1"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center"
+                    Width="90">
                     <Controls.Common:HexBox.Style>
                         <Style TargetType="Controls.Common:HexBox" BasedOn="{StaticResource {x:Type Controls.Common:HexBox}}">
                             <Style.Triggers>

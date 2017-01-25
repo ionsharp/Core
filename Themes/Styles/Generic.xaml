@@ -5,6 +5,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Masked.xaml" />
         
+        <!-- ...................................................................................................... -->
+        
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.AnglePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Border.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.Button.xaml" />

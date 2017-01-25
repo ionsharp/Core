@@ -2,9 +2,16 @@
 
 namespace Imagin.Common.Input
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class EventArgs<T> : EventArgs
     {
         readonly T value;
+        /// <summary>
+        /// 
+        /// </summary>
         public T Value
         {
             get
@@ -13,16 +20,27 @@ namespace Imagin.Common.Input
             }
         }
 
-        object parameter;
+        readonly object parameter;
+        /// <summary>
+        /// 
+        /// </summary>
         public object Parameter
         {
-            get; set;
+            get
+            {
+                return parameter;
+            }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Parameter"></param>
         public EventArgs(T Value, object Parameter = null)
         {
-            this.value = Value;
-            this.parameter = Parameter;
+            value = Value;
+            parameter = Parameter;
         }
     }
 }

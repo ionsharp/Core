@@ -13,6 +13,16 @@ namespace Imagin.Controls.Common
         #region Properties
 
         /// <summary>
+        /// 
+        /// </summary>
+        protected bool TextChangeHandled { get; set; } = false;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected bool ValueChangeHandled { get; set; } = false;
+
+        /// <summary>
         /// The absolute maximum value possible.
         /// </summary>
         public abstract T AbsoluteMaximum
@@ -110,7 +120,7 @@ namespace Imagin.Controls.Common
         }
         static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.As<UpDown<T>>().OnValueChanged();
+            d.As<UpDown<T>>().OnValueChanged((T)e.NewValue);
         }
         static object OnValueCoerced(DependencyObject d, object Value)
         {
@@ -126,8 +136,8 @@ namespace Imagin.Controls.Common
         /// </summary>
         public UpDown() : base()
         {
-            Minimum = AbsoluteMinimum;
             Maximum = AbsoluteMaximum;
+            Minimum = AbsoluteMinimum;
             Value = DefaultValue;
         }
 
@@ -135,69 +145,101 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         protected abstract T GetValue(string Value);
 
-        protected abstract object OnMaximumCoerced(object NewValue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        protected abstract object OnMaximumCoerced(object Value);
 
-        protected abstract object OnMinimumCoerced(object NewValue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        protected abstract object OnMinimumCoerced(object Value);
 
-        protected abstract object OnValueCoerced(object NewValue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        protected abstract object OnValueCoerced(object Value);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         protected abstract string ToString(T Value);
 
+        /// <summary>
+        /// Occurs when the string format changes.
+        /// </summary>
         protected override void OnStringFormatChanged()
         {
-            OnValueChanged();
+            OnValueChanged(Value);
         }
 
+        /// <summary>
+        /// Occurs when the text changes.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
             base.OnTextChanged(e);
-            OnTextChanged();
+            if (!TextChangeHandled)
+            {
+                ValueChangeHandled = true;
+                Value = GetValue(Text);
+
+                //If current value does not match up with text, make it so
+                var i = ToString(Value);
+                if (Text != i)
+                {
+                    TextChangeHandled = true;
+                    Text = i;
+                    TextChangeHandled = false;
+                }
+
+                ValueChangeHandled = false;
+            }
         }
 
+        /// <summary>
+        /// Occurs when the maximum value changes.
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnMaximumChanged(T Value)
         {
         }
 
+        /// <summary>
+        /// Occurs when the minimum value changes.
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnMinimumChanged(T Value)
         {
         }
 
-        protected virtual bool OnTextChanged()
-        {
-            var Result = false;
-            if (OnTextChangedHandled)
-                OnTextChangedHandled = false;
-
-            Result = OnValueChangedHandled = true;
-
-            if (Result)
-                Value = GetValue(Text);
-
-            return Result;
-        }
-
-        protected virtual bool OnValueChanged()
-        {
-            var Result = false;
-            if (OnValueChangedHandled)
-                OnValueChangedHandled = false;
-
-            Result = OnTextChangedHandled = true;
-
-            if (Result)
-                SetText(ToString(Value));
-
-            return Result;
-        }
-
         /// <summary>
-        /// Set text; string format is not applied to value.
+        /// Occurs when the value changes.
         /// </summary>
-        protected void SetText(T Value)
+        protected virtual void OnValueChanged(T Value)
         {
-            SetText(Value.ToString());
+            if (!ValueChangeHandled)
+            {
+                TextChangeHandled = true;
+                SetText(ToString(Value));
+                TextChangeHandled = false;
+            }
         }
 
         #endregion

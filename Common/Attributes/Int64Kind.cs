@@ -21,10 +21,10 @@ namespace Imagin.Common.Attributes
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Representation"></param>
-        public Int64KindAttribute(Int64Kind Kind)
+        /// <param name="kind"></param>
+        public Int64KindAttribute(Int64Kind kind)
         {
-            this.Kind = Kind;
+            Kind = kind;
         }
     }
 }

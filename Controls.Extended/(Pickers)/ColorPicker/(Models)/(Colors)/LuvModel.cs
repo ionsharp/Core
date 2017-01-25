@@ -8,20 +8,33 @@ using System.Windows.Media.Imaging;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class LuvModel : ColorSpaceModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override Color GetColor()
         {
-            return Luv.ToColor(this.Components[typeof(LComponent)].CurrentValue, this.Components[typeof(UComponent)].CurrentValue, this.Components[typeof(VComponent)].CurrentValue);
+            return Luv.ToColor(Components[typeof(LComponent)].Value, Components[typeof(UComponent)].Value, Components[typeof(VComponent)].Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public LuvModel() : base()
         {
-            this.Components.Add(new LComponent());
-            this.Components.Add(new UComponent());
-            this.Components.Add(new VComponent());
+            Components.Add(new LComponent());
+            Components.Add(new UComponent());
+            Components.Add(new VComponent());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class LComponent : NormalComponentModel
         {
             public override string ComponentLabel
@@ -65,7 +78,7 @@ namespace Imagin.Controls.Extended
             {
                 base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) =>
                 {
-                    return Luv.ToRgba(ComponentValue.ToDouble() / this.MaxValue.ToDouble(), RowColumn.Column - 1.0, RowColumn.Row - 1.0);
+                    return Luv.ToRgba(ComponentValue.ToDouble() / Maximum.ToDouble(), RowColumn.Column - 1.0, RowColumn.Row - 1.0);
                 }), new RowColumn(2.0, 2.0));
             }
 
@@ -74,11 +87,14 @@ namespace Imagin.Controls.Extended
                 base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
                 {
                     double u = Luv.FromColor(Color).U, v = Luv.FromColor(Color).V;
-                    return Luv.ToRgba(CurrentRow / this.MaxValue.ToDouble(), u, v);
+                    return Luv.ToRgba(CurrentRow / Maximum.ToDouble(), u, v);
                 }));
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class UComponent : NormalComponentModel
         {
             public override string ComponentLabel
@@ -89,7 +105,7 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MinValue
+            public override int Minimum
             {
                 get
                 {
@@ -130,7 +146,7 @@ namespace Imagin.Controls.Extended
             {
                 base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) =>
                 {
-                    return Luv.ToRgba(RowColumn.Column, ComponentValue.ToDouble() / this.MaxValue.ToDouble(), RowColumn.Row - 1.0);
+                    return Luv.ToRgba(RowColumn.Column, ComponentValue.ToDouble() / Maximum.ToDouble(), RowColumn.Row - 1.0);
                 }), new RowColumn(2.0, 1.0));
             }
 
@@ -139,11 +155,14 @@ namespace Imagin.Controls.Extended
                 base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
                 {
                     double l = Luv.FromColor(Color).L, v = Luv.FromColor(Color).V;
-                    return Luv.ToRgba(l, CurrentRow / this.MaxValue.ToDouble(), v);
+                    return Luv.ToRgba(l, CurrentRow / Maximum.ToDouble(), v);
                 }));
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class VComponent : NormalComponentModel
         {
             public override string ComponentLabel
@@ -162,7 +181,7 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MinValue
+            public override int Minimum
             {
                 get
                 {
@@ -195,7 +214,7 @@ namespace Imagin.Controls.Extended
             {
                 base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) =>
                 {
-                    return Luv.ToRgba(RowColumn.Column, RowColumn.Row - 1.0, ComponentValue.ToDouble()/ this.MaxValue.ToDouble());
+                    return Luv.ToRgba(RowColumn.Column, RowColumn.Row - 1.0, ComponentValue.ToDouble()/ Maximum.ToDouble());
                 }), new RowColumn(2.0, 1.0));
             }
 
@@ -204,7 +223,7 @@ namespace Imagin.Controls.Extended
                 base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
                 {
                     double l = Luv.FromColor(Color).L, u = Luv.FromColor(Color).U;
-                    return Luv.ToRgba(l, u, CurrentRow / this.MaxValue.ToDouble());
+                    return Luv.ToRgba(l, u, CurrentRow / Maximum.ToDouble());
                 }));
             }
         }

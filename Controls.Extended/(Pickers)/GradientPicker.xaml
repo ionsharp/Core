@@ -6,7 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
     xmlns:Common="http://imagin.tech/imagin/common"
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
     mc:Ignorable="d" 
     d:DesignWidth="525"
     x:Name="PART_GradientEditor">
@@ -106,10 +106,10 @@
                 <ColumnDefinition Width="164"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Controls.Common:Spacer
+            <StackPanel
                 Grid.RowSpan="2"
-                Spacing="0,0,0,15"
-                TrimLast="True"
+                Controls.Common:PanelExtensions.Spacing="0,0,0,15"
+                Controls.Common:PanelExtensions.TrimLast="True"
                 Margin="0,0,15,0">
                 <local:AnglePicker
                     x:Name="PART_AnglePicker"
@@ -173,7 +173,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </Controls.Common:Spacer>
+            </StackPanel>
             <Controls.Common:CheckerBoard
                 Grid.Column="1"
                 BorderBrush="{Binding PreviewBorderBrush}"

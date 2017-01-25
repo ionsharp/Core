@@ -6,6 +6,9 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.TextBoxExt.xaml" />
+        
+        <!-- .................................................................................................................. -->
+        
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.BasicWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.ButtonChrome.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.CheckerBoard.xaml" />

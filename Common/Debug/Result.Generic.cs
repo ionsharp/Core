@@ -5,12 +5,16 @@
     /// </summary>
     public class Result<T> : AbstractObject
     {
+        readonly T data;
         /// <summary>
         /// Abitrary data to store a reference to based on the result.
         /// </summary>
         public T Data
         {
-            get; set;
+            get
+            {
+                return data;
+            }
         }
 
         /// <summary>
@@ -23,10 +27,10 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Result"/> class.
         /// </summary>
-        /// <param name="data"></param>
-        public Result(T data) : base()
+        /// <param name="Data"></param>
+        public Result(T Data) : base()
         {
-            Data = data;
+            data = Data;
         }
 
         /// <summary>

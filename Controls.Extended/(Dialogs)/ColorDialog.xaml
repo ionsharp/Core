@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Extended"
-    xmlns:Controls.Common="clr-namespace:Imagin.Controls.Common;assembly=Imagin.Controls.Common"
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
     xmlns:Common.Data.Converters="clr-namespace:Imagin.Common.Data.Converters;assembly=Imagin.Common"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
@@ -25,9 +25,9 @@
         <Border
             Grid.Row="1" 
             Style="{Binding FooterStyle}">
-            <Controls.Common:Spacer 
+            <StackPanel 
+                Controls.Common:PanelExtensions.Spacing="3,0,0,0"
                 Orientation="Horizontal" 
-                Spacing="3,0,0,0"
                 HorizontalAlignment="Right">
                 <Button 
                     Content="Revert" 
@@ -42,7 +42,7 @@
                     Content="Cancel" 
                     IsCancel="True" 
                     Click="OnCancel"/>
-            </Controls.Common:Spacer>
+            </StackPanel>
         </Border>
     </Grid>
 </local:SolidColorBrushDialog>

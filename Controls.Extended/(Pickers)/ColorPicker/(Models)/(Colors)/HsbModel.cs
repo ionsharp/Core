@@ -8,22 +8,38 @@ using System.Windows.Media.Imaging;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HsbModel : ColorSpaceModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override Color GetColor()
         {
-            return Hsb.ToColor(this.Components[typeof(HComponent)].CurrentValue, this.Components[typeof(SComponent)].CurrentValue / 100.0, this.Components[typeof(BComponent)].CurrentValue / 100.0);
+            return Hsb.ToColor(Components[typeof(HComponent)].Value / 360d, Components[typeof(SComponent)].Value / 100d, Components[typeof(BComponent)].Value / 100d);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public HsbModel() : base()
         {
-            this.Components.Add(new HComponent());
-            this.Components.Add(new SComponent());
-            this.Components.Add(new BComponent());
+            Components.Add(new HComponent());
+            Components.Add(new SComponent());
+            Components.Add(new BComponent());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class HComponent : NormalComponentModel
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public override string ComponentLabel
             {
                 get
@@ -32,6 +48,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override string UnitLabel
             {
                 get
@@ -40,6 +59,9 @@ namespace Imagin.Controls.Extended
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public override bool IsNormalIndependantOfColor
             {
                 get
@@ -48,7 +70,10 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MaxValue
+            /// <summary>
+            /// 
+            /// </summary>
+            public override int Maximum
             {
                 get
                 {
@@ -66,7 +91,7 @@ namespace Imagin.Controls.Extended
 
             public override int GetValue(Color Color)
             {
-                return (Hsb.FromColor(Color).H * this.MaxValue.ToDouble()).Round().ToInt32();
+                return (Hsb.FromColor(Color).H * Maximum.ToDouble()).Round().ToInt32();
             }
 
             public override Point PointFromColor(Color Color)
@@ -79,21 +104,18 @@ namespace Imagin.Controls.Extended
 
             public override void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action, bool Reverse = false)
             {
-                base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
-                {
-                    return Hsb.ToRgba(CurrentRow / this.MaxValue.ToDouble(), 1.0, 1.0);
-                }));
+                base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) => Hsb.ToRgba(CurrentRow / Maximum.ToDouble(), 1d, 1d)));
             }
 
             public override void UpdatePlane(WriteableBitmap Bitmap, int ComponentValue, Func<RowColumn, int, Rgba> Action = null, RowColumn? Unit = null)
             {
-                base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) =>
-                {
-                    return Hsb.ToRgba(ComponentValue.ToDouble() / this.MaxValue.ToDouble(), RowColumn.Column, RowColumn.Row);
-                }), new RowColumn(1.0, 1.0));
+                base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) => Hsb.ToRgba(ComponentValue.ToDouble() / Maximum.ToDouble(), RowColumn.Column, RowColumn.Row)), new RowColumn(1d, 1d));
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class SComponent : NormalComponentModel
         {
             public override string ComponentLabel
@@ -138,19 +160,19 @@ namespace Imagin.Controls.Extended
                 base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
                 {
                     Hsb Hsb = Hsb.FromColor(Color);
-                    return Hsb.ToRgba(Hsb.H, CurrentRow / this.MaxValue.ToDouble(), Hsb.B);
+                    return Hsb.ToRgba(Hsb.H, CurrentRow / Maximum.ToDouble(), Hsb.B);
                 }));
             }
 
             public override void UpdatePlane(WriteableBitmap Bitmap, int ComponentValue, Func<RowColumn, int, Rgba> Action = null, RowColumn? Unit = null)
             {
-                base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) =>
-                {
-                    return Hsb.ToRgba(RowColumn.Column, ComponentValue.ToDouble() / this.MaxValue.ToDouble(), RowColumn.Row);
-                }), new RowColumn(1.0, 1.0));
+                base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) => Hsb.ToRgba(RowColumn.Column, ComponentValue.ToDouble() / Maximum.ToDouble(), RowColumn.Row)), new RowColumn(1d, 1d));
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class BComponent : NormalComponentModel
         {
             public override string ComponentLabel
@@ -195,16 +217,13 @@ namespace Imagin.Controls.Extended
                 base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
                 {
                     Hsb Hsb = Hsb.FromColor(Color);
-                    return Hsb.ToRgba(Hsb.H, Hsb.S, CurrentRow / this.MaxValue.ToDouble());
+                    return Hsb.ToRgba(Hsb.H, Hsb.S, CurrentRow / Maximum.ToDouble());
                 }));
             }
 
             public override void UpdatePlane(WriteableBitmap Bitmap, int ComponentValue, Func<RowColumn, int, Rgba> Action = null, RowColumn? Unit = null)
             {
-                base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) =>
-                {
-                    return Hsb.ToRgba(RowColumn.Column, RowColumn.Row, ComponentValue.ToDouble() / this.MaxValue.ToDouble());
-                }), new RowColumn(1.0, 1.0));
+                base.UpdatePlane(Bitmap, ComponentValue, new Func<RowColumn, int, Rgba>((RowColumn, Value) => Hsb.ToRgba(RowColumn.Column, RowColumn.Row, ComponentValue.ToDouble() / Maximum.ToDouble())), new RowColumn(1d, 1d));
             }
         }
     }

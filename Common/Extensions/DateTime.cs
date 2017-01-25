@@ -65,9 +65,14 @@ namespace Imagin.Common.Extensions
             return (Kind == DateTimeKind.Utc) ? DateTime.UtcNow : DateTime.Now;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         public static Meridiem GetMeridiem(this DateTime Value)
         {
-            switch (Value.ToString("tt", CultureInfo.InvariantCulture))
+            switch (Value.ToString("tt", CultureInfo.InvariantCulture).ToLowerInvariant())
             {
                 case "am":
                     return Meridiem.Ante;

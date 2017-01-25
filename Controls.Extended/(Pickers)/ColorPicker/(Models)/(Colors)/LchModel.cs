@@ -12,7 +12,7 @@ namespace Imagin.Controls.Extended
     {
         public override Color GetColor()
         {
-            return Lch.ToColor(this.Components[typeof(LComponent)].CurrentValue, this.Components[typeof(CComponent)].CurrentValue, this.Components[typeof(HComponent)].CurrentValue);
+            return Lch.ToColor(this.Components[typeof(LComponent)].Value, this.Components[typeof(CComponent)].Value, this.Components[typeof(HComponent)].Value);
         }
 
         public LchModel() : base()
@@ -162,7 +162,7 @@ namespace Imagin.Controls.Extended
                 }
             }
 
-            public override int MaxValue
+            public override int Maximum
             {
                 get
                 {

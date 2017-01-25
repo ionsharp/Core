@@ -10,13 +10,6 @@
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <Common.Data.Converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
-
-            <Style x:Key="H2" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                <Setter Property="FontSize" Value="20"/>
-                <Setter Property="Foreground" Value="#007acc"/>
-            </Style>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Brushes.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Imagin.Themes;component/Styles/Generic.xaml" />

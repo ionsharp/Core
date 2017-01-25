@@ -7,22 +7,40 @@ using System.Windows.Threading;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class ComponentModel : AbstractObject
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected internal bool ColorChangedHandled = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected internal bool TextChangedHandled = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public abstract string ComponentLabel
         {
             get;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public abstract string UnitLabel
         {
             get;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual bool CanSelect
         {
             get
@@ -34,7 +52,7 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// The largest possible value for a component (value when slider at top)
         /// </summary>
-        public virtual int MaxValue
+        public virtual int Maximum
         {
             get
             {
@@ -45,7 +63,7 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// The smallest possible value for a component (value when slider at bottom)
         /// </summary>
-        public virtual int MinValue
+        public virtual int Minimum
         {
             get
             {
@@ -53,17 +71,20 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        double currentValue = 0.0;
-        public double CurrentValue
+        int value = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Value
         {
             get
             {
-                return this.currentValue;
+                return value;
             }
             set
             {
-                this.currentValue = value;
-                OnPropertyChanged("CurrentValue");
+                this.value = value;
+                OnPropertyChanged("Value");
             }
         }
 
@@ -72,14 +93,31 @@ namespace Imagin.Controls.Extended
         /// </summary>
         public abstract int GetValue(Color Color);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
-            return this.GetType().ToString().GetHashCode();
+            return GetType().ToString().GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Color"></param>
         public void SetValue(Color Color)
         {
-            this.CurrentValue = this.GetValue(Color).ToDouble();
+            Value = GetValue(Color);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ComponentModel() : base()
+        {
+            OnPropertyChanged("Maximum");
+            OnPropertyChanged("Minimum");
         }
     }
 }

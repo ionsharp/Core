@@ -52,7 +52,7 @@ namespace Imagin.Controls.Common.Extensions
         /// <param name="IsSelected"></param>
         public static void Select(this DependencyObject Value, bool IsSelected)
         {
-            if (Value.IsAny(typeof(ListBoxItem)))
+            if (Value.IsAny(typeof(ListBoxItem), typeof(DataGridRow)))
             {
                 Selector.SetIsSelected(Value, IsSelected);
             }

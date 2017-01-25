@@ -21,10 +21,10 @@ namespace Imagin.Common.Attributes
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Representation"></param>
-        public StringKindAttribute(StringKind Kind)
+        /// <param name="kind"></param>
+        public StringKindAttribute(StringKind kind)
         {
-            this.Kind = Kind;
+            Kind = kind;
         }
     }
 }

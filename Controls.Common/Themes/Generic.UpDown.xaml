@@ -35,7 +35,7 @@
                             <Grid 
                                 Grid.Column="1"
                                 Margin="0,0,5,0"
-                                Visibility="{Binding IsUpDownEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                Visibility="{Binding CanUpDown, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
@@ -91,7 +91,7 @@
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <Grid 
                                 Grid.Column="1"
-                                Visibility="{Binding IsUpDownEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                Visibility="{Binding CanUpDown, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>

@@ -5,15 +5,105 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Common
 {
-    [TemplatePart(Name = "PART_BrowseButton", Type = typeof(MaskedButton))]
-    [TemplatePart(Name = "PART_Checked", Type = typeof(UIElement))]
+    /// <summary>
+    /// 
+    /// </summary>
+    [TemplatePart(Name = "PART_Button", Type = typeof(Button))]
     public class FileBox : TextBoxExt
     {
-        #region DependencyProperties
+        #region Classes
 
-        UIElement PART_Checked { get; set; } = null;
+        /// <summary>
+        /// 
+        /// </summary>
+        public class ValidatePathHandler : IValidate<object>
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Arguments"></param>
+            /// <returns></returns>
+            public bool Validate(params object[] Arguments)
+            {
+                var Mode = Arguments[0].To<DialogProviderMode>();
+                var Path = Arguments[1].ToString();
 
+                var Result = false;
+
+                switch (Mode)
+                {
+                    case DialogProviderMode.OpenFile:
+                        Result = Path.FileExists();
+                        break;
+                    case DialogProviderMode.OpenFolder:
+                        Result = Path.DirectoryExists();
+                        break;
+                }
+
+                return Result;
+            }
+        }
+
+        #endregion
+
+        #region Properties
+
+        Button PART_Button { get; set; } = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event RoutedEventHandler DialogOpened;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty BrowseModeProperty = DependencyProperty.Register("BrowseMode", typeof(DialogProviderMode), typeof(FileBox), new FrameworkPropertyMetadata(DialogProviderMode.OpenFolder, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnBrowseModeChanged));
+        /// <summary>
+        /// Gets or sets the type of mode to browse in.
+        /// </summary>
+        public DialogProviderMode BrowseMode
+        {
+            get
+            {
+                return (DialogProviderMode)GetValue(BrowseModeProperty);
+            }
+            set
+            {
+                SetValue(BrowseModeProperty, value);
+            }
+        }
+        static void OnBrowseModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.As<FileBox>().OnBrowseModeChanged((DialogProviderMode)e.NewValue);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty BrowseTitleProperty = DependencyProperty.Register("BrowseTitle", typeof(string), typeof(FileBox), new FrameworkPropertyMetadata("Browse...", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets the title of the dialog used to select a path.
+        /// </summary>
+        public string BrowseTitle
+        {
+            get
+            {
+                return (string)GetValue(BrowseTitleProperty);
+            }
+            set
+            {
+                SetValue(BrowseTitleProperty, value);
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ButtonPositionProperty = DependencyProperty.Register("ButtonPosition", typeof(LeftRight), typeof(FileBox), new FrameworkPropertyMetadata(LeftRight.Right, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets the position of the button used to show a dialog.
+        /// </summary>
         public LeftRight ButtonPosition
         {
             get
@@ -25,8 +115,14 @@ namespace Imagin.Controls.Common
                 SetValue(ButtonPositionProperty, value);
             }
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ButtonToolTipProperty = DependencyProperty.Register("ButtonToolTip", typeof(string), typeof(FileBox), new FrameworkPropertyMetadata("Click to browse...", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets the tool tip of the button used to show a dialog.
+        /// </summary>
         public string ButtonToolTip
         {
             get
@@ -39,7 +135,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ButtonVisibilityProperty = DependencyProperty.Register("ButtonVisibility", typeof(Visibility), typeof(FileBox), new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets the visibility of the button used to show a dialog.
+        /// </summary>
         public Visibility ButtonVisibility
         {
             get
@@ -52,122 +154,161 @@ namespace Imagin.Controls.Common
             }
         }
 
-        public static DependencyProperty DialogProviderModeProperty = DependencyProperty.Register("DialogProviderMode", typeof(DialogProviderMode), typeof(FileBox), new FrameworkPropertyMetadata(DialogProviderMode.OpenFolder, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public DialogProviderMode DialogProviderMode
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty CanBrowseProperty = DependencyProperty.Register("CanBrowse", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets or sets whether or not the button used to show a dialog is enabled.
+        /// </summary>
+        public bool CanBrowse
         {
             get
             {
-                return (DialogProviderMode)GetValue(DialogProviderModeProperty);
+                return (bool)GetValue(CanBrowseProperty);
             }
             set
             {
-                SetValue(DialogProviderModeProperty, value);
-            }
-        }
-        
-        public static DependencyProperty DialogProviderTitleProperty = DependencyProperty.Register("DialogProviderTitle", typeof(string), typeof(FileBox), new FrameworkPropertyMetadata("Browse...", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public string DialogProviderTitle
-        {
-            get
-            {
-                return (string)GetValue(DialogProviderTitleProperty);
-            }
-            set
-            {
-                SetValue(DialogProviderTitleProperty, value);
+                SetValue(CanBrowseProperty, value);
             }
         }
 
-        public static DependencyProperty IsDialogEnabledProperty = DependencyProperty.Register("IsDialogEnabled", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public bool IsDialogEnabled
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty CanValidateProperty = DependencyProperty.Register("CanValidate", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCanValidateChanged));
+        /// <summary>
+        /// Gets or sets whether or not the path should be validated.
+        /// </summary>
+        public bool CanValidate
         {
             get
             {
-                return (bool)GetValue(IsDialogEnabledProperty);
+                return (bool)GetValue(CanValidateProperty);
             }
             set
             {
-                SetValue(IsDialogEnabledProperty, value);
+                SetValue(CanValidateProperty, value);
+            }
+        }
+        static void OnCanValidateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.As<FileBox>().OnCanValidateChanged((bool)e.NewValue);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty IsValidProperty = DependencyProperty.Register("IsValid", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false));
+        /// <summary>
+        /// Gets whether or not the path is valid, if validation is enabled.
+        /// </summary>
+        public bool IsValid
+        {
+            get
+            {
+                return (bool)GetValue(IsValidProperty);
+            }
+            private set
+            {
+                SetValue(IsValidProperty, value);
             }
         }
 
-        public static DependencyProperty ValidatePathProperty = DependencyProperty.Register("ValidatePath", typeof(bool), typeof(FileBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValidatePathChanged));
-        public bool ValidatePath
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty ValidateHandlerProperty = DependencyProperty.Register("ValidateHandler", typeof(IValidate<object>), typeof(FileBox), new FrameworkPropertyMetadata(default(IValidate<object[]>), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// Gets an object that implements <see cref="IValidate{T}"/> and handles validation when enabled.
+        /// </summary>
+        public IValidate<object> ValidateHandler
         {
             get
             {
-                return (bool)GetValue(ValidatePathProperty);
+                return (IValidate<object>)GetValue(ValidateHandlerProperty);
             }
             set
             {
-                SetValue(ValidatePathProperty, value);
+                SetValue(ValidateHandlerProperty, value);
             }
-        }
-        static void OnValidatePathChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            ((FileBox)Object).OnValidatePathChanged((bool)e.NewValue);
         }
 
         #endregion
 
         #region FileBox
 
+        /// <summary>
+        /// 
+        /// </summary>
         public FileBox()
         {
             DefaultStyleKey = typeof(FileBox);
+            ValidateHandler = new ValidatePathHandler();
         }
 
         #endregion
 
         #region Methods
-
-        void OnClick(object sender, RoutedEventArgs e)
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnBrowseModeChanged(DialogProviderMode Value)
         {
+            OnCanValidateChanged(CanValidate);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnDialogOpened(RoutedEventArgs e)
+        {
+            DialogOpened?.Invoke(this, e);
+
             string[] Paths;
-            if (DialogProvider.Show(out Paths, DialogProviderTitle, DialogProviderMode, DialogProviderSelectionMode.Single, null, Text))
+            if (DialogProvider.Show(out Paths, BrowseTitle, BrowseMode, DialogProviderSelectionMode.Single, null, Text))
                 Text = Paths[0];
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
             base.OnTextChanged(e);
-            OnValidatePathChanged(ValidatePath);
+            OnCanValidateChanged(CanValidate);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnCanValidateChanged(bool Value)
+        {
+            IsValid = Value && ValidateHandler != null ? ValidateHandler.Validate(BrowseMode, Text) : false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            Template.FindName("PART_Button", this).As<MaskedButton>().Click += this.OnClick;
 
-            PART_Checked = Template.FindName("PART_Checked", this) as UIElement;
+            PART_Button = Template.FindName("PART_Button", this) as Button;
+            PART_Button.Click += (s, e) => OnDialogOpened(e);
         }
 
-        protected virtual void OnValidatePathChanged(bool Value)
-        {
-            if (PART_Checked != null)
-            {
-                var Result = false;
-
-                if (Value)
-                {
-                    switch (DialogProviderMode)
-                    {
-                        case DialogProviderMode.OpenFile:
-                            Result = Text.FileExists();
-                            break;
-                        case DialogProviderMode.OpenFolder:
-                            Result = Text.DirectoryExists();
-                            break;
-                    }
-                }
-
-                PART_Checked.Visibility = Result.ToVisibility();
-            }
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Browse()
         {
-            OnClick(this, new RoutedEventArgs());
+            OnDialogOpened(new RoutedEventArgs());
         }
 
         #endregion

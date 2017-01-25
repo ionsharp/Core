@@ -153,7 +153,7 @@ namespace Imagin.Controls.Extended
                         { "Featured", "IsFeatured", false },
                         { "Int64Kind", "Kind", Int64Kind.Default },
                         { "ReadOnly", "IsReadOnly", false },
-                        { "StringKind", "Kind", StringKind.Regular },
+                        { "StringKind", "Kind", StringKind.Default },
                         { "DisplayFormat", "DataFormatString", string.Empty },
                     };
 

@@ -7,28 +7,24 @@
     public enum StringKind
     {
         /// <summary>
-        /// Unspecified string (or default).
-        /// </summary>
-        Unspecified = 0,
-        /// <summary>
         /// Specifies a regular string.
         /// </summary>
-        Regular = 1,
+        Default,
         /// <summary>
         /// Specifies a file path.
         /// </summary>
-        FilePath = 2,
+        FilePath,
         /// <summary>
         /// Specifies a folder path.
         /// </summary>
-        FolderPath = 3,
+        FolderPath,
         /// <summary>
         /// Specifies a multiline string.
         /// </summary>
-        Multiline = 4,
+        Multiline,
         /// <summary>
         /// Specifies a password string.
         /// </summary>
-        Password = 5
+        Password,
     }
 }

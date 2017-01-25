@@ -132,7 +132,7 @@
                 <Controls.Common:ByteUpDown 
                     HorizontalAlignment="Stretch"
                     IsReadOnly="{Binding IsReadOnly}"
-                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                     Maximum="{Binding Maximum}"
                     Minimum="{Binding Minimum}"
                     StringFormat="{Binding StringFormat}"
@@ -158,7 +158,7 @@
                 <Controls.Common:DateTimeUpDown 
                     HorizontalAlignment="Stretch"
                     IsReadOnly="{Binding IsReadOnly}"
-                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                     Maximum="{Binding Maximum}"
                     Minimum="{Binding Minimum}"
                     StringFormat="{Binding StringFormat}"
@@ -168,7 +168,7 @@
                 <Controls.Common:DecimalUpDown 
                     HorizontalAlignment="Stretch"
                     IsReadOnly="{Binding IsReadOnly}"
-                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                     Maximum="{Binding Maximum}"
                     Minimum="{Binding Minimum}"
                     StringFormat="{Binding StringFormat}"
@@ -178,7 +178,7 @@
                 <Controls.Common:DoubleUpDown 
                     HorizontalAlignment="Stretch"
                     IsReadOnly="{Binding IsReadOnly}"
-                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                     Maximum="{Binding Maximum}"
                     Minimum="{Binding Minimum}"
                     StringFormat="{Binding StringFormat}"
@@ -215,7 +215,7 @@
                 <Controls.Common:IntUpDown 
                     HorizontalAlignment="Stretch"
                     IsReadOnly="{Binding IsReadOnly}"
-                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                     Maximum="{Binding Maximum}"
                     Minimum="{Binding Minimum}"
                     StringFormat="{Binding StringFormat}"
@@ -226,7 +226,7 @@
                     <Controls.Common:LongUpDown 
                         HorizontalAlignment="Stretch"
                         IsReadOnly="{Binding IsReadOnly}"
-                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                         Maximum="{Binding Maximum}"
                         Minimum="{Binding Minimum}"
                         StringFormat="{Binding StringFormat}"
@@ -269,7 +269,7 @@
                     
                     <Controls.Common:DoubleUpDown 
                         IsReadOnly="{Binding IsReadOnly}"
-                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                         Margin="0,0,5,0"
                         Maximum="{Binding Maximum.X}"
                         Minimum="{Binding Minimum.X}"
@@ -280,7 +280,7 @@
                         Grid.Column="1"
                         Grid.Row="1"
                         IsReadOnly="{Binding IsReadOnly}"
-                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                         Maximum="{Binding Maximum.Y}"
                         Minimum="{Binding Minimum.Y}"
                         StringFormat="{Binding StringFormat}"
@@ -292,7 +292,7 @@
                 <Controls.Common:ShortUpDown 
                     HorizontalAlignment="Stretch"
                     IsReadOnly="{Binding IsReadOnly}"
-                    IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                    CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                     Maximum="{Binding Maximum}"
                     Minimum="{Binding Minimum}"
                     StringFormat="{Binding StringFormat}"
@@ -309,7 +309,7 @@
                     <Controls.Common:DoubleUpDown
                         x:Name="PART_Width"
                         IsReadOnly="{Binding IsReadOnly}"
-                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                         Maximum="{Binding Maximum.Width}"
                         Minimum="0"
                         StringFormat="{Binding StringFormat}"
@@ -326,7 +326,7 @@
                         Grid.Column="2"
                         x:Name="PART_Height"
                         IsReadOnly="{Binding IsReadOnly}"
-                        IsUpDownEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
+                        CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                         Maximum="{Binding Maximum.Height}"
                         Minimum="0"
                         StringFormat="{Binding StringFormat}"
@@ -356,7 +356,7 @@
                         <Setter TargetName="PART_Content" Property="Content">
                             <Setter.Value>
                                 <Controls.Common:FileBox  
-                                    DialogProviderMode="OpenFile"
+                                    BrowseMode="OpenFile"
                                     HorizontalAlignment="Stretch"
                                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Setter.Value>
@@ -366,7 +366,7 @@
                         <Setter TargetName="PART_Content" Property="Content">
                             <Setter.Value>
                                 <Controls.Common:FileBox  
-                                    DialogProviderMode="OpenFolder"
+                                    BrowseMode="OpenFolder"
                                     HorizontalAlignment="Stretch"
                                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Setter.Value>

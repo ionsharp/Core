@@ -411,47 +411,37 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Extended.ColorSelectorRing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.White">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.Black">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.BlackAndWhite">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.BlackOrWhite">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Extended.ColorSelector">
             <summary>
             
             </summary>
             <summary>
             ColorSelector
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Extended.ColorSelector.SelectionRingType">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingType.White">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingType.Black">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingType.BlackAndWhite">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectionRingType.BlackOrWhite">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="E:Imagin.Controls.Extended.ColorSelector.AlphaChanged">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="E:Imagin.Controls.Extended.ColorSelector.ColorChanged">
-            <summary>
-            
             </summary>
         </member>
         <member name="F:Imagin.Controls.Extended.ColorSelector.ColorProperty">
@@ -514,7 +504,22 @@
             
             </summary>
         </member>
+        <member name="E:Imagin.Controls.Extended.ColorSelector.AlphaChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.ColorSelector.ColorChanged">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Extended.ColorSelector.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSelector.IncrementSlider">
             <summary>
             
             </summary>
@@ -539,7 +544,7 @@
             </summary>
             <param name="Value"></param>
         </member>
-        <member name="M:Imagin.Controls.Extended.ColorSelector.OnSelectionRingChanged(Imagin.Controls.Extended.ColorSelector.SelectionRingType)">
+        <member name="M:Imagin.Controls.Extended.ColorSelector.OnSelectionRingChanged(Imagin.Controls.Extended.ColorSelectorRing)">
             <summary>
             
             </summary>
@@ -548,6 +553,37 @@
         <member name="M:Imagin.Controls.Extended.ColorSelector.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LuvModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LuvModel.LComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LuvModel.UComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LuvModel.VComponent">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Controls.Extended.Lang.Main">
@@ -666,15 +702,191 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Extended.ColorSpaceView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ComponentCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentCollection.Item(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="Type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentCollection.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Extended.CmykModel" -->
-        <member name="P:Imagin.Controls.Extended.ComponentModel.MaxValue">
+        <member name="M:Imagin.Controls.Extended.CmykModel.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.CmykModel.CComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.CComponent.CanSelect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.CComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.CComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.CComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Extended.CmykModel.MComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.MComponent.CanSelect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.MComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.MComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.MComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Extended.CmykModel.YComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.YComponent.CanSelect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.YComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.YComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.YComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Extended.CmykModel.KComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.KComponent.CanSelect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.KComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.KComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.KComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ComponentModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ComponentModel.ColorChangedHandled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ComponentModel.TextChangedHandled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.CanSelect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.Maximum">
             <summary>
             The largest possible value for a component (value when slider at top)
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.ComponentModel.MinValue">
+        <member name="P:Imagin.Controls.Extended.ComponentModel.Minimum">
             <summary>
             The smallest possible value for a component (value when slider at bottom)
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.Value">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.ComponentModel.GetValue(System.Windows.Media.Color)">
@@ -682,9 +894,394 @@
             The value of the component for a given color
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.ComponentModel.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentModel.SetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ComponentView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.ComponentView.ColorChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ComponentView.ColorChangedHandled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ComponentView.ValueChangedHandled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ComponentView.ColorSpaceModelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentView.ColorSpaceModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ComponentView.ComponentModelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentView.ComponentModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ComponentView.ValueProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentView.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ComponentView.ColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentView.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentView.OnColorChanged(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentView.OnValueChanged(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorSpaceModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSpaceModel.Components">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSpaceModel.Orientation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceModel.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.HsbModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.HsbModel.HComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.HComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.HComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.HComponent.IsNormalIndependantOfColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.HComponent.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.HsbModel.SComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.HsbModel.BComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.HslModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LabModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LabModel.LComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.LComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.LComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LabModel.AComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.AComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.AComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.AComponent.Minimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.AComponent.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LabModel.BComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.BComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.BComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.BComponent.Minimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LabModel.BComponent.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbModel.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbModel.RComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.RComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.RComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.RComponent.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbModel.GComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.GComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.GComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.GComponent.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbModel.BComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.BComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.BComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbModel.BComponent.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.XyzModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.XyzModel.XComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.XyzModel.YComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.XyzModel.ZComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.NormalComponentModel">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Extended.NormalComponentModel.IsNormalIndependantOfColor">
             <summary>
             Is the Normal bitmap independent of the specific color (false for all but Hue of HSB)
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.NormalComponentModel.IsEnabled">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.NormalComponentModel.ColorAtPoint(System.Windows.Point,System.Int32)">
@@ -699,12 +1296,12 @@
         </member>
         <member name="M:Imagin.Controls.Extended.NormalComponentModel.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Controls.Extended.Primitives.Rgba},System.Nullable{Imagin.Common.RowColumn})">
             <summary>
-            Updates the color plane bitmap (the bitmap where one selects the colors)
+            Updates the plane bitmap.
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.NormalComponentModel.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Controls.Extended.Primitives.Rgba},System.Boolean)">
             <summary>
-            Updates the normal Bitmap (The bitmap with the slider)
+            Updates the slider bitmap.
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.Primitives.Luv.L">
@@ -747,9 +1344,86 @@
             Gets or sets the black component (0 to 1).
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.op_Equality(Imagin.Controls.Extended.Primitives.Cmyk,Imagin.Controls.Extended.Primitives.Cmyk)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.op_Inequality(Imagin.Controls.Extended.Primitives.Cmyk,Imagin.Controls.Extended.Primitives.Cmyk)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.#ctor(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Creates an instance of a Cmyk structure.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.FromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.FromRgba(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+            <param name="g"></param>
+            <param name="b"></param>
+            <param name="a"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.ToColor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="c"></param>
+            <param name="m"></param>
+            <param name="y"></param>
+            <param name="k"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Extended.Primitives.Hsb">
+            <summary>
+            Structure to define a color for HSB (hue/saturation/brightness).
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.Primitives.Hsb.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.Primitives.Hsb.MinValue">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.Primitives.Hsb.H">
@@ -767,10 +1441,80 @@
             Gets or sets the brightness component (0 to 1).
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.op_Equality(Imagin.Controls.Extended.Primitives.Hsb,Imagin.Controls.Extended.Primitives.Hsb)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.op_Inequality(Imagin.Controls.Extended.Primitives.Hsb,Imagin.Controls.Extended.Primitives.Hsb)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Controls.Extended.Primitives.Hsb.#ctor(System.Double,System.Double,System.Double)">
             <summary>
             Creates an instance of a Hsb structure.
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.FromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.FromRgba(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="R"></param>
+            <param name="G"></param>
+            <param name="B"></param>
+            <param name="A"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.ToColor(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="H"></param>
+            <param name="S"></param>
+            <param name="B"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.ToRgba(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="H"></param>
+            <param name="S"></param>
+            <param name="B"></param>
+            <returns></returns>
         </member>
         <member name="P:Imagin.Controls.Extended.Primitives.Hsl.H">
             <summary>
@@ -909,7 +1653,115 @@
         </member>
         <member name="T:Imagin.Controls.Extended.DualColorChip">
             <summary>
+            
+            </summary>
+            <summary>
             DualColorChip
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.DualColorChip.ForegroundColorChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.DualColorChip.BackgroundColorChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.DualColorChip.BackgroundColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.DualColorChip.BackgroundColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.DualColorChip.BackgroundToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.DualColorChip.BackgroundToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.DualColorChip.DefaultBackgroundProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.DualColorChip.DefaultBackground">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.DualColorChip.DefaultForegroundProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.DualColorChip.DefaultForeground">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.DualColorChip.ForegroundColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.DualColorChip.ForegroundColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.DualColorChip.ForegroundToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.DualColorChip.ForegroundToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.DualColorChip.ResetToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.DualColorChip.ResetToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.DualColorChip.SwitchToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.DualColorChip.SwitchToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.DualColorChip.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.DualColorChip.OnBackgroundColorChanged(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.DualColorChip.OnForegroundColorChanged(System.Windows.Media.Color)">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.DualColorChip.InitializeComponent">

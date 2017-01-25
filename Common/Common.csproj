@@ -87,6 +87,7 @@
     <Compile Include="%28Abstract%29\AbstractDependencyObject.cs" />
     <Compile Include="%28Abstract%29\AbstractObject.cs" />
     <Compile Include="%28Interfaces%29\IChangeable.cs" />
+    <Compile Include="%28Interfaces%29\IValidate.Generic.cs" />
     <Compile Include="Attributes\Constraint.cs" />
     <Compile Include="Attributes\Alias.cs" />
     <Compile Include="Attributes\Icon.cs" />

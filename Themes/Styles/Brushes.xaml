@@ -290,8 +290,8 @@
     <SolidColorBrush x:Key="Brush.Window.About.Bullet.Foreground" Color="#FFF"/>
 
     <LinearGradientBrush x:Key="Brush.Window.Background" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="#F5F5F5"/>
-        <GradientStop Offset="1" Color="#EFEFEF"/>
+        <GradientStop Offset="0" Color="#FAFAFA"/>
+        <GradientStop Offset="1" Color="#F0F0F0"/>
     </LinearGradientBrush>
     <SolidColorBrush x:Key="Brush.Window.Active.Border" Color="#FF349ADE"/>
     <SolidColorBrush x:Key="Brush.Window.Border" Color="#DDD"/>

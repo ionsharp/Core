@@ -8,6 +8,9 @@ using System.Windows.Media.Imaging;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class NormalComponentModel : ComponentModel
     {
         /// <summary>
@@ -22,15 +25,18 @@ namespace Imagin.Controls.Extended
         }
 
         bool isEnabled = false;
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsEnabled
         {
             get
             {
-                return this.isEnabled;
+                return isEnabled;
             }
             set
             {
-                this.isEnabled = value;
+                isEnabled = value;
                 OnPropertyChanged("IsEnabled");
             }
         }
@@ -46,7 +52,7 @@ namespace Imagin.Controls.Extended
         public abstract Point PointFromColor(Color color);
 
         /// <summary>
-        /// Updates the color plane bitmap (the bitmap where one selects the colors)
+        /// Updates the plane bitmap.
         /// </summary>
         public virtual void UpdatePlane(WriteableBitmap Bitmap, int ComponentValue, Func<RowColumn, int, Rgba> Action = null, RowColumn? Unit = null)
         {
@@ -84,28 +90,28 @@ namespace Imagin.Controls.Extended
         }
 
         /// <summary>
-        /// Updates the normal Bitmap (The bitmap with the slider)
+        /// Updates the slider bitmap.
         /// </summary>
         public virtual void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action = null, bool Reverse = false)
         {
             unsafe
             {
                 Bitmap.Lock();
-                int currentPixel = -1;
+                int CurrentPixel = -1;
                 byte* Start = (byte*)(void*)Bitmap.BackBuffer;
 
-                double RowUnit = (this.MaxValue.ToDouble() - this.MinValue.ToDouble()) / 256.0;
-                double CurrentRow = Reverse ? this.MinValue.ToDouble() : this.MaxValue.ToDouble();
+                double RowUnit = (Maximum.ToDouble() - Minimum.ToDouble()) / 256.0;
+                double CurrentRow = Reverse ? Minimum.ToDouble() : Maximum.ToDouble();
 
                 for (int Row = 0; Row < Bitmap.PixelHeight; Row++)
                 {
                     var Rgba = Action.Invoke(Color, CurrentRow);
                     for (int Col = 0; Col < Bitmap.PixelWidth; Col++)
                     {
-                        currentPixel++;
-                        *(Start + currentPixel * 3 + 0) = Rgba.B;
-                        *(Start + currentPixel * 3 + 1) = Rgba.G;
-                        *(Start + currentPixel * 3 + 2) = Rgba.R;
+                        CurrentPixel++;
+                        *(Start + CurrentPixel * 3 + 0) = Rgba.B;
+                        *(Start + CurrentPixel * 3 + 1) = Rgba.G;
+                        *(Start + CurrentPixel * 3 + 2) = Rgba.R;
                     }
                     if (Reverse) CurrentRow += RowUnit;
                     else CurrentRow -= RowUnit;

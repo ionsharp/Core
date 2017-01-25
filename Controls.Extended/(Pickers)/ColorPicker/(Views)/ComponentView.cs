@@ -7,17 +7,35 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ComponentView : ContentControl
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public event EventHandler<EventArgs<Color>> ColorChanged;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected internal bool ColorChangedHandled = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected internal bool ValueChangedHandled = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ColorSpaceModelProperty = DependencyProperty.Register("ColorSpaceModel", typeof(ColorSpaceModel), typeof(ComponentView), new FrameworkPropertyMetadata(default(ColorSpaceModel), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public ColorSpaceModel ColorSpaceModel
         {
             get
@@ -30,7 +48,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ComponentModelProperty = DependencyProperty.Register("ComponentModel", typeof(ComponentModel), typeof(ComponentView), new FrameworkPropertyMetadata(default(ComponentModel), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public ComponentModel ComponentModel
         {
             get
@@ -43,24 +67,36 @@ namespace Imagin.Controls.Extended
             }
         }
 
-        public static DependencyProperty CurrentValueProperty = DependencyProperty.Register("CurrentValue", typeof(double), typeof(ComponentView), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCurrentValueChanged));
-        public double CurrentValue
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(int), typeof(ComponentView), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Value
         {
             get
             {
-                return (double)GetValue(CurrentValueProperty);
+                return (int)GetValue(ValueProperty);
             }
             set
             {
-                SetValue(CurrentValueProperty, value);
+                SetValue(ValueProperty, value);
             }
         }
-        static void OnCurrentValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.As<ComponentView>().OnValueChanged(e.NewValue.As<double>());
+            d.As<ComponentView>().OnValueChanged((int)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(Color), typeof(ComponentView), new FrameworkPropertyMetadata(default(Color), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnColorChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public Color Color
         {
             get
@@ -81,29 +117,43 @@ namespace Imagin.Controls.Extended
 
         #region Methods
 
-        public virtual void OnColorChanged(Color Color)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        public virtual void OnColorChanged(Color Value)
         {
-            if (ValueChangedHandled) return;
-            ColorChangedHandled = true;
-            this.ComponentModel.SetValue(Color);
-            ColorChangedHandled = false;
+            if (!ValueChangedHandled)
+            {
+                ColorChangedHandled = true;
+                ComponentModel.SetValue(Value);
+                ColorChangedHandled = false;
 
-            if (this.ColorChanged != null)
-                this.ColorChanged(this, new EventArgs<Color>(Color));
+                ColorChanged?.Invoke(this, new EventArgs<Color>(Value));
+            }
         }
 
-        public virtual void OnValueChanged(double Value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        public virtual void OnValueChanged(int Value)
         {
-            if (this.ColorChangedHandled) return;
-            this.ValueChangedHandled = true;
-            this.Color = this.ColorSpaceModel.GetColor();
-            this.ValueChangedHandled = false;
+            if (!ColorChangedHandled)
+            {
+                ValueChangedHandled = true;
+                Color = ColorSpaceModel.GetColor();
+                ValueChangedHandled = false;
+            }
         }
 
         #endregion
 
         #region ComponentView
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ComponentView() : base()
         {
         }
