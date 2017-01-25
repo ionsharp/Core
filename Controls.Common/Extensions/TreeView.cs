@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Linq;
 
 namespace Imagin.Controls.Common.Extensions
 {
@@ -17,6 +18,7 @@ namespace Imagin.Controls.Common.Extensions
 
         /// <summary>
         /// Enumerate <see cref="ItemsControl"/> performing given action for each child.
+        /// <para>(recursive)</para>
         /// </summary>
         /// <param name="Control"></param>
         /// <param name="Action"></param>
@@ -27,6 +29,7 @@ namespace Imagin.Controls.Common.Extensions
 
         /// <summary>
         /// Enumerate <see cref="ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally).
+        /// <para>(recursive)</para>
         /// </summary>
         /// <param name="Control"></param>
         /// <param name="Action"></param>
@@ -36,15 +39,25 @@ namespace Imagin.Controls.Common.Extensions
         }
 
         /// <summary>
+        /// Enumerate given indices of <see cref="ItemsControl"/> and perform given action for each child.
+        /// <para>(recursive)</para>
+        /// </summary>
+        /// <param name="Control"></param>
+        /// <param name="Action"></param>
+        /// <param name="Indices"></param>
+        public static void Enumerate(this ItemsControl Control, Action<object, ItemsControl> Action, params int[] Indices)
+        {
+            Control.Enumerate<object>(Action, Indices);
+        }
+
+        /// <summary>
         /// Enumerate <see cref="ItemsControl"/> performing given action for each child.
+        /// <para>(recursive)</para>
         /// </summary>
         /// <param name="Control"></param>
         /// <param name="Action"></param>
         public static void Enumerate<T>(this ItemsControl Control, Action<T, ItemsControl> Action)
         {
-            if (Control == null)
-                throw new ArgumentNullException("Control can't be null.");
-
             if (Control.Items != null)
             {
                 foreach (var i in Control.Items)
@@ -62,15 +75,13 @@ namespace Imagin.Controls.Common.Extensions
         }
 
         /// <summary>
-        /// Enumerate <see cref="ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally).
+        /// Enumerate <see cref="ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally). 
+        /// <para>(recursive)</para>
         /// </summary>
         /// <param name="Control"></param>
         /// <param name="Action"></param>
         public static void Enumerate<T>(this ItemsControl Control, Func<T, ItemsControl, bool?> Action)
         {
-            if (Control == null)
-                throw new ArgumentNullException("Control can't be null.");
-
             if (Control.Items != null)
             {
                 foreach (var i in Control.Items)
@@ -94,6 +105,44 @@ namespace Imagin.Controls.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// Enumerate given indices of <see cref="ItemsControl"/> and perform given action for each child. 
+        /// <para>(recursive)</para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Control"></param>
+        /// <param name="Action"></param>
+        /// <param name="Indices"></param>
+        public static void Enumerate<T>(this ItemsControl Control, Action<T, ItemsControl> Action, params int[] Indices)
+        {
+            if (Control.Items != null && Indices.Length > 0)
+            {
+                var m = Indices[0];
+                var n = 0;
+                foreach (var i in Control.Items)
+                {
+                    if (m == n)
+                    {
+                        if (i.IsNot<T>())
+                            throw new InvalidCastException("Item must be of type T");
+
+                        var j = (ItemsControl)Control.ItemContainerGenerator.ContainerFromItem(i);
+                        Action((T)i, j);
+
+                        if (j != null)
+                            j.Enumerate<T>(Action, Indices.Skip(1).ToArray());
+                    }
+
+                    n++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Control"></param>
+        /// <param name="AllItems"></param>
         public static void GetAllItems(ItemsControl Control, ICollection<TreeViewItem> AllItems)
         {
             if (Control != null)
@@ -110,6 +159,11 @@ namespace Imagin.Controls.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TreeView"></param>
+        /// <param name="Item"></param>
         public static void SelectItem(this TreeView TreeView, TreeViewItem Item)
         {
             SelectNone(TreeView);
@@ -117,6 +171,11 @@ namespace Imagin.Controls.Common.Extensions
             TreeViewExtensions.SetStartItem(TreeView, Item);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TreeView"></param>
+        /// <param name="Item"></param>
         public static void SelectItems(this TreeView TreeView, TreeViewItem Item)
         {
             if (Item == null) return;
@@ -130,6 +189,12 @@ namespace Imagin.Controls.Common.Extensions
             else SelectItem(TreeView, Item);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TreeView"></param>
+        /// <param name="TreeViewItem"></param>
+        /// <param name="ShiftControl"></param>
         public static void SelectItemsContinuously(this TreeView TreeView, TreeViewItem TreeViewItem, bool ShiftControl = false)
         {
             var StartItem = TreeViewExtensions.GetStartItem(TreeView);
@@ -165,6 +230,11 @@ namespace Imagin.Controls.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TreeView"></param>
+        /// <param name="TreeViewItem"></param>
         public static void SelectItemsRandomly(this TreeView TreeView, TreeViewItem TreeViewItem)
         {
             TreeViewItemExtensions.SetIsSelected(TreeViewItem, !TreeViewItemExtensions.GetIsSelected(TreeViewItem));
@@ -180,6 +250,10 @@ namespace Imagin.Controls.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Control"></param>
         public static void SelectNone(this ItemsControl Control)
         {
             if (Control != null)

@@ -251,6 +251,21 @@
             
             </summary>
         </member>
+        <member name="M:Imagin.Common.Data.Converters.ArrayToStringConverter.GetSeparator(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ArrayToStringConverter.ToString(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Data.Converters.ArrayToStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
             <summary>
             
@@ -262,6 +277,21 @@
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Data.Converters.ArrayToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.Int32ArrayToStringConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.Int32ArrayToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
             <summary>
             
             </summary>
@@ -478,6 +508,30 @@
             <param name="Maximum"></param>
             <param name="Minimum"></param>
             <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Extensions.IEnumerableExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IEnumerableExtensions.ForEach(System.Collections.IEnumerable,System.Action{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="Source"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="T:Imagin.Common.Extensions.IListExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListExtensions.ForEach(System.Collections.IList,System.Action{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="Source"></param>
+            <param name="Action"></param>
         </member>
         <member name="T:Imagin.Common.Extensions.Int16Extensions">
             <summary>
@@ -1292,6 +1346,18 @@
             <param name="Ptr"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Extensions.SpecialFolderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.SpecialFolderExtensions.GetPath(System.Environment.SpecialFolder)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.ObjectExtensions">
             <summary>
             
@@ -1478,7 +1544,7 @@
             <summary>
             
             </summary>
-            <param name="ToAppend"></param>
+            <param name="Value"></param>
             <param name="Append"></param>
             <returns></returns>
         </member>
@@ -1504,6 +1570,13 @@
             <param name="Value"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.DirectoryExists(System.String)">
+            <summary>
+            Invokes <see cref="M:System.IO.Directory.Exists(System.String)"/>.
+            </summary>
+            <param name="Path"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.F(System.String,System.Object[])">
             <summary>
             
@@ -1520,10 +1593,69 @@
             <param name="Args"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.FileExists(System.String)">
+            <summary>
+            Invokes <see cref="M:System.IO.File.Exists(System.String)"/>.
+            </summary>
+            <param name="Path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.GetDirectoryName(System.String,System.String)">
+            <summary>
+            Invokes <see cref="M:System.IO.Path.GetDirectoryName(System.String)"/>.
+            </summary>
+            <param name="Path"></param>
+            <param name="Scheme"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.GetExtension(System.String)">
+            <summary>
+            Invokes <see cref="M:System.IO.Path.GetExtension(System.String)"/>.
+            </summary>
+            <param name="Path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.GetFileName(System.String,System.String)">
+            <summary>
+            Invokes <see cref="M:System.IO.Path.GetFileName(System.String)"/>.
+            </summary>
+            <param name="Path"></param>
+            <param name="Scheme"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.GetFileNameWithoutExtension(System.String)">
+            <summary>
+            Invokes <see cref="M:System.IO.Path.GetFileNameWithoutExtension(System.String)"/>.
+            </summary>
+            <param name="Path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.GetFileType(System.String,System.Func{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+            <param name="GetTypeDescription"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.GetResourceUri(System.String,System.String)">
             <summary>
             Returns <see cref="T:System.Uri"/> of resource defined in assembly with given path; note, path must NOT begin with slash and slashes must be forward-facing.
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.FindType(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="TypeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.IsAlphaNumeric(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.IsDouble(System.String)">
             <summary>
@@ -1572,6 +1704,22 @@
             
             </summary>
             <param name="ToCheck"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.IsValidUrl(System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Schemes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.Prepend(System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Prepend"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.SplitCamelCase(System.String)">

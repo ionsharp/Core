@@ -83,14 +83,13 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ToAppend"></param>
+        /// <param name="Value"></param>
         /// <param name="Append"></param>
         /// <returns></returns>
-        public static string Append(this string ToAppend, params string[] Append)
+        public static string Append(this string Value, params string[] Append)
         {
-            string Result = ToAppend;
-            foreach (string i in Append)
-                Result += i;
+            var Result = Value;
+            Append.ForEach(i => Result += i);
             return Result;
         }
 
@@ -147,9 +146,14 @@ namespace Imagin.Common.Extensions
             return Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Value.ToLower());
         }
 
-        public static bool DirectoryExists(this string DirectoryPath)
+        /// <summary>
+        /// Invokes <see cref="System.IO.Directory.Exists(string)"/>.
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public static bool DirectoryExists(this string Path)
         {
-            return Directory.Exists(DirectoryPath);
+            return Directory.Exists(Path);
         }
 
         /// <summary>
@@ -174,11 +178,22 @@ namespace Imagin.Common.Extensions
             return Format.F(Args);
         }
 
-        public static bool FileExists(this string FilePath)
+        /// <summary>
+        /// Invokes <see cref="System.IO.File.Exists(string)"/>.
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public static bool FileExists(this string Path)
         {
-            return File.Exists(FilePath);
+            return File.Exists(Path);
         }
 
+        /// <summary>
+        /// Invokes <see cref="System.IO.Path.GetDirectoryName(string)"/>.
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <param name="Scheme"></param>
+        /// <returns></returns>
         public static string GetDirectoryName(this string Path, string Scheme = null)
         {
             var Result = Path;
@@ -196,11 +211,22 @@ namespace Imagin.Common.Extensions
             return Result;
         }
 
+        /// <summary>
+        /// Invokes <see cref="System.IO.Path.GetExtension(string)"/>.
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
         public static string GetExtension(this string Path)
         {
             return System.IO.Path.GetExtension(Path);
         }
 
+        /// <summary>
+        /// Invokes <see cref="System.IO.Path.GetFileName(string)"/>.
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <param name="Scheme"></param>
+        /// <returns></returns>
         public static string GetFileName(this string Path, string Scheme = null)
         {
             var Result = Path;
@@ -221,12 +247,23 @@ namespace Imagin.Common.Extensions
             return Result;
         }
 
+        /// <summary>
+        /// Invokes <see cref="System.IO.Path.GetFileNameWithoutExtension(string)"/>.
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
         public static string GetFileNameWithoutExtension(this string Path)
         {
             var Name = System.IO.Path.GetFileNameWithoutExtension(Path);
             return string.IsNullOrEmpty(Name) ? Path.EndsWith(@":\") ? Path : string.Empty : Name;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <param name="GetTypeDescription"></param>
+        /// <returns></returns>
         public static string GetFileType(this string Path, Func<string, string> GetTypeDescription)
         {
             var Result = Path.EndsWith(@":\") ? "Drive" : (Path.DirectoryExists() ? "Folder" : (!Path.IsNullOrEmpty() ? GetTypeDescription(Path) : Path));
@@ -241,6 +278,11 @@ namespace Imagin.Common.Extensions
             return new Uri("pack://application:,,,/" + AssemblyName + ";component/" + ResourcePath, UriKind.Absolute);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TypeName"></param>
+        /// <returns></returns>
         public static Type FindType(this string TypeName)
         {
             var type = Type.GetType(TypeName);
@@ -258,9 +300,14 @@ namespace Imagin.Common.Extensions
             return null;
         }
 
-        public static bool IsAlphaNumeric(this string Text)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static bool IsAlphaNumeric(this string Value)
         {
-            return Regex.IsMatch(Text, @"^[a-zA-Z0-9]+$");
+            return Regex.IsMatch(Value, @"^[a-zA-Z0-9]+$");
         }
 
         /// <summary>
@@ -337,19 +384,29 @@ namespace Imagin.Common.Extensions
             return short.TryParse(ToCheck, out n);
         }
 
-        public static bool IsValidUrl(this string ToEvaluate, params string[] Schemes)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Schemes"></param>
+        /// <returns></returns>
+        public static bool IsValidUrl(this string Value, params string[] Schemes)
         {
             Uri Uri;
-            return Uri.TryCreate(ToEvaluate, UriKind.Absolute, out Uri) && (Schemes.Length > 0 ? Uri.Scheme.EqualsAny(Schemes) : Uri.Scheme.EqualsAny(Uri.UriSchemeFile, Uri.UriSchemeFtp, Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto));
+            return Uri.TryCreate(Value, UriKind.Absolute, out Uri) && (Schemes.Length > 0 ? Uri.Scheme.EqualsAny(Schemes) : Uri.Scheme.EqualsAny(Uri.UriSchemeFile, Uri.UriSchemeFtp, Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto));
         }
 
-        public static string Prepend(this string ToPrepend, params string[] Prepend)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Prepend"></param>
+        /// <returns></returns>
+        public static string Prepend(this string Value, params string[] Prepend)
         {
-            string Result = string.Empty;
-            foreach (string i in Prepend)
-                Result += i;
-            Result += ToPrepend;
-            return Result;
+            var Result = string.Empty;
+            Prepend.ForEach(i => Result += i);
+            return Result + Value;
         }
 
         /// <summary>
@@ -449,14 +506,23 @@ namespace Imagin.Common.Extensions
 
         public static IEnumerable<int> ToInt32Array(this string Value, char Separator = ',')
         {
+            return Value.ToInt32Array(Separator as char?);
+        }
+        
+        public static IEnumerable<int> ToInt32Array(this string Value, char? Separator)
+        {
             if (String.IsNullOrEmpty(Value))
                 yield break;
 
-            foreach (var s in Value.Split(Separator))
+            if (Separator == null)
             {
-                int n;
-                if (int.TryParse(s, out n))
-                    yield return n;
+                foreach (var i in Value.ToArray())
+                    yield return i.ToString().ToInt32();
+            }
+            else
+            {
+                foreach (var i in Value.Split(Separator.Value))
+                    yield return i.ToInt32();
             }
         }
 

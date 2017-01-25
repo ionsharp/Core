@@ -20,7 +20,7 @@ namespace Imagin.Common.Input
             }
         }
 
-        readonly object parameter;
+        object parameter;
         /// <summary>
         /// 
         /// </summary>
@@ -29,6 +29,10 @@ namespace Imagin.Common.Input
             get
             {
                 return parameter;
+            }
+            set
+            {
+                parameter = value;
             }
         }
 

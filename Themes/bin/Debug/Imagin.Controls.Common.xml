@@ -562,6 +562,7 @@
         <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate(System.Windows.Controls.ItemsControl,System.Action{System.Object,System.Windows.Controls.ItemsControl})">
             <summary>
             Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child.
+            <para>(recursive)</para>
             </summary>
             <param name="Control"></param>
             <param name="Action"></param>
@@ -569,23 +570,87 @@
         <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate(System.Windows.Controls.ItemsControl,System.Func{System.Object,System.Windows.Controls.ItemsControl,System.Nullable{System.Boolean}})">
             <summary>
             Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally).
+            <para>(recursive)</para>
             </summary>
             <param name="Control"></param>
             <param name="Action"></param>
         </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate(System.Windows.Controls.ItemsControl,System.Action{System.Object,System.Windows.Controls.ItemsControl},System.Int32[])">
+            <summary>
+            Enumerate given indices of <see cref="T:System.Windows.Controls.ItemsControl"/> and perform given action for each child.
+            <para>(recursive)</para>
+            </summary>
+            <param name="Control"></param>
+            <param name="Action"></param>
+            <param name="Indices"></param>
+        </member>
         <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate``1(System.Windows.Controls.ItemsControl,System.Action{``0,System.Windows.Controls.ItemsControl})">
             <summary>
             Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child.
+            <para>(recursive)</para>
             </summary>
             <param name="Control"></param>
             <param name="Action"></param>
         </member>
         <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate``1(System.Windows.Controls.ItemsControl,System.Func{``0,System.Windows.Controls.ItemsControl,System.Nullable{System.Boolean}})">
             <summary>
-            Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally).
+            Enumerate <see cref="T:System.Windows.Controls.ItemsControl"/> performing given action for each child; return false to continue (skip children, continue with next), null to break (skip everything else), or true (proceed normally). 
+            <para>(recursive)</para>
             </summary>
             <param name="Control"></param>
             <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.Enumerate``1(System.Windows.Controls.ItemsControl,System.Action{``0,System.Windows.Controls.ItemsControl},System.Int32[])">
+            <summary>
+            Enumerate given indices of <see cref="T:System.Windows.Controls.ItemsControl"/> and perform given action for each child. 
+            <para>(recursive)</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Control"></param>
+            <param name="Action"></param>
+            <param name="Indices"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.GetAllItems(System.Windows.Controls.ItemsControl,System.Collections.Generic.ICollection{System.Windows.Controls.TreeViewItem})">
+            <summary>
+            
+            </summary>
+            <param name="Control"></param>
+            <param name="AllItems"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.SelectItem(System.Windows.Controls.TreeView,System.Windows.Controls.TreeViewItem)">
+            <summary>
+            
+            </summary>
+            <param name="TreeView"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.SelectItems(System.Windows.Controls.TreeView,System.Windows.Controls.TreeViewItem)">
+            <summary>
+            
+            </summary>
+            <param name="TreeView"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.SelectItemsContinuously(System.Windows.Controls.TreeView,System.Windows.Controls.TreeViewItem,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="TreeView"></param>
+            <param name="TreeViewItem"></param>
+            <param name="ShiftControl"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.SelectItemsRandomly(System.Windows.Controls.TreeView,System.Windows.Controls.TreeViewItem)">
+            <summary>
+            
+            </summary>
+            <param name="TreeView"></param>
+            <param name="TreeViewItem"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TreeViewExtensions.SelectNone(System.Windows.Controls.ItemsControl)">
+            <summary>
+            
+            </summary>
+            <param name="Control"></param>
         </member>
         <member name="T:Imagin.Controls.Common.Extensions.TreeViewItemExtensions">
             <summary>
@@ -1484,10 +1549,103 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.PasswordBox">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.PasswordBox.CanEnterProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PasswordBox.CanEnter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.PasswordBox.DotForegroundProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PasswordBox.DotForeground">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.PasswordBox.DotSizeProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PasswordBox.DotSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.PasswordBox.DotSpacingProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PasswordBox.DotSpacing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.PasswordBox.HintProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PasswordBox.Hint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.PasswordBox.ShowEnterButtonProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PasswordBox.ShowEnterButton">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.PasswordBox.ShowPasswordProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PasswordBox.ShowPassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.PasswordBox.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Common.PasswordBox.OnTextChanged(System.Windows.Controls.TextChangedEventArgs)">
             <summary>
             When this.Text changes, set System.Windows.Controls.PasswordBox.Password.
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.PasswordBox.OnApplyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.PasswordBox.OnPreviewMouseLeftButtonDownHandled(System.Windows.Input.MouseButtonEventArgs,System.Type[])">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+            <param name="HandledTypes"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Controls.Common.IrrationalUpDown`1">
             <summary>

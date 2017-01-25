@@ -101,6 +101,7 @@
     <Compile Include="Extensions\Assembly.cs" />
     <Compile Include="Extensions\Brush.cs" />
     <Compile Include="Extensions\Decimal.cs" />
+    <Compile Include="Extensions\IEnumerable.cs" />
     <Compile Include="Extensions\IList.cs" />
     <Compile Include="Extensions\Int16.cs" />
     <Compile Include="%28Interfaces%29\I3Dimensional.cs" />

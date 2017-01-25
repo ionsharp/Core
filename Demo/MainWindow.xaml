@@ -15,12 +15,12 @@
     WindowStartupLocation="CenterScreen"
     x:Name="PART_MainWindow">
     <Controls.Common:BasicWindow.Resources>
-        <Common:ArrayToStringConverter x:Key="ArrayToStringConverter"/>
         <Common:ColorToHexConverter x:Key="ColorToHexConverter"/>
         <Common:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
         <Common:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
         <Common:FileNameConverter x:Key="FileNameConverter"/>
         <Common:FileSizeConverter x:Key="FileSizeConverter"/>
+        <Common:Int32ArrayToStringConverter x:Key="Int32ArrayToStringConverter"/>
         <Common:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
         <Common:BrushToColorConverter x:Key="BrushToColorConverter"/>
         
@@ -1281,6 +1281,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    
                     <StackPanel 
                         DataContext="{Binding ElementName=PART_TreeViewExt}" 
                         Orientation="Horizontal" 
@@ -1311,12 +1312,10 @@
                             IsChecked="{Binding Path=(Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled), Mode=TwoWay}"/>
 
                         <Controls.Common:TextBoxExt
-                            IsReadOnly="True"
                             MinWidth="75"
-                            Text="{Binding SelectedIndex, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ArrayToStringConverter}, ConverterParameter=\,}"
+                            Text="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Int32ArrayToStringConverter}, ConverterParameter=\,}"
                             ToolTip="SelectedIndex"/>
                     </StackPanel>
-
                     <Controls.Common:TreeViewExt 
                         Grid.Row="1"
                         x:Name="PART_TreeViewExt"

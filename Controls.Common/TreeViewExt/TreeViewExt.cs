@@ -336,6 +336,28 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
+        static IEnumerable<int> GetSelectedIndex(TreeViewItem Item)
+        {
+            var Source = Item.To<ItemsControl>();
+            var Parent = default(ItemsControl);
+
+            while (true)
+            {
+                Parent = Source.As<DependencyObject>().GetParent<ItemsControl>();
+
+                if (Parent != null)
+                {
+                    yield return Parent.Items.IndexOf(Source.DataContext);
+                    Source = Parent;
+                }
+
+                if (Parent == null || Parent is TreeView)
+                    break;
+            }
+
+            yield break;
+        }
+
         static void OnGotFocus(object sender, RoutedEventArgs e)
         {
             SelectedItemOnMouseUp = null;
@@ -388,8 +410,8 @@ namespace Imagin.Controls.Common
                 if (Items.Count > 0)
                 {
                     var Result = default(object);
-                    //TO-DO: Find object based on given index
-                    //SelectedObject = Result;
+                    this.Enumerate((i, j) => Result = i, Value);
+                    SelectedObject = Result;
                 }
             }
         }
@@ -421,31 +443,9 @@ namespace Imagin.Controls.Common
 
                 if (SelectedVisual != null)
                 {
-                    var m = new List<int>();
-
-                    var c = SelectedVisual.To<ItemsControl>();
-                    var p = default(ItemsControl);
-
-                    while (true)
-                    {
-                        p = c.As<DependencyObject>().GetParent<ItemsControl>();
-
-                        if (p != null)
-                        {
-                            m.Add(p.Items.IndexOf(c.DataContext));
-                            c = p;
-                        }
-                        if (p == null || p is TreeView)
-                            break;
-                    }
-
                     SelectedIndexChangeHandled = true;
-                    SelectedIndex = m.Reverse<int>().ToArray<int>();
+                    SelectedIndex = GetSelectedIndex(SelectedVisual).Reverse<int>().ToArray<int>();
                     SelectedIndexChangeHandled = false;
-                }
-                else
-                {
-                    Console.WriteLine("SelectedVisual == null");
                 }
             }
         }
