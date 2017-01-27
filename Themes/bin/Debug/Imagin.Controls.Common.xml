@@ -2292,6 +2292,93 @@
             Occurs when the value changes.
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.DoubleUpDown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DoubleUpDown.AbsoluteMaximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DoubleUpDown.AbsoluteMinimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DoubleUpDown.DefaultIncrement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DoubleUpDown.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.GetValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.ToString(System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.CanIncrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.CanDecrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.OnMaximumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.OnMinimumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.OnValueCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.Increase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleUpDown.Decrease">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.BasicWindow">
             <summary>
             

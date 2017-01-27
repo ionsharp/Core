@@ -1,10 +1,10 @@
-﻿using Imagin.Common.Extensions;
+﻿using Imagin.Common.Drawing;
+using Imagin.Common.Extensions;
 using System;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended.Primitives
 {
-    [Serializable]
     /// <summary>
     /// Structure to define CIE XYZ.
     /// </summary>
@@ -31,40 +31,160 @@ namespace Imagin.Controls.Extended.Primitives
     /// 
     /// This structure supports Observer = 2°, Illuminant = D65 by default.
     /// </remarks>
+    [Serializable]
     public struct Xyz
     {
         #region Properties
 
-        public static readonly double[] A = new double[] { 1.0985, 1.0, 0.3558 };
-
-        public static readonly double[] C = new double[] { 0.9807, 1.0, 1.1822 };
-
-        public static readonly double[] E = new double[] { 1.0, 1.0, 1.0 };
-
-        public static readonly double[] D50 = new double[] { 0.9642, 1.0, 0.8251 };
-
-        public static readonly double[] D55 = new double[] { 0.9568, 1.0, 0.9214 };
-
-        public static readonly double[] D65 = new double[] { 0.95047, 1.0, 1.08883 };
-
-        public static readonly double[] ICC = new double[] { 0.962, 1.0, 0.8249 };
-
-        public struct MaxValue
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum Component
         {
-            public static double X = E[0];
-
-            public static double Y = E[1];
-
-            public static double Z = E[2];
+            /// <summary>
+            /// 
+            /// </summary>
+            X,
+            /// <summary>
+            /// 
+            /// </summary>
+            Y,
+            /// <summary>
+            /// 
+            /// </summary>
+            Z
         }
 
+        static MaxValue maxValue = new MaxValue();
+        /// <summary>
+        /// 
+        /// </summary>
+        public static MaxValue Max
+        {
+            get
+            {
+                return maxValue;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public struct MaxValue
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Component"></param>
+            /// <param name="Illuminant"></param>
+            /// <returns></returns>
+            public double this[Component Component, Illuminant Illuminant]
+            {
+                get
+                {
+                    switch (Illuminant)
+                    {
+                        case Illuminant.A:
+                            switch (Component)
+                            {
+                                case Component.X:
+                                    return 1.0985;
+                                case Component.Y:
+                                    return 1d;
+                                case Component.Z:
+                                    return 0.3558;
+                            }
+                            break;
+                        case Illuminant.C:
+                            switch (Component)
+                            {
+                                case Component.X:
+                                    return 0.9807;
+                                case Component.Y:
+                                    return 1d;
+                                case Component.Z:
+                                    return 1.1822;
+                            }
+                            break;
+                        case Illuminant.E:
+                            switch (Component)
+                            {
+                                case Component.X:
+                                    return 1d;
+                                case Component.Y:
+                                    return 1d;
+                                case Component.Z:
+                                    return 1d;
+                            }
+                            break;
+                        case Illuminant.D50:
+                            switch (Component)
+                            {
+                                case Component.X:
+                                    return 0.9642;
+                                case Component.Y:
+                                    return 1d;
+                                case Component.Z:
+                                    return 0.8251;
+                            }
+                            break;
+                        case Illuminant.D55:
+                            switch (Component)
+                            {
+                                case Component.X:
+                                    return 0.9568;
+                                case Component.Y:
+                                    return 1d;
+                                case Component.Z:
+                                    return 0.9214;
+                            }
+                            break;
+                        case Illuminant.ICC:
+                            switch (Component)
+                            {
+                                case Component.X:
+                                    return 0.962;
+                                case Component.Y:
+                                    return 1d;
+                                case Component.Z:
+                                    return 0.8249;
+                            }
+                            break;
+                        case Illuminant.D65:
+                        default:
+                            switch (Component)
+                            {
+                                case Component.X:
+                                    return 0.95047;
+                                case Component.Y:
+                                    return 1d;
+                                case Component.Z:
+                                    return 1.08883;
+                            }
+                            break;
+                    }
+                    return 0d;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MinValue
         {
-            public static double X = 0.0;
-
-            public static double Y = 0.0;
-
-            public static double Z = 0.0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double X = 0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double Y = 0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double Z = 0;
         }
 
         double x;
@@ -75,11 +195,11 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.x;
+                return x;
             }
             set
             {
-                this.x = value.Coerce(Xyz.MaxValue.X, Xyz.MinValue.X);
+                x = value.Coerce(Max[Component.X, Illuminant], MinValue.X);
             }
         }
 
@@ -91,11 +211,11 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.y;
+                return y;
             }
             set
             {
-                this.y = value.Coerce(Xyz.MaxValue.Y, Xyz.MinValue.Y);
+                y = value.Coerce(Max[Component.Y, Illuminant], MinValue.Y);
             }
         }
 
@@ -107,11 +227,27 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.z;
+                return z;
             }
             set
             {
-                this.z = value.Coerce(Xyz.MaxValue.Z, Xyz.MinValue.Z);
+                z = value.Coerce(Max[Component.Z, Illuminant], MinValue.Z);
+            }
+        }
+
+        Illuminant illuminant;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Illuminant Illuminant
+        {
+            get
+            {
+                return illuminant;
+            }
+            set
+            {
+                illuminant = value;
             }
         }
 
@@ -119,63 +255,111 @@ namespace Imagin.Controls.Extended.Primitives
 
         #region Xyz
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator ==(Xyz a, Xyz b)
         {
             return a.X == b.X && a.Y == b.Y && a.Z == b.Z;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator !=(Xyz a, Xyz b)
         {
             return a.X != b.X || a.Y != b.Y || a.Z != b.Z;
         }
 
         /// <summary>
-        /// Creates an instance of a Xyz structure.
+        /// Creates an instance of the <see cref="Xyz"/> structure.
         /// </summary>
-        public Xyz(double X, double Y, double Z)
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <param name="Illuminant"></param>
+        public Xyz(double X, double Y, double Z, Illuminant Illuminant = Illuminant.Default)
         {
-            this.x = X.Coerce(Xyz.MaxValue.X, Xyz.MinValue.X);
-            this.y = Y.Coerce(Xyz.MaxValue.Y, Xyz.MinValue.Y);
-            this.z = Z.Coerce(Xyz.MaxValue.Z, Xyz.MinValue.Z);
+            illuminant = Illuminant;
+
+            x = X.Coerce(Max[Component.X, Illuminant], MinValue.X);
+            y = Y.Coerce(Max[Component.Y, Illuminant], MinValue.Y);
+            z = Z.Coerce(Max[Component.Z, Illuminant], MinValue.Z);
         }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <returns></returns>
         public override bool Equals(Object Object)
         {
-            if (Object == null || GetType() != Object.GetType()) return false;
-
-            return (this == (Xyz)Object);
+            return Object == null || GetType() != Object.GetType() ? false : this == (Xyz)Object;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
-            return X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode();
+            return x.GetHashCode() ^ y.GetHashCode() ^ z.GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("X => {0}, Y => {1}, Z => {2}", this.X.ToString(), this.Y.ToString(), this.Z.ToString());
+            return "X => {0}, Y => {1}, Z => {2}".F(x, y, z);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public static double Fxyz(double t)
         {
-            return ((t > 0.008856) ? Math.Pow(t, (1.0 / 3.0)) : (7.787 * t + 16.0 / 116.0));
+            return t > 0.008856 ? Math.Pow(t, (1.0 / 3.0)) : 7.787 * t + 16.0 / 116.0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Color"></param>
+        /// <returns></returns>
         public static Xyz FromColor(Color Color)
         {
-            return Xyz.FromRgba(Color.R, Color.G, Color.B, Color.A);
+            return FromRgba(Color.R, Color.G, Color.B, Color.A);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="R"></param>
+        /// <param name="G"></param>
+        /// <param name="B"></param>
+        /// <param name="A"></param>
+        /// <returns></returns>
         public static Xyz FromRgba(byte R, byte G, byte B, byte A = 255)
         {
-            double[] Rgb = new double[3];
-            Rgb[0] = R.ToDouble() / 255.0;
-            Rgb[1] = G.ToDouble() / 255.0;
-            Rgb[2] = B.ToDouble() / 255.0;
+            var Rgb = new double[3];
+
+            Rgb[0] = R.ToDouble() / 255d;
+            Rgb[1] = G.ToDouble() / 255d;
+            Rgb[2] = B.ToDouble() / 255d;
 
             for (int i = 0; i < 3; i++)
                 Rgb[i] = Rgb[i] > 0.04045 ? Math.Pow((Rgb[i] + 0.055) / 1.055, 2.4) : Rgb[i] / 12.92;
@@ -187,11 +371,25 @@ namespace Imagin.Controls.Extended.Primitives
             return new Xyz(x, y, z);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         public static Color ToColor(double x, double y, double z)
         {
-            return Xyz.ToRgba(x, y, z).ToColor();
+            return ToRgba(x, y, z).ToColor();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         public static Rgba ToRgba(double x, double y, double z)
         {
             double[] Clinear = new double[3];
@@ -202,8 +400,8 @@ namespace Imagin.Controls.Extended.Primitives
             for (int i = 0; i < 3; i++)
             {
                 Clinear[i] = (Clinear[i] <= 0.0031308) ? 12.92 * Clinear[i] : (1.055 * Math.Pow(Clinear[i], 1.0 / 2.4)) - 0.055;
-                Clinear[i] = Math.Round(Clinear[i] * 255.0);
-                Clinear[i] = Clinear[i].Coerce(255.0);
+                Clinear[i] = Math.Round(Clinear[i] * 255d);
+                Clinear[i] = Clinear[i].Coerce(255d);
             }
             return new Rgba(Clinear[0].ToInt32(), Clinear[1].ToInt32(), Clinear[2].ToInt32());
         }

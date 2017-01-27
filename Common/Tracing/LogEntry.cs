@@ -32,8 +32,8 @@
             }
         }
 
-        LogEntryStatus status = LogEntryStatus.Info;
-        public LogEntryStatus Status
+        LogEntryKind status = LogEntryKind.Info;
+        public LogEntryKind Status
         {
             get
             {
@@ -74,14 +74,14 @@
             this.Message = Message;
         }
 
-        public LogEntry(LogEntryStatus Status, string Source, string Message) : base()
+        public LogEntry(LogEntryKind Status, string Source, string Message) : base()
         {
             this.Status = Status;
             this.Host = Source;
             this.Message = Message;
         }
 
-        public LogEntry(WarningLevel WarningLevel, LogEntryStatus Status, string Source, string Message) : base()
+        public LogEntry(WarningLevel WarningLevel, LogEntryKind Status, string Source, string Message) : base()
         {
             this.WarningLevel = WarningLevel;
             this.Status = Status;

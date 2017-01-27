@@ -4,29 +4,49 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Extended.Primitives
 {
-    [Serializable]
     /// <summary>
     /// Structure to define HSL.
     /// </summary>
+    [Serializable]
     public struct Hsl
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MaxValue
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public static double H = 1.0;
-
+            /// <summary>
+            /// 
+            /// </summary>
             public static double S = 1.0;
-
+            /// <summary>
+            /// 
+            /// </summary>
             public static double B = 1.0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MinValue
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public static double H = 0;
-
+            /// <summary>
+            /// 
+            /// </summary>
             public static double S = 0;
-
+            /// <summary>
+            /// 
+            /// </summary>
             public static double B = 0;
         }
 
@@ -42,7 +62,7 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                h = Coerce(value, 1.0);
+                h = value.Coerce(1d);
             }
         }
 
@@ -58,7 +78,7 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                s = Coerce(value, 1.0);
+                s = value.Coerce(1d);
             }
         }
 
@@ -74,7 +94,7 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                l = Coerce(value, 1.0);
+                l = value.Coerce(1d);
             }
         }
 
@@ -82,66 +102,118 @@ namespace Imagin.Controls.Extended.Primitives
 
         #region Hsl
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator ==(Hsl a, Hsl b)
         {
             return a.H == b.H && a.S == b.S && a.L == b.L;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator !=(Hsl a, Hsl b)
         {
             return a.H != b.H || a.S != b.S || a.L != b.L;
         }
 
         /// <summary>
-        /// Creates an instance of a Hsl structure.
+        /// Creates an instance of the <see cref="Hsl"/> structure.
         /// </summary>
+        /// <param name="H"></param>
+        /// <param name="S"></param>
+        /// <param name="L"></param>
         public Hsl(double H, double S, double L)
         {
-            this.h = Coerce(H, 1.0);
-            this.s = Coerce(S, 1.0);
-            this.l = Coerce(L, 1.0);
+            h = H.Coerce(1d);
+            s = S.Coerce(1d);
+            l = L.Coerce(1d);
         }
 
         #endregion
 
         #region Methods
 
-        public static double Coerce(double ToCoerce, double Max)
-        {
-            return ToCoerce > Max ? Max : (ToCoerce < 0.0 ? 0.0 : ToCoerce);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <returns></returns>
         public override bool Equals(Object Object)
         {
-            if (Object == null || GetType() != Object.GetType()) return false;
-            return (this == (Hsl)Object);
+            return Object == null || GetType() != Object.GetType() ? false : this == (Hsl)Object;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
-            return this.H.GetHashCode() ^ this.S.GetHashCode() ^ L.GetHashCode();
+            return h.GetHashCode() ^ s.GetHashCode() ^ l.GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return "H => {0}, S => {1}, L => {2}".F(h, s, l);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="q"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
         static double Frgb(double p, double q, double t)
         {
             if (t < 0.0)
                 t += 1.0;
+
             if (t > 1.0)
                 t -= 1.0;
+
             if (t < 1.0 / 6.0)
                 return p + (q - p) * 6.0 * t;
+
             if (t < 1.0 / 2.0)
                 return q;
+
             if (t < 2.0 / 3.0)
                 return p + (q - p) * (2.0 / 3.0 - t) * 6.0;
+
             return p;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Color"></param>
+        /// <returns></returns>
         public static Hsl FromColor(Color Color)
         {
-            return Hsl.FromRgba(Color.R, Color.G, Color.B);
+            return FromRgba(Color.R, Color.G, Color.B);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="R"></param>
+        /// <param name="G"></param>
+        /// <param name="B"></param>
+        /// <param name="A"></param>
+        /// <returns></returns>
         public static Hsl FromRgba(byte R, byte G, byte B, byte A = 255)
         {
             double r = R.ToDouble() / 255.0, g = G.ToDouble() / 255.0, b = B.ToDouble() / 255.0;
@@ -150,7 +222,9 @@ namespace Imagin.Controls.Extended.Primitives
             double h = 0, s = 0, l = (max + min) / 2d;
             var d = max - min;
             if (d == 0)
+            {
                 h = s = 0;
+            }
             else
             {
                 s = l > 0.5 ? d / (2d - max - min) : d / (max + min);
@@ -173,29 +247,45 @@ namespace Imagin.Controls.Extended.Primitives
             return new Hsl(h, s, l);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="h"></param>
+        /// <param name="s"></param>
+        /// <param name="l"></param>
+        /// <returns></returns>
         public static Color ToColor(double h, double s, double l)
         {
-            return Hsl.ToRgba(h, s, l).ToColor();
+            return ToRgba(h, s, l).ToColor();
         }
 
-        public static Rgba ToRgba(double hue, double saturation, double lightness)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="h"></param>
+        /// <param name="s"></param>
+        /// <param name="l"></param>
+        /// <returns></returns>
+        public static Rgba ToRgba(double h, double s, double l)
         {
-            double r = 0.0, g = 0.0, b = 0.0;
-            if (saturation == 0.0)
-                r = g = b = lightness;
+            double r = 0, g = 0, b = 0;
+            if (s == 0)
+            {
+                r = g = b = l;
+            }
             else
             {
-                double q = lightness <= 0.5 ? lightness * (1.0 + saturation) : lightness + saturation - (lightness * saturation);
-                double p = 2.0 * lightness - q;
+                var q = l <= 0.5 ? l * (1d + s) : l + s - (l * s);
+                var p = 2d * l - q;
 
-                r = Hsl.Frgb(p, q, hue + 1.0 / 3.0);
-                g = Hsl.Frgb(p, q, hue);
-                b = Hsl.Frgb(p, q, hue - 1.0 / 3.0);
+                r = Frgb(p, q, h + 1d / 3d);
+                g = Frgb(p, q, h);
+                b = Frgb(p, q, h - 1d / 3d);
             }
 
-            r = (r * 255.0).Round().Coerce(255.0);
-            g = (g * 255.0).Round().Coerce(255.0);
-            b = (b * 255.0).Round().Coerce(255.0);
+            r = (r * Rgba.MaxValue).Round().Coerce(Rgba.MaxValue);
+            g = (g * Rgba.MaxValue).Round().Coerce(Rgba.MaxValue);
+            b = (b * Rgba.MaxValue).Round().Coerce(Rgba.MaxValue);
 
             return new Rgba(r.ToInt32(), g.ToInt32(), b.ToInt32(), 255);
         }

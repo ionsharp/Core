@@ -1,9 +1,24 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ColorExtensions
     {
+        /// <summary>
+        /// Gets distance to a color from given color.
+        /// </summary>
+        /// <param name="First"></param>
+        /// <param name="Second"></param>
+        /// <returns></returns>
+        public static double DistanceFrom(this Color First, Color Second)
+        {
+            return Math.Sqrt(Math.Pow(First.R - Second.R, 2) + Math.Pow(First.G - Second.G, 2) + Math.Pow(First.B - Second.B, 2));
+        }
+
         /// <summary>
         /// Converts color to hex string without alpha component.
         /// </summary>

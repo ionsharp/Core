@@ -283,36 +283,61 @@
                             Click="OnColorSelected"/>
 
                         <Controls.Common:AdvancedComboBox
+                            ItemsSource="{Binding Source={x:Type Common:ObserverAngle}, Converter={StaticResource EnumToCollectionConverter}}"
+                            SelectedValue="{Binding Observer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="Observer"/>
+
+                        <Controls.Common:AdvancedComboBox
+                            ItemsSource="{Binding Source={x:Type Common:Illuminant}, Converter={StaticResource EnumToCollectionConverter}}"
+                            SelectedValue="{Binding Illuminant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="Illuminant"/>
+
+                        <Controls.Common:AdvancedComboBox
                             ItemsSource="{Binding Source={x:Type Controls.Extended:ColorSelectorRing}, Converter={StaticResource EnumToCollectionConverter}}"
-                            SelectedValue="{Binding SelectionRing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            SelectedValue="{Binding SelectionRing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="SelectionRing"/>
 
                         <Controls.Common:ByteUpDown
                             Text="{Binding Alpha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="Alpha"/>
+
+                        <Controls.Common:TextBoxExt
+                            Text="{Binding ComponentStringFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="ComponentStringFormat"/>
+
+                        <Controls.Common:DoubleUpDown
+                            Text="{Binding ComponentValueWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="ComponentValueWidth"/>
                         
                         <Controls.Common:DoubleUpDown
-                            Text="{Binding ComponentsWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            ToolTip="Components Width"/>
+                            Text="{Binding ComponentWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="ComponentWidth"/>
 
                         <CheckBox 
-                            Content="Is Async" 
+                            Content="CanUpDownComponents" 
+                            IsChecked="{Binding CanUpDownComponents}"/>
+                        <CheckBox 
+                            Content="IsAsync" 
                             IsChecked="{Binding IsAsync}"/>
                         <CheckBox 
-                            Content="Show Slider" 
+                            Content="ShowSlider" 
                             IsChecked="{Binding ShowSlider}"/>
                         <CheckBox 
-                            Content="Show Alpha" 
+                            Content="ShowAlpha" 
                             IsChecked="{Binding ShowAlpha}"/>
                         <CheckBox 
                             Content="Show Components" 
                             IsChecked="{Binding ShowComponents}"/>
                         <CheckBox 
-                            Content="Show New/Current" 
+                            Content="ShowNewCurrent" 
                             IsChecked="{Binding ShowNewCurrent}"/>
                     </StackPanel>
                     <Controls.Extended:ColorPicker
                         Grid.Row="1"
-                        x:Name="PART_ColorPicker"
+                        x:Name="PART_ColorPicker"                
+                        BorderBrush="#11000000"
+                        BorderThickness="1"
+                        Padding="15,10"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"/>
                 </Grid>

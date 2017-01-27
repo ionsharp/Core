@@ -81,8 +81,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="%28Pickers%29\IBrushPicker.cs" />
-    <Compile Include="%28Pickers%29\AnglePicker.cs" />
+    <Compile Include="ColorPicker\%28Models%29\ColorSpaceModel.Generic.cs" />
+    <Compile Include="ColorPicker\ColorSpaceCollection.cs" />
+    <Compile Include="ColorSelectorRing.cs" />
+    <Compile Include="IBrushPicker.cs" />
+    <Compile Include="AnglePicker.cs" />
     <Compile Include="%28Chips%29\ChipBase.cs" />
     <Compile Include="%28Chips%29\Chip.Generic.cs" />
     <Compile Include="%28Chips%29\ColorChip.cs" />
@@ -91,16 +94,16 @@
       <DependentUpon>CollectionEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorComb.cs" />
-    <Compile Include="%28Pickers%29\AlphaSlider.xaml.cs">
+    <Compile Include="AlphaSlider.xaml.cs">
       <DependentUpon>AlphaSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="%28Pickers%29\ColorPicker\ColorPicker.xaml.cs">
+    <Compile Include="ColorPicker\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="%28Pickers%29\ColorSelector.xaml.cs">
+    <Compile Include="ColorSelector.xaml.cs">
       <DependentUpon>ColorSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\LuvModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\LuvModel.cs" />
     <Compile Include="%28Dialogs%29\BrushDialog.Generic.cs" />
     <Compile Include="%28Dialogs%29\SolidColorBrushDialog.cs" />
     <Compile Include="%28Dialogs%29\BrushDialog.cs" />
@@ -113,21 +116,20 @@
     <Compile Include="%28Dialogs%29\ColorDialog.xaml.cs">
       <DependentUpon>ColorDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="%28Pickers%29\ColorPicker\%28Views%29\ColorSpaceView.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\ComponentCollection.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\CmykModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Components%29\ComponentModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Views%29\ComponentView.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\ColorSpaceModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\HsbModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\HslModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\LabModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\LchModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\RgbModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Colors%29\XyzModel.cs" />
-    <Compile Include="%28Pickers%29\ColorPicker\%28Models%29\%28Components%29\NormalComponentModel.cs" />
-    <Compile Include="Primitives\Luv.cs" />
-    <Compile Include="%28Pickers%29\GradientPicker.xaml.cs">
+    <Compile Include="ColorPicker\%28Views%29\ColorSpaceView.cs" />
+    <Compile Include="ColorPicker\ComponentCollection.cs" />
+    <Compile Include="ColorPicker\%28Models%29\CmykModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\ComponentModel.cs" />
+    <Compile Include="ColorPicker\%28Views%29\ComponentView.cs" />
+    <Compile Include="ColorPicker\%28Models%29\ColorSpaceModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\HsbModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\HslModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\LabModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\LchModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\RgbModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\XyzModel.cs" />
+    <Compile Include="ColorPicker\%28Models%29\NormalComponentModel.cs" />
+    <Compile Include="GradientPicker.xaml.cs">
       <DependentUpon>GradientPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="%28Dialogs%29\GradientDialog.xaml.cs">
@@ -137,17 +139,9 @@
     <Compile Include="%28Chips%29\DualColorChip.xaml.cs">
       <DependentUpon>DualColorChip.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Primitives\Cmyk.cs" />
-    <Compile Include="Primitives\Hsb.cs" />
-    <Compile Include="Primitives\Hsl.cs" />
-    <Compile Include="Primitives\Lab.cs" />
-    <Compile Include="Primitives\Lch.cs" />
-    <Compile Include="Primitives\Rgba.cs" />
-    <Compile Include="Primitives\Xyz.cs" />
     <Compile Include="NewCurrent.xaml.cs">
       <DependentUpon>NewCurrent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorSpace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyGrid\%28Models%29\PropertyModel.Generic.cs" />
     <Compile Include="PropertyGrid\%28Models%29\CoercedPropertyModel.cs" />
@@ -167,15 +161,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="%28Pickers%29\AlphaSlider.xaml">
+    <Page Include="AlphaSlider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="%28Pickers%29\ColorPicker\ColorPicker.xaml">
+    <Page Include="ColorPicker\ColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="%28Pickers%29\ColorSelector.xaml">
+    <Page Include="ColorSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -191,11 +185,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="%28Pickers%29\ColorPicker\%28Resources%29\Slider.xaml">
+    <Page Include="ColorPicker\%28Resources%29\Slider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="%28Pickers%29\GradientPicker.xaml">
+    <Page Include="GradientPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -233,7 +227,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="%28Pickers%29\ColorPicker\ClassDiagram.cd" />
+    <None Include="ColorPicker\ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

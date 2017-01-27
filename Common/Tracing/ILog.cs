@@ -18,30 +18,32 @@ namespace Imagin.Common.Tracing
         /// 
         /// </summary>
         /// <param name="Message"></param>
-        void Write(string Message);
+        /// <param name="Kind"></param>
+        void Write(string Message, LogEntryKind Kind);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Level"></param>
+        /// <param name="Kind"></param>
+        void Write(string Message, WarningLevel Level = WarningLevel.Moderate, LogEntryKind Kind = LogEntryKind.Info);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Source"></param>
         /// <param name="Message"></param>
-        void Write(string Source, string Message);
+        /// <param name="Kind"></param>
+        void Write(string Source, string Message, LogEntryKind Kind);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Status"></param>
         /// <param name="Source"></param>
         /// <param name="Message"></param>
-        void Write(LogEntryStatus Status, string Source, string Message);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="WarningLevel"></param>
-        /// <param name="Status"></param>
-        /// <param name="Source"></param>
-        /// <param name="Message"></param>
-        void Write(WarningLevel WarningLevel, LogEntryStatus Status, string Source, string Message);
+        /// <param name="Level"></param>
+        /// <param name="Kind"></param>
+        void Write(string Source, string Message, WarningLevel Level = WarningLevel.Moderate, LogEntryKind Kind = LogEntryKind.Info);
     }
 }

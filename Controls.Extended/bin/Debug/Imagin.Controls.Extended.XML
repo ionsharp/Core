@@ -4,6 +4,64 @@
         <name>Imagin.Controls.Extended</name>
     </assembly>
     <members>
+        <member name="T:Imagin.Controls.Extended.ColorSpaceModel`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceModel`1.GetColor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceModel`1.GetValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceModel`1.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceModel`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorSpaceCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorSelectorRing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.White">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.Black">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.BlackAndWhite">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.BlackOrWhite">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Extended.ChipBase">
             <summary>
             A chip for displaying and selecting a brush.
@@ -265,6 +323,11 @@
             
             </summary>
         </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.DefaultModels">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Extended.ColorPicker.SelectionRing">
             <summary>
             
@@ -280,12 +343,52 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Extended.ColorPicker.ComponentsWidthProperty">
+        <member name="F:Imagin.Controls.Extended.ColorPicker.CanUpDownComponentsProperty">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.ColorPicker.ComponentsWidth">
+        <member name="P:Imagin.Controls.Extended.ColorPicker.CanUpDownComponents">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ComponentStringFormatProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.ComponentStringFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ComponentValueWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.ComponentValueWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ComponentWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.ComponentWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.IlluminantProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.Illuminant">
             <summary>
             
             </summary>
@@ -316,6 +419,16 @@
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.ColorPicker.Models">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorPicker.ObserverProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorPicker.Observer">
             <summary>
             
             </summary>
@@ -375,18 +488,24 @@
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.ColorPicker.OnInitialColorChanged(System.Windows.Media.Color)">
-            <summary>
-            
-            </summary>
-            <param name="Value"></param>
-        </member>
-        <member name="M:Imagin.Controls.Extended.ColorPicker.OnLayoutUpdated(System.Object,System.EventArgs)">
+        <member name="M:Imagin.Controls.Extended.ColorPicker.OnColorSpaceAdded(System.Object,Imagin.Common.Input.EventArgs{Imagin.Controls.Extended.ColorSpaceModel})">
             <summary>
             
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorPicker.OnComponentSelected(Imagin.Common.Input.SelectedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorPicker.OnInitialColorChanged(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
         </member>
         <member name="M:Imagin.Controls.Extended.ColorPicker.OnSelectedColorChanged(System.Windows.Media.Color)">
             <summary>
@@ -411,37 +530,22 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Extended.ColorSelectorRing">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.White">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.Black">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.BlackAndWhite">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelectorRing.BlackOrWhite">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Imagin.Controls.Extended.ColorSelector">
             <summary>
             
             </summary>
             <summary>
             ColorSelector
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.AlphaProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.Alpha">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:Imagin.Controls.Extended.ColorSelector.ColorProperty">
@@ -454,12 +558,42 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelector.NormalComponentProperty">
+        <member name="F:Imagin.Controls.Extended.ColorSelector.IlluminantProperty">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.ColorSelector.NormalComponent">
+        <member name="P:Imagin.Controls.Extended.ColorSelector.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.SelectedComponentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.SelectedComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.ModelsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.Models">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSelector.ObserverProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSelector.Observer">
             <summary>
             
             </summary>
@@ -470,16 +604,6 @@
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.ColorSelector.SelectionRing">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.ColorSelector.AlphaProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.ColorSelector.Alpha">
             <summary>
             
             </summary>
@@ -538,7 +662,13 @@
             <param name="OldValue"></param>
             <param name="NewValue"></param>
         </member>
-        <member name="M:Imagin.Controls.Extended.ColorSelector.OnComponentChanged(Imagin.Controls.Extended.NormalComponentModel)">
+        <member name="M:Imagin.Controls.Extended.ColorSelector.OnIlluminantChanged(Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSelector.OnSelectedComponentChanged(Imagin.Controls.Extended.SelectableComponentModel)">
             <summary>
             
             </summary>
@@ -560,7 +690,7 @@
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.LuvModel.GetColor">
+        <member name="M:Imagin.Controls.Extended.LuvModel.GetValue">
             <summary>
             
             </summary>
@@ -576,15 +706,209 @@
             
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.LComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.LComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LuvModel.LComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LuvModel.LComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.LComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.LComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.LComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.LComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.LComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.LComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.LuvModel.UComponent">
             <summary>
             
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.UComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.UComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LuvModel.UComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.UComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.UComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.UComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.UComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.UComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.UComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.LuvModel.VComponent">
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.VComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.VComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LuvModel.VComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.VComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.VComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.VComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.VComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.VComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LuvModel.VComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.Lang.Main">
             <summary>
@@ -707,6 +1031,59 @@
             
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Extended.ColorSpaceView.ColorSpaceProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSpaceView.ColorSpace">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSpaceView.IlluminantProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSpaceView.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.ColorSpaceView.ObserverProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSpaceView.Observer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceView.OnColorSpaceChanged(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceView.OnIlluminantChanged(Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceView.OnObserverChanged(Imagin.Common.Drawing.ObserverAngle)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.ComponentCollection">
             <summary>
             
@@ -725,7 +1102,7 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Extended.CmykModel" -->
-        <member name="M:Imagin.Controls.Extended.CmykModel.GetColor">
+        <member name="M:Imagin.Controls.Extended.CmykModel.GetValue">
             <summary>
             
             </summary>
@@ -736,22 +1113,45 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Extended.CmykModel.CmykComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.CmykComponent.CanSelect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.CmykComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.CmykComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CmykModel.CmykComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.CmykComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.CmykModel.CComponent">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.CmykModel.CComponent.CanSelect">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Imagin.Controls.Extended.CmykModel.CComponent.ComponentLabel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.CmykModel.CComponent.UnitLabel">
             <summary>
             
             </summary>
@@ -763,22 +1163,18 @@
             <param name="Color"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.CComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.CmykModel.MComponent">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.CmykModel.MComponent.CanSelect">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Imagin.Controls.Extended.CmykModel.MComponent.ComponentLabel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.CmykModel.MComponent.UnitLabel">
             <summary>
             
             </summary>
@@ -790,22 +1186,18 @@
             <param name="Color"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.MComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.CmykModel.YComponent">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.CmykModel.YComponent.CanSelect">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Imagin.Controls.Extended.CmykModel.YComponent.ComponentLabel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.CmykModel.YComponent.UnitLabel">
             <summary>
             
             </summary>
@@ -817,22 +1209,18 @@
             <param name="Color"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.YComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.CmykModel.KComponent">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.CmykModel.KComponent.CanSelect">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Imagin.Controls.Extended.CmykModel.KComponent.ComponentLabel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.CmykModel.KComponent.UnitLabel">
             <summary>
             
             </summary>
@@ -843,6 +1231,12 @@
             </summary>
             <param name="Color"></param>
             <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CmykModel.KComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.ComponentModel">
             <summary>
@@ -859,17 +1253,22 @@
             
             </summary>
         </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.ColorSpace">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.Observer">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Extended.ComponentModel.ComponentLabel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.ComponentModel.UnitLabel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.ComponentModel.CanSelect">
             <summary>
             
             </summary>
@@ -884,14 +1283,24 @@
             The smallest possible value for a component (value when slider at bottom)
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.ComponentModel.Value">
+        <member name="P:Imagin.Controls.Extended.ComponentModel.CanSelect">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.ComponentModel.GetValue(System.Windows.Media.Color)">
+        <member name="P:Imagin.Controls.Extended.ComponentModel.Increment">
             <summary>
-            The value of the component for a given color
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ComponentModel.Value">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.ComponentModel.GetHashCode">
@@ -900,13 +1309,36 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Controls.Extended.ComponentModel.SetValue(System.Windows.Media.Color)">
+        <member name="M:Imagin.Controls.Extended.ComponentModel.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentModel.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentModel.GetValue(System.Windows.Media.Color)">
+            <summary>
+            The value of the component for a given color
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentModel.BeginSet(System.Windows.Media.Color)">
             <summary>
             
             </summary>
             <param name="Color"></param>
         </member>
-        <member name="M:Imagin.Controls.Extended.ComponentModel.#ctor">
+        <member name="M:Imagin.Controls.Extended.ComponentModel.Set(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ComponentModel.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
             <summary>
             
             </summary>
@@ -971,29 +1403,44 @@
             
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.ComponentView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Extended.ComponentView.OnColorChanged(System.Windows.Media.Color)">
             <summary>
             
             </summary>
             <param name="Value"></param>
         </member>
-        <member name="M:Imagin.Controls.Extended.ComponentView.OnValueChanged(System.Int32)">
+        <member name="M:Imagin.Controls.Extended.ComponentView.OnValueChanged(System.Double)">
             <summary>
             
             </summary>
             <param name="Value"></param>
-        </member>
-        <member name="M:Imagin.Controls.Extended.ComponentView.#ctor">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:Imagin.Controls.Extended.ColorSpaceModel">
             <summary>
             
             </summary>
         </member>
+        <member name="E:Imagin.Controls.Extended.ColorSpaceModel.Selected">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Extended.ColorSpaceModel.Components">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSpaceModel.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.ColorSpaceModel.Observer">
             <summary>
             
             </summary>
@@ -1014,12 +1461,25 @@
             
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceModel.OnComponentAdded(System.Object,Imagin.Common.Input.EventArgs{Imagin.Controls.Extended.ComponentModel})">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.ColorSpaceModel.OnSelected(Imagin.Common.Input.SelectedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.HsbModel">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.HsbModel.GetColor">
+        <member name="M:Imagin.Controls.Extended.HsbModel.GetValue">
             <summary>
             
             </summary>
@@ -1040,37 +1500,226 @@
             
             </summary>
         </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.HComponent.IsUniform">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.HComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.HComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Imagin.Controls.Extended.HsbModel.HComponent.UnitLabel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.HsbModel.HComponent.IsNormalIndependantOfColor">
+        <member name="M:Imagin.Controls.Extended.HsbModel.HComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
             <summary>
             
             </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
         </member>
-        <member name="P:Imagin.Controls.Extended.HsbModel.HComponent.Maximum">
+        <member name="M:Imagin.Controls.Extended.HsbModel.HComponent.GetValue(System.Windows.Media.Color)">
             <summary>
             
             </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.HComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.HComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.HComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.HComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.HsbModel.SComponent">
             <summary>
             
             </summary>
         </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.SComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.SComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.SComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.SComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.SComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.SComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.SComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.SComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.SComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.SComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.HsbModel.BComponent">
             <summary>
             
             </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.BComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.BComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.BComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HsbModel.BComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.BComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.BComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.BComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.BComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.BComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HsbModel.BComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.HslModel">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.HslModel.GetColor">
+        <member name="M:Imagin.Controls.Extended.HslModel.GetValue">
             <summary>
             
             </summary>
@@ -1081,12 +1730,236 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Extended.HslModel.HComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HslModel.HComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HslModel.HComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HslModel.HComponent.IsUniform">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.HComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.HComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.HComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.HComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.HComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.HComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.HComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.HComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.HslModel.SComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HslModel.SComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.SComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.SComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HslModel.SComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.SComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.SComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.SComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.SComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.SComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.SComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.HslModel.LComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HslModel.LComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.LComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.LComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.HslModel.LComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.LComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.LComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.LComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.LComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.LComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.HslModel.LComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.LabModel">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.LabModel.GetColor">
+        <member name="M:Imagin.Controls.Extended.LabModel.GetValue">
             <summary>
             
             </summary>
@@ -1107,10 +1980,68 @@
             
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.LComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.LComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Imagin.Controls.Extended.LabModel.LComponent.UnitLabel">
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.LComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.LComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.LComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.LComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.LComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.LComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.LabModel.AComponent">
             <summary>
@@ -1122,20 +2053,63 @@
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.LabModel.AComponent.UnitLabel">
+        <member name="M:Imagin.Controls.Extended.LabModel.AComponent.GetMaximum">
             <summary>
             
             </summary>
+            <returns></returns>
         </member>
-        <member name="P:Imagin.Controls.Extended.LabModel.AComponent.Minimum">
+        <member name="M:Imagin.Controls.Extended.LabModel.AComponent.GetMinimum">
             <summary>
             
             </summary>
+            <returns></returns>
         </member>
-        <member name="P:Imagin.Controls.Extended.LabModel.AComponent.Maximum">
+        <member name="M:Imagin.Controls.Extended.LabModel.AComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
             <summary>
             
             </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.AComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.AComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.AComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.AComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.AComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.LabModel.BComponent">
             <summary>
@@ -1147,103 +2121,522 @@
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.LabModel.BComponent.UnitLabel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.LabModel.BComponent.Minimum">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.LabModel.BComponent.Maximum">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Extended.RgbModel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.RgbModel.GetColor">
+        <member name="M:Imagin.Controls.Extended.LabModel.BComponent.GetMaximum">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Controls.Extended.RgbModel.#ctor">
+        <member name="M:Imagin.Controls.Extended.LabModel.BComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.BComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.BComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.BComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.BComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.BComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LabModel.BComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LchModel">
             <summary>
             
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Extended.RgbModel.RComponent">
+        <member name="M:Imagin.Controls.Extended.LchModel.GetValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.#ctor">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.RComponent.ComponentLabel">
+        <member name="T:Imagin.Controls.Extended.LchModel.LComponent">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.RComponent.UnitLabel">
+        <member name="M:Imagin.Controls.Extended.LchModel.LComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.LComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LchModel.LComponent.ComponentLabel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.RComponent.Maximum">
+        <member name="P:Imagin.Controls.Extended.LchModel.LComponent.UnitLabel">
             <summary>
             
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Extended.RgbModel.GComponent">
+        <member name="M:Imagin.Controls.Extended.LchModel.LComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.LComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.LComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.LComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.LComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.LComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LchModel.CComponent">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.GComponent.ComponentLabel">
+        <member name="M:Imagin.Controls.Extended.LchModel.CComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.CComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LchModel.CComponent.ComponentLabel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.GComponent.UnitLabel">
+        <member name="P:Imagin.Controls.Extended.LchModel.CComponent.UnitLabel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.GComponent.Maximum">
+        <member name="M:Imagin.Controls.Extended.LchModel.CComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.CComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.CComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.CComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.CComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.CComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.LchModel.HComponent">
             <summary>
             
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Extended.RgbModel.BComponent">
+        <member name="M:Imagin.Controls.Extended.LchModel.HComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.HComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.LchModel.HComponent.ComponentLabel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.BComponent.ComponentLabel">
+        <member name="P:Imagin.Controls.Extended.LchModel.HComponent.UnitLabel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.BComponent.UnitLabel">
+        <member name="P:Imagin.Controls.Extended.LchModel.HComponent.IsUniform">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.RgbModel.BComponent.Maximum">
+        <member name="M:Imagin.Controls.Extended.LchModel.HComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
             <summary>
             
             </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.HComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.HComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.HComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.HComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.LchModel.HComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbaModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.GetValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbaModel.RgbComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RgbComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RgbComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbaModel.RgbComponent.UnitLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RgbComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbaModel.RComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbaModel.RComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.RComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbaModel.GComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbaModel.GComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.GComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.GComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.GComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.GComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.GComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.GComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.RgbaModel.BComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.RgbaModel.BComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.BComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.BComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.BComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.BComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.BComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.RgbaModel.BComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.XyzModel">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.XyzModel.GetColor">
+        <member name="M:Imagin.Controls.Extended.XyzModel.GetValue">
             <summary>
             
             </summary>
@@ -1259,371 +2652,262 @@
             
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.XComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.XComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.XyzModel.XComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.XComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.XComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.XComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.XComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.XComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.XComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.XyzModel.YComponent">
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.YComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.YComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.XyzModel.YComponent.ComponentLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.YComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.YComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.YComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.YComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.YComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.YComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.XyzModel.ZComponent">
             <summary>
             
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Extended.NormalComponentModel">
+        <member name="M:Imagin.Controls.Extended.XyzModel.ZComponent.GetMaximum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.ZComponent.GetMinimum">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Imagin.Controls.Extended.XyzModel.ZComponent.ComponentLabel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.NormalComponentModel.IsNormalIndependantOfColor">
+        <member name="M:Imagin.Controls.Extended.XyzModel.ZComponent.ColorAtPoint(System.Windows.Point,System.Int32)">
             <summary>
-            Is the Normal bitmap independent of the specific color (false for all but Hue of HSB)
+            
             </summary>
+            <param name="SelectionPoint"></param>
+            <param name="ComponentValue"></param>
+            <returns></returns>
         </member>
-        <member name="P:Imagin.Controls.Extended.NormalComponentModel.IsEnabled">
+        <member name="M:Imagin.Controls.Extended.XyzModel.ZComponent.GetValue(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.ZComponent.PointFromColor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.ZComponent.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="ComponentValue"></param>
+            <param name="Action"></param>
+            <param name="Unit"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.ZComponent.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Bitmap"></param>
+            <param name="Color"></param>
+            <param name="Action"></param>
+            <param name="Reverse"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.XyzModel.ZComponent.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.SelectableComponentModel">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.NormalComponentModel.ColorAtPoint(System.Windows.Point,System.Int32)">
+        <member name="E:Imagin.Controls.Extended.SelectableComponentModel.Selected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.SelectableComponentModel.IsSelected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.SelectableComponentModel.IsUniform">
+            <summary>
+            Gets whether or not the component is uniform.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SelectableComponentModel.#ctor(Imagin.Controls.Extended.ColorSpaceModel)">
+            <summary>
+            
+            </summary>
+            <param name="ColorSpace"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SelectableComponentModel.OnSelected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SelectableComponentModel.PointFromColor(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SelectableComponentModel.ColorAtPoint(System.Windows.Point,System.Int32)">
             <summary>
             Gets the color corresponding to a selected point (with 255 alpha)
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.NormalComponentModel.PointFromColor(System.Windows.Media.Color)">
+        <member name="M:Imagin.Controls.Extended.SelectableComponentModel.PointFromColor(System.Windows.Media.Color)">
             <summary>
             Gets the point on the color plane that corresponds to the color (alpha ignored)
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.NormalComponentModel.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Controls.Extended.Primitives.Rgba},System.Nullable{Imagin.Common.RowColumn})">
+        <member name="M:Imagin.Controls.Extended.SelectableComponentModel.UpdatePlane(System.Windows.Media.Imaging.WriteableBitmap,System.Int32,System.Func{Imagin.Common.RowColumn,System.Int32,Imagin.Common.Drawing.Rgba},System.Nullable{Imagin.Common.RowColumn})">
             <summary>
             Updates the plane bitmap.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.NormalComponentModel.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Controls.Extended.Primitives.Rgba},System.Boolean)">
+        <member name="M:Imagin.Controls.Extended.SelectableComponentModel.UpdateSlider(System.Windows.Media.Imaging.WriteableBitmap,System.Windows.Media.Color,System.Func{System.Windows.Media.Color,System.Double,Imagin.Common.Drawing.Rgba},System.Boolean)">
             <summary>
             Updates the slider bitmap.
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Luv.L">
-            <summary>
-            Gets or sets the lightness component (0 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Luv.U">
-            <summary>
-            Gets or sets the u component (-1 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Luv.V">
-            <summary>
-            Gets or sets the v component (-1 to 1).
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Luv.#ctor(System.Double,System.Double,System.Double)">
-            <summary>
-            Creates an instance of a Luv structure.
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Cmyk.C">
-            <summary>
-            Gets or sets the cyan component (0 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Cmyk.M">
-            <summary>
-            Gets or sets the magenta component (0 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Cmyk.Y">
-            <summary>
-            Gets or sets the yellow component (0 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Cmyk.K">
-            <summary>
-            Gets or sets the black component (0 to 1).
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.op_Equality(Imagin.Controls.Extended.Primitives.Cmyk,Imagin.Controls.Extended.Primitives.Cmyk)">
-            <summary>
-            
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.op_Inequality(Imagin.Controls.Extended.Primitives.Cmyk,Imagin.Controls.Extended.Primitives.Cmyk)">
-            <summary>
-            
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.#ctor(System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Creates an instance of a Cmyk structure.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.Equals(System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="Object"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.GetHashCode">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.FromColor(System.Windows.Media.Color)">
-            <summary>
-            
-            </summary>
-            <param name="Color"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.FromRgba(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            
-            </summary>
-            <param name="r"></param>
-            <param name="g"></param>
-            <param name="b"></param>
-            <param name="a"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Cmyk.ToColor(System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            
-            </summary>
-            <param name="c"></param>
-            <param name="m"></param>
-            <param name="y"></param>
-            <param name="k"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Imagin.Controls.Extended.Primitives.Hsb">
-            <summary>
-            Structure to define a color for HSB (hue/saturation/brightness).
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Extended.Primitives.Hsb.MaxValue">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Extended.Primitives.Hsb.MinValue">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Hsb.H">
-            <summary>
-            Gets or sets the hue component (0 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Hsb.S">
-            <summary>
-            Gets or sets the saturation component (0 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Hsb.B">
-            <summary>
-            Gets or sets the brightness component (0 to 1).
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.op_Equality(Imagin.Controls.Extended.Primitives.Hsb,Imagin.Controls.Extended.Primitives.Hsb)">
-            <summary>
-            
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.op_Inequality(Imagin.Controls.Extended.Primitives.Hsb,Imagin.Controls.Extended.Primitives.Hsb)">
-            <summary>
-            
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.#ctor(System.Double,System.Double,System.Double)">
-            <summary>
-            Creates an instance of a Hsb structure.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.Equals(System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="Object"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.GetHashCode">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.FromColor(System.Windows.Media.Color)">
-            <summary>
-            
-            </summary>
-            <param name="Color"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.FromRgba(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            
-            </summary>
-            <param name="R"></param>
-            <param name="G"></param>
-            <param name="B"></param>
-            <param name="A"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.ToColor(System.Double,System.Double,System.Double)">
-            <summary>
-            
-            </summary>
-            <param name="H"></param>
-            <param name="S"></param>
-            <param name="B"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsb.ToRgba(System.Double,System.Double,System.Double)">
-            <summary>
-            
-            </summary>
-            <param name="H"></param>
-            <param name="S"></param>
-            <param name="B"></param>
-            <returns></returns>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Hsl.H">
-            <summary>
-            Gets or sets the hue component (0 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Hsl.S">
-            <summary>
-            Gets or sets the saturation component (0 to 1).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Hsl.L">
-            <summary>
-            Gets or sets the lightness component (0 to 1).
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Hsl.#ctor(System.Double,System.Double,System.Double)">
-            <summary>
-            Creates an instance of a Hsl structure.
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Lab.L">
-            <summary>
-            Gets or sets the luminance component (0 to 100).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Lab.A">
-            <summary>
-            Gets or sets the opposing a component (-127 to 128).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Lab.B">
-            <summary>
-            Gets or sets the opposing b component (-127 to 128).
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Lab.#ctor(System.Double,System.Double,System.Double)">
-            <summary>
-            Creates an instance of a Lab structure.
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Lch.L">
-            <summary>
-            Gets or sets the luminance component (0 to 100).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Lch.C">
-            <summary>
-            Gets or sets the chroma component (0 to 100).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Lch.H">
-            <summary>
-            Gets or sets the hue component (0 to 359).
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Lch.#ctor(System.Double,System.Double,System.Double)">
-            <summary>
-            Creates an instance of a Lch structure.
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Rgba.R">
-            <summary>
-            Gets or sets the red component (0 to 255).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Rgba.G">
-            <summary>
-            Gets or sets the green component (0 to 255).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Rgba.B">
-            <summary>
-            Gets or sets the blue component (0 to 255).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Rgba.A">
-            <summary>
-            Gets or sets the alpha component (0 to 255).
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Rgba.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Creates an instance of a Rgba structure.
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Rgba.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Creates an instance of a Rgba structure.
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Xyz.X">
-            <summary>
-            Gets or sets the x component (0 to Illuminant.Max.X).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Xyz.Y">
-            <summary>
-            Gets or sets the y component (0 to Illuminant.Max.Y).
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.Primitives.Xyz.Z">
-            <summary>
-            Gets or sets the component (0 to Illuminant.Max.Z).
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Extended.Primitives.Xyz.#ctor(System.Double,System.Double,System.Double)">
-            <summary>
-            Creates an instance of a Xyz structure.
             </summary>
         </member>
         <member name="T:Imagin.Controls.Extended.GradientPicker">
@@ -1835,11 +3119,6 @@
         <member name="M:Imagin.Controls.Extended.NewCurrent.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Imagin.Controls.Extended.ColorSpace">
-            <summary>
-            Specifies a color space.
             </summary>
         </member>
         <member name="T:Imagin.Controls.Extended.PropertyModel`1">

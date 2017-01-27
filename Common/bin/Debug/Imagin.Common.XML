@@ -440,6 +440,1435 @@
             Specifies a radian as the unit of measure.
             </summary>
         </member>
+        <member name="T:Imagin.Common.Drawing.Cmyk">
+            <summary>
+            Structure to define CMYK.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Cmyk.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Cmyk.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Cmyk.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Cmyk.C">
+            <summary>
+            Gets or sets the cyan component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Cmyk.M">
+            <summary>
+            Gets or sets the magenta component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Cmyk.Y">
+            <summary>
+            Gets or sets the yellow component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Cmyk.K">
+            <summary>
+            Gets or sets the black component (0 to 1).
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.op_Equality(Imagin.Common.Drawing.Cmyk,Imagin.Common.Drawing.Cmyk)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.op_Inequality(Imagin.Common.Drawing.Cmyk,Imagin.Common.Drawing.Cmyk)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.#ctor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.#ctor(Imagin.Common.Drawing.Rgba)">
+            <summary>
+            
+            </summary>
+            <param name="Rgba"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="c"></param>
+            <param name="m"></param>
+            <param name="y"></param>
+            <param name="k"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Cmyk.ToRgba">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Hsb">
+            <summary>
+            Structure to define a color for HSB (hue/saturation/brightness).
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Hsb.Component">
+            <summary>
+            Specifies a HSB component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.Component.H">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Hsb.H"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.Component.S">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Hsb.S"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.Component.B">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Hsb.B"/> component.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Hsb.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.MaxValue.H">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.MaxValue.S">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.MaxValue.B">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Hsb.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.MinValue.H">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.MinValue.S">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsb.MinValue.B">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Hsb.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Hsb.H">
+            <summary>
+            Gets or sets the hue component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Hsb.S">
+            <summary>
+            Gets or sets the saturation component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Hsb.B">
+            <summary>
+            Gets or sets the brightness component (0 to 1).
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.op_Equality(Imagin.Common.Drawing.Hsb,Imagin.Common.Drawing.Hsb)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.op_Inequality(Imagin.Common.Drawing.Hsb,Imagin.Common.Drawing.Hsb)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.#ctor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.#ctor(Imagin.Common.Drawing.Rgba)">
+            <summary>
+            
+            </summary>
+            <param name="Rgba"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of the <see cref="T:Imagin.Common.Drawing.Hsb"/> structure.
+            </summary>
+            <param name="h"></param>
+            <param name="s"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.New(Imagin.Common.Drawing.Hsb.Component,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Component"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsb.ToRgba">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Hsl">
+            <summary>
+            Structure to define HSL.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Hsl.Component">
+            <summary>
+            Specifies a <see cref="T:Imagin.Common.Drawing.Hsl"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.Component.H">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Hsl.H"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.Component.S">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Hsl.S"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.Component.L">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Hsl.L"/> component.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Hsl.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.MaxValue.H">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.MaxValue.S">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.MaxValue.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Hsl.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.MinValue.H">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.MinValue.S">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Hsl.MinValue.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Hsl.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Hsl.H">
+            <summary>
+            Gets or sets the hue component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Hsl.S">
+            <summary>
+            Gets or sets the saturation component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Hsl.L">
+            <summary>
+            Gets or sets the lightness component (0 to 1).
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.op_Equality(Imagin.Common.Drawing.Hsl,Imagin.Common.Drawing.Hsl)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.op_Inequality(Imagin.Common.Drawing.Hsl,Imagin.Common.Drawing.Hsl)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.#ctor(System.Windows.Media.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.#ctor(Imagin.Common.Drawing.Rgba)">
+            <summary>
+            
+            </summary>
+            <param name="Rgba"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of the <see cref="T:Imagin.Common.Drawing.Hsl"/> structure.
+            </summary>
+            <param name="h"></param>
+            <param name="s"></param>
+            <param name="l"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.Frgb(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="p"></param>
+            <param name="q"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.New(Imagin.Common.Drawing.Hsl.Component,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Component"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Hsl.ToRgba">
+            <summary>
+            
+            </summary>
+            <param name="h"></param>
+            <param name="s"></param>
+            <param name="l"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.IColor">
+            <summary>
+            Specifies a color.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.IColor.Color">
+            <summary>
+            The color.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Illuminant">
+            <summary>
+            Represents a theoretical source of visible light with a published profile.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.Default">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.A">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.C">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.E">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.D50">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.D55">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.D65">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.ICC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.IReflectiveColor">
+            <summary>
+            Specifies a color that is reflective, or defined with both an <see cref="T:Imagin.Common.Drawing.Illuminant"/> and <see cref="T:Imagin.Common.Drawing.ObserverAngle"/>.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.IReflectiveColor.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.IReflectiveColor.Observer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lab">
+            <summary>
+            Structure to define CIE LAB color.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lab.Component">
+            <summary>
+            Specifies a <see cref="T:Imagin.Common.Drawing.Lab"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.Component.L">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Lab.L"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.Component.A">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Lab.A"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.Component.B">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Lab.B"/> component.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lab.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.MaxValue.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.MaxValue.A">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.MaxValue.B">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lab.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.MinValue.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.MinValue.A">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lab.MinValue.B">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lab.Range">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.Range.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.Range.A">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.Range.B">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.L">
+            <summary>
+            Gets or sets the luminance component (0 to 100).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.A">
+            <summary>
+            Gets or sets the opposing a component (-127 to 128).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.B">
+            <summary>
+            Gets or sets the opposing b component (-127 to 128).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lab.Observer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.op_Equality(Imagin.Common.Drawing.Lab,Imagin.Common.Drawing.Lab)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.op_Inequality(Imagin.Common.Drawing.Lab,Imagin.Common.Drawing.Lab)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.#ctor(System.Windows.Media.Color,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.#ctor(Imagin.Common.Drawing.Rgba,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Rgba"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.#ctor(System.Double,System.Double,System.Double,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Drawing.Lab"/> structure.
+            </summary>
+            <param name="l"></param>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="observer"></param>
+            <param name="illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.New(Imagin.Common.Drawing.Lab.Component,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Component"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lab.ToRgba">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lch">
+            <summary>
+            Structure to define LCH color.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lch.Component">
+            <summary>
+            Specifies a <see cref="T:Imagin.Common.Drawing.Lch"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.Component.L">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Lch.L"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.Component.C">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Lch.C"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.Component.H">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Lch.H"/> component.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lch.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.MaxValue.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.MaxValue.C">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.MaxValue.H">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Lch.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.MinValue.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.MinValue.C">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Lch.MinValue.H">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lch.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lch.L">
+            <summary>
+            Gets or sets the luminance component (0 to 100).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lch.C">
+            <summary>
+            Gets or sets the chroma component (0 to 100).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lch.H">
+            <summary>
+            Gets or sets the hue component (0 to 359).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lch.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Lch.Observer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.op_Equality(Imagin.Common.Drawing.Lch,Imagin.Common.Drawing.Lch)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.op_Inequality(Imagin.Common.Drawing.Lch,Imagin.Common.Drawing.Lch)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.#ctor(System.Windows.Media.Color,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.#ctor(Imagin.Common.Drawing.Rgba,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Rgba"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.#ctor(Imagin.Common.Drawing.Lab,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Lab"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.#ctor(System.Double,System.Double,System.Double,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Drawing.Lch"/> structure.
+            </summary>
+            <param name="l"></param>
+            <param name="c"></param>
+            <param name="h"></param>
+            <param name="observer"></param>
+            <param name="illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.New(Imagin.Common.Drawing.Lch.Component,System.Double)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.ToLab">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Lch.ToRgba">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Luv">
+            <summary>
+            Structure to define CIE LUV color.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Luv.Component">
+            <summary>
+            Specifies a <see cref="T:Imagin.Common.Drawing.Luv"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.Component.L">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Luv.L"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.Component.U">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Luv.U"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.Component.V">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Luv.V"/> component.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Luv.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.MaxValue.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.MaxValue.U">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.MaxValue.V">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Luv.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.MinValue.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.MinValue.U">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.MinValue.V">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Luv.Range">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.Range.L">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.Range.U">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Luv.Range.V">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Luv.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Luv.L">
+            <summary>
+            Gets or sets the lightness component (0 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Luv.U">
+            <summary>
+            Gets or sets the u component (-1 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Luv.V">
+            <summary>
+            Gets or sets the v component (-1 to 1).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Luv.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Luv.Observer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.op_Equality(Imagin.Common.Drawing.Luv,Imagin.Common.Drawing.Luv)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.op_Inequality(Imagin.Common.Drawing.Luv,Imagin.Common.Drawing.Luv)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.#ctor(System.Windows.Media.Color,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.#ctor(Imagin.Common.Drawing.Rgba,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Rgba"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.#ctor(Imagin.Common.Drawing.Xyz,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Xyz"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.#ctor(System.Double,System.Double,System.Double,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Drawing.Luv"/> structure.
+            </summary>
+            <param name="l"></param>
+            <param name="u"></param>
+            <param name="v"></param>
+            <param name="observer"></param>
+            <param name="illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.New(Imagin.Common.Drawing.Luv.Component,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Component"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.ToRgba">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Luv.ToXyz">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.ObserverAngle">
+            <summary>
+            Specifies an observer for a color that uses reflective light.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.ObserverAngle.Two">
+            <summary>
+            Specifies the 1931 standard observer.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.ObserverAngle.Ten">
+            <summary>
+            Specifies the 1964 observer.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Rgba">
+            <summary>
+            Structure to define RGBA.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Rgba.Component">
+            <summary>
+            Specifies a <see cref="T:Imagin.Common.Drawing.Rgba"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Rgba.Component.R">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Rgba.R"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Rgba.Component.G">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Rgba.G"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Rgba.Component.B">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Rgba.B"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Rgba.Component.A">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Rgba.A"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Rgba.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Rgba.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Rgba.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Rgba.R">
+            <summary>
+            Gets or sets the red component (0 to 255).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Rgba.G">
+            <summary>
+            Gets or sets the green component (0 to 255).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Rgba.B">
+            <summary>
+            Gets or sets the blue component (0 to 255).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Rgba.A">
+            <summary>
+            Gets or sets the alpha component (0 to 255).
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.op_Equality(Imagin.Common.Drawing.Rgba,Imagin.Common.Drawing.Rgba)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.op_Inequality(Imagin.Common.Drawing.Rgba,Imagin.Common.Drawing.Rgba)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.#ctor(System.Windows.Media.Color)">
+            <summary>
+            Initializes an instance of the <see cref="T:Imagin.Common.Drawing.Rgba"/> structure.
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance of the <see cref="T:Imagin.Common.Drawing.Rgba"/> structure.
+            </summary>
+            <param name="R"></param>
+            <param name="G"></param>
+            <param name="B"></param>
+            <param name="A"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes an instance of the <see cref="T:Imagin.Common.Drawing.Rgba"/> structure.
+            </summary>
+            <param name="r"></param>
+            <param name="g"></param>
+            <param name="b"></param>
+            <param name="a"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.#ctor(System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Initializes an instance of the <see cref="T:Imagin.Common.Drawing.Rgba"/> structure.
+            </summary>
+            <param name="r"></param>
+            <param name="g"></param>
+            <param name="b"></param>
+            <param name="a"></param>
+            <param name="fromLinear"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.Linear(System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Rgba.Linear(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Xyz">
+            <summary>
+            Structure to define CIE XYZ color.
+            </summary>
+            <remarks>
+            There are 11 main illuminants:
+            1. A*
+            2. C*
+            3. D50*
+            4. D55*
+            5. D65*
+            6. D75
+            7. E*^
+            8. F2
+            9. F7
+            10. F11
+            11. ICC*
+            
+            * Defined in this struct
+            ^ Theoretical
+            
+            And 2 types of observers 
+            1.  2° = 1931
+            2. 10° = 1964
+            
+            This structure supports Observer = 2°, Illuminant = D65 by default.
+            </remarks>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Xyz.Component">
+            <summary>
+            Specifies a <see cref="T:Imagin.Common.Drawing.Xyz"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Xyz.Component.X">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Xyz.X"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Xyz.Component.Y">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Xyz.Y"/> component.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Xyz.Component.Z">
+            <summary>
+            Specifies the <see cref="P:Imagin.Common.Drawing.Xyz.Z"/> component.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Xyz.Max">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Xyz.MaxValue">
+            <summary>
+            TO-DO: Disallow instance creation (which does nothing).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Xyz.MaxValue.Item(Imagin.Common.Drawing.Xyz.Component,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Component"></param>
+            <param name="Illuminant"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Xyz.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Xyz.MinValue.X">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Xyz.MinValue.Y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Xyz.MinValue.Z">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Xyz.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Xyz.X">
+            <summary>
+            Gets or sets the x component (0 to Illuminant.Max.X).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Xyz.Y">
+            <summary>
+            Gets or sets the y component (0 to Illuminant.Max.Y).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Xyz.Z">
+            <summary>
+            Gets or sets the component (0 to Illuminant.Max.Z).
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Xyz.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.Xyz.Observer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.op_Equality(Imagin.Common.Drawing.Xyz,Imagin.Common.Drawing.Xyz)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.op_Inequality(Imagin.Common.Drawing.Xyz,Imagin.Common.Drawing.Xyz)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.#ctor(System.Windows.Media.Color,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.#ctor(Imagin.Common.Drawing.Rgba,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            
+            </summary>
+            <param name="Rgba"></param>
+            <param name="Observer"></param>
+            <param name="Illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.#ctor(System.Double,System.Double,System.Double,Imagin.Common.Drawing.ObserverAngle,Imagin.Common.Drawing.Illuminant)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Drawing.Xyz"/> structure.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+            <param name="observer"></param>
+            <param name="illuminant"></param>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.Fxyz(System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.New(Imagin.Common.Drawing.Xyz.Component,System.Double)">
+            <summary>
+            Clones current <see cref="T:Imagin.Common.Drawing.Xyz"/> instance and sets given component value.
+            </summary>
+            <param name="Component"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Drawing.Xyz.ToRgba">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="F:Imagin.Common.Drawing.GraphicalUnit.Pixel">
             <summary>
             Specifies a device pixel as the unit of measure.
@@ -739,6 +2168,19 @@
             <summary>
             Bound rect based on given sizes.
             </summary>
+        </member>
+        <member name="T:Imagin.Common.Extensions.ColorExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.ColorExtensions.DistanceFrom(System.Windows.Media.Color,System.Windows.Media.Color)">
+            <summary>
+            Gets distance to a color from given color.
+            </summary>
+            <param name="First"></param>
+            <param name="Second"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.ColorExtensions.ToHex(System.Windows.Media.Color)">
             <summary>
@@ -1061,16 +2503,26 @@
             <summary>
             Rounds double to variable places.
             </summary>
+            <param name="Value"></param>
+            <param name="Digits"></param>
+            <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Extensions.DoubleExtensions.Shift(System.Double,System.Int32,System.Boolean)">
+        <member name="M:Imagin.Common.Extensions.DoubleExtensions.Shift(System.Double,System.Int32)">
             <summary>
-            Shifts decimal variable places.
+            Shifts decimal variable places. <para>If negative, shift left; otherwise, shift right.</para>
             </summary>
+            <param name="Value"></param>
+            <param name="Shifts"></param>
+            <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Extensions.DoubleExtensions.ShiftRound(System.Double,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Imagin.Common.Extensions.DoubleExtensions.ShiftRound(System.Double,System.Int32,System.Int32)">
             <summary>
-            Shifts decimal point and rounds to variable places.
+            Shifts decimal point and rounds to variable places. <para>If negative, shift left; otherwise, shift right.</para>
             </summary>
+            <param name="Value"></param>
+            <param name="Shifts"></param>
+            <param name="Digits"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.DoubleExtensions.Subtract(System.Double,System.Double)">
             <summary>
@@ -1928,6 +3380,23 @@
             </summary>
             <param name="parameter"></param>
         </member>
+        <member name="T:Imagin.Common.Input.SelectedEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:Imagin.Common.Input.SelectedEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Input.SelectedEventArgs.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="T:Imagin.Common.Input.EventArgs`1">
             <summary>
             
@@ -1972,6 +3441,21 @@
             </summary>
             <param name="OldValue"></param>
             <param name="NewValue"></param>
+        </member>
+        <member name="T:Imagin.Common.ISelectable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.ISelectable.Selected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.ISelectable.IsSelected">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Common.IVariant`1">
             <summary>
@@ -3151,6 +4635,38 @@
             A facility for accessing the log of an application (if it exists) globally; note, <see cref="P:System.Windows.Application.Current"/> must implement <see cref="T:Imagin.Common.Config.IApp"/>.
             </summary>
         </member>
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,Imagin.Common.Tracing.LogEntryKind)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Kind"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryKind)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Level"></param>
+            <param name="Kind"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,System.String,Imagin.Common.Tracing.LogEntryKind)">
+            <summary>
+            
+            </summary>
+            <param name="Source"></param>
+            <param name="Message"></param>
+            <param name="Kind"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,System.String,Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryKind)">
+            <summary>
+            
+            </summary>
+            <param name="Source"></param>
+            <param name="Message"></param>
+            <param name="Level"></param>
+            <param name="Kind"></param>
+        </member>
         <member name="T:Imagin.Common.Tracing.ILog">
             <summary>
             
@@ -3162,35 +4678,42 @@
             </summary>
             <returns>The result of the task.</returns>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String)">
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,Imagin.Common.Tracing.LogEntryKind)">
             <summary>
             
             </summary>
             <param name="Message"></param>
+            <param name="Kind"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,System.String)">
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryKind)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Level"></param>
+            <param name="Kind"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,System.String,Imagin.Common.Tracing.LogEntryKind)">
             <summary>
             
             </summary>
             <param name="Source"></param>
             <param name="Message"></param>
+            <param name="Kind"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(Imagin.Common.Tracing.LogEntryStatus,System.String,System.String)">
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,System.String,Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryKind)">
             <summary>
             
             </summary>
-            <param name="Status"></param>
             <param name="Source"></param>
             <param name="Message"></param>
+            <param name="Level"></param>
+            <param name="Kind"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryStatus,System.String,System.String)">
+        <member name="T:Imagin.Common.Tracing.WarningLevel">
             <summary>
             
             </summary>
-            <param name="WarningLevel"></param>
-            <param name="Status"></param>
-            <param name="Source"></param>
-            <param name="Message"></param>
         </member>
         <member name="F:Imagin.Common.Tracing.WarningLevel.None">
             <summary>
@@ -3350,6 +4873,11 @@
             Gets the string.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Extended.ColorSpace">
+            <summary>
+            Specifies a color space.
+            </summary>
         </member>
     </members>
 </doc>

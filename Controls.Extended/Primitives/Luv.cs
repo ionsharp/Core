@@ -1,33 +1,54 @@
-﻿using Imagin.Common.Extensions;
+﻿using Imagin.Common.Drawing;
+using Imagin.Common.Extensions;
 using System;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended.Primitives
 {
-    [Serializable]
     /// <summary>
     /// Structure to define CIE L*uv.
     /// </summary>
+    [Serializable]
     public struct Luv
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MaxValue
         {
-            public static double L = 1.0;
-
-            public static double U = 1.0;
-
-            public static double V = 1.0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double L = 1d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double U = 1.28;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double V = 1.28;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MinValue
         {
-            public static double L = 0.0;
-
-            public static double U = -1.0;
-
-            public static double V = -1.0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double L = 0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double U = -1.27;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double V = -1.27;
         }
 
         double l;
@@ -42,7 +63,7 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                l = value.Coerce(Luv.MaxValue.L, Luv.MinValue.L);
+                l = value.Coerce(MaxValue.L, MinValue.L);
             }
         }
 
@@ -58,7 +79,7 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                u = value.Coerce(Luv.MaxValue.U, Luv.MinValue.U);
+                u = value.Coerce(MaxValue.U, MinValue.U);
             }
         }
 
@@ -74,98 +95,165 @@ namespace Imagin.Controls.Extended.Primitives
             }
             set
             {
-                v = value.Coerce(Luv.MaxValue.V, Luv.MinValue.V);
+                v = value.Coerce(MaxValue.V, MinValue.V);
             }
         }
 
         #endregion
 
         #region Luv
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator ==(Luv a, Luv b)
         {
             return a.L == b.L && a.U == b.U && a.V == b.V;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator !=(Luv a, Luv b)
         {
             return a.L != b.L || a.U != b.U || a.V != b.V;
         }
 
         /// <summary>
-        /// Creates an instance of a Luv structure.
+        /// Creates an instance of the <see cref="Luv"/> structure.
         /// </summary>
         public Luv(double L, double U, double V)
         {
-            this.l = L.Coerce(Luv.MaxValue.L, Luv.MinValue.L);
-            this.u = U.Coerce(Luv.MaxValue.U, Luv.MinValue.U);
-            this.v = V.Coerce(Luv.MaxValue.V, Luv.MinValue.V);
+            l = L.Coerce(MaxValue.L, MinValue.L);
+            u = U.Coerce(MaxValue.U, MinValue.U);
+            v = V.Coerce(MaxValue.V, MinValue.V);
         }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <returns></returns>
         public override bool Equals(Object Object)
         {
-            if (Object == null || GetType() != Object.GetType()) return false;
-            return (this == (Luv)Object);
+            return Object == null || GetType() != Object.GetType() ? false : this == (Luv)Object;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
-            return L.GetHashCode() ^ U.GetHashCode() ^ V.GetHashCode();
+            return l.GetHashCode() ^ u.GetHashCode() ^ v.GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("L => {0}, U => {1}, V => {2}", this.L.ToString(), this.U.ToString(), this.V.ToString());
+            return "L => {0}, U => {1}, V => {2}".F(l, u, v);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Color"></param>
+        /// <returns></returns>
         public static Luv FromColor(Color Color)
         {
-            return Luv.FromRgba(Color.R, Color.G, Color.B, Color.A);
+            return FromRgba(Color.R, Color.G, Color.B, Color.A);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="R"></param>
+        /// <param name="G"></param>
+        /// <param name="B"></param>
+        /// <param name="A"></param>
+        /// <returns></returns>
         public static Luv FromRgba(byte R, byte G, byte B, byte A = 255)
         {
             Xyz Xyz = Xyz.FromRgba(R, G, B, A);
-            return Luv.FromXyz(Xyz.X, Xyz.Y, Xyz.Z);
+            return FromXyz(Xyz.X, Xyz.Y, Xyz.Z);
         }
 
-        public static Luv FromXyz(double X, double Y, double Z)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <param name="Illuminant"></param>
+        /// <returns></returns>
+        public static Luv FromXyz(double X, double Y, double Z, Illuminant Illuminant = Illuminant.Default)
         {
-            var w = X + (15.0 * Y) + (3.0 * Z);
-            var u = (4.0 * X) / w;
-            var v = (9.0 * Y) / w;
+            var w = X + (15d * Y) + (3d * Z);
+            var u = (4d * X) / w;
+            var v = (9d * Y) / w;
 
-            var y = Y / 100.0;
-            y = y > 0.008856 ? Math.Pow(y, 1.0 / 3.0) : (7.787 * y) + (16.0 / 116.0);
+            var y = Y > 0.008856 ? Math.Pow(Y, 1d / 3d) : (7.787 * Y) + (16d / 116d);
 
-            var rl = Xyz.MaxValue.X.Shift(2) + (15.0 * Xyz.MaxValue.Y.Shift(2)) + (3.0 * Xyz.MaxValue.Z.Shift(2));
-            var ru = (4.0 * Xyz.MaxValue.X.Shift(2)) / rl;
-            var rv = (9.0 * Xyz.MaxValue.Y.Shift(2)) / rl;
+            var mx = Xyz.Max[Xyz.Component.X, Illuminant];
+            var my = Xyz.Max[Xyz.Component.Y, Illuminant];
+            var mz = Xyz.Max[Xyz.Component.Z, Illuminant];
 
-            var l = (116.0 * y) - 16.0;
-            u = 13.0 * l * (u - ru);
-            v = 13.0 * l * (v - rv);
+            var rl = mx.Shift(2) + (15.0 * my.Shift(2)) + (3.0 * mz.Shift(2));
+            var ru = (4.0 * mx.Shift(2)) / rl;
+            var rv = (9.0 * my.Shift(2)) / rl;
 
-            return new Luv(l, u, v);
+            var l = (116d * y) - 16d;
+            u = 13d * l * (u - ru);
+            v = 13d * l * (v - rv);
+
+            return new Luv(l.Divide(MaxValue.L), u.Divide(MaxValue.U), v.Divide(MaxValue.V));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="L"></param>
+        /// <param name="U"></param>
+        /// <param name="V"></param>
+        /// <returns></returns>
         public static Color ToColor(double L, double U, double V)
         {
-            return Luv.ToRgba(L, U, V).ToColor();
+            return ToRgba(L, U, V).ToColor();
         }
 
-        public static Xyz ToXyz(double L, double U, double V)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="L"></param>
+        /// <param name="U"></param>
+        /// <param name="V"></param>
+        /// <param name="Illuminant"></param>
+        /// <returns></returns>
+        public static Xyz ToXyz(double L, double U, double V, Illuminant Illuminant = Illuminant.Default)
         {
             var y = (L + 16.0) / 116.0;
             y = Math.Pow(y, 3.0) > 0.008856 ? Math.Pow(y, 3) : (y - 16.0 / 116) / 7.787;
 
-            var rl = Xyz.MaxValue.X.Shift(2) + (15.0 * Xyz.MaxValue.Y.Shift(2)) + (3.0 + Xyz.MaxValue.Z.Shift(2));
-            var ru = (4.0 * Xyz.MaxValue.X.Shift(2)) / rl;
-            var rv = (9.0 * Xyz.MaxValue.Y.Shift(2)) / rl;
+            var mx = Xyz.Max[Xyz.Component.X, Illuminant];
+            var my = Xyz.Max[Xyz.Component.Y, Illuminant];
+            var mz = Xyz.Max[Xyz.Component.Z, Illuminant];
+
+            var rl = mx.Shift(2) + (15.0 * my.Shift(2)) + (3.0 + mz.Shift(2));
+            var ru = (4.0 * mx.Shift(2)) / rl;
+            var rv = (9.0 * my.Shift(2)) / rl;
 
             var u = U / (13.0 * L) + ru;
             var v = V / (13.0 * L) + rv;
@@ -177,9 +265,16 @@ namespace Imagin.Controls.Extended.Primitives
             return new Xyz(x, y, z);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="L"></param>
+        /// <param name="U"></param>
+        /// <param name="V"></param>
+        /// <returns></returns>
         public static Rgba ToRgba(double L, double U, double V)
         {
-            Xyz Xyz = Luv.ToXyz(L, U, V);
+            Xyz Xyz = ToXyz(L, U, V);
             return Xyz.ToRgba(Xyz.X, Xyz.Y, Xyz.Z);
         }
 

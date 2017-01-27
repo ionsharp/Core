@@ -4,6 +4,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Extended="http://imagin.tech/imagin/controls/extended">
     <Style x:Key="{x:Type Extended:ColorPicker}" TargetType="{x:Type Extended:ColorPicker}">
-        <Setter Property="ComponentsWidth" Value="475" />
+        <Setter Property="ComponentWidth" Value="475" />
     </Style>
 </ResourceDictionary>

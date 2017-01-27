@@ -203,9 +203,6 @@ namespace Imagin.Controls.Extended
             var a = ForegroundColor;
             var b = BackgroundColor;
 
-            Console.WriteLine("Foreground => {0}".F(a));
-            Console.WriteLine("Background => {0}".F(b));
-
             ForegroundColor = b;
             BackgroundColor = a;
         }

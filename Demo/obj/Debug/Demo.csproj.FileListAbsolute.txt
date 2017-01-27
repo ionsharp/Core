@@ -45,7 +45,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.NE
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.NET.Demo.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Common.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Common.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Extended.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\WPFLocalizeExtension.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\XAMLMarkupExtensions.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Common.pdb
@@ -81,3 +80,4 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.Expression.Interactions.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Gadgets.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Gadgets.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Extended.dll

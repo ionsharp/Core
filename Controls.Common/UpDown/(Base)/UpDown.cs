@@ -27,25 +27,18 @@ namespace Imagin.Controls.Common
             /// <summary>
             /// 
             /// </summary>
-            public double Milliseconds
-            {
-                get; set;
-            }
+            public double Milliseconds { get; set; } = 0d;
 
             /// <summary>
             /// 
             /// </summary>
-            public UpDownDirection Direction
-            {
-                get; set;
-            }
+            public UpDownDirection Direction { get; set; } = default(UpDownDirection);
 
             /// <summary>
             /// 
             /// </summary>
             internal UpDownTimer() : base()
             {
-                Milliseconds = 0.0;
             }
         }
 
@@ -370,8 +363,8 @@ namespace Imagin.Controls.Common
         protected virtual void OnButtonMouseUp(object sender, MouseButtonEventArgs e)
         {
             Timer.Stop();
-            Timer.Milliseconds = 0.0;
             Timer.Direction = UpDownDirection.None;
+            Timer.Milliseconds = 0d;
         }
 
         /// <summary>
@@ -381,6 +374,12 @@ namespace Imagin.Controls.Common
         /// <param name="e"></param>
         protected virtual void OnMajorChange(object sender, EventArgs e)
         {
+            if (Mouse.LeftButton == MouseButtonState.Released)
+            {
+                OnButtonMouseUp(this, null);
+                return;
+            }
+
             Timer.Milliseconds += Timer.Interval.TotalMilliseconds;
 
             if (Timer.Milliseconds < MajorChangeDelay)

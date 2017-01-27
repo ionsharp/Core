@@ -1,4 +1,5 @@
 ﻿using Imagin.Common.Extensions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -136,9 +137,9 @@ namespace Imagin.Controls.Common
         /// </summary>
         public UpDown() : base()
         {
-            Maximum = AbsoluteMaximum;
-            Minimum = AbsoluteMinimum;
-            Value = DefaultValue;
+            SetCurrentValue(MaximumProperty, AbsoluteMaximum);
+            SetCurrentValue(MinimumProperty, AbsoluteMinimum);
+            SetCurrentValue(ValueProperty, DefaultValue);
         }
 
         #endregion

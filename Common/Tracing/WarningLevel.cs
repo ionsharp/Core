@@ -2,6 +2,9 @@
 
 namespace Imagin.Common.Tracing
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Flags]
     public enum WarningLevel
     {

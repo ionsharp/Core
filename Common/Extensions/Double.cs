@@ -103,31 +103,38 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Rounds double to variable places.
         /// </summary>
-        public static double Round(this double ToRound, int Digits = 0)
+        /// <param name="Value"></param>
+        /// <param name="Digits"></param>
+        /// <returns></returns>
+        public static double Round(this double Value, int Digits = 0)
         {
-            return Math.Round(ToRound, Digits);
+            return Math.Round(Value, Digits);
         }
 
         /// <summary>
-        /// Shifts decimal variable places.
+        /// Shifts decimal variable places. <para>If negative, shift left; otherwise, shift right.</para>
         /// </summary>
-        public static double Shift(this double ToShift, int Shifts = 1, bool ShiftRight = true)
+        /// <param name="Value"></param>
+        /// <param name="Shifts"></param>
+        /// <returns></returns>
+        public static double Shift(this double Value, int Shifts = 1)
         {
-            if (Shifts <= 0) Shifts = 1;
-            for (int i = 0; i < Shifts; i++)
-            {
-                if (ShiftRight) ToShift *= 10;
-                else ToShift /= 10;
-            }
-            return ToShift;
+            var LeftOrRight = Shifts < 0;
+            for (var i = 0; i < Shifts.Abs(); i++)
+                Value = LeftOrRight ? Value / 10 : Value * 10;
+            return Value;
         }
 
         /// <summary>
-        /// Shifts decimal point and rounds to variable places.
+        /// Shifts decimal point and rounds to variable places. <para>If negative, shift left; otherwise, shift right.</para>
         /// </summary>
-        public static double ShiftRound(this double ToShiftRound, int Shifts = 1, int Digits = 0, bool ShiftRight = true)
+        /// <param name="Value"></param>
+        /// <param name="Shifts"></param>
+        /// <param name="Digits"></param>
+        /// <returns></returns>
+        public static double ShiftRound(this double Value, int Shifts = 1, int Digits = 0)
         {
-            return ToShiftRound.Shift(Shifts, ShiftRight).Round(Digits);
+            return Value.Shift(Shifts).Round(Digits);
         }
 
         /// <summary>

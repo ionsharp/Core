@@ -23,24 +23,48 @@ namespace Imagin.Common.Tracing
                 Action(App);
         }
 
-        public static void Write(string Message)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Kind"></param>
+        public static void Write(string Message, LogEntryKind Kind)
         {
-            Write((i) => i.Log.Write(Message));
+            Write((i) => i.Log.Write(Message, Kind));
         }
 
-        public static void Write(string Source, string Message)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Level"></param>
+        /// <param name="Kind"></param>
+        public static void Write(string Message, WarningLevel Level = WarningLevel.Moderate, LogEntryKind Kind = LogEntryKind.Info)
         {
-            Write((i) => i.Log.Write(Source, Message));
+            Write((i) => i.Log.Write(Message, Level, Kind));
         }
 
-        public static void Write(LogEntryStatus Status, string Source, string Message)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Source"></param>
+        /// <param name="Message"></param>
+        /// <param name="Kind"></param>
+        public static void Write(string Source, string Message, LogEntryKind Kind)
         {
-            Write((i) => i.Log.Write(Status, Source, Message));
+            Write((i) => i.Log.Write(Source, Message, Kind));
         }
 
-        public static void Write(WarningLevel WarningLevel, LogEntryStatus Status, string Source, string Message)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Source"></param>
+        /// <param name="Message"></param>
+        /// <param name="Level"></param>
+        /// <param name="Kind"></param>
+        public static void Write(string Source, string Message, WarningLevel Level = WarningLevel.Moderate, LogEntryKind Kind = LogEntryKind.Info)
         {
-            Write((i) => i.Log.Write(WarningLevel, Status, Source, Message));
+            Write((i) => i.Log.Write(Source, Message, Level, Kind));
         }
     }
 }

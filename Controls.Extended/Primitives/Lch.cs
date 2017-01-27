@@ -4,30 +4,50 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Extended.Primitives
 {
-    [Serializable]
     /// <summary>
     /// Structure to define LCH.
     /// </summary>
+    [Serializable]
     public struct Lch
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MaxValue
         {
-            public static double L = 100.0;
-
-            public static double C = 100.0;
-
-            public static double H = 359.0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double L = 100d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double C = 100d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double H = 359d;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MinValue
         {
-            public static double L = 0.0;
-
-            public static double C = 0.0;
-
-            public static double H = 0.0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double L = 0d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double C = 0d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double H = 0d;
         }
 
         double l;
@@ -38,11 +58,11 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.l;
+                return l;
             }
             set
             {
-                this.l = value.Coerce(Lch.MaxValue.L, Lch.MinValue.L);
+                l = value.Coerce(MaxValue.L, MinValue.L);
             }
         }
 
@@ -54,11 +74,11 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.c;
+                return c;
             }
             set
             {
-                this.c = value.Coerce(Lch.MaxValue.C, Lch.MinValue.C);
+                c = value.Coerce(MaxValue.C, MinValue.C);
             }
         }
 
@@ -70,11 +90,11 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.h;
+                return h;
             }
             set
             {
-                this.h = value.Coerce(Lch.MaxValue.H, Lch.MinValue.H);
+                h = value.Coerce(MaxValue.H, MinValue.H);
             }
         }
 
@@ -82,52 +102,90 @@ namespace Imagin.Controls.Extended.Primitives
 
         #region Lch
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator ==(Lch a, Lch b)
         {
             return a.L == b.L && a.C == b.C && a.H == b.H;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator !=(Lch a, Lch b)
         {
             return a.L != b.L || a.C != b.C || a.H != b.H;
         }
 
         /// <summary>
-        /// Creates an instance of a Lch structure.
+        /// Creates an instance of the <see cref="Lch"/> structure.
         /// </summary>
+        /// <param name="L"></param>
+        /// <param name="C"></param>
+        /// <param name="H"></param>
         public Lch(double L, double C, double H)
         {
-            this.l = L.Coerce(Lch.MaxValue.L, Lch.MinValue.L);
-            this.c = C.Coerce(Lch.MaxValue.C, Lch.MinValue.C);
-            this.h = H.Coerce(Lch.MaxValue.H, Lch.MinValue.H);
+            l = L.Coerce(MaxValue.L, MinValue.L);
+            c = C.Coerce(MaxValue.C, MinValue.C);
+            h = H.Coerce(MaxValue.H, MinValue.H);
         }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <returns></returns>
         public override bool Equals(Object Object)
         {
-            if (Object == null || GetType() != Object.GetType()) return false;
-
-            return (this == (Lch)Object);
+            return Object == null || GetType() != Object.GetType() ? false : this == (Lch)Object;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
-            return L.GetHashCode() ^ c.GetHashCode() ^ h.GetHashCode();
+            return l.GetHashCode() ^ c.GetHashCode() ^ h.GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("L => {0}, C => {1}, H => {2}", this.L.ToString(), this.C.ToString(), this.H.ToString());
+            return "L => {0}, C => {1}, H => {2}".F(l, c, h);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Color"></param>
+        /// <returns></returns>
         public static Lch FromColor(Color Color)
         {
-            return Lch.FromRgba(Color.R, Color.G, Color.B, Color.A);
+            return FromRgba(Color.R, Color.G, Color.B, Color.A);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="L"></param>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
         public static Lch FromLab(double L, double A, double B)
         {
             double l, c, h;
@@ -143,17 +201,39 @@ namespace Imagin.Controls.Extended.Primitives
             return new Lch(l, c, h);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="R"></param>
+        /// <param name="G"></param>
+        /// <param name="B"></param>
+        /// <param name="A"></param>
+        /// <returns></returns>
         public static Lch FromRgba(byte R, byte G, byte B, byte A = 255)
         {
-            Lab lab = Lab.FromRgba(R, G, B, A);
-            return Lch.FromLab(lab.L, lab.A, lab.B);
+            var lab = Lab.FromRgba(R, G, B, A);
+            return FromLab(lab.L, lab.A, lab.B);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="c"></param>
+        /// <param name="h"></param>
+        /// <returns></returns>
         public static Color ToColor(double l, double c, double h)
         {
-            return Lch.ToRgba(l, c, h).ToColor();
+            return ToRgba(l, c, h).ToColor();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="L"></param>
+        /// <param name="C"></param>
+        /// <param name="H"></param>
+        /// <returns></returns>
         public static Lab ToLab(double L, double C, double H)
         {
             double l = L, a, b;
@@ -162,9 +242,16 @@ namespace Imagin.Controls.Extended.Primitives
             return new Lab(l, a, b);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="c"></param>
+        /// <param name="h"></param>
+        /// <returns></returns>
         public static Rgba ToRgba(double l, double c, double h)
         {
-            Lab lab = Lch.ToLab(l, c, h);
+            var lab = ToLab(l, c, h);
             return Lab.ToRgba(lab.L, lab.A, lab.B);
         }
 

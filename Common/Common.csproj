@@ -98,6 +98,19 @@
     <Compile Include="Converters\ArrayToStringConverter.cs" />
     <Compile Include="Debug\Result.Generic.cs" />
     <Compile Include="Drawing\AngularUnit.cs" />
+    <Compile Include="Drawing\Cmyk.cs" />
+    <Compile Include="Drawing\ColorSpace.cs" />
+    <Compile Include="Drawing\Hsb.cs" />
+    <Compile Include="Drawing\Hsl.cs" />
+    <Compile Include="Drawing\IColor.cs" />
+    <Compile Include="Drawing\Illuminant.cs" />
+    <Compile Include="Drawing\IReflectiveColor.cs" />
+    <Compile Include="Drawing\Lab.cs" />
+    <Compile Include="Drawing\Lch.cs" />
+    <Compile Include="Drawing\Luv.cs" />
+    <Compile Include="Drawing\ObserverAngle.cs" />
+    <Compile Include="Drawing\Rgba.cs" />
+    <Compile Include="Drawing\Xyz.cs" />
     <Compile Include="Extensions\Assembly.cs" />
     <Compile Include="Extensions\Brush.cs" />
     <Compile Include="Extensions\Decimal.cs" />
@@ -112,6 +125,7 @@
     <Compile Include="Input\RelayCommand.Generic.cs" />
     <Compile Include="%28Interfaces%29\ISelectable.cs" />
     <Compile Include="%28Interfaces%29\IVariant.cs" />
+    <Compile Include="Input\SelectedEventArgs.cs" />
     <Compile Include="Media\GradientPosition.cs" />
     <Compile Include="Media\GradientType.cs" />
     <Compile Include="Media\Animation\ExpanderDoubleAnimation.cs" />
@@ -274,7 +288,6 @@
     <Compile Include="Mvvm\IDocumentViewModelCollection.cs" />
     <Compile Include="Tracing\Log.cs" />
     <Compile Include="Tracing\LogEntry.cs" />
-    <Compile Include="Tracing\LogEntryStatus.cs" />
     <Compile Include="Data\BindingProxy.cs" />
     <Compile Include="%28Abstract%29\NamedDependencyObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -287,6 +300,7 @@
     <Compile Include="Threading\BackgroundQueue.cs" />
     <Compile Include="Threading\TaskCompletionNotifier.cs" />
     <Compile Include="Tracing\ILog.cs" />
+    <Compile Include="Tracing\LogEntryKind.cs" />
     <Compile Include="Tracing\WarningLevel.cs" />
     <Compile Include="Extensions\Keyboard.cs" />
     <Compile Include="%28Abstract%29\VirtualFolder.cs" />

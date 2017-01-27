@@ -1,33 +1,54 @@
-﻿using Imagin.Common.Extensions;
+﻿using Imagin.Common.Drawing;
+using Imagin.Common.Extensions;
 using System;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended.Primitives
 {
-    [Serializable]
     /// <summary>
     /// Structure to define CIE L*a*b*.
     /// </summary>
+    [Serializable]
     public struct Lab
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MaxValue
         {
-            public static double L = 100;
-
-            public static double A = 128;
-
-            public static double B = 128;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double L = 100d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double A = 128d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double B = 128d;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MinValue
         {
-            public static double L = 0;
-
-            public static double A = -127;
-
-            public static double B = -127;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double L = 0d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double A = -127d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double B = -127d;
         }
 
         double l;
@@ -38,11 +59,11 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.l;
+                return l;
             }
             set
             {
-                this.l = value.Coerce(Lab.MaxValue.L, Lab.MinValue.L);
+                l = value.Coerce(MaxValue.L, MinValue.L);
             }
         }
 
@@ -54,11 +75,11 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.a;
+                return a;
             }
             set
             {
-                this.a = value.Coerce(Lab.MaxValue.A, Lab.MinValue.A);
+                a = value.Coerce(MaxValue.A, MinValue.A);
             }
         }
 
@@ -70,11 +91,11 @@ namespace Imagin.Controls.Extended.Primitives
         {
             get
             {
-                return this.b;
+                return b;
             }
             set
             {
-                this.b = value.Coerce(Lab.MaxValue.B, Lab.MinValue.B);
+                b = value.Coerce(MaxValue.B, MinValue.B);
             }
         }
 
@@ -82,56 +103,96 @@ namespace Imagin.Controls.Extended.Primitives
 
         #region Lab
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator ==(Lab a, Lab b)
         {
             return a.L == b.L && a.A == b.A && a.B == b.B;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static bool operator !=(Lab a, Lab b)
         {
             return a.L != b.L || a.A != b.A || a.B != b.B;
         }
 
         /// <summary>
-        /// Creates an instance of a Lab structure.
+        /// Creates an instance of the <see cref="Lab"/> structure.
         /// </summary>
+        /// <param name="L"></param>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
         public Lab(double L, double A, double B)
         {
-            this.l = L.Coerce(Lab.MaxValue.L, Lab.MinValue.L);
-            this.a = A.Coerce(Lab.MaxValue.A, Lab.MinValue.A);
-            this.b = B.Coerce(Lab.MaxValue.B, Lab.MinValue.B);
+            l = L.Coerce(MaxValue.L, MinValue.L);
+            a = A.Coerce(MaxValue.A, MinValue.A);
+            b = B.Coerce(MaxValue.B, MinValue.B);
         }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <returns></returns>
         public override bool Equals(Object Object)
         {
-            if (Object == null || GetType() != Object.GetType()) return false;
-            return (this == (Lab)Object);
+            return Object == null || GetType() != Object.GetType() ? false : this == (Lab)Object;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
-            return L.GetHashCode() ^ a.GetHashCode() ^ b.GetHashCode();
+            return l.GetHashCode() ^ a.GetHashCode() ^ b.GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("L => {0}, A => {1}, B => {2}", this.L.ToString(), this.A.ToString(), this.B.ToString());
+            return "L => {0}, A => {1}, B => {2}".F(l, a, b);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Color"></param>
+        /// <returns></returns>
         public static Lab FromColor(Color Color)
         {
-            return Lab.FromRgba(Color.R, Color.G, Color.B);
+            return FromRgba(Color.R, Color.G, Color.B);
         }
 
-        public static Lab FromRgba(byte R, byte G, byte B, byte A = 255)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="R"></param>
+        /// <param name="G"></param>
+        /// <param name="B"></param>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static Lab FromRgba(byte R, byte G, byte B, byte A = 255, Illuminant Illuminant = Illuminant.Default)
         {
-            double RLinear = R.ToDouble() / 255.0;
-            double GLinear = G.ToDouble() / 255.0;
-            double BLinear = B.ToDouble() / 255.0;
+            var RLinear = R.ToDouble() / 255d;
+            var GLinear = G.ToDouble() / 255d;
+            var BLinear = B.ToDouble() / 255d;
 
             RLinear = (RLinear > 0.04045) ? Math.Pow((RLinear + 0.055) / (1 + 0.055), 2.2) : (RLinear / 12.92);
             GLinear = (GLinear > 0.04045) ? Math.Pow((GLinear + 0.055) / (1 + 0.055), 2.2) : (GLinear / 12.92);
@@ -141,19 +202,38 @@ namespace Imagin.Controls.Extended.Primitives
             double y = RLinear * 0.2126 + GLinear * 0.7152 + BLinear * 0.0722;
             double z = RLinear * 0.0193 + GLinear * 0.1192 + BLinear * 0.9505;
 
-            double l = 116.0 * Xyz.Fxyz(y / Xyz.MaxValue.Y) - 16.0;
-            double a = 500.0 * (Xyz.Fxyz(x / Xyz.MaxValue.X) - Xyz.Fxyz(y / Xyz.MaxValue.Y));
-            double b = 200.0 * (Xyz.Fxyz(y / Xyz.MaxValue.Y) - Xyz.Fxyz(z / Xyz.MaxValue.Z));
+            var mx = Xyz.Max[Xyz.Component.X, Illuminant];
+            var my = Xyz.Max[Xyz.Component.Y, Illuminant];
+            var mz = Xyz.Max[Xyz.Component.Z, Illuminant];
+
+            double l = 116d * Xyz.Fxyz(y / my) - 16d;
+            double a = 500d * (Xyz.Fxyz(x / mx) - Xyz.Fxyz(y / my));
+            double b = 200d * (Xyz.Fxyz(y / my) - Xyz.Fxyz(z / mz));
 
             return new Lab(l, a, b);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static Color ToColor(double l, double a, double b)
         {
-            return Lab.ToRgba(l, a, b).ToColor();
+            return ToRgba(l, a, b).ToColor();
         }
 
-        public static Rgba ToRgba(double l, double a, double b)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="Illuminant"></param>
+        /// <returns></returns>
+        public static Rgba ToRgba(double l, double a, double b, Illuminant Illuminant = Illuminant.Default)
         {
             double theta = 6.0 / 29.0;
 
@@ -161,9 +241,13 @@ namespace Imagin.Controls.Extended.Primitives
             double fx = fy + (a / 500.0);
             double fz = fy - (b / 200.0);
 
-            var x = (fx > theta ? Xyz.MaxValue.X * (fx * fx * fx) : (fx - 16.0 / 116.0) * 3.0 * (theta * theta) * Xyz.MaxValue.X).Coerce(Xyz.MaxValue.X);
-            var y = (fy > theta ? Xyz.MaxValue.Y * (fy * fy * fy) : (fy - 16.0 / 116.0) * 3.0 * (theta * theta) * Xyz.MaxValue.Y).Coerce(Xyz.MaxValue.Y);
-            var z = (fz > theta ? Xyz.MaxValue.Z * (fz * fz * fz) : (fz - 16.0 / 116.0) * 3.0 * (theta * theta) * Xyz.MaxValue.Z).Coerce(Xyz.MaxValue.Z);
+            var mx = Xyz.Max[Xyz.Component.X, Illuminant];
+            var my = Xyz.Max[Xyz.Component.Y, Illuminant];
+            var mz = Xyz.Max[Xyz.Component.Z, Illuminant];
+
+            var x = (fx > theta ? mx * (fx * fx * fx) : (fx - 16.0 / 116.0) * 3.0 * (theta * theta) * mx).Coerce(mx);
+            var y = (fy > theta ? my * (fy * fy * fy) : (fy - 16.0 / 116.0) * 3.0 * (theta * theta) * my).Coerce(my);
+            var z = (fz > theta ? mz * (fz * fz * fz) : (fz - 16.0 / 116.0) * 3.0 * (theta * theta) * mz).Coerce(mz);
 
             double[] Clinear = new double[3];
             Clinear[0] = x * 3.2410 - y * 1.5374 - z * 0.4986;  //R

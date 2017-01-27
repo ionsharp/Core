@@ -17,8 +17,17 @@ namespace Imagin.Controls.Extended.Primitives
         /// </summary>
         public struct MaxValue
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public static double H = 1d;
+            /// <summary>
+            /// 
+            /// </summary>
             public static double S = 1d;
+            /// <summary>
+            /// 
+            /// </summary>
             public static double B = 1d;
         }
 
@@ -27,8 +36,17 @@ namespace Imagin.Controls.Extended.Primitives
         /// </summary>
         public struct MinValue
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public static double H = 0;
+            /// <summary>
+            /// 
+            /// </summary>
             public static double S = 0;
+            /// <summary>
+            /// 
+            /// </summary>
             public static double B = 0;
         }
 
@@ -107,8 +125,11 @@ namespace Imagin.Controls.Extended.Primitives
         }
 
         /// <summary>
-        /// Creates an instance of a Hsb structure.
+        /// Creates an instance of the <see cref="Hsb"/> structure.
         /// </summary>
+        /// <param name="h"></param>
+        /// <param name="s"></param>
+        /// <param name="b"></param>
         public Hsb(double h, double s, double b)
         {
             this.h = h.Coerce(Hsb.MaxValue.H, Hsb.MinValue.H);
@@ -127,8 +148,7 @@ namespace Imagin.Controls.Extended.Primitives
         /// <returns></returns>
         public override bool Equals(Object Object)
         {
-            if (Object == null || GetType() != Object.GetType()) return false;
-            return (this == (Hsb)Object);
+            return Object == null || GetType() != Object.GetType() ? false : this == (Hsb)Object;
         }
 
         /// <summary>
@@ -137,7 +157,7 @@ namespace Imagin.Controls.Extended.Primitives
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return H.GetHashCode() ^ S.GetHashCode() ^ B.GetHashCode();
+            return h.GetHashCode() ^ s.GetHashCode() ^ b.GetHashCode();
         }
 
         /// <summary>
@@ -146,7 +166,7 @@ namespace Imagin.Controls.Extended.Primitives
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("H => {0}, S => {1}, B => {2}", this.H.ToString(), this.S.ToString(), this.B.ToString());
+            return "H => {0}, S => {1}, B => {2}".F(h, s, b);
         }
 
         /// <summary>
@@ -268,9 +288,9 @@ namespace Imagin.Controls.Extended.Primitives
                 }
             }
 
-            r = r.Multiply(Rgba.MaxValue.R).Coerce(Rgba.MaxValue.R);
-            g = g.Multiply(Rgba.MaxValue.G).Coerce(Rgba.MaxValue.G);
-            b = b.Multiply(Rgba.MaxValue.B).Coerce(Rgba.MaxValue.B);
+            r = r.Multiply(Rgba.MaxValue).Coerce(Rgba.MaxValue);
+            g = g.Multiply(Rgba.MaxValue).Coerce(Rgba.MaxValue);
+            b = b.Multiply(Rgba.MaxValue).Coerce(Rgba.MaxValue);
 
             return new Rgba(r.ToByte(), g.ToByte(), b.ToByte());
         }

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Imagin.Common.Drawing;
 
 namespace Imagin.NET.Demo
 {

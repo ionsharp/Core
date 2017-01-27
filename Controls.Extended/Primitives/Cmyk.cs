@@ -5,34 +5,58 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Extended.Primitives
 {
-    [Serializable]
     /// <summary>
     /// Structure to define CMYK.
     /// </summary>
+    [Serializable]
     public struct Cmyk 
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MaxValue
         {
-            public static double C = 1.0;
-
-            public static double M = 1.0;
-
-            public static double Y = 1.0;
-
-            public static double K = 1.0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double C = 1d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double M = 1d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double Y = 1d;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double K = 1d;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public struct MinValue
         {
-            public static double C = 0.0;
-
-            public static double M = 0.0;
-
-            public static double Y = 0.0;
-
-            public static double K = 0.0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double C = 0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double M = 0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double Y = 0;
+            /// <summary>
+            /// 
+            /// </summary>
+            public static double K = 0;
         }
 
         double c;
@@ -126,8 +150,12 @@ namespace Imagin.Controls.Extended.Primitives
         }
 
         /// <summary>
-        /// Creates an instance of a Cmyk structure.
+        /// Creates an instance of the <see cref="Cmyk"/> structure.
         /// </summary>
+        /// <param name="C"></param>
+        /// <param name="M"></param>
+        /// <param name="Y"></param>
+        /// <param name="K"></param>
         public Cmyk(double C, double M, double Y, double K)
         {
             c = C.Coerce(MaxValue.C, MinValue.C);
@@ -223,9 +251,9 @@ namespace Imagin.Controls.Extended.Primitives
             var g = 255d * (1d - m) * (1d - k);
             var b = 255d * (1d - y) * (1d - k);
 
-            r = r.Round().Coerce(Rgba.MaxValue.R, Rgba.MinValue.R);
-            g = g.Round().Coerce(Rgba.MaxValue.G, Rgba.MinValue.G);
-            b = b.Round().Coerce(Rgba.MaxValue.B, Rgba.MinValue.B);
+            r = r.Round().Coerce(Rgba.MaxValue, Rgba.MinValue);
+            g = g.Round().Coerce(Rgba.MaxValue, Rgba.MinValue);
+            b = b.Round().Coerce(Rgba.MaxValue, Rgba.MinValue);
 
             return Color.FromRgb(r.ToByte(), g.ToByte(), b.ToByte());
         }
