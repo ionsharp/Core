@@ -22,20 +22,32 @@ namespace Imagin.Controls.Extended
             get; set;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty CanResizeContentProperty = DependencyProperty.Register("CanResizeContent", typeof(bool), typeof(TabbedTree), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool CanResizeContent
-        {
-            get
-            {
-                return (bool)GetValue(CanResizeContentProperty);
-            }
-            set
-            {
-                SetValue(CanResizeContentProperty, value);
-            }
-        }
+                {
+                    get
+                    {
+                        return (bool)GetValue(CanResizeContentProperty);
+                    }
+                    set
+                    {
+                        SetValue(CanResizeContentProperty, value);
+                    }
+                }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentBackgroundProperty = DependencyProperty.Register("ContentBackground", typeof(Brush), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush ContentBackground
         {
             get
@@ -48,7 +60,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentBorderBrushProperty = DependencyProperty.Register("ContentBorderBrush", typeof(Brush), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush ContentBorderBrush
         {
             get
@@ -61,7 +79,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentBorderThicknessProperty = DependencyProperty.Register("ContentBorderThickness", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Thickness ContentBorderThickness
         {
             get
@@ -74,7 +98,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentHeaderTemplateProperty = DependencyProperty.Register("ContentHeaderTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(default(DataTemplate), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate ContentHeaderTemplate
         {
             get
@@ -87,7 +117,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentHeaderVisibilityProperty = DependencyProperty.Register("ContentHeaderVisibility", typeof(Visibility), typeof(TabbedTree), new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Visibility ContentHeaderVisibility
         {
             get
@@ -100,7 +136,13 @@ namespace Imagin.Controls.Extended
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentPaddingProperty = DependencyProperty.Register("ContentPadding", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Thickness ContentPadding
         {
             get
@@ -113,7 +155,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate ContentTemplate
         {
             get
@@ -126,7 +174,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentWidthProperty = DependencyProperty.Register("ContentWidth", typeof(GridLength), typeof(TabbedTree), new FrameworkPropertyMetadata(default(GridLength), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public GridLength ContentWidth
         {
             get
@@ -139,7 +193,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MenuWidthProperty = DependencyProperty.Register("MenuWidth", typeof(GridLength), typeof(TabbedTree), new FrameworkPropertyMetadata(default(GridLength), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public GridLength MenuWidth
         {
             get
@@ -152,7 +212,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MenuBackgroundProperty = DependencyProperty.Register("MenuBackground", typeof(Brush), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush MenuBackground
         {
             get
@@ -165,7 +231,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MenuBorderBrushProperty = DependencyProperty.Register("MenuBorderBrush", typeof(Brush), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush MenuBorderBrush
         {
             get
@@ -178,7 +250,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MenuBorderThicknessProperty = DependencyProperty.Register("MenuBorderThickness", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Thickness MenuBorderThickness
         {
             get
@@ -191,6 +269,9 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MenuPaddingProperty = DependencyProperty.Register("MenuPadding", typeof(Thickness), typeof(TabbedTree), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
@@ -204,22 +285,6 @@ namespace Imagin.Controls.Extended
             set
             {
                 SetValue(MenuPaddingProperty, value);
-            }
-        }
-
-        public static DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(string), typeof(TabbedTree), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// 
-        /// </summary>
-        public string SelectedIndex
-        {
-            get
-            {
-                return (string)GetValue(SelectedIndexProperty);
-            }
-            set
-            {
-                SetValue(SelectedIndexProperty, value);
             }
         }
 
@@ -240,12 +305,20 @@ namespace Imagin.Controls.Extended
 
         #region Methods
 
-        protected virtual void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected override void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (PART_ContentHeader != null)
                 PART_ContentHeader.Content = e.NewValue is TreeViewItem ? e.NewValue.As<TreeViewItem>().Header.ToString() : e.NewValue;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.ApplyTemplate();

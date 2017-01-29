@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Imagin.Common.Drawing;
+using System.DirectoryServices;
 
 namespace Imagin.NET.Demo
 {
@@ -223,7 +224,7 @@ namespace Imagin.NET.Demo
 
     #region FileSystemCollection
 
-    public class FileSystemCollection : ConcurrentObservableCollection<FileSystemEntryModel>
+    public class FileSystemCollection : ConcurrentCollection<FileSystemEntryModel>
     {
         string lastPath = string.Empty;
         public string LastPath
@@ -742,16 +743,6 @@ namespace Imagin.NET.Demo
             for (var i = 0; i < 5; i++)
                 PropertyGridSource.Add(new WildObject("Wild Object " + i));
         }
-
-        /*
-        long RandomLong(long min, long max, Random rand)
-        {
-            byte[] buf = new byte[8];
-            rand.NextBytes(buf);
-            long longRand = BitConverter.ToInt64(buf, 0);
-            return (Math.Abs(longRand % (max - min)) + min);
-        }
-        */
 
         #endregion
 

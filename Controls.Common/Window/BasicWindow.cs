@@ -16,7 +16,13 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ButtonsProperty = DependencyProperty.Register("Buttons", typeof(FrameworkElementCollection), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public FrameworkElementCollection Buttons
         {
             get
@@ -29,7 +35,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ButtonsPanelProperty = DependencyProperty.Register("ButtonsPanel", typeof(ItemsPanelTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public ItemsPanelTemplate ButtonsPanel
         {
             get
@@ -42,7 +54,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ButtonsStyleProperty = DependencyProperty.Register("ButtonsStyle", typeof(Style), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Style ButtonsStyle
         {
             get
@@ -55,6 +73,9 @@ namespace Imagin.Controls.Common
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentBorderBrushProperty = DependencyProperty.Register("ContentBorderBrush", typeof(Brush), typeof(BasicWindow), new FrameworkPropertyMetadata(default(Brush), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Gets or sets the border brush of the content.
@@ -71,6 +92,9 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentBorderThicknessProperty = DependencyProperty.Register("ContentBorderThickness", typeof(Thickness), typeof(BasicWindow), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Gets or sets the border thickness of the content.
@@ -87,6 +111,9 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(BasicWindow), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Gets or sets the outer margin of the content.
@@ -103,7 +130,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty FooterProperty = DependencyProperty.Register("Footer", typeof(object), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public object Footer
         {
             get
@@ -116,7 +149,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty FooterTemplateProperty = DependencyProperty.Register("FooterTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate FooterTemplate
         {
             get
@@ -129,7 +168,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty FooterTemplateSelectorProperty = DependencyProperty.Register("FooterTemplateSelector", typeof(DataTemplateSelector), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplateSelector FooterTemplateSelector
         {
             get
@@ -142,7 +187,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty IconTemplateProperty = DependencyProperty.Register("IconTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate IconTemplate
         {
             get
@@ -155,6 +206,9 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty OverlayProperty = DependencyProperty.Register("Overlay", typeof(object), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// Element to place on top of everything else; element covers entire window.
@@ -171,6 +225,9 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty OverlayVisibilityProperty = DependencyProperty.Register("OverlayVisibility", typeof(Visibility), typeof(BasicWindow), new FrameworkPropertyMetadata(Visibility.Collapsed, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// The visibility of the overlay element.
@@ -187,7 +244,13 @@ namespace Imagin.Controls.Common
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ResizeGripTemplateProperty = DependencyProperty.Register("ResizeGripTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate ResizeGripTemplate
         {
             get
@@ -200,7 +263,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty TitleTemplateProperty = DependencyProperty.Register("TitleTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate TitleTemplate
         {
             get
@@ -213,7 +282,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty TypeProperty = DependencyProperty.Register("Type", typeof(WindowType), typeof(BasicWindow), new FrameworkPropertyMetadata(WindowType.Window, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public WindowType Type
         {
             get
@@ -230,12 +305,19 @@ namespace Imagin.Controls.Common
 
         #region BasicWindow
 
+        /// <summary>
+        /// 
+        /// </summary>
         public BasicWindow() : base()
         {
             DefaultStyleKey = typeof(BasicWindow);
             Buttons = new FrameworkElementCollection();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="OnClosed"></param>
         public BasicWindow(Action OnClosed) : this()
         {
             if (OnClosed != null)

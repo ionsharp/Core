@@ -1,6 +1,4 @@
-﻿using Imagin.Common.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System;
 using System.Xml.Serialization;
 
 namespace Imagin.Common
@@ -9,13 +7,16 @@ namespace Imagin.Common
     /// A named, abstract object.
     /// </summary>
     [Serializable]
-    public class NamedObject : AbstractObject, IEditable, INamable
+    public class NamedObject : AbstractObject, INamable
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         protected string name = string.Empty;
-        [Category("General")]
-        [Description("The name of the object.")]
-        [Featured(true)]
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual string Name
         {
             get
@@ -24,45 +25,45 @@ namespace Imagin.Common
             }
             set
             {
-                name = OnNameChanged(value);
+                name = OnPreviewNameChanged(name, value);
                 OnPropertyChanged("Name");
+                OnNameChanged(value);
             }
         }
 
-        bool isEditable = false;
-        [Browsable(false)]
-        [XmlIgnore]
-        public bool IsEditable
-        {
-            get
-            {
-                return isEditable;
-            }
-            set
-            {
-                isEditable = value;
-                OnPropertyChanged("IsEditable");
-            }
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public NamedObject() : base()
         {
         }
 
-        public NamedObject(string Name) : base()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        public NamedObject(string name) : base()
         {
-            this.Name = Name;
+            Name = name;
         }
 
-        public NamedObject(string Name, bool IsEditable) : base()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="OldValue"></param>
+        /// <param name="NewValue"></param>
+        /// <returns></returns>
+        protected virtual string OnPreviewNameChanged(string OldValue, string NewValue)
         {
-            this.Name = Name;
-            this.IsEditable = IsEditable;
+            return NewValue;
         }
 
-        protected virtual string OnNameChanged(string Value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnNameChanged(string Value)
         {
-            return Value;
         }
     }
 }

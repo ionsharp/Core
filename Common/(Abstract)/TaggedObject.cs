@@ -1,31 +1,49 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class TaggedObject : AbstractObject, ITaggable
     {
-        object tag = null; 
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlIgnore]
+        protected object tag = null; 
+        /// <summary>
+        /// 
+        /// </summary>
         public object Tag
         {
             get
             {
-                return this.tag;
+                return tag;
             }
             set
             {
-                this.tag = value;
+                tag = value;
                 OnPropertyChanged("Tag");
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TaggedObject() : base()
         {
         }
 
-        public TaggedObject(object Tag) : base()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        public TaggedObject(object tag) : base()
         {
-            this.Tag = Tag;
+            Tag = tag;
         }
     }
 }

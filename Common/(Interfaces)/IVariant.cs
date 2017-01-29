@@ -9,12 +9,27 @@ namespace Imagin.Common
     /// <typeparam name="T"></typeparam>
     public interface IVariant<T>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         event EventHandler<EventArgs<T>> Changed;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         T Get();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         void OnChanged(T Value);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         void Set(T Value);
     }
 }

@@ -3,9 +3,18 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AbstractView : ViewBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ItemContainerStyleProperty = ItemsControl.ItemContainerStyleProperty.AddOwner(typeof(AbstractView));
+        /// <summary>
+        /// 
+        /// </summary>
         public Style ItemContainerStyle
         {
             get
@@ -18,7 +27,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ItemTemplateProperty = ItemsControl.ItemTemplateProperty.AddOwner(typeof(AbstractView));
+        /// <summary>
+        /// 
+        /// </summary>
         public DataTemplate ItemTemplate
         {
             get
@@ -31,7 +46,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ItemWidthProperty = WrapPanel.ItemWidthProperty.AddOwner(typeof(AbstractView));
+        /// <summary>
+        /// 
+        /// </summary>
         public double ItemWidth
         {
             get
@@ -44,7 +65,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ItemHeightProperty = WrapPanel.ItemHeightProperty.AddOwner(typeof(AbstractView));
+        /// <summary>
+        /// 
+        /// </summary>
         public double ItemHeight
         {
             get

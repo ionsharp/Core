@@ -5,17 +5,14 @@ using System.Collections.Specialized;
 namespace Imagin.Common.Collections.Concurrent
 {
     /// <summary>
-    /// This is the view model for the ConcurrentObservableCollectionBase that can be bound to a view.
-    /// This is exposed by ConcurrentObservableCollectionBase when it is used from the Dispatcher thread.
+    /// The view model for <see cref="ConcurrentCollectionBase{T}"/>; this is exposed by <see cref="ConcurrentCollectionBase{T}"/> when it is used on the dispatcher thread.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [Serializable]
-    public class ObservableCollectionViewModel<T> : ObservableCollection<T>, IObserver<NotifyCollectionChangedEventArgs>, IDisposable
+    public class ConcurrentCollectionViewModel<T> : ObservableCollection<T>, IObserver<NotifyCollectionChangedEventArgs>, IDisposable
     {
-        #region Properties
-
         /// <summary>
-        /// Token that comes back when subscribing to the IObservable<> BaseCollection
+        /// Token that comes back when subscribing to the <see cref="IObserver{T}"/>.
         /// </summary>
         IDisposable UnsubscribeToken = null;
 
@@ -24,14 +21,10 @@ namespace Imagin.Common.Collections.Concurrent
         /// </summary>
         IDisposable SubscriptionActionToken;
 
-        #endregion
-
-        #region Methods
-
         /// <summary>
         /// Processes a NotifyCollectionChangedEventArgs event argument
         /// </summary>
-        /// <param name="command"></param>
+        /// <param name="Command"></param>
         void ProcessCommand(NotifyCollectionChangedEventArgs Command)
         {
             switch (Command.Action)
@@ -82,7 +75,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// <summary>
         /// Disposes of this object, and supresses the finalizer
         /// </summary>
-        /// <param name="isDisposing"></param>
+        /// <param name="IsDisposing"></param>
         void Dispose(bool IsDisposing)
         {
             if (IsDisposing)
@@ -107,7 +100,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// otherwise it will be garbage collected once we leave the scope of this constructor.
         /// the return token holds a reference to the Subscribe Action
         /// </remarks>
-        public ObservableCollectionViewModel(IObservable<NotifyCollectionChangedEventArgs> Observable)
+        public ConcurrentCollectionViewModel(IObservable<NotifyCollectionChangedEventArgs> Observable)
         {
             SubscriptionActionToken = DispatcherQueueProcessor.Instance.QueueSubscribe(() => UnsubscribeToken = Observable.Subscribe(this));
         }
@@ -115,9 +108,17 @@ namespace Imagin.Common.Collections.Concurrent
         /// <summary>
         /// Finalizer, disposes of the object
         /// </summary>
-        ~ObservableCollectionViewModel()
+        ~ConcurrentCollectionViewModel()
         {
             Dispose(false);
+        }
+
+        /// <summary>
+        /// Disposes of the current object
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
         }
 
         /// <summary>
@@ -143,15 +144,5 @@ namespace Imagin.Common.Collections.Concurrent
         {
             DispatcherQueueProcessor.Instance.Add(() => ProcessCommand(value));
         }
-
-        /// <summary>
-        /// Disposes of the current object
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        #endregion
     }
 }

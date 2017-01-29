@@ -62,11 +62,10 @@ namespace Imagin.Controls.Extended
         /// <param name="Value"></param>
         protected virtual void OnColorChanged(Color Value)
         {
-            if (ColorChanged != null)
-                ColorChanged(this, new EventArgs<Color>(Color));
-
             if (!ColorChangeHandled)
             {
+                ColorChanged?.Invoke(this, new EventArgs<Color>(Color));
+
                 ValueChangeHandled = true;
                 this.Value = new SolidColorBrush(Value);
                 ValueChangeHandled = false;
@@ -79,10 +78,10 @@ namespace Imagin.Controls.Extended
         /// <param name="Value"></param>
         protected override void OnValueChanged(SolidColorBrush Value)
         {
-            base.OnValueChanged(Value);
-
             if (!ValueChangeHandled && Value != null)
             {
+                base.OnValueChanged(Value);
+
                 ColorChangeHandled = true;
                 Color = Value.Color;
                 ColorChangeHandled = false;

@@ -1,24 +1,14 @@
 ﻿namespace Imagin.Common.Tracing
 {
-    public class LogEntry : Entry
+    /// <summary>
+    /// 
+    /// </summary>
+    public class LogEntry : Entry, ILogEntry
     {
-        #region Properties
-
-        string source = string.Empty;
-        public string Host
-        {
-            get
-            {
-                return source;
-            }
-            set
-            {
-                source = value;
-                OnPropertyChanged("Host");
-            }
-        }
-
         string message = string.Empty;
+        /// <summary>
+        /// 
+        /// </summary>
         public string Message
         {
             get
@@ -32,63 +22,67 @@
             }
         }
 
-        LogEntryKind status = LogEntryKind.Info;
-        public LogEntryKind Status
+        object source = default(object);
+        /// <summary>
+        /// 
+        /// </summary>
+        public object Source
         {
             get
             {
-                return status;
+                return source;
             }
             set
             {
-                status = value;
-                OnPropertyChanged("Status");
+                source = value;
+                OnPropertyChanged("Source");
             }
         }
 
-        WarningLevel warningLevel = WarningLevel.Moderate;
-        public WarningLevel WarningLevel
+        LogEntryType type = LogEntryType.Message;
+        /// <summary>
+        /// 
+        /// </summary>
+        public LogEntryType Type
         {
             get
             {
-                return warningLevel;
+                return type;
             }
             set
             {
-                warningLevel = value;
-                OnPropertyChanged("WarningLevel");
+                type = value;
+                OnPropertyChanged("Type");
             }
         }
 
-        #endregion
-
-        #region LogEntry
-
+        /// <summary>
+        /// 
+        /// </summary>
         public LogEntry() : base()
         {
         }
 
-        public LogEntry(string Source, string Message) : base()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Type"></param>
+        public LogEntry(string Message, LogEntryType Type = LogEntryType.Message) : this(Message, null, Type)
         {
-            this.Host = Source;
-            this.Message = Message;
         }
 
-        public LogEntry(LogEntryKind Status, string Source, string Message) : base()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        public LogEntry(string message, object source, LogEntryType type = LogEntryType.Message) : base()
         {
-            this.Status = Status;
-            this.Host = Source;
-            this.Message = Message;
+            Message = message;
+            Source = source;
+            Type = type;
         }
-
-        public LogEntry(WarningLevel WarningLevel, LogEntryKind Status, string Source, string Message) : base()
-        {
-            this.WarningLevel = WarningLevel;
-            this.Status = Status;
-            this.Host = Source;
-            this.Message = Message;
-        }
-
-        #endregion
     }
 }

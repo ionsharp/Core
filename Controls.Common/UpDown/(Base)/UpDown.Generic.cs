@@ -50,7 +50,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(T), typeof(UpDown<T>), new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMaximumChanged, new CoerceValueCallback(OnMaximumCoerced)));
+        public static readonly DependencyProperty<T, UpDown<T>> MaximumProperty = new DependencyProperty<T, UpDown<T>>("Maximum", new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMaximumChanged, OnMaximumCoerced));
         /// <summary>
         /// 
         /// </summary>
@@ -58,11 +58,11 @@ namespace Imagin.Controls.Common
         {
             get
             {
-                return (T)GetValue(MaximumProperty);
+                return MaximumProperty.Get(this);
             }
             set
             {
-                SetValue(MaximumProperty, value);
+                MaximumProperty.Set(this, value);
             }
         }
         static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -77,7 +77,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(T), typeof(UpDown<T>), new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMinimumChanged, new CoerceValueCallback(OnMinimumCoerced)));
+        public static readonly DependencyProperty<T, UpDown<T>> MinimumProperty = new DependencyProperty<T, UpDown<T>>("Minimum", new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnMinimumChanged, OnMinimumCoerced));
         /// <summary>
         /// 
         /// </summary>
@@ -85,11 +85,11 @@ namespace Imagin.Controls.Common
         {
             get
             {
-                return (T)GetValue(MinimumProperty);
+                return MinimumProperty.Get(this);
             }
             set
             {
-                SetValue(MinimumProperty, value);
+                MinimumProperty.Set(this, value);
             }
         }
         static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -104,7 +104,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(T), typeof(UpDown<T>), new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged, new CoerceValueCallback(OnValueCoerced)));
+        public static readonly DependencyProperty<T, UpDown<T>> ValueProperty = new DependencyProperty<T, UpDown<T>>("Value", new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged, OnValueCoerced));
         /// <summary>
         /// 
         /// </summary>
@@ -112,11 +112,11 @@ namespace Imagin.Controls.Common
         {
             get
             {
-                return (T)GetValue(ValueProperty);
+                return ValueProperty.Get(this);
             }
             set
             {
-                SetValue(ValueProperty, value);
+                ValueProperty.Set(this, value);
             }
         }
         static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -137,9 +137,9 @@ namespace Imagin.Controls.Common
         /// </summary>
         public UpDown() : base()
         {
-            SetCurrentValue(MaximumProperty, AbsoluteMaximum);
-            SetCurrentValue(MinimumProperty, AbsoluteMinimum);
-            SetCurrentValue(ValueProperty, DefaultValue);
+            SetCurrentValue(MaximumProperty.Property, AbsoluteMaximum);
+            SetCurrentValue(MinimumProperty.Property, AbsoluteMinimum);
+            SetCurrentValue(ValueProperty.Property, DefaultValue);
         }
 
         #endregion

@@ -110,9 +110,9 @@ namespace Imagin.Controls.Extended
                 SetValue(ColorProperty, value);
             }
         }
-        static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        static async void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.As<ComponentView>().OnColorChanged(e.NewValue.As<Color>());
+            await d.As<ComponentView>().OnColorChanged(e.NewValue.As<Color>());
         }
 
         #endregion

@@ -1,56 +1,73 @@
 ﻿using Imagin.Common.Collections.Concurrent;
+using Imagin.Common.Extensions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
-    [XmlRoot(ElementName = "VirtualFolder")]
-    public sealed class VirtualFolder : NamedObject, ICloneable, IContainer
+    public sealed class VirtualFolder : AbstractContainer, ICloneable, IContainer<AbstractContainer>, INamable
     {
-        AbstractObjectCollection items = null;
-        [Category("General")]
-        [Description("A collection of objects.")]
-        [XmlArray(ElementName = "Items")]
-        public AbstractObjectCollection Items
+        /// <summary>
+        /// 
+        /// </summary>
+        string name = string.Empty;
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Name
         {
             get
             {
-                return items;
+                return name;
             }
             set
             {
-                items = value;
-                OnPropertyChanged("Items");
+                name = value;
+                OnPropertyChanged("Name");
             }
         }
 
-        public IEnumerable<AbstractObject> GetClones(VirtualFolder Folder)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Folder"></param>
+        /// <returns></returns>
+        public IEnumerable<AbstractContainer> GetClones(VirtualFolder Folder)
         {
             foreach (var i in Folder.Items)
-            {
-                if (i is ICloneable)
-                    yield return i;
-            }
+                yield return (AbstractContainer)i.Clone();
         }
 
-        public object Clone()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override object Clone()
         {
-            var Result = new VirtualFolder();
-            Result.Items = new AbstractObjectCollection(this.GetClones(this));
+            var Result = new VirtualFolder(Name);
+            GetClones(this).ForEach(i => Result.Items.Add(i));
             return Result;
         }
 
-        public VirtualFolder() : base()
+        /// <summary>
+        /// 
+        /// </summary>
+        public VirtualFolder() : this(string.Empty)
         {
-            this.Items = new AbstractObjectCollection();
         }
 
-        public VirtualFolder(string Name) : base(Name)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        public VirtualFolder(string name) : base()
         {
-            this.Items = new AbstractObjectCollection();
+            Name = name;
+            Items = new ConcurrentCollection<AbstractContainer>();
         }
     }
 }

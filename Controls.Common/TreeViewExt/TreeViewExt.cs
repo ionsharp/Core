@@ -367,9 +367,13 @@ namespace Imagin.Controls.Common
                 if (Item != null && Item.Is<TreeViewItem>())
                 {
                     if (Mouse.LeftButton == MouseButtonState.Pressed && TreeViewItemExtensions.GetIsSelected(Item) && Keyboard.Modifiers != ModifierKeys.Control)
+                    {
                         SelectedItemOnMouseUp = Item;
+                    }
                     else if (sender is TreeViewExt && TreeViewExtensions.GetSelectionMode(sender as TreeView) == TreeViewSelectionMode.Single)
+                    {
                         TreeViewExtensions.SelectItem(sender as TreeView, Item);
+                    }
                     else (sender as TreeViewExt).SelectItems(Item);
                 }
             }

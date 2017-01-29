@@ -3,6 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="sender"></param>
     /// <param name="e"></param>
     public delegate void SelectedEventHandler(SelectedEventArgs e);
 
@@ -14,8 +15,8 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        public SelectedEventArgs(object Value) : base(Value)
+        /// <param name="Data"></param>
+        public SelectedEventArgs(object Data) : base(Data)
         {
         }
     }

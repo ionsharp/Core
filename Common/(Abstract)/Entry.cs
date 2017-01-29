@@ -1,77 +1,67 @@
-﻿using Imagin.Common.Attributes;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Timers;
 using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
-    [Serializable]
     ///<summary>
     /// An object with a date that periodically notifies.
     /// </summary>
-    public class Entry : AbstractObject
+    [Serializable]
+    public class Entry : NotifiableObject, IEntry
     {
-        #region Properties
-
-        Timer Timer
-        {
-            get; set;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         protected DateTime date = DateTime.UtcNow;
-        [Category("General")]
-        [Description("The entry date.")]
-        public virtual DateTime Date
+        /// <summary>
+        /// Gets or sets the date of the entry.
+        /// </summary>
+        public DateTime Date
         {
             get
             {
                 return date;
             }
-            set
-            {
-                date = value;
-                OnPropertyChanged("Date");
-            }
         }
 
-        [Browsable(false)]
-        [XmlIgnore]
-        public int NotificationInterval
+        /// <summary>
+        /// 
+        /// </summary>
+        public Entry() : base()
         {
-            get; set;
         }
 
-        #endregion
-
-        #region Methods
-
-        protected virtual void OnInitialized()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="interval"></param>
+        /// <param name="enabled"></param>
+        public Entry(double interval, bool enabled = false) : base(interval, enabled)
         {
-            this.Timer = new Timer();
-            this.Timer.Interval = this.NotificationInterval;
-            this.Timer.Elapsed += (s, e) => OnPropertyChanged("Date");
-            this.Timer.Start();
         }
 
-        #endregion
-
-        #region Entry
-
-        public Entry(int NotifyEvery = 1000)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="interval"></param>
+        /// <param name="enabled"></param>
+        public Entry(DateTime date, double interval = DefaultInterval, bool enabled = false) : base(interval, enabled)
         {
-            this.NotificationInterval = NotifyEvery;
-            this.OnInitialized();
+            this.date = date;
         }
 
-        public Entry(DateTime Date, int NotifyEvery = 1000)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnNotified(ElapsedEventArgs e)
         {
-            this.Date = Date;
-            this.NotificationInterval = NotifyEvery;
-            this.OnInitialized();
+            base.OnNotified(e);
+            OnPropertyChanged("Date");
         }
-
-        #endregion
     }
 }

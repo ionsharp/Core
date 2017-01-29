@@ -12,7 +12,7 @@ namespace Imagin.Common
         /// <summary>
         /// 
         /// </summary>
-        [field: NonSerializedAttribute()]
+        [field: NonSerialized()]
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

@@ -442,9 +442,9 @@ namespace Imagin.Controls.Extended
                 SetValue(SelectedObjectProperty, value);
             }
         }
-        static void OnSelectedObjectChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static async void OnSelectedObjectChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            Object.As<PropertyGrid>().OnSelectedObjectChanged((object)e.NewValue);
+            await Object.As<PropertyGrid>().OnSelectedObjectChanged((object)e.NewValue);
         }
 
         /// <summary>

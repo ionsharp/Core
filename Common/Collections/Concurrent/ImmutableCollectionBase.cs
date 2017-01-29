@@ -5,13 +5,11 @@ using System.Collections.Generic;
 namespace Imagin.Common.Collections.Concurrent
 {
     /// <summary>
-    /// This class provides the base restrictions for an immutable collection
+    /// Provides a base collection that is immutable or cannot be changed.
     /// </summary>
     [Serializable]
-    public abstract class ImmutableCollectionBase<T> : ICollection<T>, IEnumerable<T>, ICollection, IEnumerable
+    public abstract class ImmutableCollectionBase<T> : ICollection, ICollection<T>, IEnumerable, IEnumerable<T>
     {
-        #region Properties
-
         bool ICollection.IsSynchronized
         {
             get
@@ -39,45 +37,18 @@ namespace Imagin.Common.Collections.Concurrent
         /// <summary>
         /// Gets a value indicating that the collection is read-only.
         /// </summary>
-        public bool IsReadOnly {
-            get {
-            return true;
+        public bool IsReadOnly
+        {
+            get
+            {
+                return true;
             }
         }
 
-        #endregion
-
-        #region Methods
-
-        #region Public
-
-        /// <summary>
-        /// Throws the exception System.NotSupportedException:
-        /// </param>
-        public void Add(T Item)
+        void ICollection.CopyTo(Array Array, int Index)
         {
-            throw (new NotSupportedException("The Swordfish.NET.Collections.KeyCollection<TKey,TValue> is read-only."));
+            CopyTo((T[])Array, Index);
         }
-
-        /// <summary>
-        /// Throws the exception System.NotSupportedException:
-        /// </param>
-        public void Clear()
-        {
-            throw (new NotSupportedException("The Swordfish.NET.Collections.KeyCollection<TKey,TValue> is read-only."));
-        }
-
-        /// <summary>
-        /// Throws the exception System.NotSupportedException:
-        /// </param>
-        public bool Remove(T Item)
-        {
-            throw (new NotSupportedException("The Swordfish.NET.Collections.KeyCollection<TKey,TValue> is read-only."));
-        }
-
-        #endregion
-
-        #region Abstract
 
         /// </summary>
         /// <param name="item">The object to locate</param>
@@ -85,7 +56,7 @@ namespace Imagin.Common.Collections.Concurrent
         public abstract bool Contains(T Item);
 
         /// <summary>
-        //  Copies the elements of the collection to an array, starting at a particular index.
+        ///  Copies the elements of the collection to an array, starting at a particular index.
         /// </summary>
         public abstract void CopyTo(T[] Array, int ArrayIndex);
 
@@ -94,13 +65,28 @@ namespace Imagin.Common.Collections.Concurrent
         /// </summary>
         public abstract IEnumerator<T> GetEnumerator();
 
-        #endregion
-
-        #region Private
-
-        void ICollection.CopyTo(Array Array, int Index)
+        /// <summary>
+        /// Throws the exception System.NotSupportedException:
+        /// </param>
+        public void Add(T Item)
         {
-            CopyTo((T[])Array, Index);
+            throw new NotSupportedException("KeyCollection<TKey,TValue> is read-only.");
+        }
+
+        /// <summary>
+        /// Throws the exception System.NotSupportedException:
+        /// </param>
+        public void Clear()
+        {
+            throw (new NotSupportedException("KeyCollection<TKey,TValue> is read-only."));
+        }
+
+        /// <summary>
+        /// Throws the exception System.NotSupportedException:
+        /// </param>
+        public bool Remove(T Item)
+        {
+            throw (new NotSupportedException("KeyCollection<TKey,TValue> is read-only."));
         }
 
         /// <summary>
@@ -110,9 +96,5 @@ namespace Imagin.Common.Collections.Concurrent
         {
             return GetEnumerator();
         }
-
-        #endregion
-
-        #endregion
     }
 }

@@ -19,11 +19,9 @@ namespace Imagin.Common.Collections.Concurrent
     /// I set a flag indicating that a new snapshot is required.
     /// </notes>
     [Serializable]
-    public abstract class ConcurrentObservableBase<T> : IObservable<NotifyCollectionChangedEventArgs>, INotifyCollectionChanged, IEnumerable<T>, IDisposable
+    public abstract class ConcurrentCollectionBase<T> : IObservable<NotifyCollectionChangedEventArgs>, INotifyCollectionChanged, IEnumerable<T>, IDisposable
     {
         #region Properties
-
-        #region Static
 
         /// <summary>
         /// Gets if the calling thread is the same as the dispatcher thread
@@ -36,7 +34,7 @@ namespace Imagin.Common.Collections.Concurrent
             }
         }
 
-        #endregion
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         #region Private
 
@@ -108,6 +106,9 @@ namespace Imagin.Common.Collections.Concurrent
 
         #region Protected
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected ObservableCollection<T> ReadCollection
         {
             get
@@ -128,11 +129,11 @@ namespace Imagin.Common.Collections.Concurrent
         /// Relevant methods determine if they are being called on the UI thread, and if
         /// so then the view model is used.
         /// </summary>
-        ObservableCollectionViewModel<T> viewModel;
+        ConcurrentCollectionViewModel<T> viewModel;
         /// <summary>
         /// Access this directly if getting the error "An ItemsControl is inconsistent with its items source".
         /// </summary>
-        protected ObservableCollectionViewModel<T> ViewModel
+        protected ConcurrentCollectionViewModel<T> ViewModel
         {
             get
             {
@@ -155,19 +156,19 @@ namespace Imagin.Common.Collections.Concurrent
 
         #endregion
 
-        #region ConcurrentObservableBase
+        #region ConcurrentCollectionBase
 
         /// <summary>
         /// Default Constructor
         /// </summary>
-        protected ConcurrentObservableBase() : this(new T[]{})
+        protected ConcurrentCollectionBase() : this(new T[]{})
         {
         }
 
         /// <summary>
         /// Constructor that takes an eumerable
         /// </summary>
-        protected ConcurrentObservableBase(IEnumerable<T> Items)
+        protected ConcurrentCollectionBase(IEnumerable<T> Items)
         {
             Subscribers = new Dictionary<int, IObserver<NotifyCollectionChangedEventArgs>>();
 
@@ -176,7 +177,7 @@ namespace Imagin.Common.Collections.Concurrent
 
             // subscribers must be initialized befor calling this as it may
             // subscribe immediately
-            viewModel = new ObservableCollectionViewModel<T>(this);
+            viewModel = new ConcurrentCollectionViewModel<T>(this);
 
             // Handle when the base collection changes. Event will be passed through
             // the IObservable.OnNext method.
@@ -190,7 +191,10 @@ namespace Imagin.Common.Collections.Concurrent
             };
         }
 
-        ~ConcurrentObservableBase() {
+        /// <summary>
+        /// 
+        /// </summary>
+        ~ConcurrentCollectionBase() {
             Dispose(false);
         }
 
@@ -198,8 +202,167 @@ namespace Imagin.Common.Collections.Concurrent
 
         #region Methods
 
+        #region IDisposable
+
         /// <summary>
-        /// Removes all items from the ICollection<T>.
+        /// 
+        /// </summary>
+        /// <param name="Disposing"></param>
+        protected virtual void Dispose(bool Disposing)
+        {
+            if (Disposing)
+                GC.SuppressFinalize(this);
+            OnCompleted();
+            IsDisposed = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        #endregion
+
+        #region IObservable
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        protected void OnNext(NotifyCollectionChangedEventArgs value)
+        {
+            if (IsDisposed)
+                throw new ObjectDisposedException("Observable<T>");
+
+            foreach (var i in Subscribers.Select(kv => kv.Value))
+                i.OnNext(value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Exception"></param>
+        protected void OnError(Exception Exception)
+        {
+            if (IsDisposed)
+                throw new ObjectDisposedException("Observable<T>");
+
+            if (Exception == null)
+                throw new ArgumentNullException("Exception");
+
+            foreach (var i in Subscribers.Select(kv => kv.Value))
+                i.OnError(Exception);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void OnCompleted()
+        {
+            if (IsDisposed)
+                throw new ObjectDisposedException("Observable<T>");
+
+            foreach (var i in Subscribers.Select(kv => kv.Value))
+                i.OnCompleted();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Observer"></param>
+        /// <returns></returns>
+        public IDisposable Subscribe(IObserver<NotifyCollectionChangedEventArgs> Observer)
+        {
+            if (Observer == null)
+                throw new ArgumentNullException("observer");
+
+            return DoBaseWrite(() =>
+            {
+                var Key = SubscriberKey++;
+
+                Subscribers.Add(Key, Observer);
+                UpdateSnapshot();
+
+                foreach (var i in BaseSnapshot)
+                    Observer.OnNext(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, i));
+
+                return new DisposeDelegate(() => DoBaseWrite(() => Subscribers.Remove(Key)));
+            });
+        }
+
+        /// <summary>
+        /// Result returned from <see cref="Subscribe"/> method.
+        /// </summary>
+        class DisposeDelegate : IDisposable
+        {
+            Action dispose;
+
+            public DisposeDelegate(Action Dispose)
+            {
+                dispose = Dispose;
+            }
+
+            public void Dispose()
+            {
+                dispose();
+            }
+        }
+
+        #endregion
+
+        #region IEnumerable<T>
+
+        /// <summary>
+        /// Gets the enumerator for a snapshot of the collection
+        /// </summary>
+        /// <remarks>
+        /// Note that the Enumerator should really only be used on the Dispatcher thread,
+        /// if not then should enumerate over the Snapshot instead.
+        /// 
+        /// </remarks>
+        public IEnumerator<T> GetEnumerator()
+        {
+            return IsDispatcherThread ? viewModel.GetEnumerator() : Snapshot.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Gets the enumerator for a snapshot of the collection
+        /// </summary>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
+
+        #region Private
+
+        /// <summary>
+        /// Updates the snapshot that is used to generate an Enumerator
+        /// </summary>
+        void UpdateSnapshot()
+        {
+            if (NewSnapshotRequired)
+            {
+                SnapshotLock.TryEnterWriteLock(Timeout.Infinite);
+                if (NewSnapshotRequired)
+                {
+                    BaseSnapshot = new ImmutableCollection<T>(BaseCollection);
+                    NewSnapshotRequired = false;
+                }
+                SnapshotLock.ExitWriteLock();
+            }
+        }
+
+        #endregion
+
+        #region Protected
+
+        /// <summary>
+        /// Removes all items from the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <remarks>
         /// Don't use BaseCollection.Clear(), it causes problems because it
@@ -207,39 +370,6 @@ namespace Imagin.Common.Collections.Concurrent
         /// an enumerator. Use RemoveAt instead until the collection is empty.
         /// Using remove from end after testing with this speed test:
         /// </remarks>
-        /// <test for="RemoveAt(int index)">
-        ///
-        /// using System;
-        /// using System.Collections.Generic;
-        /// using System.Collections.ObjectModel;
-        /// using System.Diagnostics;
-        ///
-        /// namespace ConsoleApplication1 
-        /// {
-        ///     class Program 
-        ///     {
-        ///         static void Main(string[] args) 
-        ///         {
-        ///             var coll = new Collection<int>();
-        ///             for (int ix = 0; ix < 100000; ++ix) coll.Add(ix);
-        ///             var sw = Stopwatch.StartNew();
-        ///             while (coll.Count > 0) coll.RemoveAt(0);
-        ///             sw.Stop();
-        ///             Console.WriteLine("Removed from start {0}ms",sw.ElapsedMilliseconds);
-        ///             for (int ix = 0; ix < 100000; ++ix) coll.Add(ix);
-        ///             sw = Stopwatch.StartNew();
-        ///             while (coll.Count > 0) coll.RemoveAt(coll.Count - 1);
-        ///             Console.WriteLine("Removed from end {0}ms",sw.ElapsedMilliseconds);
-        ///             Console.ReadLine();
-        ///         }
-        ///     }
-        /// }
-        ///
-        ///  Output: 
-        ///  Removed from start 4494ms
-        ///  Removed from end 3ms
-        /// 
-        /// </test>
         protected void DoBaseClear(Action Action = null)
         {
             // Need a special case of DoBaseWrite for a set changes to make sure that nothing else does a change
@@ -266,6 +396,8 @@ namespace Imagin.Common.Collections.Concurrent
         /// <summary>
         /// Handles when the base collection changes. Pipes the event through IObservable.OnNext
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         /// <remarks>
         /// As this is a concurrent collection we don't want a change event to result in the listener
         /// later coming back to enumerate over the whole collection again, possible before the listener
@@ -276,24 +408,6 @@ namespace Imagin.Common.Collections.Concurrent
             bool actionTypeIsOk = e.Action != NotifyCollectionChangedAction.Reset;
             System.Diagnostics.Debug.Assert(actionTypeIsOk, "Reset called on concurrent observable collection. This shouldn't happen");
             OnNext(e);
-        }
-
-        /// <summary>
-        /// Updates the snapshot that is used to generate an Enumerator
-        /// </summary>
-        /// <param name="forceUpdate"></param>
-        private void UpdateSnapshot()
-        {
-            if(NewSnapshotRequired)
-            {
-                SnapshotLock.TryEnterWriteLock(Timeout.Infinite);
-                if(NewSnapshotRequired)
-                {
-                    BaseSnapshot = new ImmutableCollection<T>(BaseCollection);
-                    NewSnapshotRequired = false;
-                }
-                SnapshotLock.ExitWriteLock();
-            }
         }
 
         /// <summary>
@@ -313,16 +427,18 @@ namespace Imagin.Common.Collections.Concurrent
         /// Handles read access from the base collection when a return value is required
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
-        /// <param name="readFunc"></param>
+        /// <param name="ReadAction"></param>
         /// <returns></returns>
-        protected TResult DoBaseRead<TResult>(Func<TResult> ReadFunc)
+        protected TResult DoBaseRead<TResult>(Func<TResult> ReadAction)
         {
-            if(IsDispatcherThread)
-                return ReadFunc();
+            if (IsDispatcherThread)
+                return ReadAction();
+
             ReadWriteLock.TryEnterReadLock(Timeout.Infinite);
+
             try
             {
-                return ReadFunc();
+                return ReadAction();
             }
             finally
             {
@@ -389,7 +505,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// <summary>
         /// Handles write access to the base collection
         /// </summary>
-        /// <param name="writeFunc"></param>
+        /// <param name="WriteAction"></param>
         protected void DoBaseWrite(Action WriteAction)
         {
             DoBaseWrite<object>(() => 
@@ -403,7 +519,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// Handles write access to the base collection when a return value is required
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
-        /// <param name="writeFunc"></param>
+        /// <param name="WriteFunc"></param>
         /// <returns></returns>
         protected TResult DoBaseWrite<TResult>(Func<TResult> WriteFunc)
         {
@@ -423,113 +539,6 @@ namespace Imagin.Common.Collections.Concurrent
         }
 
         #endregion
-
-        #region IObservable
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool Disposing)
-        {
-            if(Disposing) GC.SuppressFinalize(this);
-            OnCompleted();
-            IsDisposed = true;
-        }
-
-        protected void OnNext(NotifyCollectionChangedEventArgs value)
-        {
-            if(IsDisposed)
-                throw new ObjectDisposedException("Observable<T>");
-            foreach (IObserver<NotifyCollectionChangedEventArgs> Observer in Subscribers.Select(kv => kv.Value))
-                Observer.OnNext(value);
-        }
-
-        protected void OnError(Exception Exception)
-        {
-            if(IsDisposed)
-                throw new ObjectDisposedException("Observable<T>");
-            if(Exception == null)
-                throw new ArgumentNullException("Exception");
-            foreach(IObserver<NotifyCollectionChangedEventArgs> Observer in Subscribers.Select(kv => kv.Value))
-                Observer.OnError(Exception);
-        }
-
-        protected void OnCompleted()
-        {
-            if(IsDisposed)
-                throw new ObjectDisposedException("Observable<T>");
-            foreach (IObserver<NotifyCollectionChangedEventArgs> Observer in Subscribers.Select(kv => kv.Value))
-                Observer.OnCompleted();
-        }
-
-        public IDisposable Subscribe(IObserver<NotifyCollectionChangedEventArgs> observer)
-        {
-            if(observer == null) 
-                throw new ArgumentNullException("observer");
-            return DoBaseWrite(() => 
-            {
-                int Key = SubscriberKey++;
-
-                Subscribers.Add(Key, observer);
-                UpdateSnapshot();
-
-                foreach(var item in BaseSnapshot) 
-                    observer.OnNext(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item));
-
-                return new DisposeDelegate(() => DoBaseWrite(() => Subscribers.Remove(Key)));
-            });
-        }
-
-        /// <summary>
-        /// Result returned from "Subscribe" method.
-        /// </summary>
-        class DisposeDelegate : IDisposable
-        {
-            private Action dispose;
-
-            public DisposeDelegate(Action Dispose)
-            {
-                this.dispose = Dispose;
-            }
-
-            public void Dispose()
-            {
-                dispose();
-            }
-        }
-
-        #endregion
-
-        #region INotifyCollectionChanged
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-
-        #endregion 
-
-        #region IEnumerable<T>
-
-        /// <summary>
-        /// Gets the enumerator for a snapshot of the collection
-        /// </summary>
-        /// <remarks>
-        /// Note that the Enumerator should really only be used on the Dispatcher thread,
-        /// if not then should enumerate over the Snapshot instead.
-        /// 
-        /// </remarks>
-        public IEnumerator<T> GetEnumerator()
-        {
-            return IsDispatcherThread ? viewModel.GetEnumerator() : Snapshot.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Gets the enumerator for a snapshot of the collection
-        /// </summary>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
 
         #endregion
     }

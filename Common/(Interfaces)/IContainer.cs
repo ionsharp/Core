@@ -1,10 +1,16 @@
-﻿using Imagin.Common.Collections.Concurrent;
+﻿using System.Collections;
 
 namespace Imagin.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IContainer
     {
-        AbstractObjectCollection Items
+        /// <summary>
+        /// 
+        /// </summary>
+        IList Items
         {
             get; set;
         }

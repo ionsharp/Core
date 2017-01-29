@@ -746,7 +746,6 @@
                             SelectedValue="{Binding SelectionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             ToolTip="Selection Mode"/>
                     </StackPanel>
-
                     <ListView
                         Grid.Row="1"
                         x:Name="PART_ListView"

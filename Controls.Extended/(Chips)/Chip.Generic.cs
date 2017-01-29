@@ -1,14 +1,8 @@
 ﻿using Imagin.Common.Extensions;
 using Imagin.Common.Input;
+using Imagin.Controls.Common;
 using System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Imagin.Controls.Extended
@@ -26,7 +20,7 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(T), typeof(Chip<T>), new PropertyMetadata(default(T), OnValueChanged));
+        public static readonly DependencyProperty<T, Chip<T>> ValueProperty = new DependencyProperty<T, Chip<T>>("Value", new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnValueChanged));
         /// <summary>
         /// 
         /// </summary>
@@ -34,11 +28,11 @@ namespace Imagin.Controls.Extended
         {
             get
             {
-                return (T)GetValue(ValueProperty);
+                return ValueProperty.Get(this);
             }
             set
             {
-                SetValue(ValueProperty, value);
+                ValueProperty.Set(this, value);
             }
         }
         static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -59,8 +53,7 @@ namespace Imagin.Controls.Extended
         /// <param name="Value"></param>
         protected virtual void OnValueChanged(T Value)
         {
-            if (ValueChanged != null)
-                ValueChanged(this, new EventArgs<T>(Value));
+            ValueChanged?.Invoke(this, new EventArgs<T>(Value));
         }
     }
 }

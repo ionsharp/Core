@@ -84,15 +84,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="%28Abstract%29\AbstractDependencyObject.cs" />
     <Compile Include="%28Abstract%29\AbstractObject.cs" />
+    <Compile Include="%28Abstract%29\AbstractContainer.cs" />
     <Compile Include="%28Interfaces%29\IChangeable.cs" />
+    <Compile Include="%28Interfaces%29\IContainer.Generic.cs" />
+    <Compile Include="%28Interfaces%29\IEntry.cs" />
     <Compile Include="%28Interfaces%29\IValidate.Generic.cs" />
     <Compile Include="Attributes\Constraint.cs" />
-    <Compile Include="Attributes\Alias.cs" />
     <Compile Include="Attributes\Icon.cs" />
     <Compile Include="Attributes\Int64Kind.cs" />
     <Compile Include="Attributes\StringKind.cs" />
+    <Compile Include="Collections\Generic\TrackableList.cs" />
     <Compile Include="Config\IAppStarter.cs" />
     <Compile Include="Config\IMainModule.cs" />
     <Compile Include="Converters\ArrayToStringConverter.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Input\RelayCommand.Generic.cs" />
     <Compile Include="%28Interfaces%29\ISelectable.cs" />
     <Compile Include="%28Interfaces%29\IVariant.cs" />
+    <Compile Include="Input\CheckedEventArgs.cs" />
     <Compile Include="Input\SelectedEventArgs.cs" />
     <Compile Include="Media\GradientPosition.cs" />
     <Compile Include="Media\GradientType.cs" />
@@ -133,19 +136,17 @@
     <Compile Include="Attributes\Abbreviation.cs" />
     <Compile Include="Attributes\Featured.cs" />
     <Compile Include="%28Abstract%29\CheckableObject.Generic.cs" />
-    <Compile Include="Collections\Concurrent\AbstractObjectCollection.cs" />
-    <Compile Include="Collections\Concurrent\ConcurrentObservableBase.cs" />
-    <Compile Include="Collections\Concurrent\ConcurrentObservableCollection.cs" />
+    <Compile Include="Collections\Concurrent\ConcurrentCollectionBase.cs" />
+    <Compile Include="Collections\Concurrent\ConcurrentCollection.cs" />
     <Compile Include="Collections\Concurrent\DispatcherQueueProcessor.cs" />
     <Compile Include="Collections\Concurrent\ImmutableCollection.cs" />
     <Compile Include="Collections\Concurrent\ImmutableCollectionBase.cs" />
-    <Compile Include="Collections\Concurrent\ObservableCollectionViewModel.cs" />
-    <Compile Include="Collections\ObjectModel\FrameworkElementCollection.cs" />
-    <Compile Include="Collections\Generic\IHierarchialCollection.cs" />
+    <Compile Include="Collections\Concurrent\ConcurrentCollectionViewModel.cs" />
+    <Compile Include="Collections\Generic\FrameworkElementCollection.cs" />
     <Compile Include="Collections\Generic\IStackableCollection.cs" />
     <Compile Include="Collections\Generic\ITrackableCollection.cs" />
-    <Compile Include="Collections\ObjectModel\ObservableStack.cs" />
-    <Compile Include="Collections\ObjectModel\TrackableCollection.cs" />
+    <Compile Include="Collections\Generic\ObservableStack.cs" />
+    <Compile Include="Collections\Generic\TrackableCollection.cs" />
     <Compile Include="Collections\TrackableList.cs" />
     <Compile Include="CompassDirection.cs" />
     <Compile Include="Converters\MathConverter.cs" />
@@ -223,7 +224,6 @@
     <Compile Include="Extensions\ModifierKeys.cs" />
     <Compile Include="Extensions\Point.cs" />
     <Compile Include="Extensions\Rect.cs" />
-    <Compile Include="Extensions\Random.cs" />
     <Compile Include="Extensions\ResourceDictionary.cs" />
     <Compile Include="Extensions\SolidColorBrush.cs" />
     <Compile Include="Extensions\Color.cs" />
@@ -264,10 +264,8 @@
     <Compile Include="%28Abstract%29\NamedEntry.cs" />
     <Compile Include="%28Abstract%29\NamedNotifiableObject.cs" />
     <Compile Include="%28Abstract%29\NamedObject.cs" />
-    <Compile Include="%28Abstract%29\NamedPath.cs" />
     <Compile Include="Native\Utilities.cs" />
     <Compile Include="%28Abstract%29\NotifiableObject.cs" />
-    <Compile Include="%28Abstract%29\NamedFileEntry.cs" />
     <Compile Include="Primitives\DateTimePart.cs" />
     <Compile Include="Primitives\Proportions.cs" />
     <Compile Include="Primitives\Position.cs" />
@@ -286,10 +284,10 @@
     <Compile Include="Mvvm\IDocumentViewModel.cs" />
     <Compile Include="Mvvm\IPaneViewModelCollection.cs" />
     <Compile Include="Mvvm\IDocumentViewModelCollection.cs" />
+    <Compile Include="Tracing\ILogEntry.cs" />
     <Compile Include="Tracing\Log.cs" />
     <Compile Include="Tracing\LogEntry.cs" />
     <Compile Include="Data\BindingProxy.cs" />
-    <Compile Include="%28Abstract%29\NamedDependencyObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Primitives\RowColumn.cs" />
     <Compile Include="Serialization\WritableFontFamily.cs" />
@@ -300,8 +298,7 @@
     <Compile Include="Threading\BackgroundQueue.cs" />
     <Compile Include="Threading\TaskCompletionNotifier.cs" />
     <Compile Include="Tracing\ILog.cs" />
-    <Compile Include="Tracing\LogEntryKind.cs" />
-    <Compile Include="Tracing\WarningLevel.cs" />
+    <Compile Include="Tracing\LogEntryType.cs" />
     <Compile Include="Extensions\Keyboard.cs" />
     <Compile Include="%28Abstract%29\VirtualFolder.cs" />
     <Compile Include="Web\Fetch.cs" />

@@ -4,11 +4,18 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ButtonChrome : ContentControl
     {
-        #region CornerRadius
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(ButtonChrome), new UIPropertyMetadata(default(CornerRadius), new PropertyChangedCallback(OnCornerRadiusChanged)));
+        /// <summary>
+        /// 
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get
@@ -20,30 +27,20 @@ namespace Imagin.Controls.Common
                 SetValue(CornerRadiusProperty, value);
             }
         }
-
-        private static void OnCornerRadiusChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        static void OnCornerRadiusChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             ButtonChrome buttonChrome = o as ButtonChrome;
             if (buttonChrome != null)
                 buttonChrome.OnCornerRadiusChanged((CornerRadius)e.OldValue, (CornerRadius)e.NewValue);
         }
 
-        protected virtual void OnCornerRadiusChanged(CornerRadius oldValue, CornerRadius newValue)
-        {
-            //we always want the InnerBorderRadius to be one less than the CornerRadius
-            CornerRadius newInnerCornerRadius = new CornerRadius(Math.Max(0, newValue.TopLeft - 1),
-                                                                Math.Max(0, newValue.TopRight - 1),
-                                                                Math.Max(0, newValue.BottomRight - 1),
-                                                                Math.Max(0, newValue.BottomLeft - 1));
-
-            InnerCornerRadius = newInnerCornerRadius;
-        }
-
-        #endregion //CornerRadius
-
-        #region InnerCornerRadius
-
-        public static readonly DependencyProperty InnerCornerRadiusProperty = DependencyProperty.Register("InnerCornerRadius", typeof(CornerRadius), typeof(ButtonChrome), new UIPropertyMetadata(default(CornerRadius), new PropertyChangedCallback(OnInnerCornerRadiusChanged)));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty InnerCornerRadiusProperty = DependencyProperty.Register("InnerCornerRadius", typeof(CornerRadius), typeof(ButtonChrome), new UIPropertyMetadata(default(CornerRadius)));
+        /// <summary>
+        /// 
+        /// </summary>
         public CornerRadius InnerCornerRadius
         {
             get
@@ -56,23 +53,13 @@ namespace Imagin.Controls.Common
             }
         }
 
-        private static void OnInnerCornerRadiusChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ButtonChrome buttonChrome = o as ButtonChrome;
-            if (buttonChrome != null)
-                buttonChrome.OnInnerCornerRadiusChanged((CornerRadius)e.OldValue, (CornerRadius)e.NewValue);
-        }
-
-        protected virtual void OnInnerCornerRadiusChanged(CornerRadius oldValue, CornerRadius newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-        #endregion //InnerCornerRadius
-
-        #region RenderChecked
-
-        public static readonly DependencyProperty RenderCheckedProperty = DependencyProperty.Register("RenderChecked", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(false, OnRenderCheckedChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty RenderCheckedProperty = DependencyProperty.Register("RenderChecked", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(false));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool RenderChecked
         {
             get
@@ -85,23 +72,13 @@ namespace Imagin.Controls.Common
             }
         }
 
-        private static void OnRenderCheckedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ButtonChrome buttonChrome = o as ButtonChrome;
-            if (buttonChrome != null)
-                buttonChrome.OnRenderCheckedChanged((bool)e.OldValue, (bool)e.NewValue);
-        }
-
-        protected virtual void OnRenderCheckedChanged(bool oldValue, bool newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-        #endregion //RenderChecked
-
-        #region RenderEnabled
-
-        public static readonly DependencyProperty RenderEnabledProperty = DependencyProperty.Register("RenderEnabled", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(true, OnRenderEnabledChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty RenderEnabledProperty = DependencyProperty.Register("RenderEnabled", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(true));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool RenderEnabled
         {
             get
@@ -114,23 +91,13 @@ namespace Imagin.Controls.Common
             }
         }
 
-        private static void OnRenderEnabledChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ButtonChrome buttonChrome = o as ButtonChrome;
-            if (buttonChrome != null)
-                buttonChrome.OnRenderEnabledChanged((bool)e.OldValue, (bool)e.NewValue);
-        }
-
-        protected virtual void OnRenderEnabledChanged(bool oldValue, bool newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-        #endregion //RenderEnabled
-
-        #region RenderFocused
-
-        public static readonly DependencyProperty RenderFocusedProperty = DependencyProperty.Register("RenderFocused", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(false, OnRenderFocusedChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty RenderFocusedProperty = DependencyProperty.Register("RenderFocused", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(false));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool RenderFocused
         {
             get
@@ -143,23 +110,13 @@ namespace Imagin.Controls.Common
             }
         }
 
-        private static void OnRenderFocusedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ButtonChrome buttonChrome = o as ButtonChrome;
-            if (buttonChrome != null)
-                buttonChrome.OnRenderFocusedChanged((bool)e.OldValue, (bool)e.NewValue);
-        }
-
-        protected virtual void OnRenderFocusedChanged(bool oldValue, bool newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-        #endregion //RenderFocused
-
-        #region RenderMouseOver
-
-        public static readonly DependencyProperty RenderMouseOverProperty = DependencyProperty.Register("RenderMouseOver", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(false, OnRenderMouseOverChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty RenderMouseOverProperty = DependencyProperty.Register("RenderMouseOver", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(false));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool RenderMouseOver
         {
             get
@@ -172,23 +129,13 @@ namespace Imagin.Controls.Common
             }
         }
 
-        private static void OnRenderMouseOverChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ButtonChrome buttonChrome = o as ButtonChrome;
-            if (buttonChrome != null)
-                buttonChrome.OnRenderMouseOverChanged((bool)e.OldValue, (bool)e.NewValue);
-        }
-
-        protected virtual void OnRenderMouseOverChanged(bool oldValue, bool newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-        #endregion //RenderMouseOver
-
-        #region RenderNormal
-
-        public static readonly DependencyProperty RenderNormalProperty = DependencyProperty.Register("RenderNormal", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(true, OnRenderNormalChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty RenderNormalProperty = DependencyProperty.Register("RenderNormal", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(true));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool RenderNormal
         {
             get
@@ -201,23 +148,13 @@ namespace Imagin.Controls.Common
             }
         }
 
-        private static void OnRenderNormalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ButtonChrome buttonChrome = o as ButtonChrome;
-            if (buttonChrome != null)
-                buttonChrome.OnRenderNormalChanged((bool)e.OldValue, (bool)e.NewValue);
-        }
-
-        protected virtual void OnRenderNormalChanged(bool oldValue, bool newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-        #endregion //RenderNormal
-
-        #region RenderPressed
-
-        public static readonly DependencyProperty RenderPressedProperty = DependencyProperty.Register("RenderPressed", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(false, OnRenderPressedChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty RenderPressedProperty = DependencyProperty.Register("RenderPressed", typeof(bool), typeof(ButtonChrome), new UIPropertyMetadata(false));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool RenderPressed
         {
             get
@@ -230,27 +167,29 @@ namespace Imagin.Controls.Common
             }
         }
 
-        private static void OnRenderPressedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ButtonChrome buttonChrome = o as ButtonChrome;
-            if (buttonChrome != null)
-                buttonChrome.OnRenderPressedChanged((bool)e.OldValue, (bool)e.NewValue);
-        }
-
-        protected virtual void OnRenderPressedChanged(bool oldValue, bool newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-        #endregion //RenderPressed
-
-        #region ButtonChrome
-
         static ButtonChrome()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ButtonChrome), new FrameworkPropertyMetadata(typeof(ButtonChrome)));
         }
 
-        #endregion 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// The <see cref="InnerCornerRadius"/> should be one less than the <see cref="CornerRadius"/>.
+        /// </remarks>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        protected virtual void OnCornerRadiusChanged(CornerRadius oldValue, CornerRadius newValue)
+        {
+            var cornerRadius = new CornerRadius
+            (
+                Math.Max(0, newValue.TopLeft - 1), 
+                Math.Max(0, newValue.TopRight - 1), 
+                Math.Max(0, newValue.BottomRight - 1), 
+                Math.Max(0, newValue.BottomLeft - 1)
+            );
+            InnerCornerRadius = cornerRadius;
+        }
     }
 }

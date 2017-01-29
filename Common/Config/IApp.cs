@@ -17,7 +17,7 @@ namespace Imagin.Common.Config
     public interface IApp
     {
         /// <summary>
-        /// Occurs just after <see cref="Application.Run"/> is called.
+        /// Occurs just after <see cref="Application.Run()"/> is called.
         /// </summary>
         event EventHandler<EventArgs> Ran;
 

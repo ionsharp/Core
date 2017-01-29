@@ -5,7 +5,7 @@ using System.Windows;
 namespace Imagin.Common.Tracing
 {
     /// <summary>
-    /// A facility for accessing the log of an application (if it exists) globally; note, <see cref="Application.Current"/> must implement <see cref="IApp"/>.
+    /// A facility to access the log owned by the current application; <see cref="Application.Current"/> must implement <see cref="IApp"/>.
     /// </summary>
     public static class Log
     {
@@ -19,52 +19,28 @@ namespace Imagin.Common.Tracing
 
         static void Write(Action<IApp> Action)
         {
-            if (App != null)
-                Action(App);
+            if (App != null) Action(App);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Message"></param>
-        /// <param name="Kind"></param>
-        public static void Write(string Message, LogEntryKind Kind)
+        /// <param name="Type"></param>
+        public static void Write(string Message, LogEntryType Type = LogEntryType.Message)
         {
-            Write((i) => i.Log.Write(Message, Kind));
+            Write((i) => i.Log.Write(Message, Type));
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Message"></param>
-        /// <param name="Level"></param>
-        /// <param name="Kind"></param>
-        public static void Write(string Message, WarningLevel Level = WarningLevel.Moderate, LogEntryKind Kind = LogEntryKind.Info)
-        {
-            Write((i) => i.Log.Write(Message, Level, Kind));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="Source"></param>
-        /// <param name="Message"></param>
-        /// <param name="Kind"></param>
-        public static void Write(string Source, string Message, LogEntryKind Kind)
+        /// <param name="Type"></param>
+        public static void Write(string Message, object Source, LogEntryType Type = LogEntryType.Message)
         {
-            Write((i) => i.Log.Write(Source, Message, Kind));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Source"></param>
-        /// <param name="Message"></param>
-        /// <param name="Level"></param>
-        /// <param name="Kind"></param>
-        public static void Write(string Source, string Message, WarningLevel Level = WarningLevel.Moderate, LogEntryKind Kind = LogEntryKind.Info)
-        {
-            Write((i) => i.Log.Write(Source, Message, Level, Kind));
+            Write((i) => i.Log.Write(Message, Source, Type));
         }
     }
 }

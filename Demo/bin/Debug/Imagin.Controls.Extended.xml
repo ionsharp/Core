@@ -62,6 +62,113 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Extended.AnglePicker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AnglePicker.AngleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AnglePicker.Angle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AnglePicker.OriginFillProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AnglePicker.OriginFill">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AnglePicker.OriginStrokeProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AnglePicker.OriginStroke">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AnglePicker.OriginStrokeThicknessProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AnglePicker.OriginStrokeThickness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AnglePicker.OriginVisibilityProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AnglePicker.OriginVisibility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AnglePicker.NeedleStrokeProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AnglePicker.NeedleStroke">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AnglePicker.NeedleStrokeThicknessProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AnglePicker.NeedleStrokeThickness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.AnglePicker.RadiansProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.AnglePicker.Radians">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AnglePicker.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AnglePicker.OnAngleChanged(System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AnglePicker.OnRadiansChanged(System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.AnglePicker.OnApplyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Extended.ChipBase">
             <summary>
             A chip for displaying and selecting a brush.
@@ -909,6 +1016,94 @@
             
             </summary>
             <param name="ColorSpace"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.BrushDialogBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Imagin.Controls.Extended.BrushDialogBase`1.FooterStyleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.BrushDialogBase`1.FooterStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.BrushDialogBase`1.DefaultTitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.BrushDialogBase`1.Chip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.BrushDialogBase`1.InitialValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.BrushDialogBase`1.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.BrushDialogBase`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.BrushDialogBase`1.#ctor(System.String,`0,Imagin.Controls.Extended.Chip{`0})">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="initialValue"></param>
+            <param name="chip"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.BrushDialogBase`1.OnRevert(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.BrushDialogBase`1.OnCancel(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.BrushDialogBase`1.OnSave(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.BrushDialog">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.BrushDialog.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.BrushDialog.#ctor(System.String,System.Windows.Media.Brush,Imagin.Controls.Extended.Chip{System.Windows.Media.Brush})">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="initialValue"></param>
+            <param name="chip"></param>
         </member>
         <member name="T:Imagin.Controls.Extended.Lang.Main">
             <summary>
@@ -3550,6 +3745,11 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Extended.PropertyModelCollection">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Imagin.Controls.Extended.PropertyModelCollection.Object">
             <summary>
             The object to evaluate.
@@ -3723,17 +3923,159 @@
             
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.CanResizeContentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.CanResizeContent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ContentBackgroundProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ContentBackground">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ContentBorderBrushProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ContentBorderBrush">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ContentBorderThicknessProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ContentBorderThickness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ContentHeaderTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ContentHeaderTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ContentHeaderVisibilityProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ContentHeaderVisibility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ContentPaddingProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ContentPadding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ContentTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ContentTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ContentWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ContentWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.MenuWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.MenuWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.MenuBackgroundProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.MenuBackground">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.MenuBorderBrushProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.MenuBorderBrush">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.MenuBorderThicknessProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.MenuBorderThickness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.MenuPaddingProperty">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Extended.TabbedTree.MenuPadding">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.TabbedTree.SelectedIndex">
+        <member name="M:Imagin.Controls.Extended.TabbedTree.#ctor">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.TabbedTree.#ctor">
+        <member name="M:Imagin.Controls.Extended.TabbedTree.OnSelectedItemChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.TabbedTree.OnApplyTemplate">
             <summary>
             
             </summary>

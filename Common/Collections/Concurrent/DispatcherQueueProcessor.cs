@@ -145,11 +145,10 @@ namespace Imagin.Common.Collections.Concurrent
             var Keys = SubscriberQueue.Keys;
             SubscriberQueue = null;
 
-            foreach (WeakReference subscribeRef in Keys)
+            foreach (var i in Keys)
             {
-                Action subscribe = subscribeRef.Target as Action;
-                if (subscribe != null)
-                    subscribe();
+                var subscribe = i.Target as Action;
+                subscribe?.Invoke();
             }
             Keys = null;
 
@@ -345,8 +344,7 @@ namespace Imagin.Common.Collections.Concurrent
 
             public void Dispose()
             {
-                if (disposeAction != null)
-                    disposeAction();
+                disposeAction?.Invoke();
                 disposeAction = null;
             }
         }

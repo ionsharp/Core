@@ -30,7 +30,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty IncrementProperty = DependencyProperty.Register("Increment", typeof(T), typeof(NumericUpDown<T>), new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIncrementChanged));
+        public static readonly DependencyProperty<T, NumericUpDown<T>> IncrementProperty = new DependencyProperty<T, NumericUpDown<T>>("Increment", new FrameworkPropertyMetadata(default(T), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIncrementChanged));
         /// <summary>
         /// 
         /// </summary>
@@ -38,11 +38,11 @@ namespace Imagin.Controls.Common
         {
             get
             {
-                return (T)GetValue(IncrementProperty);
+                return IncrementProperty.Get(this);
             }
             set
             {
-                SetValue(IncrementProperty, value);
+                IncrementProperty.Set(this, value);
             }
         }
         static void OnIncrementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

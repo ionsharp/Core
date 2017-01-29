@@ -4,6 +4,229 @@
         <name>Imagin.Controls.Common</name>
     </assembly>
     <members>
+        <member name="T:Imagin.Controls.Common.AbstractView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AbstractView.ItemContainerStyleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AbstractView.ItemContainerStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AbstractView.ItemTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AbstractView.ItemTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AbstractView.ItemWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AbstractView.ItemWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AbstractView.ItemHeightProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AbstractView.ItemHeight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.AdvancedComboBox">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Common.AdvancedComboBox.Entered">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedComboBox.CheckedToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedComboBox.CheckedToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedComboBox.PlaceholderProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedComboBox.Placeholder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AdvancedComboBox.UncheckedToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AdvancedComboBox.UncheckedToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedComboBox.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AdvancedComboBox.OnApplyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.ButtonChrome">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ButtonChrome.CornerRadiusProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ButtonChrome.CornerRadius">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ButtonChrome.InnerCornerRadiusProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ButtonChrome.InnerCornerRadius">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ButtonChrome.RenderCheckedProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ButtonChrome.RenderChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ButtonChrome.RenderEnabledProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ButtonChrome.RenderEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ButtonChrome.RenderFocusedProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ButtonChrome.RenderFocused">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ButtonChrome.RenderMouseOverProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ButtonChrome.RenderMouseOver">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ButtonChrome.RenderNormalProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ButtonChrome.RenderNormal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ButtonChrome.RenderPressedProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ButtonChrome.RenderPressed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ButtonChrome.OnCornerRadiusChanged(System.Windows.CornerRadius,System.Windows.CornerRadius)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            The <see cref="P:Imagin.Controls.Common.ButtonChrome.InnerCornerRadius"/> should be one less than the <see cref="P:Imagin.Controls.Common.ButtonChrome.CornerRadius"/>.
+            </remarks>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.DependencyProperty`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <typeparam name="TOwner"></typeparam>
+        </member>
+        <member name="M:Imagin.Controls.Common.DependencyProperty`2.#ctor(System.String,System.Windows.PropertyMetadata)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="metadata"></param>
+        </member>
+        <member name="P:Imagin.Controls.Common.DependencyProperty`2.Property">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DependencyProperty`2.Get(`1)">
+            <summary>
+            
+            </summary>
+            <param name="owner"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DependencyProperty`2.Set(`1,`0)">
+            <summary>
+            
+            </summary>
+            <param name="owner"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:Imagin.Controls.Common.Extensions.ControlExtensions">
             <summary>
             
@@ -764,6 +987,16 @@
             Auto-positions popup when the parent element's position changes (TO-DO: support scrolling).
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Common.Interactivity.AutoPositionPopupBehavior.OnAttached">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Interactivity.AutoPositionPopupBehavior.Update">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.SelectionCanvas">
             <summary>
             SelectionCanvas
@@ -1087,6 +1320,75 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Imagin.Controls.Common.AlignableWrapPanel" -->
+        <member name="F:Imagin.Controls.Common.AlignableWrapPanel.ItemWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AlignableWrapPanel.ItemWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AlignableWrapPanel.ItemHeightProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AlignableWrapPanel.ItemHeight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AlignableWrapPanel.OrientationProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AlignableWrapPanel.Orientation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AlignableWrapPanel.HorizontalContentAlignmentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AlignableWrapPanel.HorizontalContentAlignment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.AlignableWrapPanel.VerticalContentAlignmentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.AlignableWrapPanel.VerticalContentAlignment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.AlignableWrapPanel.MeasureOverride(System.Windows.Size)">
+            <summary>
+            
+            </summary>
+            <param name="constraint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.AlignableWrapPanel.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            
+            </summary>
+            <param name="finalSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.AlignableWrapPanel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.DirectionPad">
             <summary>
             A rectangular control that enables specifying a 
@@ -1102,6 +1404,112 @@
             <summary>
             InitializeComponent
             </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.EditableLabel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Common.EditableLabel.Edited">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.EditableLabel.ButtonHorizontalAlignmentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.EditableLabel.ButtonHorizontalAlignment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.EditableLabel.IsEditableProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.EditableLabel.IsEditable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.EditableLabel.MouseEventProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.EditableLabel.MouseEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.EditableLabel.ShowButtonProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.EditableLabel.ShowButton">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.EditableLabel.TextTrimmingProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.EditableLabel.TextTrimming">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.EditableLabel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.EditableLabel.OnPreviewMouseDoubleClick(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.EditableLabel.OnPreviewMouseDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.EditableLabel.OnPreviewMouseUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.EditableLabel.OnEntered(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.EditableLabel.OnLostFocus(System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.EditableLabel.OnApplyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.EditableLabel.OnEdited(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
         </member>
         <member name="T:Imagin.Controls.Common.FontSizeBox">
             <summary>
@@ -1266,6 +1674,406 @@
         <member name="T:Imagin.Controls.Common.Link">
             <summary>
             Opens up a web link in default browser when clicked.
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.MaskedDropDownButton">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedDropDownButton.DropDownProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedDropDownButton.DropDown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedDropDownButton.DropDownDataContextProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedDropDownButton.DropDownDataContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedDropDownButton.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedDropDownButton.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedDropDownButton.OnDropDownChanged(System.Windows.Controls.ContextMenu)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedDropDownButton.OnDropDownDataContextChanged(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.MaskedImage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedImage.SourceProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedImage.Source">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedImage.ImageBrushProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedImage.ImageBrush">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedImage.ImageColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedImage.ImageColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedImage.ImageWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedImage.ImageWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedImage.ImageHeightProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedImage.ImageHeight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedImage.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedImage.OnSourceChanged(System.Windows.Media.ImageSource)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.MaskedButton">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.ContentMarginProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.ContentMargin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.DropDownProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.DropDown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.DropDownDataContextProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.DropDownDataContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.DropDownButtonToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.DropDownButtonToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.DropDownButtonVisibilityProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.DropDownButtonVisibility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.IsCheckedProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.IsChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.IsRippleEnabledProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.IsRippleEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.SourceProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.Source">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.ImageBrushProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.ImageBrush">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.ImageColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.ImageColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.ImageWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.ImageWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedButton.ImageHeightProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedButton.ImageHeight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedButton.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedButton.OnApplyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedButton.OnMouseDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedButton.OnDropDownChanged(System.Windows.Controls.ContextMenu)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedButton.OnDropDownDataContextChanged(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedButton.OnSourceChanged(System.Windows.Media.ImageSource)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.MaskedToggleButton">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.SourceProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.Source">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.ImageBrushProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.ImageBrush">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.ImageColorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.ImageColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.IsRippleEnabledProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.IsRippleEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.GroupNameProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.GroupName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.CheckedToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.CheckedToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.UncheckedToolTipProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.UncheckedToolTip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.ImageWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.ImageWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.ImageHeightProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.ImageHeight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MaskedToggleButton.ContentMarginProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.MaskedToggleButton.ContentMargin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedToggleButton.OnGroupNameChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedToggleButton.OnSourceChanged(System.Windows.Media.ImageSource)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedToggleButton.SetGroup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.MaskedToggleButton.#ctor">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Controls.Common.FileBox">
@@ -1767,6 +2575,27 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.IUpDown`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Common.IUpDown`1.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.IUpDown`1.Minimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.IUpDown`1.Value">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.NumericUpDown`1">
             <summary>
             
@@ -1913,6 +2742,108 @@
         <member name="P:Imagin.Controls.Common.DateTimeUpDown.StaysOpenOnSelection">
             <summary>
             Gets or sets whether or not the drop down stays open after making a selection.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.GetValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.ToString(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.OnMaximumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.OnMinimumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.OnValueCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.CanDecrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.CanIncrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.OnPreviewMouseLeftButtonDownHandled(System.Windows.Input.MouseButtonEventArgs,System.Type[])">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+            <param name="HandledTypes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.OnDropDownClosed(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.OnIsDropDownOpenChanged(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.OnSelectedDatesChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.Change(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="IncreaseOrDecrease"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.Decrease">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.Increase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimeUpDown.OnApplyTemplate">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Controls.Common.UpDown">
@@ -2379,7 +3310,129 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Common.LongUpDown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.LongUpDown.AbsoluteMaximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.LongUpDown.AbsoluteMinimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.LongUpDown.DefaultIncrement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.LongUpDown.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.GetValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.ToString(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.CanIncrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.CanDecrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.OnMaximumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.OnMinimumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.OnValueCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.Increase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.LongUpDown.Decrease">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.BasicWindow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.ButtonsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.Buttons">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.ButtonsPanelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.ButtonsPanel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.ButtonsStyleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.ButtonsStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.ContentBorderBrushProperty">
             <summary>
             
             </summary>
@@ -2389,9 +3442,19 @@
             Gets or sets the border brush of the content.
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.ContentBorderThicknessProperty">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Common.BasicWindow.ContentBorderThickness">
             <summary>
             Gets or sets the border thickness of the content.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.ContentMarginProperty">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Imagin.Controls.Common.BasicWindow.ContentMargin">
@@ -2399,15 +3462,106 @@
             Gets or sets the outer margin of the content.
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.FooterProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.Footer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.FooterTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.FooterTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.FooterTemplateSelectorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.FooterTemplateSelector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.IconTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.IconTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.OverlayProperty">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Controls.Common.BasicWindow.Overlay">
             <summary>
             Element to place on top of everything else; element covers entire window.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.OverlayVisibilityProperty">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Imagin.Controls.Common.BasicWindow.OverlayVisibility">
             <summary>
             The visibility of the overlay element.
             </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.ResizeGripTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.ResizeGripTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.TitleTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.TitleTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.BasicWindow.TypeProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.BasicWindow.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.BasicWindow.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.BasicWindow.#ctor(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="OnClosed"></param>
         </member>
         <member name="T:Imagin.Controls.Common.WindowBase">
             <summary>

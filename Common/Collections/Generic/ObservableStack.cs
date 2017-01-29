@@ -9,16 +9,28 @@ namespace Imagin.Common.Collections.ObjectModel
     /// <typeparam name="T">The type of the elements in the collection.</typeparam>
     public class ObservableStack<T> : ObservableCollection<T>, IStackable<T>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
         public void Push(T item)
         {
             this.Add(item);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T Peek()
         {
             return this.Count > 0 ? this[this.Count - 1] : default(T);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T Pop()
         {
             if (this.Count > 0)
@@ -30,6 +42,9 @@ namespace Imagin.Common.Collections.ObjectModel
             else return default(T);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ObservableStack()
         {
         }

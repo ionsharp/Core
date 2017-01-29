@@ -14,7 +14,10 @@ using System.Windows.Threading;
 
 namespace Imagin.Controls.Extended
 {
-    public class PropertyModelCollection : ConcurrentObservableCollection<PropertyModel>
+    /// <summary>
+    /// 
+    /// </summary>
+    public class PropertyModelCollection : ConcurrentCollection<PropertyModel>
     {
         #region Properties
 

@@ -31,7 +31,7 @@ namespace Imagin.Controls.Extended
         /// <returns></returns>
         public override bool? ShowDialog()
         {
-            var Dialog = new GradientDialog(Title, Value.Duplicate(), this);
+            var Dialog = new GradientDialog(Title, Value.As<Brush>().Duplicate(), this);
             var Result = Dialog.ShowDialog();
 
             if (Result.Value || Dialog.Result == Common.WindowResult.Cancel)

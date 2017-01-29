@@ -5,9 +5,20 @@ using Imagin.Common.Attributes;
 
 namespace Imagin.Common.Data.Converters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ValueConversion(typeof(Enum), typeof(string))]
     public class AbbreviationAttributeConverter : IValueConverter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object Value, Type targetType, object parameter, CultureInfo culture)
         {
             if (Value != null)
@@ -23,6 +34,14 @@ namespace Imagin.Common.Data.Converters
             return string.Empty;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

@@ -5,6 +5,9 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TemplatePart(Name = "PART_Button", Type = typeof(MaskedButton))]
     public class EditableLabel : TextBoxExt
     {
@@ -17,9 +20,18 @@ namespace Imagin.Controls.Common
             get; set;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public event EventHandler<EventArgs<string>> Edited;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ButtonHorizontalAlignmentProperty = DependencyProperty.Register("ButtonHorizontalAlignment", typeof(HorizontalAlignment), typeof(EditableLabel), new FrameworkPropertyMetadata(HorizontalAlignment.Left, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public HorizontalAlignment ButtonHorizontalAlignment
         {
             get
@@ -32,7 +44,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty IsEditableProperty = DependencyProperty.Register("IsEditable", typeof(bool), typeof(EditableLabel), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsEditable
         {
             get
@@ -45,7 +63,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty MouseEventProperty = DependencyProperty.Register("MouseEvent", typeof(MouseEvent), typeof(EditableLabel), new FrameworkPropertyMetadata(MouseEvent.MouseUp, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public MouseEvent MouseEvent
         {
             get
@@ -58,7 +82,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ShowButtonProperty = DependencyProperty.Register("ShowButton", typeof(bool), typeof(EditableLabel), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool ShowButton
         {
             get
@@ -71,7 +101,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty TextTrimmingProperty = DependencyProperty.Register("TextTrimming", typeof(TextTrimming), typeof(EditableLabel), new FrameworkPropertyMetadata(TextTrimming.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public TextTrimming TextTrimming
         {
             get
@@ -88,6 +124,9 @@ namespace Imagin.Controls.Common
 
         #region EditableLabel
 
+        /// <summary>
+        /// 
+        /// </summary>
         public EditableLabel() : base()
         {
             this.DefaultStyleKey = typeof(EditableLabel);
@@ -97,6 +136,10 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPreviewMouseDoubleClick(MouseButtonEventArgs e)
         {
             base.OnPreviewMouseDoubleClick(e);
@@ -107,6 +150,10 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
             base.OnPreviewMouseDown(e);
@@ -140,6 +187,10 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPreviewMouseUp(MouseButtonEventArgs e)
         {
             base.OnPreviewMouseUp(e);
@@ -150,18 +201,29 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnEntered(KeyEventArgs e)
         {
             base.OnEntered(e);
             OnEdited(false);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnLostFocus(RoutedEventArgs e)
         {
             base.OnLostFocus(e);
             OnEdited(false);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -170,6 +232,10 @@ namespace Imagin.Controls.Common
             PART_Button.Click += (s, e) => OnEdited(true);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnEdited(bool Value)
         {
             IsEditable = Value;

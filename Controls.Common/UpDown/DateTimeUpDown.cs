@@ -223,6 +223,9 @@ namespace Imagin.Controls.Common
 
         #region DateTimeUpDown
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTimeUpDown() : base()
         {
             DefaultStyleKey = typeof(DateTimeUpDown);
@@ -232,31 +235,60 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         protected override DateTime GetValue(string Value)
         {
             return Value.ToDateTime();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         protected override string ToString(DateTime Value)
         {
             return Value.ToString(StringFormat);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         protected override object OnMaximumCoerced(object Value)
         {
             return Value.As<DateTime>().Coerce(AbsoluteMaximum, this.Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         protected override object OnMinimumCoerced(object Value)
         {
             return Value.As<DateTime>().Coerce(this.Value, AbsoluteMinimum);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         protected override object OnValueCoerced(object Value)
         {
             return Value.As<DateTime>().Coerce(Maximum, Minimum);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected override bool CanDecrease()
         {
             try
@@ -270,6 +302,10 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected override bool CanIncrease()
         {
             try
@@ -283,6 +319,12 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="HandledTypes"></param>
+        /// <returns></returns>
         protected override bool OnPreviewMouseLeftButtonDownHandled(MouseButtonEventArgs e, Type[] HandledTypes = null)
         {
             return base.OnPreviewMouseLeftButtonDownHandled(e, new Type[] 
@@ -292,6 +334,11 @@ namespace Imagin.Controls.Common
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnDropDownClosed(object sender, EventArgs e)
         {
             //Just in case...
@@ -299,18 +346,32 @@ namespace Imagin.Controls.Common
                 IsDropDownOpen = false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnIsDropDownOpenChanged(bool Value)
         {
             if (PART_DropDown != null)
                 PART_DropDown.IsOpen = Value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnSelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!StaysOpenOnSelection)
                 IsDropDownOpen = false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="IncreaseOrDecrease"></param>
+        /// <returns></returns>
         protected DateTime Change(bool IncreaseOrDecrease)
         {
             if (Value == default(DateTime))
@@ -348,16 +409,25 @@ namespace Imagin.Controls.Common
             return default(DateTime);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Decrease()
         {
             Value = Change(false);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Increase()
         {
             Value = Change(true);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

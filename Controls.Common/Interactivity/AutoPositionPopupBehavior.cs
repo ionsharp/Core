@@ -38,6 +38,9 @@ namespace Imagin.Controls.Common.Interactivity
             return IntPtr.Zero;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -56,6 +59,9 @@ namespace Imagin.Controls.Common.Interactivity
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Update()
         {
             var Placement = AssociatedObject.Placement;

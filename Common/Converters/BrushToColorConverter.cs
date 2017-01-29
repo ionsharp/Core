@@ -5,9 +5,20 @@ using System.Windows.Media;
 
 namespace Imagin.Common.Data.Converters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ValueConversion(typeof(Brush), typeof(Color))]
     public class BrushToColorConverter : IValueConverter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var b = (Brush)value;
@@ -15,6 +26,14 @@ namespace Imagin.Common.Data.Converters
             return default(Color);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var c = (Color)value;

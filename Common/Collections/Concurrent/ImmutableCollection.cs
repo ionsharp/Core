@@ -1,62 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Imagin.Common.Collections.Concurrent
 {
     /// <summary>
-    /// This class provides a functional immutable collection
+    /// Provides a collection that is immutable or cannot be changed.
     /// </summary>
     [Serializable]
     public class ImmutableCollection<T> : ImmutableCollectionBase<T>
     {
-        #region Properties
-
         /// <summary>
         /// The base collection that is wrapped by this class to restrict access
         /// </summary>
-        IList<T> baseCollection;
+        IList<T> Source;
 
-        #endregion Private Fields
-
-        #region ImmutableCollection
-
-        public ImmutableCollection(IEnumerable<T> source)
-        {
-            baseCollection = new List<T>(source);
-        }
-
-        public ImmutableCollection()
-        {
-            baseCollection = new List<T>();
-        }
-
-        #endregion Constructors
-
-        #region Methods
-
+        /// <summary>
+        /// 
+        /// </summary>
         public override int Count
         {
             get
             {
-                return baseCollection.Count;
+                return Source.Count;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        public ImmutableCollection(IEnumerable<T> source)
+        {
+            Source = new List<T>(source);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ImmutableCollection() : this(Enumerable.Empty<T>())
+        {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public override bool Contains(T Item)
         {
-            return baseCollection.Contains(Item);
+            return Source.Contains(Item);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Array"></param>
+        /// <param name="ArrayIndex"></param>
         public override void CopyTo(T[] Array, int ArrayIndex)
         {
-            baseCollection.CopyTo(Array, ArrayIndex);
+            Source.CopyTo(Array, ArrayIndex);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerator<T> GetEnumerator()
         {
-            return baseCollection.GetEnumerator();
+            return Source.GetEnumerator();
         }
-
-        #endregion 
     }
 }

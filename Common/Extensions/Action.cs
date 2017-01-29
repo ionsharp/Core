@@ -6,6 +6,9 @@ using System.Windows.Media.Imaging;
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ActionExtensions
     {
         /// <summary>

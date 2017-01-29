@@ -4630,46 +4630,94 @@
             <param name="Fifth"></param>
             <param name="Sixth"></param>
         </member>
+        <member name="T:Imagin.Common.Tracing.ILogEntry">
+            <summary>
+            Specifies a log entry.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Tracing.ILogEntry.Date">
+            <summary>
+            Specifies when the entry was created.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Tracing.ILogEntry.Message">
+            <summary>
+            Specifies a message to convey.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Tracing.ILogEntry.Source">
+            <summary>
+            Specifies the source of the entry.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Tracing.ILogEntry.Type">
+            <summary>
+            Specifies what kind of entry it is.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Tracing.Log">
             <summary>
-            A facility for accessing the log of an application (if it exists) globally; note, <see cref="P:System.Windows.Application.Current"/> must implement <see cref="T:Imagin.Common.Config.IApp"/>.
+            A facility to access the log owned by the current application; <see cref="P:System.Windows.Application.Current"/> must implement <see cref="T:Imagin.Common.Config.IApp"/>.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,Imagin.Common.Tracing.LogEntryKind)">
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,Imagin.Common.Tracing.LogEntryType)">
             <summary>
             
             </summary>
             <param name="Message"></param>
-            <param name="Kind"></param>
+            <param name="Type"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryKind)">
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,System.Object,Imagin.Common.Tracing.LogEntryType)">
             <summary>
             
             </summary>
             <param name="Message"></param>
-            <param name="Level"></param>
-            <param name="Kind"></param>
-        </member>
-        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,System.String,Imagin.Common.Tracing.LogEntryKind)">
-            <summary>
-            
-            </summary>
             <param name="Source"></param>
-            <param name="Message"></param>
-            <param name="Kind"></param>
+            <param name="Type"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,System.String,Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryKind)">
+        <member name="T:Imagin.Common.Tracing.LogEntry">
             <summary>
             
             </summary>
-            <param name="Source"></param>
+        </member>
+        <member name="P:Imagin.Common.Tracing.LogEntry.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Tracing.LogEntry.Source">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Tracing.LogEntry.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Tracing.LogEntry.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Tracing.LogEntry.#ctor(System.String,Imagin.Common.Tracing.LogEntryType)">
+            <summary>
+            
+            </summary>
             <param name="Message"></param>
-            <param name="Level"></param>
-            <param name="Kind"></param>
+            <param name="Type"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.LogEntry.#ctor(System.String,System.Object,Imagin.Common.Tracing.LogEntryType)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="source"></param>
+            <param name="type"></param>
         </member>
         <member name="T:Imagin.Common.Tracing.ILog">
             <summary>
-            
+            Specifies a log.
             </summary>
         </member>
         <member name="M:Imagin.Common.Tracing.ILog.Load">
@@ -4678,71 +4726,44 @@
             </summary>
             <returns>The result of the task.</returns>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,Imagin.Common.Tracing.LogEntryKind)">
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,Imagin.Common.Tracing.LogEntryType)">
             <summary>
             
             </summary>
             <param name="Message"></param>
-            <param name="Kind"></param>
+            <param name="Type"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryKind)">
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,System.Object,Imagin.Common.Tracing.LogEntryType)">
             <summary>
             
             </summary>
             <param name="Message"></param>
-            <param name="Level"></param>
-            <param name="Kind"></param>
-        </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,System.String,Imagin.Common.Tracing.LogEntryKind)">
-            <summary>
-            
-            </summary>
             <param name="Source"></param>
-            <param name="Message"></param>
-            <param name="Kind"></param>
+            <param name="Type"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,System.String,Imagin.Common.Tracing.WarningLevel,Imagin.Common.Tracing.LogEntryKind)">
+        <member name="T:Imagin.Common.Tracing.LogEntryType">
             <summary>
-            
-            </summary>
-            <param name="Source"></param>
-            <param name="Message"></param>
-            <param name="Level"></param>
-            <param name="Kind"></param>
-        </member>
-        <member name="T:Imagin.Common.Tracing.WarningLevel">
-            <summary>
-            
+            Specifies a type of <see cref="T:Imagin.Common.Tracing.LogEntry"/>.
             </summary>
         </member>
-        <member name="F:Imagin.Common.Tracing.WarningLevel.None">
+        <member name="F:Imagin.Common.Tracing.LogEntryType.Error">
             <summary>
-            Display no warnings.
+            Specifies an error message.
             </summary>
         </member>
-        <member name="F:Imagin.Common.Tracing.WarningLevel.Low">
+        <member name="F:Imagin.Common.Tracing.LogEntryType.Message">
             <summary>
-            Display insignificant warnings.
+            Specifies a general message.
             </summary>
         </member>
-        <member name="F:Imagin.Common.Tracing.WarningLevel.Moderate">
-             <summary>
-            Display regular warnings.
-             </summary>
-        </member>
-        <member name="F:Imagin.Common.Tracing.WarningLevel.High">
+        <member name="F:Imagin.Common.Tracing.LogEntryType.Success">
             <summary>
-            Display significant warnings.
+            Specifies a success message.
             </summary>
         </member>
-        <member name="F:Imagin.Common.Tracing.WarningLevel.Severe">
+        <member name="F:Imagin.Common.Tracing.LogEntryType.Warning">
             <summary>
-            Display critical warnings.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Tracing.WarningLevel.All">
-            <summary>
-            Display all warnings.
+            Specifies a warning message.
             </summary>
         </member>
         <member name="T:Imagin.Common.RowColumn">

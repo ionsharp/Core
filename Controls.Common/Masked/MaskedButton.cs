@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TemplatePart(Name = "PART_Dropdown", Type = typeof(ContentControl))]
     public class MaskedButton : Button
     {
@@ -15,7 +18,13 @@ namespace Imagin.Controls.Common
 
         ContentControl PART_Dropdown { get; set; } = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(MaskedButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Thickness ContentMargin
         {
             get
@@ -28,7 +37,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty DropDownProperty = DependencyProperty.Register("DropDown", typeof(ContextMenu), typeof(MaskedButton), new UIPropertyMetadata(null, OnDropDownChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public ContextMenu DropDown
         {
             get
@@ -45,7 +60,13 @@ namespace Imagin.Controls.Common
             d.As<MaskedButton>().OnDropDownChanged((ContextMenu)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty DropDownDataContextProperty = DependencyProperty.Register("DropDownDataContext", typeof(object), typeof(MaskedButton), new FrameworkPropertyMetadata(null, OnDropDownDataContextChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public object DropDownDataContext
         {
             get
@@ -62,7 +83,13 @@ namespace Imagin.Controls.Common
             d.As<MaskedButton>().OnDropDownDataContextChanged(e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty DropDownButtonToolTipProperty = DependencyProperty.Register("DropDownButtonToolTip", typeof(string), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public string DropDownButtonToolTip
         {
             get
@@ -75,7 +102,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty DropDownButtonVisibilityProperty = DependencyProperty.Register("DropDownButtonVisibility", typeof(Visibility), typeof(MaskedButton), new FrameworkPropertyMetadata(Visibility.Collapsed, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Visibility DropDownButtonVisibility
         {
             get
@@ -88,7 +121,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty IsCheckedProperty = DependencyProperty.Register("IsChecked", typeof(bool), typeof(MaskedButton), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsChecked
         {
             get
@@ -101,7 +140,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty IsRippleEnabledProperty = DependencyProperty.Register("IsRippleEnabled", typeof(bool), typeof(MaskedButton), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsRippleEnabled
         {
             get
@@ -114,7 +159,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(ImageSource), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSourceChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public ImageSource Source
         {
             get
@@ -131,7 +182,13 @@ namespace Imagin.Controls.Common
             d.As<MaskedButton>().OnSourceChanged((ImageSource)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ImageBrushProperty = DependencyProperty.Register("ImageBrush", typeof(ImageBrush), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public ImageBrush ImageBrush
         {
             get
@@ -144,7 +201,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ImageColorProperty = DependencyProperty.Register("ImageColor", typeof(Brush), typeof(MaskedButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush ImageColor
         {
             get
@@ -157,7 +220,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ImageWidthProperty = DependencyProperty.Register("ImageWidth", typeof(double), typeof(MaskedButton), new FrameworkPropertyMetadata(16.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public double ImageWidth
         {
             get
@@ -170,7 +239,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ImageHeightProperty = DependencyProperty.Register("ImageHeight", typeof(double), typeof(MaskedButton), new FrameworkPropertyMetadata(16.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public double ImageHeight
         {
             get
@@ -187,11 +262,17 @@ namespace Imagin.Controls.Common
 
         #region MaskedButton
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MaskedButton() : base()
         {
             DefaultStyleKey = typeof(MaskedButton);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.ApplyTemplate();
@@ -213,6 +294,10 @@ namespace Imagin.Controls.Common
                 DropDown.IsOpen = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
@@ -220,6 +305,10 @@ namespace Imagin.Controls.Common
                 return;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnDropDownChanged(ContextMenu Value)
         {
             if (Value != null)
@@ -236,12 +325,20 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnDropDownDataContextChanged(object Value)
         {
             if (DropDown != null)
                 DropDown.DataContext = Value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnSourceChanged(ImageSource Value)
         {
             ImageBrush = new ImageBrush(Value);

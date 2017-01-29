@@ -2,18 +2,28 @@
 
 namespace Imagin.Common.Attributes
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.Field)]
     public class AbbreviationAttribute : Attribute
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string Value
         {
             get; set;
         }
 
-        public AbbreviationAttribute(string Value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public AbbreviationAttribute(string value)
         {
-            this.Value = Value;
+            Value = value;
         }
     }
 }

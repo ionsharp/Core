@@ -1,21 +1,22 @@
-﻿using Imagin.Common.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace Imagin.Common
 {
-    [Serializable]
     ///<summary>
     /// A named object with a date that periodically notifies.
     /// </summary>
+    [Serializable]
     public class NamedEntry : Entry, INamable
     {
-        #region Properties
-
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlIgnore]
         protected string name = string.Empty;
-        [Category("General")]
-        [Description("The name of the object.")]
-        [Featured(true)]
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual string Name
         {
             get
@@ -29,37 +30,42 @@ namespace Imagin.Common
             }
         }
 
-        #endregion
-
-        #region Methods
-
-        public override string ToString()
-        {
-            return this.Name;
-        }
-
-        #endregion
-
-        #region NamedEntry
-
+        /// <summary>
+        /// 
+        /// </summary>
         public NamedEntry() : base()
         {
         }
 
-        public NamedEntry(string Name, int NotifyEvery = 1000) : base(NotifyEvery)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="interval"></param>
+        /// <param name="enabled"></param>
+        public NamedEntry(string name, double interval = DefaultInterval, bool enabled = false) : this(name, DateTime.UtcNow, interval, enabled)
         {
-            this.Name = Name;
         }
 
-        public NamedEntry(string Name, DateTime Date, int NotifyEvery = 1000) : base(Date, NotifyEvery)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="date"></param>
+        /// <param name="interval"></param>
+        /// <param name="enabled"></param>
+        public NamedEntry(string name, DateTime date, double interval = DefaultInterval, bool enabled = false) : base(date, interval, enabled)
         {
-            this.Name = Name;
+            Name = name;
         }
 
-        public NamedEntry(DateTime Date, int NotifyEvery = 1000) : base(Date, NotifyEvery)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
         {
+            return name;
         }
-        
-        #endregion
     }
 }

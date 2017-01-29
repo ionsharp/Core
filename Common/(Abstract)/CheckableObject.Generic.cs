@@ -1,13 +1,30 @@
 ﻿using Imagin.Common.Input;
 using System;
+using System.Xml.Serialization;
 
 namespace Imagin.Common.ComponentModel
 {
-    public class CheckableObject<T> : AbstractObject, ICheckable
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    [Serializable]
+    public class CheckableObject : AbstractObject, ICheckable
     {
-        public event EventHandler<EventArgs<bool>> Checked;
+        /// <summary>
+        /// 
+        /// </summary>
+        [field: NonSerialized()]
+        public event CheckedEventHandler Checked;
 
-        bool isChecked;
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlIgnore]
+        protected bool isChecked;
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsChecked
         {
             get
@@ -18,43 +35,42 @@ namespace Imagin.Common.ComponentModel
             {
                 isChecked = value;
                 OnPropertyChanged("IsChecked");
-                OnChecked(value);
+                if (value) OnChecked();
             }
         }
 
-        T _value;
-        public T Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                _value = value;
-                OnPropertyChanged("Value");
-            }
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return _value.ToString();
+            return isChecked.ToString();
         }
 
-        protected virtual void OnChecked(bool Value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnChecked()
         {
-            if (Checked != null)
-                Checked(this, new EventArgs<bool>(Value));
+            Checked?.Invoke(new CheckedEventArgs(this));
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
         public CheckableObject() : base()
         {
         }
 
-        public CheckableObject(T Value, bool IsChecked = false) : base()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isChecked"></param>
+        public CheckableObject(bool isChecked = false) : base()
         {
-            this.Value = Value;
-            this.IsChecked = IsChecked;
+            IsChecked = isChecked;
         }
     }
 }

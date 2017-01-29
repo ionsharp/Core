@@ -3,14 +3,22 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MaskedDropDownButton : MaskedToggleButton
     {
-        #region Properties
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty DropDownProperty = DependencyProperty.Register("DropDown", typeof(ContextMenu), typeof(MaskedDropDownButton), new UIPropertyMetadata(null, OnDropDownChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public ContextMenu DropDown
         {
             get
@@ -22,19 +30,18 @@ namespace Imagin.Controls.Common
                 SetValue(DropDownProperty, value);
             }
         }
-        static void OnDropDownChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnDropDownChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MaskedDropDownButton MaskedDropDownButton = (MaskedDropDownButton)Object;
-            if (MaskedDropDownButton.DropDown != null)
-            {
-                MaskedDropDownButton.DropDown.PlacementTarget = MaskedDropDownButton;
-                MaskedDropDownButton.DropDown.Placement = PlacementMode.Bottom;
-                if (MaskedDropDownButton.DropDownDataContext != null)
-                    MaskedDropDownButton.DropDown.DataContext = MaskedDropDownButton.DropDownDataContext;
-            }
+            d.As<MaskedDropDownButton>().OnDropDownChanged((ContextMenu)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty DropDownDataContextProperty = DependencyProperty.Register("DropDownDataContext", typeof(object), typeof(MaskedDropDownButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDropDownDataContextChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public object DropDownDataContext
         {
             get
@@ -46,21 +53,19 @@ namespace Imagin.Controls.Common
                 SetValue(DropDownDataContextProperty, value);
             }
         }
-        static void OnDropDownDataContextChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnDropDownDataContextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MaskedDropDownButton MaskedDropDownButton = (MaskedDropDownButton)Object;
-            if (MaskedDropDownButton.DropDown != null)
-                MaskedDropDownButton.DropDown.DataContext = MaskedDropDownButton.DropDownDataContext;
+            d.As<MaskedDropDownButton>().OnDropDownDataContextChanged(e.NewValue);
         }
 
-        #endregion
-
-        #region MaskedDropDownButton
-
+        /// <summary>
+        /// 
+        /// </summary>
         public MaskedDropDownButton()
         {
-            this.DefaultStyleKey = typeof(MaskedDropDownButton);
-            this.ContentMargin = new Thickness(5, 0, 0, 0);
+            DefaultStyleKey = typeof(MaskedDropDownButton);
+            SetCurrentValue(ContentMarginProperty, new Thickness(5, 0, 0, 0));
+
             this.SetBinding(MaskedDropDownButton.IsCheckedProperty, new Binding("DropDown.IsOpen")
             {
                 Source = this
@@ -71,17 +76,41 @@ namespace Imagin.Controls.Common
             });
         }
 
-        #endregion
-
-        #region Methods
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             e.Handled = true;
             if (DropDown != null)
                 DropDown.IsOpen = true;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnDropDownChanged(ContextMenu Value)
+        {
+            if (Value != null)
+            {
+                Value.PlacementTarget = this;
+                Value.Placement = PlacementMode.Bottom;
 
-        #endregion
+                if (DropDownDataContext != null)
+                    Value.DataContext = DropDownDataContext;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnDropDownDataContextChanged(object Value)
+        {
+            if (DropDown != null)
+                DropDown.DataContext = Value;
+        }
     }
 }

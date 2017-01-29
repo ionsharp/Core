@@ -8,6 +8,9 @@ using System.Windows.Shapes;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TemplatePart(Name = "PART_Ellipse", Type = typeof(Ellipse))]
     [TemplatePart(Name = "PART_Line", Type = typeof(Line))]
     [TemplatePart(Name = "PART_Origin", Type = typeof(Ellipse))]
@@ -27,7 +30,13 @@ namespace Imagin.Controls.Extended
 
         bool ValueChangeHandled = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty AngleProperty = DependencyProperty.Register("Angle", typeof(double), typeof(AnglePicker), new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnAngleChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public double Angle
         {
             get
@@ -44,7 +53,13 @@ namespace Imagin.Controls.Extended
             d.As<AnglePicker>().OnAngleChanged((double)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty OriginFillProperty = DependencyProperty.Register("OriginFill", typeof(Brush), typeof(AnglePicker), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush OriginFill
         {
             get
@@ -57,7 +72,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty OriginStrokeProperty = DependencyProperty.Register("OriginStroke", typeof(Brush), typeof(AnglePicker), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush OriginStroke
         {
             get
@@ -70,7 +91,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty OriginStrokeThicknessProperty = DependencyProperty.Register("OriginStrokeThickness", typeof(double), typeof(AnglePicker), new FrameworkPropertyMetadata(8d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public double OriginStrokeThickness
         {
             get
@@ -83,7 +110,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty OriginVisibilityProperty = DependencyProperty.Register("OriginVisibility", typeof(Visibility), typeof(AnglePicker), new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Visibility OriginVisibility
         {
             get
@@ -96,7 +129,13 @@ namespace Imagin.Controls.Extended
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty NeedleStrokeProperty = DependencyProperty.Register("NeedleStroke", typeof(Brush), typeof(AnglePicker), new FrameworkPropertyMetadata(Brushes.Black, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush NeedleStroke
         {
             get
@@ -109,7 +148,13 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty NeedleStrokeThicknessProperty = DependencyProperty.Register("NeedleStrokeThickness", typeof(double), typeof(AnglePicker), new FrameworkPropertyMetadata(2d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public double NeedleStrokeThickness
         {
             get
@@ -122,7 +167,13 @@ namespace Imagin.Controls.Extended
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty RadiansProperty = DependencyProperty.Register("Radians", typeof(double), typeof(AnglePicker), new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnRadiansChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public double Radians
         {
             get
@@ -143,6 +194,9 @@ namespace Imagin.Controls.Extended
 
         #region AnglePicker
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AnglePicker()
         {
             DefaultStyleKey = typeof(AnglePicker);
@@ -212,6 +266,10 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnAngleChanged(double Value)
         {
             if (!ValueChangeHandled && !AngleChangeHandled)
@@ -224,6 +282,10 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnRadiansChanged(double Value)
         {
             if (!ValueChangeHandled && !RadiansChangeHandled)
@@ -236,6 +298,9 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

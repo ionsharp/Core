@@ -15,7 +15,13 @@ namespace Imagin.Controls.Common
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(AlignableWrapPanel), new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.AffectsMeasure), IsWidthHeightValid);
+        /// <summary>
+        /// 
+        /// </summary>
         [TypeConverter(typeof(LengthConverter))]
         public double ItemWidth
         {
@@ -29,7 +35,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ItemHeightProperty = DependencyProperty.Register("ItemHeight", typeof(double), typeof(AlignableWrapPanel), new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.AffectsMeasure), IsWidthHeightValid);
+        /// <summary>
+        /// 
+        /// </summary>
         [TypeConverter(typeof(LengthConverter))]
         public double ItemHeight
         {
@@ -43,8 +55,14 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty OrientationProperty = StackPanel.OrientationProperty.AddOwner(typeof(AlignableWrapPanel), new FrameworkPropertyMetadata(Orientation.Horizontal, FrameworkPropertyMetadataOptions.AffectsMeasure, OnOrientationChanged));
         Orientation orientation;
+        /// <summary>
+        /// 
+        /// </summary>
         public Orientation Orientation
         {
             get
@@ -62,14 +80,26 @@ namespace Imagin.Controls.Common
             p.orientation = (Orientation)e.NewValue;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty HorizontalContentAlignmentProperty = DependencyProperty.Register(nameof(HorizontalContentAlignment), typeof(HorizontalAlignment), typeof(AlignableWrapPanel), new FrameworkPropertyMetadata(HorizontalAlignment.Left, FrameworkPropertyMetadataOptions.AffectsArrange));
+        /// <summary>
+        /// 
+        /// </summary>
         public HorizontalAlignment HorizontalContentAlignment
         {
             get { return (HorizontalAlignment)GetValue(HorizontalContentAlignmentProperty); }
             set { SetValue(HorizontalContentAlignmentProperty, value); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty VerticalContentAlignmentProperty = DependencyProperty.Register(nameof(VerticalContentAlignment), typeof(VerticalAlignment), typeof(AlignableWrapPanel), new FrameworkPropertyMetadata(VerticalAlignment.Top, FrameworkPropertyMetadataOptions.AffectsArrange));
+        /// <summary>
+        /// 
+        /// </summary>
         public VerticalAlignment VerticalContentAlignment
         {
             get { return (VerticalAlignment)GetValue(VerticalContentAlignmentProperty); }
@@ -119,6 +149,11 @@ namespace Imagin.Controls.Common
 
         #region Overrides
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="constraint"></param>
+        /// <returns></returns>
         protected override Size MeasureOverride(Size constraint)
         {
             var curLineSize = new UvSize(Orientation);
@@ -176,6 +211,11 @@ namespace Imagin.Controls.Common
             return new Size(panelSize.Width, panelSize.Height);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="finalSize"></param>
+        /// <returns></returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
             var firstInLine = 0;
@@ -302,6 +342,9 @@ namespace Imagin.Controls.Common
 
         #region AlignableWrapPanel
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AlignableWrapPanel()
         {
             orientation = Orientation.Horizontal;

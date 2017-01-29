@@ -6,11 +6,20 @@ using System.Windows.Media;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MaskedToggleButton : ToggleButton
     {
-        #region DependencyProperties
+        #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(ImageSource), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSourceChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public ImageSource Source
         {
             get
@@ -22,13 +31,18 @@ namespace Imagin.Controls.Common
                 SetValue(SourceProperty, value);
             }
         }
-        private static void OnSourceChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MaskedToggleButton MaskedToggleButton = Object as MaskedToggleButton;
-            MaskedToggleButton.ImageBrush = new ImageBrush(MaskedToggleButton.Source);
+            d.As<MaskedToggleButton>().OnSourceChanged((ImageSource)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ImageBrushProperty = DependencyProperty.Register("ImageBrush", typeof(ImageBrush), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public ImageBrush ImageBrush
         {
             get
@@ -41,7 +55,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty ImageColorProperty = DependencyProperty.Register("ImageColor", typeof(Brush), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Brush ImageColor
         {
             get
@@ -54,7 +74,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty IsRippleEnabledProperty = DependencyProperty.Register("IsRippleEnabled", typeof(bool), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsRippleEnabled
         {
             get
@@ -67,7 +93,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty GroupNameProperty = DependencyProperty.Register("GroupName", typeof(string), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnGroupNameChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public string GroupName
         {
             get
@@ -79,32 +111,18 @@ namespace Imagin.Controls.Common
                 SetValue(GroupNameProperty, value);
             }
         }
-        private static void OnGroupNameChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnGroupNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MaskedToggleButton MaskedToggleButton = Object as MaskedToggleButton;
-            if (MaskedToggleButton.GroupName == string.Empty)
-            {
-                MaskedToggleButton.Checked -= MaskedToggleButton.MaskedToggleButton_Checked;
-            } else
-            {
-                MaskedToggleButton.Checked += MaskedToggleButton.MaskedToggleButton_Checked;
-            }
+            d.As<MaskedToggleButton>().OnGroupNameChanged((string)e.NewValue);
         }
 
-        private void MaskedToggleButton_Checked(object sender, EventArgs e)
-        {
-            DependencyObject Parent = this.GetParent<DependencyObject>();
-            for (int i = 0, Count = VisualTreeHelper.GetChildrenCount(Parent); i < Count; i++)
-            {
-                var Child = VisualTreeHelper.GetChild(Parent, i);
-                if (!(Child is MaskedToggleButton)) continue; 
-                MaskedToggleButton Button = Child as MaskedToggleButton;
-                if (Button == this) continue; 
-                Button.IsChecked = false; 
-            }
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty CheckedToolTipProperty = DependencyProperty.Register("CheckedToolTip", typeof(string), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public string CheckedToolTip
         {
             get
@@ -117,7 +135,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty UncheckedToolTipProperty = DependencyProperty.Register("UncheckedToolTip", typeof(string), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public string UncheckedToolTip
         {
             get
@@ -130,7 +154,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ImageWidthProperty = DependencyProperty.Register("ImageWidth", typeof(double), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(16.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public double ImageWidth
         {
             get
@@ -143,7 +173,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ImageHeightProperty = DependencyProperty.Register("ImageHeight", typeof(double), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(16.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public double ImageHeight
         {
             get
@@ -156,7 +192,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ContentMarginProperty = DependencyProperty.Register("ContentMargin", typeof(Thickness), typeof(MaskedToggleButton), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public Thickness ContentMargin
         {
             get
@@ -173,6 +215,44 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
+        void OnChecked(object sender, EventArgs e)
+        {
+            var Parent = this.GetParent<DependencyObject>();
+
+            for (int i = 0, Count = VisualTreeHelper.GetChildrenCount(Parent); i < Count; i++)
+            {
+                var j = VisualTreeHelper.GetChild(Parent, i) as MaskedToggleButton;
+
+                if (j != null && j != this)
+                    j.IsChecked = false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnGroupNameChanged(string Value)
+        {
+            if (Value.IsNullOrEmpty())
+            {
+                Checked -= OnChecked;
+            }
+            else Checked += OnChecked;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnSourceChanged(ImageSource Value)
+        {
+            ImageBrush = new ImageBrush(Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void SetGroup()
         {
         }
@@ -181,10 +261,13 @@ namespace Imagin.Controls.Common
 
         #region MaskedToggleButton
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MaskedToggleButton()
         {
-            this.DefaultStyleKey = typeof(MaskedToggleButton);
-            this.ContentMargin = new Thickness(5, 0, 0, 0);
+            DefaultStyleKey = typeof(MaskedToggleButton);
+            SetCurrentValue(ContentMarginProperty, new Thickness(5, 0, 0, 0));
         }
 
         #endregion

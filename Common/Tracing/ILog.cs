@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace Imagin.Common.Tracing
 {
     /// <summary>
-    /// 
+    /// Specifies a log.
     /// </summary>
     public interface ILog
     {
@@ -18,32 +18,15 @@ namespace Imagin.Common.Tracing
         /// 
         /// </summary>
         /// <param name="Message"></param>
-        /// <param name="Kind"></param>
-        void Write(string Message, LogEntryKind Kind);
+        /// <param name="Type"></param>
+        void Write(string Message, LogEntryType Type = LogEntryType.Message);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Message"></param>
-        /// <param name="Level"></param>
-        /// <param name="Kind"></param>
-        void Write(string Message, WarningLevel Level = WarningLevel.Moderate, LogEntryKind Kind = LogEntryKind.Info);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="Source"></param>
-        /// <param name="Message"></param>
-        /// <param name="Kind"></param>
-        void Write(string Source, string Message, LogEntryKind Kind);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Source"></param>
-        /// <param name="Message"></param>
-        /// <param name="Level"></param>
-        /// <param name="Kind"></param>
-        void Write(string Source, string Message, WarningLevel Level = WarningLevel.Moderate, LogEntryKind Kind = LogEntryKind.Info);
+        /// <param name="Type"></param>
+        void Write(string Message, object Source, LogEntryType Type = LogEntryType.Message);
     }
 }
