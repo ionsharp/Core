@@ -18,6 +18,7 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.DragSelection.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.EditableLabel.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.FileBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.FlagCheckView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.Gadget.xaml" /> 
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common;component/Themes/Generic.RadioGroup.xaml" />

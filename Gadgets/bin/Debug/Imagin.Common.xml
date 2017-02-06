@@ -4,27 +4,6 @@
         <name>Imagin.Common</name>
     </assembly>
     <members>
-        <member name="T:Imagin.Common.AbstractDependencyObject">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.AbstractDependencyObject.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.AbstractDependencyObject.PropertyChanged">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.AbstractDependencyObject.OnPropertyChanged(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="propertyName"></param>
-        </member>
         <member name="T:Imagin.Common.AbstractObject">
             <summary>
             A base for abstract objects (implements INotifyPropertyChanged).
@@ -46,6 +25,46 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Common.CheckableObject`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="F:Imagin.Common.CheckableObject`1.value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.CheckableObject`1.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.CheckableObject`1.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.CheckableObject`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.CheckableObject`1.#ctor(`0,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="isChecked"></param>
+        </member>
+        <member name="M:Imagin.Common.CheckableObject`1.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="isChecked"></param>
+        </member>
         <member name="T:Imagin.Common.IChangeable">
             <summary>
             Specifies an object that can observe changes to itself.
@@ -54,6 +73,27 @@
         <member name="E:Imagin.Common.IChangeable.Changed">
             <summary>
             Occurs when the object is changed in any way.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.IContainer`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TObject"></typeparam>
+        </member>
+        <member name="P:Imagin.Common.IContainer`1.Items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.IEntry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.IEntry.Date">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Common.IValidate`1">
@@ -92,6 +132,22 @@
             </summary>
             <param name="kind"></param>
         </member>
+        <member name="T:Imagin.Common.Attributes.StringFormatAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Attributes.StringFormatAttribute.Format">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Attributes.StringFormatAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Format"></param>
+        </member>
         <member name="T:Imagin.Common.Attributes.StringKindAttribute">
             <summary>
             Specifies how a string field should be displayed.
@@ -107,6 +163,1261 @@
             
             </summary>
             <param name="kind"></param>
+        </member>
+        <member name="T:Imagin.Common.Attributes.AbbreviationAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Attributes.AbbreviationAttribute.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Attributes.AbbreviationAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="T:Imagin.Common.Collections.ITrackableCollection">
+            <summary>
+            Specifies a collection capable of tracking items.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ITrackableCollection.ItemAdded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ITrackableCollection.ItemsAdded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ITrackableCollection.ItemsChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ITrackableCollection.ItemsCleared">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ITrackableCollection.ItemInserted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ITrackableCollection.ItemRemoved">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.ITrackableCollection.ItemsRemoved">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.ITrackableCollection.IsEmpty">
+            <summary>
+            Gets whether or not the collection is empty.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.ITrackableCollection.Add(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.ITrackableCollection.Add(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.ITrackableCollection.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.ITrackableCollection.Insert(System.Int32,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.ITrackableCollection.Remove(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.ITrackableCollection.Remove(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.ITrackableCollection.RemoveAt(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.ITrackableCollection.RemoveAt(System.Int32[])">
+            <summary>
+            
+            </summary>
+            <param name="Indices"></param>
+        </member>
+        <member name="T:Imagin.Common.Collections.Generic.ITrackableCollection`1">
+            <summary>
+            Specifies a collection capable of tracking generic items.
+            </summary>
+            <typeparam name="T">The type of the objects in the collection.</typeparam>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.ItemAdded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.ItemsAdded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.ItemsChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.ItemsCleared">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.ItemInserted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.ItemRemoved">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.ItemsRemoved">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Generic.ITrackableCollection`1.IsEmpty">
+            <summary>
+            Gets whether or not the collection is empty.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ITrackableCollection`1.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ITrackableCollection`1.Add(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ITrackableCollection`1.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ITrackableCollection`1.Insert(System.Int32,`0)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ITrackableCollection`1.Remove(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ITrackableCollection`1.Remove(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ITrackableCollection`1.RemoveAt(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ITrackableCollection`1.RemoveAt(System.Int32[])">
+            <summary>
+            
+            </summary>
+            <param name="Indices"></param>
+        </member>
+        <member name="T:Imagin.Common.Collections.Generic.TrackableList`1">
+            <summary>
+            Provides a collection that can be tracked; inherits <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.ItemAdded">
+            <summary>
+            Occurs when a single item is added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.ItemsAdded">
+            <summary>
+            Occurs when any number of items are added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.ItemsChanged">
+            <summary>
+            Occurs when the collection changes.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.ItemsCleared">
+            <summary>
+            Occurs when the collection is cleared.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.ItemInserted">
+            <summary>
+            Occurs when a single item is inserted.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.ItemRemoved">
+            <summary>
+            Occurs when a single item is removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.ItemsRemoved">
+            <summary>
+            Occurs when any number of items are removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Generic.TrackableList`1.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.Add(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.Insert(System.Int32,`0)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.Remove(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.Remove(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.RemoveAt(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.RemoveAt(System.Int32[])">
+            <summary>
+            
+            </summary>
+            <param name="Indices"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnItemAdded(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnItemsAdded(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnItemsChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnItemsCleared">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnItemInserted(`0,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+            <param name="Index"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnItemRemoved(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnItemsRemoved(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="OldItems"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnPropertyChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Name"></param>
+        </member>
+        <member name="T:Imagin.Common.Collections.Generic.IStackable`1">
+            <summary>
+            Defines methods to manipulate stackable collections.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.IStackable`1.Push(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.IStackable`1.Peek">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.IStackable`1.Pop">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Collections.Generic.ObservableStack`1">
+            <summary>
+            Defines methods relative to stack data strcuture; inherits <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ObservableStack`1.Push(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ObservableStack`1.Peek">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ObservableStack`1.Pop">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ObservableStack`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Generic.TrackableCollection`1">
+            <summary>
+            Provides a collection that can be tracked; inherits <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.ItemAdded">
+            <summary>
+            Occurs when a single item is added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.ItemsAdded">
+            <summary>
+            Occurs when any number of items are added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.ItemsChanged">
+            <summary>
+            Occurs when the collection changes.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.ItemsCleared">
+            <summary>
+            Occurs when the collection is cleared.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.ItemInserted">
+            <summary>
+            Occurs when a single item is inserted.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.ItemRemoved">
+            <summary>
+            Occurs when a single item is removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.ItemsRemoved">
+            <summary>
+            Occurs when any number of items are removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Generic.TrackableCollection`1.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.Add(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.Insert(System.Int32,`0)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.Remove(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.Remove(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.RemoveAt(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.RemoveAt(System.Int32[])">
+            <summary>
+            
+            </summary>
+            <param name="Indices"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnItemAdded(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnItemsAdded(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnItemsChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnItemsCleared">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnItemInserted(`0,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+            <param name="Index"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnItemRemoved(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnItemsRemoved(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="OldItems"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnPropertyChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Name"></param>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1">
+            <summary>
+            This class provides the base for concurrent collections that 
+            can be bound to user interface elements
+            </summary>
+            <notes>
+            Could do with a more performant enumerable implementation
+            but this is what I have so far. I create a snapshot of the collection
+            and use the enumerable from that. When the collection is updated
+            I set a flag indicating that a new snapshot is required.
+            </notes>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.IsDispatcherThread">
+            <summary>
+            Gets if the calling thread is the same as the dispatcher thread
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.ReadWriteLock">
+            <summary>
+            The lock that controls read/write access to the base collection
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.BaseCollection">
+            <summary>
+            The underlying base enumerable that is used to store the items,
+            used for creating an immutable collection from which an enumerator
+            can be obtained.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.NewSnapshotRequired">
+            <summary>
+            Flag indicating that a write has occured, so anything that depends on
+            taking a snapshot of the collection needs to be updated.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.SnapshotLock">
+            <summary>
+            The enumerable lock to prevent threading conflicts on allocating
+            the enumerable of the fixed collection
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.BaseSnapshot">
+            <summary>
+            The collection used for generating an enumerable that iterates
+            over a snapshot of the base collection
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.Subscribers">
+            <summary>
+            A list of observers
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.SubscriberKey">
+            <summary>
+            The key for new observers, incremented with each new observer
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.IsDisposed">
+            <summary>
+            Flag indicating this collection is disposed
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.Snapshot">
+            <summary>
+            Gets an immutable snapshot of the collection
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.ReadCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.viewModel">
+            <summary>
+            The view model that is used to allow this collection to be bound to the UI.
+            Relevant methods determine if they are being called on the UI thread, and if
+            so then the view model is used.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.ViewModel">
+            <summary>
+            Access this directly if getting the error "An ItemsControl is inconsistent with its items source".
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.WriteCollection">
+            <summary>
+            Gets the base collection that holds the values
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Constructor that takes an eumerable
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Disposing"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.OnNext(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.OnError(System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="Exception"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.OnCompleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.Subscribe(System.IObserver{System.Collections.Specialized.NotifyCollectionChangedEventArgs})">
+            <summary>
+            
+            </summary>
+            <param name="Observer"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.DisposeDelegate">
+            <summary>
+            Result returned from <see cref="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.Subscribe(System.IObserver{System.Collections.Specialized.NotifyCollectionChangedEventArgs})"/> method.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.GetEnumerator">
+            <summary>
+            Gets the enumerator for a snapshot of the collection
+            </summary>
+            <remarks>
+            Note that the Enumerator should really only be used on the Dispatcher thread,
+            if not then should enumerate over the Snapshot instead.
+            
+            </remarks>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets the enumerator for a snapshot of the collection
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.UpdateSnapshot">
+            <summary>
+            Updates the snapshot that is used to generate an Enumerator
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.DoBaseClear(System.Action)">
+            <summary>
+            Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <remarks>
+            Don't use BaseCollection.Clear(), it causes problems because it
+            sends a reset event, and then the collection needs to be read out through
+            an enumerator. Use RemoveAt instead until the collection is empty.
+            Using remove from end after testing with this speed test:
+            </remarks>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.HandleBaseCollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Handles when the base collection changes. Pipes the event through IObservable.OnNext
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+            <remarks>
+            As this is a concurrent collection we don't want a change event to result in the listener
+            later coming back to enumerate over the whole collection again, possible before the listener
+            gets other changed events, but after the collection has been added to.
+            </remarks>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.DoBaseRead(System.Action)">
+            <summary>
+            Handles read access from the base collection
+            </summary>
+            <param name="readFunc"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.DoBaseRead``1(System.Func{``0})">
+            <summary>
+            Handles read access from the base collection when a return value is required
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="ReadAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.DoBaseReadWrite``1(System.Func{System.Boolean},System.Func{``0},System.Func{``0})">
+            <summary>
+            Calls the read function passed in, and if it returns true,
+            then calls the next read function, else calls the write
+            function.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.DoBaseReadWrite``1(System.Func{System.Boolean},System.Func{``0},System.Action,System.Func{``0})">
+            <summary>
+            Calls the read function passed in, and if it returns true,
+            then calls the next read function, else unlocks the collection,
+            calls the pre-write function, then chains to DoBaseReadWrite
+            calls the write
+            function.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.DoBaseWrite(System.Action)">
+            <summary>
+            Handles write access to the base collection
+            </summary>
+            <param name="WriteAction"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1.DoBaseWrite``1(System.Func{``0})">
+            <summary>
+            Handles write access to the base collection when a return value is required
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="WriteFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1">
+            <summary>
+            Provides a collection that can be modified safely on other threads. The notify event is thrown using the dispatcher from the event listener(s).
+            </summary>
+            <typeparam name="T">The type of the elements in the collection.</typeparam>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.ItemAdded">
+            <summary>
+            Occurs when a single item is added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.ItemsAdded">
+            <summary>
+            Occurs when any number of items are added.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.ItemsChanged">
+            <summary>
+            Occurs when the collection changes.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.ItemsCleared">
+            <summary>
+            Occurs when the collection is cleared.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.ItemInserted">
+            <summary>
+            Occurs when a single item is inserted.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.ItemRemoved">
+            <summary>
+            Occurs when a single item is removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.ItemsRemoved">
+            <summary>
+            Occurs when any number of items are removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.PropertyChanged">
+            <summary>
+            Occurs when a property changes.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.IsReadOnly">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.#ctor(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.#ctor(`0[])">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0}[])">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Add(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Contains(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="array"></param>
+            <param name="arrayIndex"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.IndexOf(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Insert(System.Int32,`0)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Remove(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Imagin#Common#Collections#Generic#ITrackableCollection{T}#Remove(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.Remove(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.RemoveAt(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.RemoveAt(System.Int32[])">
+            <summary>
+            
+            </summary>
+            <param name="Indices"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.BeginClear">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnItemAdded(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnItemsAdded(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnItemsChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnItemsCleared">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnItemInserted(`0,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+            <param name="Index"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnItemRemoved(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnItemsRemoved(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="OldItems"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnPropertyChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Name"></param>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor">
+            <summary>
+            Executes a stream on actions on the dispatcher thread.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor._instance">
+            <summary>
+            This class is a singleton class. Below is the instance.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionQueue">
+            <summary>
+            A queue of actions to be called on the dispatcher thread
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.SubscriberQueue">
+            <summary>
+            A list of pending subscribers, processed once the Dispather is created.
+            Using a ConcurrentDictionary because this is the only framework collection
+            that has a remove method.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Dispatcher">
+            <summary>
+            The Application Dispatcher
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionWaiting">
+            <summary>
+            The current action that is awaiting processing on the Dispatcher thread
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionWaitingSemaphore">
+            <summary>
+            Semaphore used to prevent a race condition on ActionWaiting 
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Instance">
+            <summary>
+            Gets the instance of the singleton class
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.IsDispatcherThread">
+            <summary>
+            Tests if the calling thread is the same as the dispatcher thread
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.#ctor">
+            <summary>
+            Private constructor for this singleton class. Use the Instance property to
+            get an instance of this class.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.CheckIfDispatcherCreated">
+            <summary>
+            Checks if the dispatcher has been created yet
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.StartQueueProcessing">
+            <summary>
+            Starts the thread that processes the queue of actions that are to be
+            executed on the dispatcher thread.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Add(System.Action)">
+             <summary>
+             Adds an action to the processing queue
+             </summary>
+             <remarks>
+             If we are running on the dispatcher thread, we could call the
+             action directly, but then we've got the problem with queue
+             jumping. It's desirable to immediately update the view model,
+             as if we don't the code that added the item won't see it
+             if an iteration is done over the collection, which would confuse
+             the person using this collection.
+            
+             So, we need to add it to the queue and then process the queue
+             so the view is consistent with the Add action.
+             </remarks>
+             <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.QueueSubscribe(System.Action)">
+            <summary>
+            Adds a subscribe action to the subscriber queue
+            </summary>
+            <remarks>
+            Subscriber queue is set to null after the 
+            Dispatcher has been created. So subscriptions 
+            can be handled directly once the dispatcher 
+            queue is being processed.
+            </remarks>
+            <param name="SubscribeAction"></param>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.DisposeDelegate">
+            <summary>
+            Result returned by "QueueSubscribe" method.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ImmutableCollection`1">
+            <summary>
+            Provides a collection that is immutable or cannot be changed.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.Source">
+            <summary>
+            The base collection that is wrapped by this class to restrict access
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.Contains(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Array"></param>
+            <param name="ArrayIndex"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1">
+            <summary>
+            Provides a base collection that is immutable or cannot be changed.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Count" -->
+        <member name="P:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.IsReadOnly">
+            <summary>
+            Gets a value indicating that the collection is read-only.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Contains(`0)" -->
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.CopyTo(`0[],System.Int32)">
+            <summary>
+             Copies the elements of the collection to an array, starting at a particular index.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.GetEnumerator">
+            <summary>
+            Gets the enumerator for the collection
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Add(`0)" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Clear" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Remove(`0)" -->
+        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Gets the enumerator for the collection
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1">
+            <summary>
+            The view model for <see cref="T:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1"/>; this is exposed by <see cref="T:Imagin.Common.Collections.Concurrent.ConcurrentCollectionBase`1"/> when it is used on the dispatcher thread.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.UnsubscribeToken">
+            <summary>
+            Token that comes back when subscribing to the <see cref="T:System.IObserver`1"/>.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.SubscriptionActionToken">
+            <summary>
+            Token for removing the subscription action from the queue
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.ProcessCommand(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Processes a NotifyCollectionChangedEventArgs event argument
+            </summary>
+            <param name="Command"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.Dispose(System.Boolean)">
+            <summary>
+            Disposes of this object, and supresses the finalizer
+            </summary>
+            <param name="IsDisposing"></param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.#ctor(System.IObservable{System.Collections.Specialized.NotifyCollectionChangedEventArgs})" -->
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.Finalize">
+            <summary>
+            Finalizer, disposes of the object
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.Dispose">
+            <summary>
+            Disposes of the current object
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.OnCompleted" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.OnError(System.Exception)" -->
+        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ConcurrentCollectionViewModel`1.OnNext(System.Collections.Specialized.NotifyCollectionChangedEventArgs)" -->
+        <member name="T:Imagin.Common.Collections.FrameworkElementCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.FrameworkElementCollection.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Common.Config.IAppStarter">
             <summary>
@@ -301,6 +1612,56 @@
             <param name="culture"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Data.Converters.EnumHasFlagConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.EnumHasFlagConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.EnumHasFlagConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.EnumFlagsToVisibilityConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.EnumFlagsToVisibilityConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.EnumFlagsToVisibilityConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetTypes"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Data.Converters.NullConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
             <remarks>
             According to https://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.convertback(v=vs.110).aspx#Anchor_1,
@@ -309,6 +1670,81 @@
             you should return Binding.DoNothing or
             DependencyProperty.UnsetValue.
             </remarks>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.AbbreviationAttributeConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.AbbreviationAttributeConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.AbbreviationAttributeConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.ParentFolderConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ParentFolderConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ParentFolderConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.BrushToColorConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.BrushToColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.BrushToColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Data.Converters.ColorToHexConverter">
             <summary>
@@ -361,6 +1797,27 @@
             </summary>
             <param name="Path"></param>
         </member>
+        <member name="T:Imagin.Common.Data.BindingProxy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Data.BindingProxy.DataProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.BindingProxy.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.BindingProxy.CreateInstanceCore">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Debug.Result`1">
             <summary>
             Represents a result with data.
@@ -392,6 +1849,36 @@
             <summary>
             Represents a failed result; optionally, encapsulates an exception.
             </summary>
+        </member>
+        <member name="P:Imagin.Common.Debug.Error.Exception">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Error.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Debug.Error.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Error.#ctor(System.Exception,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="exception"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:Imagin.Common.Debug.Error.#ctor(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="data"></param>
         </member>
         <member name="T:Imagin.Common.Debug.Result">
             <summary>
@@ -1914,6 +3401,19 @@
             Specifies an en (1/144.54 inch) as the unit of measure.
             </summary>
         </member>
+        <member name="T:Imagin.Common.Extensions.ArrayExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.ArrayExtensions.Where(System.Array,System.Func{System.Object,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Predicate"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.BrushExtensions">
             <summary>
             
@@ -1950,10 +3450,124 @@
             <param name="Source"></param>
             <param name="Action"></param>
         </member>
+        <member name="T:Imagin.Common.Extensions.IListGenericExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.Enumerate``1(System.Collections.Generic.IList{``0},System.Object,System.Func{System.Object,``0,System.Boolean})">
+            <summary>
+            Enumerate all items contained in a collection (recursively), including each item's items (all items must implement <see cref="T:Imagin.Common.IContainer`1"/>).
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Parent"></param>
+            <param name="Action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.GetParent``1(System.Collections.Generic.IList{``0},System.Object,``0)">
+            <summary>
+            Get the logical parent for the given item. <para>(recursive)</para>
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source">The collection to search.</param>
+            <param name="Parent">The parent to evaluate.</param>
+            <param name="Item">The item to get the parent of.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.Move``1(System.Collections.Generic.IList{``0},``0,Imagin.Common.Direction)">
+            <summary>
+            Move the given item in the given direction (i.e., increase or decrease the item's index).
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Item"></param>
+            <param name="Direction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.Clone``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Clone the given item contained in the collection.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.Enumerate``1(System.Collections.Generic.IList{``0},System.Func{System.Object,``0,System.Boolean})">
+            <summary>
+            Enumerate all items contained in a collection (recursively), including each item's items (all items must implement <see cref="T:Imagin.Common.IContainer`1"/>).
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.GetParent``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Get the logical parent for the given item. <para>(recursive)</para>
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.LevelUp``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Move the given item up one level, or remove the item from it's current parent and add it to the collection of it's parent's parent.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.MoveDown``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Move the given item down, or increase the item's index.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.MoveUp``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Move the given item up, or decrease the item's index.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.RemoveRecursively``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Remove the given item from the collection without knowing what's it's parent is. <para>(recursive)</para> 
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListGenericExtensions.Wrap``1(System.Collections.Generic.IList{``0},``0,``0)">
+            <summary>
+            Add the given item to the given folder and insert the folder at the item's former location.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="Source"></param>
+            <param name="Folder"></param>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.IListExtensions">
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IListExtensions.Any(System.Collections.IList)">
+            <summary>
+            
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.IListExtensions.ForEach(System.Collections.IList,System.Action{System.Object})">
             <summary>
@@ -1983,6 +3597,20 @@
             <param name="Minimum"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Extensions.VersionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.VersionExtensions.Coerce(System.Version,System.Version,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Maximum"></param>
+            <param name="Minimum"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.UriExtensions">
             <summary>
             
@@ -1991,6 +3619,11 @@
         <member name="M:Imagin.Common.Extensions.UriExtensions.GetResourceStream(System.Uri)">
             <summary>
             Returns a Uri that represents a resource.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Extensions.ActionExtensions">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Common.Extensions.ActionExtensions.InvokeIf(System.Action,System.Func{System.Action,System.Boolean})">
@@ -2037,6 +3670,19 @@
             (HBITMAP) Handle to the icon color bitmap. This member can be optional if this structure defines a black and white icon. The AND bitmask of hbmMask is applied with the SRCAND flag to the destination; subsequently, the color bitmap is applied (using XOR) to the destination by using the SRCINVERT flag. 
             </summary>
         </member>
+        <member name="T:Imagin.Common.Extensions.BoolExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.BoolExtensions.ToVisibility(System.Boolean,System.Windows.Visibility)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="FalseVisibility"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.ByteExtensions">
             <summary>
             
@@ -2070,6 +3716,14 @@
             
             </summary>
         </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.Add``1(``0[],``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Value"></param>
+            <param name="Item"></param>
+        </member>
         <member name="M:Imagin.Common.Extensions.GenericExtensions.EmptyIfNull``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             
@@ -2077,6 +3731,64 @@
             <typeparam name="T"></typeparam>
             <param name="Value"></param>
             <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.For``1(System.Collections.Generic.IList{``0},System.Int32,System.Action{System.Collections.Generic.IList{``0},System.Int32})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="From"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.For``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32,System.Action{System.Collections.Generic.IList{``0},System.Int32})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="From"></param>
+            <param name="Until"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.For``1(System.Collections.Generic.IList{``0},System.Int32,System.Predicate{System.Int32},System.Action{System.Collections.Generic.IList{``0},System.Int32})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="From"></param>
+            <param name="Until"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.For``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Action{System.Collections.Generic.IEnumerable{``0},System.Int32})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="From"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.For``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Action{System.Collections.Generic.IEnumerable{``0},System.Int32})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="From"></param>
+            <param name="Until"></param>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.For``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Predicate{System.Int32},System.Action{System.Collections.Generic.IEnumerable{``0},System.Int32})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="From"></param>
+            <param name="Until"></param>
+            <param name="Action"></param>
         </member>
         <member name="M:Imagin.Common.Extensions.GenericExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
@@ -2093,6 +3805,14 @@
             <typeparam name="T"></typeparam>
             <param name="Source"></param>
             <param name="Items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.IsNullable``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TObject"></typeparam>
+            <param name="Value"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.GenericExtensions.Merge``1(``0[],``0[])">
@@ -2127,6 +3847,23 @@
             <param name="Object">The item to check for nullity.</param>
             <param name="Name">The name to use when throwing an exception, if necessary</param>
         </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.TryAdd``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Items"></param>
+            <param name="Item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.GenericExtensions.TryClear``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Items"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.GenericExtensions.TryForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
             Attempt to perform for each loop on given <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
@@ -2156,12 +3893,17 @@
             <param name="Value"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Extensions.RectExtensions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Common.Extensions.RectExtensions.BoundSize(System.Windows.Rect,System.Windows.Size)">
             <summary>
             Bound rect to given size.
             </summary>
             <param name="Rect">The rect to bind.</param>
-            <param name="Size">The size of the binding.</param>
+            <param name="Bounds">The size of the binding.</param>
             <returns>A rect bound to given size.</returns>
         </member>
         <member name="M:Imagin.Common.Extensions.RectExtensions.BoundPoint(System.Windows.Rect,System.Windows.Size)">
@@ -2450,20 +4192,20 @@
         </member>
         <member name="M:Imagin.Common.Extensions.DoubleExtensions.Coerce(System.Double,System.Double,System.Double)">
             <summary>
-            
+            Coerces <see cref="T:System.Double"/> to given maximum and minimum.
             </summary>
-            <param name="ToCoerce"></param>
-            <param name="Maximum"></param>
-            <param name="Minimum"></param>
+            <param name="Value">The value to coerce.</param>
+            <param name="Maximum">The maximum to coerce to.</param>
+            <param name="Minimum">The minimum to coerce to.</param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.DoubleExtensions.Coerce(System.Double,System.Double,System.Boolean)">
             <summary>
-            
+            Coerces <see cref="T:System.Double"/> to given limit, which can be minimal or maximal.
             </summary>
-            <param name="ToCoerce"></param>
-            <param name="MinMax"></param>
-            <param name="MinOrMax"></param>
+            <param name="Value">The value to coerce.</param>
+            <param name="Limit">The minimum or maximum to coerce to.</param>
+            <param name="MinimumOrMaximum">Whether or not to coerce to minimum or maximum.</param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.DoubleExtensions.Divide(System.Double,System.Double)">
@@ -2567,6 +4309,27 @@
             <param name="Ppi">Pixels per inch.</param>
             <param name="RoundTo">Decimal places to round to.</param>
         </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.GetList``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.GetObservableCollection``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.GetValues``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.EnumExtensions.ParseEnum``1(System.String,System.Boolean)">
             <summary>
             Converts from string to enum.
@@ -2576,6 +4339,69 @@
             <summary>
             Attempts to convert from string to enum.
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.Add``1(System.Enum,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.Add(System.Enum,System.Enum)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.Has``1(System.Enum,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="type"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.Has(System.Enum,System.Enum)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.Remove``1(System.Enum,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.Remove(System.Enum,System.Enum)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Extensions.IconExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.IconExtensions.ToImageSource(System.Drawing.Icon)">
+            <summary>
+            
+            </summary>
+            <param name="Icon"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Extensions.Int32Extensions">
             <summary>
@@ -2718,11 +4544,20 @@
         </member>
         <member name="M:Imagin.Common.Extensions.Int64Extensions.Coerce(System.Int64,System.Int64,System.Int64)">
             <summary>
-            
+            Coerces <see cref="T:System.Int64"/> to given maximum and minimum.
             </summary>
-            <param name="ToCoerce"></param>
-            <param name="Maximum"></param>
-            <param name="Minimum"></param>
+            <param name="Value">The value to coerce.</param>
+            <param name="Maximum">The maximum to coerce to.</param>
+            <param name="Minimum">The minimum to coerce to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.Int64Extensions.Coerce(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            Coerces <see cref="T:System.Int64"/> to given limit, which can be minimal or maximal.
+            </summary>
+            <param name="Value">The value to coerce.</param>
+            <param name="Limit">The minimum or maximum to coerce to.</param>
+            <param name="MinimumOrMaximum">Whether or not to coerce to minimum or maximum.</param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.Int64Extensions.Divide(System.Int64,System.Int64)">
@@ -2825,7 +4660,7 @@
             Check if object is equal to all given objects.
             </summary>
             <param name="Value"></param>
-            <param name="ToEvaluateAgainst"></param>
+            <param name="Values"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.ObjectExtensions.EqualsAny(System.Object,System.Object[])">
@@ -2833,7 +4668,7 @@
             Check if object is equal to any given object.
             </summary>
             <param name="Value"></param>
-            <param name="ToEvaluateAgainst"></param>
+            <param name="Values"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.ObjectExtensions.EqualsNone(System.Object,System.Object[])">
@@ -2841,7 +4676,7 @@
             Check if object is equal to no given object.
             </summary>
             <param name="Value"></param>
-            <param name="ToEvaluateAgainst"></param>
+            <param name="Values"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.ObjectExtensions.GetAttribute``1(System.Object,System.String,System.Boolean)">
@@ -2903,7 +4738,7 @@
             <summary>
             Checks if given object's type implements interface (T).
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="TType"></typeparam>
             <param name="Value"></param>
             <returns></returns>
         </member>
@@ -2943,14 +4778,6 @@
             <param name="Or"></param>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Extensions.ObjectExtensions.PropertyExists(System.Object,System.String)">
-            <summary>
-            Checks if object has given property.
-            </summary>
-            <param name="Value"></param>
-            <param name="PropertyName"></param>
-            <returns></returns>
-        </member>
         <member name="M:Imagin.Common.Extensions.ObjectExtensions.To``1(System.Object)">
             <summary>
             Cast object to given type.
@@ -2961,7 +4788,7 @@
         </member>
         <member name="M:Imagin.Common.Extensions.ObjectExtensions.ToDynamic(System.Object)">
             <summary>
-            Convert object to dynamic type.
+            Casts object to dynamic type.
             </summary>
             <param name="Value"></param>
             <returns></returns>
@@ -3266,31 +5093,30 @@
         </member>
         <member name="M:Imagin.Common.Extensions.TypeExtensions.Equals``1(System.Type)">
             <summary>
-            Checks if specified object's type is equal to specified type.
+            Gets whether or not the type is equal to type, <see cref="!:&lt;TType&gt;"/>.
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="TType"></typeparam>
             <param name="Value"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.TypeExtensions.Implements``1(System.Type)">
             <summary>
-            Checks if given type implements interface (T).
+            Gets whether or not the type implements interface, <see cref="!:&lt;TType&gt;"/> (or whether <see cref="!:&lt;TType&gt;"/> is assignable from the type).
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="TType"></typeparam>
             <param name="Value"></param>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Extensions.TypeExtensions.IsAssignableFrom``1(System.Type)">
+        <member name="M:Imagin.Common.Extensions.TypeExtensions.IsNullable(System.Type)">
             <summary>
             
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Type"></param>
+            <param name="Value"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.TypeExtensions.TryCreate``1(System.Type)">
             <summary>
-            
+            Attempts to create a new instance of given type using <see cref="M:System.Activator.CreateInstance``1"/>.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Value"></param>
@@ -3384,6 +5210,7 @@
             <summary>
             
             </summary>
+            <param name="sender"></param>
             <param name="e"></param>
         </member>
         <member name="T:Imagin.Common.Input.SelectedEventArgs">
@@ -3395,7 +5222,7 @@
             <summary>
             
             </summary>
-            <param name="Value"></param>
+            <param name="Data"></param>
         </member>
         <member name="T:Imagin.Common.Input.EventArgs`1">
             <summary>
@@ -3462,6 +5289,29 @@
             Represents an object that is a variant of another object.
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="E:Imagin.Common.IVariant`1.Changed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.IVariant`1.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.IVariant`1.OnChanged(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.IVariant`1.Set(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
         </member>
         <member name="T:Imagin.Common.Media.GradientPosition">
             <summary>
@@ -3594,547 +5444,154 @@
             <param name="animationClock">The animation clock (timer)</param>
             <returns>Returns the new grid length to set</returns>
         </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1">
+        <member name="T:Imagin.Common.CheckableObject">
             <summary>
-            This class provides the base for concurrent collections that 
-            can be bound to user interface elements
-            </summary>
-            <notes>
-            Could do with a more performant enumerable implementation
-            but this is what I have so far. I create a snapshot of the collection
-            and use the enumerable from that. When the collection is updated
-            I set a flag indicating that a new snapshot is required.
-            </notes>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.IsDispatcherThread">
-            <summary>
-            Gets if the calling thread is the same as the dispatcher thread
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.ReadWriteLock">
-            <summary>
-            The lock that controls read/write access to the base collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.BaseCollection">
-            <summary>
-            The underlying base enumerable that is used to store the items,
-            used for creating an immutable collection from which an enumerator
-            can be obtained.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.NewSnapshotRequired">
-            <summary>
-            Flag indicating that a write has occured, so anything that depends on
-            taking a snapshot of the collection needs to be updated.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.SnapshotLock">
-            <summary>
-            The enumerable lock to prevent threading conflicts on allocating
-            the enumerable of the fixed collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.BaseSnapshot">
-            <summary>
-            The collection used for generating an enumerable that iterates
-            over a snapshot of the base collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.Subscribers">
-            <summary>
-            A list of observers
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.SubscriberKey">
-            <summary>
-            The key for new observers, incremented with each new observer
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.IsDisposed">
-            <summary>
-            Flag indicating this collection is disposed
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.Snapshot">
-            <summary>
-            Gets an immutable snapshot of the collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.viewModel">
-            <summary>
-            The view model that is used to allow this collection to be bound to the UI.
-            Relevant methods determine if they are being called on the UI thread, and if
-            so then the view model is used.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.ViewModel">
-            <summary>
-            Access this directly if getting the error "An ItemsControl is inconsistent with its items source".
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.WriteCollection">
-            <summary>
-            Gets the base collection that holds the values
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.#ctor">
-            <summary>
-            Default Constructor
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Constructor that takes an eumerable
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseClear(System.Action)" -->
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.HandleBaseCollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
-            <summary>
-            Handles when the base collection changes. Pipes the event through IObservable.OnNext
-            </summary>
-            <remarks>
-            As this is a concurrent collection we don't want a change event to result in the listener
-            later coming back to enumerate over the whole collection again, possible before the listener
-            gets other changed events, but after the collection has been added to.
-            </remarks>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.UpdateSnapshot">
-            <summary>
-            Updates the snapshot that is used to generate an Enumerator
-            </summary>
-            <param name="forceUpdate"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseRead(System.Action)">
-            <summary>
-            Handles read access from the base collection
-            </summary>
-            <param name="readFunc"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseRead``1(System.Func{``0})">
-            <summary>
-            Handles read access from the base collection when a return value is required
-            </summary>
-            <typeparam name="TResult"></typeparam>
-            <param name="readFunc"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseReadWrite``1(System.Func{System.Boolean},System.Func{``0},System.Func{``0})">
-            <summary>
-            Calls the read function passed in, and if it returns true,
-            then calls the next read function, else calls the write
-            function.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseReadWrite``1(System.Func{System.Boolean},System.Func{``0},System.Action,System.Func{``0})">
-            <summary>
-            Calls the read function passed in, and if it returns true,
-            then calls the next read function, else unlocks the collection,
-            calls the pre-write function, then chains to DoBaseReadWrite
-            calls the write
-            function.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseWrite(System.Action)">
-            <summary>
-            Handles write access to the base collection
-            </summary>
-            <param name="writeFunc"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DoBaseWrite``1(System.Func{``0})">
-            <summary>
-            Handles write access to the base collection when a return value is required
-            </summary>
-            <typeparam name="TResult"></typeparam>
-            <param name="writeFunc"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.DisposeDelegate">
-            <summary>
-            Result returned from "Subscribe" method.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.GetEnumerator">
-            <summary>
-            Gets the enumerator for a snapshot of the collection
-            </summary>
-            <remarks>
-            Note that the Enumerator should really only be used on the Dispatcher thread,
-            if not then should enumerate over the Snapshot instead.
             
-            </remarks>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableBase`1.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            Gets the enumerator for a snapshot of the collection
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1">
-            <summary>
-            This class provides a collection that can be bound to
-            a WPF control, where the collection can be modified from a thread
-            that is not the GUI thread. The notify event is thrown using the
-            dispatcher from the event listener(s).
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemAdded">
-            <summary>
-            Occurs when a single item is added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsAdded">
-            <summary>
-            Occurs when any number of items are added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsChanged">
-            <summary>
-            Occurs when the collection changes.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsCleared">
-            <summary>
-            Occurs when the collection is cleared.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemInserted">
-            <summary>
-            Occurs when a single item is inserted.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemRemoved">
-            <summary>
-            Occurs when a single item is removed.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.ItemsRemoved">
-            <summary>
-            Occurs when any number of items are removed.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.AddTo(`0,`0)">
-            <summary>
-            Add item A to B.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginAddTo(`0,`0)">
-            <summary>
-            Add item A to B.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginLevelUp(`0)">
-            <summary>
-            Moves item up one level.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginRemove(`0)">
-            <summary>
-            Removes data item from parent.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginRemove(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Removes data item from parent.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.BeginWrap(`0,`0)">
-            <summary>
-            Wraps item in a virtual folder via recursive search (assumes Parent.Items exists).
-            </summary>
-            <param name="Folder">The container item.</param>
-            <param name="Item">The item to wrap.</param>
-            <returns>Result of wrap attempt; false if failure.</returns>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentObservableCollection`1.RemoveAll(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Removes all occurences of each item in the specified collection.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor">
-            <summary>
-            Executes a stream on actions on the dispatcher thread.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor._instance">
-            <summary>
-            This class is a singleton class. Below is the instance.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionQueue">
-            <summary>
-            A queue of actions to be called on the dispatcher thread
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.SubscriberQueue">
-            <summary>
-            A list of pending subscribers, processed once the Dispather is created.
-            Using a ConcurrentDictionary because this is the only framework collection
-            that has a remove method.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Dispatcher">
-            <summary>
-            The Application Dispatcher
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionWaiting">
-            <summary>
-            The current action that is awaiting processing on the Dispatcher thread
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.ActionWaitingSemaphore">
-            <summary>
-            Semaphore used to prevent a race condition on ActionWaiting 
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Instance">
-            <summary>
-            Gets the instance of the singleton class
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.IsDispatcherThread">
-            <summary>
-            Tests if the calling thread is the same as the dispatcher thread
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.#ctor">
-            <summary>
-            Private constructor for this singleton class. Use the Instance property to
-            get an instance of this class.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.CheckIfDispatcherCreated">
-            <summary>
-            Checks if the dispatcher has been created yet
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.StartQueueProcessing">
-            <summary>
-            Starts the thread that processes the queue of actions that are to be
-            executed on the dispatcher thread.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.Add(System.Action)">
-             <summary>
-             Adds an action to the processing queue
-             </summary>
-             <remarks>
-             If we are running on the dispatcher thread, we could call the
-             action directly, but then we've got the problem with queue
-             jumping. It's desirable to immediately update the view model,
-             as if we don't the code that added the item won't see it
-             if an iteration is done over the collection, which would confuse
-             the person using this collection.
-            
-             So, we need to add it to the queue and then process the queue
-             so the view is consistent with the Add action.
-             </remarks>
-             <param name="Action"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.QueueSubscribe(System.Action)">
-            <summary>
-            Adds a subscribe action to the subscriber queue
-            </summary>
-            <remarks>
-            Subscriber queue is set to null after the 
-            Dispatcher has been created. So subscriptions 
-            can be handled directly once the dispatcher 
-            queue is being processed.
-            </remarks>
-            <param name="SubscribeAction"></param>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.DispatcherQueueProcessor.DisposeDelegate">
-            <summary>
-            Result returned by "QueueSubscribe" method.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ImmutableCollection`1">
-            <summary>
-            This class provides a functional immutable collection
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Collections.Concurrent.ImmutableCollection`1.baseCollection">
-            <summary>
-            The base collection that is wrapped by this class to restrict access
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1">
-            <summary>
-            This class provides the base restrictions for an immutable collection
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "P:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Count" -->
-        <member name="P:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.IsReadOnly">
-            <summary>
-            Gets a value indicating that the collection is read-only.
-            </summary>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Add(`0)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Clear" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Remove(`0)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.Contains(`0)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.CopyTo(`0[],System.Int32)" -->
-        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.GetEnumerator">
-            <summary>
-            Gets the enumerator for the collection
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ImmutableCollectionBase`1.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            Gets the enumerator for the collection
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1">
-            <summary>
-            This is the view model for the ConcurrentObservableCollectionBase that can be bound to a view.
-            This is exposed by ConcurrentObservableCollectionBase when it is used from the Dispatcher thread.
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.UnsubscribeToken" -->
-        <member name="F:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.SubscriptionActionToken">
+        <member name="E:Imagin.Common.CheckableObject.Checked">
             <summary>
-            Token for removing the subscription action from the queue
+            
             </summary>
         </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.ProcessCommand(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+        <member name="E:Imagin.Common.CheckableObject.Unchecked">
             <summary>
-            Processes a NotifyCollectionChangedEventArgs event argument
-            </summary>
-            <param name="command"></param>
-        </member>
-        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Dispose(System.Boolean)">
-            <summary>
-            Disposes of this object, and supresses the finalizer
-            </summary>
-            <param name="isDisposing"></param>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.#ctor(System.IObservable{System.Collections.Specialized.NotifyCollectionChangedEventArgs})" -->
-        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Finalize">
-            <summary>
-            Finalizer, disposes of the object
+            
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnCompleted" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnError(System.Exception)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.OnNext(System.Collections.Specialized.NotifyCollectionChangedEventArgs)" -->
-        <member name="M:Imagin.Common.Collections.Concurrent.ObservableCollectionViewModel`1.Dispose">
+        <member name="F:Imagin.Common.CheckableObject.isChecked">
             <summary>
-            Disposes of the current object
+            
             </summary>
         </member>
-        <member name="T:Imagin.Common.Collections.ObjectModel.ObservableStack`1">
+        <member name="P:Imagin.Common.CheckableObject.IsChecked">
             <summary>
-            Based on ObservableCollection, defines methods relative to stack data strcuture.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="T:Imagin.Common.Collections.ObjectModel.TrackableCollection`1">
-            <summary>
-            Based on ObservableCollection; implements ITrackable.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemAdded">
-            <summary>
-            Occurs when a single item is added.
+            
             </summary>
         </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsAdded">
+        <member name="M:Imagin.Common.CheckableObject.ToString">
             <summary>
-            Occurs when any number of items are added.
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.CheckableObject.OnChecked">
+            <summary>
+            
             </summary>
         </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsChanged">
+        <member name="M:Imagin.Common.CheckableObject.OnUnchecked">
             <summary>
-            Occurs when the collection changes.
+            
             </summary>
         </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsCleared">
+        <member name="M:Imagin.Common.CheckableObject.#ctor">
             <summary>
-            Occurs when the collection is cleared.
+            
             </summary>
         </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemInserted">
+        <member name="M:Imagin.Common.CheckableObject.#ctor(System.Boolean)">
             <summary>
-            Occurs when a single item is inserted.
+            
             </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemRemoved">
-            <summary>
-            Occurs when a single item is removed.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.ObjectModel.TrackableCollection`1.ItemsRemoved">
-            <summary>
-            Occurs when any number of items are removed.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Collections.Generic.IHierarchialCollection`1">
-            <summary>
-            Defines methods to manipulate hierarchial collections.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="T:Imagin.Common.Collections.Generic.IStackable`1">
-            <summary>
-            Defines methods to manipulate stackable collections.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="T:Imagin.Common.Collections.Generic.ITrackableCollection`1">
-            <summary>
-            Defines methods to manipulate collections that should "watch" collection changes.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="T:Imagin.Common.Collections.TrackableList`1">
-            <summary>
-            Based on List; implements ITrackable.
-            </summary>
-            <typeparam name="T">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemAdded">
-            <summary>
-            Occurs when a single item is added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsAdded">
-            <summary>
-            Occurs when any number of items are added.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsChanged">
-            <summary>
-            Occurs when the collection changes.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsCleared">
-            <summary>
-            Occurs when the collection is cleared.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemInserted">
-            <summary>
-            Occurs when a single item is inserted.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemRemoved">
-            <summary>
-            Occurs when a single item is removed.
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.Collections.TrackableList`1.ItemsRemoved">
-            <summary>
-            Occurs when any number of items are removed.
-            </summary>
+            <param name="isChecked"></param>
         </member>
         <member name="T:Imagin.Common.CompassDirection">
             <remarks>
             Field order is important
             </remarks>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.NW">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.N">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.NE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.W">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.Origin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.E">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.SW">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.S">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.SE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.CompassDirection.Unknown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Entry">
+            <summary>
+             An object with a date that periodically notifies.
+             </summary>
+        </member>
+        <member name="F:Imagin.Common.Entry.date">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Entry.Date">
+            <summary>
+            Gets or sets the date of the entry.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Entry.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Entry.#ctor(System.Double,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="interval"></param>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:Imagin.Common.Entry.#ctor(System.DateTime,System.Double,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="date"></param>
+            <param name="interval"></param>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:Imagin.Common.Entry.OnNotified(System.Timers.ElapsedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
         </member>
         <member name="T:Imagin.Common.LeftRight">
             <summary>
@@ -4144,6 +5601,16 @@
         <member name="T:Imagin.Common.Globalization.LocalizationProvider">
             <summary>
             A utility to access global localization resources.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.IContainer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.IContainer.Items">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Common.INotifiable">
@@ -4239,29 +5706,27 @@
             </summary>
             <param name="Object">The object to model.</param>
         </member>
-        <member name="T:Imagin.Common.NamedNotifiableObject">
+        <member name="T:Imagin.Common.NamedEntry">
+            <summary>
+             A named object with a date that periodically notifies.
+             </summary>
+        </member>
+        <member name="F:Imagin.Common.NamedEntry.name">
             <summary>
             
             </summary>
         </member>
-        <member name="F:Imagin.Common.NamedNotifiableObject.name">
+        <member name="P:Imagin.Common.NamedEntry.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Common.NamedNotifiableObject.Name">
+        <member name="M:Imagin.Common.NamedEntry.#ctor">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Common.NamedNotifiableObject.#ctor(System.Double,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="interval"></param>
-            <param name="enabled"></param>
-        </member>
-        <member name="M:Imagin.Common.NamedNotifiableObject.#ctor(System.String,System.Double,System.Boolean)">
+        <member name="M:Imagin.Common.NamedEntry.#ctor(System.String,System.Double,System.Boolean)">
             <summary>
             
             </summary>
@@ -4269,20 +5734,60 @@
             <param name="interval"></param>
             <param name="enabled"></param>
         </member>
+        <member name="M:Imagin.Common.NamedEntry.#ctor(System.String,System.DateTime,System.Double,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="date"></param>
+            <param name="interval"></param>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:Imagin.Common.NamedEntry.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.NamedObject">
             <summary>
             A named, abstract object.
             </summary>
         </member>
-        <member name="T:Imagin.Common.NamedFile">
+        <member name="F:Imagin.Common.NamedObject.name">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Common.NamedFile.Path">
+        <member name="P:Imagin.Common.NamedObject.Name">
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Imagin.Common.NamedObject.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.NamedObject.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Imagin.Common.NamedObject.OnPreviewNameChanged(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.NamedObject.OnNameChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
         </member>
         <member name="T:Imagin.Common.NotifiableObject">
             <summary>
@@ -4326,40 +5831,6 @@
             </summary>
             <param name="interval"></param>
             <param name="enabled"></param>
-        </member>
-        <member name="T:Imagin.Common.NamedFileEntry">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.NamedFileEntry.Path">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.NamedFileEntry.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.NamedFileEntry.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="Path"></param>
-        </member>
-        <member name="M:Imagin.Common.NamedFileEntry.#ctor(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="name"></param>
-            <param name="path"></param>
-        </member>
-        <member name="M:Imagin.Common.NamedFileEntry.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Primitives.DateTimePart">
             <summary>
@@ -4411,14 +5882,589 @@
             Represents <see cref="T:System.Windows.Size"/> with binding support; variant of <see cref="T:System.Windows.Size"/>.
             </summary>
         </member>
+        <member name="E:Imagin.Common.Primitives.Proportions.Changed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Proportions.Width">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Proportions.Height">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Proportions.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.#ctor(System.Windows.Size)">
+            <summary>
+            
+            </summary>
+            <param name="Size"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.#ctor(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Width"></param>
+            <param name="Height"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.op_Implicit(System.Windows.Size)~Imagin.Common.Primitives.Proportions">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.OnChanged(System.Windows.Size)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.Set(System.Windows.Size)">
+            <summary>
+            
+            </summary>
+            <param name="Size"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.Set(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Proportions.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Primitives.Position">
             <summary>
             Represents <see cref="T:System.Windows.Point"/> in two-dimensional space with binding support; variant of <see cref="T:System.Windows.Point"/>.
             </summary>
         </member>
+        <member name="E:Imagin.Common.Primitives.Position.Changed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Position.x">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Position.X">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Position.y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Position.Y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Position.Point">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.#ctor(System.Windows.Point)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.#ctor(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="X"></param>
+            <param name="Y"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.op_Implicit(System.Windows.Point)~Imagin.Common.Primitives.Position">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.OnChanged(System.Windows.Point)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.Set(System.Windows.Point)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.Set(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Primitives.Release">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Release.MaxValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Release.MinValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Primitives.Release.Changed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Release.Major">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Release.Minor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Release.Build">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Release.Revision">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Release.Version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Version"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.#ctor(System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="version"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.#ctor(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Major"></param>
+            <param name="Minor"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Major"></param>
+            <param name="Minor"></param>
+            <param name="Build"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="major"></param>
+            <param name="minor"></param>
+            <param name="build"></param>
+            <param name="revision"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.OnChanged(System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.Set(System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Implicit(System.Version)~Imagin.Common.Primitives.Release">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Implicit(System.Int32)~Imagin.Common.Primitives.Release">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Inequality(Imagin.Common.Primitives.Release,Imagin.Common.Primitives.Release)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Inequality(Imagin.Common.Primitives.Release,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Inequality(Imagin.Common.Primitives.Release,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="Major"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Equality(Imagin.Common.Primitives.Release,Imagin.Common.Primitives.Release)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Equality(Imagin.Common.Primitives.Release,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Equality(Imagin.Common.Primitives.Release,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="Major"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_LessThan(Imagin.Common.Primitives.Release,Imagin.Common.Primitives.Release)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_LessThan(Imagin.Common.Primitives.Release,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_LessThan(Imagin.Common.Primitives.Release,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="Major"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_LessThanOrEqual(Imagin.Common.Primitives.Release,Imagin.Common.Primitives.Release)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_LessThanOrEqual(Imagin.Common.Primitives.Release,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_LessThanOrEqual(Imagin.Common.Primitives.Release,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="Major"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_GreaterThan(Imagin.Common.Primitives.Release,Imagin.Common.Primitives.Release)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_GreaterThan(Imagin.Common.Primitives.Release,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_GreaterThan(Imagin.Common.Primitives.Release,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="Major"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_GreaterThanOrEqual(Imagin.Common.Primitives.Release,Imagin.Common.Primitives.Release)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_GreaterThanOrEqual(Imagin.Common.Primitives.Release,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_GreaterThanOrEqual(Imagin.Common.Primitives.Release,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="Major"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Addition(Imagin.Common.Primitives.Release,Imagin.Common.Primitives.Release)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Addition(Imagin.Common.Primitives.Release,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Addition(Imagin.Common.Primitives.Release,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="Major"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Subtraction(Imagin.Common.Primitives.Release,Imagin.Common.Primitives.Release)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Subtraction(Imagin.Common.Primitives.Release,System.Version)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Release.op_Subtraction(Imagin.Common.Primitives.Release,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="Major"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Primitives.Selection">
             <summary>
             Represents a rect with binding support.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Primitives.Selection.Changed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Primitives.Selection.PositionChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Primitives.Selection.SizeChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.Width">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.Height">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.X">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.Y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.Position">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.TopLeft">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.TopRight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.BottomLeft">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.BottomRight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.Rect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Selection.Size">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Common.Primitives.Selection.#ctor">
@@ -4430,24 +6476,233 @@
             <param name="Width">Width of selection.</param>
             <param name="Height">Height of selection.</param>
         </member>
+        <member name="M:Imagin.Common.Primitives.Selection.#ctor(System.Windows.Point,System.Windows.Size)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+            <param name="Size"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.#ctor(System.Windows.Rect)">
+            <summary>
+            
+            </summary>
+            <param name="Rect"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.#ctor(System.Double[])">
+            <summary>
+            
+            </summary>
+            <param name="Values"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.op_Implicit(System.Double[])~Imagin.Common.Primitives.Selection">
+            <summary>
+            
+            </summary>
+            <param name="Values"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.op_Implicit(System.Windows.Rect)~Imagin.Common.Primitives.Selection">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.OnPositionChanged(System.Windows.Point)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.OnSizeChanged(System.Windows.Size)">
+            <summary>
+            
+            </summary>
+            <param name="Size"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.OnChanged(System.Windows.Rect)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="M:Imagin.Common.Primitives.Selection.Set(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Set selection from given values.
             </summary>
-            <param name="X">X-position of selection.</param>
-            <param name="Y">Y-position of selection.</param>
-            <param name="Width">Width of selection.</param>
-            <param name="Height">Height of selection.</param>
+            <param name="x">X-position of selection.</param>
+            <param name="y">Y-position of selection.</param>
+            <param name="width">Width of selection.</param>
+            <param name="height">Height of selection.</param>
         </member>
         <member name="M:Imagin.Common.Primitives.Selection.Set(System.Windows.Rect)">
             <summary>
             Set selection from given Rect.
             </summary>
         </member>
+        <member name="M:Imagin.Common.Primitives.Selection.Set(System.Double[])">
+            <summary>
+            
+            </summary>
+            <param name="Values"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.Set(System.Windows.Point,System.Windows.Size)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+            <param name="Size"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Selection.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Primitives.Position3D">
             <summary>
             Represents <see cref="T:System.Windows.Point"/> in three-dimensional space with binding support; variant of <see cref="T:System.Windows.Media.Media3D.Point3D"/>.
             </summary>
+        </member>
+        <member name="E:Imagin.Common.Primitives.Position3D.Changed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Position3D.x">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Position3D.X">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Position3D.y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Position3D.Y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.Position3D.z">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Position3D.Z">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Position3D.Point">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Primitives.Position3D.Point3D">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.#ctor(System.Windows.Point)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.#ctor(System.Windows.Media.Media3D.Point3D)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="X"></param>
+            <param name="Y"></param>
+            <param name="Z"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.op_Implicit(System.Windows.Point)~Imagin.Common.Primitives.Position3D">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.op_Implicit(System.Windows.Media.Media3D.Point3D)~Imagin.Common.Primitives.Position3D">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.OnChanged(System.Windows.Media.Media3D.Point3D)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.Set(System.Windows.Point)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.Set(System.Windows.Media.Media3D.Point3D)">
+            <summary>
+            
+            </summary>
+            <param name="Point"></param>
+        </member>
+        <member name="M:Imagin.Common.Primitives.Position3D.Set(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
         </member>
         <member name="T:Imagin.Common.Primitives.Int64Kind">
             <summary>
@@ -4509,6 +6764,32 @@
             <summary>
             Facilitator for serializing otherwise unserializable objects.
             </summary>
+        </member>
+        <member name="T:Imagin.Common.TaggedObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TaggedObject.tag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.TaggedObject.Tag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.TaggedObject.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.TaggedObject.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="tag"></param>
         </member>
         <member name="T:Imagin.Common.Span`2">
             <summary>
@@ -4660,14 +6941,14 @@
             A facility to access the log owned by the current application; <see cref="P:System.Windows.Application.Current"/> must implement <see cref="T:Imagin.Common.Config.IApp"/>.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,Imagin.Common.Tracing.LogEntryType)">
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.Object,Imagin.Common.Tracing.LogEntryType)">
             <summary>
             
             </summary>
             <param name="Message"></param>
             <param name="Type"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,System.Object,Imagin.Common.Tracing.LogEntryType)">
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.Object,System.Object,Imagin.Common.Tracing.LogEntryType)">
             <summary>
             
             </summary>
@@ -4676,6 +6957,11 @@
             <param name="Type"></param>
         </member>
         <member name="T:Imagin.Common.Tracing.LogEntry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Tracing.LogEntry.DefaultInterval">
             <summary>
             
             </summary>
@@ -4726,14 +7012,14 @@
             </summary>
             <returns>The result of the task.</returns>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,Imagin.Common.Tracing.LogEntryType)">
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.Object,Imagin.Common.Tracing.LogEntryType)">
             <summary>
             
             </summary>
             <param name="Message"></param>
             <param name="Type"></param>
         </member>
-        <member name="M:Imagin.Common.Tracing.ILog.Write(System.String,System.Object,Imagin.Common.Tracing.LogEntryType)">
+        <member name="M:Imagin.Common.Tracing.ILog.Write(System.Object,System.Object,Imagin.Common.Tracing.LogEntryType)">
             <summary>
             
             </summary>
@@ -4744,6 +7030,11 @@
         <member name="T:Imagin.Common.Tracing.LogEntryType">
             <summary>
             Specifies a type of <see cref="T:Imagin.Common.Tracing.LogEntry"/>.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Tracing.LogEntryType.None">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:Imagin.Common.Tracing.LogEntryType.Error">
@@ -4764,6 +7055,11 @@
         <member name="F:Imagin.Common.Tracing.LogEntryType.Warning">
             <summary>
             Specifies a warning message.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Tracing.LogEntryType.All">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Common.RowColumn">
@@ -4800,6 +7096,54 @@
             <summary>
             Gets whether the task has faulted.
             </summary>
+        </member>
+        <member name="T:Imagin.Common.AbstractContainer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.AbstractContainer.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.AbstractContainer.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Name"></param>
+        </member>
+        <member name="T:Imagin.Common.AbstractContainer`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.AbstractContainer`1.items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.AbstractContainer`1.Items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.AbstractContainer`1.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.AbstractContainer`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.AbstractContainer`1.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Name"></param>
         </member>
         <member name="T:Imagin.Common.Web.Fetch">
             <summary>

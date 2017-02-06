@@ -30,15 +30,30 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// 
+        /// Coerces <see cref="long"/> to given maximum and minimum.
         /// </summary>
-        /// <param name="ToCoerce"></param>
-        /// <param name="Maximum"></param>
-        /// <param name="Minimum"></param>
+        /// <param name="Value">The value to coerce.</param>
+        /// <param name="Maximum">The maximum to coerce to.</param>
+        /// <param name="Minimum">The minimum to coerce to.</param>
         /// <returns></returns>
-        public static long Coerce(this long ToCoerce, long Maximum, long Minimum = 0L)
+        public static long Coerce(this long Value, long Maximum, long Minimum = 0L)
         {
-            return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
+            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
+        }
+
+        /// <summary>
+        /// Coerces <see cref="long"/> to given limit, which can be minimal or maximal.
+        /// </summary>
+        /// <param name="Value">The value to coerce.</param>
+        /// <param name="Limit">The minimum or maximum to coerce to.</param>
+        /// <param name="MinimumOrMaximum">Whether or not to coerce to minimum or maximum.</param>
+        /// <returns></returns>
+        public static long Coerce(this long Value, long Limit, bool MinimumOrMaximum)
+        {
+            if ((MinimumOrMaximum && Value < Limit) || (!MinimumOrMaximum && Value > Limit))
+                return Limit;
+
+            return Value;
         }
 
         /// <summary>

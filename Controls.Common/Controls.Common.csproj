@@ -93,9 +93,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="%28Validation%29\RequiredRule.cs" />
     <Compile Include="AbstractView.cs" />
     <Compile Include="AdvancedComboBox.cs" />
     <Compile Include="ButtonChrome.cs" />
+    <Compile Include="ClippedBorder.cs" />
+    <Compile Include="ColumnResizeMode.cs" />
     <Compile Include="Converters\CenterToolTipConverter.cs" />
     <Compile Include="Converters\WindowTypeVisibilityConverter.cs" />
     <Compile Include="DependencyProperty.Generic.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Extensions\FrameworkElement.cs" />
     <Compile Include="Extensions\DependencyObject.cs" />
     <Compile Include="Extensions\Panel.cs" />
+    <Compile Include="FlagCheckView.cs" />
     <Compile Include="Interactivity\AutoPositionPopupBehavior.cs" />
     <Compile Include="SelectionCanvas.xaml.cs">
       <DependentUpon>SelectionCanvas.xaml</DependentUpon>
@@ -172,8 +176,9 @@
     <Compile Include="UpDown\DoubleUpDown.cs" />
     <Compile Include="UpDown\IntUpDown.cs" />
     <Compile Include="UpDown\LongUpDown.cs" />
-    <Compile Include="WindowSinker.cs" />
+    <Compile Include="Window\WindowSinker.cs" />
     <Compile Include="Window\BasicWindow.cs" />
+    <Compile Include="Window\WindowFooter.cs" />
     <Compile Include="Window\WindowResult.cs" />
     <Compile Include="Window\WindowBase.cs" />
     <Compile Include="Window\WindowLocation.cs" />
@@ -195,6 +200,10 @@
     <Page Include="SelectionCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.FlagCheckView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.TextBoxExt.xaml">
       <SubType>Designer</SubType>

@@ -28,29 +28,32 @@ namespace Imagin.Common.Extensions
         {
             return Math.Abs(Value);
         }
-        
+
         /// <summary>
-        /// 
+        /// Coerces <see cref="Double"/> to given maximum and minimum.
         /// </summary>
-        /// <param name="ToCoerce"></param>
-        /// <param name="Maximum"></param>
-        /// <param name="Minimum"></param>
+        /// <param name="Value">The value to coerce.</param>
+        /// <param name="Maximum">The maximum to coerce to.</param>
+        /// <param name="Minimum">The minimum to coerce to.</param>
         /// <returns></returns>
-        public static double Coerce(this double ToCoerce, double Maximum, double Minimum = 0.0)
+        public static double Coerce(this double Value, double Maximum, double Minimum = 0.0)
         {
-            return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
+            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
         }
 
         /// <summary>
-        /// 
+        /// Coerces <see cref="Double"/> to given limit, which can be minimal or maximal.
         /// </summary>
-        /// <param name="ToCoerce"></param>
-        /// <param name="MinMax"></param>
-        /// <param name="MinOrMax"></param>
+        /// <param name="Value">The value to coerce.</param>
+        /// <param name="Limit">The minimum or maximum to coerce to.</param>
+        /// <param name="MinimumOrMaximum">Whether or not to coerce to minimum or maximum.</param>
         /// <returns></returns>
-        public static double Coerce(this double ToCoerce, double MinMax, bool MinOrMax)
+        public static double Coerce(this double Value, double Limit, bool MinimumOrMaximum)
         {
-            return MinOrMax ? (ToCoerce < MinMax ? MinMax : ToCoerce) : (ToCoerce > MinMax ? MinMax : ToCoerce);
+            if ((MinimumOrMaximum && Value < Limit) || (!MinimumOrMaximum && Value > Limit))
+                return Limit;
+
+            return Value;
         }
 
         /// <summary>

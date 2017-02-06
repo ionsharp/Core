@@ -2,11 +2,20 @@
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class BoolExtensions
     {
-        public static Visibility ToVisibility(this bool ToConvert, Visibility FalseVisibility = Visibility.Collapsed)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="FalseVisibility"></param>
+        /// <returns></returns>
+        public static Visibility ToVisibility(this bool Value, Visibility FalseVisibility = Visibility.Collapsed)
         {
-            return ToConvert ? Visibility.Visible : FalseVisibility;
+            return Value ? Visibility.Visible : FalseVisibility;
         }
     }
 }

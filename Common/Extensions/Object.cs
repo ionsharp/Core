@@ -23,11 +23,11 @@ namespace Imagin.Common.Extensions
         /// Check if object is equal to all given objects.
         /// </summary>
         /// <param name="Value"></param>
-        /// <param name="ToEvaluateAgainst"></param>
+        /// <param name="Values"></param>
         /// <returns></returns>
-        public static bool EqualsAll(this object Value, params object[] ToEvaluateAgainst)
+        public static bool EqualsAll(this object Value, params object[] Values)
         {
-            foreach (object i in ToEvaluateAgainst)
+            foreach (var i in Values)
             {
                 if (Value != i)
                     return false;
@@ -39,11 +39,11 @@ namespace Imagin.Common.Extensions
         /// Check if object is equal to any given object.
         /// </summary>
         /// <param name="Value"></param>
-        /// <param name="ToEvaluateAgainst"></param>
+        /// <param name="Values"></param>
         /// <returns></returns>
-        public static bool EqualsAny(this object Value, params object[] ToEvaluateAgainst)
+        public static bool EqualsAny(this object Value, params object[] Values)
         {
-            foreach (var i in ToEvaluateAgainst)
+            foreach (var i in Values)
             {
                 if (Value == i)
                     return true;
@@ -55,11 +55,11 @@ namespace Imagin.Common.Extensions
         /// Check if object is equal to no given object.
         /// </summary>
         /// <param name="Value"></param>
-        /// <param name="ToEvaluateAgainst"></param>
+        /// <param name="Values"></param>
         /// <returns></returns>
-        public static bool EqualsNone(this object Value, params object[] ToEvaluateAgainst)
+        public static bool EqualsNone(this object Value, params object[] Values)
         {
-            foreach (object i in ToEvaluateAgainst)
+            foreach (var i in Values)
             {
                 if (Value == i)
                     return false;
@@ -164,12 +164,12 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// Checks if given object's type implements interface (T).
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TType"></typeparam>
         /// <param name="Value"></param>
         /// <returns></returns>
-        public static bool Implements<T>(this object Value)
+        public static bool Implements<TType>(this object Value) where TType : class
         {
-            return Value.GetType().Implements<T>();
+            return Value.GetType().Implements<TType>();
         }
 
         /// <summary>
@@ -233,18 +233,6 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Checks if object has given property.
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="PropertyName"></param>
-        /// <returns></returns>
-        [Obsolete("Should use identical HasProperty extension method instead; this extension method will be removed in a future version.")]
-        public static bool PropertyExists(this object Value, string PropertyName)
-        {
-            return Value.GetType().GetProperty(PropertyName) != null;
-        }
-
-        /// <summary>
         /// Cast object to given type.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -256,7 +244,7 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Convert object to dynamic type.
+        /// Casts object to dynamic type.
         /// </summary>
         /// <param name="Value"></param>
         /// <returns></returns>

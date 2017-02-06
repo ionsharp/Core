@@ -12,4 +12,4 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/Themes/Generic.HexagonButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Extended;component/Themes/Generic.TabbedTree.xaml" />
     </ResourceDictionary.MergedDictionaries>
-</ResourceDictionary>
+</ResourceDictionary> 

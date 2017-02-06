@@ -7,8 +7,16 @@ using System.Windows.Media.Imaging;
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class IconExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Icon"></param>
+        /// <returns></returns>
         public static ImageSource ToImageSource(this Icon Icon)
         {
             Bitmap Bitmap = Icon.ToBitmap();

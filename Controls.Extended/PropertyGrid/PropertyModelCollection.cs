@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Imagin.Common.Attributes;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Imagin.Controls.Extended
 {
@@ -21,31 +24,9 @@ namespace Imagin.Controls.Extended
     {
         #region Properties
 
-        /// <summary>
-        /// The object to evaluate.
-        /// </summary>
-        public object Object = null;
-
-        PropertyModel featured = null;
-        /// <summary>
-        /// The featured property. This property is placed above all other properties.
-        /// </summary>
-        public PropertyModel Featured
-        {
-            get
-            {
-                return featured;
-            }
-            set
-            {
-                featured = value;
-                OnPropertyChanged("Featured");
-            }
-        }
-
         PropertyModel activeProperty = null;
         /// <summary>
-        /// The active property.
+        /// The active, or selected, property.
         /// </summary>
         public PropertyModel ActiveProperty
         {
@@ -60,34 +41,89 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        PropertyModel featured = null;
+        /// <summary>
+        /// Gets the featured property, which is placed above all others.
+        /// </summary>
+        public PropertyModel Featured
+        {
+            get
+            {
+                return featured;
+            }
+            private set
+            {
+                featured = value;
+                OnPropertyChanged("Featured");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the object that is currently hosted.
+        /// </summary>
+        public object Object = null;
+
         #endregion
 
         #region PropertyModelCollection
 
+        /// <summary>
+        /// 
+        /// </summary>
         public PropertyModelCollection() : base()
         {
-            ItemAdded += OnItemAdded;
         }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// If the property is public (i.e., have public getter AND setter) AND:
+        /// 
+        /// a) Has a type that is supported (nullable or not), 
+        /// b) Is <see cref="Enum"/>, or 
+        /// c) Implements <see cref="IList"/>.
+        /// </summary>
+        /// <param name="Property"></param>
+        /// <returns></returns>
         bool IsSupported(PropertyInfo Property)
         {
-            return Property.IsPublic() && (Property.PropertyType.EqualsAny(PropertyModel.SupportedTypes) || Property.PropertyType.IsEnum || Property.PropertyType.Implements<IList>());
+            //If property has a public getter, with or without a setter...
+            var a = Property.GetGetMethod(false) != null;
+
+            var t = Property.PropertyType;
+
+            Console.WriteLine("Name => {0}, Type = {1}, Nullable => {2}".F(Property.Name, t, t.IsNullable() ? "nullable" : "not nullable"));
+
+            if (t.IsNullable())
+                t = t.GetGenericArguments().WhereFirst(i => true);
+
+            var b = t.EqualsAny(PropertyModel.SupportedTypes);
+            b = b || t.IsEnum;
+            b = b || t.Implements<IList>();
+
+            return a && b;
         }
 
-        void OnItemAdded(object sender, EventArgs<PropertyModel> e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Item"></param>
+        protected override void OnItemAdded(PropertyModel Item)
         {
-            if (e.Value.IsFeatured)
-                Featured = e.Value;
+            base.OnItemAdded(Item);
+
+            if (Item.IsFeatured)
+                Featured = Item;
         }
 
         /// <summary>
         /// Set and add custom properties.
         /// </summary>
         /// <param name="Source">A function that enumerates an object and returns a list of property models.</param>
+        /// <param name="Callback"></param>
+        /// <returns></returns>
         public async Task BeginFrom(Func<object, IEnumerable<PropertyModel>> Source, Action Callback = null)
         {
             var i = Object;
@@ -146,25 +182,25 @@ namespace Imagin.Controls.Extended
                     if (!IsSupported(Property))
                         continue;
 
-                    var Attributes = new PropertyAttributes()
+                    var a = new PropertyAttributes()
                     {
-                        { "Browsable", "Browsable", true },
-                        { "Category", "Category", string.Empty },
-                        { "Constraint", null, null },
-                        { "Description", "Description", string.Empty },
-                        { "DisplayName", "DisplayName", string.Empty },
-                        { "Featured", "IsFeatured", false },
-                        { "Int64Kind", "Kind", Int64Kind.Default },
-                        { "ReadOnly", "IsReadOnly", false },
-                        { "StringKind", "Kind", StringKind.Default },
-                        { "DisplayFormat", "DataFormatString", string.Empty },
+                        { typeof(BrowsableAttribute), "Browsable", true },
+                        { typeof(CategoryAttribute), "Category", string.Empty },
+                        { typeof(ConstraintAttribute), null, null },
+                        { typeof(DescriptionAttribute), "Description", string.Empty },
+                        { typeof(DisplayNameAttribute), "DisplayName", string.Empty },
+                        { typeof(FeaturedAttribute), "IsFeatured", false },
+                        { typeof(Int64KindAttribute), "Kind", Int64Kind.Default },
+                        { typeof(ReadOnlyAttribute), "IsReadOnly", false },
+                        { typeof(StringKindAttribute), "Kind", StringKind.Default },
+                        { typeof(StringFormatAttribute), "Format", string.Empty },
                     };
 
-                    Attributes.ExtractFrom(Property);
-
-                    if ((bool)Attributes["Browsable", false])
+                    a.ExtractFrom(Property);
+                    
+                    if (a.Get<BrowsableAttribute, bool>())
                     {
-                        var Model = PropertyModel.New(Object, Property, Attributes);
+                        var Model = PropertyModel.New(Object, Property, a);
 
                         if (Model != null)
                             Add(Model);

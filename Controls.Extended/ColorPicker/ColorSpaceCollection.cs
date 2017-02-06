@@ -1,5 +1,4 @@
-﻿using Imagin.Common.Collections.ObjectModel;
-using Imagin.Common.Extensions;
+﻿using Imagin.Common.Collections.Generic;
 
 namespace Imagin.Controls.Extended
 {

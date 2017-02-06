@@ -35,6 +35,12 @@ namespace Imagin.Controls.Extended
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="OldValue"></param>
+        /// <param name="NewValue"></param>
+        /// <returns></returns>
         protected override object OnPreviewValueChanged(object OldValue, object NewValue)
         {
             if (NewValue == null)

@@ -1,10 +1,10 @@
 ﻿using Imagin.Common.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Imagin.Common.Collections.ObjectModel
+namespace Imagin.Common.Collections.Generic
 {
     /// <summary>
-    /// Based on ObservableCollection, defines methods relative to stack data strcuture.
+    /// Defines methods relative to stack data strcuture; inherits <see cref="ObservableCollection{T}"/>.
     /// </summary>
     /// <typeparam name="T">The type of the elements in the collection.</typeparam>
     public class ObservableStack<T> : ObservableCollection<T>, IStackable<T>

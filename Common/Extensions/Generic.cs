@@ -10,6 +10,12 @@ namespace Imagin.Common.Extensions
     /// </summary>
     public static class GenericExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Value"></param>
+        /// <param name="Item"></param>
         public static void Add<T>(this T[] Value, T Item)
         {
             var i = Value.Length;
@@ -28,36 +34,82 @@ namespace Imagin.Common.Extensions
             return Value ?? Enumerable.Empty<T>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <param name="From"></param>
+        /// <param name="Action"></param>
         public static void For<T>(this IList<T> Source, int From, Action<IList<T>, int> Action)
         {
             for (var i = From; i < Source.Count(); i++)
                 Action(Source, i);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <param name="From"></param>
+        /// <param name="Until"></param>
+        /// <param name="Action"></param>
         public static void For<T>(this IList<T> Source, int From, int Until, Action<IList<T>, int> Action)
         {
             for (var i = From; i < Until; i++)
                 Action(Source, i);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <param name="From"></param>
+        /// <param name="Until"></param>
+        /// <param name="Action"></param>
         public static void For<T>(this IList<T> Source, int From, Predicate<int> Until, Action<IList<T>, int> Action)
         {
             for (var i = From; Until(i); i++)
                 Action(Source, i);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <param name="From"></param>
+        /// <param name="Action"></param>
         public static void For<T>(this IEnumerable<T> Source, int From, Action<IEnumerable<T>, int> Action)
         {
             for (var i = From; i < Source.Count(); i++)
                 Action(Source, i);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <param name="From"></param>
+        /// <param name="Until"></param>
+        /// <param name="Action"></param>
         public static void For<T>(this IEnumerable<T> Source, int From, int Until, Action<IEnumerable<T>, int> Action)
         {
             for (var i = From; i < Until; i++)
                 Action(Source, i);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <param name="From"></param>
+        /// <param name="Until"></param>
+        /// <param name="Action"></param>
         public static void For<T>(this IEnumerable<T> Source, int From, Predicate<int> Until, Action<IEnumerable<T>, int> Action)
         {
             for (var i = From; Until(i); i++)
@@ -88,6 +140,17 @@ namespace Imagin.Common.Extensions
             if (null == Source)
                 throw new ArgumentNullException("source");
             return Items.Contains(Source);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TObject"></typeparam>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static bool IsNullable<TObject>(this TObject Value)
+        {
+            return Value.GetType().IsNullable();
         }
 
         /// <summary>
@@ -152,6 +215,13 @@ namespace Imagin.Common.Extensions
                 throw Name.IsNullOrEmpty() ? new ArgumentNullException() : new ArgumentNullException(Name);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Items"></param>
+        /// <param name="Item"></param>
+        /// <returns></returns>
         public static bool TryAdd<T>(this IList<T> Items, T Item)
         {
             try
@@ -165,6 +235,12 @@ namespace Imagin.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Items"></param>
+        /// <returns></returns>
         public static bool TryClear<T>(this IList<T> Items)
         {
             try

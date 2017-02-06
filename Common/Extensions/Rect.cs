@@ -1,15 +1,17 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class RectExtensions
     {
         /// <summary>
         /// Bound rect to given size.
         /// </summary>
         /// <param name="Rect">The rect to bind.</param>
-        /// <param name="Size">The size of the binding.</param>
+        /// <param name="Bounds">The size of the binding.</param>
         /// <returns>A rect bound to given size.</returns>
         public static Rect BoundSize(this Rect Rect, Size Bounds)
         {

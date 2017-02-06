@@ -6,13 +6,25 @@ using System.Windows.Controls;
 
 namespace Imagin.Controls.Extended
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PropertyTemplateSelector : DataTemplateSelector
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ResourceDictionary Resources
         {
             get; set;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (item != null)

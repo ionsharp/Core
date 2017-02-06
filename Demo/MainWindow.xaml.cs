@@ -14,8 +14,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Imagin.Common.Drawing;
-using System.DirectoryServices;
 
 namespace Imagin.NET.Demo
 {
@@ -26,6 +24,7 @@ namespace Imagin.NET.Demo
         Folder,
         File
     }
+
     public class FileSystemEntryModel : NamedObject
     {
         bool isExpanded = false;
@@ -308,6 +307,7 @@ namespace Imagin.NET.Demo
     public class WildObject : NamedObject
     {
         bool boolean = false;
+        [Category("Misc Types")]
         [Description("Description for Boolean property.")]
         public bool Boolean
         {
@@ -323,6 +323,7 @@ namespace Imagin.NET.Demo
         }
 
         byte _byte = (byte)0;
+        [Category("Numeric Types")]
         [Description("Description for Byte property.")]
         public byte Byte
         {
@@ -338,6 +339,7 @@ namespace Imagin.NET.Demo
         }
 
         DateTime dateTime = DateTime.Now;
+        [Category("Misc Types")]
         [Description("Description for DateTime property.")]
         public DateTime DateTime
         {
@@ -353,6 +355,7 @@ namespace Imagin.NET.Demo
         }
 
         decimal _decimal = 0m;
+        [Category("Numeric Types")]
         [Description("Description for Decimal property.")]
         public decimal Decimal
         {
@@ -368,6 +371,7 @@ namespace Imagin.NET.Demo
         }
 
         double _double = 0d;
+        [Category("Numeric Types")]
         [Description("Description for Double property.")]
         public double Double
         {
@@ -383,6 +387,7 @@ namespace Imagin.NET.Demo
         }
 
         Visibility _enum = Visibility.Visible;
+        [Category("Misc Types")]
         [Description("Description for Enum property.")]
         public Visibility Enum
         {
@@ -398,6 +403,7 @@ namespace Imagin.NET.Demo
         }
 
         Guid guid = Guid.NewGuid();
+        [Category("Misc Types")]
         [Description("Description for Guid property.")]
         public Guid Guid
         {
@@ -413,6 +419,7 @@ namespace Imagin.NET.Demo
         }
 
         int _int = 0;
+        [Category("Numeric Types")]
         [Description("Description for Int property.")]
         public int Int
         {
@@ -428,6 +435,7 @@ namespace Imagin.NET.Demo
         }
 
         long _long = 0L;
+        [Category("Numeric Types")]
         [Description("Description for Long property.")]
         public long Long
         {
@@ -442,7 +450,25 @@ namespace Imagin.NET.Demo
             }
         }
 
+        long longFileSize = 0L;
+        [Category("Numeric Types")]
+        [Description("Description for LongFileSize property.")]
+        [Int64Kind(Int64Kind.FileSize)]
+        public long LongFileSize
+        {
+            get
+            {
+                return longFileSize;
+            }
+            private set
+            {
+                longFileSize = value;
+                OnPropertyChanged("LongFileSize");
+            }
+        }
+
         NetworkCredential networkCredential = new NetworkCredential("UserName", "Password");
+        [Category("String Types")]
         [Description("Description for NetworkCredential property.")]
         public NetworkCredential NetworkCredential
         {
@@ -457,7 +483,24 @@ namespace Imagin.NET.Demo
             }
         }
 
+        Point? nullablePoint = null;
+        [Category("Numeric Types")]
+        [Description("Description for NullablePoint property.")]
+        public Point? NullablePoint
+        {
+            get
+            {
+                return nullablePoint;
+            }
+            set
+            {
+                nullablePoint = value;
+                OnPropertyChanged("NullablePoint");
+            }
+        }
+
         Point point = new Point(0, 0);
+        [Category("Numeric Types")]
         [Description("Description for Point property.")]
         public Point Point
         {
@@ -473,6 +516,7 @@ namespace Imagin.NET.Demo
         }
 
         short _short = (short)0;
+        [Category("Numeric Types")]
         [Description("Description for Short property.")]
         public short Short
         {
@@ -488,6 +532,7 @@ namespace Imagin.NET.Demo
         }
 
         Size size = new Size(0, 0);
+        [Category("Numeric Types")]
         [Description("Description for Size property.")]
         public Size Size
         {
@@ -502,7 +547,18 @@ namespace Imagin.NET.Demo
             }
         }
 
-        string normalString = string.Empty;
+        [Category("String Types")]
+        [Description("Description for NormalString property.")]
+        public string NormalStringWithNoSetter
+        {
+            get
+            {
+                return normalString;
+            }
+        }
+
+        string normalString = "Default string";
+        [Category("String Types")]
         [Description("Description for NormalString property.")]
         public string NormalString
         {
@@ -514,10 +570,12 @@ namespace Imagin.NET.Demo
             {
                 normalString = value;
                 OnPropertyChanged("NormalString");
+                OnPropertyChanged("NormalStringWithNoSetter");
             }
         }
 
         string filePathString = string.Empty;
+        [Category("String Types")]
         [Description("Description for FilePathString property.")]
         [StringKind(StringKind.FilePath)]
         public string FilePathString
@@ -534,6 +592,7 @@ namespace Imagin.NET.Demo
         }
 
         string folderPathString = string.Empty;
+        [Category("String Types")]
         [Description("Description for FolderPathString property.")]
         [StringKind(StringKind.FolderPath)]
         public string FolderPathString
@@ -550,6 +609,7 @@ namespace Imagin.NET.Demo
         }
 
         string multilineString = string.Empty;
+        [Category("String Types")]
         [Description("Description for MultilineString property.")]
         [StringKind(StringKind.Multiline)]
         public string MultilineString
@@ -566,6 +626,7 @@ namespace Imagin.NET.Demo
         }
 
         string passwordString = string.Empty;
+        [Category("String Types")]
         [Description("Description for PasswordString property.")]
         [StringKind(StringKind.Password)]
         public string PasswordString
@@ -582,6 +643,7 @@ namespace Imagin.NET.Demo
         }
 
         Uri uri = new Uri("http://www.google.com");
+        [Category("Misc Types")]
         [Description("Description for Uri property.")]
         public Uri Uri
         {
@@ -597,6 +659,7 @@ namespace Imagin.NET.Demo
         }
 
         Version version = new Version();
+        [Category("Misc Types")]
         [Description("Description for Version property.")]
         public Version Version
         {
@@ -608,6 +671,22 @@ namespace Imagin.NET.Demo
             {
                 version = value;
                 OnPropertyChanged("Version");
+            }
+        }
+
+        [Category("String Types")]
+        [Description("Description for Name property.")]
+        [Featured(true)]
+        public override string Name
+        {
+            get
+            {
+                return base.Name;
+            }
+
+            set
+            {
+                base.Name = value;
             }
         }
 

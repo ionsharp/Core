@@ -26,7 +26,7 @@
         
         <!-- ....................................................................................[ResourceDictionaryEditor] -->
 
-        <ResourceDictionary x:Key="Resources.Theme" Source="pack://application:,,,/Imagin.Themes;component/Styles/Brushes.xaml"/>
+        <ResourceDictionary x:Key="Resources.Theme" Source="pack://application:,,,/Imagin.Styles;component/Brushes.xaml"/>
 
         <!-- ....................................................................................[Views] -->
 
@@ -137,7 +137,7 @@
         </Style>
     </Controls.Common:BasicWindow.Resources>
     <Grid DataContext="{Binding ElementName=PART_MainWindow}">
-        <TabControl Background="Transparent">
+        <TabControl>
             <TabItem Header="AlignableWrapPanel">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
@@ -936,27 +936,33 @@
                         <CheckBox 
                             Content="AcceptsNullObjects"
                             IsChecked="{Binding AcceptsNullObjects}"/>
-                        
+
                         <Label Content="DateTimeFormat:"/>
                         <ComboBox/>
 
-                        <Label Content="FileSizeFormat:"/>
+                        <CheckBox 
+                            Content="CanResizeFooter"
+                            IsChecked="{Binding CanResizeFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <ComboBox 
+                            SelectedValue="{Binding DescriptionVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
+                            ToolTip="DescriptionVisibility"/>
+
                         <ComboBox 
                             SelectedValue="{Binding FileSizeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type Common:FileSizeFormat}, Converter={StaticResource EnumToCollectionConverter}}"
-                            ToolTip="Column Visibility"/>
+                            ToolTip="FileSizeFormat"/>
 
-                        <Label Content="GridLinesVisibility:"/>
                         <ComboBox 
                             SelectedValue="{Binding GridLinesVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type DataGridGridLinesVisibility}, Converter={StaticResource EnumToCollectionConverter}}"
-                            ToolTip="Column Visibility"/>
+                            ToolTip="GridLinesVisibility"/>
 
-                        <Label Content="HeadersVisibility:"/>
                         <ComboBox 
                             SelectedValue="{Binding HeadersVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ItemsSource="{Binding Source={x:Type DataGridHeadersVisibility}, Converter={StaticResource EnumToCollectionConverter}}"
-                            ToolTip="Column Visibility"/>
+                            ToolTip="HeadersVisibility"/>
 
                         <CheckBox 
                             Content="ShowType"
@@ -1068,9 +1074,10 @@
                         Controls.Common:PanelExtensions.TrimLast="True"
                         VerticalAlignment="Center"
                         Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
-                        <CheckBox 
-                            Content="CanResizeContent"
-                            IsChecked="{Binding CanResizeContent}"/>
+                        <ComboBox 
+                            ItemsSource="{Binding Source={x:Type Controls.Common:ColumnResizeMode}, Converter={StaticResource EnumToCollectionConverter}}"
+                            SelectedValue="{Binding ColumnResizeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="ColumnResizeMode"/>
                         <ComboBox 
                             ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
                             SelectedValue="{Binding ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -1086,9 +1093,10 @@
                         Controls.Common:PanelExtensions.TrimLast="True"
                         VerticalAlignment="Center"
                         Controls.Common:PanelExtensions.VerticalContentAlignment="Center">
-                        <CheckBox 
-                            Content="CanResizeContent"
-                            IsChecked="{Binding CanResizeContent}"/>
+                        <ComboBox 
+                            ItemsSource="{Binding Source={x:Type Controls.Common:ColumnResizeMode}, Converter={StaticResource EnumToCollectionConverter}}"
+                            SelectedValue="{Binding ColumnResizeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="ColumnResizeMode"/>
                         <ComboBox 
                             ItemsSource="{Binding Source={x:Type Visibility}, Converter={StaticResource EnumToCollectionConverter}}"
                             SelectedValue="{Binding ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -1177,7 +1185,6 @@
                         Grid.Column="1"
                         Grid.Row="2"
                         x:Name="PART_Tabbed2"
-                        CanResizeContent="True"
                         ContentBorderBrush="#10000000" 
                         ContentBorderThickness="1" 
                         ContentPadding="10"

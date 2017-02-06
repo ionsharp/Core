@@ -1,5 +1,4 @@
-﻿using Imagin.Common;
-using Imagin.Common.Collections.ObjectModel;
+﻿using Imagin.Common.Collections.Generic;
 using Imagin.Common.Extensions;
 using Imagin.Common.Input;
 using Imagin.Controls.Common.Extensions;

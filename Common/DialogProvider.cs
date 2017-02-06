@@ -7,7 +7,7 @@ using System.Linq;
 namespace Imagin.Common
 {
     public static class DialogProvider
-    {
+    {  
         struct DefaultTitle
         {
             public static string Folder = "Browse...";

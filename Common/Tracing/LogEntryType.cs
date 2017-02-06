@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Imagin.Common.Tracing
 {
@@ -10,20 +11,30 @@ namespace Imagin.Common.Tracing
     public enum LogEntryType
     {
         /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        None = 0,
+        /// <summary>
         /// Specifies an error message.
         /// </summary>
-        Error = 0,
+        Error = 1,
         /// <summary>
         /// Specifies a general message.
         /// </summary>
-        Message = 1,
+        Message = 2,
         /// <summary>
         /// Specifies a success message.
         /// </summary>
-        Success = 2,
+        Success = 4,
         /// <summary>
         /// Specifies a warning message.
         /// </summary>
-        Warning = 4,
+        Warning = 8,
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        All = Error | Message | Success | Warning
     }
 }

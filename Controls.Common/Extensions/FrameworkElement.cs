@@ -9,6 +9,8 @@ namespace Imagin.Controls.Common.Extensions
     /// </summary>
     public static class FrameworkElementExtensions
     {
+        #region Properties
+
         #region IsDragMoveEnabled
 
         /// <summary>
@@ -43,6 +45,44 @@ namespace Imagin.Controls.Common.Extensions
                     if (b.LeftButton == MouseButtonState.Pressed)
                         Window.DragMove();
                 };
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TElement"></typeparam>
+        /// <param name="Element"></param>
+        /// <returns></returns>
+        public static Style FindStyle<TElement>(this TElement Element) where TElement : FrameworkElement
+        {
+            return (Style)Element.FindResource(typeof(TElement));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TElement"></typeparam>
+        /// <param name="Element"></param>
+        /// <param name="Style"></param>
+        /// <returns></returns>
+        public static bool TryFindStyle<TElement>(this TElement Element, out Style Style) where TElement : FrameworkElement
+        {
+            try
+            {
+                Style = Element.FindStyle();
+                return true;
+            }
+            catch
+            {
+                Style = default(Style);
+                return false;
             }
         }
 

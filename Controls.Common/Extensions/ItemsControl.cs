@@ -1,5 +1,6 @@
 ﻿using Imagin.Common.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -160,30 +161,53 @@ namespace Imagin.Controls.Common.Extensions
         {
             if (sender is DataGrid || sender is TreeViewExt)
             {
-                var ItemsControl = sender as ItemsControl;
+                var i = sender as ItemsControl;
+                var h = i.GetHashCode();
+
+                i.Loaded -= RegisterIsColumnMenuEnabled;
+
                 if ((bool)e.NewValue)
-                    ItemsControl.Loaded += RegisterIsColumnMenuEnabled;
+                {
+                    if (!i.IsLoaded)
+                    {
+                        i.Loaded += RegisterIsColumnMenuEnabled;
+                    }
+                    else RegisterIsColumnMenuEnabled(i, true);
+                }
                 else
                 {
                     //TO DO: Remove menu
-                    ItemsControl.Loaded -= RegisterIsColumnMenuEnabled;
+                    RegisterIsColumnMenuEnabled(i, false);
                 }
+            }
+        }
+
+        static void RegisterIsColumnMenuEnabled(ItemsControl Control, bool IsEnabled)
+        {
+            if (Control is DataGrid)
+            {
+                var d = Control as DataGrid;
+
+                var t = new Style(typeof(DataGridColumnHeader));
+                t.BasedOn = d.ColumnHeaderStyle;
+                t.Setters.Add(new Setter(DataGridColumnHeader.ContextMenuProperty,
+                    IsEnabled && d?.Columns.Count >= 0
+                    ? GetContextMenu(d)
+                    : null));
+
+                d.ColumnHeaderStyle = t;
+            }
+            else if (Control is TreeViewExt)
+            {
+                var t = Control as TreeViewExt;
+                t.ColumnHeaderContextMenu = IsEnabled ? GetContextMenu(t) : null;
             }
         }
 
         static void RegisterIsColumnMenuEnabled(object sender, RoutedEventArgs e)
         {
-            if (sender is DataGrid)
-            {
-                var DataGrid = sender as DataGrid;
-                if (DataGrid.Columns != null || DataGrid.Columns.Count >= 0)
-                    DataGrid.Style = GetStyle(DataGrid);
-            }
-            else if (sender is TreeViewExt)
-            {
-                var TreeView = sender as TreeViewExt;
-                TreeView.ColumnHeaderContextMenu = GetContextMenu(TreeView); 
-            }
+            var Control = sender as ItemsControl;
+            RegisterIsColumnMenuEnabled(Control, GetIsColumnMenuEnabled(Control));
         }
 
         static MenuItem GetMenuItem(DependencyObject Column, Func<string> GetHeader)
@@ -217,11 +241,10 @@ namespace Imagin.Controls.Common.Extensions
             {
                 if (Column is TreeViewTextColumn || Column is TreeViewTemplateColumn && (Column.Header != null && !Column.Header.ToString().IsEmpty()))
                 {
-                    if (Column is TreeViewTextColumn && (Column.As<TreeViewTextColumn>().MemberPath.IsNullOrEmpty())) continue;
-                    Result.Items.Add(GetMenuItem(Column, () =>
-                    {
-                        return Column.Header == null || Column.Header.ToString().IsEmpty() ? (Column as TreeViewTextColumn).MemberPath : Column.Header.ToString();
-                    }));
+                    if (Column is TreeViewTextColumn && (Column.As<TreeViewTextColumn>().MemberPath.IsNullOrEmpty()))
+                        continue;
+
+                    Result.Items.Add(GetMenuItem(Column, () => Column.Header == null || Column.Header.ToString().IsEmpty() ? (Column as TreeViewTextColumn).MemberPath : Column.Header.ToString()));
                 }
             }
             return Result;
@@ -246,17 +269,6 @@ namespace Imagin.Controls.Common.Extensions
             return Result;
         }
 
-        static Style GetColumnHeaderStyle(DataGrid DataGrid)
-        {
-            var Result = new Style(typeof(DataGridColumnHeader));
-            if (DataGrid.ColumnHeaderStyle != null)
-                Result.BasedOn = (Style)DataGrid.ColumnHeaderStyle;
-
-            Result.Setters.Add(new Setter(DataGridColumnHeader.ContextMenuProperty, GetContextMenu(DataGrid)));
-
-            return Result;
-        }
-
         static MenuItem GetMenuItem(string Header)
         {
             return new MenuItem()
@@ -266,29 +278,6 @@ namespace Imagin.Controls.Common.Extensions
                 IsChecked = true,
                 StaysOpenOnClick = true
             };
-        }
-
-        static Style GetStyle(DataGrid DataGrid)
-        {
-            var OldStyle = default(Style);
-
-            try
-            {
-                OldStyle = (Style)DataGrid.FindResource(typeof(DataGrid));
-            }
-            catch
-            {
-                OldStyle = null;
-            }
-
-            var Result = new Style(typeof(DataGrid));
-
-            if (OldStyle != null)
-                Result.BasedOn = OldStyle;
-
-            Result.Setters.Add(new Setter(DataGrid.ColumnHeaderStyleProperty, GetColumnHeaderStyle(DataGrid)));
-
-            return Result;
         }
 
         #endregion

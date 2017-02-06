@@ -5,6 +5,11 @@
     /// </summary>
     public class LogEntry : Entry, ILogEntry
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public new const int DefaultInterval = 15000;
+
         string message = string.Empty;
         /// <summary>
         /// 
@@ -59,7 +64,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public LogEntry() : base()
+        public LogEntry() : base(DefaultInterval, true)
         {
         }
 
@@ -78,7 +83,7 @@
         /// <param name="message"></param>
         /// <param name="source"></param>
         /// <param name="type"></param>
-        public LogEntry(string message, object source, LogEntryType type = LogEntryType.Message) : base()
+        public LogEntry(string message, object source, LogEntryType type = LogEntryType.Message) : base(DefaultInterval, true)
         {
             Message = message;
             Source = source;

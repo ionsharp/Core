@@ -65,13 +65,10 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Imagin.NE
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Demo.csproj.GenerateResource.Cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Themes.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Common.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Themes.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft.WindowsAPICodePack.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Generic.Window.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Common.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Extended.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\System.Windows.Interactivity.dll
@@ -81,3 +78,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Microsoft
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Gadgets.dll
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Gadgets.pdb
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Controls.Extended.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Styles.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\bin\Debug\Imagin.Styles.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Demo\obj\Debug\Styles\Window.baml

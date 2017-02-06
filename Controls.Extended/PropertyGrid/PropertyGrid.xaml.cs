@@ -1,8 +1,7 @@
-﻿using Imagin.Common.Collections.ObjectModel;
+﻿using Imagin.Common.Collections;
 using Imagin.Common.Data;
 using Imagin.Common.Extensions;
 using Imagin.Common.Input;
-using Imagin.Controls.Common;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -57,6 +56,25 @@ namespace Imagin.Controls.Extended
                 SetValue(ButtonsProperty, value);
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty CanResizeFooterProperty = DependencyProperty.Register("CanResizeFooter", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool CanResizeFooter
+        {
+            get
+            {
+                return (bool)GetValue(CanResizeFooterProperty);
+            }
+            set
+            {
+                SetValue(CanResizeFooterProperty, value);
+            }
+        }
 
         /// <summary>
         /// 
@@ -96,6 +114,82 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty DescriptionStringFormatProperty = DependencyProperty.Register("DescriptionStringFormat", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DescriptionStringFormat
+        {
+            get
+            {
+                return (string)GetValue(DescriptionStringFormatProperty);
+            }
+            set
+            {
+                SetValue(DescriptionStringFormatProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty DescriptionTemplateProperty = DependencyProperty.Register("DescriptionTemplate", typeof(DataTemplate), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTemplate DescriptionTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(DescriptionTemplateProperty);
+            }
+            set
+            {
+                SetValue(DescriptionTemplateProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty DescriptionTemplateSelectorProperty = DependencyProperty.Register("DescriptionTemplateSelector", typeof(DataTemplateSelector), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTemplateSelector DescriptionTemplateSelector
+        {
+            get
+            {
+                return (DataTemplateSelector)GetValue(DescriptionTemplateSelectorProperty);
+            }
+            set
+            {
+                SetValue(DescriptionTemplateSelectorProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty DescriptionVisibilityProperty = DependencyProperty.Register("DescriptionVisibility", typeof(Visibility), typeof(PropertyGrid), new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public Visibility DescriptionVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(DescriptionVisibilityProperty);
+            }
+            set
+            {
+                SetValue(DescriptionVisibilityProperty, value);
+            }
+        }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -370,44 +464,6 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty PropertyDescriptionStyleProperty = DependencyProperty.Register("PropertyDescriptionStyle", typeof(Style), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// 
-        /// </summary>
-        public Style PropertyDescriptionStyle
-        {
-            get
-            {
-                return (Style)GetValue(PropertyDescriptionStyleProperty);
-            }
-            set
-            {
-                SetValue(PropertyDescriptionStyleProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DependencyProperty PropertyDescriptionTemplateProperty = DependencyProperty.Register("PropertyDescriptionTemplate", typeof(DataTemplate), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// 
-        /// </summary>
-        public DataTemplate PropertyDescriptionTemplate
-        {
-            get
-            {
-                return (DataTemplate)GetValue(PropertyDescriptionTemplateProperty);
-            }
-            set
-            {
-                SetValue(PropertyDescriptionTemplateProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public static DependencyProperty SearchQueryProperty = DependencyProperty.Register("SearchQuery", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
@@ -511,25 +567,6 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ShowPropertyDescriptionProperty = DependencyProperty.Register("ShowPropertyDescription", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool ShowPropertyDescription
-        {
-            get
-            {
-                return (bool)GetValue(ShowPropertyDescriptionProperty);
-            }
-            set
-            {
-                SetValue(ShowPropertyDescriptionProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public static DependencyProperty ShowTypeProperty = DependencyProperty.Register("ShowType", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
@@ -581,6 +618,25 @@ namespace Imagin.Controls.Extended
             set
             {
                 SetValue(IsSortAscendingProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty SplitterStyleProperty = DependencyProperty.Register("SplitterStyle", typeof(Style), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public Style SplitterStyle
+        {
+            get
+            {
+                return (Style)GetValue(SplitterStyleProperty);
+            }
+            set
+            {
+                SetValue(SplitterStyleProperty, value);
             }
         }
 

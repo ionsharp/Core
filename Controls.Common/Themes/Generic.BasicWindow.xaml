@@ -92,30 +92,30 @@
                         <Button 
                             x:Name="PART_MinimizeButton"
                             Command="{Binding MinimizeCommand, RelativeSource={RelativeSource TemplatedParent}}"
-                            Content="pack://application:,,,/Imagin.Themes;component/Images/Minus.png"
-                            Style="{TemplateBinding ButtonsStyle}"
+                            Content="pack://application:,,,/Imagin.Controls.Common;component/Images/Minus.png"
+                            Style="{TemplateBinding ButtonStyle}"
                             ToolTip="{l:Loc Minimize}"/>
                         
                         <Grid Visibility="{TemplateBinding Type, Converter={StaticResource WindowTypeVisibilityConverter}}">
                             <Button 
                                 x:Name="PART_RestoreButton" 
                                 Command="{Binding RestoreCommand, RelativeSource={RelativeSource TemplatedParent}}"
-                                Content="pack://application:,,,/Imagin.Themes;component/Images/Restore.png"
-                                Style="{TemplateBinding ButtonsStyle}"
+                                Content="pack://application:,,,/Imagin.Controls.Common;component/Images/Restore.png"
+                                Style="{TemplateBinding ButtonStyle}"
                                 ToolTip="{l:Loc Restore}"/>
                             <Button 
                                 x:Name="PART_MaximizeButton" 
                                 Command="{Binding MaximizeCommand, RelativeSource={RelativeSource TemplatedParent}}"
-                                Content="pack://application:,,,/Imagin.Themes;component/Images/Maximize.png"
-                                Style="{TemplateBinding ButtonsStyle}"
+                                Content="pack://application:,,,/Imagin.Controls.Common;component/Images/Maximize.png"
+                                Style="{TemplateBinding ButtonStyle}"
                                 ToolTip="{l:Loc Maximize}"/>
                         </Grid>
                         
                         <Button 
                             x:Name="PART_CloseButton"
-                            Command="{Binding CloseCommand, RelativeSource={RelativeSource TemplatedParent}}"
-                            Content="pack://application:,,,/Imagin.Themes;component/Images/X.png"
-                            Style="{TemplateBinding ButtonsStyle}"
+                            Command="{Binding BeginCloseCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                            Content="pack://application:,,,/Imagin.Controls.Common;component/Images/X.png"
+                            Style="{TemplateBinding ButtonStyle}"
                             ToolTip="{l:Loc Close}"/>
                     </StackPanel>
                 </Grid>
@@ -137,10 +137,8 @@
                 <ContentPresenter
                     Grid.Row="2" 
                     x:Name="PART_Footer" 
-                    Content="{TemplateBinding Footer}"
-                    ContentTemplate="{TemplateBinding FooterTemplate}"
-                    ContentTemplateSelector="{TemplateBinding FooterTemplateSelector}"/>
-                
+                    Content="{TemplateBinding Footer}"/>
+
                 <ContentPresenter
                     Grid.RowSpan="3" 
                     x:Name="PART_ResizeGrip" 
@@ -178,7 +176,7 @@
         <Setter Property="Controls.Common.Extensions:WindowExtensions.OverridesDefaultBehavior" Value="True"/>
         <Setter Property="AllowsTransparency" Value="True" /> 
         <Setter Property="ButtonsPanel" Value="{StaticResource ItemsPanelTemplate.Window.Buttons}"/>
-        <Setter Property="ButtonsStyle" Value="{DynamicResource Style.Window.Button}"/>
+        <Setter Property="ButtonStyle" Value="{DynamicResource Style.Window.Button}"/>
         <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="IconTemplate" Value="{StaticResource DataTemplate.Window.Icon}"/>
         <Setter Property="ResizeGripTemplate" Value="{StaticResource DataTemplate.Window.ResizeGrip}" />
@@ -238,5 +236,23 @@
                 </Setter>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <!-- ............................................... Parts -->
+
+    <Style x:Key="{x:Type local:WindowFooter}" TargetType="{x:Type local:WindowFooter}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:WindowFooter">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}">
+                        <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

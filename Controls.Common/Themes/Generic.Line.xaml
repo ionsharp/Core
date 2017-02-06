@@ -11,35 +11,49 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Line}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Rectangle 
-                            x:Name="PART_Rectangle" 
-                            Fill="{TemplateBinding Stroke}"/>
-                        <ContentPresenter 
-                            x:Name="PART_Content"
-                            Content="{TemplateBinding Content}"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Visibility="{Binding Content, Converter={StaticResource NullToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"/>
+                    <Grid Margin="{TemplateBinding Margin}">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                        
+                                <Rectangle 
+                                    x:Name="PART_Rectangle" 
+                                    Fill="{TemplateBinding Stroke}"/>
+                        
+                                <ContentPresenter 
+                                    x:Name="PART_Content"
+                                    Content="{TemplateBinding Content}"
+                                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Visibility="{Binding Content, Converter={StaticResource NullToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Grid>
+                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Horizontal">
                             <Setter Property="Padding" Value="0,0,10,0"/>
+                            
                             <Setter TargetName="PART_Rectangle" Property="Width" Value="Auto"/>
-                            <Setter TargetName="PART_Rectangle" Property="Height" Value="{Binding Thickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter TargetName="PART_Rectangle" Property="Height" Value="{Binding StrokeThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            
                             <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="2"/>
                             <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="1"/>
+                            
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="2"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="1"/>
@@ -47,12 +61,15 @@
                         </Trigger>
                         <Trigger Property="Orientation" Value="Vertical">
                             <Setter Property="Padding" Value="0,0,0,10"/>
-                            <Setter TargetName="PART_Rectangle" Property="Width" Value="{Binding Thickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            
+                            <Setter TargetName="PART_Rectangle" Property="Width" Value="{Binding StrokeThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
                             <Setter TargetName="PART_Rectangle" Property="Height" Value="Auto"/>
+                            
                             <Setter TargetName="PART_Content" Property="Grid.Row" Value="0"/>
                             <Setter TargetName="PART_Content" Property="Grid.RowSpan" Value="1"/>
                             <Setter TargetName="PART_Content" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="PART_Content" Property="Grid.ColumnSpan" Value="2"/>
+                            
                             <Setter TargetName="PART_Rectangle" Property="Grid.Row" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.RowSpan" Value="1"/>
                             <Setter TargetName="PART_Rectangle" Property="Grid.Column" Value="0"/>

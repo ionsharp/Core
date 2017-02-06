@@ -35,6 +35,7 @@ namespace Imagin.Common
         /// <summary>
         /// Gets or sets whether or not to enable notifications.
         /// </summary>
+        [XmlIgnore]
         public virtual bool Enabled
         {
             get
@@ -51,6 +52,7 @@ namespace Imagin.Common
         /// <summary>
         /// The period of time (in milliseconds) between notifications.
         /// </summary>
+        [XmlIgnore]
         public virtual double Interval
         {
             get

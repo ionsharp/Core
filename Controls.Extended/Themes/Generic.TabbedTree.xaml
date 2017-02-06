@@ -56,13 +56,12 @@
                             </ScrollViewer>
 
                             <GridSplitter
+                                x:Name="PART_GridSplitter"
                                 HorizontalAlignment="Right"
                                 ResizeBehavior="CurrentAndNext"
                                 ResizeDirection="Columns"
-                                ShowsPreview="True"
                                 VerticalAlignment="Stretch"
-                                Visibility="{TemplateBinding CanResizeContent, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                Width="4"/>
+                                Width="{TemplateBinding SplitterWidth}"/>
 
                             <Border 
                                 Grid.Column="1"
@@ -106,6 +105,17 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="ColumnResizeMode" Value="None">
+                            <Setter TargetName="PART_GridSplitter" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ColumnResizeMode" Value="Resize">
+                            <Setter TargetName="PART_GridSplitter" Property="ShowsPreview" Value="False"/>
+                            <Setter TargetName="PART_GridSplitter" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="ColumnResizeMode" Value="ResizeWithPreview">
+                            <Setter TargetName="PART_GridSplitter" Property="ShowsPreview" Value="True"/>
+                            <Setter TargetName="PART_GridSplitter" Property="Visibility" Value="Visible"/>
+                        </Trigger>
                         <Trigger Property="ContentHeaderTemplate" Value="{x:Null}">
                             <Setter TargetName="PART_ContentHeader" Property="ContentTemplate">
                                 <Setter.Value>

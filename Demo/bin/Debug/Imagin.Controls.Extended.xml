@@ -3332,6 +3332,14 @@
             Gets the underlying property type.
             </summary>
         </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel`1.OnPreviewValueChanged(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Controls.Extended.CoercedPropertyModel`1">
             <summary>
             Represents a property that has both a minimum and maximum value.
@@ -3385,7 +3393,7 @@
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Extended.PropertyAttributes.Add(System.String,System.String,System.Object)">
+        <member name="M:Imagin.Controls.Extended.PropertyAttributes.Add(System.Type,System.String,System.Object)">
             <summary>
             
             </summary>
@@ -3399,30 +3407,12 @@
             </summary>
             <param name="Property"></param>
         </member>
-        <member name="M:Imagin.Controls.Extended.PropertyAttributes.New(System.String,System.String,System.Object)">
+        <member name="M:Imagin.Controls.Extended.PropertyAttributes.Get``2">
             <summary>
             
             </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <param name="c"></param>
-            <returns></returns>
-        </member>
-        <member name="P:Imagin.Controls.Extended.PropertyAttributes.Item(System.String,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="Key"></param>
-            <param name="MemberOrValue"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Extended.PropertyAttributes.Get``1(System.String,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Key"></param>
-            <param name="MemberOrValue"></param>
+            <typeparam name="TAttribute"></typeparam>
+            <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
         <member name="T:Imagin.Controls.Extended.PropertyGrid">
@@ -3450,6 +3440,16 @@
             
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.CanResizeFooterProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.CanResizeFooter">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Imagin.Controls.Extended.PropertyGrid.CollapseGroupsProperty">
             <summary>
             
@@ -3466,6 +3466,46 @@
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.PropertyGrid.DateTimeFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.DescriptionStringFormatProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.DescriptionStringFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.DescriptionTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.DescriptionTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.DescriptionTemplateSelectorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.DescriptionTemplateSelector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.DescriptionVisibilityProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.DescriptionVisibility">
             <summary>
             
             </summary>
@@ -3610,26 +3650,6 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Extended.PropertyGrid.PropertyDescriptionStyleProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.PropertyGrid.PropertyDescriptionStyle">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Extended.PropertyGrid.PropertyDescriptionTemplateProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.PropertyGrid.PropertyDescriptionTemplate">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="F:Imagin.Controls.Extended.PropertyGrid.SearchQueryProperty">
             <summary>
             
@@ -3680,16 +3700,6 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Extended.PropertyGrid.ShowPropertyDescriptionProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Extended.PropertyGrid.ShowPropertyDescription">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="F:Imagin.Controls.Extended.PropertyGrid.ShowTypeProperty">
             <summary>
             
@@ -3716,6 +3726,16 @@
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.PropertyGrid.SortByType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.SplitterStyleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.SplitterStyle">
             <summary>
             
             </summary>
@@ -3750,26 +3770,50 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Extended.PropertyModelCollection.Object">
+        <member name="P:Imagin.Controls.Extended.PropertyModelCollection.ActiveProperty">
             <summary>
-            The object to evaluate.
+            The active, or selected, property.
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.PropertyModelCollection.Featured">
             <summary>
-            The featured property. This property is placed above all other properties.
+            Gets the featured property, which is placed above all others.
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.PropertyModelCollection.ActiveProperty">
+        <member name="F:Imagin.Controls.Extended.PropertyModelCollection.Object">
             <summary>
-            The active property.
+            Gets or sets the object that is currently hosted.
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModelCollection.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModelCollection.IsSupported(System.Reflection.PropertyInfo)">
+            <summary>
+            If the property is public (i.e., have public getter AND setter) AND:
+            
+            a) Has a type that is supported (nullable or not), 
+            b) Is <see cref="T:System.Enum"/>, or 
+            c) Implements <see cref="T:System.Collections.IList"/>.
+            </summary>
+            <param name="Property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModelCollection.OnItemAdded(Imagin.Controls.Extended.PropertyModel)">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyModelCollection.BeginFrom(System.Func{System.Object,System.Collections.Generic.IEnumerable{Imagin.Controls.Extended.PropertyModel}},System.Action)">
             <summary>
             Set and add custom properties.
             </summary>
             <param name="Source">A function that enumerates an object and returns a list of property models.</param>
+            <param name="Callback"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyModelCollection.BeginFromObject(System.Object,System.Action)">
             <summary>
@@ -3847,17 +3891,22 @@
         </member>
         <member name="P:Imagin.Controls.Extended.PropertyModel.IsFeatured">
             <summary>
-            Gets or sets whether or not the property is featured.
+            Gets whether or not the property is featured.
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.PropertyModel.IsReadOnly">
             <summary>
-            Gets or sets whether or not the property is readonly.
+            Gets whether or not the property is readonly.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyModel.IsSettable">
+            <summary>
+            Gets whether or not the property has a public setter; if it doesn't, the property is automatically readonly.
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.PropertyModel.Primitive">
             <summary>
-            Gets the type of the property.
+            Gets the actual property type (note, if the property is nullable, this will be the underlying type).
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.PropertyModel.StringFormat">
@@ -3872,7 +3921,7 @@
         </member>
         <member name="P:Imagin.Controls.Extended.PropertyModel.Type">
             <summary>
-            Gets the string representation of the property's type.
+            Gets the <see cref="T:System.String"/> representation of the property's type.
             </summary>
             <remarks>
             Used for sorting only.
@@ -3881,6 +3930,11 @@
         <member name="P:Imagin.Controls.Extended.PropertyModel.Value">
             <summary>
             Gets or sets the current value for the property.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.Finalize">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyModel.New(System.Type)">
@@ -3892,12 +3946,33 @@
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyModel.New(System.Object,System.Reflection.PropertyInfo,Imagin.Controls.Extended.PropertyAttributes)">
             <summary>
-            Initializes a new instance of the <see cref="T:Imagin.Controls.Extended.PropertyModel"/> class based on given object, property, and attributes.
+            Initializes a new instance of the <see cref="T:Imagin.Controls.Extended.PropertyModel"/> class based on given data; some restrictions are observed.
             </summary>
-            <param name="Object"></param>
+            <param name="Host"></param>
             <param name="Property"></param>
             <param name="Attributes"></param>
             <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.New(System.Type,System.Object,System.String,System.Object,System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Controls.Extended.PropertyModel"/> class based on given type and values; no restrictions.
+            </summary>
+            <param name="Type"></param>
+            <param name="Host"></param>
+            <param name="Name"></param>
+            <param name="Value"></param>
+            <param name="Category"></param>
+            <param name="Description"></param>
+            <param name="StringFormat"></param>
+            <param name="IsReadOnly"></param>
+            <param name="IsFeatured"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="disposing"></param>
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyModel.OnHostChanged(System.Object)">
             <summary>
@@ -3905,11 +3980,19 @@
             </summary>
             <param name="Value"></param>
         </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.OnHostPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Occurs if the host object implements <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> and one of it's properties has changed; this is necessary to capture external changes while the object is a host.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:Imagin.Controls.Extended.PropertyModel.OnPreviewValueChanged(System.Object,System.Object)">
             <summary>
             Occurs just before setting the value.
             </summary>
-            <param name="Value">The original value.</param>
+            <param name="OldValue">The original value.</param>
+            <param name="NewValue">The new value.</param>
             <returns>The actual value to set for the property.</returns>
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyModel.OnValueChanged(System.Object)">
@@ -3918,17 +4001,40 @@
             </summary>
             <param name="Value">The new value.</param>
         </member>
+        <member name="M:Imagin.Controls.Extended.PropertyModel.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Extended.PropertyTemplateSelector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyTemplateSelector.Resources">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyTemplateSelector.SelectTemplate(System.Object,System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Controls.Extended.TabbedTree">
             <summary>
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Extended.TabbedTree.CanResizeContentProperty">
+        <member name="F:Imagin.Controls.Extended.TabbedTree.ColumnResizeModeProperty">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.TabbedTree.CanResizeContent">
+        <member name="P:Imagin.Controls.Extended.TabbedTree.ColumnResizeMode">
             <summary>
             
             </summary>
@@ -4059,6 +4165,16 @@
             </summary>
         </member>
         <member name="P:Imagin.Controls.Extended.TabbedTree.MenuPadding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.TabbedTree.SplitterWidthProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.TabbedTree.SplitterWidth">
             <summary>
             
             </summary>

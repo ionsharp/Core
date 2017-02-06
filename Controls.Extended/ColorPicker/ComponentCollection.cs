@@ -1,4 +1,4 @@
-﻿using Imagin.Common.Collections.ObjectModel;
+﻿using Imagin.Common.Collections.Generic;
 using System;
 using System.Linq;
 

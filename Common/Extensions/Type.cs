@@ -8,40 +8,45 @@ namespace Imagin.Common.Extensions
     public static class TypeExtensions
     {
         /// <summary>
-        /// Checks if specified object's type is equal to specified type.
+        /// Gets whether or not the type is equal to type, <see cref="{TType}"/>.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TType"></typeparam>
         /// <param name="Value"></param>
         /// <returns></returns>
-        public static bool Equals<T>(this Type Value)
+        public static bool Equals<TType>(this Type Value)
         {
-            return Value == typeof(T);
+            return Value == typeof(TType);
         }
 
         /// <summary>
-        /// Checks if given type implements interface (T).
+        /// Gets whether or not the type implements interface, <see cref="{TType}"/> (or whether <see cref="{TType}"/> is assignable from the type).
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TType"></typeparam>
         /// <param name="Value"></param>
         /// <returns></returns>
-        public static bool Implements<T>(this Type Value)
+        public static bool Implements<TType>(this Type Value) where TType : class
         {
-            return typeof(T).IsAssignableFrom(Value);
+            if (!typeof(TType).IsInterface)
+                throw new InvalidCastException("Type is not an interface.");
+
+            return typeof(TType).IsAssignableFrom(Value);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="Type"></param>
+        /// <param name="Value"></param>
         /// <returns></returns>
-        public static bool IsAssignableFrom<T>(this Type Type)
+        public static bool IsNullable(this Type Value)
         {
-            return Type.IsAssignableFrom(typeof(T));
+            if (!Value.IsGenericType)
+                return false;
+
+            return Value.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
 
         /// <summary>
-        /// 
+        /// Attempts to create a new instance of given type using <see cref="Activator.CreateInstance()"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="Value"></param>

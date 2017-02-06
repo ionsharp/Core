@@ -1,11 +1,8 @@
-﻿using Imagin.Common.Collections.ObjectModel;
-using Imagin.Common.Input;
+﻿using Imagin.Common.Collections;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
-using Imagin.Common.Extensions;
 
 namespace Imagin.Controls.Common
 {
@@ -57,19 +54,19 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static readonly DependencyProperty ButtonsStyleProperty = DependencyProperty.Register("ButtonsStyle", typeof(Style), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register("ButtonStyle", typeof(Style), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
-        public Style ButtonsStyle
+        public Style ButtonStyle
         {
             get
             {
-                return (Style)GetValue(ButtonsStyleProperty);
+                return (Style)GetValue(ButtonStyleProperty);
             }
             set
             {
-                SetValue(ButtonsStyleProperty, value);
+                SetValue(ButtonStyleProperty, value);
             }
         }
         
@@ -133,57 +130,19 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty FooterProperty = DependencyProperty.Register("Footer", typeof(object), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty FooterProperty = DependencyProperty.Register("Footer", typeof(WindowFooter), typeof(BasicWindow), new FrameworkPropertyMetadata(default(WindowFooter), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
-        public object Footer
+        public WindowFooter Footer
         {
             get
             {
-                return GetValue(FooterProperty);
+                return (WindowFooter)GetValue(FooterProperty);
             }
             set
             {
                 SetValue(FooterProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DependencyProperty FooterTemplateProperty = DependencyProperty.Register("FooterTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// 
-        /// </summary>
-        public DataTemplate FooterTemplate
-        {
-            get
-            {
-                return (DataTemplate)GetValue(FooterTemplateProperty);
-            }
-            set
-            {
-                SetValue(FooterTemplateProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DependencyProperty FooterTemplateSelectorProperty = DependencyProperty.Register("FooterTemplateSelector", typeof(DataTemplateSelector), typeof(BasicWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// 
-        /// </summary>
-        public DataTemplateSelector FooterTemplateSelector
-        {
-            get
-            {
-                return (DataTemplateSelector)GetValue(FooterTemplateSelectorProperty);
-            }
-            set
-            {
-                SetValue(FooterTemplateSelectorProperty, value);
             }
         }
 

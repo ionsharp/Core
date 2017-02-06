@@ -25,21 +25,21 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty CanResizeContentProperty = DependencyProperty.Register("CanResizeContent", typeof(bool), typeof(TabbedTree), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ColumnResizeModeProperty = DependencyProperty.Register("ColumnResizeMode", typeof(ColumnResizeMode), typeof(TabbedTree), new FrameworkPropertyMetadata(ColumnResizeMode.None, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
-        public bool CanResizeContent
-                {
-                    get
-                    {
-                        return (bool)GetValue(CanResizeContentProperty);
-                    }
-                    set
-                    {
-                        SetValue(CanResizeContentProperty, value);
-                    }
-                }
+        public ColumnResizeMode ColumnResizeMode
+        {
+            get
+            {
+                return (ColumnResizeMode)GetValue(ColumnResizeModeProperty);
+            }
+            set
+            {
+                SetValue(ColumnResizeModeProperty, value);
+            }
+        }
 
         /// <summary>
         /// 
@@ -288,6 +288,25 @@ namespace Imagin.Controls.Extended
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty SplitterWidthProperty = DependencyProperty.Register("SplitterWidth", typeof(double), typeof(TabbedTree), new FrameworkPropertyMetadata(1d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public double SplitterWidth
+        {
+            get
+            {
+                return (double)GetValue(SplitterWidthProperty);
+            }
+            set
+            {
+                SetValue(SplitterWidthProperty, value);
+            }
+        }
+        
         #endregion
 
         #region TabbedTree
@@ -313,7 +332,7 @@ namespace Imagin.Controls.Extended
         protected override void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (PART_ContentHeader != null)
-                PART_ContentHeader.Content = e.NewValue is TreeViewItem ? e.NewValue.As<TreeViewItem>().Header.ToString() : e.NewValue;
+                PART_ContentHeader.Content = e.NewValue.As<TreeViewItem>()?.Header.ToString() ?? e.NewValue;
         }
 
         /// <summary>

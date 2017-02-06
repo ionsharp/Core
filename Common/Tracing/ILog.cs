@@ -19,7 +19,7 @@ namespace Imagin.Common.Tracing
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Type"></param>
-        void Write(string Message, LogEntryType Type = LogEntryType.Message);
+        void Write(object Message, LogEntryType Type = LogEntryType.Message);
 
         /// <summary>
         /// 
@@ -27,6 +27,6 @@ namespace Imagin.Common.Tracing
         /// <param name="Message"></param>
         /// <param name="Source"></param>
         /// <param name="Type"></param>
-        void Write(string Message, object Source, LogEntryType Type = LogEntryType.Message);
+        void Write(object Message, object Source, LogEntryType Type = LogEntryType.Message);
     }
 }

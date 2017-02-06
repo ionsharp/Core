@@ -1,7 +1,10 @@
-﻿using Imagin.Common.Extensions;
+﻿using Imagin.Common.Collections;
+using Imagin.Common.Collections.Generic;
+using Imagin.Common.Extensions;
 using Imagin.Common.Input;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -172,41 +175,102 @@ namespace Imagin.Controls.Common.Extensions
         #region ScrollAddedIntoView
 
         /// <summary>
-        /// Determines whether or not to scroll newly added items into view.
+        /// Stores reference to every <see cref="DataGrid"/> with <see cref="DataGridExtensions.ScrollAddedIntoViewProperty"/> enabled; the key is the hash code of the value's underlying collection.
+        /// </summary>
+        static Dictionary<int, DataGrid> _ScrollAddedIntoView = new Dictionary<int, DataGrid>();
+
+        /// <summary>
+        /// Gets or sets whether or not to scroll newly added items into view; note, the underlying collection MUST implement <see cref="ITrackableCollection{T}"/>.
         /// </summary>
         public static readonly DependencyProperty ScrollAddedIntoViewProperty = DependencyProperty.RegisterAttached("ScrollAddedIntoView", typeof(bool), typeof(DataGridExtensions), new PropertyMetadata(false, OnScrollAddedIntoViewChanged));
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static bool GetScrollAddedIntoView(DependencyObject obj)
+        public static bool GetScrollAddedIntoView(DataGrid d)
         {
-            return (bool)obj.GetValue(ScrollAddedIntoViewProperty);
+            return (bool)d.GetValue(ScrollAddedIntoViewProperty);
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="value"></param>
-        public static void SetScrollAddedIntoView(DependencyObject obj, bool value)
+        public static void SetScrollAddedIntoView(DataGrid d, bool value)
         {
-            obj.SetValue(ScrollAddedIntoViewProperty, value);
+            d.SetValue(ScrollAddedIntoViewProperty, value);
         }
+
+        /// <summary>
+        /// Occurs when <see cref="DataGridExtensions.ScrollAddedIntoViewProperty"/> changes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         static void OnScrollAddedIntoViewChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var DataGrid = sender as DataGrid;
+            var d = sender.As<DataGrid>();
+            d.Loaded -= OnScrollAddedIntoViewChanged;
 
-            if ((bool)e.NewValue)
+            var s = d?.ItemsSource;
+            var i = s as ITrackableCollection;
+            var h = i?.GetHashCode();
+
+            if (i != null)
             {
-                DataGrid.InitializingNewItem += OnScrollAddedIntoViewChanged;
+                OnScrollAddedIntoViewChanged(d, i, (bool)e.NewValue);
             }
-            else DataGrid.InitializingNewItem -= OnScrollAddedIntoViewChanged;
+            //If collection hasn't otherwise been assigned yet, attempt to register property when host loads.
+            else d.Loaded += OnScrollAddedIntoViewChanged;
         }
-        static void OnScrollAddedIntoViewChanged(object sender, InitializingNewItemEventArgs e)
+
+        /// <summary>
+        /// Adds/removes and registers/unregisters events associated with <see cref="DataGridExtensions.ScrollAddedIntoViewProperty"/>, respectively.
+        /// </summary>
+        /// <param name="DataGrid"></param>
+        /// <param name="Collection"></param>
+        /// <param name="Register"></param>
+        static void OnScrollAddedIntoViewChanged(DataGrid DataGrid, ITrackableCollection Collection, bool Register)
         {
-            var DataGrid = sender as DataGrid;
-            DataGrid.ScrollIntoView(e.NewItem);
+            var h = Collection.GetHashCode();
+            if (Register)
+            {
+                _ScrollAddedIntoView.Add(h, DataGrid);
+                Collection.ItemAdded += OnScrollAddedIntoViewChanged;
+            }
+            else
+            {
+                Collection.ItemAdded -= OnScrollAddedIntoViewChanged;
+                _ScrollAddedIntoView.Remove(h);
+            }
+        }
+
+        /// <summary>
+        /// Occurs when <see cref="DataGrid"/> loads.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        static void OnScrollAddedIntoViewChanged(object sender, RoutedEventArgs e)
+        {
+            var d = sender.As<DataGrid>();
+            var s = d?.ItemsSource;
+            var i = s as ITrackableCollection;
+            var h = i?.GetHashCode();
+
+            if (i != null)
+            {
+                //Once we have access to collection, avoid for each future load.
+                d.Loaded -= OnScrollAddedIntoViewChanged;
+                OnScrollAddedIntoViewChanged(d, i, GetScrollAddedIntoView(d));
+            }
+        }
+
+        /// <summary>
+        /// Occurs when an item is added to the <see cref="DataGrid"/>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        static void OnScrollAddedIntoViewChanged(object sender, EventArgs<object> e)
+        {
+            _ScrollAddedIntoView[sender.As<ITrackableCollection>().GetHashCode()]?.As<DataGrid>()?.ScrollIntoView(e.Value);
         }
 
         #endregion

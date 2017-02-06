@@ -121,7 +121,7 @@
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                                 Padding="5,0"
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/ArrowDownSmall.png"
-                                Visibility="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InverseBooleanConverter}}"/>
+                                Visibility="{Binding IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted, RelativeSource={RelativeSource TemplatedParent}}"/>
                             <Popup
                                 x:Name="PART_DropDown"
                                 Placement="{TemplateBinding DropDownPlacement}"

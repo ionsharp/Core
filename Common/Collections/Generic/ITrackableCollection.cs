@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Imagin.Common.Collections.Generic
 {
     /// <summary>
-    /// Specifies a collection capable of tracking items.
+    /// Specifies a collection capable of tracking generic items.
     /// </summary>
     /// <typeparam name="T">The type of the objects in the collection.</typeparam>
     public interface ITrackableCollection<T>

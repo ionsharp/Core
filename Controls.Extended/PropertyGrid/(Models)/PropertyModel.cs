@@ -3,8 +3,8 @@ using Imagin.Common.Attributes;
 using Imagin.Common.Extensions;
 using Imagin.Common.Primitives;
 using System;
-using System.Linq;
 using System.Collections;
+using System.ComponentModel;
 using System.Net;
 using System.Reflection;
 using System.Windows;
@@ -15,8 +15,16 @@ namespace Imagin.Controls.Extended
     /// <summary>
     /// The base implementation to represent an object property.
     /// </summary>
-    public abstract class PropertyModel : NamedObject
+    public abstract class PropertyModel : NamedObject, IDisposable
     {
+        #region Properties
+
+        bool disposed = false; 
+
+        bool hostPropertyChangeHandled = false;
+
+        bool valueChangeHandled = false;
+
         /// <summary>
         /// A list of all supported types.
         /// </summary>
@@ -59,7 +67,7 @@ namespace Imagin.Controls.Extended
             {
                 return category;
             }
-            set
+            private set
             {
                 category = value;
                 OnPropertyChanged("Category");
@@ -76,7 +84,7 @@ namespace Imagin.Controls.Extended
             {
                 return description;
             }
-            set
+            private set
             {
                 description = value;
                 OnPropertyChanged("Description");
@@ -115,12 +123,15 @@ namespace Imagin.Controls.Extended
             {
                 info = value;
                 OnPropertyChanged("Info");
+
+                //If the property has a public setter, it is settable.
+                IsSettable = value?.GetSetMethod(true) != null;
             }
         }
 
         bool isFeatured = false;
         /// <summary>
-        /// Gets or sets whether or not the property is featured.
+        /// Gets whether or not the property is featured.
         /// </summary>
         public bool IsFeatured
         {
@@ -128,7 +139,7 @@ namespace Imagin.Controls.Extended
             {
                 return isFeatured;
             }
-            set
+            private set
             {
                 isFeatured = value;
                 OnPropertyChanged("IsFeatured");
@@ -137,7 +148,7 @@ namespace Imagin.Controls.Extended
 
         bool isReadOnly = false;
         /// <summary>
-        /// Gets or sets whether or not the property is readonly.
+        /// Gets whether or not the property is readonly.
         /// </summary>
         public bool IsReadOnly
         {
@@ -145,15 +156,34 @@ namespace Imagin.Controls.Extended
             {
                 return isReadOnly;
             }
-            set
+            private set
             {
                 isReadOnly = value;
                 OnPropertyChanged("IsReadOnly");
             }
         }
 
+        bool isSettable = false;
         /// <summary>
-        /// Gets the type of the property.
+        /// Gets whether or not the property has a public setter; if it doesn't, the property is automatically readonly.
+        /// </summary>
+        public bool IsSettable
+        {
+            get
+            {
+                return isSettable;
+            }
+            private set
+            {
+                isSettable = value;
+
+                //If NOT settable, it is readonly; else, it is whatever was already specified.
+                IsReadOnly = value ? isReadOnly : true;
+            }
+        }
+
+        /// <summary>
+        /// Gets the actual property type (note, if the property is nullable, this will be the underlying type).
         /// </summary>
         public abstract Type Primitive
         {
@@ -195,7 +225,7 @@ namespace Imagin.Controls.Extended
         }
 
         /// <summary>
-        /// Gets the string representation of the property's type.
+        /// Gets the <see cref="System.String"/> representation of the property's type.
         /// </summary>
         /// <remarks>
         /// Used for sorting only.
@@ -220,16 +250,36 @@ namespace Imagin.Controls.Extended
             }
             set
             {
-                _value = OnPreviewValueChanged(_value, value);
-                OnPropertyChanged("Value");
-                OnValueChanged(_value);
+                //If the property is settable OR we're making an internal change...
+                if (IsSettable || valueChangeHandled)
+                {
+                    _value = OnPreviewValueChanged(_value, value);
+                    OnPropertyChanged("Value");
+                    OnValueChanged(_value);
+                }
             }
         }
+
+        #endregion
+
+        #region PropertyModel
 
         internal PropertyModel() : base()
         {
             OnPropertyChanged("Type");
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ~PropertyModel()
+        {
+            Dispose(false);
+        }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyModel"/> class based on given type. 
@@ -238,6 +288,10 @@ namespace Imagin.Controls.Extended
         /// <returns></returns>
         static PropertyModel New(Type Type)
         {
+            //If type is nullable, get underlying type!
+            if (Type.IsNullable())
+                Type = Type.GetGenericArguments().WhereFirst(i => true);
+
             if (Type == typeof(bool))
                 return new PropertyModel<bool>();
 
@@ -296,40 +350,50 @@ namespace Imagin.Controls.Extended
                 return new PropertyModel<Uri>();
 
             if (Type == typeof(Version))
-                return new PropertyModel<Version>();
+                return new CoercedVariantPropertyModel<Release, Version>();
 
             return null;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PropertyModel"/> class based on given object, property, and attributes.
+        /// Initializes a new instance of the <see cref="PropertyModel"/> class based on given data; some restrictions are observed.
         /// </summary>
-        /// <param name="Object"></param>
+        /// <param name="Host"></param>
         /// <param name="Property"></param>
         /// <param name="Attributes"></param>
         /// <returns></returns>
         internal static PropertyModel New(object Host, PropertyInfo Property, PropertyAttributes Attributes)
         {
-            var Result = PropertyModel.New(Property.PropertyType);
+            var Result = New(Property.PropertyType);
 
             if (Result != null)
             {
                 Result.Info = Property;
 
-                var Name = Attributes.Get<string>("DisplayName", false);
+                var Name = Attributes.Get<DisplayNameAttribute, string>();
                 Name = Name.IsNullOrEmpty() ? Property.Name : Name;
 
-                Result.Set(Host, Name, Property.GetValue(Host), Attributes.Get<string>("Category", false), Attributes.Get<string>("Description", false), Attributes.Get<string>("DisplayFormat", false), Attributes.Get<bool>("ReadOnly", false), Attributes.Get<bool>("Featured", false));
+                Result.Host = Host;
+                Result.Name = Name;
+                Result.Value = Property.GetValue(Host);
+                Result.Category = Attributes.Get<CategoryAttribute, string>();
+                Result.Description = Attributes.Get<DescriptionAttribute, string>();
+                Result.StringFormat = Attributes.Get<StringFormatAttribute, string>();
+                Result.IsFeatured = Attributes.Get<FeaturedAttribute, bool>();
+
+                //Honor the attribute if the property is settable; if it isn't, it is automatically readonly and should always be!
+                if (Result.IsSettable)
+                    Result.IsReadOnly = Attributes.Get<ReadOnlyAttribute, bool>();
 
                 if (Result is PropertyModel<string>)
-                    Result.As<PropertyModel<string>>().Tag = Attributes.Get<StringKind>("StringKind", false);
+                    Result.As<PropertyModel<string>>().Tag = Attributes.Get<StringKindAttribute, StringKind>();
 
                 if (Result is PropertyModel<long>)
-                    Result.As<PropertyModel<long>>().Tag = Attributes.Get<Int64Kind>("Int64Kind", false);
+                    Result.As<PropertyModel<long>>().Tag = Attributes.Get<Int64KindAttribute, Int64Kind>();
 
                 if (Result is ICoercable)
                 {
-                    var Constraint = Attributes.Get<ConstraintAttribute>("Constraint", false);
+                    var Constraint = Attributes.Get<ConstraintAttribute, ConstraintAttribute>();
 
                     if (Constraint != null)
                         Result.As<ICoercable>().SetConstraint(Constraint.Minimum, Constraint.Maximum);
@@ -339,26 +403,55 @@ namespace Imagin.Controls.Extended
             return Result;
         }
 
-        internal static PropertyModel New(Type Type, object host, string name, object value, string category, string description, string stringFormat, bool isReadOnly, bool isFeatured)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PropertyModel"/> class based on given type and values; no restrictions.
+        /// </summary>
+        /// <param name="Type"></param>
+        /// <param name="Host"></param>
+        /// <param name="Name"></param>
+        /// <param name="Value"></param>
+        /// <param name="Category"></param>
+        /// <param name="Description"></param>
+        /// <param name="StringFormat"></param>
+        /// <param name="IsReadOnly"></param>
+        /// <param name="IsFeatured"></param>
+        /// <returns></returns>
+        internal static PropertyModel New(Type Type, object Host, string Name, object Value, string Category, string Description, string StringFormat, bool IsReadOnly, bool IsFeatured)
         {
-            var Result = PropertyModel.New(Type);
+            var Result = New(Type);
 
             if (Result != null)
-                Result.Set(host, name, value, category, description, stringFormat, isReadOnly, isFeatured);
+            {
+                Result.Host = Host;
+                Result.Name = Name;
+                Result.Value = Value;
+                Result.Category = Category;
+                Result.Description = Description;
+                Result.StringFormat = StringFormat;
+                Result.IsReadOnly = IsReadOnly;
+                Result.IsFeatured = IsFeatured;
+            }
 
             return Result;
         }
 
-        internal void Set(object host, string name, object value, string category, string description, string stringFormat, bool isReadOnly, bool isFeatured)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
         {
-            Host = host;
-            Name = name;
-            Value = value;
-            Category = category;
-            Description = description;
-            StringFormat = stringFormat;
-            IsReadOnly = isReadOnly;
-            IsFeatured = isFeatured;
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+            }
+
+            if (Host is INotifyPropertyChanged)
+                Host.As<INotifyPropertyChanged>().PropertyChanged -= OnHostPropertyChanged;
+
+            disposed = true;
         }
 
         /// <summary>
@@ -367,12 +460,33 @@ namespace Imagin.Controls.Extended
         /// <param name="Value"></param>
         protected virtual void OnHostChanged(object Value)
         {
+            if (Value is INotifyPropertyChanged)
+                Value.As<INotifyPropertyChanged>().PropertyChanged += OnHostPropertyChanged;
+        }
+
+        /// <summary>
+        /// Occurs if the host object implements <see cref="INotifyPropertyChanged"/> and one of it's properties has changed; this is necessary to capture external changes while the object is a host.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void OnHostPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            //If the property that changed is modelled by the current instance...
+            if (!hostPropertyChangeHandled && e.PropertyName == Name && Info != null)
+            {
+                //Update the property of the current instance
+                valueChangeHandled = true;
+                //If the property is NOT settable, it is still okay to set here.
+                Value = Info.GetValue(Host);
+                valueChangeHandled = false;
+            }
         }
 
         /// <summary>
         /// Occurs just before setting the value.
         /// </summary>
-        /// <param name="Value">The original value.</param>
+        /// <param name="OldValue">The original value.</param>
+        /// <param name="NewValue">The new value.</param>
         /// <returns>The actual value to set for the property.</returns>
         protected virtual object OnPreviewValueChanged(object OldValue, object NewValue)
         {
@@ -390,8 +504,24 @@ namespace Imagin.Controls.Extended
                 if (Host.As<ResourceDictionary>().Contains(Name))
                     Host.As<ResourceDictionary>()[Name] = Value;
             }
-            else if (Info != null)
+            //If the property is NOT settable, this condition will (or should) always be false.
+            else if (!valueChangeHandled && Info != null)
+            {
+                hostPropertyChangeHandled = true;
                 Info.SetValue(Host, Value, null);
+                hostPropertyChangeHandled = false;
+            }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

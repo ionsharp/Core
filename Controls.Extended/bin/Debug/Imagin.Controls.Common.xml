@@ -4,6 +4,24 @@
         <name>Imagin.Controls.Common</name>
     </assembly>
     <members>
+        <member name="T:Imagin.Controls.Common.RequiredRule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.RequiredRule.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RequiredRule.Validate(System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="cultureInfo"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Controls.Common.AbstractView">
             <summary>
             
@@ -194,6 +212,26 @@
             <param name="oldValue"></param>
             <param name="newValue"></param>
         </member>
+        <member name="T:Imagin.Controls.Common.ColumnResizeMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ColumnResizeMode.None">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ColumnResizeMode.Resize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.ColumnResizeMode.ResizeWithPreview">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.DependencyProperty`2">
             <summary>
             
@@ -353,6 +391,23 @@
             </summary>
             <param name="d"></param>
             <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.FindStyle``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TElement"></typeparam>
+            <param name="Element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.TryFindStyle``1(``0,System.Windows.Style@)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TElement"></typeparam>
+            <param name="Element"></param>
+            <param name="Style"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Controls.Common.Extensions.DependencyObjectExtensions">
             <summary>
@@ -560,24 +615,56 @@
             <param name="d"></param>
             <param name="value"></param>
         </member>
-        <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.ScrollAddedIntoViewProperty">
+        <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions._ScrollAddedIntoView">
             <summary>
-            Determines whether or not to scroll newly added items into view.
+            Stores reference to every <see cref="T:System.Windows.Controls.DataGrid"/> with <see cref="F:Imagin.Controls.Common.Extensions.DataGridExtensions.ScrollAddedIntoViewProperty"/> enabled; the key is the hash code of the value's underlying collection.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.GetScrollAddedIntoView(System.Windows.DependencyObject)">
+        <member name="F:Imagin.Controls.Common.Extensions.DataGridExtensions.ScrollAddedIntoViewProperty">
+            <summary>
+            Gets or sets whether or not to scroll newly added items into view; note, the underlying collection MUST implement <see cref="T:Imagin.Common.Collections.Generic.ITrackableCollection`1"/>.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.GetScrollAddedIntoView(System.Windows.Controls.DataGrid)">
             <summary>
             
             </summary>
-            <param name="obj"></param>
-            <returns></returns>
         </member>
-        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.SetScrollAddedIntoView(System.Windows.DependencyObject,System.Boolean)">
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.SetScrollAddedIntoView(System.Windows.Controls.DataGrid,System.Boolean)">
             <summary>
             
             </summary>
             <param name="obj"></param>
             <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.OnScrollAddedIntoViewChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Occurs when <see cref="F:Imagin.Controls.Common.Extensions.DataGridExtensions.ScrollAddedIntoViewProperty"/> changes.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.OnScrollAddedIntoViewChanged(System.Windows.Controls.DataGrid,Imagin.Common.Collections.ITrackableCollection,System.Boolean)">
+            <summary>
+            Adds/removes and registers/unregisters events associated with <see cref="F:Imagin.Controls.Common.Extensions.DataGridExtensions.ScrollAddedIntoViewProperty"/>, respectively.
+            </summary>
+            <param name="DataGrid"></param>
+            <param name="Collection"></param>
+            <param name="Register"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.OnScrollAddedIntoViewChanged(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Occurs when <see cref="T:System.Windows.Controls.DataGrid"/> loads.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.DataGridExtensions.OnScrollAddedIntoViewChanged(System.Object,Imagin.Common.Input.EventArgs{System.Object})">
+            <summary>
+            Occurs when an item is added to the <see cref="T:System.Windows.Controls.DataGrid"/>.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
         <member name="T:Imagin.Controls.Common.Extensions.ItemsControlExtensions">
             <summary>
@@ -982,6 +1069,84 @@
         <member name="M:Imagin.Controls.Common.Extensions.WindowExtensions.RECT.op_Inequality(Imagin.Controls.Common.Extensions.WindowExtensions.RECT,Imagin.Controls.Common.Extensions.WindowExtensions.RECT)">
             <summary> Determine if 2 RECT are different(deep compare)</summary>
         </member>
+        <member name="T:Imagin.Controls.Common.FlagCheckView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FlagCheckView.FlagsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FlagCheckView.Flags">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FlagCheckView.ItemsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FlagCheckView.Items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FlagCheckView.ItemsPanelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FlagCheckView.ItemsPanel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FlagCheckView.ItemTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FlagCheckView.ItemTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.OnFlagsChanged(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.OnItemAdded(System.Object,Imagin.Common.Input.EventArgs{Imagin.Common.CheckableObject{System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.OnItemChecked(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.OnItemUnchecked(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="T:Imagin.Controls.Common.Interactivity.AutoPositionPopupBehavior">
             <summary>
             Auto-positions popup when the parent element's position changes (TO-DO: support scrolling).
@@ -1267,6 +1432,16 @@
             <param name="Value"></param>
         </member>
         <member name="P:Imagin.Controls.Common.TreeViewExt.CollapseAllCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.TreeViewColumnCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TreeViewColumnCollection.#ctor">
             <summary>
             
             </summary>
@@ -2232,6 +2407,71 @@
              A flexible separator.
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Common.Line.ContentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Line.Content">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Line.ContentStringFormatProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Line.ContentStringFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Line.ContentTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Line.ContentTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Line.OrientationProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Line.Orientation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Line.StrokeProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Line.Stroke">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Line.StrokeThicknessProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Line.StrokeThickness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Line.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Controls.Common.RadioGroup">
             <summary>
             A container for similar RadioButtons.
@@ -2454,6 +2694,93 @@
             <param name="e"></param>
             <param name="HandledTypes"></param>
             <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.DecimalUpDown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DecimalUpDown.AbsoluteMaximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DecimalUpDown.AbsoluteMinimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DecimalUpDown.DefaultIncrement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DecimalUpDown.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.GetValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.ToString(System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.CanIncrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.CanDecrease">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.OnMaximumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.OnMinimumCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.OnValueCoerced(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.Increase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalUpDown.Decrease">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Controls.Common.IrrationalUpDown`1">
             <summary>
@@ -3422,12 +3749,12 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.BasicWindow.ButtonsStyleProperty">
+        <member name="F:Imagin.Controls.Common.BasicWindow.ButtonStyleProperty">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Common.BasicWindow.ButtonsStyle">
+        <member name="P:Imagin.Controls.Common.BasicWindow.ButtonStyle">
             <summary>
             
             </summary>
@@ -3468,26 +3795,6 @@
             </summary>
         </member>
         <member name="P:Imagin.Controls.Common.BasicWindow.Footer">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.BasicWindow.FooterTemplateProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.BasicWindow.FooterTemplate">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.BasicWindow.FooterTemplateSelectorProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.BasicWindow.FooterTemplateSelector">
             <summary>
             
             </summary>
@@ -3562,6 +3869,16 @@
             
             </summary>
             <param name="OnClosed"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.WindowFooter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.WindowFooter.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Controls.Common.WindowBase">
             <summary>

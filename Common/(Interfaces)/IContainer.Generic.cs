@@ -5,12 +5,13 @@ namespace Imagin.Common
     /// <summary>
     /// 
     /// </summary>
-    public interface IContainer<T>
+    /// <typeparam name="TObject"></typeparam>
+    public interface IContainer<TObject>
     {
         /// <summary>
         /// 
         /// </summary>
-        IList<T> Items
+        IList<TObject> Items
         {
             get; set;
         }
