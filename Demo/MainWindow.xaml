@@ -455,6 +455,53 @@
             </TabItem>
             <TabItem Header="Extensions">
                 <TabControl>
+                    <TabItem Header="MenuItem">
+                        <StackPanel
+                            Controls.Common:PanelExtensions.Spacing="0,0,0,10"
+                            Controls.Common:PanelExtensions.TrimLast="True">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox 
+                                    x:Name="PART_MenuItemSelectionModeComboBox"
+                                    ItemsSource="{Binding Source={x:Type Controls.Common:MenuItemSelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"
+                                    ToolTip="MenuItemSelectionMode"/>
+                            </StackPanel>
+                            <Menu>
+                                <MenuItem Header="Click to see options">
+                                    <MenuItem
+                                        Header="Option 1"
+                                        Controls.Common:MenuItemExtensions.GroupName="MenuItemExtensionsOptions"
+                                        Controls.Common:MenuItemExtensions.SelectionMode="{Binding SelectedValue, ElementName=PART_MenuItemSelectionModeComboBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsCheckable="True"
+                                        IsChecked="True"
+                                        StaysOpenOnClick="True"/>
+                                    <MenuItem
+                                        Header="Option 2"
+                                        Controls.Common:MenuItemExtensions.GroupName="MenuItemExtensionsOptions"
+                                        Controls.Common:MenuItemExtensions.SelectionMode="{Binding SelectedValue, ElementName=PART_MenuItemSelectionModeComboBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsCheckable="True"
+                                        StaysOpenOnClick="True"/>
+                                    <MenuItem
+                                        Header="Option 3"
+                                        Controls.Common:MenuItemExtensions.GroupName="MenuItemExtensionsOptions"
+                                        Controls.Common:MenuItemExtensions.SelectionMode="{Binding SelectedValue, ElementName=PART_MenuItemSelectionModeComboBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsCheckable="True"
+                                        StaysOpenOnClick="True"/>
+                                    <MenuItem
+                                        Header="Option 4"
+                                        Controls.Common:MenuItemExtensions.GroupName="MenuItemExtensionsOptions"
+                                        Controls.Common:MenuItemExtensions.SelectionMode="{Binding SelectedValue, ElementName=PART_MenuItemSelectionModeComboBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsCheckable="True"
+                                        StaysOpenOnClick="True"/>
+                                    <MenuItem
+                                        Header="Option 5"
+                                        Controls.Common:MenuItemExtensions.GroupName="MenuItemExtensionsOptions"
+                                        Controls.Common:MenuItemExtensions.SelectionMode="{Binding SelectedValue, ElementName=PART_MenuItemSelectionModeComboBox, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsCheckable="True"
+                                        StaysOpenOnClick="True"/>
+                                </MenuItem>
+                            </Menu>
+                        </StackPanel>
+                    </TabItem>
                     <TabItem Header="Panel">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -604,6 +651,34 @@
                         CanValidate="True"
                         VerticalAlignment="Top"/>
                 </StackPanel>
+            </TabItem>
+            <TabItem Header="FlagCheckView">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{Binding Fruits, Mode=OneWay, StringFormat={}Selected fruits: {0}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Controls.Common:FlagCheckView
+                        Grid.Row="1"
+                        Flags="{Binding Fruits}"
+                        Margin="0,10,0,0">
+                        <Controls.Common:FlagCheckView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </Controls.Common:FlagCheckView.ItemsPanel>
+                        <Controls.Common:FlagCheckView.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox 
+                                    Content="{Binding Value, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </Controls.Common:FlagCheckView.ItemTemplate>
+                    </Controls.Common:FlagCheckView>
+                </Grid>
             </TabItem>
             <TabItem Header="Font">
                 <StackPanel
@@ -941,8 +1016,8 @@
                         <ComboBox/>
 
                         <CheckBox 
-                            Content="CanResizeFooter"
-                            IsChecked="{Binding CanResizeFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            Content="CanResizeDescription"
+                            IsChecked="{Binding CanResizeDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <ComboBox 
                             SelectedValue="{Binding DescriptionVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 

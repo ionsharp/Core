@@ -144,6 +144,7 @@
       <DependentUpon>NewCurrent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyGrid\%28Models%29\NestedPropertyModel.cs" />
     <Compile Include="PropertyGrid\%28Models%29\PropertyModel.Generic.cs" />
     <Compile Include="PropertyGrid\%28Models%29\CoercedPropertyModel.cs" />
     <Compile Include="PropertyGrid\%28Models%29\CoercedVariantPropertyModel.cs" />
@@ -255,6 +256,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\LinkHorizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ArrowLeftRound.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

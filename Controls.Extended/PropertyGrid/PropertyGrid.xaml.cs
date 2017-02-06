@@ -3,6 +3,7 @@ using Imagin.Common.Data;
 using Imagin.Common.Extensions;
 using Imagin.Common.Input;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +17,11 @@ namespace Imagin.Controls.Extended
     public partial class PropertyGrid : UserControl
     {
         #region Properties
+
+        /// <summary>
+        /// Stores a reference to every nested property relative to the original host; properties are stored in order of depth.
+        /// </summary>
+        Stack<object> nest = new Stack<object>();
 
         public event EventHandler<EventArgs<object>> SelectedObjectChanged;
 
@@ -60,19 +66,19 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty CanResizeFooterProperty = DependencyProperty.Register("CanResizeFooter", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty CanResizeDescriptionProperty = DependencyProperty.Register("CanResizeDescription", typeof(bool), typeof(PropertyGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
-        public bool CanResizeFooter
+        public bool CanResizeDescription
         {
             get
             {
-                return (bool)GetValue(CanResizeFooterProperty);
+                return (bool)GetValue(CanResizeDescriptionProperty);
             }
             set
             {
-                SetValue(CanResizeFooterProperty, value);
+                SetValue(CanResizeDescriptionProperty, value);
             }
         }
 
@@ -426,6 +432,63 @@ namespace Imagin.Controls.Extended
         /// <summary>
         /// 
         /// </summary>
+        public static DependencyProperty NestedPropertyStringFormatProperty = DependencyProperty.Register("NestedPropertyStringFormat", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public string NestedPropertyStringFormat
+        {
+            get
+            {
+                return (string)GetValue(NestedPropertyStringFormatProperty);
+            }
+            set
+            {
+                SetValue(NestedPropertyStringFormatProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty NestedPropertyTemplateProperty = DependencyProperty.Register("NestedPropertyTemplate", typeof(DataTemplate), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTemplate NestedPropertyTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(NestedPropertyTemplateProperty);
+            }
+            set
+            {
+                SetValue(NestedPropertyTemplateProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty NestedPropertyTemplateSelectorProperty = DependencyProperty.Register("NestedPropertyTemplateSelector", typeof(DataTemplateSelector), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTemplateSelector NestedPropertyTemplateSelector
+        {
+            get
+            {
+                return (DataTemplateSelector)GetValue(NestedPropertyTemplateSelectorProperty);
+            }
+            set
+            {
+                SetValue(NestedPropertyTemplateSelectorProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty PropertiesProperty = DependencyProperty.Register("Properties", typeof(PropertyModelCollection), typeof(PropertyGrid), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
@@ -582,7 +645,7 @@ namespace Imagin.Controls.Extended
                 SetValue(ShowTypeProperty, value);
             }
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -637,6 +700,63 @@ namespace Imagin.Controls.Extended
             set
             {
                 SetValue(SplitterStyleProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty TypeStringFormatProperty = DependencyProperty.Register("TypeStringFormat", typeof(string), typeof(PropertyGrid), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public string TypeStringFormat
+        {
+            get
+            {
+                return (string)GetValue(TypeStringFormatProperty);
+            }
+            set
+            {
+                SetValue(TypeStringFormatProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty TypeTemplateProperty = DependencyProperty.Register("TypeTemplate", typeof(DataTemplate), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(DataTemplate), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTemplate TypeTemplate
+        {
+            get
+            {
+                return (DataTemplate)GetValue(TypeTemplateProperty);
+            }
+            set
+            {
+                SetValue(TypeTemplateProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty TypeTemplateSelectorProperty = DependencyProperty.Register("TypeTemplateSelector", typeof(DataTemplateSelector), typeof(PropertyGrid), new FrameworkPropertyMetadata(default(DataTemplateSelector), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTemplateSelector TypeTemplateSelector
+        {
+            get
+            {
+                return (DataTemplateSelector)GetValue(TypeTemplateSelectorProperty);
+            }
+            set
+            {
+                SetValue(TypeTemplateSelectorProperty, value);
             }
         }
 
@@ -722,10 +842,44 @@ namespace Imagin.Controls.Extended
             e.CanExecute = Properties != null && Properties.Count > 0;
         }
 
+        ICommand nestCommand;
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand NestCommand
+        {
+            get
+            {
+                nestCommand = nestCommand ?? new RelayCommand(p =>
+                {
+                    nest.Push(SelectedObject);
+                    SetCurrentValue(SelectedObjectProperty, p);
+                }, p => !IsLoading && p is object);
+                return nestCommand;
+            }
+        }
+
+        ICommand rewindNestCommand;
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand RewindNestCommand
+        {
+            get
+            {
+                rewindNestCommand = rewindNestCommand ?? new RelayCommand(p => SetCurrentValue(SelectedObjectProperty, nest.Pop()), x => !IsLoading && nest.Any());
+                return rewindNestCommand;
+            }
+        }
+
         #endregion
 
         #region Protected
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="PropertyName"></param>
         protected void Group(string PropertyName)
         {
             if (ListCollectionView != null)
@@ -738,18 +892,26 @@ namespace Imagin.Controls.Extended
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void Sort()
         {
             if (ListCollectionView != null)
             {
                 ListCollectionView.SortDescriptions.Clear();
 
-                var SortDirection = IsSortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+                var d = IsSortAscending ? ListSortDirection.Ascending : ListSortDirection.Descending;
 
                 if (ShowCategories)
-                    ListCollectionView.SortDescriptions.Add(new SortDescription("Category", SortDirection));
+                    ListCollectionView.SortDescriptions.Add(new SortDescription("Category", d));
 
-                ListCollectionView.SortDescriptions.Add(new SortDescription(SortByName ? "Name" : "Type", SortDirection));
+                var n = "Name";
+
+                if (SortByType)
+                    n = "Type";
+
+                ListCollectionView.SortDescriptions.Add(new SortDescription(n, d));
             }
         }
 

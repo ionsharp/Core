@@ -3316,6 +3316,29 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:Imagin.Controls.Extended.NestedPropertyModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.NestedPropertyModel.Primitive">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NestedPropertyModel.OnHostPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.NestedPropertyModel.OnValueChanged(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.PropertyModel`1">
             <summary>
             Represents an object property with specific type.
@@ -3420,6 +3443,11 @@
             PropertyGrid
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.nest">
+            <summary>
+            Stores a reference to every nested property relative to the original host; properties are stored in order of depth.
+            </summary>
+        </member>
         <member name="F:Imagin.Controls.Extended.PropertyGrid.AcceptsNullObjectsProperty">
             <summary>
             
@@ -3440,12 +3468,12 @@
             
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Extended.PropertyGrid.CanResizeFooterProperty">
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.CanResizeDescriptionProperty">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Extended.PropertyGrid.CanResizeFooter">
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.CanResizeDescription">
             <summary>
             
             </summary>
@@ -3630,6 +3658,36 @@
             
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.NestedPropertyStringFormatProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.NestedPropertyStringFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.NestedPropertyTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.NestedPropertyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.NestedPropertyTemplateSelectorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.NestedPropertyTemplateSelector">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Imagin.Controls.Extended.PropertyGrid.PropertiesProperty">
             <summary>
             
@@ -3740,6 +3798,36 @@
             
             </summary>
         </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.TypeStringFormatProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.TypeStringFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.TypeTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.TypeTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.PropertyGrid.TypeTemplateSelectorProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.TypeTemplateSelector">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Imagin.Controls.Extended.PropertyGrid.ValueColumnWidthProperty">
             <summary>
             
@@ -3751,6 +3839,27 @@
             </summary>
         </member>
         <member name="M:Imagin.Controls.Extended.PropertyGrid.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.NestCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.PropertyGrid.RewindNestCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyGrid.Group(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="PropertyName"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.PropertyGrid.Sort">
             <summary>
             
             </summary>
@@ -3944,7 +4053,7 @@
             <param name="Type"></param>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Controls.Extended.PropertyModel.New(System.Object,System.Reflection.PropertyInfo,Imagin.Controls.Extended.PropertyAttributes)">
+        <member name="M:Imagin.Controls.Extended.PropertyModel.New(System.Object,System.Reflection.PropertyInfo,Imagin.Controls.Extended.PropertyAttributes,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Imagin.Controls.Extended.PropertyModel"/> class based on given data; some restrictions are observed.
             </summary>

@@ -210,6 +210,16 @@
                     Pattern="^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$"
                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </DataTemplate>
+            <DataTemplate x:Key="{x:Type System:Int16}">
+                <Controls.Common:ShortUpDown 
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"
+                    CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}, Mode=OneWay}"
+                    Maximum="{Binding Maximum}"
+                    Minimum="{Binding Minimum}"
+                    StringFormat="{Binding StringFormat}"
+                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTemplate>
             <DataTemplate x:Key="{x:Type System:Int32}">
                 <Controls.Common:IntUpDown 
                     HorizontalAlignment="Stretch"
@@ -285,15 +295,13 @@
                         ToolTip="{l:Loc Y}"/>
                 </Grid>
             </DataTemplate>
-            <DataTemplate x:Key="{x:Type System:Int16}">
-                <Controls.Common:ShortUpDown 
-                    HorizontalAlignment="Stretch"
-                    IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"
-                    CanUpDown="{Binding IsReadOnly, Converter={StaticResource InverseBooleanConverter}, Mode=OneWay}"
-                    Maximum="{Binding Maximum}"
-                    Minimum="{Binding Minimum}"
-                    StringFormat="{Binding StringFormat}"
-                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <!-- Nested -->
+            <DataTemplate x:Key="{x:Type System:Object}">
+                <ContentControl
+                    Content="{Binding Mode=OneWay}"
+                    ContentStringFormat="{Binding Data.NestedPropertyStringFormat, Source={StaticResource BindingProxy}}"
+                    ContentTemplate="{Binding Data.NestedPropertyTemplate, Source={StaticResource BindingProxy}}"
+                    ContentTemplateSelector="{Binding Data.NestedPropertyTemplateSelector, Source={StaticResource BindingProxy}}"/>
             </DataTemplate>
             <DataTemplate x:Key="{x:Type System.Windows:Size}">
                 <Grid>
@@ -486,14 +494,16 @@
         <!-- ....................................................... Header -->
         <Grid 
             IsEnabled="{Binding SelectedObject, Converter={StaticResource NullToBooleanConverter}}"
+            Controls.Common:PanelExtensions.Spacing="0,0,10,0"
+            Controls.Common:PanelExtensions.TrimLast="True"
             Visibility="{Binding ShowHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
@@ -509,39 +519,65 @@
             </ItemsControl>
 
             <!-- Default Buttons -->
-            <Controls.Common:MaskedToggleButton
+            
+            <Controls.Common:MaskedButton
                 Grid.Column="1"
+                Command="{Binding RewindNestCommand}"
+                Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/ArrowLeftRound.png"
+                ToolTip="{l:Loc Back}"
+                VerticalAlignment="Center"
+                Visibility="{Binding IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}"/>
+            <Controls.Common:MaskedToggleButton
+                Grid.Column="2"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Category.png"
                 IsChecked="{Binding ShowCategories}"
-                Padding="7,0,0,0"
                 CheckedToolTip="Showing Categories"
                 UncheckedToolTip="Show Categories"
                 VerticalAlignment="Center"/>
             <Controls.Common:MaskedDropDownButton
-                Grid.Column="2"
+                Grid.Column="3"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Sort.png"
                 ToolTip="{l:Loc SortDirection}"
-                Padding="10,0"
                 VerticalAlignment="Center">
                 <Controls.Common:MaskedDropDownButton.DropDown>
                     <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
-                        <MenuItem Header="{l:Loc Name}" IsCheckable="True" IsChecked="{Binding SortByName}" Controls.Common:MenuItemExtensions.GroupName="SortName"/>
-                        <MenuItem Header="{l:Loc Type}" IsCheckable="True" IsChecked="{Binding SortByType}" Controls.Common:MenuItemExtensions.GroupName="SortName"/>
+                        <MenuItem 
+                            Header="{l:Loc Name}" 
+                            IsCheckable="True" 
+                            IsChecked="{Binding SortByName, UpdateSourceTrigger=PropertyChanged}" 
+                            Controls.Common:MenuItemExtensions.GroupName="SortName"
+                            StaysOpenOnClick="True"/>
+                        <MenuItem 
+                            Header="{l:Loc Type}" 
+                            IsCheckable="True" 
+                            IsChecked="{Binding SortByType, UpdateSourceTrigger=PropertyChanged}"
+                            Controls.Common:MenuItemExtensions.GroupName="SortName"
+                            StaysOpenOnClick="True"/>
                         <Separator/>
-                        <MenuItem Header="{l:Loc Ascending}" IsCheckable="True" IsChecked="{Binding IsSortAscending}" Controls.Common:MenuItemExtensions.GroupName="SortDirection"/>
-                        <MenuItem Header="{l:Loc Descending}" IsCheckable="True" IsChecked="{Binding IsSortDescending}" Controls.Common:MenuItemExtensions.GroupName="SortDirection"/>
+                        <MenuItem 
+                            Header="{l:Loc Ascending}" 
+                            IsCheckable="True" 
+                            IsChecked="{Binding IsSortAscending, UpdateSourceTrigger=PropertyChanged}" 
+                            Controls.Common:MenuItemExtensions.GroupName="SortDirection"
+                            StaysOpenOnClick="True"/>
+                        <MenuItem 
+                            Header="{l:Loc Descending}"
+                            IsCheckable="True" 
+                            IsChecked="{Binding IsSortDescending, UpdateSourceTrigger=PropertyChanged}" 
+                            Controls.Common:MenuItemExtensions.GroupName="SortDirection"
+                            StaysOpenOnClick="True"/>
                     </ContextMenu>
                 </Controls.Common:MaskedDropDownButton.DropDown>
             </Controls.Common:MaskedDropDownButton>
-            <Controls.Common:MaskedImage
-                Grid.Column="3"
-                Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Search.png"
-                Margin="0,0,5,0"/>
-
+            
             <!-- Search -->
-            <Controls.Common:TextBoxExt
+            <Controls.Common:MaskedImage
                 Grid.Column="4"
+                Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/Search.png"/>
+            <Controls.Common:TextBoxExt
+                Grid.Column="5"
                 CanUserClear="True"
+                Padding="0"
                 Placeholder="{l:Loc Search}"
                 Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 ToolTip="{l:Loc Search}"
@@ -552,8 +588,7 @@
             <Controls.Common:MaskedDropDownButton
                 Grid.Column="6"
                 Source="pack://application:,,,/Imagin.Controls.Extended;component/Images/ArrowDown.png"
-                ToolTip="{l:Loc Options}"
-                Padding="5,0">
+                ToolTip="{l:Loc Options}">
                 <Controls.Common:MaskedDropDownButton.DropDown>
                     <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
                         <MenuItem 
@@ -592,11 +627,11 @@
                     </Grid.RowDefinitions>
                     
                     <!-- Type -->
-                    <TextBlock 
-                        FontWeight="Bold"
-                        Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"
-                        Margin="10,5"
-                        Text="{Binding SelectedObject, Converter={StaticResource ObjectToTypeConverter}}"
+                    <ContentControl
+                        Content="{Binding SelectedObject, Mode=OneWay}"
+                        ContentStringFormat="{Binding TypeStringFormat}"
+                        ContentTemplate="{Binding TypeTemplate}"
+                        ContentTemplateSelector="{Binding TypeTemplateSelector}"
                         Visibility="{Binding ShowType, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <!-- Featured -->
@@ -679,7 +714,7 @@
             Grid.Row="2"
             ResizeDirection="Rows"
             Style="{Binding SplitterStyle}"
-            Visibility="{Binding CanResizeFooter, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            Visibility="{Binding CanResizeDescription, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <ContentControl 
             Grid.Row="3"
             Content="{Binding Properties.ActiveProperty}"

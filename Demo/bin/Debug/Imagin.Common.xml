@@ -3401,6 +3401,19 @@
             Specifies an en (1/144.54 inch) as the unit of measure.
             </summary>
         </member>
+        <member name="T:Imagin.Common.Extensions.StackExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StackExtensions.Any``1(System.Collections.Generic.Stack{``0})">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Predicate"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.ArrayExtensions">
             <summary>
             
@@ -6955,6 +6968,30 @@
             <param name="Message"></param>
             <param name="Source"></param>
             <param name="Type"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Format"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,Imagin.Common.Tracing.LogEntryType,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Type"></param>
+            <param name="Format"></param>
+        </member>
+        <member name="M:Imagin.Common.Tracing.Log.Write(System.String,System.Object,Imagin.Common.Tracing.LogEntryType,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Source"></param>
+            <param name="Type"></param>
+            <param name="Format"></param>
         </member>
         <member name="T:Imagin.Common.Tracing.LogEntry">
             <summary>

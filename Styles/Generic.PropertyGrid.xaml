@@ -1,12 +1,15 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Common="http://imagin.tech/imagin/common"
     xmlns:Controls.Extended="http://imagin.tech/imagin/controls/extended">
+    <Common:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
     <Common:StringToCamelCaseConverter x:Key="StringToCamelCaseConverter"/>
 
     <Style x:Key="{x:Type Controls.Extended:PropertyGrid}" TargetType="{x:Type Controls.Extended:PropertyGrid}">
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}"/>
         <Setter Property="DescriptionTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -54,6 +57,16 @@
                 </Style>
             </Setter.Value>
         </Setter>
+        <Setter Property="NestedPropertyTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Button
+                        Command="{Binding NestCommand, RelativeSource={RelativeSource AncestorType={x:Type Controls.Extended:PropertyGrid}}}"
+                        CommandParameter="{Binding Value, Mode=OneWay}"
+                        Content="{l:Loc Edit}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="SplitterStyle">
             <Setter.Value>
                 <Style TargetType="GridSplitter">
@@ -64,6 +77,16 @@
                     <Setter Property="VerticalAlignment" Value="Top"/>
                     <Setter Property="Width" Value="Auto"/>
                 </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TypeTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock 
+                        FontWeight="Bold"
+                        Margin="10,5"
+                        Text="{Binding Mode=OneWay, Converter={StaticResource ObjectToTypeConverter}}"/>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>

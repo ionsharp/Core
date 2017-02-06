@@ -304,6 +304,224 @@ namespace Imagin.NET.Demo
 
     #region WildObject
 
+    public class ThirdNestedObject : NamedObject
+    {
+        [Featured(true)]
+        public override string Name
+        {
+            get
+            {
+                return base.Name;
+            }
+
+            set
+            {
+                base.Name = value;
+            }
+        }
+
+        byte _byte = (byte)0;
+        public byte Byte
+        {
+            get
+            {
+                return _byte;
+            }
+            set
+            {
+                _byte = value;
+                OnPropertyChanged("Byte");
+            }
+        }
+
+        string normalString = "Default string";
+        public string NormalString
+        {
+            get
+            {
+                return normalString;
+            }
+            set
+            {
+                normalString = value;
+                OnPropertyChanged("NormalString");
+                OnPropertyChanged("NormalStringWithNoSetter");
+            }
+        }
+
+        short _short = (short)0;
+        public short Short
+        {
+            get
+            {
+                return _short;
+            }
+            set
+            {
+                _short = value;
+                OnPropertyChanged("Short");
+            }
+        }
+
+        Size size = new Size(0, 0);
+        public Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+                OnPropertyChanged("Size");
+            }
+        }
+
+        public ThirdNestedObject() : base()
+        {
+        }
+    }
+
+    public class SecondNestedObject : NamedObject
+    {
+        [Featured(true)]
+        public override string Name
+        {
+            get
+            {
+                return base.Name;
+            }
+
+            set
+            {
+                base.Name = value;
+            }
+        }
+
+        decimal _decimal = 0m;
+        public decimal Decimal
+        {
+            get
+            {
+                return _decimal;
+            }
+            set
+            {
+                _decimal = value;
+                OnPropertyChanged("Decimal");
+            }
+        }
+
+        Visibility _enum = Visibility.Visible;
+        public Visibility Enum
+        {
+            get
+            {
+                return _enum;
+            }
+            set
+            {
+                _enum = value;
+                OnPropertyChanged("Enum");
+            }
+        }
+
+        long _long = 0L;
+        public long Long
+        {
+            get
+            {
+                return _long;
+            }
+            set
+            {
+                _long = value;
+                OnPropertyChanged("Long");
+            }
+        }
+
+        ThirdNestedObject nestedObject = new ThirdNestedObject();
+        public ThirdNestedObject NestedObject
+        {
+            get
+            {
+                return nestedObject;
+            }
+            set
+            {
+                nestedObject = value;
+                OnPropertyChanged("NestedObject");
+            }
+        }
+        
+        public SecondNestedObject() : base()
+        {
+        }
+    }
+
+    public class FirstNestedObject : NamedObject
+    {
+        bool boolean = false;
+        public bool Boolean
+        {
+            get
+            {
+                return boolean;
+            }
+            set
+            {
+                boolean = value;
+                OnPropertyChanged("Boolean");
+            }
+        }
+
+        [Featured(true)]
+        public override string Name
+        {
+            get
+            {
+                return base.Name;
+            }
+
+            set
+            {
+                base.Name = value;
+            }
+        }
+
+        double _double = 0d;
+        public double Double
+        {
+            get
+            {
+                return _double;
+            }
+            set
+            {
+                _double = value;
+                OnPropertyChanged("Double");
+            }
+        }
+
+        SecondNestedObject nestedObject = new SecondNestedObject();
+        public SecondNestedObject NestedObject
+        {
+            get
+            {
+                return nestedObject;
+            }
+            set
+            {
+                nestedObject = value;
+                OnPropertyChanged("NestedObject");
+            }
+        }
+
+        public FirstNestedObject() : base()
+        {
+        }
+    }
+
     public class WildObject : NamedObject
     {
         bool boolean = false;
@@ -464,6 +682,22 @@ namespace Imagin.NET.Demo
             {
                 longFileSize = value;
                 OnPropertyChanged("LongFileSize");
+            }
+        }
+
+        FirstNestedObject nestedObject = new FirstNestedObject();
+        [Category("Special Types")]
+        [Description("Description for NestedObject property.")]
+        public FirstNestedObject NestedObject
+        {
+            get
+            {
+                return nestedObject;
+            }
+            set
+            {
+                nestedObject = value;
+                OnPropertyChanged("NestedObject");
             }
         }
 
@@ -697,7 +931,26 @@ namespace Imagin.NET.Demo
 
     #endregion
 
-    #region ViewEnum
+    #region Enumerations
+
+    [Flags]
+    public enum Fruits
+    {
+        [Browsable(false)]
+        None = 0,
+        Apple = 1,
+        Banana = 2,
+        Cherry = 4,
+        Grape = 8,
+        Kiwi = 16,
+        Mango = 32,
+        Orange = 64,
+        Peach = 128,
+        Pear = 256,
+        Pineapple = 512,
+        [Browsable(false)]
+        All = Apple | Banana | Cherry | Grape | Kiwi | Mango | Orange | Peach | Pear | Pineapple
+    }
 
     public enum ViewEnum
     {
@@ -712,7 +965,21 @@ namespace Imagin.NET.Demo
     public partial class MainWindow : BasicWindow
     {
         #region Properties
-        
+
+        Fruits fruits = Fruits.Kiwi;
+        public Fruits Fruits
+        {
+            get
+            {
+                return fruits;
+            }
+            set
+            {
+                fruits = value;
+                OnPropertyChanged("Fruits");
+            }
+        }
+
         public static DependencyProperty FileSystemCollectionProperty = DependencyProperty.Register("FileSystemCollection", typeof(FileSystemCollection), typeof(MainWindow), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public FileSystemCollection FileSystemCollection
         {

@@ -834,21 +834,53 @@
             IsDirectionalSelectionEnabled must be set to true.
             </remarks>
         </member>
-        <member name="F:Imagin.Controls.Common.Extensions.MenuItemSelectionMode.Single">
+        <member name="T:Imagin.Controls.Common.Extensions.MenuItemExtensions">
             <summary>
-            One item may be checked.
+            
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.Extensions.MenuItemSelectionMode.SingleOrNone">
+        <member name="F:Imagin.Controls.Common.Extensions.MenuItemExtensions.elements">
             <summary>
-            Either one or no items may be checked.
+            
             </summary>
         </member>
-        <member name="F:Imagin.Controls.Common.Extensions.MenuItemSelectionMode.Multiple">
+        <member name="F:Imagin.Controls.Common.Extensions.MenuItemExtensions.GroupNameProperty">
             <summary>
-            Any number of items may be checked; equivalent to
-            not specifying a group name.
+            
             </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.MenuItemExtensions.SetGroupName(System.Windows.Controls.MenuItem,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.MenuItemExtensions.GetGroupName(System.Windows.Controls.MenuItem)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.MenuItemExtensions.SelectionModeProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.MenuItemExtensions.SetSelectionMode(System.Windows.Controls.MenuItem,Imagin.Controls.Common.MenuItemSelectionMode)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.MenuItemExtensions.GetSelectionMode(System.Windows.Controls.MenuItem)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Controls.Common.Extensions.MenuItemExtensions.OnChecked(System.Object,System.Windows.RoutedEventArgs)">
             <remarks>
@@ -1160,6 +1192,27 @@
         <member name="M:Imagin.Controls.Common.Interactivity.AutoPositionPopupBehavior.Update">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.MenuItemSelectionMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MenuItemSelectionMode.Single">
+            <summary>
+            One item may be checked.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MenuItemSelectionMode.SingleOrNone">
+            <summary>
+            Either one or no items may be checked.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.MenuItemSelectionMode.Multiple">
+            <summary>
+            Any number of items may be checked; equivalent to
+            not specifying a group name.
             </summary>
         </member>
         <member name="T:Imagin.Controls.Common.SelectionCanvas">

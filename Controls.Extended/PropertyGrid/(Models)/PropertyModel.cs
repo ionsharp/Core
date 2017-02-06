@@ -264,7 +264,7 @@ namespace Imagin.Controls.Extended
 
         #region PropertyModel
 
-        internal PropertyModel() : base()
+        protected PropertyModel() : base()
         {
             OnPropertyChanged("Type");
         }
@@ -352,6 +352,9 @@ namespace Imagin.Controls.Extended
             if (Type == typeof(Version))
                 return new CoercedVariantPropertyModel<Release, Version>();
 
+            if (Type == typeof(object))
+                return new NestedPropertyModel();
+
             return null;
         }
 
@@ -362,9 +365,9 @@ namespace Imagin.Controls.Extended
         /// <param name="Property"></param>
         /// <param name="Attributes"></param>
         /// <returns></returns>
-        internal static PropertyModel New(object Host, PropertyInfo Property, PropertyAttributes Attributes)
+        internal static PropertyModel New(object Host, PropertyInfo Property, PropertyAttributes Attributes, bool IsNested)
         {
-            var Result = New(Property.PropertyType);
+            var Result = New(IsNested ? typeof(object) : Property.PropertyType);
 
             if (Result != null)
             {
@@ -373,9 +376,24 @@ namespace Imagin.Controls.Extended
                 var Name = Attributes.Get<DisplayNameAttribute, string>();
                 Name = Name.IsNullOrEmpty() ? Property.Name : Name;
 
+                var Value = default(object);
+
+                try
+                {
+                    //Will fail if locked
+                    Value = Property.GetValue(Host);
+                }
+                catch (Exception)
+                {
+                    //Do nothing!
+                }
+
+                //Set the important stuff first
                 Result.Host = Host;
                 Result.Name = Name;
-                Result.Value = Property.GetValue(Host);
+                Result.Value = Value;
+
+                //Set the minor stuff
                 Result.Category = Attributes.Get<CategoryAttribute, string>();
                 Result.Description = Attributes.Get<DescriptionAttribute, string>();
                 Result.StringFormat = Attributes.Get<StringFormatAttribute, string>();
@@ -391,6 +409,7 @@ namespace Imagin.Controls.Extended
                 if (Result is PropertyModel<long>)
                     Result.As<PropertyModel<long>>().Tag = Attributes.Get<Int64KindAttribute, Int64Kind>();
 
+                //Honor constraints
                 if (Result is ICoercable)
                 {
                     var Constraint = Attributes.Get<ConstraintAttribute, ConstraintAttribute>();

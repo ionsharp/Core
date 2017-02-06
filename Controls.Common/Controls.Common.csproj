@@ -108,6 +108,7 @@
     <Compile Include="Extensions\Panel.cs" />
     <Compile Include="FlagCheckView.cs" />
     <Compile Include="Interactivity\AutoPositionPopupBehavior.cs" />
+    <Compile Include="MenuItemSelectionMode.cs" />
     <Compile Include="SelectionCanvas.xaml.cs">
       <DependentUpon>SelectionCanvas.xaml</DependentUpon>
     </Compile>

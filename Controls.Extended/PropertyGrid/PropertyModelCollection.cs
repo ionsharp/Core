@@ -94,12 +94,11 @@ namespace Imagin.Controls.Extended
 
             var t = Property.PropertyType;
 
-            Console.WriteLine("Name => {0}, Type = {1}, Nullable => {2}".F(Property.Name, t, t.IsNullable() ? "nullable" : "not nullable"));
-
             if (t.IsNullable())
                 t = t.GetGenericArguments().WhereFirst(i => true);
 
             var b = t.EqualsAny(PropertyModel.SupportedTypes);
+
             b = b || t.IsEnum;
             b = b || t.Implements<IList>();
 
@@ -179,8 +178,18 @@ namespace Imagin.Controls.Extended
                 {
                     var Property = Properties[i];
 
+                    var IsNested = false;
+                    //If the type isn't explicitly supported...
                     if (!IsSupported(Property))
-                        continue;
+                    {
+                        //...and it's not a reference type, skip it
+                        if (Property.PropertyType.IsValueType)
+                        {
+                            continue;
+                        }
+                        //...and it is a reference type, consider it "nested"
+                        else IsNested = true;
+                    }
 
                     var a = new PropertyAttributes()
                     {
@@ -200,7 +209,7 @@ namespace Imagin.Controls.Extended
                     
                     if (a.Get<BrowsableAttribute, bool>())
                     {
-                        var Model = PropertyModel.New(Object, Property, a);
+                        var Model = PropertyModel.New(Object, Property, a, IsNested);
 
                         if (Model != null)
                             Add(Model);

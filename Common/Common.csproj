@@ -102,6 +102,7 @@
     <Compile Include="Config\IMainModule.cs" />
     <Compile Include="Converters\ArrayToStringConverter.cs" />
     <Compile Include="Converters\EnumHasFlagConverter.cs" />
+    <Compile Include="Converters\EnumToStringConverter.cs" />
     <Compile Include="Debug\Result.Generic.cs" />
     <Compile Include="Drawing\AngularUnit.cs" />
     <Compile Include="Drawing\Cmyk.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Drawing\ObserverAngle.cs" />
     <Compile Include="Drawing\Rgba.cs" />
     <Compile Include="Drawing\Xyz.cs" />
+    <Compile Include="Extensions\Stack.cs" />
     <Compile Include="Extensions\Array.cs" />
     <Compile Include="Extensions\Assembly.cs" />
     <Compile Include="Extensions\Brush.cs" />

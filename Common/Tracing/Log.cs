@@ -1,6 +1,7 @@
 ﻿using Imagin.Common.Config;
 using System;
 using System.Windows;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Common.Tracing
 {
@@ -41,6 +42,39 @@ namespace Imagin.Common.Tracing
         public static void Write(object Message, object Source, LogEntryType Type = LogEntryType.Message)
         {
             Write((i) => i.Log.Write(Message, Source, Type));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Format"></param>
+        public static void Write(string Message, params object[] Format)
+        {
+            Write((i) => i.Log.Write(Message.F(Format)));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Type"></param>
+        /// <param name="Format"></param>
+        public static void Write(string Message, LogEntryType Type, params object[] Format)
+        {
+            Write((i) => i.Log.Write(Message.F(Format), Type));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Source"></param>
+        /// <param name="Type"></param>
+        /// <param name="Format"></param>
+        public static void Write(string Message, object Source, LogEntryType Type, params object[] Format)
+        {
+            Write((i) => i.Log.Write(Message.F(Format), Source, Type));
         }
     }
 }
