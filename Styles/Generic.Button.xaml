@@ -48,4 +48,16 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="{x:Type Controls.Common:TokenButton}" TargetType="{x:Type Controls.Common:TokenButton}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Margin" Value="0,0,5,5"/>
+        <Setter Property="Padding" Value="6,4"/>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Mode=OneWay}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

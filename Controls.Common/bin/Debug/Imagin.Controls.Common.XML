@@ -4,6 +4,265 @@
         <name>Imagin.Controls.Common</name>
     </assembly>
     <members>
+        <member name="T:Imagin.Controls.Common.LocalPathValidateHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.LocalPathValidateHandler.FileExists(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.LocalPathValidateHandler.FolderExists(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.PathValidateHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.PathValidateHandler.FileOrFolderProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PathValidateHandler.FileOrFolder">
+            <summary>
+            Gets or sets whether or not path represents a file or a folder.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.PathValidateHandler.FileExists(System.String)">
+            <summary>
+            Gets whether or not the file at given path exists.
+            </summary>
+            <param name="Path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.PathValidateHandler.FolderExists(System.String)">
+            <summary>
+            Gets whether or not the folder at given path exists.
+            </summary>
+            <param name="Path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.PathValidateHandler.Validate(System.String)">
+            <summary>
+            Validates given path based on whether or not it is a file or a folder.
+            </summary>
+            <param name="Path"></param>
+            <param name="FileOrFolder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.PathValidateHandler.Validate(System.Object[])">
+            <summary>
+            Validates path based on given arguments.
+            </summary>
+            <param name="Arguments"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.DecimalRangeRule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DecimalRangeRule.DefaultMax">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DecimalRangeRule.DefaultMin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DecimalRangeRule.Validate(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.DoubleRangeRule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DoubleRangeRule.DefaultMax">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.DoubleRangeRule.DefaultMin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DoubleRangeRule.Validate(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.Int16RangeRule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Int16RangeRule.DefaultMax">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Int16RangeRule.DefaultMin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Int16RangeRule.Validate(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.Int32RangeRule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Int32RangeRule.DefaultMax">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Int32RangeRule.DefaultMin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Int32RangeRule.Validate(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.Int64RangeRule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Int64RangeRule.DefaultMax">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Int64RangeRule.DefaultMin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Int64RangeRule.Validate(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.NamedRule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.NamedRule.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.PathExistsRule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.PathExistsRule.Handler">
+            <summary>
+            A handler used to validate the path.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.PathExistsRule.Validate(System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="cultureInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.RangeRule`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Common.RangeRule`1.DefaultMax">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.RangeRule`1.DefaultMin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.RangeRule`1.Max">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.RangeRule`1.Min">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RangeRule`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.RangeRule`1.ValidateMax">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.RangeRule`1.ValidateMin">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.RangeRule`1.Validate(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.RangeRule`1.Validate(System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="cultureInfo"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Controls.Common.RequiredRule">
             <summary>
             
@@ -367,6 +626,42 @@
             </summary>
             <param name="sender">The sender.</param>
             <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:Imagin.Controls.Common.Extensions.RichTextBoxExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.RichTextBoxExtensions.ParagraphSpacingProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.RichTextBoxExtensions.GetParagraphSpacing(System.Windows.Controls.RichTextBox)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.RichTextBoxExtensions.SetParagraphSpacing(System.Windows.Controls.RichTextBox,System.Windows.Thickness)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.Extensions.FlowDocumentExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FlowDocumentExtensions.Paragraphs(System.Windows.Documents.FlowDocument)">
+            <summary>
+            Gets all paragraphs for the given <see cref="T:System.Windows.Documents.FlowDocument"/>.
+            </summary>
+            <param name="Document"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Controls.Common.Extensions.FrameworkElementExtensions">
             <summary>
@@ -1291,6 +1586,421 @@
             
             </summary>
             <param name="e"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.ITokenizer">
+            <summary>
+            Specifies an object capable of tokenizing a <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.ITokenizer.TokensSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ITokenizer.GenerateFrom(System.String,System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="TokenString"></param>
+            <param name="Delimiter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ITokenizer.ParseToken(System.String)">
+            <summary>
+            Gets a token if the given <see cref="T:System.String"/> can be parsed.
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ITokenizer.Tokenize(System.String)">
+            <summary>
+            Converts the given <see cref="T:System.String"/> to a list of tokens.
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ITokenizer.ToString(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.ITokenizer`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TToken"></typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Common.ITokenizer`1.TokensSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ITokenizer`1.GenerateFrom(System.String,System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="TokenString"></param>
+            <param name="Delimiter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ITokenizer`1.ParseToken(System.String)">
+            <summary>
+            Gets a token if the given <see cref="T:System.String"/> can be parsed.
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ITokenizer`1.Tokenize(System.String)">
+            <summary>
+            Converts the given <see cref="T:System.String"/> to a list of tokens.
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ITokenizer`1.ToString(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.StringTokenizer">
+            <summary>
+            Tokenizes a <see cref="T:System.String"/> into multiple <see cref="T:System.String"/>s.
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.StringTokenizer.GenerateFrom(System.String,System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="TokenString"></param>
+            <param name="Delimiter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.StringTokenizer.ParseToken(System.String)">
+            <summary>
+            Gets a token if the given <see cref="T:System.String"/> can be parsed.
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.StringTokenizer.Tokenize(System.String)">
+            <summary>
+            Converts the given <see cref="T:System.String"/> to a list of tokens.
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.StringTokenizer.ToString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.TokenButton">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenButton.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="content"></param>
+            <param name="contentTemplate"></param>
+            <param name="contentTemplateSelector"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.Tokenizer`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.Tokenizer`1.TokensSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Tokenizer`1.GenerateFrom(System.String,System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="TokenString"></param>
+            <param name="Delimiter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Tokenizer`1.ParseToken(System.String)">
+            <summary>
+            Gets a token if the given <see cref="T:System.String"/> can be parsed.
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Tokenizer`1.Tokenize(System.String)">
+            <summary>
+            Converts the given <see cref="T:System.String"/> to a list of tokens.
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Tokenizer`1.ToString(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Controls.Common.TokenMouseAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenMouseAction.None">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenMouseAction.Edit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenMouseAction.Remove">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.TokenView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.CurrentText">
+            <summary>
+            Gets the current input text.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenView.IsCopyPasteEnabledProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.IsCopyPasteEnabled">
+            <summary>
+            The <see cref="T:System.Char"/> used to delimit tokens.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenView.TokenDelimiterProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.TokenDelimiter">
+            <summary>
+            The <see cref="T:System.Char"/> used to delimit tokens.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenView.TokenizerProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.Tokenizer">
+            <summary>
+            The <see cref="T:Imagin.Controls.Common.ITokenizer"/> that handles tokenizing.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenView.TokenTriggersProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.TokenTriggers">
+            <summary>
+            Keys used to generate tokens when pressed.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenView.TokenMouseDownActionProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.TokenMouseDownAction">
+            <summary>
+            Gets or sets the action to perform when the mouse is down on token.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenView.TokensProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.Tokens">
+            <summary>
+            Gets or sets the tokens.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenView.TokensSourceProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.TokensSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenView.TokenStyleProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.TokenView.TokenStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.Enumerate``1(System.Func{``0,System.Boolean})">
+            <summary>
+            For each token, perform action exposing corresponding <see cref="T:Imagin.Controls.Common.TokenButton"/>.
+            </summary>
+            <typeparam name="TButton"></typeparam>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.Enumerate``2(System.Func{``0,``1,System.Boolean})">
+            <summary>
+            For each token, perform action exposing corresponding <see cref="T:Imagin.Controls.Common.TokenButton"/> and <see cref="T:System.Windows.Documents.Inline"/>.
+            </summary>
+            <typeparam name="TInline"></typeparam>
+            <typeparam name="TButton"></typeparam>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.Enumerate``3(System.Func{``0,``1,``2,System.Boolean})">
+            <summary>
+            For each token, perform action exposing corresponding <see cref="T:Imagin.Controls.Common.TokenButton"/>, <see cref="T:System.Windows.Documents.Inline"/>, and <see cref="T:System.Windows.Documents.Paragraph"/>.
+            </summary>
+            <typeparam name="TParagraph"></typeparam>
+            <typeparam name="TInline"></typeparam>
+            <typeparam name="TButton"></typeparam>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.ReplaceWithToken(System.String,System.Object)">
+            <summary>
+            Replaces the given input text with the given token.
+            </summary>
+            <param name="Text"></param>
+            <param name="Token"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnPreviewKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnPreviewMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnTextChanged(System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.EditToken(System.Object)">
+            <summary>
+            Converts the element that hosts the given token to a <see cref="T:System.Windows.Documents.Run"/>.
+            </summary>
+            <param name="Token"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.EditToken(Imagin.Controls.Common.TokenButton)">
+            <summary>
+            Converts the given token element to a <see cref="T:System.Windows.Documents.Run"/>.
+            </summary>
+            <param name="Button"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.RemoveToken(System.Object)">
+            <summary>
+            Removes the <see cref="T:System.Windows.Documents.Inline"/> that hosts the <see cref="T:Imagin.Controls.Common.TokenButton"/> corresponding to the given token.
+            </summary>
+            <param name="Token"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.RemoveToken(Imagin.Controls.Common.TokenButton)">
+            <summary>
+            Removes the <see cref="T:System.Windows.Documents.Inline"/> that hosts the given <see cref="T:Imagin.Controls.Common.TokenButton"/>.
+            </summary>
+            <param name="Button"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnPreviewExecuted(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokenDelimiterChanged(System.Char,System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokensChanged(System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokensSourceChanged(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokenStyleChanged(System.Windows.Style)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokenTriggered">
+            <summary>
+            
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="T:Imagin.Controls.Common.TokenTriggerKey">
+            <summary>
+            Specifies a key that is capable of generating a token when pressed.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenTriggerKey.None">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenTriggerKey.Return">
+            <summary>
+            Corresponds to <see cref="F:System.Windows.Input.Key.Enter"/>.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenTriggerKey.Tab">
+            <summary>
+            Corresponds to <see cref="F:System.Windows.Input.Key.Tab"/>.
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.TokenTriggerKey.All">
+            <summary>
+            Corresponds to all enumerated keys.
+            </summary>
         </member>
         <member name="T:Imagin.Controls.Common.TreeViewExt">
             <summary>
@@ -2309,12 +3019,12 @@
             
             </summary>
         </member>
-        <member name="T:Imagin.Controls.Common.FileBox.ValidatePathHandler">
+        <member name="T:Imagin.Controls.Common.FileBox.FileBoxValidateHandler">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.FileBox.ValidatePathHandler.Validate(System.Object[])">
+        <member name="M:Imagin.Controls.Common.FileBox.FileBoxValidateHandler.Validate(System.Object[])">
             <summary>
             
             </summary>
@@ -2427,6 +3137,12 @@
             </summary>
             <param name="Value"></param>
         </member>
+        <member name="M:Imagin.Controls.Common.FileBox.OnCanValidateChanged(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="M:Imagin.Controls.Common.FileBox.OnDialogOpened(System.Windows.RoutedEventArgs)">
             <summary>
             
@@ -2438,12 +3154,6 @@
             
             </summary>
             <param name="e"></param>
-        </member>
-        <member name="M:Imagin.Controls.Common.FileBox.OnCanValidateChanged(System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="Value"></param>
         </member>
         <member name="M:Imagin.Controls.Common.FileBox.OnApplyTemplate">
             <summary>

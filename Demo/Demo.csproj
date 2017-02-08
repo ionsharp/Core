@@ -63,9 +63,11 @@
     </Reference>
     <Reference Include="Imagin.Controls.Common">
       <HintPath>..\Controls.Common\bin\Debug\Imagin.Controls.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Imagin.Controls.Extended">
       <HintPath>..\Controls.Extended\bin\Debug\Imagin.Controls.Extended.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Imagin.Gadgets">
       <HintPath>..\Gadgets\bin\Debug\Imagin.Gadgets.dll</HintPath>

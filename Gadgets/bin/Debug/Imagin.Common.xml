@@ -108,6 +108,19 @@
             <param name="Arguments"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Arr">
+            <summary>
+            Provides facilities for managing arrays.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Arr.New``1(``0[])">
+            <summary>
+            Initializes a new array with the given elements; if no elements are specified, an empty array is returned.
+            </summary>
+            <typeparam name="TKind"></typeparam>
+            <param name="Elements"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Attributes.ConstraintAttribute">
             <summary>
             Specifies a constraint for a property with both a minimum and maximum value.
@@ -1612,6 +1625,31 @@
             <param name="culture"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Data.Converters.CharacterToStringConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.CharacterToStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.CharacterToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Data.Converters.EnumHasFlagConverter">
             <summary>
             
@@ -1628,6 +1666,31 @@
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Data.Converters.EnumHasFlagConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.ToStringConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ToStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.ToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
             <summary>
             
             </summary>
@@ -1911,6 +1974,18 @@
             
             </summary>
             <param name="Data"></param>
+        </member>
+        <member name="T:Imagin.Common.Dialogs">
+            <summary>
+            Provides facilities for showing a dialogs anywhere.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Dialogs.ShowError(System.String,System.String)">
+            <summary>
+            Shows a dialog with an error message.
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
         </member>
         <member name="T:Imagin.Common.Drawing.AngularUnit">
             <summary>
@@ -3401,6 +3476,20 @@
             Specifies an en (1/144.54 inch) as the unit of measure.
             </summary>
         </member>
+        <member name="T:Imagin.Common.Extensions.DispatcherExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.DispatcherExtensions.BeginInvoke(System.Windows.Threading.Dispatcher,System.Action,System.Windows.Threading.DispatcherPriority)">
+            <summary>
+            
+            </summary>
+            <param name="Dispatcher"></param>
+            <param name="Action"></param>
+            <param name="Priority"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.StackExtensions">
             <summary>
             
@@ -3687,6 +3776,20 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.BoolExtensions.ToInt16(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.BoolExtensions.ToInt32(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.BoolExtensions.ToVisibility(System.Boolean,System.Windows.Visibility)">
             <summary>
@@ -4147,6 +4250,14 @@
             <param name="Child"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetLogicalChildren``1(System.Windows.DependencyObject)">
+            <summary>
+            Gets all logical children for the given <see cref="T:System.Windows.DependencyObject"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Parent"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.DependencyObjectExtensions.GetVisualChildren``1(System.Windows.DependencyObject)">
             <summary>
             
@@ -4322,6 +4433,11 @@
             <param name="Ppi">Pixels per inch.</param>
             <param name="RoundTo">Decimal places to round to.</param>
         </member>
+        <member name="T:Imagin.Common.Extensions.EnumExtensions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Common.Extensions.EnumExtensions.GetList``1">
             <summary>
             
@@ -4343,16 +4459,6 @@
             <typeparam name="TEnum"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Extensions.EnumExtensions.ParseEnum``1(System.String,System.Boolean)">
-            <summary>
-            Converts from string to enum.
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Extensions.EnumExtensions.TryParseEnum``1(System.String,System.Boolean)">
-            <summary>
-            Attempts to convert from string to enum.
-            </summary>
-        </member>
         <member name="M:Imagin.Common.Extensions.EnumExtensions.Add``1(System.Enum,``0)">
             <summary>
             
@@ -4370,21 +4476,48 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Extensions.EnumExtensions.Has``1(System.Enum,``0)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TEnum"></typeparam>
-            <param name="type"></param>
-            <param name="Value"></param>
-            <returns></returns>
-        </member>
         <member name="M:Imagin.Common.Extensions.EnumExtensions.Has(System.Enum,System.Enum)">
             <summary>
             
             </summary>
-            <param name="type"></param>
+            <param name="source"></param>
             <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.Has``1(``0,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="source"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.HasAll``1(``0,``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="source"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.HasAny``1(``0,``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="source"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.EnumExtensions.HasNone``1(``0,``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="source"></param>
+            <param name="values"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.EnumExtensions.Remove``1(System.Enum,``0)">
@@ -4869,6 +5002,30 @@
             <param name="Path"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.EndsWithAny(System.String,System.Char[])">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.EndsWithAny(System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.EndsWithAny(System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Values"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.F(System.String,System.Object[])">
             <summary>
             
@@ -5006,6 +5163,15 @@
             <param name="Schemes"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.ParseEnum``1(System.String,System.Boolean)">
+            <summary>
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Enum"/>.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="Value"></param>
+            <param name="IgnoreCase"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Extensions.StringExtensions.Prepend(System.String,System.String[])">
             <summary>
             
@@ -5099,6 +5265,16 @@
             <param name="Delimiter"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.StringExtensions.TryParseEnum``1(System.String,``0@,System.Boolean)">
+            <summary>
+            Attempts to parse <see cref="T:System.String"/> to <see cref="T:System.Enum"/>.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
+            <param name="IgnoreCase"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.TypeExtensions">
             <summary>
             
@@ -5134,6 +5310,121 @@
             <typeparam name="T"></typeparam>
             <param name="Value"></param>
             <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Extensions.KeyboardExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Extensions.KeyboardExtensions.IsAnyKeyDown(System.Windows.Input.Key[])">
+            <summary>
+            
+            </summary>
+            <param name="Keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.KeyboardExtensions.IsKeyModifyingPopupState(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.KeyboardExtensions.ToUnicode(System.UInt32,System.UInt32,System.Byte[],System.Text.StringBuilder,System.Int32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="wVirtKey"></param>
+            <param name="wScanCode"></param>
+            <param name="lpKeyState"></param>
+            <param name="pwszBuff"></param>
+            <param name="cchBuff"></param>
+            <param name="wFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.KeyboardExtensions.GetKeyboardState(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="lpKeyState"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.KeyboardExtensions.MapVirtualKey(System.UInt32,Imagin.Common.Input.MapType)">
+            <summary>
+            
+            </summary>
+            <param name="uCode"></param>
+            <param name="uMapType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.KeyboardExtensions.ToChar(System.Windows.Input.Key)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.IDialog">
+            <summary>
+            Specifies a dialog.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.IDialog.Show(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:Imagin.Common.IDialog.ShowError(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:Imagin.Common.IDialog.ShowWarning(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="text"></param>
+        </member>
+        <member name="T:Imagin.Common.IDialogHost">
+            <summary>
+            Specifies an element capable of hosting dialogs.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.IDialogHost.GetDialog">
+            <summary>
+            Gets a new instance of <see cref="T:Imagin.Common.IDialog"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Input.MapType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Input.MapType.MAPVK_VK_TO_VSC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Input.MapType.MAPVK_VSC_TO_VK">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Input.MapType.MAPVK_VK_TO_CHAR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Input.MapType.MAPVK_VSC_TO_VK_EX">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Common.Input.RelayCommand">
             <summary>
@@ -6761,6 +7052,11 @@
         <member name="F:Imagin.Common.Primitives.StringKind.Password">
             <summary>
             Specifies a password string.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Primitives.StringKind.Tokens">
+            <summary>
+            Specifies a series of tokens.
             </summary>
         </member>
         <member name="T:Imagin.Common.Serialization.WritableColor">

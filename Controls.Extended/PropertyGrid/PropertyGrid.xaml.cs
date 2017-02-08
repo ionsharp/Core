@@ -23,6 +23,9 @@ namespace Imagin.Controls.Extended
         /// </summary>
         Stack<object> nest = new Stack<object>();
 
+        /// <summary>
+        /// Occurs when the selected object changes.
+        /// </summary>
         public event EventHandler<EventArgs<object>> SelectedObjectChanged;
 
         /// <summary>

@@ -295,6 +295,7 @@
                         ToolTip="{l:Loc Y}"/>
                 </Grid>
             </DataTemplate>
+            
             <!-- Nested -->
             <DataTemplate x:Key="{x:Type System:Object}">
                 <ContentControl
@@ -303,6 +304,7 @@
                     ContentTemplate="{Binding Data.NestedPropertyTemplate, Source={StaticResource BindingProxy}}"
                     ContentTemplateSelector="{Binding Data.NestedPropertyTemplateSelector, Source={StaticResource BindingProxy}}"/>
             </DataTemplate>
+            
             <DataTemplate x:Key="{x:Type System.Windows:Size}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -424,6 +426,18 @@
                                         IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"
                                         Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                         HorizontalAlignment="Stretch"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Tag, UpdateSourceTrigger=PropertyChanged}" Value="Tokens">
+                        <Setter TargetName="PART_Content" Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <Controls.Common:TokenView 
+                                        IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"
+                                        HorizontalAlignment="Stretch"
+                                        Tokens="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>

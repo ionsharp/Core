@@ -159,6 +159,44 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Values"></param>
+        /// <returns></returns>
+        public static bool EndsWithAny(this string Value, params char[] Values)
+        {
+            return Value.EndsWithAny(Values.Select(i => i.ToString()).ToArray());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Values"></param>
+        /// <returns></returns>
+        public static bool EndsWithAny(this string Value, params object[] Values)
+        {
+            return Value.EndsWithAny(Values.Select(i => i.ToString()).ToArray());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Values"></param>
+        /// <returns></returns>
+        public static bool EndsWithAny(this string Value, params string[] Values)
+        {
+            foreach (var i in Values)
+            {
+                if (Value.EndsWith(i))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="Format"></param>
         /// <param name="Args"></param>
         /// <returns></returns>
@@ -397,6 +435,18 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
+        /// Parses <see cref="string"/> to <see cref="Enum"/>.
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <param name="Value"></param>
+        /// <param name="IgnoreCase"></param>
+        /// <returns></returns>
+        public static TEnum ParseEnum<TEnum>(this string Value, bool IgnoreCase = true) where TEnum : struct, IFormattable, IComparable, IConvertible
+        {
+            return (TEnum)Enum.Parse(typeof(TEnum), Value, IgnoreCase);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="Value"></param>
@@ -629,6 +679,20 @@ namespace Imagin.Common.Extensions
                 }
             }
             return new Version(major, minor, build);
+        }
+
+        /// <summary>
+        /// Attempts to parse <see cref="string"/> to <see cref="Enum"/>.
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <param name="OldValue"></param>
+        /// <param name="NewValue"></param>
+        /// <param name="IgnoreCase"></param>
+        /// <returns></returns>
+        public static bool TryParseEnum<TEnum>(this string OldValue, out TEnum NewValue, bool IgnoreCase = true) where TEnum : struct, IFormattable, IComparable, IConvertible
+        {
+            NewValue = default(TEnum);
+            return Enum.TryParse(OldValue, IgnoreCase, out NewValue);
         }
 
         #endregion

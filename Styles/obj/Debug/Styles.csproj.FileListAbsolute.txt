@@ -79,13 +79,12 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\bin\Debug\XAMLMar
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\bin\Debug\XAMLMarkupExtensions.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\bin\Debug\System.Windows.Interactivity.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Imagin.Styles.g.resources
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Imagin.Styles.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Imagin.Styles.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Styles.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.ColorPicker.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.Calendar.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.Button.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.DragSelection.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.Line.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.RichTextBox.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.PropertyGrid.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.ToggleSwitch.baml
@@ -99,6 +98,7 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.GroupBox.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.Border.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.TextBlock.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.GridSplitter.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.Link.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.Label.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.ListBox.baml
@@ -118,6 +118,6 @@ C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Brushes.baml
 C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Imagin.Styles_MarkupCompile.cache
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Styles.csprojResolveAssemblyReference.cache
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.Line.baml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Generic.GridSplitter.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Imagin.Styles.g.resources
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Imagin.Styles.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Styles\obj\Debug\Imagin.Styles.pdb

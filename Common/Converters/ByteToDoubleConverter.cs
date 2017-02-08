@@ -13,6 +13,7 @@ namespace Imagin.Common.Data.Converters
             var Value = (byte)value;
             return Value.ToDouble() / byte.MaxValue.ToDouble();
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;

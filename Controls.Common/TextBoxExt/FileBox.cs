@@ -16,31 +16,27 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public class ValidatePathHandler : IValidate<object>
+        public sealed class FileBoxValidateHandler : LocalPathValidateHandler
         {
             /// <summary>
             /// 
             /// </summary>
             /// <param name="Arguments"></param>
             /// <returns></returns>
-            public bool Validate(params object[] Arguments)
+            public override bool Validate(params object[] Arguments)
             {
-                var Mode = Arguments[0].To<DialogProviderMode>();
-                var Path = Arguments[1].ToString();
-
-                var Result = false;
+                var Path = Arguments[0].ToString();
+                var Mode = Arguments[1].To<DialogProviderMode>();
 
                 switch (Mode)
                 {
                     case DialogProviderMode.OpenFile:
-                        Result = Path.FileExists();
-                        break;
                     case DialogProviderMode.OpenFolder:
-                        Result = Path.DirectoryExists();
-                        break;
+                        FileOrFolder = Mode == DialogProviderMode.OpenFile;
+                        return Validate(Path);
                 }
 
-                return Result;
+                return false;
             }
         }
 
@@ -244,7 +240,7 @@ namespace Imagin.Controls.Common
         public FileBox()
         {
             DefaultStyleKey = typeof(FileBox);
-            ValidateHandler = new ValidatePathHandler();
+            SetCurrentValue(ValidateHandlerProperty, new FileBoxValidateHandler());
         }
 
         #endregion
@@ -258,6 +254,15 @@ namespace Imagin.Controls.Common
         protected virtual void OnBrowseModeChanged(DialogProviderMode Value)
         {
             OnCanValidateChanged(CanValidate);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        protected virtual void OnCanValidateChanged(bool Value)
+        {
+            IsValid = Value && ValidateHandler != null ? ValidateHandler.Validate(Text, BrowseMode) : false;
         }
 
         /// <summary>
@@ -281,15 +286,6 @@ namespace Imagin.Controls.Common
         {
             base.OnTextChanged(e);
             OnCanValidateChanged(CanValidate);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        protected virtual void OnCanValidateChanged(bool Value)
-        {
-            IsValid = Value && ValidateHandler != null ? ValidateHandler.Validate(BrowseMode, Text) : false;
         }
 
         /// <summary>

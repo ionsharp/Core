@@ -93,7 +93,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="%28Validation%29\RequiredRule.cs" />
+    <Compile Include="%28Validation%29\%28Handlers%29\LocalPathValidateHandler.cs" />
+    <Compile Include="%28Validation%29\%28Handlers%29\PathValidateHandler.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\DecimalRangeRule.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\DoubleRangeRule.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\Int16RangeRule.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\Int32RangeRule.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\Int64RangeRule.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\NamedRule.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\PathExistsRule.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\RangeRule.cs" />
+    <Compile Include="%28Validation%29\%28Rules%29\RequiredRule.cs" />
     <Compile Include="AbstractView.cs" />
     <Compile Include="AdvancedComboBox.cs" />
     <Compile Include="ButtonChrome.cs" />
@@ -103,6 +113,8 @@
     <Compile Include="Converters\WindowTypeVisibilityConverter.cs" />
     <Compile Include="DependencyProperty.Generic.cs" />
     <Compile Include="Extensions\Control.cs" />
+    <Compile Include="Extensions\RichTextBox.cs" />
+    <Compile Include="Extensions\FlowDocument.cs" />
     <Compile Include="Extensions\FrameworkElement.cs" />
     <Compile Include="Extensions\DependencyObject.cs" />
     <Compile Include="Extensions\Panel.cs" />
@@ -116,6 +128,14 @@
     <Compile Include="TextBoxExt\RegexBoxBase.cs" />
     <Compile Include="TextBoxExt\RegexBox.cs" />
     <Compile Include="ToggleSwitch.cs" />
+    <Compile Include="TokenView\ITokenizer.cs" />
+    <Compile Include="TokenView\ITokenizer.Generic.cs" />
+    <Compile Include="TokenView\StringTokenizer.cs" />
+    <Compile Include="TokenView\TokenButton.cs" />
+    <Compile Include="TokenView\Tokenizer.Generic.cs" />
+    <Compile Include="TokenView\TokenMouseAction.cs" />
+    <Compile Include="TokenView\TokenView.cs" />
+    <Compile Include="TokenView\TokenTriggerKey.cs" />
     <Compile Include="TreeViewExt\TreeViewExt.cs" />
     <Compile Include="TreeViewExt\%28Converters%29\TreeViewColumnGridLengthConverter.cs" />
     <Compile Include="TreeViewExt\%28Converters%29\TreeViewColumnDoubleConverter.cs" />

@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace Imagin.Common.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class EnumExtensions
     {
         /// <summary>
@@ -38,24 +41,6 @@ namespace Imagin.Common.Extensions
         }
 
         /// <summary>
-        /// Converts from string to enum.
-        /// </summary>
-        public static TEnum ParseEnum<TEnum>(this string ToParse, bool IgnoreCase = true) where TEnum : struct, IFormattable, IComparable, IConvertible
-        {
-            return (TEnum)Enum.Parse(typeof(TEnum), ToParse, IgnoreCase);
-        }
-
-        /// <summary>
-        /// Attempts to convert from string to enum.
-        /// </summary>
-        public static TEnum TryParseEnum<TEnum>(this string ToParse, bool IgnoreCase = true) where TEnum : struct, IFormattable, IComparable, IConvertible
-        {
-            var Result = default(TEnum);
-            Enum.TryParse<TEnum>(ToParse, IgnoreCase, out Result);
-            return Result;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
@@ -81,24 +66,70 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="TEnum"></typeparam>
-        /// <param name="type"></param>
-        /// <param name="Value"></param>
+        /// <param name="source"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static bool Has<TEnum>(this Enum type, TEnum Value) where TEnum : struct, IFormattable, IComparable, IConvertible
+        public static bool Has(this Enum source, Enum value) 
         {
-            return type.HasFlag(Value as Enum);
+            return source.HasFlag(value);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="type"></param>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <param name="source"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool Has(this Enum type, Enum value)
+        public static bool Has<TEnum>(this TEnum source, TEnum value) where TEnum : struct, IFormattable, IComparable, IConvertible
         {
-            return type.HasFlag(value);
+            return source.As<Enum>().HasFlag(value as Enum);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static bool HasAll<TEnum>(this TEnum source, params TEnum[] values) where TEnum : struct, IFormattable, IComparable, IConvertible
+        {
+            foreach (var i in values)
+            {
+                if (!source.Has(i))
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static bool HasAny<TEnum>(this TEnum source, params TEnum[] values) where TEnum : struct, IFormattable, IComparable, IConvertible
+        {
+            foreach (var i in values)
+            {
+                if (source.Has(i))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static bool HasNone<TEnum>(this TEnum source, params TEnum[] values) where TEnum : struct, IFormattable, IComparable, IConvertible
+        {
+            return !source.HasAny(values);
         }
 
         /// <summary>

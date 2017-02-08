@@ -1,4 +1,4 @@
-﻿#Imagin.NET ![](https://img.shields.io/badge/style-2.9-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6.1-red.svg?style=flat&label=.NET)
+﻿#Imagin.NET ![](https://img.shields.io/badge/style-3.0-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6.1-red.svg?style=flat&label=.NET)
 Imagin.NET is a library written in C# that provides common WPF controls and utilities.
 
 ##[Documentation](http://imagin.tech/docs/imagin) *(under construction)*
@@ -10,13 +10,14 @@ Imagin.NET is a library written in C# that provides common WPF controls and util
 ###Controls.Common
   .  |  .  |  .  |  .  |  .  |
 -----|-----|-----|-----|-----|
-AdvancedComboBox | AdvancedTextBox | AdvancedTreeView | AlignableWrapPanel | AlphaNumericBox | 
-BasicWindow | ByteUpDown | CheckerBoard | DateTimeUpDown | DecimalUpDown | 
-DirectionPad | DoubleUpDown | EditableLabel | FileBox | FlagCheckView |
-FontFamilyBox | FontSizeBox | Gadget | HexBox | IntUpDown | 
-Line | Link | LongUpDown | MaskedButton | MaskedDropDownButton | 
-MaskedImage | MaskedToggleButton | PasswordBox | RadioGroup | RegexBox | 
-ResizableGrid | RippleDecorator | SelectionCanvas | ShortUpDown | ToggleSwitch | 
+AdvancedComboBox | AlignableWrapPanel | AlphaNumericBox | BasicWindow | ByteUpDown | 
+CheckerBoard | DateTimeUpDown | DecimalUpDown | DirectionPad | DoubleUpDown | 
+EditableLabel | FileBox | FlagCheckView | FontFamilyBox | FontSizeBox | 
+Gadget | HexBox | IntUpDown | Line | Link | 
+LongUpDown | MaskedButton | MaskedDropDownButton | MaskedImage | MaskedToggleButton | 
+PasswordBox | RadioGroup | RegexBox | ResizableGrid | RippleDecorator | 
+SelectionCanvas | ShortUpDown | TextBoxExt | ToggleSwitch | TokenView|
+TreeViewExt | 
 ####*[Nuget](https://www.nuget.org/packages/Imagin.Controls.Common/)*: `PM> Install-Package Imagin.Controls.Common`
 
 ###Controls.Extended

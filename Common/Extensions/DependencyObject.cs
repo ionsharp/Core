@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -221,6 +222,29 @@ namespace Imagin.Common.Extensions
             }
             while (Child != null);
             return null;
+        }
+        
+        /// <summary>
+        /// Gets all logical children for the given <see cref="DependencyObject"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Parent"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetLogicalChildren<T>(this DependencyObject Parent) where T : DependencyObject
+        {
+            if (Parent == null)
+                yield break;
+
+            yield return Parent as T;
+
+            foreach (var Child in LogicalTreeHelper.GetChildren(Parent).OfType<DependencyObject>())
+            {
+                foreach (var Descendant in Child.GetLogicalChildren<T>())
+                {
+                    if (Descendant is T)
+                        yield return Descendant;
+                }
+            }
         }
 
         /// <summary>

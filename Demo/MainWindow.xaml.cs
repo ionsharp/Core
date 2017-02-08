@@ -876,6 +876,23 @@ namespace Imagin.NET.Demo
             }
         }
 
+        string tokensString = "Red;Green;Blue;Yellow;Orange;Black;Purple;";
+        [Category("String Types")]
+        [Description("Description for TokensString property.")]
+        [StringKind(StringKind.Tokens)]
+        public string TokensString
+        {
+            get
+            {
+                return tokensString;
+            }
+            set
+            {
+                tokensString = value;
+                OnPropertyChanged("TokensString");
+            }
+        }
+
         Uri uri = new Uri("http://www.google.com");
         [Category("Misc Types")]
         [Description("Description for Uri property.")]

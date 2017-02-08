@@ -3448,6 +3448,11 @@
             Stores a reference to every nested property relative to the original host; properties are stored in order of depth.
             </summary>
         </member>
+        <member name="E:Imagin.Controls.Extended.PropertyGrid.SelectedObjectChanged">
+            <summary>
+            Occurs when the selected object changes.
+            </summary>
+        </member>
         <member name="F:Imagin.Controls.Extended.PropertyGrid.AcceptsNullObjectsProperty">
             <summary>
             

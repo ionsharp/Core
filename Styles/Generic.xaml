@@ -33,7 +33,7 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.Slider.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.TabControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.TextBlock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.TextBlock.xaml" /> 
         <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.TextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.ToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.ToggleSwitch.xaml" />

@@ -26,5 +26,9 @@
         /// Specifies a password string.
         /// </summary>
         Password,
+        /// <summary>
+        /// Specifies a series of tokens.
+        /// </summary>
+        Tokens,
     }
 }
