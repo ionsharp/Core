@@ -37,6 +37,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <!--
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background"  Value="{DynamicResource Brush.DataGridCell.Selected.Background}"/>
@@ -47,10 +48,12 @@
                 <Setter Property="Foreground"  Value="{DynamicResource Brush.DataGridCell.MouseOver.Foreground}"/>
             </Trigger>
         </Style.Triggers>
+        -->
     </Style>
 
     <Style x:Key="{x:Type DataGridRow}" TargetType="{x:Type DataGridRow}">
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Controls.Common:FrameworkElementExtensions.BorderBrush" Value="{DynamicResource Brush.DataGridRow.Border}" />
+        <Setter Property="Controls.Common:FrameworkElementExtensions.BorderThickness" Value="1" />
         <Setter Property="TextElement.Foreground" Value="{DynamicResource Brush.DataGridRow.Foreground}" />
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
         <Setter Property="ValidationErrorTemplate">
@@ -69,30 +72,35 @@
                     <Border
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}"
-                        SnapsToDevicePixels="True">
-                        <SelectiveScrollingGrid>
-                            <SelectiveScrollingGrid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </SelectiveScrollingGrid.ColumnDefinitions>
-                            <SelectiveScrollingGrid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </SelectiveScrollingGrid.RowDefinitions>
-                            <DataGridCellsPresenter 
-                                Grid.Column="1"
-                                ItemsPanel="{TemplateBinding ItemsPanel}"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                            <DataGridDetailsPresenter 
-                                Grid.Column="1"
-                                Grid.Row="1"
-                                SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                Visibility="{TemplateBinding DetailsVisibility}" />
-                            <DataGridRowHeader Grid.RowSpan="2"
-                                SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
-                                Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
-                        </SelectiveScrollingGrid>
+                        Background="{TemplateBinding Background}">
+                        <Border
+                            Background="{Binding Path=(Controls.Common:FrameworkElementExtensions.Background), RelativeSource={RelativeSource TemplatedParent}}"
+                            BorderBrush="{Binding Path=(Controls.Common:FrameworkElementExtensions.BorderBrush), RelativeSource={RelativeSource TemplatedParent}}"
+                            BorderThickness="{Binding Path=(Controls.Common:FrameworkElementExtensions.BorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
+                            SnapsToDevicePixels="True">
+                            <SelectiveScrollingGrid>
+                                <SelectiveScrollingGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </SelectiveScrollingGrid.ColumnDefinitions>
+                                <SelectiveScrollingGrid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </SelectiveScrollingGrid.RowDefinitions>
+                                <DataGridCellsPresenter 
+                                    Grid.Column="1"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <DataGridDetailsPresenter 
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    Visibility="{TemplateBinding DetailsVisibility}" />
+                                <DataGridRowHeader Grid.RowSpan="2"
+                                    SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                            </SelectiveScrollingGrid>
+                        </Border>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -103,24 +111,24 @@
                     <Condition Property="IsMouseOver" Value="True" />
                     <Condition Property="IsSelected" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource Brush.DataGridRow.MouseOver.Background}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.DataGridRow.MouseOver.Border}" />
+                <Setter Property="Controls.Common:FrameworkElementExtensions.Background" Value="{DynamicResource Brush.DataGridRow.MouseOver.Background}" />
+                <Setter Property="Controls.Common:FrameworkElementExtensions.BorderBrush" Value="{DynamicResource Brush.DataGridRow.MouseOver.Border}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsSelected" Value="True" />
                     <Condition Property="Selector.IsSelectionActive" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource Brush.DataGridRow.Selected.Background}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.DataGridRow.Selected.Border}" />
+                <Setter Property="Controls.Common:FrameworkElementExtensions.Background" Value="{DynamicResource Brush.DataGridRow.Selected.Background}" />
+                <Setter Property="Controls.Common:FrameworkElementExtensions.BorderBrush" Value="{DynamicResource Brush.DataGridRow.Selected.Border}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsSelected" Value="True" />
                     <Condition Property="Selector.IsSelectionActive" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource Brush.DataGridRow.Selected.Active.Background}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource Brush.DataGridRow.Selected.Active.Border}" />
+                <Setter Property="Controls.Common:FrameworkElementExtensions.Background" Value="{DynamicResource Brush.DataGridRow.Selected.Active.Background}" />
+                <Setter Property="Controls.Common:FrameworkElementExtensions.BorderBrush" Value="{DynamicResource Brush.DataGridRow.Selected.Active.Border}" />
                 <Setter Property="Foreground" Value="{DynamicResource Brush.DataGridRow.Selected.Active.Foreground}" />
             </MultiTrigger>
             <MultiTrigger>
@@ -129,7 +137,7 @@
                     <Condition Property="ItemsControl.AlternationIndex" Value="0" />
                     <Condition Property="IsMouseOver" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource Brush.DataGridRow.Even.Background}"/>
+                <Setter Property="Controls.Common:FrameworkElementExtensions.Background" Value="{DynamicResource Brush.DataGridRow.Even.Background}"/>
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -137,7 +145,7 @@
                     <Condition Property="ItemsControl.AlternationIndex" Value="1" />
                     <Condition Property="IsMouseOver" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="{DynamicResource Brush.DataGridRow.Odd.Background}"/>
+                <Setter Property="Controls.Common:FrameworkElementExtensions.Background" Value="{DynamicResource Brush.DataGridRow.Odd.Background}"/>
             </MultiTrigger>
         </Style.Triggers>
     </Style>
@@ -491,7 +499,7 @@
         <Setter Property="CanUserResizeRows" Value="False"/>
         <Setter Property="CanUserSortColumns" Value="True"/>
         <Setter Property="ColumnHeaderStyle" Value="{StaticResource Style.DataGridColumnHeader}"/>
-        <Setter Property="GridLinesVisibility" Value="All"/>
+        <Setter Property="GridLinesVisibility" Value="None"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource Brush.DataGrid.GridLines.Horizontal}"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>

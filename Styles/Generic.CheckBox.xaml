@@ -21,12 +21,19 @@
                     Height="16"
                     VerticalAlignment="Center"
                     Width="16">
-                    <Controls.Common:MaskedImage 
-                        x:Name="PART_Tick" 
-                        ImageColor="{DynamicResource Brush.CheckBox.Tick.Fill}"
-                        Margin="0,-3,-3,0"
-                        Source="pack://application:,,,/Imagin.Styles;component/Images/Tick.png"
-                        Visibility="Hidden" />
+                    <Grid>
+                        <Controls.Common:MaskedImage 
+                            x:Name="PART_Tick" 
+                            ImageColor="{DynamicResource Brush.CheckBox.Tick.Fill}"
+                            Margin="0,-3,-3,0"
+                            Source="pack://application:,,,/Imagin.Styles;component/Images/Tick.png"
+                            Visibility="Collapsed" />
+                        <Rectangle 
+                            x:Name="PART_Indeterminate"
+                            Fill="{DynamicResource Brush.CheckBox.Tick.Fill}"
+                            Margin="2"
+                            Visibility="Collapsed"/>
+                    </Grid>
                 </Border>
                 <TextBlock 
                     Grid.Column="1" 
@@ -39,6 +46,9 @@
             </Grid>
         </BulletDecorator>
         <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter TargetName="PART_Indeterminate" Property="Visibility" Value="Visible" />
+            </Trigger>
             <Trigger Property="IsChecked" Value="True">
                 <Setter TargetName="PART_Tick" Property="Visibility" Value="Visible" />
             </Trigger>

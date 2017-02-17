@@ -3,24 +3,4 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Controls.Common="http://imagin.tech/imagin/controls/common">
-    <Style x:Key="{x:Type RichTextBox}" TargetType="{x:Type RichTextBox}">
-        <Setter Property="Background" Value="{DynamicResource Brush.RichTextBox.Background}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Brush.RichTextBox.Border}" />
-        <Setter Property="FontSize" Value="15"/>
-        <Setter Property="Foreground" Value="{DynamicResource Brush.RichTextBox.Foreground}" />
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="Padding" Value="10" />
-        <Style.Triggers>
-            <Trigger Property="IsReadOnly" Value="True">
-                <Setter Property="Background" Value="{DynamicResource Brush.RichTextBox.ReadOnly.Background}" />
-                <Setter Property="Foreground" Value="{DynamicResource Brush.RichTextBox.ReadOnly.Foreground}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="{x:Type Controls.Common:TokenView}" TargetType="{x:Type Controls.Common:TokenView}" BasedOn="{StaticResource  {x:Type RichTextBox}}">
-        <Setter Property="Padding" Value="3,7"/>
-    </Style>
 </ResourceDictionary>

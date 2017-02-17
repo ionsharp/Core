@@ -37,6 +37,7 @@
                             <Grid Grid.Column="1" Visibility="{TemplateBinding CanUserClear, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <local:MaskedButton
                                     x:Name="PART_ClearButton"
+                                    ImageColor="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
                                     Source="pack://application:,,,/Imagin.Controls.Common;component/Images/XRound.png"
                                     Margin="5,0"
                                     Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToVisibilityConverter}}"/>

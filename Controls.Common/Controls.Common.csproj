@@ -112,8 +112,8 @@
     <Compile Include="Converters\CenterToolTipConverter.cs" />
     <Compile Include="Converters\WindowTypeVisibilityConverter.cs" />
     <Compile Include="DependencyProperty.Generic.cs" />
+    <Compile Include="Extensions\TextBoxBase.cs" />
     <Compile Include="Extensions\Control.cs" />
-    <Compile Include="Extensions\RichTextBox.cs" />
     <Compile Include="Extensions\FlowDocument.cs" />
     <Compile Include="Extensions\FrameworkElement.cs" />
     <Compile Include="Extensions\DependencyObject.cs" />

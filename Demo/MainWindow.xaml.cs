@@ -19,12 +19,6 @@ namespace Imagin.NET.Demo
 {
     #region FileSystemEntryModel
 
-    public enum ServerObjectType
-    {
-        Folder,
-        File
-    }
-
     public class FileSystemEntryModel : NamedObject
     {
         bool isExpanded = false;
@@ -969,6 +963,12 @@ namespace Imagin.NET.Demo
         All = Apple | Banana | Cherry | Grape | Kiwi | Mango | Orange | Peach | Pear | Pineapple
     }
 
+    public enum ServerObjectType
+    {
+        Folder,
+        File
+    }
+
     public enum ViewEnum
     {
         List,
@@ -1187,6 +1187,10 @@ namespace Imagin.NET.Demo
         }
 
         #endregion
+
+        private void SystemTreeView_Expanded(object sender, RoutedEventArgs e)
+        {
+        }
     }
 
     #endregion

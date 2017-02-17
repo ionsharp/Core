@@ -524,6 +524,68 @@
             <param name="owner"></param>
             <param name="value"></param>
         </member>
+        <member name="T:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.EnableCopyCommandProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.SetEnableCopyCommand(System.Windows.Controls.Primitives.TextBoxBase,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.GetEnableCopyCommand(System.Windows.Controls.Primitives.TextBoxBase)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.EnableCutCommandProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.SetEnableCutCommand(System.Windows.Controls.Primitives.TextBoxBase,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.GetEnableCutCommand(System.Windows.Controls.Primitives.TextBoxBase)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.EnablePasteCommandProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.SetEnablePasteCommand(System.Windows.Controls.Primitives.TextBoxBase,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.TextBoxBaseExtensions.GetEnablePasteCommand(System.Windows.Controls.Primitives.TextBoxBase)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Controls.Common.Extensions.ControlExtensions">
             <summary>
             
@@ -627,30 +689,6 @@
             <param name="sender">The sender.</param>
             <param name="args">The <see cref="T:System.Windows.DragEventArgs"/> instance containing the event data.</param>
         </member>
-        <member name="T:Imagin.Controls.Common.Extensions.RichTextBoxExtensions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.Extensions.RichTextBoxExtensions.ParagraphSpacingProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Controls.Common.Extensions.RichTextBoxExtensions.GetParagraphSpacing(System.Windows.Controls.RichTextBox)">
-            <summary>
-            
-            </summary>
-            <param name="d"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Common.Extensions.RichTextBoxExtensions.SetParagraphSpacing(System.Windows.Controls.RichTextBox,System.Windows.Thickness)">
-            <summary>
-            
-            </summary>
-            <param name="d"></param>
-            <param name="value"></param>
-        </member>
         <member name="T:Imagin.Controls.Common.Extensions.FlowDocumentExtensions">
             <summary>
             
@@ -667,6 +705,120 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.FrameworkElementExtensions._ContextMenuProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.Get_ContextMenu(System.Windows.FrameworkElement)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.Set_ContextMenu(System.Windows.FrameworkElement,System.Windows.Controls.ContextMenu)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.BackgroundProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.GetBackground(System.Windows.FrameworkElement)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.SetBackground(System.Windows.FrameworkElement,System.Windows.Media.Brush)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.BorderBrushProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.GetBorderBrush(System.Windows.FrameworkElement)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.SetBorderBrush(System.Windows.FrameworkElement,System.Windows.Media.Brush)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.BorderThicknessProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.GetBorderThickness(System.Windows.FrameworkElement)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.SetBorderThickness(System.Windows.FrameworkElement,System.Windows.Thickness)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.CornerRadiusProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.GetCornerRadius(System.Windows.FrameworkElement)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.SetCornerRadius(System.Windows.FrameworkElement,System.Windows.CornerRadius)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.EnableContextMenuProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.GetEnableContextMenu(System.Windows.FrameworkElement)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.SetEnableContextMenu(System.Windows.FrameworkElement,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
         </member>
         <member name="F:Imagin.Controls.Common.Extensions.FrameworkElementExtensions.IsDragMoveEnabledProperty">
             <summary>
@@ -1592,12 +1744,12 @@
             Specifies an object capable of tokenizing a <see cref="T:System.String"/>.
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Common.ITokenizer.TokensSource">
+        <member name="P:Imagin.Controls.Common.ITokenizer.Source">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.ITokenizer.GenerateFrom(System.String,System.Char)">
+        <member name="M:Imagin.Controls.Common.ITokenizer.Tokenize(System.String,System.Char)">
             <summary>
             
             </summary>
@@ -1608,13 +1760,6 @@
         <member name="M:Imagin.Controls.Common.ITokenizer.ParseToken(System.String)">
             <summary>
             Gets a token if the given <see cref="T:System.String"/> can be parsed.
-            </summary>
-            <param name="Text"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Common.ITokenizer.Tokenize(System.String)">
-            <summary>
-            Converts the given <see cref="T:System.String"/> to a list of tokens.
             </summary>
             <param name="Text"></param>
             <returns></returns>
@@ -1632,12 +1777,12 @@
             </summary>
             <typeparam name="TToken"></typeparam>
         </member>
-        <member name="P:Imagin.Controls.Common.ITokenizer`1.TokensSource">
+        <member name="P:Imagin.Controls.Common.ITokenizer`1.Source">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.ITokenizer`1.GenerateFrom(System.String,System.Char)">
+        <member name="M:Imagin.Controls.Common.ITokenizer`1.Tokenize(System.String,System.Char)">
             <summary>
             
             </summary>
@@ -1648,13 +1793,6 @@
         <member name="M:Imagin.Controls.Common.ITokenizer`1.ParseToken(System.String)">
             <summary>
             Gets a token if the given <see cref="T:System.String"/> can be parsed.
-            </summary>
-            <param name="Text"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Controls.Common.ITokenizer`1.Tokenize(System.String)">
-            <summary>
-            Converts the given <see cref="T:System.String"/> to a list of tokens.
             </summary>
             <param name="Text"></param>
             <returns></returns>
@@ -1671,7 +1809,7 @@
             Tokenizes a <see cref="T:System.String"/> into multiple <see cref="T:System.String"/>s.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.StringTokenizer.GenerateFrom(System.String,System.Char)">
+        <member name="M:Imagin.Controls.Common.StringTokenizer.Tokenize(System.String,System.Char)">
             <summary>
             
             </summary>
@@ -1686,19 +1824,17 @@
             <param name="Text"></param>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Controls.Common.StringTokenizer.Tokenize(System.String)">
-            <summary>
-            Converts the given <see cref="T:System.String"/> to a list of tokens.
-            </summary>
-            <param name="Text"></param>
-            <returns></returns>
-        </member>
         <member name="M:Imagin.Controls.Common.StringTokenizer.ToString(System.String)">
             <summary>
             
             </summary>
             <param name="Token"></param>
             <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.StringTokenizer.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Controls.Common.TokenButton">
             <summary>
@@ -1710,20 +1846,23 @@
             
             </summary>
             <param name="content"></param>
-            <param name="contentTemplate"></param>
-            <param name="contentTemplateSelector"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenButton.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Controls.Common.Tokenizer`1">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Imagin.Controls.Common.Tokenizer`1.TokensSource">
+        <member name="P:Imagin.Controls.Common.Tokenizer`1.Source">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.Tokenizer`1.GenerateFrom(System.String,System.Char)">
+        <member name="M:Imagin.Controls.Common.Tokenizer`1.Tokenize(System.String,System.Char)">
             <summary>
             
             </summary>
@@ -1738,19 +1877,18 @@
             <param name="Text"></param>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Controls.Common.Tokenizer`1.Tokenize(System.String)">
-            <summary>
-            Converts the given <see cref="T:System.String"/> to a list of tokens.
-            </summary>
-            <param name="Text"></param>
-            <returns></returns>
-        </member>
         <member name="M:Imagin.Controls.Common.Tokenizer`1.ToString(`0)">
             <summary>
             
             </summary>
             <param name="Token"></param>
             <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.Tokenizer`1.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Source"></param>
         </member>
         <member name="T:Imagin.Controls.Common.TokenMouseAction">
             <summary>
@@ -1780,16 +1918,6 @@
         <member name="P:Imagin.Controls.Common.TokenView.CurrentText">
             <summary>
             Gets the current input text.
-            </summary>
-        </member>
-        <member name="F:Imagin.Controls.Common.TokenView.IsCopyPasteEnabledProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Controls.Common.TokenView.IsCopyPasteEnabled">
-            <summary>
-            The <see cref="T:System.Char"/> used to delimit tokens.
             </summary>
         </member>
         <member name="F:Imagin.Controls.Common.TokenView.TokenDelimiterProperty">
@@ -1839,7 +1967,7 @@
         </member>
         <member name="P:Imagin.Controls.Common.TokenView.Tokens">
             <summary>
-            Gets or sets the tokens.
+            Gets a collection of all instances of tokens.
             </summary>
         </member>
         <member name="F:Imagin.Controls.Common.TokenView.TokensSourceProperty">
@@ -1849,7 +1977,7 @@
         </member>
         <member name="P:Imagin.Controls.Common.TokenView.TokensSource">
             <summary>
-            
+            Gets or sets a tokenized string.
             </summary>
         </member>
         <member name="F:Imagin.Controls.Common.TokenView.TokenStyleProperty">
@@ -1891,6 +2019,31 @@
             <typeparam name="TButton"></typeparam>
             <param name="Action"></param>
         </member>
+        <member name="M:Imagin.Controls.Common.TokenView.GenerateInline(System.Object)">
+            <summary>
+            Generates an <see cref="T:System.Windows.Documents.Inline"/> element to host the given token.
+            </summary>
+            <param name="Token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.GenerateRun(System.Object)">
+            <summary>
+            Generates a <see cref="T:System.Windows.Documents.Run"/> to host the <see cref="T:System.String"/> representation of the given token.
+            </summary>
+            <param name="Token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.GetTokensSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.IntersectTokens">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Controls.Common.TokenView.ReplaceWithToken(System.String,System.Object)">
             <summary>
             Replaces the given input text with the given token.
@@ -1912,7 +2065,7 @@
         </member>
         <member name="M:Imagin.Controls.Common.TokenView.OnTextChanged(System.Windows.Controls.TextChangedEventArgs)">
             <summary>
-            
+            Occurs when the current text changes.
             </summary>
             <param name="e"></param>
         </member>
@@ -1940,42 +2093,41 @@
             </summary>
             <param name="Button"></param>
         </member>
-        <member name="M:Imagin.Controls.Common.TokenView.OnPreviewExecuted(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="M:Imagin.Controls.Common.TokenView.OnTokenDelimiterChanged(System.Char,System.Char)">
             <summary>
-            
+            Occurs when <see cref="P:Imagin.Controls.Common.TokenView.TokenDelimiter"/> property changes.
             </summary>
             <param name="OldValue"></param>
             <param name="NewValue"></param>
         </member>
-        <member name="M:Imagin.Controls.Common.TokenView.OnTokensChanged(System.String)">
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokenLoaded(System.Object)">
             <summary>
-            
+            Occurs when a token has been loaded (or added both logically and visually).
+            </summary>
+            <param name="Token"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokenUnloaded(System.Object)">
+            <summary>
+            Occurs when a token has been unloaded (or removed both logically and visually).
+            </summary>
+            <param name="Token"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokensSourceChanged(System.String)">
+            <summary>
+            Occurs when <see cref="P:Imagin.Controls.Common.TokenView.TokensSource"/> property changes.
             </summary>
         </member>
-        <member name="M:Imagin.Controls.Common.TokenView.OnTokensSourceChanged(System.Object)">
+        <member name="M:Imagin.Controls.Common.TokenView.OnTokenStyleChanged(System.Windows.Style,System.Windows.Style)">
             <summary>
-            
+            Occurs when <see cref="P:Imagin.Controls.Common.TokenView.TokenStyle"/> property changes; if the style is null, the global style for <see cref="T:Imagin.Controls.Common.TokenButton"/> (if present) is used instead.
             </summary>
-            <param name="Value"></param>
-        </member>
-        <member name="M:Imagin.Controls.Common.TokenView.OnTokenStyleChanged(System.Windows.Style)">
-            <summary>
-            
-            </summary>
-            <param name="Value"></param>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
         </member>
         <member name="M:Imagin.Controls.Common.TokenView.OnTokenTriggered">
             <summary>
-            
+            Occurs when some event triggers the creation of a token.
             </summary>
-            <param name="Key"></param>
         </member>
         <member name="T:Imagin.Controls.Common.TokenTriggerKey">
             <summary>

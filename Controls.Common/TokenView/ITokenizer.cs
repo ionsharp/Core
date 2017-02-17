@@ -10,9 +10,9 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        object TokensSource
+        object Source
         {
-            get; set;
+            get;
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Imagin.Controls.Common
         /// <param name="TokenString"></param>
         /// <param name="Delimiter"></param>
         /// <returns></returns>
-        IEnumerable<object> GenerateFrom(string TokenString, char Delimiter);
+        IEnumerable<object> Tokenize(string TokenString, char Delimiter);
 
         /// <summary>
         /// Gets a token if the given <see cref="string"/> can be parsed.
@@ -29,13 +29,6 @@ namespace Imagin.Controls.Common
         /// <param name="Text"></param>
         /// <returns></returns>
         object ParseToken(string Text);
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to a list of tokens.
-        /// </summary>
-        /// <param name="Text"></param>
-        /// <returns></returns>
-        IEnumerable<object> Tokenize(string Text);
 
         /// <summary>
         /// 

@@ -98,16 +98,17 @@
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Pressed.Foreground" Color="#FFF"/>
     <SolidColorBrush x:Key="Brush.DataGridColumnHeader.Thumb" Color="#05000000"/>
 
+    <SolidColorBrush x:Key="Brush.DataGridRow.Border" Color="Transparent"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Foreground" Color="#333"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Background" Color="#FF6CC6FF"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Border" Color="#FF6CC6FF"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Background" Color="#60bffb"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Border" Color="#60bffb"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Background" Color="#556CC6FF"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Border" Color="#556CC6FF"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Background" Color="#5560bffb"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Border" Color="#5560bffb"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Selected.Active.Foreground" Color="#FFF"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Even.Background" Color="#05000000"/>
     <SolidColorBrush x:Key="Brush.DataGridRow.Odd.Background" Color="#10000000"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Background" Color="#a9dffe"/>
-    <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Border" Color="#a9dffe"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Background" Color="#15000000"/>
+    <SolidColorBrush x:Key="Brush.DataGridRow.MouseOver.Border" Color="#15000000"/>
 
     <SolidColorBrush x:Key="Brush.DragSelection.Border" Color="#55349ADE"/>
     <SolidColorBrush x:Key="Brush.DragSelection.Background" Color="#552489cd"/>
@@ -220,10 +221,6 @@
     <SolidColorBrush x:Key="Brush.RadioButton.Border" Color="#DDD"/>
     <SolidColorBrush x:Key="Brush.RadioButton.Foreground" Color="#666"/>
     <SolidColorBrush x:Key="Brush.RadioButton.Tick.Stroke" Color="#FF349ADE"/>
-
-    <SolidColorBrush x:Key="Brush.RichTextBox.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Brush.RichTextBox.Border" Color="#DDD"/>
-    <SolidColorBrush x:Key="Brush.RichTextBox.Foreground" Color="#666"/>
 
     <SolidColorBrush x:Key="Brush.ScrollBar.Background" Color="#FFD6D6D6"/>
     <SolidColorBrush x:Key="Brush.ScrollBar.MouseOver.Background" Color="#DDD"/>

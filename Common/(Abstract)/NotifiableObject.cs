@@ -9,8 +9,10 @@ namespace Imagin.Common
     /// An object capable of raising notifications using <see cref="System.Timers.Timer"/>.
     /// </summary>
     [Serializable]
-    public class NotifiableObject : AbstractObject, INotifiable
+    public class NotifiableObject : AbstractObject, IDisposable, INotifiable
     {
+        bool disposed = false;
+
         /// <summary>
         /// The default interval to use.
         /// </summary>
@@ -67,6 +69,53 @@ namespace Imagin.Common
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NotifiableObject"/> class and enables (or disables) timer with given interval.
+        /// </summary>
+        /// <param name="interval"></param>
+        /// <param name="enabled"></param>
+        public NotifiableObject(double interval = DefaultInterval, bool enabled = false) : base()
+        {
+            Timer = new Timer();
+            Timer.Elapsed += OnNotified;
+
+            Interval = interval;
+            Enabled = enabled;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ~NotifiableObject()
+        {
+            Dispose(false);
+        }
+
+        void OnNotified(object sender, ElapsedEventArgs e)
+        {
+            OnNotified(e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+            }
+
+            Timer.Enabled = false;
+            Timer.Elapsed -= OnNotified;
+            Timer.Dispose();
+
+            disposed = true;
+        }
+
+        /// <summary>
         /// Occurs when <see cref="Timer"/> elapses.
         /// </summary>
         /// <param name="e"></param>
@@ -76,17 +125,12 @@ namespace Imagin.Common
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotifiableObject"/> class and enables (or disables) timer with given interval.
+        /// 
         /// </summary>
-        /// <param name="interval"></param>
-        /// <param name="enabled"></param>
-        public NotifiableObject(double interval = DefaultInterval, bool enabled = false) : base()
+        public void Dispose()
         {
-            Timer = new Timer();
-            Timer.Elapsed += (s, e) => OnNotified(e);
-
-            Interval = interval;
-            Enabled = enabled;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

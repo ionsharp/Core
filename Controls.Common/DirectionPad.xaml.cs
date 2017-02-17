@@ -82,7 +82,7 @@ namespace Imagin.Controls.Common
                 SetValue(DirectionProperty, value);
             }
         }
-        private static void OnCompassDirectionChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
+        static void OnCompassDirectionChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
             DirectionPad Pad = Object as DirectionPad;
             Pad.SetPositions(Pad.Direction);

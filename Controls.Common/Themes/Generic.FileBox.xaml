@@ -39,6 +39,7 @@
                             <local:MaskedImage 
                                 Grid.Column="1" 
                                 x:Name="PART_Indicator"
+                                ImageColor="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
                                 Margin="5,0,0,0"
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/CheckmarkRound.png"
                                 Visibility="{Binding IsValid, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -46,6 +47,7 @@
                                 Grid.Column="2" 
                                 x:Name="PART_Button"
                                 Focusable="False"
+                                ImageColor="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
                                 IsEnabled="{TemplateBinding CanBrowse}"
                                 Padding="7,0" 
                                 Source="pack://application:,,,/Imagin.Controls.Common;component/Images/Folder.png"

@@ -22,10 +22,31 @@ namespace Imagin.Common.Data.Converters
         /// <returns></returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values?.Length == 2 && values[0] is object && values[1] is object)
-                return ((Enum)values[0]).HasFlag((Enum)values[1]).ToVisibility();
+            object a = null, b = null;
 
-            return Visibility.Visible;
+            var Result = true;
+
+            var i = 0;
+            foreach (var j in values)
+            {
+                if (i.IsEven())
+                {
+                    a = j;
+                }
+                else
+                {
+                    b = j;
+                    if (a != null && b != null)
+                    {
+                        Result = Result && a.As<Enum>().HasFlag(b as Enum);
+                        a = null;
+                        b = null;
+                    }
+                }
+                i++;
+            }
+
+            return Result.ToVisibility();
         }
 
         /// <summary>

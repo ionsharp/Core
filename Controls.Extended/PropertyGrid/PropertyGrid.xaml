@@ -437,7 +437,7 @@
                                     <Controls.Common:TokenView 
                                         IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"
                                         HorizontalAlignment="Stretch"
-                                        Tokens="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        TokensSource="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>
@@ -509,7 +509,6 @@
         <Grid 
             IsEnabled="{Binding SelectedObject, Converter={StaticResource NullToBooleanConverter}}"
             Controls.Common:PanelExtensions.Spacing="0,0,10,0"
-            Controls.Common:PanelExtensions.TrimLast="True"
             Visibility="{Binding ShowHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

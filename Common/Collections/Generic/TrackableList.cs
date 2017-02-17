@@ -133,6 +133,22 @@ namespace Imagin.Common.Collections.Generic
         /// </summary>
         public event EventHandler<EventArgs<IEnumerable<T>>> ItemsRemoved;
 
+        event EventHandler<EventArgs> ITrackableCollection.PreviewItemsCleared
+        {
+            add
+            {
+                PreviewItemsCleared += value;
+            }
+            remove
+            {
+                PreviewItemsCleared -= value;
+            }
+        }
+        /// <summary>
+        /// Occurs just before the collection is cleared.
+        /// </summary>
+        public event EventHandler<EventArgs> PreviewItemsCleared;
+
         /// <summary>
         /// 
         /// </summary>
@@ -222,7 +238,7 @@ namespace Imagin.Common.Collections.Generic
         /// </summary>
         public new void Clear()
         {
-            var Items = this;
+            OnPreviewItemsCleared();
             base.Clear();
             OnItemsCleared();
             OnItemsChanged();
@@ -388,6 +404,14 @@ namespace Imagin.Common.Collections.Generic
         {
             itemsRemoved?.Invoke(this, new EventArgs<IEnumerable<object>>(OldItems.As<IEnumerable>()?.Cast<object>() ?? Enumerable.Empty<object>()));
             ItemsRemoved?.Invoke(this, new EventArgs<IEnumerable<T>>(OldItems));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnPreviewItemsCleared()
+        {
+            PreviewItemsCleared?.Invoke(this, new EventArgs());
         }
 
         /// <summary>

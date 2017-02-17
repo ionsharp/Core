@@ -33,13 +33,25 @@ namespace Imagin.Common.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ToCoerce"></param>
+        /// <param name="Value"></param>
         /// <param name="Maximum"></param>
         /// <param name="Minimum"></param>
         /// <returns></returns>
-        public static int Coerce(this int ToCoerce, int Maximum, int Minimum = 0)
+        public static int Coerce(this int Value, int Maximum, int Minimum = 0)
         {
-            return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
+            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Maximum"></param>
+        /// <param name="Minimum"></param>
+        /// <returns></returns>
+        public static uint Coerce(this uint Value, uint Maximum, uint Minimum = 0)
+        {
+            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
         }
 
         /// <summary>
@@ -61,6 +73,26 @@ namespace Imagin.Common.Extensions
         public static int K(this int Value)
         {
             return Value * 1024;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static bool IsEven(this int Value)
+        {
+            return Value == 0 ? true : Value % 2 == 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static bool IsOdd(this int Value)
+        {
+            return !IsEven(Value);
         }
 
         /// <summary>

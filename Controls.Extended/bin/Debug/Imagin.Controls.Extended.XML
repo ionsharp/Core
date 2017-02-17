@@ -4138,6 +4138,160 @@
             <param name="container"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Controls.Extended.CheckableSystemObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.CheckableSystemObject.Collapsed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Controls.Extended.CheckableSystemObject.Expanded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CheckableSystemObject.Children">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CheckableSystemObject.IsExpanded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CheckableSystemObject.IsSelected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CheckableSystemObject.Path">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CheckableSystemObject.QueryOnExpanded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.CheckableSystemObject.IsChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CheckableSystemObject.#ctor(System.String,Imagin.Common.ISystemProvider,System.Nullable{System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="systemProvider"></param>
+            <param name="isChecked"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CheckableSystemObject.OnChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CheckableSystemObject.OnUnchecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CheckableSystemObject.OnCollapsed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CheckableSystemObject.OnExpanded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.CheckableSystemObject.BeginQuery(Imagin.Common.ISystemProvider)">
+            <summary>
+            
+            </summary>
+            <param name="SystemProvider"></param>
+        </member>
+        <member name="T:Imagin.Controls.Extended.SystemTreeView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.SystemTreeView.QueryOnExpandedProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.SystemTreeView.QueryOnExpanded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.SystemTreeView.RootProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.SystemTreeView.Root">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.SystemTreeView.SystemObjectsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.SystemTreeView.SystemObjects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Extended.SystemTreeView.SystemProviderProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Extended.SystemTreeView.SystemProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SystemTreeView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SystemTreeView.OnQueryOnExpandedChanged(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SystemTreeView.OnRootChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SystemTreeView.OnSystemProvided(Imagin.Common.ISystemProvider,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Provider"></param>
+            <param name="Root"></param>
+        </member>
+        <member name="M:Imagin.Controls.Extended.SystemTreeView.OnSystemProviderChanged(Imagin.Common.ISystemProvider)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
         <member name="T:Imagin.Controls.Extended.TabbedTree">
             <summary>
             

@@ -8,22 +8,22 @@ namespace Imagin.Controls.Common
     /// </summary>
     public abstract class Tokenizer<TToken> : ITokenizer, ITokenizer<TToken>
     {
+        readonly object source;
         /// <summary>
         /// 
         /// </summary>
-        public object TokensSource
-        {
-            get; set;
-        }
-        object ITokenizer.TokensSource
+        public object Source
         {
             get
             {
-                return TokensSource;
+                return source;
             }
-            set
+        }
+        object ITokenizer.Source
+        {
+            get
             {
-                TokensSource = value;
+                return source;
             }
         }
 
@@ -33,10 +33,10 @@ namespace Imagin.Controls.Common
         /// <param name="TokenString"></param>
         /// <param name="Delimiter"></param>
         /// <returns></returns>
-        public abstract IEnumerable<TToken> GenerateFrom(string TokenString, char Delimiter);
-        IEnumerable<object> ITokenizer.GenerateFrom(string TokenString, char Delimiter)
+        public abstract IEnumerable<TToken> Tokenize(string TokenString, char Delimiter);
+        IEnumerable<object> ITokenizer.Tokenize(string TokenString, char Delimiter)
         {
-            return GenerateFrom(TokenString, Delimiter).Cast<object>();
+            return Tokenize(TokenString, Delimiter).Cast<object>();
         }
 
         /// <summary>
@@ -51,17 +51,6 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
-        /// Converts the given <see cref="string"/> to a list of tokens.
-        /// </summary>
-        /// <param name="Text"></param>
-        /// <returns></returns>
-        public abstract IEnumerable<TToken> Tokenize(string Text);
-        IEnumerable<object> ITokenizer.Tokenize(string Text)
-        {
-            return Tokenize(Text).Cast<object>();
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="Token"></param>
@@ -70,6 +59,15 @@ namespace Imagin.Controls.Common
         string ITokenizer.ToString(object Token)
         {
             return ToString((TToken)Token);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Source"></param>
+        public Tokenizer(object Source = null)
+        {
+            source = Source;
         }
     }
 }

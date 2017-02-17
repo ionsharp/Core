@@ -84,7 +84,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// Occurs when the collection is cleared.
         /// </summary>
         public event EventHandler<EventArgs> ItemsCleared;
-
+        
         event EventHandler<EventArgs<object>> itemInserted;
         event EventHandler<EventArgs<object>> ITrackableCollection.ItemInserted
         {
@@ -135,6 +135,22 @@ namespace Imagin.Common.Collections.Concurrent
         /// Occurs when any number of items are removed.
         /// </summary>
         public event EventHandler<EventArgs<IEnumerable<T>>> ItemsRemoved;
+
+        event EventHandler<EventArgs> ITrackableCollection.PreviewItemsCleared
+        {
+            add
+            {
+                PreviewItemsCleared += value;
+            }
+            remove
+            {
+                PreviewItemsCleared -= value;
+            }
+        }
+        /// <summary>
+        /// Occurs just before the collection is cleared.
+        /// </summary>
+        public event EventHandler<EventArgs> PreviewItemsCleared;
 
         /// <summary>
         /// Occurs when a property changes.
@@ -391,6 +407,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// </summary>
         public void Clear()
         {
+            OnPreviewItemsCleared();
             DoBaseClear(null);
             OnItemsCleared();
             OnItemsChanged();
@@ -632,6 +649,14 @@ namespace Imagin.Common.Collections.Concurrent
         {
             itemsRemoved?.Invoke(this, new EventArgs<IEnumerable<object>>(OldItems.As<IEnumerable>()?.Cast<object>() ?? Enumerable.Empty<object>()));
             ItemsRemoved?.Invoke(this, new EventArgs<IEnumerable<T>>(OldItems));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnPreviewItemsCleared()
+        {
+            PreviewItemsCleared?.Invoke(this, new EventArgs());
         }
 
         /// <summary>

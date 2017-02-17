@@ -86,8 +86,10 @@
   <ItemGroup>
     <Compile Include="%28Abstract%29\AbstractObject.cs" />
     <Compile Include="%28Abstract%29\CheckableObject.Generic.cs" />
+    <Compile Include="%28Abstract%29\TriCheckableObject.cs" />
     <Compile Include="%28Interfaces%29\IChangeable.cs" />
     <Compile Include="%28Interfaces%29\IContainer.Generic.cs" />
+    <Compile Include="%28Interfaces%29\ISystemProvider.cs" />
     <Compile Include="%28Interfaces%29\IEntry.cs" />
     <Compile Include="%28Interfaces%29\IValidate.Generic.cs" />
     <Compile Include="Arr.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Config\IMainModule.cs" />
     <Compile Include="Converters\ArrayToStringConverter.cs" />
     <Compile Include="Converters\CharacterToStringConverter.cs" />
+    <Compile Include="Converters\DisplayNameAttributeConverter.cs" />
     <Compile Include="Converters\EnumHasFlagConverter.cs" />
     <Compile Include="Converters\ToStringConverter.cs" />
     <Compile Include="Debug\Result.Generic.cs" />
@@ -138,6 +141,7 @@
     <Compile Include="Extensions\Uri.cs" />
     <Compile Include="IDialog.cs" />
     <Compile Include="IDialogHost.cs" />
+    <Compile Include="Input\ChangedValue.Generic.cs" />
     <Compile Include="Input\MapType.cs" />
     <Compile Include="Input\RelayCommand.cs" />
     <Compile Include="Input\RelayCommand.Generic.cs" />

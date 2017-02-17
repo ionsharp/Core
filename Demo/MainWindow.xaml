@@ -25,10 +25,6 @@
         <Common:BrushToColorConverter x:Key="BrushToColorConverter"/>
         <Common:CharacterToStringConverter x:Key="CharacterToStringConverter"/>
         
-        <!-- ....................................................................................[ResourceDictionaryEditor] -->
-
-        <ResourceDictionary x:Key="Resources.Theme" Source="pack://application:,,,/Imagin.Styles;component/Brushes.xaml"/>
-
         <!-- ....................................................................................[Views] -->
 
         <Controls.Common:AbstractView 
@@ -464,6 +460,7 @@
                                 <ComboBox 
                                     x:Name="PART_MenuItemSelectionModeComboBox"
                                     ItemsSource="{Binding Source={x:Type Controls.Common:MenuItemSelectionMode}, Converter={StaticResource EnumToCollectionConverter}}"
+                                    SelectedValue="{x:Static Controls.Common:MenuItemSelectionMode.Single}"
                                     ToolTip="MenuItemSelectionMode"/>
                             </StackPanel>
                             <Menu>
@@ -1084,7 +1081,6 @@
                     Grid.Row="1"
                     x:Name="PART_ResourceDictionaryEditor"
                     Background="#05000000" 
-                    SelectedObject="{StaticResource Resources.Theme}"
                     ShowHeader="True"/>
             </TabItem>
             <TabItem Header="SelectionCanvas">
@@ -1128,6 +1124,27 @@
                         x:Name="PART_SelectionCanvas"
                         ClipToBounds="True"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="SystemTreeView">
+                <Controls.Extended:SystemTreeView TreeViewItem.Expanded="SystemTreeView_Expanded">
+                    <Controls.Extended:SystemTreeView.ItemContainerStyle>
+                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Style>
+                    </Controls.Extended:SystemTreeView.ItemContainerStyle>
+                    <Controls.Extended:SystemTreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Items, Mode=OneWay}">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox
+                                    IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    IsThreeState="{Binding IsThreeState, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Margin="0,0,5,0"/>
+                                <TextBlock 
+                                    Text="{Binding Path, Converter={StaticResource FileNameConverter}, Mode=OneWay}"/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    </Controls.Extended:SystemTreeView.ItemTemplate>
+                </Controls.Extended:SystemTreeView>
             </TabItem>
             <TabItem Header="TabbedTree">
                 <Grid Margin="10">
@@ -1358,6 +1375,23 @@
                         Margin="0,0,10,0"
                         VerticalAlignment="Top">
                         Bob;Joseph;Sally;Matilda;Ralph;Brittany;Luna;Ann;
+                        <Controls.Common:TokenView.TokenStyle>
+                            <Style TargetType="{x:Type Controls.Common:TokenButton}" BasedOn="{StaticResource {x:Type Controls.Common:TokenButton}}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Controls.Common:MaskedImage
+                                                    Source="/Images/Tag.png"/>
+                                                <TextBlock 
+                                                    Margin="10,0,0,0"
+                                                    Text="{Binding Mode=OneWay}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Controls.Common:TokenView.TokenStyle>
                     </Controls.Common:TokenView>
 
                     <Label 
@@ -1372,13 +1406,9 @@
                         <StackPanel
                             DataContext="{Binding ElementName=PART_TokenView}"
                             Controls.Common:PanelExtensions.Spacing="0,0,0,10">
-                            <CheckBox 
-                                Content="IsCopyPasteEnabled"
-                                IsChecked="{Binding IsCopyPasteEnabled}"/>
-
-                            <Label Content="Tokens:"/>
+                            <Label Content="TokensSource:"/>
                             <Controls.Common:TextBoxExt
-                                Text="{Binding Tokens, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                Text="{Binding TokensSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                             <Label Content="TokenDelimiter:"/>
                             <Controls.Common:TextBoxExt
@@ -1407,6 +1437,30 @@
                                     </DataTemplate>
                                 </Controls.Common:FlagCheckView.ItemTemplate>
                             </Controls.Common:FlagCheckView>
+
+                            <Controls.Common:Line
+                                Orientation="Horizontal"/>
+                            
+                            <CheckBox 
+                                Content="EnableContextMenu"
+                                IsChecked="{Binding Path=(Controls.Common:FrameworkElementExtensions.EnableContextMenu), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <CheckBox 
+                                Content="EnableCopyCommand"
+                                IsChecked="{Binding Path=(Controls.Common:TextBoxBaseExtensions.EnableCopyCommand), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <CheckBox 
+                                Content="EnableCutCommand"
+                                IsChecked="{Binding Path=(Controls.Common:TextBoxBaseExtensions.EnableCutCommand), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <CheckBox 
+                                Content="EnablePasteCommand"
+                                IsChecked="{Binding Path=(Controls.Common:TextBoxBaseExtensions.EnablePasteCommand), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <Label Content="Tokens:"/>
+                            <ListBox
+                                ItemsSource="{Binding Tokens, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                MaxHeight="225"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
@@ -1499,9 +1553,7 @@
                         ColumnHeaderVisibility="Visible"
                         Controls.Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
                         ItemsSource="{Binding FileSystemCollection, UpdateSourceTrigger=PropertyChanged}"
-                        Controls.Common:TreeViewExtensions.SelectionMode="Extended"
-                        VirtualizingPanel.IsVirtualizing="True"
-                        VirtualizingPanel.VirtualizationMode="Recycling">
+                        Controls.Common:TreeViewExtensions.SelectionMode="Extended">
                         <Controls.Common:TreeViewExt.ColumnHeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Header}"/>

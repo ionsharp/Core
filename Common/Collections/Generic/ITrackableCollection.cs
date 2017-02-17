@@ -46,6 +46,11 @@ namespace Imagin.Common.Collections.Generic
         event EventHandler<EventArgs<IEnumerable<T>>> ItemsRemoved;
 
         /// <summary>
+        /// 
+        /// </summary>
+        event EventHandler<EventArgs> PreviewItemsCleared;
+
+        /// <summary>
         /// Gets whether or not the collection is empty.
         /// </summary>
         bool IsEmpty

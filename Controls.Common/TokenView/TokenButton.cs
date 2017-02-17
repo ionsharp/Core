@@ -11,11 +11,16 @@ namespace Imagin.Controls.Common
         /// 
         /// </summary>
         /// <param name="content"></param>
-        /// <param name="contentTemplate"></param>
-        /// <param name="contentTemplateSelector"></param>
         internal TokenButton(object content) : base()
         {
             Content = content;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TokenButton() : base()
+        {
         }
     }
 }

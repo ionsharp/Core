@@ -51,6 +51,10 @@ namespace Imagin.Controls.Common.Extensions
             }
         }
 
+        #endregion
+
+        #region AddCommand
+
         /// <summary>
         /// 
         /// </summary>

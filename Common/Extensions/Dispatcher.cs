@@ -20,5 +20,18 @@ namespace Imagin.Common.Extensions
         {
             await Dispatcher.BeginInvoke(Priority, Action);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Dispatcher"></param>
+        /// <param name="Action"></param>
+        /// <param name="Priority"></param>
+        /// <returns></returns>
+        public static object Invoke(this Dispatcher Dispatcher, Action Action, DispatcherPriority Priority = DispatcherPriority.Background)
+        {
+            return Dispatcher.Invoke(Priority, Action);
+        }
     }
+    
 }

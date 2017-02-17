@@ -156,6 +156,7 @@
     <Compile Include="PropertyGrid\%28Models%29\PropertyModel.cs" />
     <Compile Include="PropertyGrid\PropertyTemplateSelector.cs" />
     <Compile Include="PropertyGrid\ResourceDictionaryEditor.cs" />
+    <Compile Include="SystemTreeView.cs" />
     <Compile Include="TabbedTree.cs" />
   </ItemGroup>
   <ItemGroup>

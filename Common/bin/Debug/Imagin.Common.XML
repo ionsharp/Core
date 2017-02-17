@@ -20,6 +20,15 @@
             </summary>
             <param name="propertyName"></param>
         </member>
+        <member name="M:Imagin.Common.AbstractObject.SetValue``1(``0@,``0,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TKind"></typeparam>
+            <param name="Source"></param>
+            <param name="NewValue"></param>
+            <param name="Names"></param>
+        </member>
         <member name="M:Imagin.Common.AbstractObject.#ctor">
             <summary>
             
@@ -65,6 +74,68 @@
             </summary>
             <param name="isChecked"></param>
         </member>
+        <member name="T:Imagin.Common.CheckableObjectBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.CheckableObjectBase.Checked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.CheckableObjectBase.Unchecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.CheckableObjectBase.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.CheckableObjectBase.OnChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.CheckableObjectBase.OnUnchecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.CheckableObjectBase.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.TriCheckableObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TriCheckableObject.isChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.TriCheckableObject.IsChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.TriCheckableObject.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.TriCheckableObject.#ctor(System.Nullable{System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="isChecked"></param>
+        </member>
         <member name="T:Imagin.Common.IChangeable">
             <summary>
             Specifies an object that can observe changes to itself.
@@ -85,6 +156,45 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:Imagin.Common.ISystemProvider">
+            <summary>
+            Specifies an object capable of querying system objects.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.ISystemProvider.Query(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Path">The path to query.</param>
+            <param name="Source">A source used to make queries.</param>
+            <returns>A list of system object paths.</returns>
+        </member>
+        <member name="T:Imagin.Common.SystemProvider">
+            <summary>
+            Defines base functionality for an <see cref="T:Imagin.Common.ISystemProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.SystemProvider.Query(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.LocalSystemProvider">
+            <summary>
+            Defines functionality to query a local system.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.LocalSystemProvider.Query(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+            <param name="Source"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Common.IEntry">
             <summary>
@@ -128,6 +238,22 @@
             <remarks>
             Constraint values are stored as object type because generic types cannot inherit from Attribute.
             </remarks>
+        </member>
+        <member name="T:Imagin.Common.Attributes.IconAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Attributes.IconAttribute.Uri">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Attributes.IconAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Uri"></param>
         </member>
         <member name="T:Imagin.Common.Attributes.Int64KindAttribute">
             <summary>
@@ -233,6 +359,11 @@
             
             </summary>
         </member>
+        <member name="E:Imagin.Common.Collections.ITrackableCollection.PreviewItemsCleared">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Common.Collections.ITrackableCollection.IsEmpty">
             <summary>
             Gets whether or not the collection is empty.
@@ -323,6 +454,11 @@
             </summary>
         </member>
         <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.ItemsRemoved">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.ITrackableCollection`1.PreviewItemsCleared">
             <summary>
             
             </summary>
@@ -419,6 +555,11 @@
         <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.ItemsRemoved">
             <summary>
             Occurs when any number of items are removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.PreviewItemsCleared">
+            <summary>
+            Occurs just before the collection is cleared.
             </summary>
         </member>
         <member name="E:Imagin.Common.Collections.Generic.TrackableList`1.PropertyChanged">
@@ -531,6 +672,11 @@
             </summary>
             <param name="OldItems"></param>
         </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnPreviewItemsCleared">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Common.Collections.Generic.TrackableList`1.OnPropertyChanged(System.String)">
             <summary>
             
@@ -629,6 +775,11 @@
         <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.ItemsRemoved">
             <summary>
             Occurs when any number of items are removed.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.PreviewItemsCleared">
+            <summary>
+            Occurs just before the collection is cleared.
             </summary>
         </member>
         <member name="E:Imagin.Common.Collections.Generic.TrackableCollection`1.PropertyChanged">
@@ -740,6 +891,11 @@
             
             </summary>
             <param name="OldItems"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnPreviewItemsCleared">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Imagin.Common.Collections.Generic.TrackableCollection`1.OnPropertyChanged(System.String)">
             <summary>
@@ -1019,6 +1175,11 @@
             Occurs when any number of items are removed.
             </summary>
         </member>
+        <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.PreviewItemsCleared">
+            <summary>
+            Occurs just before the collection is cleared.
+            </summary>
+        </member>
         <member name="E:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.PropertyChanged">
             <summary>
             Occurs when a property changes.
@@ -1198,6 +1359,11 @@
             
             </summary>
             <param name="OldItems"></param>
+        </member>
+        <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnPreviewItemsCleared">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Imagin.Common.Collections.Concurrent.ConcurrentCollection`1.OnPropertyChanged(System.String)">
             <summary>
@@ -1641,6 +1807,31 @@
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Data.Converters.CharacterToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.Converters.DisplayNameAttributeConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.DisplayNameAttributeConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Converters.DisplayNameAttributeConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
             <summary>
             
             </summary>
@@ -3490,6 +3681,15 @@
             <param name="Priority"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Extensions.DispatcherExtensions.Invoke(System.Windows.Threading.Dispatcher,System.Action,System.Windows.Threading.DispatcherPriority)">
+            <summary>
+            
+            </summary>
+            <param name="Dispatcher"></param>
+            <param name="Action"></param>
+            <param name="Priority"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Extensions.StackExtensions">
             <summary>
             
@@ -4573,7 +4773,16 @@
             <summary>
             
             </summary>
-            <param name="ToCoerce"></param>
+            <param name="Value"></param>
+            <param name="Maximum"></param>
+            <param name="Minimum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.Int32Extensions.Coerce(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
             <param name="Maximum"></param>
             <param name="Minimum"></param>
             <returns></returns>
@@ -4587,6 +4796,20 @@
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Extensions.Int32Extensions.K(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.Int32Extensions.IsEven(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Extensions.Int32Extensions.IsOdd(System.Int32)">
             <summary>
             
             </summary>
@@ -5401,6 +5624,29 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Input.ChangedValue`1">
+            <summary>
+            Specifies a changed value.
+            </summary>
+            <typeparam name="TKind">The kind of value.</typeparam>
+        </member>
+        <member name="P:Imagin.Common.Input.ChangedValue`1.OldValue">
+            <summary>
+            The old value.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Input.ChangedValue`1.NewValue">
+            <summary>
+            The new value.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Input.ChangedValue`1.#ctor(`0,`0)">
+            <summary>
+            
+            </summary>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
+        </member>
         <member name="T:Imagin.Common.Input.MapType">
             <summary>
             
@@ -5553,17 +5799,7 @@
         </member>
         <member name="T:Imagin.Common.Input.ChangedValue">
             <summary>
-            Represents a value that has changed.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Input.ChangedValue.OldValue">
-            <summary>
-            The old value.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Input.ChangedValue.NewValue">
-            <summary>
-            The new value.
+            Specifies a changed value.
             </summary>
         </member>
         <member name="M:Imagin.Common.Input.ChangedValue.#ctor(System.Object,System.Object)">
@@ -5754,38 +5990,12 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="E:Imagin.Common.CheckableObject.Checked">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="E:Imagin.Common.CheckableObject.Unchecked">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="F:Imagin.Common.CheckableObject.isChecked">
             <summary>
             
             </summary>
         </member>
         <member name="P:Imagin.Common.CheckableObject.IsChecked">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.CheckableObject.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.CheckableObject.OnChecked">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.CheckableObject.OnUnchecked">
             <summary>
             
             </summary>
@@ -6123,18 +6333,34 @@
             The period of time (in milliseconds) between notifications.
             </summary>
         </member>
-        <member name="M:Imagin.Common.NotifiableObject.OnNotified(System.Timers.ElapsedEventArgs)">
-            <summary>
-            Occurs when <see cref="P:Imagin.Common.NotifiableObject.Timer"/> elapses.
-            </summary>
-            <param name="e"></param>
-        </member>
         <member name="M:Imagin.Common.NotifiableObject.#ctor(System.Double,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Imagin.Common.NotifiableObject"/> class and enables (or disables) timer with given interval.
             </summary>
             <param name="interval"></param>
             <param name="enabled"></param>
+        </member>
+        <member name="M:Imagin.Common.NotifiableObject.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.NotifiableObject.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Imagin.Common.NotifiableObject.OnNotified(System.Timers.ElapsedEventArgs)">
+            <summary>
+            Occurs when <see cref="P:Imagin.Common.NotifiableObject.Timer"/> elapses.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Common.NotifiableObject.Dispose">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Common.Primitives.DateTimePart">
             <summary>

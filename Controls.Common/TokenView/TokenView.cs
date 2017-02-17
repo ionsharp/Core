@@ -1,7 +1,10 @@
 ﻿using Imagin.Common.Extensions;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -14,7 +17,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    [ContentProperty("Tokens")]
+    [ContentProperty("TokensSource")]
     public class TokenView : RichTextBox
     {
         #region Properties
@@ -59,26 +62,7 @@ namespace Imagin.Controls.Common
                 return CaretPosition?.GetTextInRun(LogicalDirection.Backward);
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DependencyProperty IsCopyPasteEnabledProperty = DependencyProperty.Register("IsCopyPasteEnabled", typeof(bool), typeof(TokenView), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        /// <summary>
-        /// The <see cref="char"/> used to delimit tokens.
-        /// </summary>
-        public bool IsCopyPasteEnabled
-        {
-            get
-            {
-                return (bool)GetValue(IsCopyPasteEnabledProperty);
-            }
-            set
-            {
-                SetValue(IsCopyPasteEnabledProperty, value);
-            }
-        }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -162,38 +146,34 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty TokensProperty = DependencyProperty.Register("Tokens", typeof(string), typeof(TokenView), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTokensChanged));
+        public static DependencyProperty TokensProperty = DependencyProperty.Register("Tokens", typeof(ObservableCollection<object>), typeof(TokenView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
-        /// Gets or sets the tokens.
+        /// Gets a collection of all instances of tokens.
         /// </summary>
-        public string Tokens
+        public ObservableCollection<object> Tokens
         {
             get
             {
-                return (string)GetValue(TokensProperty);
+                return (ObservableCollection<object>)GetValue(TokensProperty);
             }
-            set
+            private set
             {
                 SetValue(TokensProperty, value);
             }
-        }
-        static void OnTokensChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
-        {
-            Object.As<TokenView>().OnTokensChanged((string)e.NewValue);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty TokensSourceProperty = DependencyProperty.Register("TokensSource", typeof(object), typeof(TokenView), new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTokensSourceChanged));
+        public static DependencyProperty TokensSourceProperty = DependencyProperty.Register("TokensSource", typeof(string), typeof(TokenView), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnTokensSourceChanged));
         /// <summary>
-        /// 
+        /// Gets or sets a tokenized string.
         /// </summary>
-        public object TokensSource
+        public string TokensSource
         {
             get
             {
-                return GetValue(TokensSourceProperty);
+                return (string)GetValue(TokensSourceProperty);
             }
             set
             {
@@ -202,7 +182,7 @@ namespace Imagin.Controls.Common
         }
         static void OnTokensSourceChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            Object.As<TokenView>().OnTokensSourceChanged(e.NewValue);
+            Object.As<TokenView>().OnTokensSourceChanged((string)e.NewValue);
         }
 
         /// <summary>
@@ -225,7 +205,7 @@ namespace Imagin.Controls.Common
         }
         static void OnTokenStyleChanged(DependencyObject Object, DependencyPropertyChangedEventArgs e)
         {
-            Object.As<TokenView>().OnTokenStyleChanged((Style)e.NewValue);
+            Object.As<TokenView>().OnTokenStyleChanged((Style)e.OldValue, (Style)e.NewValue);
         }
 
         #endregion
@@ -237,7 +217,8 @@ namespace Imagin.Controls.Common
         /// </summary>
         public TokenView() : base()
         {
-            CommandManager.AddPreviewExecutedHandler(this, OnPreviewExecuted);
+            Tokens = new ObservableCollection<object>();
+
             SetCurrentValue(IsDocumentEnabledProperty, true);
             SetCurrentValue(TokenizerProperty, new StringTokenizer());
         }
@@ -299,14 +280,16 @@ namespace Imagin.Controls.Common
             }
         }
 
-        //...............................................................................
-
-        InlineUIContainer GetTokenContainer(object Token)
+        /// <summary>
+        /// Generates an <see cref="Inline"/> element to host the given token.
+        /// </summary>
+        /// <param name="Token"></param>
+        /// <returns></returns>
+        InlineUIContainer GenerateInline(object Token)
         {
-            var Button = new TokenButton(Token);
+            OnTokenLoaded(Token);
 
-            if (TokenStyle != null)
-                Button.Style = TokenStyle;
+            var Button = new TokenButton(Token);
 
             //BaselineAlignment is needed to align with run
             var Result = new InlineUIContainer(Button)
@@ -317,12 +300,22 @@ namespace Imagin.Controls.Common
             return Result;
         }
 
-        Run GetTokenRun(object Token)
+        /// <summary>
+        /// Generates a <see cref="Run"/> to host the <see cref="string"/> representation of the given token.
+        /// </summary>
+        /// <param name="Token"></param>
+        /// <returns></returns>
+        Run GenerateRun(object Token)
         {
+            OnTokenUnloaded(Token);
             return new Run(Tokenizer.ToString(Token));
         }
 
-        string GetTokenString()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        string GetTokensSource()
         {
             var Result = new StringBuilder();
             Enumerate<Inline, TokenButton>((i, b) =>
@@ -340,20 +333,45 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        void IntersectTokens()
+        {
+            var ActualTokens = new List<object>();
+            Enumerate<TokenButton>((b) =>
+            {
+                ActualTokens.Add(b.Content);
+                return true;
+            });
+
+            var Result = Tokens.Intersect(ActualTokens).ToList();
+
+            Tokens.Clear();
+            while (Result.Any<object>())
+            {
+                foreach (var i in Result)
+                {
+                    Result.Remove(i);
+                    Tokens.Add(i);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         /// Replaces the given input text with the given token.
         /// </summary>
         /// <param name="Text"></param>
         /// <param name="Token"></param>
         void ReplaceWithToken(string Text, object Token)
         {
-            TextChangeHandled = true;
-
             var Paragraph = CaretPosition.Paragraph;
 
             var currentRun = CurrentRun;
             if (currentRun != null)
             {
-                Paragraph.Inlines.InsertBefore(currentRun, GetTokenContainer(Token));
+                Paragraph.Inlines.InsertBefore(currentRun, GenerateInline(Token));
+
                 if (currentRun.Text == Text)
                 {
                     Paragraph.Inlines.Remove(currentRun);
@@ -365,8 +383,6 @@ namespace Imagin.Controls.Common
                     Paragraph.Inlines.Remove(currentRun);
                 }
             }
-
-            TextChangeHandled = false;
         }
 
         #endregion
@@ -423,17 +439,19 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
-        /// 
+        /// Occurs when the current text changes.
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTextChanged(TextChangedEventArgs e)
+        protected override async void OnTextChanged(TextChangedEventArgs e)
         {
             base.OnTextChanged(e);
 
             if (!TextChangeHandled)
             {
+                await Dispatcher.BeginInvoke(() => IntersectTokens());
+
                 TokensChangeHandled = true;
-                Tokens = GetTokenString();
+                TokensSource = GetTokensSource();
                 TokensChangeHandled = false;
             }
         }
@@ -453,7 +471,7 @@ namespace Imagin.Controls.Common
             {
                 if (b?.Content == Token)
                 {
-                    Inline = GetTokenRun(Token);
+                    Inline = GenerateRun(Token);
 
                     p.Inlines.InsertBefore(i, Inline);
                     p.Inlines.Remove(i);
@@ -479,7 +497,7 @@ namespace Imagin.Controls.Common
             {
                 if (b == Button)
                 {
-                    Inline = GetTokenRun(b.Content);
+                    Inline = GenerateRun(b.Content);
 
                     p.Inlines.InsertBefore(i, Inline);
                     p.Inlines.Remove(i);
@@ -533,75 +551,89 @@ namespace Imagin.Controls.Common
         #region Virtual
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected virtual void OnPreviewExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (!IsCopyPasteEnabled && e.Command.EqualsAny(ApplicationCommands.Copy, ApplicationCommands.Cut, ApplicationCommands.Paste))
-                e.Handled = true;
-        }
-
-        /// <summary>
-        /// 
+        /// Occurs when <see cref="TokenDelimiter"/> property changes.
         /// </summary>
         /// <param name="OldValue"></param>
         /// <param name="NewValue"></param>
         protected virtual void OnTokenDelimiterChanged(char OldValue, char NewValue)
         {
-            SetCurrentValue(TokensProperty, Tokens.Replace(OldValue, NewValue));
+            SetCurrentValue(TokensSourceProperty, TokensSource.Replace(OldValue, NewValue));
         }
 
         /// <summary>
-        /// 
+        /// Occurs when a token has been loaded (or added both logically and visually).
         /// </summary>
-        protected virtual async void OnTokensChanged(string Value)
+        /// <param name="Token"></param>
+        protected virtual void OnTokenLoaded(object Token)
+        {
+            Tokens.Add(Token);
+        }
+
+        /// <summary>
+        /// Occurs when a token has been unloaded (or removed both logically and visually).
+        /// </summary>
+        /// <param name="Token"></param>
+        protected virtual void OnTokenUnloaded(object Token)
+        {
+            Tokens.Remove(Token);
+        }
+        
+        /// <summary>
+        /// Occurs when <see cref="TokensSource"/> property changes.
+        /// </summary>
+        protected virtual async void OnTokensSourceChanged(string Value)
         {
             if (!TokensChangeHandled)
             {
                 TextChangeHandled = true;
 
-                await Dispatcher.BeginInvoke(() => Blocks.Clear());
-                if (Value?.ToString().IsEmpty() == false)
+                await Dispatcher.BeginInvoke(() =>
                 {
-                    var p = new Paragraph();
-                    await Dispatcher.BeginInvoke(() => Tokenizer?.GenerateFrom(Value, TokenDelimiter)?.ForEach(Token => p.Inlines.Add(GetTokenContainer(Token))));
-                    Blocks.Add(p);
-                }
+                    var d = TokenDelimiter.ToString();
+
+                    //Check to see if delimiter occurs more than once in any one place.
+                    var Temp = Regex.Replace(Value, d + "+", d);
+                    
+                    //If so, correct it
+                    if (Temp != Value)
+                    {
+                        TokensChangeHandled = true;
+                        TokensSource = Temp;
+                        TokensChangeHandled = false;
+                    }
+
+                    Tokens.Clear();
+                    Blocks.Clear();
+
+                    if (Value?.ToString().IsEmpty() == false)
+                    {
+                        var p = new Paragraph();
+                        Tokenizer?.Tokenize(Value, TokenDelimiter)?.ForEach(Token => p.Inlines.Add(GenerateInline(Token)));
+                        Blocks.Add(p);
+                    }
+                });
 
                 TextChangeHandled = false;
             }
         }
 
         /// <summary>
-        /// 
+        /// Occurs when <see cref="TokenStyle"/> property changes; if the style is null, the global style for <see cref="TokenButton"/> (if present) is used instead.
         /// </summary>
-        /// <param name="Value"></param>
-        protected virtual void OnTokensSourceChanged(object Value)
+        /// <param name="OldValue"></param>
+        /// <param name="NewValue"></param>
+        protected virtual void OnTokenStyleChanged(Style OldValue, Style NewValue)
         {
+            if (OldValue != null)
+                Resources.Remove(OldValue.TargetType);
+
+            if (NewValue != null)
+                Resources.Add(NewValue.TargetType, NewValue);
         }
 
         /// <summary>
-        /// 
+        /// Occurs when some event triggers the creation of a token.
         /// </summary>
-        /// <param name="Value"></param>
-        protected virtual void OnTokenStyleChanged(Style Value)
-        {
-            if (Value != null)
-            {
-                Enumerate<TokenButton>(i =>
-                {
-                    i.Style = Value;
-                    return true;
-                });
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Key"></param>
         protected virtual void OnTokenTriggered()
         {
             if (!TextChangeHandled)
@@ -613,10 +645,15 @@ namespace Imagin.Controls.Common
 
                 //If a token was created, replace the current text with it
                 if (Token != null)
+                {
+                    TextChangeHandled = true;
                     ReplaceWithToken(currentText, Token);
+                    TextChangeHandled = false;
+                }
 
+                //Ensure source reflects changes
                 TokensChangeHandled = true;
-                Tokens = GetTokenString();
+                TokensSource = GetTokensSource();
                 TokensChangeHandled = false;
             }
         }

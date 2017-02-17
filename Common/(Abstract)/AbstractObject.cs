@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Imagin.Common.Extensions;
 
 namespace Imagin.Common
 {
@@ -22,6 +23,29 @@ namespace Imagin.Common
         public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKind"></typeparam>
+        /// <param name="Source"></param>
+        /// <param name="NewValue"></param>
+        /// <param name="Names"></param>
+        protected virtual bool SetValue<TKind>(ref TKind Source, TKind NewValue, params string[] Notify)
+        {
+            //Set value if the new value is different from the old
+            if (!Source.Equals(NewValue))
+            {
+                Source = NewValue;
+
+                //Notify all applicable properties
+                Notify?.ForEach(i => OnPropertyChanged(i));
+
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

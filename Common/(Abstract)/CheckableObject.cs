@@ -8,20 +8,8 @@ namespace Imagin.Common
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [Serializable]
-    public class CheckableObject : AbstractObject, ICheckable
+    public class CheckableObject : CheckableObjectBase, ICheckable
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        [field: NonSerialized()]
-        public event EventHandler<EventArgs> Checked;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [field: NonSerialized()]
-        public event EventHandler<EventArgs> Unchecked;
-
         /// <summary>
         /// 
         /// </summary>
@@ -38,40 +26,15 @@ namespace Imagin.Common
             }
             set
             {
-                isChecked = value;
-                OnPropertyChanged("IsChecked");
-
-                if (value)
+                if (SetValue(ref isChecked, value, "IsChecked"))
                 {
-                    OnChecked();
+                    if (value)
+                    {
+                        OnChecked();
+                    }
+                    else OnUnchecked();
                 }
-                else OnUnchecked();
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return isChecked.ToString();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnChecked()
-        {
-            Checked?.Invoke(this, new EventArgs());
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnUnchecked()
-        {
-            Unchecked?.Invoke(this, new EventArgs());
         }
 
         /// <summary>
