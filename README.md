@@ -1,13 +1,13 @@
-﻿#Imagin.NET ![](https://img.shields.io/badge/style-3.1-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6.1-red.svg?style=flat&label=.NET)
+﻿# Imagin.NET ![](https://img.shields.io/badge/style-3.1-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6.1-red.svg?style=flat&label=.NET)
 Imagin.NET is a library written in C# that provides common WPF controls and utilities.
 
-##[Documentation](http://imagin.tech/docs/imagin) *(under construction)*
+## [Documentation](http://imagin.tech/docs/imagin) *(under construction)*
  
-###Common
+### Common
 
-####*[Nuget](https://www.nuget.org/packages/Imagin.Common/)*: `PM> Install-Package Imagin.Common`
+#### *[Nuget](https://www.nuget.org/packages/Imagin.Common/)*: `PM> Install-Package Imagin.Common`
 
-###Controls.Common
+### Controls.Common
   .  |  .  |  .  |  .  |  .  |
 -----|-----|-----|-----|-----|
 AdvancedComboBox | AlignableWrapPanel | AlphaNumericBox | BasicWindow | ByteUpDown | 
@@ -18,23 +18,23 @@ LongUpDown | MaskedButton | MaskedDropDownButton | MaskedImage | MaskedToggleBut
 PasswordBox | RadioGroup | RegexBox | ResizableGrid | RippleDecorator | 
 SelectionCanvas | ShortUpDown | TextBoxExt | ToggleSwitch | TokenView|
 TreeViewExt | 
-####*[Nuget](https://www.nuget.org/packages/Imagin.Controls.Common/)*: `PM> Install-Package Imagin.Controls.Common`
+#### *[Nuget](https://www.nuget.org/packages/Imagin.Controls.Common/)*: `PM> Install-Package Imagin.Controls.Common`
 
-###Controls.Extended
+### Controls.Extended
   .  |  .  |  .  |  .  |  .  |
 -----|-----|-----|-----|-----|
 AnglePicker | CollectionEditor | ColorChip | ColorComb | ColorDialog | 
 ColorPicker | DualColorChip | GradientChip | GradientDialog | GradientEditor |
 PropertyGrid | ResourceDictionaryEditor | SystemTreeView |
-####*[Nuget](https://www.nuget.org/packages/Imagin.Controls.Extended/)*: `PM> Install-Package Imagin.Controls.Extended`
+#### *[Nuget](https://www.nuget.org/packages/Imagin.Controls.Extended/)*: `PM> Install-Package Imagin.Controls.Extended`
 
-###Gadgets
+### Gadgets
 
   .  |  .  |
 -----|-----|
 ClockGadget (in progress) | SearchGadget |
 
-##Dependencies
+## Dependencies
   Name  |  Version  |  Url  |
 --------|-----------|-------|
 WindowsAPICodePack-Core | 1.1.2 | https://github.com/aybe/Windows-API-Code-Pack-1.1 |
@@ -43,12 +43,12 @@ WpfLocalizeExtension | 2.3.2 | https://github.com/SeriousM/WPFLocalizationExtens
 XAMLMarkupExtensions | 1.2.2 | http://xamlmarkupextensions.codeplex.com/ |
 System.Windows.Interactivity | 2.0.20525 | http://www.microsoft.com/en-us/download/details.aspx?id=10801 |
 
-##Donate
+## Donate
 
 [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=AJJG6PWLBYQNG)
 
-##License
-###Simplified BSD License (BSD)
+## License
+### Simplified BSD License (BSD)
 **Copyright (c) 2017, Imagin**
 All rights reserved.
 
