@@ -15,6 +15,7 @@ Microsoft.NETCore.Portable.Compatibility | 1.0.0 |
 #### Dependencies
   Name  |  Version  |  Url  |
 --------|-----------|-------|
+Imagin.Common | | |
 System.Windows.Interactivity | 2.0.20525 | http://www.microsoft.com/en-us/download/details.aspx?id=10801 |
 WindowsAPICodePack-Core | 1.1.2 | https://github.com/aybe/Windows-API-Code-Pack-1.1 |
 WindowsAPICodePack-Shell | 1.1.1 | http://archive.msdn.microsoft.com/WindowsAPICodePack |
@@ -39,6 +40,8 @@ TreeViewComboBox | UInt16UpDown | UInt32UpDown | UInt64UpDown |
 #### Dependencies
   Name  |  Version  |  Url  |
 --------|-----------|-------|
+Imagin.Common | | |
+Imagin.Common.WPF | | |
 System.Reflection.TypeExtensions | 4.3.0 | |
 System.Windows.Interactivity | 2.0.20525 | http://www.microsoft.com/en-us/download/details.aspx?id=10801 |
 WindowsAPICodePack-Core | 1.1.2 | https://github.com/aybe/Windows-API-Code-Pack-1.1 |
