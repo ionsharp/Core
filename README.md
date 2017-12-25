@@ -1,47 +1,50 @@
-﻿# Imagin.NET ![](https://img.shields.io/badge/style-3.1-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6.1-red.svg?style=flat&label=.NET)
+# Imagin.NET ![](https://img.shields.io/badge/style-3.1-blue.svg?style=flat&label=version) ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=build) ![](https://img.shields.io/badge/style-4.6.1-red.svg?style=flat&label=.NET)
 Imagin.NET is a library written in C# that provides common WPF controls and utilities.
 
-## [Documentation](http://imagin.tech/docs/imagin) *(under construction)*
- 
 ### Common
 
 #### *[Nuget](https://www.nuget.org/packages/Imagin.Common/)*: `PM> Install-Package Imagin.Common`
+#### Dependencies
+  Name  |  Version  |
+--------|-----------|
+Microsoft.NETCore | 5.0.0 |
+Microsoft.NETCore.Portable.Compatibility | 1.0.0 |
 
-### Controls.Common
-  .  |  .  |  .  |  .  |  .  |
------|-----|-----|-----|-----|
-AdvancedComboBox | AlignableWrapPanel | AlphaNumericBox | BasicWindow | ByteUpDown | 
-CheckerBoard | DateTimeUpDown | DecimalUpDown | DirectionPad | DoubleUpDown | 
-EditableLabel | FileBox | FlagCheckView | FontFamilyBox | FontSizeBox | 
-Gadget | HexBox | IntUpDown | Line | Link | 
-LongUpDown | MaskedButton | MaskedDropDownButton | MaskedImage | MaskedToggleButton | 
-PasswordBox | RadioGroup | RegexBox | ResizableGrid | RippleDecorator | 
-SelectionCanvas | ShortUpDown | TextBoxExt | ToggleSwitch | TokenView|
-TreeViewExt | 
-#### *[Nuget](https://www.nuget.org/packages/Imagin.Controls.Common/)*: `PM> Install-Package Imagin.Controls.Common`
-
-### Controls.Extended
-  .  |  .  |  .  |  .  |  .  |
------|-----|-----|-----|-----|
-AnglePicker | CollectionEditor | ColorChip | ColorComb | ColorDialog | 
-ColorPicker | DualColorChip | GradientChip | GradientDialog | GradientEditor |
-PropertyGrid | ResourceDictionaryEditor | SystemTreeView |
-#### *[Nuget](https://www.nuget.org/packages/Imagin.Controls.Extended/)*: `PM> Install-Package Imagin.Controls.Extended`
-
-### Gadgets
-
-  .  |  .  |
------|-----|
-ClockGadget (in progress) | SearchGadget |
-
-## Dependencies
+### Common.WPF
+#### *[Nuget](https://www.nuget.org/packages/Imagin.Common.WPF/)*: `PM> Install-Package Imagin.Common.WPF`
+#### Dependencies
   Name  |  Version  |  Url  |
 --------|-----------|-------|
+System.Windows.Interactivity | 2.0.20525 | http://www.microsoft.com/en-us/download/details.aspx?id=10801 |
 WindowsAPICodePack-Core | 1.1.2 | https://github.com/aybe/Windows-API-Code-Pack-1.1 |
 WindowsAPICodePack-Shell | 1.1.1 | http://archive.msdn.microsoft.com/WindowsAPICodePack |
 WpfLocalizeExtension | 2.3.2 | https://github.com/SeriousM/WPFLocalizationExtension/ |
 XAMLMarkupExtensions | 1.2.2 | http://xamlmarkupextensions.codeplex.com/ |
+
+### Controls.Common.WPF
+#### *[Nuget](https://www.nuget.org/packages/Imagin.Controls.Common/)*: `PM> Install-Package Imagin.Controls.Common`
+  .  |  .  |  .  |  .  |  .  |
+-----|-----|-----|-----|-----|
+AlignableWrapPanel | AlphaNumericBox | AnglePicker | BasicWindow | ByteUpDown |
+CheckerBoard | ColorChip | ColorComb | ColorDialog | ColorPicker |
+ComboBox | DataGrid | DateTimeUpDown | DecimalUpDown | DirectionPad |
+DoubleUpDown | DualColorChip | EditableLabel | FileBox | FlagCheckView |
+FontFamilyBox | FontSizeBox | GradientChip | GradientDialog | GradientPicker |
+HexBox | Int16UpDown | Int32UpDown | Int64UpDown | Line |
+Link | MaskedButton | MaskedDropDownButton | MaskedImage | MaskedToggleButton |
+PasswordBox | PropertyGrid | RadioGroup | RegexBox | ResourceDictionaryEditor |
+RippleDecorator | SelectionCanvas | StoragePicker | TabbedTree | TextBox |
+ThicknessBox | TimeSpanUpDown | ToggleSwitch | TokenView | TreeView |
+TreeViewComboBox | UInt16UpDown | UInt32UpDown | UInt64UpDown |
+#### Dependencies
+  Name  |  Version  |  Url  |
+--------|-----------|-------|
+System.Reflection.TypeExtensions | 4.3.0 | |
 System.Windows.Interactivity | 2.0.20525 | http://www.microsoft.com/en-us/download/details.aspx?id=10801 |
+WindowsAPICodePack-Core | 1.1.2 | https://github.com/aybe/Windows-API-Code-Pack-1.1 |
+WindowsAPICodePack-Shell | 1.1.1 | http://archive.msdn.microsoft.com/WindowsAPICodePack |
+WpfLocalizeExtension | 2.3.2 | https://github.com/SeriousM/WPFLocalizationExtension/ |
+XAMLMarkupExtensions | 1.2.2 | http://xamlmarkupextensions.codeplex.com/ |
 
 ## Donate
 
