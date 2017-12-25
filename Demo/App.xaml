@@ -5,16 +5,16 @@
     xmlns:local="clr-namespace:Imagin.NET.Demo"
     xmlns:Common="http://imagin.tech/imagin/common"
     xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
-    xmlns:Controls.Extended="http://imagin.tech/imagin/controls/extended"
     xmlns:Gadgets="http://imagin.tech/imagin/gadgets"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Brushes.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.Styles;component/Generic.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Imagin.NET.Demo;component/Styles/Window.xaml" />
+                <Common:ThemeDictionary Assembly="Imagin.Controls.Common.Wpf" Theme="Light"/>
+
+                <Common:StyleDictionary Assembly="Imagin.Controls.Common.Wpf"/>
+                <Common:StyleDictionary Assembly="Imagin.NET.Demo"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

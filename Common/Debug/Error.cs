@@ -5,48 +5,46 @@ namespace Imagin.Common.Debug
     /// <summary>
     /// Represents a failed result; optionally, encapsulates an exception.
     /// </summary>
-    public class Error : Result
+    public class Error : Error<object>
     {
         /// <summary>
         /// 
         /// </summary>
-        public Exception Exception
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return Exception?.Message ?? Data.ToString() ?? string.Empty;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Error() : this(string.Empty)
+        public Error() : base()
         {
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="exception"></param>
-        /// <param name="data"></param>
-        public Error(Exception exception, object data = null) : base(data)
+        /// <param name="Exception"></param>
+        public Error(Exception Exception) : base(Exception)
         {
-            Exception = exception;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Exception"></param>
+        /// <param name="Data"></param>
+        public Error(Exception Exception, object Data) : base(Exception, Data)
+        {
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Message"></param>
-        /// <param name="data"></param>
-        public Error(string Message, object data = null) : this(new Exception<string>(Message), data)
+        public Error(string Message) : base(Message)
+        {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Data"></param>
+        public Error(string Message, object Data) : base(Message, Data)
         {
         }
     }

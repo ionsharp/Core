@@ -1,0 +1,235 @@
+﻿<UserControl 
+    x:Class="Imagin.Controls.Common.ColorPicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d"
+    xmlns:local="clr-namespace:Imagin.Controls.Common" 
+    xmlns:Common="http://imagin.tech/imagin/common" 
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Extensions"
+    x:Name="PART_ColorPicker">
+    <UserControl.Resources>
+        <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Common:ColorToHexConverter x:Key="ColorToHexConverter"/>
+
+        <DataTemplate 
+            x:Key="DataTemplate.Models"
+            DataType="{x:Type local:ColorSpaceModel}">
+            <DataTemplate.Resources>
+                <Common:BindingProxy x:Key="ComponentProxy" Data="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
+            </DataTemplate.Resources>
+            <local:ColorSpaceView 
+                x:Name="PART_Components" 
+                ColorSpace="{Binding Mode=OneWay}"
+                Illuminant="{Binding Illuminant, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}"
+                ItemsSource="{Binding Components}" 
+                Margin="0,0,0,15"
+                Observer="{Binding Observer, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}">
+                <local:ColorSpaceView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type local:ComponentModel}">
+                        <DataTemplate.Resources>
+                            <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                        </DataTemplate.Resources>
+                        <local:ComponentView 
+                            x:Name="PART_ComponentView"
+                            Color="{Binding SelectedColor, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}"
+                            ColorSpaceModel="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ColorSpaceView}}}"
+                            ComponentModel="{Binding Mode=OneWay}"
+                            Value="{Binding Value}">
+                            <Grid 
+                                Linq:PanelExtensions.Spacing="0,0,7,0"
+                                Linq:PanelExtensions.TrimLast="True"
+                                Linq:PanelExtensions.VerticalContentAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="PART_Column0"/>
+                                    <ColumnDefinition Width="{Binding ComponentValueWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter 
+                                    x:Name="PART_Label"
+                                    Content="{Binding Mode=OneWay}"/>
+                                <local:DoubleUpDown
+                                    Grid.Column="1" 
+                                    x:Name="PART_Value"
+                                    CanUpDown="{Binding CanUpDownComponents, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}"
+                                    Increment="{Binding Increment, Mode=OneWay}"
+                                    Maximum="{Binding Maximum, Mode=OneWay}"
+                                    Minimum="{Binding Minimum, Mode=OneWay}"
+                                    StringFormat="{Binding ComponentStringFormat, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}"
+                                    Value="{Binding Value, IsAsync=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Label 
+                                    Grid.Column="2"
+                                    Content="{Binding UnitLabel}"/>
+                            </Grid>
+                        </local:ComponentView>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False">
+                                <Setter TargetName="PART_Value" Property="Value" Value="{Binding Value, IsAsync=False, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CanSelect}" Value="True">
+                                <Setter TargetName="PART_Column0" Property="Width" Value="50"/>
+                                <Setter TargetName="PART_Label" Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <RadioButton 
+                                                x:Name="PART_Radio"
+                                                Content="{Binding ComponentLabel}"
+                                                GroupName="ColorSpace"
+                                                HorizontalAlignment="Center"
+                                                IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>                               
+                            <DataTrigger Binding="{Binding CanSelect}" Value="False">
+                                <Setter TargetName="PART_Column0" Property="Width" Value="25"/>
+                                <Setter TargetName="PART_Label" Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Label 
+                                                Content="{Binding ComponentLabel}" 
+                                                HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </local:ColorSpaceView.ItemTemplate>
+            </local:ColorSpaceView>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Orientation}" Value="Horizontal">
+                    <Setter TargetName="PART_Components" Property="ItemContainerStyle">
+                        <Setter.Value>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Margin" Value="0,0,10,0"/>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="PART_Components" Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Orientation}" Value="Vertical">
+                    <Setter TargetName="PART_Components" Property="ItemContainerStyle">
+                        <Setter.Value>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Margin" Value="0,0,7,7"/>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="PART_Components" Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid 
+        DataContext="{Binding ElementName=PART_ColorPicker}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{Binding ComponentWidth}"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <local:ColorSelector 
+            x:Name="PART_ColorSelector"
+            Alpha="{Binding Alpha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Color="{Binding SelectedColor}"
+            Illuminant="{Binding Illuminant}"
+            Models="{Binding Models}"
+            Observer="{Binding Observer}"
+            ShowSlider="{Binding ShowSlider}"
+            ShowAlpha="{Binding ShowAlpha}"/>
+        <Grid 
+            Grid.Column="1" 
+            Visibility="{Binding ShowComponents, Converter={StaticResource BooleanToVisibilityConverter}}" 
+            MaxHeight="256"
+            Margin="10,0,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl 
+                    ItemsSource="{Binding Models, ElementName=PART_ColorPicker}" 
+                    ItemTemplate="{StaticResource DataTemplate.Models}"
+                    VirtualizingPanel.IsVirtualizing="True"
+                    VirtualizingPanel.VirtualizationMode="Recycling"
+                    VerticalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+        <StackPanel 
+            Grid.Column="2" 
+            HorizontalAlignment="Center"
+            Margin="15,0,0,0"
+            Visibility="{Binding ShowNewCurrent, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:NewCurrent 
+                x:Name="newCurrent"
+                Alpha="{Binding ElementName=PART_ColorSelector, Path=Alpha, Mode=OneWay}" 
+                Height="125" 
+                HorizontalAlignment="Center" 
+                NewColor="{Binding ElementName=PART_ColorSelector, Path=Color}" 
+                Orientation="Vertical" 
+                VerticalAlignment="Top" 
+                Width="100"/>
+            <local:HexBox 
+                Margin="0,10,0,0"
+                VerticalAlignment="Center"
+                Width="90">
+                <local:HexBox.Style>
+                    <Style TargetType="local:HexBox" BasedOn="{StaticResource {x:Type local:HexBox}}">
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True"/>
+                                    <Condition Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Text" Value="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}, ConverterParameter=WithAlpha, IsAsync=True}"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True"/>
+                                    <Condition Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Text" Value="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}, ConverterParameter=WithAlpha}"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False"/>
+                                    <Condition Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Text" Value="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}, IsAsync=True}"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False"/>
+                                    <Condition Binding="{Binding IsAsync, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Text" Value="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ElementName=PART_ColorSelector, Converter={StaticResource ColorToHexConverter}}"/>
+                            </MultiDataTrigger>
+                            <DataTrigger Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="True">
+                                <Setter Property="MaxLength" Value="8"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ShowAlpha, RelativeSource={RelativeSource AncestorType={x:Type local:ColorPicker}}}" Value="False">
+                                <Setter Property="MaxLength" Value="6"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </local:HexBox.Style>
+            </local:HexBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

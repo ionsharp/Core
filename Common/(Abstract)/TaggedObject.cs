@@ -1,18 +1,13 @@
-﻿using System;
-using System.Xml.Serialization;
-
-namespace Imagin.Common
+﻿namespace Imagin.Common
 {
     /// <summary>
     /// 
     /// </summary>
-    [Serializable]
-    public class TaggedObject : AbstractObject, ITaggable
+    public class TaggedObject : BindableObject, ITaggable
     {
         /// <summary>
         /// 
         /// </summary>
-        [XmlIgnore]
         protected object tag = null; 
         /// <summary>
         /// 

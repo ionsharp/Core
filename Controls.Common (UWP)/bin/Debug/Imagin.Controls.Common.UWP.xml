@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Imagin.Controls.Common.UWP</name>
+    </assembly>
+    <members>
+        <member name="T:Imagin.Controls.Common.ContentControl`1">
+            <summary>
+            A <see cref="T:Windows.UI.Xaml.Controls.ContentControl"/> that wraps another control of type, <see cref="!:&lt;TContent&gt;"/>. 
+            </summary>
+            <typeparam name="TContent"></typeparam>
+        </member>
+        <member name="P:Imagin.Controls.Common.ContentControl`1.Source">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.ContentControl`1.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Controls.Common.ContentControl`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimePicker.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.DateTimePicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="T:Imagin.Controls.Common.FlagCheckView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FlagCheckView.FlagsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FlagCheckView.Flags">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FlagCheckView.ItemsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FlagCheckView.Items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FlagCheckView.ItemsPanelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FlagCheckView.ItemsPanel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Controls.Common.FlagCheckView.ItemTemplateProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Controls.Common.FlagCheckView.ItemTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.OnFlagsChanged(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="OldValue"></param>
+            <param name="NewValue"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.OnItemChecked(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.OnItemUnchecked(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.FlagCheckView.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Controls_Common__UWP__XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Controls_Common__UWP__XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Imagin.Controls.Common.Controls_Common__UWP__XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+    </members>
+</doc>

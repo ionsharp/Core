@@ -1,0 +1,1202 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Imagin.Common.UWP</name>
+    </assembly>
+    <members>
+        <member name="T:Imagin.Common.Data.AccentColorToColorConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.AccentColorToColorConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.AccentColorToColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.AttributeConverterBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TAttribute"></typeparam>
+        </member>
+        <member name="M:Imagin.Common.Data.AttributeConverterBase`1.GetValue(`0)">
+            <summary>
+            
+            </summary>
+            <param name="Attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.AttributeConverterBase`1.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.AttributeConverterBase`1.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.BooleanToVisibilityConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.BooleanToVisibilityConverter.AssertParameter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.BooleanToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.BooleanToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.ElementThemeToBooleanConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Data.EnumToBooleanConverter`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+        </member>
+        <member name="M:Imagin.Common.Data.EnumToBooleanConverter`1.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.EnumToBooleanConverter`1.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.EnumToIntConverter`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+        </member>
+        <member name="M:Imagin.Common.Data.EnumToIntConverter`1.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.EnumToIntConverter`1.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.FileSizeConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.FileSizeConverter.GetFileSizeFormat(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.FileSizeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.FileSizeConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.Int32ToDoubleConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.Int32ToDoubleConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.Int32ToDoubleConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.StringToBooleanConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.StringToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.StringToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.IntToVisibilityConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.IntToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.IntToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.ObjectToVisibilityConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.ObjectToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.ObjectToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.TimeSpanToStringConverter">
+            <summary>
+            Converts <see cref="T:System.TimeSpan"/> to a readable label.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Data.DescriptionAttributeConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.DescriptionAttributeConverter.GetValue(Imagin.Common.DescriptionAttribute)">
+            <summary>
+            
+            </summary>
+            <param name="Attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.StretchConverter">
+            <summary>
+            Converts <see cref="T:Imagin.Common.Media.Stretch"/> to <see cref="T:Windows.UI.Xaml.Media.Stretch"/>.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.StretchConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.StretchConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.EnumToCollectionConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.EnumToCollectionConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.EnumToCollectionConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.InverseBooleanConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.InverseBooleanConverter.Get(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.InverseBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.InverseBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.StringToVisibilityConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.StringToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.StringToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            /
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.ValueNotEqualToParameterConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.ValueNotEqualToParameterConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.ValueNotEqualToParameterConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.ValueEqualsParameterConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Data.ValueEqualsParameterConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Data.DependencyObjectCollection`1">
+            <summary>
+            Represents a collection of <see cref="T:Windows.UI.Xaml.DependencyObject"/> instances of a specified type.
+            </summary>
+            <typeparam name="T">The type of items in the collection.</typeparam>
+        </member>
+        <member name="E:Imagin.Common.Data.DependencyObjectCollection`1.CollectionChanged">
+            <summary>
+            Occurs when items in the collection are added, removed, or replaced.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.DependencyObjectCollection`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Data.DependencyObjectCollection`1" /> class.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.DependencyObjectCollection`1.RaiseCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Imagin.Common.Data.DependencyObjectCollection`1.CollectionChanged"/> event with the provided event data.
+            </summary>
+            <param name="eventArgs">The event data.</param>
+        </member>
+        <member name="T:Imagin.Common.Data.MultiBindingBehavior">
+            <summary>
+            The behavior that enables multiple binding.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MultiBindingBehavior.Items">
+            <summary>
+            Gets the <see cref="T:Imagin.Common.Data.MultiBindingItem"/> collection within this <see cref="T:Imagin.Common.Data.MultiBindingBehavior"/> instance.
+            </summary>
+            <value>One or more <see cref="T:Imagin.Common.Data.MultiBindingItem"/> objects.</value>
+        </member>
+        <member name="F:Imagin.Common.Data.MultiBindingBehavior.ItemsProperty">
+            <summary>
+            Identifier for the <see cref="P:Imagin.Common.Data.MultiBindingBehavior.Items" /> dependency property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MultiBindingBehavior.PropertyName">
+            <summary>
+            Gets or sets the path to the binding source property.
+            </summary>
+            <value>The path to the binding source property.</value>
+        </member>
+        <member name="F:Imagin.Common.Data.MultiBindingBehavior.PropertyNameProperty">
+            <summary>
+            Identifier for the <see cref="P:Imagin.Common.Data.MultiBindingBehavior.PropertyName" /> dependency property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MultiBindingBehavior.Converter">
+            <summary>
+            Gets or sets the converter to use to convert the source values to or from the target value.
+            </summary>
+            <value>A resource reference to a class that implements the <see cref="T:Windows.UI.Xaml.Data.IValueConverter"/> interface, which includes implementations of the <see cref="M:Windows.UI.Xaml.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.String)"/> and <see cref="M:Windows.UI.Xaml.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)"/> methods.</value>
+        </member>
+        <member name="F:Imagin.Common.Data.MultiBindingBehavior.ConverterProperty">
+            <summary>
+            Identifier for the <see cref="P:Imagin.Common.Data.MultiBindingBehavior.Converter" /> dependency property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MultiBindingBehavior.ConverterParameter">
+            <summary>
+            Gets or sets an optional parameter to pass to the converter as additional information.
+            </summary>
+            <value>A value of the type expected by the converter, which might be an object element or a string depending on the definition and XAML capabilities both of the property type being used and of the implementation of the converter.</value>
+        </member>
+        <member name="F:Imagin.Common.Data.MultiBindingBehavior.ConverterParameterProperty">
+            <summary>
+            Identifier for the <see cref="P:Imagin.Common.Data.MultiBindingBehavior.ConverterParameter" /> dependency property.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MultiBindingBehavior.Mode">
+            <summary>
+            Gets or sets a value that indicates the direction of the data flow in the binding.
+            </summary>
+            <value>A value that indicates the direction of the data flow in the binding.</value>
+        </member>
+        <member name="F:Imagin.Common.Data.MultiBindingBehavior.ModeProperty">
+            <summary>
+            Identifier for the <see cref="P:Imagin.Common.Data.MultiBindingBehavior.Mode" /> dependency property.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.MultiBindingBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Data.MultiBindingBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.MultiBindingBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>Override this to hook up functionality to the AssociatedObject.</remarks>
+        </member>
+        <member name="T:Imagin.Common.Data.MultiBindingItem">
+            <summary>
+            A multiple binding item.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MultiBindingItem.Value">
+            <summary>
+            Gets or sets the binding value.
+            </summary>
+            <value>The binding value.</value>
+        </member>
+        <member name="F:Imagin.Common.Data.MultiBindingItem.ValueProperty">
+            <summary>
+            Identifier for the <see cref="P:Imagin.Common.Data.MultiBindingItem.Value" /> dependency property.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Data.MultiBindingItemCollection">
+            <summary>
+            Represents a collection of <see cref="T:Imagin.Common.Data.MultiBindingBehavior" />.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Data.MultiBindingItemCollection.Value">
+            <summary>
+            Gets or sets the multiple binding value.
+            </summary>
+            <value>The multiple binding value.</value>
+        </member>
+        <member name="F:Imagin.Common.Data.MultiBindingItemCollection.ValueProperty">
+            <summary>
+            Identifier for the <see cref="P:Imagin.Common.Data.MultiBindingItemCollection.Value" /> dependency property.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.MultiBindingItemCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Imagin.Common.Data.MultiBindingItemCollection"/> class.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Data.MultiValueConverterBase">
+            <summary>
+            An <see cref="T:Windows.UI.Xaml.Data.IValueConverter"/> abstract implementation to be used with the <see cref="!:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior"/>.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Data.MultiValueConverterBase.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the source data before passing it to the target for display in the UI.
+            </summary>
+            <returns>The value to be passed to the target dependency property.</returns>
+            <param name="values">The source data being passed to the target.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+        </member>
+        <member name="M:Imagin.Common.Data.MultiValueConverterBase.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object. This method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay"/> bindings.
+            </summary>
+            <returns>The value to be passed to the source object.</returns>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+        </member>
+        <member name="T:Imagin.Common.Input.RelayCommand">
+            <summary>
+            A command whose sole purpose is to relay its functionality 
+            to other objects by invoking delegates. 
+            The default return value for the CanExecute method is 'true'.
+            <see cref="M:Imagin.Common.Input.RelayCommand.RaiseCanExecuteChanged"/> needs to be called whenever
+            <see cref="M:Imagin.Common.Input.RelayCommand.CanExecute(System.Object)"/> is expected to return a different value.
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.Input.RelayCommand.CanExecuteChanged">
+            <summary>
+            Raised when RaiseCanExecuteChanged is called.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.#ctor(System.Action{System.Object})">
+            <summary>
+            Creates a new command that can always execute.
+            </summary>
+            <param name="execute">The execution logic.</param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.#ctor(System.Action{System.Object},System.Predicate{System.Object})">
+            <summary>
+            Creates a new command.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.#ctor(System.Action{System.Object},System.Boolean)">
+            <summary>
+            Creates a new command.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.CanExecute(System.Object)">
+            <summary>
+            Determines whether this <see cref="T:Imagin.Common.Input.RelayCommand"/> can execute in its current state.
+            </summary>
+            <param name="parameter">
+            Data used by the command. If the command does not require data to be passed, this object can be set to null.
+            </param>
+            <returns>true if this command can be executed; otherwise, false.</returns>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.Execute(System.Object)">
+            <summary>
+            Executes the <see cref="T:Imagin.Common.Input.RelayCommand"/> on the current command target.
+            </summary>
+            <param name="parameter">
+            Data used by the command. If the command does not require data to be passed, this object can be set to null.
+            </param>
+        </member>
+        <member name="M:Imagin.Common.Input.RelayCommand.RaiseCanExecuteChanged">
+            <summary>
+            Method used to raise the <see cref="E:Imagin.Common.Input.RelayCommand.CanExecuteChanged"/> event
+            to indicate that the return value of the <see cref="M:Imagin.Common.Input.RelayCommand.CanExecute(System.Object)"/>
+            method has changed.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.IO.StorageChangedEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="Item"></param>
+        </member>
+        <member name="T:Imagin.Common.IO.FileSystemWatcher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IO.FileSystemWatcher.ContentsChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IO.FileSystemWatcher.FileChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IO.FileSystemWatcher.FileMovedOrCreated">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IO.FileSystemWatcher.FileMovedOrDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IO.FileSystemWatcher.FolderChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IO.FileSystemWatcher.FolderMovedOrCreated">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IO.FileSystemWatcher.FolderMovedOrDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.IO.FileSystemWatcher.Contents">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.IO.FileSystemWatcher.Query">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.IO.FileSystemWatcher.Folder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.IO.FileSystemWatcher.FolderDepth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.IO.FileSystemWatcher.NotifyFilters">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.#ctor(Imagin.Common.IO.NotifyFilters)">
+            <summary>
+            
+            </summary>
+            <param name="notifyFilters"></param>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.OnContentsChanged(Windows.Storage.Search.IStorageQueryResultBase,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.OnFileChanged(Imagin.Common.IO.SystemFile)">
+             <summary>
+            
+             </summary>
+             <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.OnFileMovedOrCreated(Imagin.Common.IO.SystemFile)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.OnFileMovedOrDeleted(Imagin.Common.IO.SystemFile)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.OnFolderChanged(Imagin.Common.IO.SystemFolder)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.OnFolderMovedOrDeleted(Imagin.Common.IO.SystemFolder)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.OnFolderMovedOrCreated(Imagin.Common.IO.SystemFolder)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.AbortAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.IO.FileSystemWatcher.WatchAsync(Windows.Storage.StorageFolder)">
+            <summary>
+            
+            </summary>
+            <param name="folder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.IO.NotifyFilters">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.Attributes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.CreationTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.DirectoryName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.FileName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.LastAccess">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.LastWrite">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.Security">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.IO.NotifyFilters.All">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Linq.DependencyObjectExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.DependencyObjectExtensions.GetChildOfType``1(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Object"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Linq.SecondaryTileExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.SecondaryTileExtensions.FindAsync(System.Predicate{Windows.UI.StartScreen.SecondaryTile})">
+            <summary>
+            
+            </summary>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Linq.BooleanExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.BooleanExtensions.ToVisibility(System.Boolean,Windows.UI.Xaml.Visibility)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="FalseVisibility"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Linq.AccentColorExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.AccentColorExtensions.ToColor(Imagin.Common.Media.AccentColor)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Linq.ColorExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.ColorExtensions.DistanceFrom(Windows.UI.Color,Windows.UI.Color)">
+            <summary>
+            Gets distance to a color from given color.
+            </summary>
+            <param name="First"></param>
+            <param name="Second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Linq.ColorExtensions.ToAccentColor(Windows.UI.Color)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Linq.ColorExtensions.ToHex(Windows.UI.Color)">
+            <summary>
+            Converts color to hex string without alpha component.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.ColorExtensions.ToHexWithAlpha(Windows.UI.Color)">
+            <summary>
+            Converts color to hex string with alpha component.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.ColorExtensions.WithAlpha(Windows.UI.Color,System.Byte)">
+            <summary>
+            Creates new color with specified alpha component from specified color.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Linq.PanelExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Linq.PanelExtensions.HorizontalContentAlignmentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.SetHorizontalContentAlignment(Windows.UI.Xaml.Controls.Panel,Windows.UI.Xaml.HorizontalAlignment)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.GetHorizontalContentAlignment(Windows.UI.Xaml.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Common.Linq.PanelExtensions.SpacingProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.SetSpacing(Windows.UI.Xaml.Controls.Panel,Windows.UI.Xaml.Thickness)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.GetSpacing(Windows.UI.Xaml.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Common.Linq.PanelExtensions.TrimFirstProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.SetTrimFirst(Windows.UI.Xaml.Controls.Panel,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.GetTrimFirst(Windows.UI.Xaml.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Common.Linq.PanelExtensions.TrimLastProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.SetTrimLast(Windows.UI.Xaml.Controls.Panel,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.GetTrimLast(Windows.UI.Xaml.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Imagin.Common.Linq.PanelExtensions.VerticalContentAlignmentProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.SetVerticalContentAlignment(Windows.UI.Xaml.Controls.Panel,Windows.UI.Xaml.VerticalAlignment)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Imagin.Common.Linq.PanelExtensions.GetVerticalContentAlignment(Windows.UI.Xaml.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Linq.UIElementExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.UIElementExtensions.BeginAnimationAsync(Windows.UI.Xaml.UIElement,Windows.UI.Xaml.Media.Animation.Storyboard)">
+            <summary>
+            
+            </summary>
+            <param name="Element"></param>
+            <param name="Storyboard"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Linq.UIElementExtensions.BeginFadeIn(Windows.UI.Xaml.UIElement,System.Double)">
+            <summary>
+            Fades a <see cref="T:Windows.UI.Xaml.UIElement"/> in by increasing <see cref="P:Windows.UI.Xaml.UIElement.Opacity"/>.
+            </summary>
+            <param name="Element"></param>
+            <param name="Duration">Duration of animation in seconds.</param>
+            <param name="Callback"></param>
+        </member>
+        <member name="M:Imagin.Common.Linq.UIElementExtensions.BeginFadeOut(Windows.UI.Xaml.UIElement,System.Double)">
+            <summary>
+            Fades a <see cref="T:Windows.UI.Xaml.UIElement"/> out by descreasing <see cref="P:Windows.UI.Xaml.UIElement.Opacity"/>.
+            </summary>
+            <param name="Element"></param>
+            <param name="Duration">Duration of animation in seconds.</param>
+            <param name="Callback"></param>
+        </member>
+        <member name="M:Imagin.Common.Linq.UIElementExtensions.BeginFadeIn(Windows.UI.Xaml.UIElement,Windows.UI.Xaml.Duration)">
+            <summary>
+            Fades a <see cref="T:Windows.UI.Xaml.UIElement"/> in by increasing <see cref="P:Windows.UI.Xaml.UIElement.Opacity"/>.
+            </summary>
+            <param name="Element"></param>
+            <param name="Duration"></param>
+            <param name="Callback"></param>
+        </member>
+        <member name="M:Imagin.Common.Linq.UIElementExtensions.BeginFadeOut(Windows.UI.Xaml.UIElement,Windows.UI.Xaml.Duration)">
+            <summary>
+            Fades a <see cref="T:Windows.UI.Xaml.UIElement"/> out by descreasing <see cref="P:Windows.UI.Xaml.UIElement.Opacity"/>.
+            </summary>
+            <param name="Element"></param>
+            <param name="Duration"></param>
+            <param name="Callback"></param>
+        </member>
+        <member name="T:Imagin.Common.Media.AccentColor">
+            <summary>
+            Contains a list of all accent colors available in Windows 10 (names obtained from http://chir.ag/projects/name-that-color).
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.PeriodicalObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.PeriodicalObject.Timer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.PeriodicalObject.Enabled">
+            <summary>
+            Gets or sets whether or not to enable notifications.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.PeriodicalObject.Interval">
+            <summary>
+            The period of time (in milliseconds) between notifications.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.PeriodicalObject.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.PeriodicalObject.#ctor(System.Double,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="!:NotifiableObject"/> class and enables (or disables) timer with given interval.
+            </summary>
+            <param name="interval"></param>
+            <param name="enabled"></param>
+        </member>
+        <member name="T:Imagin.Common.DialogProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.DialogProvider.ShowAsync(System.String,System.String,Imagin.Common.DialogButton[])">
+            <summary>
+            
+            </summary>
+            <param name="Title"></param>
+            <param name="Text"></param>
+            <param name="Buttons"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.DialogProvider.ShowInputAsync(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Title"></param>
+            <param name="DefaultText"></param>
+            <param name="PlaceholderText"></param>
+            <param name="PrimaryButtonText"></param>
+            <param name="SecondaryButtonText"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Debug.Log">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Debug.Log.App">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.Log.Write(System.Action{Imagin.Common.Config.IApp})">
+            <summary>
+            
+            </summary>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Imagin.Common.Debug.Log.Write(System.Object,Imagin.Common.Debug.LogEntryType)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Type"></param>
+        </member>
+        <member name="M:Imagin.Common.Debug.Log.Write(System.Object,System.Object,Imagin.Common.Debug.LogEntryType)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Source"></param>
+            <param name="Type"></param>
+        </member>
+        <member name="M:Imagin.Common.Debug.Log.Write(System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Format"></param>
+        </member>
+        <member name="M:Imagin.Common.Debug.Log.Write(System.String,Imagin.Common.Debug.LogEntryType,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Type"></param>
+            <param name="Format"></param>
+        </member>
+        <member name="M:Imagin.Common.Debug.Log.Write(System.String,System.Object,Imagin.Common.Debug.LogEntryType,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+            <param name="Source"></param>
+            <param name="Type"></param>
+            <param name="Format"></param>
+        </member>
+    </members>
+</doc>

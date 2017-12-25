@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94AA0654-25F2-475C-BD9E-E03A0700DE20}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Imagin.Common</RootNamespace>
+    <AssemblyName>Imagin.Common.Wpf</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <DocumentationFile>bin\Debug\Imagin.Common.Wpf.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Imagin.Common">
+      <HintPath>..\Common\bin\Debug\Imagin.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFLocalizeExtension, Version=2.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfLocalizeExtension.2.3.2\lib\net35\WPFLocalizeExtension.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XAMLMarkupExtensions, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAMLMarkupExtensions.1.2.2\lib\net40\XAMLMarkupExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="%28Converters%29\BooleanToYesNoConverter.cs" />
+    <Compile Include="%28Converters%29\DescriptionAttributeConverter.cs" />
+    <Compile Include="%28Converters%29\DisplayNameAttributeConverter.cs" />
+    <Compile Include="%28Converters%29\InverseThicknessConverter.cs" />
+    <Compile Include="%28Converters%29\LocalizationConverter.cs" />
+    <Compile Include="%28Converters%29\LocalizationMultiValueConverter.cs" />
+    <Compile Include="%28Converters%29\ResultToVisibilityConverter.cs" />
+    <Compile Include="%28Dialog%29\LoadingDialog.cs" />
+    <Compile Include="Data\EnumerateBinding.cs" />
+    <Compile Include="Data\EventBinding.cs" />
+    <Compile Include="Globalization\Localizer.cs" />
+    <Compile Include="Input\DelegateCommand.cs" />
+    <Compile Include="Input\INotifyPropertyEnabled.cs" />
+    <Compile Include="Collections\Concurrent\ConcurrentCollection.cs" />
+    <Compile Include="Collections\Concurrent\ConcurrentCollectionBase.cs" />
+    <Compile Include="Collections\Concurrent\ConcurrentCollectionViewModel.cs" />
+    <Compile Include="Collections\Concurrent\DispatcherQueueProcessor.cs" />
+    <Compile Include="Config\AppLauncherDelegate.cs" />
+    <Compile Include="Config\IAppLauncher.cs" />
+    <Compile Include="Config\IWpfApp.cs" />
+    <Compile Include="%28Converters%29\ArrayToStringConverter.cs" />
+    <Compile Include="%28Converters%29\CharacterToStringConverter.cs" />
+    <Compile Include="%28Converters%29\EnumHasFlagConverter.cs" />
+    <Compile Include="%28Converters%29\ToStringConverter.cs" />
+    <Compile Include="%28Dialog%29\Dialog.cs" />
+    <Compile Include="Drawing\Cmyk.cs" />
+    <Compile Include="Drawing\ColorSpace.cs" />
+    <Compile Include="Drawing\Hsb.cs" />
+    <Compile Include="Drawing\Hsl.cs" />
+    <Compile Include="Drawing\IColor.cs" />
+    <Compile Include="Drawing\Lab.cs" />
+    <Compile Include="Drawing\Lch.cs" />
+    <Compile Include="Drawing\Luv.cs" />
+    <Compile Include="Drawing\Rgba.cs" />
+    <Compile Include="Drawing\Xyz.cs" />
+    <Compile Include="Input\IExecuteWithObject.cs" />
+    <Compile Include="Input\IExecuteWithObjectAndResult.cs" />
+    <Compile Include="Input\PropertyEnabledEventArgs.cs" />
+    <Compile Include="Input\PropertyEnabledEventHandler.cs" />
+    <Compile Include="Input\RelayCommand.cs" />
+    <Compile Include="Input\RelayCommand.Generic.cs" />
+    <Compile Include="Input\WeakAction.cs" />
+    <Compile Include="Input\WeakAction.Generic.cs" />
+    <Compile Include="Input\WeakEventHandlerManager.cs" />
+    <Compile Include="Input\WeakFunc.cs" />
+    <Compile Include="Input\WeakFunc.Generic.cs" />
+    <Compile Include="Lang\Main.es-ES.Designer.cs">
+      <DependentUpon>Main.es-ES.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\Main.it-IT.Designer.cs">
+      <DependentUpon>Main.it-IT.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\Main.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Main.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\Action.cs" />
+    <Compile Include="Linq\Dispatcher.cs" />
+    <Compile Include="Linq\Assembly.cs" />
+    <Compile Include="Linq\Brush.cs" />
+    <Compile Include="Linq\Encoding.cs" />
+    <Compile Include="%28Interfaces%29\I3Dimensional.cs" />
+    <Compile Include="Linq\FrameworkElement.cs" />
+    <Compile Include="Linq\Uri.cs" />
+    <Compile Include="Input\MapType.cs" />
+    <Compile Include="IO\ISystemObjectProvider.cs" />
+    <Compile Include="IO\LocalSystemObjectProvider.cs" />
+    <Compile Include="IO\SystemObjectProvider.cs" />
+    <Compile Include="Data\EnumerateExtension.cs" />
+    <Compile Include="Media\GradientPosition.cs" />
+    <Compile Include="Media\GradientType.cs" />
+    <Compile Include="Media\Animation\ExpanderDoubleAnimation.cs" />
+    <Compile Include="Media\Animation\GridLengthAnimation.cs" />
+    <Compile Include="Collections\FrameworkElementCollection.cs" />
+    <Compile Include="Config\IPlugin.cs" />
+    <Compile Include="%28Converters%29\IntToBooleanConverter.cs" />
+    <Compile Include="%28Converters%29\LowerCaseConverter.cs" />
+    <Compile Include="%28Converters%29\FileSizeMultiValueConverter.cs" />
+    <Compile Include="%28Converters%29\StringToBooleanConverter.cs" />
+    <Compile Include="%28Converters%29\ValueEqualsParameterToVisibilityConverter.cs" />
+    <Compile Include="%28Converters%29\EnumFlagsToVisibilityConverter.cs" />
+    <Compile Include="%28Converters%29\DateTimeStringFormatConverter.cs" />
+    <Compile Include="%28Converters%29\NullConverter.cs" />
+    <Compile Include="%28Converters%29\ValueEqualsParameterConverter.cs" />
+    <Compile Include="%28Converters%29\BooleanToVisibilityConverter.cs" />
+    <Compile Include="%28Converters%29\ByteToDoubleConverter.cs" />
+    <Compile Include="%28Converters%29\ParentFolderConverter.cs" />
+    <Compile Include="%28Converters%29\FileExtensionConverter.cs" />
+    <Compile Include="%28Converters%29\ObjectIsConverter.cs" />
+    <Compile Include="%28Converters%29\GraphicalUnitConverter.cs" />
+    <Compile Include="%28Converters%29\OrientationToBooleanConverter.cs" />
+    <Compile Include="%28Converters%29\OrientationToVisibilityConverter.cs" />
+    <Compile Include="%28Converters%29\BrushToColorConverter.cs" />
+    <Compile Include="%28Converters%29\SolidColorBrushToHexConverter.cs" />
+    <Compile Include="%28Converters%29\ColorToSolidColorBrushConverter.cs" />
+    <Compile Include="%28Converters%29\ColorToHexConverter.cs" />
+    <Compile Include="%28Converters%29\DateTimeIsTodayConverter.cs" />
+    <Compile Include="%28Converters%29\DateTimeToDayConverter.cs" />
+    <Compile Include="%28Converters%29\EnumToCamelCaseConverter.cs" />
+    <Compile Include="%28Converters%29\EnumToCollectionConverter.cs" />
+    <Compile Include="%28Converters%29\FileNameConverter.cs" />
+    <Compile Include="%28Converters%29\FileSizeConverter.cs" />
+    <Compile Include="%28Converters%29\FileSpeedConverter.cs" />
+    <Compile Include="%28Converters%29\IntToMonthConverter.cs" />
+    <Compile Include="%28Converters%29\InverseBooleanConverter.cs" />
+    <Compile Include="%28Converters%29\NullToBooleanConverter.cs" />
+    <Compile Include="%28Converters%29\NullToVisibilityConverter.cs" />
+    <Compile Include="%28Converters%29\StringToVisibilityConverter.cs" />
+    <Compile Include="%28Converters%29\ObjectToTypeConverter.cs" />
+    <Compile Include="%28Converters%29\RelativeTimeConverter.cs" />
+    <Compile Include="%28Converters%29\SecondsConverter.cs" />
+    <Compile Include="%28Converters%29\StartsWithToVisibilityMultiValueConverter.cs" />
+    <Compile Include="%28Converters%29\StringToCamelCaseConverter.cs" />
+    <Compile Include="%28Converters%29\SubstringConverter.cs" />
+    <Compile Include="%28Converters%29\TreeViewLineConverter.cs" />
+    <Compile Include="%28Converters%29\UpperCaseConverter.cs" />
+    <Compile Include="%28Converters%29\WritableColorToBrushConverter.cs" />
+    <Compile Include="%28Dialog%29\DialogProvider.cs" />
+    <Compile Include="%28Dialog%29\DialogProviderMode.cs" />
+    <Compile Include="%28Dialog%29\DialogProviderSelectionMode.cs" />
+    <Compile Include="%28Abstract%29\Entry.cs" />
+    <Compile Include="Linq\Bitmap.cs" />
+    <Compile Include="Linq\BitmapImage.cs" />
+    <Compile Include="Linq\Boolean.cs" />
+    <Compile Include="Linq\Cursor.cs" />
+    <Compile Include="Linq\ModifierKeys.cs" />
+    <Compile Include="Linq\Point.cs" />
+    <Compile Include="Linq\Rect.cs" />
+    <Compile Include="Linq\ResourceDictionary.cs" />
+    <Compile Include="Linq\SolidColorBrush.cs" />
+    <Compile Include="Linq\Color.cs" />
+    <Compile Include="Linq\DependencyObject.cs" />
+    <Compile Include="Linq\Icon.cs" />
+    <Compile Include="Linq\IntPtr.cs" />
+    <Compile Include="Linq\SpecialFolder.cs" />
+    <Compile Include="Linq\String.cs" />
+    <Compile Include="Linq\TimeSpan.cs" />
+    <Compile Include="Linq\UIElement.cs" />
+    <Compile Include="Linq\Visibility.cs" />
+    <Compile Include="Globalization\LocalizationProvider.cs" />
+    <Compile Include="%28Interfaces%29\I2Dimensional.cs" />
+    <Compile Include="Input\MouseEvent.cs" />
+    <Compile Include="%28Interfaces%29\IProportional.cs" />
+    <Compile Include="Mvvm\IMainViewModel.cs" />
+    <Compile Include="Mvvm\ViewModel.Generic.cs" />
+    <Compile Include="%28Abstract%29\NamedEntry.cs" />
+    <Compile Include="Mvvm\ViewModelBase.cs" />
+    <Compile Include="Native\Utilities.cs" />
+    <Compile Include="%28Abstract%29\PeriodicalObject.cs" />
+    <Compile Include="Primitives\TimePart.cs" />
+    <Compile Include="Primitives\DateTimePart.cs" />
+    <Compile Include="Primitives\Proportions.cs" />
+    <Compile Include="Primitives\Position.cs" />
+    <Compile Include="Primitives\Selection.cs" />
+    <Compile Include="Primitives\Position3D.cs" />
+    <Compile Include="Serialization\WritableColor.cs" />
+    <Compile Include="Serialization\WritableEnum.cs" />
+    <Compile Include="Serialization\WritableObject.Generic.cs" />
+    <Compile Include="Mvvm\ViewModel.cs" />
+    <Compile Include="Mvvm\IPaneViewModel.cs" />
+    <Compile Include="Mvvm\IDocumentViewModel.cs" />
+    <Compile Include="Mvvm\IPaneViewModelCollection.cs" />
+    <Compile Include="Mvvm\IDocumentViewModelCollection.cs" />
+    <Compile Include="Debug\Log.cs" />
+    <Compile Include="Data\BindingProxy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\WritableFontFamily.cs" />
+    <Compile Include="StretchMode.cs" />
+    <Compile Include="Linq\Keyboard.cs" />
+    <Compile Include="Theme.cs" />
+    <Compile Include="ThemeDictionary.cs" />
+    <Compile Include="StyleDictionary.cs" />
+    <Compile Include="Web\Fetch.cs" />
+    <Compile Include="Web\FetchStream.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Lang\Main.es-ES.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Main.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\Main.it-IT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Main.it-IT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\Main.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Main.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

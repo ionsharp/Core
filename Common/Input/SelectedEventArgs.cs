@@ -5,7 +5,7 @@
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    public delegate void SelectedEventHandler(SelectedEventArgs e);
+    public delegate void SelectedEventHandler(object sender, SelectedEventArgs e);
 
     /// <summary>
     /// 

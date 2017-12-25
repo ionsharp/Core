@@ -1,12 +1,6 @@
-﻿using System;
-
-namespace Imagin.Common
+﻿namespace Imagin.Common
 {
-    /// <remarks>
-    /// Field order is important
-    /// </remarks>
-    [Serializable]
-    public enum CompassDirection
+    public enum CompassPoint
     {
         /// <summary>
         /// 

@@ -1,0 +1,38 @@
+﻿<local:BrushDialog 
+    x:Class="Imagin.Controls.Common.GradientDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Controls.Common"
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Extensions"
+    ResizeMode="NoResize"
+    SizeToContent="Height"
+    Type="Tool"
+    Width="625"
+    WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <local:GradientPicker 
+            x:Name="PART_GradientPicker"
+            GradientChanged="OnGradientChanged"/>
+        <Border
+            Grid.Row="1" 
+            Style="{Binding FooterStyle}">
+            <StackPanel
+                Orientation="Horizontal" 
+                Linq:PanelExtensions.Spacing="3,0,0,0"
+                HorizontalAlignment="Right">
+                <Button 
+                    Content="Save" 
+                    IsDefault="True" 
+                    Click="OnSave"/>
+                <Button 
+                    Content="Cancel" 
+                    IsCancel="True" 
+                    Click="OnCancel"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</local:BrushDialog>

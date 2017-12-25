@@ -1,0 +1,29 @@
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.Wpf.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.Wpf.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\es-ES\Imagin.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\it-IT\Imagin.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\XAMLMarkupExtensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\WPFLocalizeExtension.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\XAMLMarkupExtensions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\es-ES\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\it-IT\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Common (WPF).csprojResolveAssemblyReference.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Lang.Main.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Lang.Main.es-ES.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Lang.Main.it-IT.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Common (WPF).csproj.GenerateResource.Cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Common (WPF).csproj.CoreCompileInputs.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\es-ES\Imagin.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\it-IT\Imagin.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Wpf.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Wpf.pdb

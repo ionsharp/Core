@@ -61,20 +61,11 @@
     <Reference Include="Imagin.Common">
       <HintPath>..\Common\bin\Debug\Imagin.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Imagin.Controls.Common">
-      <HintPath>..\Controls.Common\bin\Debug\Imagin.Controls.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Imagin.Common.Wpf">
+      <HintPath>..\Common (WPF)\bin\Debug\Imagin.Common.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Imagin.Controls.Extended">
-      <HintPath>..\Controls.Extended\bin\Debug\Imagin.Controls.Extended.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Imagin.Gadgets">
-      <HintPath>..\Gadgets\bin\Debug\Imagin.Gadgets.dll</HintPath>
-    </Reference>
-    <Reference Include="Imagin.Styles, Version=2.7.7.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Styles\bin\Debug\Imagin.Styles.dll</HintPath>
+    <Reference Include="Imagin.Controls.Common.Wpf">
+      <HintPath>..\Controls.Common (WPF)\bin\Debug\Imagin.Controls.Common.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -90,6 +81,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Reflection.TypeExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.TypeExtensions.4.3.0\lib\net46\System.Reflection.TypeExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -120,6 +117,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control.cs" />
+    <Compile Include="ControlView.xaml.cs">
+      <DependentUpon>ControlView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,11 +133,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\HierarchialCollection.cs" />
+    <Compile Include="Data\StorageCollection.cs" />
+    <Compile Include="Data\StorageObjectModel.cs" />
+    <Compile Include="Data\PrimaryObject.cs" />
+    <Compile Include="Data\Fruits.cs" />
+    <Compile Include="Data\HierarchialObject.cs" />
+    <Compile Include="Data\SecondaryObject.cs" />
+    <Compile Include="Data\StorageObjectType.cs" />
+    <Compile Include="Data\TertiaryObject.cs" />
+    <Compile Include="Data\View.cs" />
+    <Compile Include="Data\ComplexObject.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Styles\Window.xaml">
+    <Page Include="Styles\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Tag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Target.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

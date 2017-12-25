@@ -1,0 +1,159 @@
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.g.cs
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.g.cs
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.g.cs
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common_MarkupCompile.cache
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common_MarkupCompile.lref
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.xml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.AdvancedDataGrid.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.AdvancedListView.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.AdvancedTextBox.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.AdvancedTreeView.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Gadget.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Masked.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.DragSelection.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.FileBox.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Line.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Link.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.PasswordBox.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.RadioGroup.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TreeViewComboBox.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.UpDown.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.g.resources
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.dll
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.CheckerBoard.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.EditableLabel.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.RippleDecorator.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.xml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.DateTimeUpDown.baml
+C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.XML
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.xml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.g.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.g.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.g.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\SelectionCanvas.g.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common_MarkupCompile.cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common_MarkupCompile.lref
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\SelectionCanvas.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.FlagCheckView.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TextBoxExt.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.ButtonChrome.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TreeViewExt.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.ToggleSwitch.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.RippleDecorator.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.CheckerBoard.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.EditableLabel.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Gadget.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Masked.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.DragSelection.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.FileBox.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Line.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Link.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.PasswordBox.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.RadioGroup.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TreeViewComboBox.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.UpDown.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.BasicWindow.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.baml
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.g.resources
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.Lang.Main.resources
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csproj.GenerateResource.Cache
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.Portable.dll
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.Portable.pdb
+C:\Users\Alex\Software Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.Portable.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.XML
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Controls.Common.pdb
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.Portable.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.pdb
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.Portable.pdb
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Imagin.Common.Portable.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\WPFLocalizeExtension.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\bin\Debug\XAMLMarkupExtensions.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.g.cs
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.g.cs
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.g.cs
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\SelectionCanvas.g.cs
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common_MarkupCompile.cache
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common_MarkupCompile.lref
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\DirectionPad.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontSizeBox.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\FontFamilyBox.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\SelectionCanvas.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.FlagCheckView.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TextBoxExt.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.ButtonChrome.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TreeViewExt.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.ToggleSwitch.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.RippleDecorator.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.CheckerBoard.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.EditableLabel.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Gadget.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Masked.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.DragSelection.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.FileBox.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Line.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.Link.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.PasswordBox.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.RadioGroup.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.TreeViewComboBox.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.UpDown.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.BasicWindow.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Themes\Generic.baml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.g.resources
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.Lang.Main.resources
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Controls.Common.csproj.GenerateResource.Cache
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Controls.Common\obj\Debug\Imagin.Controls.Common.pdb

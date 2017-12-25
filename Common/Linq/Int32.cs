@@ -1,0 +1,221 @@
+﻿using System;
+using System.Linq;
+
+namespace Imagin.Common.Linq
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class Int32Extensions
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Increment"></param>
+        /// <returns></returns>
+        public static int Add(this int Value, int Increment)
+        {
+            return Value + Increment;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static int Abs(this int Value)
+        {
+            return Math.Abs(Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Maximum"></param>
+        /// <param name="Minimum"></param>
+        /// <returns></returns>
+        public static int Coerce(this int Value, int Maximum, int Minimum = 0)
+        {
+            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Divisor"></param>
+        /// <returns></returns>
+        public static int Divide(this int Value, int Divisor)
+        {
+            return Value / Divisor;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static int K(this int Value)
+        {
+            return Value * 1024;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static bool IsEven(this int Value)
+        {
+            return Value == 0 ? true : Value % 2 == 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static bool IsOdd(this int Value)
+        {
+            return !IsEven(Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static int M(this int Value)
+        {
+            return Value * 1024 * 1024;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Scalar"></param>
+        /// <returns></returns>
+        public static int Multiply(this int Value, int Scalar)
+        {
+            return Value * Scalar;
+        }
+
+        /// <summary>
+        /// Generates a random string with numeric length.
+        /// </summary>
+        public static string Random(this int Length)
+        {
+            const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var Random = new Random();
+            return new string(Enumerable.Repeat(Chars, Length).Select(s => s[Random.Next(s.Length)]).ToArray());
+        }
+
+        /// <summary>
+        /// Converts int to byte array.
+        /// </summary>
+        public static byte[] SplitBytes(this int ToSplit)
+        {
+            string s = ToSplit.ToString();
+            byte[] Result = new byte[s.Length];
+            int i = 0;
+            foreach (char c in s)
+            {
+                Result[i] = c.ToString().ToByte();
+                i++;
+            }
+            return Result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Decrement"></param>
+        /// <returns></returns>
+        public static int Subtract(this int Value, int Decrement)
+        {
+            return Value - Decrement;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static byte ToByte(this int Value)
+        {
+            return Convert.ToByte(Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static double ToDouble(this int Value)
+        {
+            return Convert.ToDouble(Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static short ToInt16(this int Value)
+        {
+            return Convert.ToInt16(Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static long ToInt64(this int Value)
+        {
+            return Convert.ToInt64(Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        public static string ToOrdinal(this int Value)
+        {
+            var Result = string.Empty;
+            switch (Value)
+            {
+                case 1:
+                    Result = "st";
+                    break;
+                case 2:
+                    Result = "nd";
+                    break;
+                case 3:
+                    Result = "rd";
+                    break;
+                default:
+                    Result = "th";
+                    break;
+            }
+            return "{0}{1}".F(Value, Result);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Minimum"></param>
+        /// <param name="Maximum"></param>
+        /// <returns></returns>
+        public static bool WithinRange(this int Value, int Minimum, int Maximum)
+        {
+            return Value >= Minimum && Value <= Maximum;
+        }
+    }
+}

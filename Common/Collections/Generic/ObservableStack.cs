@@ -1,5 +1,4 @@
-﻿using Imagin.Common.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace Imagin.Common.Collections.Generic
 {
@@ -15,7 +14,7 @@ namespace Imagin.Common.Collections.Generic
         /// <param name="item"></param>
         public void Push(T item)
         {
-            this.Add(item);
+            Add(item);
         }
 
         /// <summary>
@@ -24,7 +23,7 @@ namespace Imagin.Common.Collections.Generic
         /// <returns></returns>
         public T Peek()
         {
-            return this.Count > 0 ? this[this.Count - 1] : default(T);
+            return Count > 0 ? this[Count - 1] : default(T);
         }
 
         /// <summary>
@@ -33,10 +32,10 @@ namespace Imagin.Common.Collections.Generic
         /// <returns></returns>
         public T Pop()
         {
-            if (this.Count > 0)
+            if (Count > 0)
             {
-                var i = this[this.Count - 1];
-                this.RemoveAt(this.Count - 1);
+                var i = this[Count - 1];
+                RemoveAt(Count - 1);
                 return i;
             }
             else return default(T);
@@ -45,7 +44,7 @@ namespace Imagin.Common.Collections.Generic
         /// <summary>
         /// 
         /// </summary>
-        public ObservableStack()
+        public ObservableStack() : base()
         {
         }
     }

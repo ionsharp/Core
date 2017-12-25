@@ -1,20 +1,14 @@
-﻿using Imagin.Common.Input;
-using System;
-using System.Xml.Serialization;
-
-namespace Imagin.Common
+﻿namespace Imagin.Common
 {
     /// <summary>
     /// 
     /// </summary>
     /// <typeparam name="TValue"></typeparam>
-    [Serializable]
     public class CheckableObject<TValue> : CheckableObject
     {
         /// <summary>
         /// 
         /// </summary>
-        [XmlIgnore]
         protected TValue value;
         /// <summary>
         /// 

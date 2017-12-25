@@ -1,9 +1,5 @@
-﻿using Imagin.Common.Attributes;
-using System;
-
-namespace Imagin.Common.Drawing
+﻿namespace Imagin.Common.Drawing
 {
-    [Serializable]
     public enum GraphicalUnit
     {
         /// <summary>

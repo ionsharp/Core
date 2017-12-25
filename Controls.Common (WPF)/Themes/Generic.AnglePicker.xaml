@@ -1,0 +1,43 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:o="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+    xmlns:l="http://wpflocalizeextension.codeplex.com"
+    xmlns:local="clr-namespace:Imagin.Controls.Common">
+    <Style x:Key="{x:Type local:AnglePicker}" TargetType="{x:Type local:AnglePicker}">
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AnglePicker}">
+                    <Grid>
+                        <Ellipse 
+                            x:Name="PART_Ellipse"
+                            Fill="{TemplateBinding Background}"
+                            Stroke="{TemplateBinding BorderBrush}"
+                            StrokeThickness="{TemplateBinding BorderThickness}"/>
+                        <Line
+                            x:Name="PART_Line"
+                            Stroke="{TemplateBinding NeedleStroke}"
+                            StrokeThickness="{TemplateBinding NeedleStrokeThickness}"
+                            RenderTransformOrigin="0.5,0.5">
+                            <Line.RenderTransform>
+                                <RotateTransform Angle="0"/>
+                            </Line.RenderTransform>
+                        </Line>
+                        <Ellipse 
+                            x:Name="PART_Origin"
+                            Fill="{TemplateBinding OriginFill}"
+                            Height="{TemplateBinding OriginStrokeThickness}"
+                            HorizontalAlignment="Center"
+                            Stroke="{TemplateBinding OriginStroke}"
+                            VerticalAlignment="Center"
+                            Visibility="{TemplateBinding OriginVisibility}"
+                            Width="{TemplateBinding OriginStrokeThickness}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

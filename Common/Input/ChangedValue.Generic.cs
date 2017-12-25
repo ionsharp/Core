@@ -6,27 +6,27 @@ namespace Imagin.Common.Input
     /// Specifies a changed value.
     /// </summary>
     /// <typeparam name="TKind">The kind of value.</typeparam>
-    public class ChangedValue<TKind> : Tuple<TKind, TKind>
+    public class ChangedValue<TValue> : Tuple<TValue, TValue>
     {
         /// <summary>
         /// The old value.
         /// </summary>
-        public TKind OldValue
+        public TValue OldValue
         {
             get
             {
-                return this.Item1;
+                return Item1;
             }
         }
 
         /// <summary>
         /// The new value.
         /// </summary>
-        public TKind NewValue
+        public TValue NewValue
         {
             get
             {
-                return this.Item2;
+                return Item2;
             }
         }
 
@@ -35,7 +35,7 @@ namespace Imagin.Common.Input
         /// </summary>
         /// <param name="OldValue"></param>
         /// <param name="NewValue"></param>
-        public ChangedValue(TKind OldValue, TKind NewValue) : base(OldValue, NewValue)
+        public ChangedValue(TValue OldValue, TValue NewValue) : base(OldValue, NewValue)
         {
         }
     }

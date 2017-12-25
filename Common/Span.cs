@@ -18,7 +18,14 @@
         public T2 Second { get; set; } = default(T2);
 
         /// <summary>
-        /// Initializes a new instance of the Span class.
+        /// Initializes a new instance of the <see cref="Span{T1, T2}"/> class.
+        /// </summary>
+        protected Span()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Span{T1, T2}"/> class.
         /// </summary>
         /// <param name="First"></param>
         /// <param name="Second"></param>
@@ -43,7 +50,7 @@
         public T3 Third { get; set; } = default(T3);
 
         /// <summary>
-        /// Initializes a new instance of the Span class.
+        /// Initializes a new instance of the <see cref="Span{T1, T2, T3}"/> class.
         /// </summary>
         /// <param name="First"></param>
         /// <param name="Second"></param>
@@ -69,7 +76,7 @@
         public T4 Fourth { get; set; } = default(T4);
 
         /// <summary>
-        /// Initializes a new instance of the Span class.
+        /// Initializes a new instance of the <see cref="Span{T1, T2, T3, T4}"/> class.
         /// </summary>
         /// <param name="First"></param>
         /// <param name="Second"></param>
@@ -97,7 +104,7 @@
         public T5 Fifth { get; set; } = default(T5);
 
         /// <summary>
-        /// Initializes a new instance of the Span class.
+        /// Initializes a new instance of the <see cref="Span{T1, T2, T3, T4, T5}"/> class.
         /// </summary>
         /// <param name="First"></param>
         /// <param name="Second"></param>
@@ -127,7 +134,7 @@
         public T6 Sixth { get; set; } = default(T6);
 
         /// <summary>
-        /// Initializes a new instance of the Span class.
+        /// Initializes a new instance of the <see cref="Span{T1, T2, T3, T4, T5, T6}"/> class.
         /// </summary>
         /// <param name="First"></param>
         /// <param name="Second"></param>

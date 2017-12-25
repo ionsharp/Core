@@ -1,20 +1,29 @@
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.dll
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.pdb
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.dll
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.pdb
-C:\Users\Alex\Software Development\Projects\Libraries\Imagin.NET\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.XML
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.pdb
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Microsoft.WindowsAPICodePack.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\WPFLocalizeExtension.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\XAMLMarkupExtensions.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Microsoft.WindowsAPICodePack.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\WPFLocalizeExtension.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\XAMLMarkupExtensions.pdb
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\bin\Debug\XAMLMarkupExtensions.xml
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.dll
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.pdb
-C:\Users\Alex\Software Development\Libraries\Imagin.NET\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.xml
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.pdb
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.pdb
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\bin\Debug\es-ES\Imagin.Common.resources.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\bin\Debug\it-IT\Imagin.Common.resources.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.Lang.Main.resources
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.Lang.Main.es-ES.resources
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.Lang.Main.it-IT.resources
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\Common.csproj.GenerateResource.Cache
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\es-ES\Imagin.Common.resources.dll
+C:\Users\Alex\Development\Libraries\Imagin.NET\Common\obj\Debug\it-IT\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\bin\Debug\Imagin.Common.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\bin\Debug\es-ES\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\bin\Debug\it-IT\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.Lang.Main.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.Lang.Main.es-ES.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.Lang.Main.it-IT.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\Common.csproj.GenerateResource.Cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\es-ES\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\it-IT\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\Imagin.Common.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

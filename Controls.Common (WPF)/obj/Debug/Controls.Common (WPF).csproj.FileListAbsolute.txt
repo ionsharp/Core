@@ -1,0 +1,232 @@
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Controls.Common.Wpf.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Controls.Common.Wpf.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Controls.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\es-ES\Imagin.Controls.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\it-IT\Imagin.Controls.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Common.Wpf.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\System.Reflection.TypeExtensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\XAMLMarkupExtensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Common.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Common.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Imagin.Common.Wpf.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\WPFLocalizeExtension.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\XAMLMarkupExtensions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\es-ES\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\it-IT\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\es-ES\Imagin.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\bin\Debug\it-IT\Imagin.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Controls.Common (WPF).csprojResolveAssemblyReference.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\DirectionPad.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\FontSizeBox.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\FontFamilyBox.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\SelectionCanvas.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Wpf_MarkupCompile.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Wpf_MarkupCompile.lref
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\DirectionPad.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\FontSizeBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\FontFamilyBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\SelectionCanvas.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.MaskedToggleButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.TimeUpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.DateTimeUpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.FlagCheckView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.Menu.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.TextBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.ButtonChrome.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.TreeView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.ToggleSwitch.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.RippleDecorator.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.CheckerBoard.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.EditableLabel.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.Gadget.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.Masked.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.DragSelection.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.FileBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.Line.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.Link.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.RadioGroup.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.TreeViewComboBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.UpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.BasicWindow.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Themes\Generic.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Wpf.g.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Lang.Lang.Main.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Lang.Main.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Lang.Lang.Main.es-ES.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Lang.Lang.Main.it-IT.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Lang.Main.es-ES.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Lang.Main.it-IT.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Controls.Common (WPF).csproj.GenerateResource.Cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Controls.Common (WPF).csproj.CoreCompileInputs.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\es-ES\Imagin.Controls.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\it-IT\Imagin.Controls.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Wpf.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Imagin.Controls.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.Decorators.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.DragSelection.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.Line.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.Link.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.MaskedImage.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.MaskedDropDownButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.MaskedButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common.Wpf\obj\Debug\Styles\Generic.ToggleSwitch.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Controls.Common.Wpf.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Controls.Common.Wpf.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Controls.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\es-ES\Imagin.Controls.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\it-IT\Imagin.Controls.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Common.Wpf.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\System.Reflection.TypeExtensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\XAMLMarkupExtensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Common.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Common.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Imagin.Common.Wpf.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\WPFLocalizeExtension.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\XAMLMarkupExtensions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\es-ES\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\it-IT\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\es-ES\Imagin.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\bin\Debug\it-IT\Imagin.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ColorPicker\(Resources)\Slider.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Border.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Button.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Calendar.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ContextMenu.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Expander.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.GridSplitter.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.GridView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.GroupBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Label.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.RichTextBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ScrollViewer.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Slider.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.TabControl.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.TextBlock.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ToggleButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ThicknessBox.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Chips\DualColorChip.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Dialogs\ColorDialog.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Dialogs\GradientDialog.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\AlphaSlider.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ColorPicker\ColorPicker.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ColorSelector.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\DirectionPad.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ComboBox\FontSizeBox.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ComboBox\FontFamilyBox.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\GradientPicker.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\NewCurrent.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\PropertyGrid\PropertyGridBase.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\SelectionCanvas.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Wpf_MarkupCompile.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Wpf_MarkupCompile.lref
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.DirectionPad.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ThicknessBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Chips\DualColorChip.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Dialogs\ColorDialog.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Dialogs\GradientDialog.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\AlphaSlider.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ColorPicker\ColorPicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ColorSelector.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\DirectionPad.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ComboBox\FontSizeBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ComboBox\FontFamilyBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\GradientPicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\NewCurrent.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\PropertyGrid\PropertyGridBase.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\SelectionCanvas.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.RadioGroup.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.CheckBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ComboBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.DataGrid.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ListBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Menu.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.RadioButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.TextBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ToolBar.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ToolTip.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Window.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.BasicWindow.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.TokenButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.TreeView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.TabbedTree.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.StoragePicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.BrushDialog.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.AnglePicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ColorPicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.PropertyGrid.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Decorators.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.DragSelection.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Line.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Link.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.MaskedImage.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.MaskedDropDownButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.MaskedButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ToggleSwitch.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.MaskedToggleButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.AnglePicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.Chips.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.ColorComb.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.HexagonButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.TabbedTree.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.TimeUpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.DateTimeUpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.FlagCheckView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.Menu.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.TextBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.ButtonChrome.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.TreeView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.ToggleSwitch.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.RippleDecorator.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.CheckerBoard.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.EditableLabel.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.Masked.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.DragSelection.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.FileBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.Line.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.Link.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.RadioGroup.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.TreeViewComboBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.UpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.BasicWindow.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Wpf.g.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Lang.Main.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Lang.Main.es-ES.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Lang.Main.it-IT.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Controls.Common (WPF).csproj.GenerateResource.Cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Controls.Common (WPF).csproj.CoreCompileInputs.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\es-ES\Imagin.Controls.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\it-IT\Imagin.Controls.Common.Wpf.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Wpf.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Controls.Common (WPF).csprojResolveAssemblyReference.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\PropertyView\PropertyView.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\PropertyView\PropertyView.baml

@@ -1,0 +1,111 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:l="http://wpflocalizeextension.codeplex.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Controls.Common"
+    xmlns:Common="http://imagin.tech/imagin/common">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Styles/Generic.DataGrid.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Common:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
+    <Common:StringToCamelCaseConverter x:Key="StringToCamelCaseConverter"/>
+
+    <Style x:Key="{x:Type local:PropertyGridBase}" TargetType="{x:Type local:PropertyGridBase}">
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="DataGridStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="CanUserReorderColumns" Value="False"/>
+                    <Setter Property="CanUserResizeColumns" Value="True"/>
+                    <Setter Property="CanUserResizeRows" Value="False"/>
+                    <Setter Property="EnableColumnVirtualization" Value="True"/>
+                    <Setter Property="EnableRowVirtualization" Value="True"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="VirtualizingPanel.IsContainerVirtualizable" Value="True"/>
+                    <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
+                    <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text}"/>
+        <Setter Property="DescriptionTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border
+                        Background="{DynamicResource Brush.PropertyGrid.Description.Background}"
+                        BorderBrush="{DynamicResource Brush.PropertyGrid.Description.Border}"
+                        BorderThickness="0,1,0,0"
+                        MinHeight="36"
+                        TextElement.Foreground="{DynamicResource Brush.Text}"
+                        Padding="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <local:LocalizedTextBlock 
+                                FontWeight="Bold"
+                                Margin="0,0,0,7"
+                                Text="{Binding DisplayName, Converter={StaticResource StringToCamelCaseConverter}, Mode=OneWay}"
+                                TextTrimming="CharacterEllipsis"
+                                ToolTip="{Binding LocalizedText, Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
+                            <local:LocalizedTextBlock 
+                                Grid.Row="1"
+                                Text="{Binding Description, Mode=OneWay}"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="Wrap"
+                                ToolTip="{Binding LocalizedText, Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="NestedPropertyTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Button
+                        Command="{Binding NestCommand, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"
+                        CommandParameter="{Binding Value, Mode=OneWay}">
+                        <local:MaskedImage
+                            Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Images/Dots.png"/>
+                    </Button>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SplitterStyle">
+            <Setter.Value>
+                <Style TargetType="GridSplitter">
+                    <Setter Property="Background" Value="{DynamicResource Brush.GridSplitter.Background}" />
+                    <Setter Property="Height" Value="3"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="ResizeBehavior" Value="PreviousAndNext" />
+                    <Setter Property="VerticalAlignment" Value="Top"/>
+                    <Setter Property="Width" Value="Auto"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TypeTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock 
+                        FontWeight="Bold"
+                        Text="{Binding Mode=OneWay, Converter={StaticResource ObjectToTypeConverter}}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type local:PropertyGrid}" 
+        TargetType="{x:Type local:PropertyGrid}" 
+        BasedOn="{StaticResource {x:Type local:PropertyGridBase}}"/>
+
+    <Style x:Key="{x:Type local:ResourceDictionaryEditor}" 
+        TargetType="{x:Type local:ResourceDictionaryEditor}" 
+        BasedOn="{StaticResource {x:Type local:PropertyGridBase}}"/>
+</ResourceDictionary>
