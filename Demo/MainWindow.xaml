@@ -20,6 +20,8 @@
     <Controls.Common:BasicWindow.Resources>
         <Common:BindingProxy x:Key="BindingProxy" Data="{Binding ElementName=PART_MainWindow}"/>
 
+        <Common:BrushToColorConverter x:Key="BrushToColorConverter"/>
+        <Common:CharacterToStringConverter x:Key="CharacterToStringConverter"/>
         <Common:ColorToHexConverter x:Key="ColorToHexConverter"/>
         <Common:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
         <Common:EnumToCollectionConverter x:Key="EnumToCollectionConverter"/>
@@ -27,8 +29,7 @@
         <Common:FileSizeConverter x:Key="FileSizeConverter"/>
         <Common:Int32ArrayToStringConverter x:Key="Int32ArrayToStringConverter"/>
         <Common:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
-        <Common:BrushToColorConverter x:Key="BrushToColorConverter"/>
-        <Common:CharacterToStringConverter x:Key="CharacterToStringConverter"/>
+        <Common:SolidColorBrushToColorConverter x:Key="SolidColorBrushToColorConverter"/>
         
         <!-- ....................................................................................[Views] -->
 
@@ -293,7 +294,19 @@
                                 Controls.Common:PanelExtensions.Spacing="0,0,0,10" 
                                 Controls.Common:PanelExtensions.TrimLast="True">
                                 <Label 
-                                    Content=":"/>
+                                    Content="Checker background:"/>
+                                <Controls.Common:ColorChip
+                                    Color="{Binding Instance.CheckerBackground, Converter={StaticResource SolidColorBrushToColorConverter}, Mode=TwoWay}"/>
+                                
+                                <Label 
+                                    Content="Checker foreground:"/>
+                                <Controls.Common:ColorChip
+                                    Color="{Binding Instance.CheckerForeground, Converter={StaticResource SolidColorBrushToColorConverter}, Mode=TwoWay}"/>
+
+                                <Label 
+                                    Content="Checker size:"/>
+                                <Controls.Common:DoubleUpDown
+                                    Value="{Binding Instance.CheckerSize}"/>
                             </StackPanel>
                         </DataTemplate>
                     </local:Control.Options>
@@ -1080,7 +1093,7 @@
                                     Content="Browse mode:"/>
                                 <ComboBox 
                                     SelectedValue="{Binding Instance.BrowseMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                    ItemsSource="{Binding Source={x:Type Common:DialogProviderMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
+                                    ItemsSource="{Binding Source={x:Type Common:WindowsDialogMode}, Converter={StaticResource EnumToCollectionConverter}}"/>
 
                                 <Label 
                                     Content="Browse title:"/>
@@ -1572,7 +1585,6 @@
                                 <ComboBox 
                                     SelectedValue="{Binding Instance.HeadersVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                     ItemsSource="{Binding Source={x:Type DataGridHeadersVisibility}, Converter={StaticResource EnumToCollectionConverter}}"/>
-
                             </StackPanel>
                         </DataTemplate>
                     </local:Control.Options>
@@ -2047,8 +2059,8 @@
                                                     <Controls.Common:MaskedImage
                                                     Source="/Images/Tag.png"/>
                                                     <TextBlock 
-                                                    Margin="10,0,0,0"
-                                                    Text="{Binding Mode=OneWay}"/>
+                                                        Margin="10,0,0,0"
+                                                        Text="{Binding Mode=OneWay}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </Setter.Value>

@@ -2,7 +2,7 @@
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
     /// <summary>
     /// 

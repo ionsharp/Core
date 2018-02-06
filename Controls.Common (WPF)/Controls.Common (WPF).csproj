@@ -101,6 +101,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentControl\ContentControl.cs" />
+    <Compile Include="ContentControl\TransitionalContentControl.cs" />
+    <Compile Include="ContentControl\TransitionType.cs" />
+    <Compile Include="ContentControl\VisualStates.cs" />
+    <Compile Include="ListView\ListView.cs" />
+    <Compile Include="PropertyGrid\IPropertyGrid.Generic.cs" />
+    <Compile Include="PropertyGrid\PropertyGridBase.cs" />
+    <Compile Include="PropertyGrid\PropertyType.cs" />
+    <Compile Include="PropertyGrid\[Models]\CoercedPropertyModel.cs" />
+    <Compile Include="PropertyGrid\[Models]\CoercedVariantPropertyModel.cs" />
+    <Compile Include="PropertyGrid\[Models]\NestedPropertyModel.cs" />
+    <Compile Include="PropertyGrid\[Models]\PropertyModel.Selector.cs" />
+    <Compile Include="UpDown\FloatUpDown.cs" />
+    <Compile Include="UserControl.cs" />
     <Compile Include="Chips\Chip.Generic.cs" />
     <Compile Include="Chips\ChipBase.cs" />
     <Compile Include="Chips\ColorChip.cs" />
@@ -108,9 +122,7 @@
       <DependentUpon>DualColorChip.xaml</DependentUpon>
     </Compile>
     <Compile Include="Chips\GradientChip.cs" />
-    <Compile Include="PropertyView\PropertyView.xaml.cs">
-      <DependentUpon>PropertyView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Linq\Grid.cs" />
     <Compile Include="Dialogs\BrushDialog.cs" />
     <Compile Include="Dialogs\BrushDialog.Generic.cs" />
     <Compile Include="Dialogs\ColorDialog.xaml.cs">
@@ -120,7 +132,6 @@
       <DependentUpon>GradientDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SolidColorBrushDialog.cs" />
-    <Compile Include="PropertyGrid\IPropertyGrid.Generic.cs" />
     <Compile Include="PropertyGrid\PropertyGrid.cs" />
     <Compile Include="PropertyGrid\PropertyGridBase.Generic.cs" />
     <Compile Include="ScrollViewer.cs" />
@@ -130,17 +141,17 @@
     <Compile Include="UpDown\MultiUpDown.cs" />
     <Compile Include="UpDown\SignedRationalUpDown.cs" />
     <Compile Include="UpDown\UnsignedRationalUpDown.cs" />
-    <Compile Include="Validation\%28Handlers%29\LocalPathValidateHandler.cs" />
-    <Compile Include="Validation\%28Handlers%29\PathValidateHandler.cs" />
-    <Compile Include="Validation\%28Rules%29\DecimalRangeRule.cs" />
-    <Compile Include="Validation\%28Rules%29\DoubleRangeRule.cs" />
-    <Compile Include="Validation\%28Rules%29\Int16RangeRule.cs" />
-    <Compile Include="Validation\%28Rules%29\Int32RangeRule.cs" />
-    <Compile Include="Validation\%28Rules%29\Int64RangeRule.cs" />
-    <Compile Include="Validation\%28Rules%29\NamedRule.cs" />
-    <Compile Include="Validation\%28Rules%29\PathExistsRule.cs" />
-    <Compile Include="Validation\%28Rules%29\RangeRule.cs" />
-    <Compile Include="Validation\%28Rules%29\RequiredRule.cs" />
+    <Compile Include="Validation\[Handlers]\LocalPathValidateHandler.cs" />
+    <Compile Include="Validation\[Handlers]\PathValidateHandler.cs" />
+    <Compile Include="Validation\[Rules]\DecimalRangeRule.cs" />
+    <Compile Include="Validation\[Rules]\DoubleRangeRule.cs" />
+    <Compile Include="Validation\[Rules]\Int16RangeRule.cs" />
+    <Compile Include="Validation\[Rules]\Int32RangeRule.cs" />
+    <Compile Include="Validation\[Rules]\Int64RangeRule.cs" />
+    <Compile Include="Validation\[Rules]\NamedRule.cs" />
+    <Compile Include="Validation\[Rules]\PathExistsRule.cs" />
+    <Compile Include="Validation\[Rules]\RangeRule.cs" />
+    <Compile Include="Validation\[Rules]\RequiredRule.cs" />
     <Compile Include="ItemView.cs" />
     <Compile Include="AlphaSlider.xaml.cs">
       <DependentUpon>AlphaSlider.xaml</DependentUpon>
@@ -174,8 +185,8 @@
     <Compile Include="ButtonChrome.cs" />
     <Compile Include="ClippedBorder.cs" />
     <Compile Include="ColumnResizeMode.cs" />
-    <Compile Include="Converters\CenterToolTipConverter.cs" />
-    <Compile Include="Converters\WindowTypeVisibilityConverter.cs" />
+    <Compile Include="[Converters]\CenterToolTipConverter.cs" />
+    <Compile Include="[Converters]\WindowTypeVisibilityConverter.cs" />
     <Compile Include="DataGrid\DataGrid.cs" />
     <Compile Include="DirectionalNavigation.cs" />
     <Compile Include="GradientPicker.xaml.cs">
@@ -214,20 +225,14 @@
     <Compile Include="NewCurrent.xaml.cs">
       <DependentUpon>NewCurrent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PropertyGrid\%28Converters%29\FeaturedPropertyVisibilityConverter.cs" />
-    <Compile Include="PropertyGrid\%28Models%29\CoercedPropertyModel.cs" />
-    <Compile Include="PropertyGrid\%28Models%29\CoercedVariantPropertyModel.cs" />
-    <Compile Include="PropertyGrid\%28Models%29\NestedPropertyModel.cs" />
-    <Compile Include="PropertyGrid\%28Models%29\PropertyModel.cs" />
-    <Compile Include="PropertyGrid\%28Models%29\PropertyModel.Generic.cs" />
-    <Compile Include="PropertyGrid\PropertyAttribute.cs" />
-    <Compile Include="PropertyGrid\PropertyAttribute.Generic.cs" />
-    <Compile Include="PropertyGrid\PropertyAttributes.cs" />
-    <Compile Include="PropertyGrid\PropertyGridBase.xaml.cs">
-      <DependentUpon>PropertyGridBase.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyGrid\PropertyModelCollection.cs" />
-    <Compile Include="PropertyView\PropertyTemplateSelector.cs" />
+    <Compile Include="PropertyGrid\[Converters]\FeaturedPropertyVisibilityConverter.cs" />
+    <Compile Include="PropertyGrid\[Models]\PropertyModel.cs" />
+    <Compile Include="PropertyGrid\[Models]\PropertyModel.Generic.cs" />
+    <Compile Include="PropertyGrid\[Attributes]\PropertyAttribute.cs" />
+    <Compile Include="PropertyGrid\[Attributes]\PropertyAttribute.Generic.cs" />
+    <Compile Include="PropertyGrid\[Attributes]\PropertyAttributes.cs" />
+    <Compile Include="PropertyGrid\[Collections]\PropertyModelCollection.cs" />
+    <Compile Include="PropertyGrid\PropertyViewTemplateSelector.cs" />
     <Compile Include="PropertyGrid\ResourceDictionaryEditor.cs" />
     <Compile Include="SelectionCanvas.xaml.cs">
       <DependentUpon>SelectionCanvas.xaml</DependentUpon>
@@ -323,11 +328,19 @@
     <Compile Include="Window\WindowType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="PropertyView\PropertyView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\Generic.DirectionPad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.PropertyGridBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.TransitionalContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.UserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -388,10 +401,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NewCurrent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PropertyGrid\PropertyGridBase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -460,10 +469,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Generic.RadioButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\Generic.RichTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -786,6 +791,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Sort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\TriangleDown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

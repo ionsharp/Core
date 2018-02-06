@@ -88,11 +88,10 @@ namespace Imagin.Controls.Common
         protected abstract void FollowSource(TSource source);
 
         /// <summary>
-        /// 
+        /// Loads a collection of properties served by the given <see cref="object"/>.
         /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public abstract Task GetPropertiesAsync(TSource source);
+        /// <param name="source">The source in which properties are served.</param>
+        public abstract Task LoadPropertiesAsync(TSource source);
 
         /// <summary>
         /// 
@@ -118,7 +117,7 @@ namespace Imagin.Controls.Common
                 Properties.Reset(newSource);
 
                 IsLoading = true;
-                await GetPropertiesAsync(newSource);
+                await LoadPropertiesAsync(newSource);
                 IsLoading = false;
 
                 FollowSource(newSource);

@@ -1,12 +1,11 @@
-﻿using Imagin.Common.Data.Converters;
-using Imagin.Common.Linq;
+﻿using Imagin.Common.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
     /// <summary>
     /// 
@@ -399,8 +398,10 @@ namespace Imagin.Controls.Common.Extensions
         #region Methods
 
         /// <summary>
-        /// Collapse all items in ItemsControl (siblings of <param name="Source"/>).
+        /// Collapse all items in ItemsControl (siblings of <see langword="Source"/>).
         /// </summary>
+        /// <param name="Parent"></param>
+        /// <param name="Source"></param>
         internal static void CollapseSiblings(this ItemsControl Parent, TreeViewItem Source)
         {
             if (Parent == null || Parent.Items == null) return;

@@ -1,4 +1,4 @@
-﻿using Imagin.Common.Config;
+﻿using Imagin.Common.Configuration;
 using Imagin.Common.Globalization;
 using Imagin.Common.Input;
 using Imagin.Common.Linq;
@@ -184,7 +184,7 @@ namespace Imagin.Controls.Common
 
             if (text?.Length > 0)
             {
-                result = LocalizationProvider.GetValue<string>(text);
+                result = Localizer.GetValue<string>(text);
 
                 if (result.IsNullOrEmpty())
                     result = text;

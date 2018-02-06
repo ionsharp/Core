@@ -15,7 +15,7 @@ namespace Imagin.Controls.Common
     /// arrows make all arrows shift in corresponding direction
     ///  when clicked.
     /// </summary>
-    public partial class DirectionPad : UserControl
+    public partial class DirectionPad : System.Windows.Controls.UserControl
     {
         #region Properties
 

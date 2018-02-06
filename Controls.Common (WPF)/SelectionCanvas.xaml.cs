@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Imagin.Controls.Common
 {
-    public partial class SelectionCanvas : UserControl
+    public partial class SelectionCanvas : System.Windows.Controls.UserControl
     {
         #region Properties
 

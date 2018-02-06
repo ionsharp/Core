@@ -12,7 +12,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public partial class AlphaSlider : UserControl
+    public partial class AlphaSlider : System.Windows.Controls.UserControl
     {
         #region Properties
 

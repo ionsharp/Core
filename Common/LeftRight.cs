@@ -5,7 +5,17 @@
     /// </summary>
     public enum LeftRight
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        Unspecified,
+        /// <summary>
+        /// 
+        /// </summary>
         Left,
+        /// <summary>
+        /// 
+        /// </summary>
         Right
     }
 }

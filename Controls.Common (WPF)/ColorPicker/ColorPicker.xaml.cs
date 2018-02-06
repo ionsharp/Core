@@ -12,7 +12,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// A color picker inspired by http://www.codeproject.com/Articles/131708/WPF-Color-Picker-Construction-Kit.
     /// </summary>
-    public partial class ColorPicker : UserControl, IBrushPicker<SolidColorBrush>
+    public partial class ColorPicker : System.Windows.Controls.UserControl, IBrushPicker<SolidColorBrush>
     {
         #region Properties
 
@@ -443,7 +443,7 @@ namespace Imagin.Controls.Common
         /// <param name="e"></param>
         protected virtual void OnLoaded(object sender, RoutedEventArgs e)
         {
-            return;
+            /*
             if (SelectedComponent == default(SelectableComponentModel))
             {
                 foreach (var i in Models)
@@ -456,6 +456,7 @@ namespace Imagin.Controls.Common
                     break;
                 }
             }
+            */
         }
 
         /// <summary>

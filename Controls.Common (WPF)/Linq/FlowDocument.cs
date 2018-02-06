@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Documents;
 using System.Windows;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
     /// <summary>
     /// 

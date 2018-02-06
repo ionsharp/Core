@@ -211,7 +211,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to boolean.
+        /// 
         /// </summary>
         public static string SplitCamelCase(this string value)
         {
@@ -219,7 +219,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to boolean (evaluates "true" and "false"; everything else is parsed to an int).
+        /// Parses <see cref="string"/> to <see cref="bool"/>.
         /// </summary>
         public static bool? ToBool(this string value)
         {
@@ -238,7 +238,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to byte.
+        /// Parses <see cref="string"/> to <see cref="byte"/>.
         /// </summary>
         public static byte ToByte(this string value)
         {
@@ -248,7 +248,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// 
+        /// Parses <see cref="string"/> to <see cref="char"/>.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -260,7 +260,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to short.
+        /// Parses <see cref="string"/> to <see cref="short"/>.
         /// </summary>
         public static short ToInt16(this string value)
         {
@@ -270,7 +270,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to int.
+        /// Parses <see cref="string"/> to <see cref="int"/>.
         /// </summary>
         public static int ToInt32(this string value)
         {
@@ -280,7 +280,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to long.
+        /// Parses <see cref="string"/> to <see cref="long"/>.
         /// </summary>
         public static long ToInt64(this string value)
         {
@@ -324,7 +324,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to DateTime.
+        /// Parses <see cref="string"/> to <see cref="DateTime"/>.
         /// </summary>
         public static DateTime ToDateTime(this string value)
         {
@@ -334,7 +334,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to decimal.
+        /// Parses <see cref="string"/> to <see cref="decimal"/>.
         /// </summary>
         public static decimal ToDecimal(this string value)
         {
@@ -344,12 +344,22 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Parses string to double.
+        /// Parses <see cref="string"/> to <see cref="double"/>.
         /// </summary>
         public static double ToDouble(this string value)
         {
             var result = default(double);
             double.TryParse(value, out result);
+            return result;
+        }
+
+        /// <summary>
+        /// Parses <see cref="string"/> to <see cref="float"/>.
+        /// </summary>
+        public static float ToFloat(this string value)
+        {
+            var result = default(float);
+            float.TryParse(value, out result);
             return result;
         }
 

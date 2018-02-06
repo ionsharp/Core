@@ -4,7 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common="http://imagin.tech/imagin/common"
-    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Extensions">
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Linq">
     <Common:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
 
     <Storyboard x:Key="FadeInAnimation">
@@ -177,4 +177,6 @@
     </Style>
 
     <Style x:Key="{x:Type ListView}" TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}"/>
+
+    <Style x:Key="{x:Type local:ListView}" TargetType="{x:Type local:ListView}" BasedOn="{StaticResource {x:Type ListBox}}"/>
 </ResourceDictionary>

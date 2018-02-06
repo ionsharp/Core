@@ -5,7 +5,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public class WindowFooter : UserControl
+    public class WindowFooter : System.Windows.Controls.UserControl
     {
         /// <summary>
         /// 

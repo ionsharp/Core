@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
     /// <summary>
     /// 
@@ -197,7 +197,7 @@ namespace Imagin.Controls.Common.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="d"></param>
         /// <param name="value"></param>
         public static void SetScrollAddedIntoView(DataGrid d, bool value)
         {

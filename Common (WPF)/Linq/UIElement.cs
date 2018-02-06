@@ -13,25 +13,25 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Element"></param>
-        /// <param name="Storyboard"></param>
+        /// <param name="element"></param>
+        /// <param name="storyboard"></param>
         /// <returns></returns>
-        public static Task AnimateAsync(this UIElement Element, Storyboard Storyboard)
+        public static Task AnimateAsync(this UIElement element, Storyboard storyboard)
         {
-            var Source = new TaskCompletionSource<object>();
+            var source = new TaskCompletionSource<object>();
 
-            var i = default(EventHandler);
+            var handler = default(EventHandler);
 
-            i = (s, e) =>
+            handler = (s, e) =>
             {
-                Storyboard.Completed -= i;
-                Source.TrySetResult(null);
+                storyboard.Completed -= handler;
+                source.TrySetResult(null);
             };
 
-            Storyboard.Completed += i;
-            Storyboard.Begin();
+            storyboard.Completed += handler;
+            storyboard.Begin();
 
-            return Source.Task;
+            return source.Task;
         }
 
         /// <summary>

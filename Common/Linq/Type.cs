@@ -10,7 +10,7 @@ namespace Imagin.Common.Linq
     public static class TypeExtensions
     {
         /// <summary>
-        /// Gets whether or not the type is equal to type, <see cref="{TType}"/>.
+        /// Gets whether or not the type is equal to type, <see langword="TType"/>.
         /// </summary>
         /// <typeparam name="TType"></typeparam>
         /// <param name="Value"></param>
@@ -32,7 +32,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Gets whether or not the type implements interface, <see cref="{TType}"/> (or whether <see cref="{TType}"/> is assignable from the type).
+        /// Gets whether or not the type implements interface, <see langword="TType"/> (or whether <see langword="TType"/> is assignable from the type).
         /// </summary>
         /// <typeparam name="TType"></typeparam>
         /// <param name="Value"></param>

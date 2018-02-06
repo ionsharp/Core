@@ -14,7 +14,7 @@ namespace Imagin.Controls.Common
     [TemplatePart(Name = "PART_Ellipse", Type = typeof(Ellipse))]
     [TemplatePart(Name = "PART_Line", Type = typeof(Line))]
     [TemplatePart(Name = "PART_Origin", Type = typeof(Ellipse))]
-    public class AnglePicker : UserControl
+    public class AnglePicker : System.Windows.Controls.UserControl
     {
         #region Properties
 
@@ -250,7 +250,6 @@ namespace Imagin.Controls.Common
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 var Ellipse = sender as Ellipse;
-
                 Adjust(sender as Ellipse, e.GetPosition(Ellipse));
             }
         }

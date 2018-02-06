@@ -4,7 +4,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
-    xmlns:Common="http://imagin.tech/imagin/common">
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Linq"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
     <Style x:Key="{x:Type Menu}" TargetType="{x:Type Menu}">
         <Setter Property="Background" Value="{DynamicResource Brush.Menu.Background}" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Menu.Foreground}" />
@@ -24,6 +26,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
+                    <ControlTemplate.Resources>
+                        <Common:BindingProxy x:Key="BindingProxy" Data="{Binding RelativeSource={RelativeSource TemplatedParent}}"/>
+                    </ControlTemplate.Resources>
                     <Border 
                         x:Name="PART_Border" 
                         Background="{TemplateBinding Background}" 
@@ -48,11 +53,10 @@
                                     SourceWidth="8"
                                     VerticalAlignment="Stretch"
                                     Visibility="Collapsed"/>
-                                <local:MaskedImage 
-                                    x:Name="PART_Icon" 
-                                    HorizontalAlignment="Center"  
-                                    Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}"
-                                    SourceColor="{TemplateBinding Foreground}"
+                                <ContentControl
+                                    x:Name="PART_Icon"
+                                    Content="{TemplateBinding Icon}"
+                                    ContentTemplate="{Binding Path=(Linq:MenuItemExtensions.IconTemplate), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                     VerticalAlignment="Center"/>
                             </Grid>
 
@@ -147,9 +151,6 @@
                         <Trigger Property="IsSuspendingPopupAnimation" Value="true">
                             <Setter TargetName="PART_Submenu" Property="PopupAnimation" Value="None" />
                         </Trigger>
-                        <Trigger Property="Icon" Value="{x:Null}">
-                            <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
-                        </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_Header" Property="Opacity" Value="0.6"/>
                             <Setter TargetName="PART_InputGesture" Property="Opacity" Value="0.6"/>
@@ -158,6 +159,19 @@
                             <Setter TargetName="PART_Bullet" Property="Visibility" Value="Visible" />
                             <Setter TargetName="PART_Bullet" Property="Background" Value="{DynamicResource Brush.MenuItem.Checked.Bullet.Background}" />
                             <Setter TargetName="PART_Bullet" Property="Margin" Value="0,0,7,0" />
+                        </Trigger>
+                        <Trigger Property="Linq:MenuItemExtensions.IconTemplate" Value="{x:Null}">
+                            <Setter Property="ContentTemplate" TargetName="PART_Icon">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:MaskedImage 
+                                            HorizontalAlignment="Center"  
+                                            Source="{Binding Mode=OneWay}"
+                                            SourceColor="{Binding Foreground, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type MenuItem}}}"
+                                            VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -171,6 +185,13 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter Property="Linq:MenuItemExtensions.IconTemplate">
+                    <Setter.Value>
+                        <DataTemplate/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
             <Trigger Property="Role" Value="TopLevelHeader">
                 <Setter Property="Padding" Value="10,2" />
             </Trigger>
@@ -185,8 +206,26 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
+                    <Condition Property="IsHighlighted" Value="True" />
+                    <Condition Property="Role" Value="TopLevelItem" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource Brush.MenuItem.TopLevelHeader.MouseOver.Background}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.MenuItem.TopLevelHeader.MouseOver.Border}" />
+                <Setter Property="Foreground" Value="{DynamicResource Brush.MenuItem.TopLevelHeader.MouseOver.Foreground}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
                     <Condition Property="IsSubmenuOpen" Value="True" />
                     <Condition Property="Role" Value="TopLevelHeader" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource Brush.MenuItem.TopLevelHeader.Pressed.Background}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.MenuItem.TopLevelHeader.Pressed.Border}" />
+                <Setter Property="Foreground" Value="{DynamicResource Brush.MenuItem.TopLevelHeader.Pressed.Foreground}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Role" Value="TopLevelItem" />
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" Value="{DynamicResource Brush.MenuItem.TopLevelHeader.Pressed.Background}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource Brush.MenuItem.TopLevelHeader.Pressed.Border}" />

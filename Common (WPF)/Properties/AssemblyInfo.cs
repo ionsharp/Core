@@ -36,8 +36,10 @@ using System.Windows.Markup;
 [assembly: AssemblyFileVersion("0.0.0.0")]
 
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common")]
+[assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Collections")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Data")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Data.Converters")]
+[assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Debug")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Drawing")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Globalization")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/common", "Imagin.Common.Input")]

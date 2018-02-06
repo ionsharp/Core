@@ -4,7 +4,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
-    xmlns:Common="http://imagin.tech/imagin/common">
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:System.Collections="clr-namespace:System.Collections;assembly=mscorlib"
+    xmlns:System.ComponentModel="clr-namespace:System.ComponentModel;assembly=System"
+    xmlns:System.Net="clr-namespace:System.Net;assembly=System"
+    xmlns:System.Windows="clr-namespace:System.Windows;assembly=WindowsBase"
+    xmlns:System.Windows.Media="clr-namespace:System.Windows.Media;assembly=PresentationCore">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Styles/Generic.DataGrid.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -17,7 +23,7 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="DataGridStyle">
             <Setter.Value>
-                <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+                <Style TargetType="{x:Type DataGrid}">
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="BorderThickness" Value="0"/>
                     <Setter Property="CanUserReorderColumns" Value="False"/>
@@ -70,7 +76,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <Button
-                        Command="{Binding NestCommand, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGrid}}}"
+                        Command="{Binding NestCommand, RelativeSource={RelativeSource AncestorType={x:Type local:PropertyGridBase}}}"
                         CommandParameter="{Binding Value, Mode=OneWay}">
                         <local:MaskedImage
                             Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Images/Dots.png"/>

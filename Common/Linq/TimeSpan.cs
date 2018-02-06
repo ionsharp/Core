@@ -2,14 +2,29 @@
 
 namespace Imagin.Common.Linq
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TimeSpanExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="Maximum"></param>
+        /// <param name="Minimum"></param>
+        /// <returns></returns>
         public static TimeSpan Coerce(this TimeSpan Value, TimeSpan Maximum, TimeSpan Minimum = default(TimeSpan))
         {
             var minimum = Minimum == default(TimeSpan) ? TimeSpan.Zero : Minimum;
             return Value > Maximum ? Maximum : (Value < minimum ? minimum : Value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         public static int Months(this TimeSpan Value)
         {
             return Value.Days.ToDouble().Divide(30d).Floor().ToInt32();
@@ -19,6 +34,11 @@ namespace Imagin.Common.Linq
             */
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         public static int Years(this TimeSpan Value)
         {
             var Months = Value.Months();

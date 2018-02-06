@@ -22,7 +22,7 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// Gets the directory name of a path formatted for a FTP server.
         /// </summary>
-        /// <param name="path">The path</param>
+        /// <param name="Path">The path</param>
         /// <returns>The parent directory path</returns>
         static string GetFtpDirectoryName(this string Path)
         {
@@ -42,11 +42,11 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// Gets the file name from the path.
         /// </summary>
-        /// <param name="path">The full path to the file</param>
+        /// <param name="Path">The full path to the file</param>
         /// <returns>The file name</returns>
         static string GetFtpFileName(this string Path)
         {
-            var Result = (Path == null ? null : Path);
+            var Result = Path;
             var LastSlash = -1;
 
             if (Result != null)
@@ -65,7 +65,7 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// Converts the specified path into a valid FTP file system path.
         /// </summary>
-        /// <param name="path">The file system path</param>
+        /// <param name="Path">The file system path</param>
         /// <returns>A path formatted for FTP</returns>
         static string GetFtpPath(this string Path)
         {
@@ -209,14 +209,6 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Returns <see cref="Uri"/> of resource defined in assembly with given path; note, path must NOT begin with slash and slashes must be forward-facing.
-        /// </summary>
-        public static Uri GetResourceUri(this string AssemblyName, string ResourcePath)
-        {
-            return new Uri("pack://application:,,,/" + AssemblyName + ";component" + ResourcePath, UriKind.Absolute);
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="TypeName"></param>
@@ -246,8 +238,7 @@ namespace Imagin.Common.Linq
         /// <returns></returns>
         public static bool IsValidUrl(this string Value, params string[] Schemes)
         {
-            Uri Uri;
-            return Uri.TryCreate(Value, UriKind.Absolute, out Uri) && (Schemes.Length > 0 ? Uri.Scheme.EqualsAny(Schemes) : Uri.Scheme.EqualsAny(Uri.UriSchemeFile, Uri.UriSchemeFtp, Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto));
+            return System.Uri.TryCreate(Value, UriKind.Absolute, out Uri Uri) && (Schemes.Length > 0 ? Uri.Scheme.EqualsAny(Schemes) : Uri.Scheme.EqualsAny(Uri.UriSchemeFile, Uri.UriSchemeFtp, Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto));
         }
 
         /// <summary>
@@ -279,6 +270,11 @@ namespace Imagin.Common.Linq
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ToConvert"></param>
+        /// <returns></returns>
         public static SecureString ToSecureString(this string ToConvert)
         {
             var Result = new SecureString();

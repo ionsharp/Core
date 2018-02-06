@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     xmlns:local="clr-namespace:Imagin.Controls.Common" 
     xmlns:Common="http://imagin.tech/imagin/common" 
-    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Extensions"
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Linq"
     x:Name="PART_ColorPicker">
     <UserControl.Resources>
         <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

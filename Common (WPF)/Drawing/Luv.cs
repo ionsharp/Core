@@ -1,5 +1,4 @@
 ﻿using Imagin.Common.Linq;
-using Imagin.Common.Linq;
 using System;
 using System.Windows.Media;
 

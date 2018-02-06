@@ -4,7 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
-    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Extensions"
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Linq"
     xmlns:Common="http://imagin.tech/imagin/common">
     <Style 
         x:Key="Style.TextBox.Placeholder" 
@@ -197,12 +197,10 @@
                     </DataTemplate.Resources>
                     <local:MaskedToggleButton 
                         DataContext="{Binding Data}"
-                        CheckedSource="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Images/Toggle.png" 
-                        CheckedToolTip="{l:Loc HidePassword}" 
                         Focusable="False"
                         IsChecked="{Binding IsCharacterMaskingEnabled, Converter={StaticResource InverseBooleanConverter}}"  
                         Margin="5,0,0,0"
-                        ToolTip="{l:Loc ShowPassword}"
+                        Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Images/Toggle.png" 
                         VerticalAlignment="Center"/>
                 </DataTemplate>
             </Setter.Value>
@@ -236,8 +234,8 @@
                         CommandParameter="Down"
                         Focusable="False"
                         Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Images/ArrowDown.png"
-                        SourceHeight="10" 
-                        SourceWidth="10" 
+                        SourceHeight="9" 
+                        SourceWidth="9" 
                         ToolTip="{l:Loc Imagin.Controls.Common.Wpf:Main:Decrease}"/>
                 </DataTemplate>
             </Setter.Value>
@@ -251,12 +249,20 @@
                         CommandParameter="Up"
                         Focusable="False"
                         Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Images/ArrowUp.png"
-                        SourceHeight="10" 
-                        SourceWidth="10" 
+                        SourceHeight="9" 
+                        SourceWidth="9" 
                         ToolTip="{l:Loc Imagin.Controls.Common.Wpf:Main:Increase}"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="CanUpDown" Value="True">
+                <Setter Property="Padding" Value="5,0"/>
+            </Trigger>
+            <Trigger Property="CanUpDown" Value="False">
+                <Setter Property="Padding" Value="5"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- ..................................................................................... -->
@@ -266,6 +272,8 @@
     <Style x:Key="{x:Type local:DecimalUpDown}" TargetType="{x:Type local:DecimalUpDown}" BasedOn="{StaticResource {x:Type local:UpDown}}"/>
 
     <Style x:Key="{x:Type local:DoubleUpDown}" TargetType="{x:Type local:DoubleUpDown}" BasedOn="{StaticResource {x:Type local:UpDown}}"/>
+
+    <Style x:Key="{x:Type local:FloatUpDown}" TargetType="{x:Type local:FloatUpDown}" BasedOn="{StaticResource {x:Type local:UpDown}}"/>
 
     <Style x:Key="{x:Type local:Int16UpDown}" TargetType="{x:Type local:Int16UpDown}" BasedOn="{StaticResource {x:Type local:UpDown}}"/>
 

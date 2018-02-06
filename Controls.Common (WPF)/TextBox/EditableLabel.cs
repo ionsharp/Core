@@ -204,10 +204,10 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="e"></param>
-        protected override void OnEntered(string Text)
+        /// <param name="text"></param>
+        protected override void OnEntered(string text)
         {
-            base.OnEntered(Text);
+            base.OnEntered(text);
             OnEdited(false);
         }
 

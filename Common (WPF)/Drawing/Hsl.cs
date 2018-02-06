@@ -1,5 +1,4 @@
 ﻿using Imagin.Common.Linq;
-using Imagin.Common.Linq;
 using System;
 using System.Windows.Media;
 
@@ -303,9 +302,6 @@ namespace Imagin.Common.Drawing
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="h"></param>
-        /// <param name="s"></param>
-        /// <param name="l"></param>
         /// <returns></returns>
         public Rgba ToRgba()
         {

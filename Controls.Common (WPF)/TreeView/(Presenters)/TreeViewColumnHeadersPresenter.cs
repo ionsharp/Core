@@ -1,15 +1,24 @@
-﻿using Imagin.Controls.Common.Extensions;
+﻿using Imagin.Controls.Common.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TreeViewColumnHeadersPresenter : ResizableGrid
     {
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty CanResizeColumnsProperty = DependencyProperty.Register("CanResizeColumns", typeof(bool), typeof(TreeViewColumnHeadersPresenter), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
         public bool CanResizeColumns
         {
             get
@@ -22,7 +31,13 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty ColumnsProperty = DependencyProperty.Register("Columns", typeof(TreeViewColumnCollection), typeof(TreeViewColumnHeadersPresenter), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnColumnsChanged));
+        /// <summary>
+        /// 
+        /// </summary>
         public TreeViewColumnCollection Columns
         {
             get
@@ -43,6 +58,12 @@ namespace Imagin.Controls.Common
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Child"></param>
+        /// <param name="Index"></param>
+        /// <returns></returns>
         protected override ColumnDefinition GetColumnDefinition(ContentPresenter Child, int Index)
         {
             var Result = base.GetColumnDefinition(Child, Index);
@@ -79,6 +100,10 @@ namespace Imagin.Controls.Common
             return Result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Value"></param>
         protected virtual void OnColumnsChanged(TreeViewColumnCollection Value)
         {
             this.ItemsSource = Value;
@@ -88,6 +113,9 @@ namespace Imagin.Controls.Common
 
         #region TreeViewColumnHeadersPresenter
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TreeViewColumnHeadersPresenter() : base()
         {
         }

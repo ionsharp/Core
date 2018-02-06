@@ -43,7 +43,6 @@ namespace Imagin.Controls.Common
         /// 
         /// </summary>
         public static DependencyProperty CheckerForegroundProperty = DependencyProperty.Register("CheckerForeground", typeof(Brush), typeof(CheckerBoard), new PropertyMetadata(Brushes.Black, OnCheckerPropertyChanged));
-
         /// <summary>
         /// 
         /// </summary>

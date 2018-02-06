@@ -10,7 +10,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public class ColorComb : UserControl
+    public class ColorComb : System.Windows.Controls.UserControl
     {
         #region Properties
 

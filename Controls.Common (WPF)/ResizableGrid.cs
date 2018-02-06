@@ -8,6 +8,9 @@ using Imagin.Common.Linq;
 
 namespace Imagin.Controls.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ResizableGrid : Grid
     {
         #region Properties

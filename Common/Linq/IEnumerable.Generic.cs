@@ -102,6 +102,42 @@ namespace Imagin.Common.Linq
             Source.ForEach(i => Result = i);
             return Result;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <returns></returns>
+        public static T LeastCommon<T>(this IEnumerable<T> Source)
+        {
+            return
+            (
+                from i in Source
+                group i by i into g
+                orderby g.Count() ascending
+                select g.Key
+            )
+            .First();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Source"></param>
+        /// <returns></returns>
+        public static T MostCommon<T>(this IEnumerable<T> Source)
+        {
+            return 
+            (
+                from i in Source
+                group i by i into g
+                orderby g.Count() descending
+                select g.Key
+            )
+            .First();
+        }
 
         /// <summary>
         /// Gets the second item in a sequence.
@@ -155,18 +191,6 @@ namespace Imagin.Common.Linq
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="Items"></param>
-        /// <param name="Predicate"></param>
-        /// <returns></returns>
-        public static T WhereFirst<T>(this IEnumerable<T> Items, Func<T, bool> Predicate)
-        {
-            return Items.Where(Predicate).FirstOrDefault();
         }
     }
 }

@@ -190,10 +190,6 @@ namespace Imagin.Common.Primitives
         /// <summary>
         /// Initializes new instance of Selection.
         /// </summary>
-        /// <param name="X">X-position of selection.</param>
-        /// <param name="Y">Y-position of selection.</param>
-        /// <param name="Width">Width of selection.</param>
-        /// <param name="Height">Height of selection.</param>
         public Selection()
         {
         }

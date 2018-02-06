@@ -87,9 +87,9 @@ namespace Imagin.Common.Collections.Concurrent
         }
 
         /// <summary>
-        /// Constructor. Queues subscribing to the IObservable<> passed in.
+        /// Constructor. Queues subscribing to the IObservable passed in.
         /// </summary>
-        /// <param name="observable"></param>
+        /// <param name="Observable"></param>
         /// <remarks>
         /// We create a subscribe action, which has a reference to this object.
         /// If the DispatcherQueueProcessor isn't started (because the Dispatcher hasn't been
@@ -122,7 +122,7 @@ namespace Imagin.Common.Collections.Concurrent
         }
 
         /// <summary>
-        ///  IObserver<> implementation
+        ///  IObserver implementation
         /// </summary>
         public void OnCompleted()
         {
@@ -130,7 +130,7 @@ namespace Imagin.Common.Collections.Concurrent
         }
 
         /// <summary>
-        ///  IObserver<> implementation
+        ///  IObserver implementation
         /// </summary>
         public void OnError(Exception error)
         {
@@ -138,7 +138,7 @@ namespace Imagin.Common.Collections.Concurrent
         }
 
         /// <summary>
-        ///  IObserver<> implementation
+        ///  IObserver implementation
         /// </summary>
         public void OnNext(NotifyCollectionChangedEventArgs value)
         {

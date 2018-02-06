@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
     /// <summary>
     /// 
@@ -188,6 +188,102 @@ namespace Imagin.Controls.Common.Extensions
                     Element.ContextMenu = null;
                 }
             }
+        }
+
+        #endregion
+
+        #region HorizontalAlignment
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty HorizontalAlignmentProperty = DependencyProperty.RegisterAttached("HorizontalAlignment", typeof(HorizontalAlignment?), typeof(FrameworkElementExtensions), new FrameworkPropertyMetadata(null, OnHorizontalAlignmentChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        public static void SetHorizontalAlignment(FrameworkElement d, HorizontalAlignment? value)
+        {
+            d.SetValue(HorizontalAlignmentProperty, value);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static HorizontalAlignment? GetHorizontalAlignment(FrameworkElement d)
+        {
+            return (HorizontalAlignment?)d.GetValue(HorizontalAlignmentProperty);
+        }
+        static void OnHorizontalAlignmentChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null)
+                (sender as FrameworkElement).SetCurrentValue(FrameworkElement.HorizontalAlignmentProperty, e.NewValue);
+        }
+
+        #endregion
+
+        #region Margin
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty MarginProperty = DependencyProperty.RegisterAttached("Margin", typeof(Thickness?), typeof(FrameworkElementExtensions), new FrameworkPropertyMetadata(null, OnMarginChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        public static void SetMargin(FrameworkElement d, Thickness? value)
+        {
+            d.SetValue(MarginProperty, value);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static Thickness? GetMargin(FrameworkElement d)
+        {
+            return (Thickness?)d.GetValue(MarginProperty);
+        }
+        static void OnMarginChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null)
+                (sender as FrameworkElement).SetCurrentValue(FrameworkElement.MarginProperty, e.NewValue);
+        }
+
+        #endregion
+
+        #region VerticalAlignment
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty VerticalAlignmentProperty = DependencyProperty.RegisterAttached("VerticalAlignment", typeof(VerticalAlignment?), typeof(FrameworkElementExtensions), new FrameworkPropertyMetadata(null, OnVerticalAlignmentChanged));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        public static void SetVerticalAlignment(FrameworkElement d, VerticalAlignment? value)
+        {
+            d.SetValue(VerticalAlignmentProperty, value);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static VerticalAlignment? GetVerticalAlignment(FrameworkElement d)
+        {
+            return (VerticalAlignment?)d.GetValue(VerticalAlignmentProperty);
+        }
+        static void OnVerticalAlignmentChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null)
+                (sender as FrameworkElement).SetCurrentValue(FrameworkElement.VerticalAlignmentProperty, e.NewValue);
         }
 
         #endregion

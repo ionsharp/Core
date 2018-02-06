@@ -162,7 +162,7 @@ namespace Imagin.NET.Demo
         {
             foreach (var i in PART_ControlView.Controls)
             {
-                if (i.Type == typeof(ListView))
+                if (i.Type == typeof(System.Windows.Controls.ListView))
                 {
                     SetCurrentValue(ListViewProperty, sender.As<RadioButton>().Content.ToString().ParseEnum<View>());
                     break;

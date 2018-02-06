@@ -12,7 +12,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public partial class GradientPicker : UserControl, IBrushPicker<Brush>
+    public partial class GradientPicker : System.Windows.Controls.UserControl, IBrushPicker<Brush>
     {
         #region Properties
 

@@ -135,8 +135,6 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected virtual void OnSourceLocked()
         {
             SetCurrentValue(IsSourceEnabledProperty, false);
@@ -145,8 +143,6 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected virtual void OnSourceUnlocked()
         {
             SetCurrentValue(IsSourceEnabledProperty, true);
@@ -181,11 +177,10 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
-        /// 
+        /// Loads a collection of properties served by the given <see cref="object"/>.
         /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public override async Task GetPropertiesAsync(object source)
+        /// <param name="source">The source in which properties are served.</param>
+        public override async Task LoadPropertiesAsync(object source)
         {
             await Properties.LoadAsync(source);
         }

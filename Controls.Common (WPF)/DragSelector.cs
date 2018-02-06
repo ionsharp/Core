@@ -1,7 +1,7 @@
 ﻿using Imagin.Common;
 using Imagin.Common.Linq;
 using Imagin.Common.Primitives;
-using Imagin.Controls.Common.Extensions;
+using Imagin.Controls.Common.Linq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -134,10 +134,10 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// Occurs when mouse is down; begins drag.
         /// </summary>
-        async void OnMouseDown(object sender, MouseButtonEventArgs e)
+        void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && !IsSingleMode)
-                await OnDragStarted(e);
+                OnDragStarted(e);
         }
 
         /// <summary>
@@ -152,10 +152,10 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// Occurs when mouse is up; ends drag.
         /// </summary>
-        async void OnMouseUp(object sender, MouseButtonEventArgs e)
+        void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Released && IsDragging)
-                await OnDragEnded(e);
+                OnDragEnded(e);
         }
 
         #endregion
@@ -187,7 +187,7 @@ namespace Imagin.Controls.Common
 
         //....................................................................
 
-        async Task OnDragStarted(MouseButtonEventArgs e)
+        void OnDragStarted(MouseButtonEventArgs e)
         {
             Grid.CaptureMouse();
 
@@ -212,7 +212,7 @@ namespace Imagin.Controls.Common
             }
         }
 
-        async Task OnDragEnded(MouseButtonEventArgs e)
+        void OnDragEnded(MouseButtonEventArgs e)
         {
             IsDragging = false;
 

@@ -6,7 +6,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public partial class ThicknessBox : UserControl
+    public partial class ThicknessBox : System.Windows.Controls.UserControl
     {
         bool ThicknessPartChangeHandled = false;
 

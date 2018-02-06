@@ -9,7 +9,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public class MaskedImage : UserControl
+    public class MaskedImage : System.Windows.Controls.UserControl
     {
         Rectangle PART_Image;
 

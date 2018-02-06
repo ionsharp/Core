@@ -1,5 +1,8 @@
 ﻿namespace Imagin.Common.Drawing
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum GraphicalUnit
     {
         /// <summary>

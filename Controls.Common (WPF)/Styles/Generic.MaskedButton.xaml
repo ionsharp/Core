@@ -9,6 +9,7 @@
     <Style x:Key="{x:Type local:MaskedButton}" TargetType="{x:Type local:MaskedButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
+        <Setter Property="Padding" Value="0,2" />
         <Style.Triggers>
             <Trigger Property="DropDownButtonVisibility" Value="Visible">
                 <Setter Property="ContentMargin" Value="5,0"/>

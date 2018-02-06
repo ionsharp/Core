@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
-    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Extensions"
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Linq"
     ResizeMode="NoResize"
     SizeToContent="Height"
     Type="Tool"

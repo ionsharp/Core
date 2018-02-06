@@ -40,10 +40,11 @@ using System.Windows.Markup;
 
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/controls", "Imagin.Controls.Common")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/controls", "Imagin.Controls.Common.Converters")]
-[assembly: XmlnsDefinition("http://imagin.tech/imagin/controls", "Imagin.Controls.Common.Extensions")]
+[assembly: XmlnsDefinition("http://imagin.tech/imagin/controls", "Imagin.Controls.Common.Linq")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/controls", "Imagin.Controls.Common.Interactivity")]
 
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/controls/common", "Imagin.Controls.Common")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/controls/common", "Imagin.Controls.Common.Converters")]
-[assembly: XmlnsDefinition("http://imagin.tech/imagin/controls/common", "Imagin.Controls.Common.Extensions")]
+[assembly: XmlnsDefinition("http://imagin.tech/imagin/controls/common", "Imagin.Controls.Common.Linq")]
+[assembly: XmlnsDefinition("http://imagin.tech/imagin/controls/common", "Imagin.Controls.Common.Linq")]
 [assembly: XmlnsDefinition("http://imagin.tech/imagin/controls/common", "Imagin.Controls.Common.Interactivity")]

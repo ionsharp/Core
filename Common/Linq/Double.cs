@@ -180,7 +180,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Converts double to byte.
+        /// Converts <see cref="double"/> to <see cref="byte"/>.
         /// </summary>
         public static byte ToByte(this double Value)
         {
@@ -188,7 +188,15 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Converts double to int.
+        /// Converts <see cref="double"/> to <see cref="float"/>.
+        /// </summary>
+        public static float ToFloat(this double Value)
+        {
+            return Convert.ToSingle(Value);
+        }
+
+        /// <summary>
+        /// Converts <see cref="double"/> to <see cref="int"/>.
         /// </summary>
         public static int ToInt32(this double Value)
         {
@@ -196,7 +204,7 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// Converts double to long.
+        /// Converts <see cref="double"/> to <see cref="long"/>.
         /// </summary>
         public static long ToInt64(this double Value)
         {
@@ -218,7 +226,6 @@ namespace Imagin.Common.Linq
         /// <param name="From">The unit to convert from.</param>
         /// <param name="To">The unit to convert to.</param>
         /// <param name="Ppi">Pixels per inch.</param>
-        /// <param name="RoundTo">Decimal places to round to.</param>
         public static double ToUnit(this double Value, GraphicalUnit From, GraphicalUnit To, double Ppi = 72.0)
         {
             //Convert to pixels

@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common="http://imagin.tech/imagin/common" 
-    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Extensions"
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Linq"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
     Type="Tool"

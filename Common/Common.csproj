@@ -40,52 +40,55 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="%28Abstract%29\BindableObject.cs" />
-    <Compile Include="%28Abstract%29\CheckableObject.cs" />
-    <Compile Include="%28Abstract%29\CheckableObject.Generic.cs" />
-    <Compile Include="%28Abstract%29\DisposableObject.cs" />
-    <Compile Include="%28Abstract%29\NamedObject.cs" />
-    <Compile Include="%28Abstract%29\PeriodicalObjectBase.cs" />
-    <Compile Include="%28Abstract%29\TaggedObject.cs" />
-    <Compile Include="%28Attributes%29\Category.cs" />
-    <Compile Include="%28Attributes%29\DisplayName.cs" />
-    <Compile Include="%28Attributes%29\DateFormat.cs" />
-    <Compile Include="%28Attributes%29\ReadOnly.cs" />
-    <Compile Include="%28Attributes%29\LongFormat.cs" />
-    <Compile Include="%28Attributes%29\Key.cs" />
-    <Compile Include="%28Attributes%29\Description.cs" />
-    <Compile Include="%28Attributes%29\Browsable.cs" />
-    <Compile Include="%28Attributes%29\EnumFormat.cs" />
-    <Compile Include="%28Attributes%29\SearchableAttribute.cs" />
-    <Compile Include="%28Dialog%29\ILoadingDialogHost.cs" />
-    <Compile Include="%28Dialog%29\ILoadingDialog.cs" />
-    <Compile Include="%28Interfaces%29\IChangeable.cs" />
-    <Compile Include="%28Interfaces%29\ICheckable.cs" />
-    <Compile Include="%28Interfaces%29\ICloneable.cs" />
-    <Compile Include="%28Interfaces%29\ICoercable.cs" />
-    <Compile Include="%28Interfaces%29\ICoercable.Generic.cs" />
-    <Compile Include="%28Interfaces%29\IDeletable.cs" />
-    <Compile Include="%28Dialog%29\IDialog.cs" />
-    <Compile Include="%28Dialog%29\IDialogHost.cs" />
-    <Compile Include="%28Interfaces%29\IEditable.cs" />
-    <Compile Include="%28Interfaces%29\IEntry.cs" />
-    <Compile Include="%28Interfaces%29\IExpandable.cs" />
-    <Compile Include="%28Interfaces%29\IInitializable.cs" />
-    <Compile Include="%28Interfaces%29\ILockable.cs" />
-    <Compile Include="%28Interfaces%29\INamable.cs" />
-    <Compile Include="%28Interfaces%29\IPeriodical.cs" />
-    <Compile Include="%28Interfaces%29\ISelectable.cs" />
-    <Compile Include="%28Interfaces%29\ITaggable.cs" />
-    <Compile Include="%28Interfaces%29\IValidate.Generic.cs" />
-    <Compile Include="%28Interfaces%29\IVariant.cs" />
-    <Compile Include="%28Attributes%29\Abbreviation.cs" />
-    <Compile Include="%28Attributes%29\Constraint.cs" />
-    <Compile Include="%28Attributes%29\Featured.cs" />
-    <Compile Include="%28Attributes%29\Icon.cs" />
-    <Compile Include="%28Attributes%29\StringFormat.cs" />
+    <Compile Include="Configuration\IApp.cs" />
+    <Compile Include="Configuration\IMainView.cs" />
+    <Compile Include="Property.cs" />
+    <Compile Include="Timers\ElapsedEventArgs.cs" />
+    <Compile Include="[Abstract]\BindableObject.cs" />
+    <Compile Include="[Abstract]\CheckableObject.cs" />
+    <Compile Include="[Abstract]\CheckableObject.Generic.cs" />
+    <Compile Include="[Abstract]\DisposableObject.cs" />
+    <Compile Include="[Abstract]\NamedObject.cs" />
+    <Compile Include="[Abstract]\PeriodicalObjectBase.cs" />
+    <Compile Include="[Abstract]\TaggedObject.cs" />
+    <Compile Include="[Attributes]\Category.cs" />
+    <Compile Include="[Attributes]\DisplayName.cs" />
+    <Compile Include="[Attributes]\DateFormat.cs" />
+    <Compile Include="[Attributes]\ReadOnly.cs" />
+    <Compile Include="[Attributes]\LongFormat.cs" />
+    <Compile Include="[Attributes]\Key.cs" />
+    <Compile Include="[Attributes]\Description.cs" />
+    <Compile Include="[Attributes]\Browsable.cs" />
+    <Compile Include="[Attributes]\EnumFormat.cs" />
+    <Compile Include="Dialog\ILoadingDialogHost.cs" />
+    <Compile Include="Dialog\ILoadingDialog.cs" />
+    <Compile Include="[Attributes]\SearchableAttribute.cs" />
+    <Compile Include="[Interfaces]\IChangeable.cs" />
+    <Compile Include="[Interfaces]\ICheckable.cs" />
+    <Compile Include="[Interfaces]\ICloneable.cs" />
+    <Compile Include="[Interfaces]\ICoercable.cs" />
+    <Compile Include="[Interfaces]\ICoercable.Generic.cs" />
+    <Compile Include="[Interfaces]\IDeletable.cs" />
+    <Compile Include="Dialog\IDialog.cs" />
+    <Compile Include="Dialog\IDialogHost.cs" />
+    <Compile Include="[Interfaces]\IEditable.cs" />
+    <Compile Include="[Interfaces]\IEntry.cs" />
+    <Compile Include="[Interfaces]\IExpandable.cs" />
+    <Compile Include="[Interfaces]\ILockable.cs" />
+    <Compile Include="[Interfaces]\INamable.cs" />
+    <Compile Include="[Interfaces]\IPeriodical.cs" />
+    <Compile Include="[Interfaces]\IPropertyChanged.cs" />
+    <Compile Include="[Interfaces]\ISelectable.cs" />
+    <Compile Include="[Interfaces]\ITaggable.cs" />
+    <Compile Include="[Interfaces]\IValidate.Generic.cs" />
+    <Compile Include="[Interfaces]\IVariant.cs" />
+    <Compile Include="[Attributes]\Abbreviation.cs" />
+    <Compile Include="[Attributes]\Constraint.cs" />
+    <Compile Include="[Attributes]\Featured.cs" />
+    <Compile Include="[Attributes]\Icon.cs" />
+    <Compile Include="[Attributes]\StringFormat.cs" />
     <Compile Include="Array.cs" />
     <Compile Include="Collections\EnumCollection.cs" />
-    <Compile Include="Drawing\LinearPoint.cs" />
     <Compile Include="Lang\Main.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,22 +115,18 @@
     <Compile Include="Collections\Generic\TrackableList.cs" />
     <Compile Include="Collections\ITrackableCollection.cs" />
     <Compile Include="CompassDirection.cs" />
-    <Compile Include="Config\IApp.cs" />
     <Compile Include="DayOfWeek.cs" />
     <Compile Include="Debug\Error.Generic.cs" />
     <Compile Include="Debug\InvalidTokenException.cs" />
     <Compile Include="Debug\Success.Generic.cs" />
-    <Compile Include="%28Dialog%29\DialogAction.cs" />
+    <Compile Include="Dialog\DialogAction.cs" />
     <Compile Include="Drawing\AngularUnit.cs" />
     <Compile Include="Drawing\Illuminant.cs" />
     <Compile Include="Drawing\IReflectiveColor.cs" />
     <Compile Include="Drawing\ObserverAngle.cs" />
     <Compile Include="Time.cs" />
-    <Compile Include="Timers\TickEventArgs.cs" />
     <Compile Include="Transmission.cs" />
     <Compile Include="Globalization\ILanguages.cs" />
-    <Compile Include="Config\IMainView.cs" />
-    <Compile Include="Config\Stability.cs" />
     <Compile Include="Data\DateFormat.cs" />
     <Compile Include="Data\EnumFormat.cs" />
     <Compile Include="Data\FileSizeFormat.cs" />
@@ -138,10 +137,9 @@
     <Compile Include="Debug\Result.cs" />
     <Compile Include="Debug\Result.Generic.cs" />
     <Compile Include="Debug\Success.cs" />
-    <Compile Include="%28Dialog%29\DialogButton.cs" />
-    <Compile Include="%28Dialog%29\DialogButtons.cs" />
-    <Compile Include="%28Dialog%29\DialogResult.cs" />
-    <Compile Include="%28Dialog%29\DialogType.cs" />
+    <Compile Include="Dialog\DialogButton.cs" />
+    <Compile Include="Dialog\DialogButtons.cs" />
+    <Compile Include="Dialog\DialogType.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="Drawing\GraphicalUnit.cs" />
     <Compile Include="Globalization\ILocalizer.cs" />
@@ -155,7 +153,6 @@
     <Compile Include="List.cs" />
     <Compile Include="Linq\IList.Generic.cs" />
     <Compile Include="Linq\UInt64.cs" />
-    <Compile Include="Timers\ElapsedEventArgs.cs" />
     <Compile Include="Input\EventArgs.Generic.cs" />
     <Compile Include="Input\SelectedEventArgs.cs" />
     <Compile Include="LeftRight.cs" />
@@ -199,6 +196,7 @@
     <Compile Include="Debug\LogEntry.cs" />
     <Compile Include="Debug\LogEntryType.cs" />
     <Compile Include="UDouble.cs" />
+    <Compile Include="UpDown.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Lang\Main.es-ES.resx">
@@ -214,6 +212,7 @@
       <LastGenOutput>Main.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

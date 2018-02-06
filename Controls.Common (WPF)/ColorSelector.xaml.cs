@@ -13,7 +13,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public partial class ColorSelector : UserControl
+    public partial class ColorSelector : System.Windows.Controls.UserControl
     {
         #region Enums
 

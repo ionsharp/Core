@@ -1,6 +1,8 @@
 ﻿using Imagin.Common.Input;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -12,15 +14,7 @@ namespace Imagin.Controls.Common
     /// </summary>
     public class WindowBase : Window, INotifyPropertyChanged
     {
-        #region Properties
-
-        bool isLoaded = false;
-
-        /// <summary>
-        /// The result of the window subsequent to closing.
-        /// </summary>
-        public int Result = -1;
-
+        #region Events
         /// <summary>
         /// Occurs when the window is about to close.
         /// </summary>
@@ -32,19 +26,46 @@ namespace Imagin.Controls.Common
         public new event CancelEventHandler Closing;
 
         /// <summary>
-        /// Occurs when the window is loaded for the first time.
-        /// </summary>
-        public event EventHandler<EventArgs> FirstLoad;
-
-        /// <summary>
         /// Occurs when the window is hidden.
         /// </summary>
         public event EventHandler<EventArgs> Hidden;
 
         /// <summary>
+        /// Occurs when the window is loaded for the first time.
+        /// </summary>
+        public event EventHandler<EventArgs> Presented;
+
+        /// <summary>
+        /// Occurs when a property changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Occurs when a window is shown.
         /// </summary>
         public event EventHandler<EventArgs> Shown;
+
+        #endregion
+
+        #region Properties
+
+        bool isPresented = false;
+
+        int result = -1;
+        /// <summary>
+        /// The result of the window subsequent to closing.
+        /// </summary>
+        public int Result
+        {
+            get
+            {
+                return result;
+            }
+            protected set
+            {
+                result = value;
+            }
+        }
 
         /// <summary>
         /// Identifies the <see cref="CornerRadius"/> dependency property.
@@ -258,6 +279,15 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="propertyName"></param>
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public new void Show()
         {
             base.Show();
@@ -273,6 +303,47 @@ namespace Imagin.Controls.Common
         {
             OnShown();
             return base.ShowDialog();
+        }
+
+        #endregion
+
+        #region Protected 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="expression"></param>
+        protected virtual void OnPropertyChanged<T>(Expression<Func<T>> expression)
+        {
+            if (expression == null)
+                throw new ArgumentNullException("expression");
+
+            MemberExpression body = expression.Body as MemberExpression;
+
+            if (body == null)
+                throw new ArgumentException("The body must be a member expression.");
+
+            OnPropertyChanged(body.Member.Name);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        protected bool SetValue<T>(ref T field, T value, Expression<Func<T>> expression)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value))
+                return false;
+
+            field = value;
+
+            OnPropertyChanged(expression);
+            return true;
         }
 
         #endregion
@@ -299,7 +370,6 @@ namespace Imagin.Controls.Common
         /// 
         /// </summary>
         /// <param name="e"></param>
-        [Obsolete("Do not use.", true)]
         protected sealed override void OnClosed(EventArgs e)
         {
         }
@@ -323,9 +393,9 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void OnFirstLoad()
+        protected virtual void OnPresented()
         {
-            FirstLoad?.Invoke(this, new EventArgs());
+            Presented?.Invoke(this, new EventArgs());
         }
 
         /// <summary>
@@ -342,10 +412,10 @@ namespace Imagin.Controls.Common
         /// <param name="e"></param>
         protected virtual void OnLoaded(RoutedEventArgs e)
         {
-            if (!isLoaded)
+            if (!isPresented)
             {
-                isLoaded = true;
-                OnFirstLoad();
+                isPresented = true;
+                OnPresented();
             }
         }
 
@@ -366,18 +436,6 @@ namespace Imagin.Controls.Common
         }
 
         #endregion
-
-        #endregion
-
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         #endregion
     }

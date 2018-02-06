@@ -9,7 +9,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// A chip for displaying and selecting a brush.
     /// </summary>
-    public abstract class ChipBase : UserControl
+    public abstract class ChipBase : System.Windows.Controls.UserControl
     {
         MouseEvent dialogEvent = MouseEvent.MouseDown;
         /// <summary>

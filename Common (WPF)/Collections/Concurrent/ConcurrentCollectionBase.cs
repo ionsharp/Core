@@ -35,6 +35,9 @@ namespace Imagin.Common.Collections.Concurrent
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         #region Private
@@ -185,11 +188,7 @@ namespace Imagin.Common.Collections.Concurrent
             BaseCollection.CollectionChanged += HandleBaseCollectionChanged;
 
             // Bubble up the notify collection changed event from the view model
-            viewModel.CollectionChanged += (sender, e) => 
-            {
-                if(CollectionChanged != null)
-                    CollectionChanged(sender, e);
-            };
+            viewModel.CollectionChanged += (sender, e) => CollectionChanged?.Invoke(sender, e);
         }
 
         /// <summary>
@@ -379,8 +378,8 @@ namespace Imagin.Common.Collections.Concurrent
             try
             {
                 ReadWriteLock.TryEnterWriteLock(Timeout.Infinite);
-                if (Action != null) Action();
-                while(WriteCollection.Count > 0)
+                Action?.Invoke();
+                while (WriteCollection.Count > 0)
                 {
                     NewSnapshotRequired = true;
                     WriteCollection.RemoveAt(WriteCollection.Count - 1);

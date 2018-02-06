@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Imagin.Common.Input
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class DelegateCommand : ICommand
     {
         private List<WeakReference> _canExcuteChangeHandlers;
@@ -17,6 +15,11 @@ namespace Imagin.Common.Input
         private readonly Func<object, Task> _excutedMethod;
         private readonly Func<object, bool> _canExcuteMethod;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="excuteMethod"></param>
+        /// <param name="canExecuteMethod"></param>
         public DelegateCommand(Action<object> excuteMethod, Func<object, bool> canExecuteMethod)
         {
             if (excuteMethod == null || canExecuteMethod == null)
@@ -31,6 +34,11 @@ namespace Imagin.Common.Input
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="excuteMethod"></param>
+        /// <param name="canExecuteMethod"></param>
         public DelegateCommand(Func<object, Task> excuteMethod, Func<object, bool> canExecuteMethod)
         {
             if (excuteMethod == null || canExecuteMethod == null)
@@ -46,6 +54,9 @@ namespace Imagin.Common.Input
             WeakEventHandlerManager.CallWeakReferenecHandlers(this, _canExcuteChangeHandlers);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void RaiseCanExecuteChanger()
         {
             OnCanExecuteChanged();
@@ -71,6 +82,9 @@ namespace Imagin.Common.Input
             return _canExcuteMethod == null || _canExcuteMethod(parameter);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public event EventHandler CanExecuteChanged
         {
             add

@@ -11,7 +11,6 @@ namespace Imagin.Common.Linq
         /// 
         /// </summary>
         /// <param name="Value"></param>
-        /// <param name="Predicate"></param>
         /// <returns></returns>
         public static bool Any<TObject>(this Stack<TObject> Value)
         {

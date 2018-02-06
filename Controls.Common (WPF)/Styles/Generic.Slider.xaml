@@ -70,6 +70,7 @@
     <Style x:Key="Style.Slider" TargetType="{x:Type Slider}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsSnapToTickEnabled" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -120,7 +121,7 @@
                 <Setter Property="MinWidth" Value="100" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="{DynamicResource DisabledOpacity}" />
+                <Setter Property="Opacity" Value="0.5" />
             </Trigger>
         </Style.Triggers>
     </Style>

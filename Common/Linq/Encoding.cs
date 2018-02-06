@@ -2,8 +2,16 @@
 
 namespace Imagin.Common.Linq
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class EncodingExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ToConvert"></param>
+        /// <returns></returns>
         public static System.Text.Encoding ToComplement(this Encoding ToConvert)
         {
             switch (ToConvert)

@@ -3,7 +3,6 @@
     /// <summary>
     /// 
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public static class Range
     {
         /// <summary>

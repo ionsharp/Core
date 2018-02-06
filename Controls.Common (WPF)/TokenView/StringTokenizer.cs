@@ -19,7 +19,7 @@ namespace Imagin.Controls.Common
         /// <returns></returns>
         public override IEnumerable<string> Tokenize(string TokenString, char Delimiter)
         {
-            var source = TokenString.Split(Arr.New(Delimiter), StringSplitOptions.RemoveEmptyEntries);
+            var source = TokenString.Split(Batch.New(Delimiter), StringSplitOptions.RemoveEmptyEntries);
             foreach (var i in source)
                 yield return i;
         }

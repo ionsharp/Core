@@ -1,5 +1,4 @@
 ﻿using Imagin.Common.Linq;
-using Imagin.Common.Linq;
 using System;
 using System.Windows.Media;
 
@@ -76,6 +75,7 @@ namespace Imagin.Common.Drawing
             /// 
             /// </summary>
             /// <param name="Component"></param>
+            /// <param name="Observer"></param>
             /// <param name="Illuminant"></param>
             /// <returns></returns>
             public double this[Component Component, ObserverAngle Observer, Illuminant Illuminant]

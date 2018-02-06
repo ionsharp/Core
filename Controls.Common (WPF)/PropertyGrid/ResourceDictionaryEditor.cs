@@ -56,11 +56,10 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
-        /// 
+        /// Loads a collection of properties served by the given <see cref="ResourceDictionary"/>.
         /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public override async Task GetPropertiesAsync(ResourceDictionary source)
+        /// <param name="source">The source in which properties are served.</param>
+        public override async Task LoadPropertiesAsync(ResourceDictionary source)
         {
             await Properties.LoadAsync(source);
         }

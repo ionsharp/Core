@@ -3,6 +3,7 @@ using Imagin.Common.Drawing;
 using Imagin.Common.Linq;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -103,6 +104,18 @@ namespace Imagin.Controls.Common
             /// 
             /// </summary>
             /// <param name="Color"></param>
+            /// <param name="NewComponentValue"></param>
+            /// <returns></returns>
+            public override Color ColorFrom(Color Color, int NewComponentValue)
+            {
+                var c = new Hsb(Color);
+                return new Hsb(NewComponentValue.ToDouble(), c.S, c.B).Color;
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Color"></param>
             /// <returns></returns>
             public override double GetValue(Color Color)
             {
@@ -118,6 +131,15 @@ namespace Imagin.Controls.Common
             {
                 var hsb = new Hsb(Color);
                 return PointFromColor(hsb.S.Divide(Hsb.MaxValue.S), hsb.B.Divide(Hsb.MaxValue.B));
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
+            public override string ToString()
+            {
+                return "Hue";
             }
 
             /// <summary>
@@ -142,12 +164,13 @@ namespace Imagin.Controls.Common
             /// <param name="Color"></param>
             /// <param name="Action"></param>
             /// <param name="Reverse"></param>
-            public override void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action, bool Reverse = false)
+            /// <param name="Orientation"></param>
+            public override void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action, bool Reverse = false, Orientation Orientation = Orientation.Vertical)
             {
                 base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
                 {
                     return new Hsb(CurrentRow, Hsb.MaxValue.S, Hsb.MaxValue.B).ToRgba();
-                }));
+                }), false, Orientation);
             }
 
             /// <summary>
@@ -219,6 +242,18 @@ namespace Imagin.Controls.Common
             /// 
             /// </summary>
             /// <param name="Color"></param>
+            /// <param name="NewComponentValue"></param>
+            /// <returns></returns>
+            public override Color ColorFrom(Color Color, int NewComponentValue)
+            {
+                var c = new Hsb(Color);
+                return new Hsb(c.H, NewComponentValue.ToDouble(), c.B).Color;
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Color"></param>
             /// <returns></returns>
             public override double GetValue(Color Color)
             {
@@ -234,6 +269,15 @@ namespace Imagin.Controls.Common
             {
                 var hsb = new Hsb(Color);
                 return PointFromColor(hsb.H.Divide(Hsb.MaxValue.H), hsb.B.Divide(Hsb.MaxValue.B));
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
+            public override string ToString()
+            {
+                return "Saturation";
             }
 
             /// <summary>
@@ -258,12 +302,13 @@ namespace Imagin.Controls.Common
             /// <param name="Color"></param>
             /// <param name="Action"></param>
             /// <param name="Reverse"></param>
-            public override void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action, bool Reverse = false)
+            /// <param name="Orientation"></param>
+            public override void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action, bool Reverse = false, Orientation Orientation = Orientation.Vertical)
             {
                 base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
                 {
                     return new Hsb(Color).New(Hsb.Component.S, CurrentRow).ToRgba();
-                }));
+                }), false, Orientation);
             }
 
             /// <summary>
@@ -335,6 +380,18 @@ namespace Imagin.Controls.Common
             /// 
             /// </summary>
             /// <param name="Color"></param>
+            /// <param name="NewComponentValue"></param>
+            /// <returns></returns>
+            public override Color ColorFrom(Color Color, int NewComponentValue)
+            {
+                var c = new Hsb(Color);
+                return new Hsb(c.H, c.S, NewComponentValue.ToDouble()).Color;
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Color"></param>
             /// <returns></returns>
             public override double GetValue(Color Color)
             {
@@ -350,6 +407,15 @@ namespace Imagin.Controls.Common
             {
                 var hsb = new Hsb(Color);
                 return PointFromColor(hsb.H.Divide(Hsb.MaxValue.H), hsb.S.Divide(Hsb.MaxValue.S));
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
+            public override string ToString()
+            {
+                return "Brightness";
             }
 
             /// <summary>
@@ -374,12 +440,13 @@ namespace Imagin.Controls.Common
             /// <param name="Color"></param>
             /// <param name="Action"></param>
             /// <param name="Reverse"></param>
-            public override void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action, bool Reverse = false)
+            /// <param name="Orientation"></param>
+            public override void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action, bool Reverse = false, Orientation Orientation = Orientation.Vertical)
             {
                 base.UpdateSlider(Bitmap, Color, new Func<Color, double, Rgba>((c, CurrentRow) =>
                 {
                     return new Hsb(Color).New(Hsb.Component.B, CurrentRow).ToRgba();
-                }));
+                }), false, Orientation);
             }
 
             /// <summary>

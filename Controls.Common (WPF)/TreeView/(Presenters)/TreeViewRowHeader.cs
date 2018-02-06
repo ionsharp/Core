@@ -1,6 +1,6 @@
 ﻿using Imagin.Common.Linq;
 using Imagin.Controls.Common.Converters;
-using Imagin.Controls.Common.Extensions;
+using Imagin.Controls.Common.Linq;
 using System;
 using System.Collections;
 using System.Collections.ObjectModel;
@@ -92,7 +92,7 @@ namespace Imagin.Controls.Common
             BindingOperations.SetBinding(a, FrameworkElement.VisibilityProperty, new Binding()
             {
                 Converter = new BooleanToVisibilityConverter(),
-                Path = new PropertyPath("(0)", Extensions.DependencyObjectExtensions.IsVisibleProperty),
+                Path = new PropertyPath("(0)", Linq.DependencyObjectExtensions.IsVisibleProperty),
                 Mode = BindingMode.OneWay,
                 Source = Column
             });

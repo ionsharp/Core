@@ -6,7 +6,7 @@ namespace Imagin.Common
     /// <summary>
     /// Provides facilities for managing arrays.
     /// </summary>
-    public static class Arr
+    public static class Batch
     {
         /// <summary>
         /// 
@@ -18,7 +18,7 @@ namespace Imagin.Common
         public static TElement[] Add<TElement>(ref TElement[] Source, params TElement[] Elements)
         {
             var OldLength = Source.Length;
-            Array.Resize(ref Source, OldLength + Elements.Length);
+            System.Array.Resize(ref Source, OldLength + Elements.Length);
 
             for (int j = 0, Count = Elements.Length; j < Count; j++)
                 Source[OldLength + j] = Elements[j];
@@ -61,10 +61,10 @@ namespace Imagin.Common
             var Result = new TElement[Source.Length - 1];
 
             if (Index > 0)
-                Array.Copy(Source, 0, Result, 0, Index);
+                System.Array.Copy(Source, 0, Result, 0, Index);
 
             if (Index < Source.Length - 1)
-                Array.Copy(Source, Index + 1, Result, Index, Source.Length - Index - 1);
+                System.Array.Copy(Source, Index + 1, Result, Index, Source.Length - Index - 1);
 
             Source = Result;
         }

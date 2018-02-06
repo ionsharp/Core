@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
     /// <summary>
     /// 
@@ -199,7 +199,7 @@ namespace Imagin.Controls.Common.Extensions
         /// Called when an item is dragged over the control.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="System.Windows.DragEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="System.Windows.DragEventArgs"/> instance containing the event data.</param>
         static void OnDragOver(object sender, DragEventArgs e)
         {
             lock (IsDraggingOverProperty)

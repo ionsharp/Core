@@ -9,7 +9,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public partial class NewCurrent : UserControl
+    public partial class NewCurrent : System.Windows.Controls.UserControl
     {
         #region Properties
 

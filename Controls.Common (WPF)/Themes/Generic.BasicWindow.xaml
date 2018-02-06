@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common="http://imagin.tech/imagin/common"
-    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Extensions"
+    xmlns:Controls.Common.Extensions="clr-namespace:Imagin.Controls.Common.Linq"
     xmlns:Controls.Common.Converters="clr-namespace:Imagin.Controls.Common.Converters">
     <Common:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
     <Controls.Common.Converters:WindowTypeVisibilityConverter x:Key="WindowTypeVisibilityConverter"/>
@@ -71,7 +71,6 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <ContentPresenter
@@ -86,7 +85,7 @@
                             MinWidth="50"/>
 
                         <ItemsControl 
-                            Grid.Column="3" 
+                            Grid.Column="2" 
                             WindowChrome.IsHitTestVisibleInChrome="True"
                             ItemsPanel="{TemplateBinding ButtonsPanel}"
                             ItemsSource="{TemplateBinding Buttons}" 
@@ -95,7 +94,7 @@
                         </ItemsControl>
                     
                         <StackPanel
-                            Grid.Column="4" 
+                            Grid.Column="3" 
                             Orientation="Horizontal" 
                             VerticalAlignment="Top"
                             WindowChrome.IsHitTestVisibleInChrome="True">
@@ -148,7 +147,7 @@
                 <ContentPresenter
                     Grid.Row="2" 
                     x:Name="PART_Footer" 
-                    Content="{Binding Data, Mode=OneWay, Source={StaticResource BindingProxy}}"
+                    Content="{TemplateBinding Footer}"
                     ContentTemplate="{TemplateBinding FooterTemplate}"/>
 
                 <ContentControl

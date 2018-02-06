@@ -58,9 +58,9 @@
                                 </Grid>
                                 <local:MaskedToggleButton
                                     Grid.Column="2"
-                                    CheckedSource="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Images/ArrowDownSmall.png"
                                     IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                                     Margin="5,0,0,0"
+                                    Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Images/ArrowDownSmall.png"
                                     Visibility="{Binding IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </Grid>
                             <Popup

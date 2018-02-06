@@ -5,7 +5,7 @@ namespace Imagin.Common.Input
     /// <summary>
     /// Specifies a changed value.
     /// </summary>
-    /// <typeparam name="TKind">The kind of value.</typeparam>
+    /// <typeparam name="TValue">The kind of value.</typeparam>
     public class ChangedValue<TValue> : Tuple<TValue, TValue>
     {
         /// <summary>

@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common="http://imagin.tech/imagin/common"
     xmlns:Common.Drawing="clr-namespace:Imagin.Common.Drawing;assembly=Imagin.Common"
-    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Extensions"
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Linq"
     mc:Ignorable="d" 
     d:DesignWidth="525"
     x:Name="PART_GradientEditor">

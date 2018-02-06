@@ -1,5 +1,5 @@
 ﻿using Imagin.Common.Input;
-using Imagin.Controls.Common.Extensions;
+using Imagin.Controls.Common.Linq;
 using System;
 using System.Windows;
 using System.Windows.Controls;

@@ -1,10 +1,14 @@
 ﻿using Imagin.Common.Linq;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ListBoxExtensions
     {
         #region IsDirectionalSelectionEnabled
@@ -24,10 +28,20 @@ namespace Imagin.Controls.Common.Extensions
         /// select first.
         /// </pseudo>
         public static readonly DependencyProperty IsDirectionalSelectionEnabledProperty = DependencyProperty.RegisterAttached("IsDirectionalSelectionEnabled", typeof(bool), typeof(ListBoxExtensions), new PropertyMetadata(false, OnIsDirectionalSelectionEnabled));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
         public static bool GetIsDirectionalSelectionEnabled(ListBox d)
         {
             return (bool)d.GetValue(IsDirectionalSelectionEnabledProperty);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
         public static void SetIsDirectionalSelectionEnabled(ListBox d, bool value)
         {
             d.SetValue(IsDirectionalSelectionEnabledProperty, value);
@@ -142,10 +156,20 @@ namespace Imagin.Controls.Common.Extensions
         /// IsDirectionalSelectionEnabled must be set to true.
         /// </remarks>
         public static readonly DependencyProperty SelectionWrapProperty = DependencyProperty.RegisterAttached("SelectionWrap", typeof(bool), typeof(ListBoxExtensions), new PropertyMetadata(false, null, new CoerceValueCallback(OnSelectionWrapCoerced)));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static bool GetSelectionWrap(DependencyObject obj)
         {
             return (bool)obj.GetValue(SelectionWrapProperty);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetSelectionWrap(DependencyObject obj, bool value)
         {
             obj.SetValue(SelectionWrapProperty, value);

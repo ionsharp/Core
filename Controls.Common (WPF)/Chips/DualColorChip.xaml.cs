@@ -12,7 +12,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public partial class DualColorChip : UserControl
+    public partial class DualColorChip : System.Windows.Controls.UserControl
     {
         /// <summary>
         /// 

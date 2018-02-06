@@ -1,7 +1,7 @@
 ﻿using Imagin.Common.Collections.Generic;
 using Imagin.Common.Input;
 using Imagin.Common.Linq;
-using Imagin.Controls.Common.Extensions;
+using Imagin.Controls.Common.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;

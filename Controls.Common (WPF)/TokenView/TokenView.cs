@@ -28,10 +28,7 @@ namespace Imagin.Controls.Common
 
         BlockCollection Blocks
         {
-            get
-            {
-                return Document.Blocks;
-            }
+            get => Document.Blocks;
         }
         
         Run CurrentRun
@@ -57,10 +54,7 @@ namespace Imagin.Controls.Common
         /// </summary>
         string CurrentText
         {
-            get
-            {
-                return CaretPosition?.GetTextInRun(LogicalDirection.Backward);
-            }
+            get => CaretPosition?.GetTextInRun(LogicalDirection.Backward);
         }
         
         /// <summary>
@@ -405,8 +399,7 @@ namespace Imagin.Controls.Common
                 return;
             }
 
-            var TriggerKey = default(TokenTriggerKey);
-            if (Field.TryParseEnum(out TriggerKey) && TokenTriggers.Has(TriggerKey))
+            if (Field.TryParseEnum(out TokenTriggerKey TriggerKey) && TokenTriggers.Has(TriggerKey))
             {
                 OnTokenTriggered(); 
                 e.Handled = true;
@@ -421,20 +414,20 @@ namespace Imagin.Controls.Common
         {
             base.OnPreviewMouseLeftButtonDown(e);
 
-            var t = e.Source as TokenButton;
-            if (t != null)
+            var button = e.Source as TokenButton;
+
+            if (button == null) return;
+
+            switch (TokenMouseDownAction)
             {
-                switch (TokenMouseDownAction)
-                {
-                    case TokenMouseAction.Edit:
-                        EditToken(t);
-                        e.Handled = true;
-                        break;
-                    case TokenMouseAction.Remove:
-                        RemoveToken(t);
-                        e.Handled = true;
-                        break;
-                }
+                case TokenMouseAction.Edit:
+                    EditToken(button);
+                    e.Handled = true;
+                    break;
+                case TokenMouseAction.Remove:
+                    RemoveToken(button);
+                    e.Handled = true;
+                    break;
             }
         }
 

@@ -9,7 +9,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public class TabbedTree : Common.TreeView
+    public class TabbedTree : TreeView
     {
         #region Properties
 
@@ -93,7 +93,7 @@ namespace Imagin.Controls.Common
                 SetValue(ContentBorderThicknessProperty, value);
             }
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -154,7 +154,7 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(TabbedTree), new FrameworkPropertyMetadata(default(DataTemplate), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
         /// </summary>
@@ -170,6 +170,44 @@ namespace Imagin.Controls.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty ContentTemplateSelectorProperty = DependencyProperty.Register("ContentTemplateSelector", typeof(DataTemplateSelector), typeof(TabbedTree), new FrameworkPropertyMetadata(default(DataTemplateSelector), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTemplateSelector ContentTemplateSelector
+        {
+            get
+            {
+                return (DataTemplateSelector)GetValue(ContentTemplateSelectorProperty);
+            }
+            set
+            {
+                SetValue(ContentTemplateSelectorProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DependencyProperty ContentTransitionProperty = DependencyProperty.Register("ContentTransition", typeof(TransitionType), typeof(TabbedTree), new FrameworkPropertyMetadata(TransitionType.LeftReplace, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public TransitionType ContentTransition
+        {
+            get
+            {
+                return (TransitionType)GetValue(ContentTransitionProperty);
+            }
+            set
+            {
+                SetValue(ContentTransitionProperty, value);
+            }
+        }
+        
         /// <summary>
         /// 
         /// </summary>

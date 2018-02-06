@@ -26,7 +26,7 @@ namespace Imagin.Common.Collections.Generic
         }
 
         /// <summary>
-        /// Gets the number of elements contained in the collection<T>.
+        /// Gets the number of elements contained in the collection.
         /// </summary>
         public abstract int Count
         {
@@ -49,10 +49,12 @@ namespace Imagin.Common.Collections.Generic
             CopyTo((T[])Array, Index);
         }
 
+        /// <summary>
+        /// 
         /// </summary>
         /// <param name="item">The object to locate</param>
         /// <returns>true if item is found otherwise false</returns>
-        public abstract bool Contains(T Item);
+        public abstract bool Contains(T item);
 
         /// <summary>
         ///  Copies the elements of the collection to an array, starting at a particular index.
@@ -66,7 +68,7 @@ namespace Imagin.Common.Collections.Generic
 
         /// <summary>
         /// Throws the exception System.NotSupportedException:
-        /// </param>
+        /// </summary>
         public void Add(T Item)
         {
             throw new NotSupportedException("KeyCollection<TKey,TValue> is read-only.");
@@ -74,7 +76,7 @@ namespace Imagin.Common.Collections.Generic
 
         /// <summary>
         /// Throws the exception System.NotSupportedException:
-        /// </param>
+        /// </summary>
         public void Clear()
         {
             throw (new NotSupportedException("KeyCollection<TKey,TValue> is read-only."));
@@ -82,7 +84,7 @@ namespace Imagin.Common.Collections.Generic
 
         /// <summary>
         /// Throws the exception System.NotSupportedException:
-        /// </param>
+        /// </summary>
         public bool Remove(T Item)
         {
             throw (new NotSupportedException("KeyCollection<TKey,TValue> is read-only."));

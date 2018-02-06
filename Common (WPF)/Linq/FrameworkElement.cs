@@ -11,7 +11,7 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// Helper method to determine if the given framework element has the mouse over it or not.
         /// </summary>
-        /// <param name="grid">The FrameworkElement to test for mouse containment.</param>
+        /// <param name="element">The FrameworkElement to test for mouse containment.</param>
         /// <returns>True, if the mouse is over the FrameworkElement; false, otherwise.</returns>
         public static bool ContainsMouse(this FrameworkElement element)
         {

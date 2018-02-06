@@ -149,6 +149,25 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
+        public static DependencyProperty FooterProperty = DependencyProperty.Register("Footer", typeof(object), typeof(BasicWindow), new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        /// <summary>
+        /// 
+        /// </summary>
+        public object Footer
+        {
+            get
+            {
+                return GetValue(FooterProperty);
+            }
+            set
+            {
+                SetValue(FooterProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static DependencyProperty FooterTemplateProperty = DependencyProperty.Register("FooterTemplate", typeof(DataTemplate), typeof(BasicWindow), new FrameworkPropertyMetadata(default(DataTemplate), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         /// <summary>
         /// 
@@ -257,6 +276,18 @@ namespace Imagin.Controls.Common
             set
             {
                 SetValue(IconTemplateProperty, value);
+            }
+        }
+
+        ContentControl overlay;
+        /// <summary>
+        /// 
+        /// </summary>
+        public ContentControl Overlay
+        {
+            get
+            {
+                return overlay;
             }
         }
 
@@ -376,6 +407,19 @@ namespace Imagin.Controls.Common
         {
             if (OnClosed != null)
                 Closed += (s, e) => OnClosed();
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            overlay = Template.FindName("PART_Overlay", this) as ContentControl;
         }
 
         #endregion

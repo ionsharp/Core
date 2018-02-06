@@ -4,39 +4,38 @@
     /// Base implementatation for defining view models.
     /// </summary>
     /// <typeparam name="T">The type of an object to model.</typeparam>
-    public class ViewModel<T> : BindableObject
+    public class ViewModel<T> : ViewModel
     {
-        T _object = default(T);
+        T view = default(T);
         /// <summary>
-        /// An object to model.
+        /// The view to model.
         /// </summary>
-        public T Object
+        public T View
         {
             get
             {
-                return _object;
+                return view;
             }
             set
             {
-                _object = value;
-                OnPropertyChanged("Object");
+                SetValue(ref view, value, () => View);
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the ViewModel class.
+        /// Initializes a new instance of the <see cref="ViewModel{T}"/> class.
         /// </summary>
-        public ViewModel() : base()
+        protected ViewModel() : base()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the ViewModel class.
+        /// Initializes a new instance of the <see cref="ViewModel{T}"/> class.
         /// </summary>
-        /// <param name="_object">The object to model.</param>
-        public ViewModel(T _object) : base()
+        /// <param name="view">The view to model.</param>
+        public ViewModel(T view) : this()
         {
-            Object = _object;
+            View = view;
         }
     }
 }

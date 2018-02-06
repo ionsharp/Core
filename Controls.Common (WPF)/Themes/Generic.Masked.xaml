@@ -4,6 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Linq="clr-namespace:Imagin.Controls.Common.Linq"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <Common:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
@@ -97,6 +98,7 @@
                         BorderThickness="{TemplateBinding BorderThickness}" 
                         BorderBrush="{TemplateBinding BorderBrush}"  
                         Background="{TemplateBinding Background}"
+                        CornerRadius="{Binding Path=(Linq:FrameworkElementExtensions.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                         Padding="{TemplateBinding Padding}">
                         <local:RippleDecorator
                             BorderBrush="{TemplateBinding SourceColor}"

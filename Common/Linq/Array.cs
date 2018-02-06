@@ -32,7 +32,7 @@ namespace Imagin.Common.Linq
         /// <param name="Value"></param>
         /// <param name="Predicate"></param>
         /// <returns></returns>
-        public static IEnumerable<object> Where(this Array Value, Func<object, bool> Predicate)
+        public static IEnumerable<object> Where(this System.Array Value, Func<object, bool> Predicate)
         {
             foreach (var i in Value)
             {

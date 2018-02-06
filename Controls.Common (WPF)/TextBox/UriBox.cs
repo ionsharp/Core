@@ -52,7 +52,7 @@ namespace Imagin.Controls.Common
         /// <returns></returns>
         protected override string ToString(Uri value)
         {
-            return value.ToString();
+            return value?.ToString();
         }
     }
 }

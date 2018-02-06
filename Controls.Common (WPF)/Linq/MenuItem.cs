@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
     /// <summary>
     /// 
@@ -16,6 +16,33 @@ namespace Imagin.Controls.Common.Extensions
         /// 
         /// </summary>
         public static Dictionary<MenuItem, string> elements = new Dictionary<MenuItem, string>();
+
+        #region IconTemplate
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty IconTemplateProperty = DependencyProperty.RegisterAttached("IconTemplate", typeof(DataTemplate), typeof(MenuItemExtensions), new PropertyMetadata(default(DataTemplate)));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static DataTemplate GetIconTemplate(FrameworkElement d)
+        {
+            return (DataTemplate)d.GetValue(IconTemplateProperty);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        public static void SetIconTemplate(FrameworkElement d, DataTemplate value)
+        {
+            d.SetValue(IconTemplateProperty, value);
+        }
+
+        #endregion
 
         /// <summary>
         /// 

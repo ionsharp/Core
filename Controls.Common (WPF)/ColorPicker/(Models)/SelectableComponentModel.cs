@@ -3,6 +3,7 @@ using Imagin.Common.Drawing;
 using Imagin.Common.Input;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -80,6 +81,14 @@ namespace Imagin.Controls.Common
         public abstract Color ColorAtPoint(Point selectionPoint, int colorComponentValue);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="newComponentValue"></param>
+        /// <returns></returns>
+        public abstract Color ColorFrom(Color color, int newComponentValue);
+
+        /// <summary>
         /// Gets the point on the color plane that corresponds to the color (alpha ignored)
         /// </summary>
         public abstract Point PointFromColor(Color color);
@@ -123,9 +132,20 @@ namespace Imagin.Controls.Common
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <param name="color"></param>
+        /// <param name="orientation"></param>
+        public void UpdateSlider(WriteableBitmap bitmap, Color color, Orientation orientation)
+        {
+            UpdateSlider(bitmap, color, null, false, orientation);
+        }
+
+        /// <summary>
         /// Updates the slider bitmap.
         /// </summary>
-        public virtual void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action = null, bool Reverse = false)
+        public virtual void UpdateSlider(WriteableBitmap Bitmap, Color Color, Func<Color, double, Rgba> Action = null, bool Reverse = false, Orientation Orientation = Orientation.Vertical)
         {
             unsafe
             {
@@ -133,21 +153,46 @@ namespace Imagin.Controls.Common
                 int CurrentPixel = -1;
                 byte* Start = (byte*)(void*)Bitmap.BackBuffer;
 
-                var RowUnit = (Maximum - Minimum) / 256.0;
-                var CurrentRow = Reverse ? Minimum : Maximum;
 
-                for (var Row = 0; Row < Bitmap.PixelHeight; Row++)
+                switch (Orientation)
                 {
-                    var Rgba = Action.Invoke(Color, CurrentRow);
-                    for (var Col = 0; Col < Bitmap.PixelWidth; Col++)
-                    {
-                        CurrentPixel++;
-                        *(Start + CurrentPixel * 3 + 0) = Rgba.B;
-                        *(Start + CurrentPixel * 3 + 1) = Rgba.G;
-                        *(Start + CurrentPixel * 3 + 2) = Rgba.R;
-                    }
-                    if (Reverse) CurrentRow += RowUnit;
-                    else CurrentRow -= RowUnit;
+                    case Orientation.Horizontal:
+                        var RowUnit = (Maximum - Minimum) / Bitmap.PixelHeight;
+                        var CurrentRow = Reverse ? Minimum : Maximum;
+
+                        for (var Row = 0; Row < Bitmap.PixelHeight; Row++)
+                        {
+                            for (var Col = 0; Col < Bitmap.PixelWidth; Col++)
+                            {
+                                var Rgba = Action.Invoke(Color, Col);
+
+                                CurrentPixel++;
+                                *(Start + CurrentPixel * 3 + 0) = Rgba.B;
+                                *(Start + CurrentPixel * 3 + 1) = Rgba.G;
+                                *(Start + CurrentPixel * 3 + 2) = Rgba.R;
+                            }
+                            if (Reverse) CurrentRow += RowUnit;
+                            else CurrentRow -= RowUnit;
+                        }
+                        break;
+                    case Orientation.Vertical:
+                        RowUnit = (Maximum - Minimum) / Bitmap.PixelHeight;
+                        CurrentRow = Reverse ? Minimum : Maximum;
+
+                        for (var Row = 0; Row < Bitmap.PixelHeight; Row++)
+                        {
+                            var Rgba = Action.Invoke(Color, CurrentRow);
+                            for (var Col = 0; Col < Bitmap.PixelWidth; Col++)
+                            {
+                                CurrentPixel++;
+                                *(Start + CurrentPixel * 3 + 0) = Rgba.B;
+                                *(Start + CurrentPixel * 3 + 1) = Rgba.G;
+                                *(Start + CurrentPixel * 3 + 2) = Rgba.R;
+                            }
+                            if (Reverse) CurrentRow += RowUnit;
+                            else CurrentRow -= RowUnit;
+                        }
+                        break;
                 }
                 Bitmap.AddDirtyRect(new Int32Rect(0, 0, Bitmap.PixelWidth, Bitmap.PixelHeight));
                 Bitmap.Unlock();

@@ -89,6 +89,18 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static List<object> ToList(this IList source)
+        {
+            var result = new List<object>();
+            source.ForEach(i => result.Add(i));
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <param name="Source"></param>

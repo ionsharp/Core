@@ -22,6 +22,7 @@ namespace Imagin.Common.Linq
         /// <param name="Source"></param>
         /// <param name="Path"></param>
         /// <param name="Mode"></param>
+        /// <param name="UpdateSourceTrigger"></param>
         /// <returns></returns>
         public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, string Path, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
         {
@@ -36,6 +37,7 @@ namespace Imagin.Common.Linq
         /// <param name="Source"></param>
         /// <param name="Path"></param>
         /// <param name="Mode"></param>
+        /// <param name="UpdateSourceTrigger"></param>
         /// <returns></returns>
         public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, PropertyPath Path, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
         {
@@ -91,6 +93,7 @@ namespace Imagin.Common.Linq
         /// <param name="Path"></param>
         /// <param name="RelativeSourceMode"></param>
         /// <param name="Mode"></param>
+        /// <param name="UpdateSourceTrigger"></param>
         /// <returns></returns>
         public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, string Path, RelativeSourceMode RelativeSourceMode = RelativeSourceMode.Self, BindingMode Mode = BindingMode.OneWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
         {
@@ -222,11 +225,6 @@ namespace Imagin.Common.Linq
             return null;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="child"></param>
-        /// <returns></returns>
         /*
         public static DependencyObject GetParent(this DependencyObject child)
         {
@@ -413,8 +411,8 @@ namespace Imagin.Common.Linq
         /// Returns true if the specified element is a child of parent somewhere in the visual 
         /// tree. This method will work for Visual, FrameworkElement and FrameworkContentElement.
         /// </summary>
-        /// <param name="element">The element that is potentially a child of the specified parent.</param>
-        /// <param name="parent">The element that is potentially a parent of the specified element.</param>
+        /// <param name="Object">The element that is potentially a child of the specified parent.</param>
+        /// <param name="Parent">The element that is potentially a parent of the specified element.</param>
         public static bool IsDescendantOf(this DependencyObject Object, DependencyObject Parent)
         {
             while (Object != null)

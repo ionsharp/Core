@@ -28,13 +28,13 @@ namespace Imagin.Controls.Common
             public override bool Validate(params object[] Arguments)
             {
                 var Path = Arguments[0].ToString();
-                var Mode = Arguments[1].To<DialogProviderMode>();
+                var Mode = Arguments[1].To<WindowsDialogMode>();
 
                 switch (Mode)
                 {
-                    case DialogProviderMode.OpenFile:
-                    case DialogProviderMode.OpenFolder:
-                        FileOrFolder = Mode == DialogProviderMode.OpenFile;
+                    case WindowsDialogMode.OpenFile:
+                    case WindowsDialogMode.OpenFolder:
+                        FileOrFolder = Mode == WindowsDialogMode.OpenFile;
                         return Validate(Path);
                 }
 
@@ -92,15 +92,15 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        public static DependencyProperty BrowseModeProperty = DependencyProperty.Register("BrowseMode", typeof(DialogProviderMode), typeof(FileBox), new FrameworkPropertyMetadata(DialogProviderMode.OpenFolder, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnBrowseModeChanged));
+        public static DependencyProperty BrowseModeProperty = DependencyProperty.Register("BrowseMode", typeof(WindowsDialogMode), typeof(FileBox), new FrameworkPropertyMetadata(WindowsDialogMode.OpenFolder, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnBrowseModeChanged));
         /// <summary>
         /// Gets or sets the type of objects to browse.
         /// </summary>
-        public DialogProviderMode BrowseMode
+        public WindowsDialogMode BrowseMode
         {
             get
             {
-                return (DialogProviderMode)GetValue(BrowseModeProperty);
+                return (WindowsDialogMode)GetValue(BrowseModeProperty);
             }
             set
             {
@@ -109,7 +109,7 @@ namespace Imagin.Controls.Common
         }
         static void OnBrowseModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.As<FileBox>().OnBrowseModeChanged((DialogProviderMode)e.NewValue);
+            d.As<FileBox>().OnBrowseModeChanged((WindowsDialogMode)e.NewValue);
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace Imagin.Controls.Common
         /// 
         /// </summary>
         /// <param name="Value"></param>
-        protected virtual void OnBrowseModeChanged(DialogProviderMode Value)
+        protected virtual void OnBrowseModeChanged(WindowsDialogMode Value)
         {
             OnCanValidateChanged(CanValidate);
         }
@@ -310,13 +310,12 @@ namespace Imagin.Controls.Common
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="e"></param>
         protected virtual void OnDialogOpened()
         {
             DialogOpened?.Invoke(this, new EventArgs());
 
             var Path = string.Empty;
-            if (DialogProvider.Show(out Path, BrowseTitle, BrowseMode, null, Text))
+            if (Dialog.Show(out Path, BrowseTitle, BrowseMode, null, Text))
                 Text = Path;
         }
 

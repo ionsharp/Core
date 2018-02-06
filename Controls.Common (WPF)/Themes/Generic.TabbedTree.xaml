@@ -6,7 +6,8 @@
     xmlns:l="http://wpflocalizeextension.codeplex.com"
     xmlns:local="clr-namespace:Imagin.Controls.Common"
     xmlns:Common="http://imagin.tech/imagin/common"
-    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common">
+    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
+    xmlns:Local.Linq="clr-namespace:Imagin.Controls.Common.Linq">
     <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <Common:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
     
@@ -77,28 +78,33 @@
                                         x:Name="PART_ContentHeader"
                                         ContentTemplate="{TemplateBinding ContentHeaderTemplate}"
                                         Visibility="{TemplateBinding ContentHeaderVisibility}"/>
-                                    <ContentControl
+                                    <local:TransitionalContentControl
                                         Grid.Row="1"
                                         x:Name="PART_Content"
-                                        Content="{TemplateBinding SelectedItem}">
-                                        <ContentControl.Resources>
-                                            <DataTemplate x:Key="DefaultContentTemplate">
-                                                <ContentControl Content="{Binding Path=(Controls.Common:ControlExtensions.Content), Mode=OneWay}"/>
-                                            </DataTemplate>
-                                        </ContentControl.Resources>
-                                        <ContentControl.Style>
+                                        Content="{TemplateBinding SelectedItem}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                        Transition="{TemplateBinding ContentTransition}">
+                                        <local:TransitionalContentControl.Style>
                                             <Style TargetType="ContentControl">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToBooleanConverter}}" Value="True">
-                                                        <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToBooleanConverter}}" Value="False">
-                                                        <Setter Property="ContentTemplate" Value="{StaticResource DefaultContentTemplate}"/>
-                                                    </DataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding ContentTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}" Value="{x:Null}"/>
+                                                            <Condition Binding="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToBooleanConverter}}" Value="False"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="ContentTemplate">
+                                                            <Setter.Value>
+                                                                <DataTemplate>
+                                                                    <ContentControl Content="{Binding Path=(Local.Linq:ControlExtensions.Content), Mode=OneWay}"/>
+                                                                </DataTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </MultiDataTrigger>
                                                 </Style.Triggers>
                                             </Style>
-                                        </ContentControl.Style>
-                                    </ContentControl>
+                                        </local:TransitionalContentControl.Style>
+                                    </local:TransitionalContentControl>
                                 </Grid>
                             </Border>
                         </Grid>

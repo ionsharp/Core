@@ -8,7 +8,7 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.TextBox.xaml" />
         
         <!-- .................................................................................................................. -->
-
+        
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.BasicWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.ButtonChrome.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.CheckerBoard.xaml" />
@@ -21,13 +21,18 @@
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.FileBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.FlagCheckView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.Menu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.PropertyGridBase.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.RadioGroup.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.RippleDecorator.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.TimeUpDown.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.ToggleSwitch.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.TransitionalContentControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.TreeView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.TreeViewComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.UserControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.UpDown.xaml" />
+
+        <!-- .................................................................................................................. -->
 
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.AnglePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Imagin.Controls.Common.Wpf;component/Themes/Generic.Chips.xaml" />

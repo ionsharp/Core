@@ -12,7 +12,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public class FlagCheckView : UserControl
+    public class FlagCheckView : System.Windows.Controls.UserControl
     {
         bool FlagsChangeHandled = false;
 

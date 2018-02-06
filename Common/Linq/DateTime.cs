@@ -4,6 +4,9 @@ using Imagin.Common.Globalization;
 
 namespace Imagin.Common.Linq
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class DateTimeExtensions
     {
         /// <summary>
@@ -270,6 +273,9 @@ namespace Imagin.Common.Linq
             return new DateTime(Value.Year, Value.Month, Value.Day, Value.Hour, Value.Minute, Value.Second, 0);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static DateTime Yesterday
         {
             get

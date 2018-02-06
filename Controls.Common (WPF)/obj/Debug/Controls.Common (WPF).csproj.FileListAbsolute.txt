@@ -123,7 +123,6 @@ C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Commo
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.GridView.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.GroupBox.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Label.baml
-C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.RichTextBox.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.ScrollViewer.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.Slider.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.TabControl.baml
@@ -141,7 +140,6 @@ C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Commo
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ComboBox\FontFamilyBox.g.cs
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\GradientPicker.g.cs
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\NewCurrent.g.cs
-C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\PropertyGrid\PropertyGridBase.g.cs
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\SelectionCanvas.g.cs
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Wpf_MarkupCompile.cache
@@ -159,7 +157,6 @@ C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Commo
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\ComboBox\FontFamilyBox.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\GradientPicker.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\NewCurrent.baml
-C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\PropertyGrid\PropertyGridBase.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\SelectionCanvas.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.RadioGroup.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Styles\Generic.CheckBox.baml
@@ -227,6 +224,7 @@ C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Commo
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\it-IT\Imagin.Controls.Common.Wpf.resources.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Wpf.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Imagin.Controls.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.UserControl.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.TransitionalContentControl.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Themes\Generic.PropertyGridBase.baml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\Controls.Common (WPF).csprojResolveAssemblyReference.cache
-C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\PropertyView\PropertyView.g.cs
-C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Controls.Common (WPF)\obj\Debug\PropertyView\PropertyView.baml

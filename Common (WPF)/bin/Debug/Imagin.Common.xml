@@ -4,6 +4,84 @@
         <name>Imagin.Common</name>
     </assembly>
     <members>
+        <member name="T:Imagin.Common.Configuration.IApp">
+            <summary>
+            Specifies an application.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IApp.Languages">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IApp.Log">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IApp.MainView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Configuration.IApp.Resources">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Configuration.IMainView">
+            <summary>
+            Specifies the main view of an application. 
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Property">
+            <summary>
+            A utility for setting properties of objects that implement <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> and <see cref="T:Imagin.Common.IPropertyChanged"/>.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Property.OnChanged``2(``0,System.Linq.Expressions.Expression{System.Func{``1}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TObject"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="source"></param>
+            <param name="expression"></param>
+        </member>
+        <member name="M:Imagin.Common.Property.Set``2(``0,``1@,``1,System.Linq.Expressions.Expression{System.Func{``1}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TObject"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="source"></param>
+            <param name="field"></param>
+            <param name="value"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Timers.ElapsedEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Imagin.Common.Timers.ElapsedEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Timers.ElapsedEventArgs.SignalTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Timers.ElapsedEventArgs.#ctor(System.DateTime)">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Common.BindableObject">
             <summary>
             A base for abstract objects (implements INotifyPropertyChanged).
@@ -19,18 +97,18 @@
             
             </summary>
         </member>
-        <member name="M:Imagin.Common.BindableObject.OnPropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="selectorExpression"></param>
-        </member>
         <member name="M:Imagin.Common.BindableObject.OnPropertyChanged(System.String)">
             <summary>
             
             </summary>
             <param name="propertyName"></param>
+        </member>
+        <member name="M:Imagin.Common.BindableObject.OnPropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TValue"></typeparam>
+            <param name="expression"></param>
         </member>
         <member name="M:Imagin.Common.BindableObject.SetValue``1(``0@,``0,System.Linq.Expressions.Expression{System.Func{``0}})">
             <summary>
@@ -243,7 +321,7 @@
         </member>
         <member name="E:Imagin.Common.PeriodicalObjectBase.Notified">
             <summary>
-            Occurs when <see cref="!:Timer"/> elapses.
+            Occurs when the timer elapses.
             </summary>
         </member>
         <member name="M:Imagin.Common.PeriodicalObjectBase.#ctor">
@@ -253,7 +331,7 @@
         </member>
         <member name="M:Imagin.Common.PeriodicalObjectBase.OnNotified(Imagin.Common.Timers.ElapsedEventArgs)">
             <summary>
-            Occurs when <see cref="!:Timer"/> elapses.
+            Occurs when the timer elapses.
             </summary>
             <param name="e"></param>
         </member>
@@ -313,7 +391,7 @@
             <summary>
             
             </summary>
-            <param name="value"></param>
+            <param name="DisplayName"></param>
         </member>
         <member name="T:Imagin.Common.DateFormatAttribute">
             <summary>
@@ -361,7 +439,7 @@
             <summary>
             
             </summary>
-            <param name="kind"></param>
+            <param name="Format"></param>
         </member>
         <member name="T:Imagin.Common.KeyAttribute">
             <summary>
@@ -377,11 +455,11 @@
             <summary>
             
             </summary>
-            <param name="key"></param>
+            <param name="Key"></param>
         </member>
         <member name="T:Imagin.Common.DescriptionAttribute">
             <summary>
-            A generic alternative for <see cref="!:System.ComponentModel.DescriptionAttribute"/>, which isn't available in some frameworks.
+            A generic alternative for <see langword="System.ComponentModel.DescriptionAttribute"/>, which isn't available in some frameworks.
             </summary>
         </member>
         <member name="P:Imagin.Common.DescriptionAttribute.Description">
@@ -393,11 +471,11 @@
             <summary>
             
             </summary>
-            <param name="description"></param>
+            <param name="Description"></param>
         </member>
         <member name="T:Imagin.Common.BrowsableAttribute">
             <summary>
-            A generic alternative for <see cref="!:System.ComponentModel.BrowsableAttribute"/>, which isn't available in some frameworks.
+            A generic alternative for <see langword="System.ComponentModel.BrowsableAttribute"/>, which isn't available in some frameworks.
             </summary>
         </member>
         <member name="P:Imagin.Common.BrowsableAttribute.Browsable">
@@ -427,27 +505,6 @@
             </summary>
             <param name="Format"></param>
         </member>
-        <member name="T:Imagin.Common.SearchableAttribute">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.SearchableAttribute.IsSearchable">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.SearchableAttribute.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.SearchableAttribute.#ctor(System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="IsSearchable"></param>
-        </member>
         <member name="T:Imagin.Common.ILoadingDialogHost">
             <summary>
             Specifies an element capable of hosting loading dialogs.
@@ -475,6 +532,27 @@
             <param name="buttons"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.SearchableAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.SearchableAttribute.IsSearchable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.SearchableAttribute.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.SearchableAttribute.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="IsSearchable"></param>
+        </member>
         <member name="T:Imagin.Common.IChangeable">
             <summary>
             Specifies an object that can observe changes to itself.
@@ -491,6 +569,60 @@
             </summary>
         </member>
         <member name="P:Imagin.Common.ICheckable.IsChecked">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.ICloneable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.ICloneable.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.ICoercable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.ICoercable.SetConstraint(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Minimum"></param>
+            <param name="Maximum"></param>
+        </member>
+        <member name="T:Imagin.Common.ICoercable`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Imagin.Common.ICoercable`1.Minimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.ICoercable`1.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.IDeletable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Imagin.Common.IDeletable.Deleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.IDeletable.OnDeleted">
             <summary>
             
             </summary>
@@ -542,7 +674,6 @@
             </summary>
             <param name="title"></param>
             <param name="text"></param>
-            <param name="content"></param>
             <param name="image"></param>
             <param name="action"></param>
             <param name="buttons"></param>
@@ -659,16 +790,6 @@
             
             </summary>
         </member>
-        <member name="T:Imagin.Common.IInitializable">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.IInitializable.Initialize">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Imagin.Common.ILockable">
             <summary>
             
@@ -689,6 +810,16 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Common.INamable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.INamable.Name">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Common.IPeriodical">
             <summary>
             Specifies an object that raises notifications over an indefinite period.
@@ -698,6 +829,17 @@
             <summary>
             Occurs when notifications are periodically raised.
             </summary>
+        </member>
+        <member name="T:Imagin.Common.IPropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.IPropertyChanged.OnPropertyChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="propertyName"></param>
         </member>
         <member name="T:Imagin.Common.ISelectable">
             <summary>
@@ -710,6 +852,16 @@
             </summary>
         </member>
         <member name="P:Imagin.Common.ISelectable.IsSelected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.ITaggable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.ITaggable.Tag">
             <summary>
             
             </summary>
@@ -769,7 +921,7 @@
             <summary>
             
             </summary>
-            <param name="value"></param>
+            <param name="Value"></param>
         </member>
         <member name="T:Imagin.Common.ConstraintAttribute">
             <summary>
@@ -778,6 +930,39 @@
             <remarks>
             Constraint values are stored as object type because generic types cannot inherit from Attribute.
             </remarks>
+        </member>
+        <member name="P:Imagin.Common.ConstraintAttribute.Maximum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.ConstraintAttribute.Minimum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.ConstraintAttribute.#ctor(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Minimum"></param>
+            <param name="Maximum"></param>
+        </member>
+        <member name="T:Imagin.Common.FeaturedAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.FeaturedAttribute.IsFeatured">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.FeaturedAttribute.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="IsFeatured"></param>
         </member>
         <member name="T:Imagin.Common.IconAttribute">
             <summary>
@@ -823,12 +1008,12 @@
             </summary>
             <param name="Format"></param>
         </member>
-        <member name="T:Imagin.Common.Arr">
+        <member name="T:Imagin.Common.Batch">
             <summary>
             Provides facilities for managing arrays.
             </summary>
         </member>
-        <member name="M:Imagin.Common.Arr.Add``1(``0[]@,``0[])">
+        <member name="M:Imagin.Common.Batch.Add``1(``0[]@,``0[])">
             <summary>
             
             </summary>
@@ -837,7 +1022,7 @@
             <param name="Elements"></param>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Arr.New``1(``0[])">
+        <member name="M:Imagin.Common.Batch.New``1(``0[])">
             <summary>
             Initializes a new array with the given elements; if no elements are specified, an empty array is returned.
             </summary>
@@ -845,7 +1030,7 @@
             <param name="Elements"></param>
             <returns></returns>
         </member>
-        <member name="M:Imagin.Common.Arr.Remove``1(``0[]@,``0[])">
+        <member name="M:Imagin.Common.Batch.Remove``1(``0[]@,``0[])">
             <summary>
             
             </summary>
@@ -853,7 +1038,7 @@
             <param name="Source"></param>
             <param name="Elements"></param>
         </member>
-        <member name="M:Imagin.Common.Arr.RemoveAt``1(``0[]@,System.Int32)">
+        <member name="M:Imagin.Common.Batch.RemoveAt``1(``0[]@,System.Int32)">
             <summary>
             
             </summary>
@@ -929,13 +1114,23 @@
             Provides a base collection that is immutable or cannot be changed.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Count" -->
+        <member name="P:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Count">
+            <summary>
+            Gets the number of elements contained in the collection.
+            </summary>
+        </member>
         <member name="P:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.IsReadOnly">
             <summary>
             Gets a value indicating that the collection is read-only.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Contains(`0)" -->
+        <member name="M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Contains(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item">The object to locate</param>
+            <returns>true if item is found otherwise false</returns>
+        </member>
         <member name="M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.CopyTo(`0[],System.Int32)">
             <summary>
              Copies the elements of the collection to an array, starting at a particular index.
@@ -946,9 +1141,21 @@
             Gets the enumerator for the collection
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Add(`0)" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Clear" -->
-        <!-- Badly formed XML comment ignored for member "M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Remove(`0)" -->
+        <member name="M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Add(`0)">
+            <summary>
+            Throws the exception System.NotSupportedException:
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Clear">
+            <summary>
+            Throws the exception System.NotSupportedException:
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.Remove(`0)">
+            <summary>
+            Throws the exception System.NotSupportedException:
+            </summary>
+        </member>
         <member name="M:Imagin.Common.Collections.Generic.ImmutableCollectionBase`1.System#Collections#IEnumerable#GetEnumerator">
             <summary>
             Gets the enumerator for the collection
@@ -1538,221 +1745,6 @@
             </summary>
             <param name="Indices"></param>
         </member>
-        <member name="T:Imagin.Common.Drawing.LinearPoint">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Drawing.LinearPoint.DistanceX">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Drawing.LinearPoint.DistanceY">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Drawing.LinearPoint.X1">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Drawing.LinearPoint.X2">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Drawing.LinearPoint.Y1">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Drawing.LinearPoint.Y2">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Drawing.LinearPoint.#ctor(System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            
-            </summary>
-            <param name="X1"></param>
-            <param name="Y1"></param>
-            <param name="X2"></param>
-            <param name="Y2"></param>
-        </member>
-        <member name="M:Imagin.Common.Drawing.LinearPoint.Equals(System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="a"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Drawing.LinearPoint.Equals(Imagin.Common.Drawing.LinearPoint)">
-            <summary>
-            
-            </summary>
-            <param name="a"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Drawing.LinearPoint.GetHashCode">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Drawing.LinearPoint.op_Equality(Imagin.Common.Drawing.LinearPoint,Imagin.Common.Drawing.LinearPoint)">
-            <summary>
-            
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Imagin.Common.Drawing.LinearPoint.op_Inequality(Imagin.Common.Drawing.LinearPoint,Imagin.Common.Drawing.LinearPoint)">
-            <summary>
-            
-            </summary>
-            <param name="a"></param>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Imagin.Common.Drawing.AngularUnit">
-            <summary>
-            Specifies an angular unit.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.AngularUnit.Degree">
-            <summary>
-            Specifies a degree as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.AngularUnit.Radian">
-            <summary>
-            Specifies a radian as the unit of measure.
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Drawing.Illuminant">
-            <summary>
-            Represents a theoretical source of visible light with a published profile.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.Illuminant.Default">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.Illuminant.A">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.Illuminant.C">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.Illuminant.E">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.Illuminant.D50">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.Illuminant.D55">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.Illuminant.D65">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.Illuminant.ICC">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Drawing.IReflectiveColor">
-            <summary>
-            Specifies a color that is reflective, or defined with both an <see cref="T:Imagin.Common.Drawing.Illuminant"/> and <see cref="T:Imagin.Common.Drawing.ObserverAngle"/>.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Drawing.IReflectiveColor.Illuminant">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Drawing.IReflectiveColor.Observer">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Drawing.ObserverAngle">
-            <summary>
-            Specifies an observer for a color that uses reflective light.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.ObserverAngle.Two">
-            <summary>
-            Specifies the 1931 standard observer.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.ObserverAngle.Ten">
-            <summary>
-            Specifies the 1964 observer.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Pixel">
-            <summary>
-            Specifies a device pixel as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Inch">
-            <summary>
-            Specifies an inch as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Centimeter">
-            <summary>
-            Specifies a centimeter (1/2.54 inch) as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Millimeter">
-            <summary>
-            Specifies a millimeter (1/25.4 inch) as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Point">
-            <summary>
-            Specifies a printer's point (1/72 inch) as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Pica">
-            <summary>
-            Specifies a pica (1/6 inch) as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Twip">
-            <summary>
-            Specifies a twip (1/1140 inch) as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Character">
-            <summary>
-            Specifies a character (1/12 inch) as the unit of measure.
-            </summary>
-        </member>
-        <member name="F:Imagin.Common.Drawing.GraphicalUnit.En">
-            <summary>
-            Specifies an en (1/144.54 inch) as the unit of measure.
-            </summary>
-        </member>
         <member name="T:Imagin.Common.Lang.Main">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -1848,7 +1840,6 @@
             <summary>
             
             </summary>
-            <typeparam name="T"></typeparam>
         </member>
         <member name="M:Imagin.Common.Range.New``1(``0,``0)">
             <summary>
@@ -1990,6 +1981,17 @@
             Cancels all tasks.
             </summary>
         </member>
+        <member name="T:Imagin.Common.Threading.TaskCompletionNotifier`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="E:Imagin.Common.Threading.TaskCompletionNotifier`1.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Imagin.Common.Threading.TaskCompletionNotifier`1.Task">
             <summary>
             Gets the task being watched. This property never changes and is never <c>null</c>.
@@ -2018,6 +2020,17 @@
         <member name="P:Imagin.Common.Threading.TaskCompletionNotifier`1.IsFaulted">
             <summary>
             Gets whether the task has faulted.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Threading.TaskCompletionNotifier`1.#ctor(System.Threading.Tasks.Task{`0})">
+            <summary>
+            
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="T:Imagin.Common.CompassPoint">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:Imagin.Common.CompassPoint.NW">
@@ -2066,36 +2079,6 @@
             </summary>
         </member>
         <member name="F:Imagin.Common.CompassPoint.Unknown">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Config.IApp">
-            <summary>
-            Specifies an application.
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IApp.Languages">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IApp.Log">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IApp.MainView">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Config.IApp.Resources">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Config.IMainView">
             <summary>
             
             </summary>
@@ -2306,6 +2289,22 @@
             <param name="Value"></param>
             <param name="Message"></param>
             <param name="InnerException"></param>
+        </member>
+        <member name="T:Imagin.Common.Debug.InvalidResultException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.InvalidResultException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Debug.InvalidResultException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
         </member>
         <member name="T:Imagin.Common.Debug.Result">
             <summary>
@@ -2530,6 +2529,168 @@
             
             </summary>
         </member>
+        <member name="T:Imagin.Common.Exceptions.InvalidTokenException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Exceptions.InvalidTokenException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Exceptions.InvalidTokenException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Message"></param>
+        </member>
+        <member name="T:Imagin.Common.DialogAction">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.Drawing.AngularUnit">
+            <summary>
+            Specifies an angular unit.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.AngularUnit.Degree">
+            <summary>
+            Specifies a degree as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.AngularUnit.Radian">
+            <summary>
+            Specifies a radian as the unit of measure.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.Illuminant">
+            <summary>
+            Represents a theoretical source of visible light with a published profile.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.Default">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.A">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.C">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.E">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.D50">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.D55">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.D65">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.Illuminant.ICC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.IReflectiveColor">
+            <summary>
+            Specifies a color that is reflective, or defined with both an <see cref="T:Imagin.Common.Drawing.Illuminant"/> and <see cref="T:Imagin.Common.Drawing.ObserverAngle"/>.
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.IReflectiveColor.Illuminant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.Drawing.IReflectiveColor.Observer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.ObserverAngle">
+            <summary>
+            Specifies an observer for a color that uses reflective light.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.ObserverAngle.Two">
+            <summary>
+            Specifies the 1931 standard observer.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.ObserverAngle.Ten">
+            <summary>
+            Specifies the 1964 observer.
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Drawing.GraphicalUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Pixel">
+            <summary>
+            Specifies a device pixel as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Inch">
+            <summary>
+            Specifies an inch as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Centimeter">
+            <summary>
+            Specifies a centimeter (1/2.54 inch) as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Millimeter">
+            <summary>
+            Specifies a millimeter (1/25.4 inch) as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Point">
+            <summary>
+            Specifies a printer's point (1/72 inch) as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Pica">
+            <summary>
+            Specifies a pica (1/6 inch) as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Twip">
+            <summary>
+            Specifies a twip (1/1140 inch) as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.Character">
+            <summary>
+            Specifies a character (1/12 inch) as the unit of measure.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Drawing.GraphicalUnit.En">
+            <summary>
+            Specifies an en (1/144.54 inch) as the unit of measure.
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Time">
             <summary>
             
@@ -2581,50 +2742,6 @@
             </summary>
             <param name="Format"></param>
             <returns></returns>
-        </member>
-        <member name="T:Imagin.Common.Timers.TickEventHandler">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="T:Imagin.Common.Timers.TickEventArgs">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Timers.TickEventArgs.Elapsed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Timers.TickEventArgs.#ctor(System.TimeSpan)">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Imagin.Common.Timers.ElapsedEventHandler">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="T:Imagin.Common.Timers.ElapsedEventArgs">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Imagin.Common.Timers.ElapsedEventArgs.SignalTime">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Imagin.Common.Timers.ElapsedEventArgs.#ctor(System.DateTime)">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:Imagin.Common.Transmission">
             <summary>
@@ -2747,6 +2864,21 @@
             </summary>
         </member>
         <member name="F:Imagin.Common.Data.FileSizeFormat.DecimalUsingSI">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Imagin.Common.Data.SortDirection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Data.SortDirection.Ascending">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.Data.SortDirection.Descending">
             <summary>
             
             </summary>
@@ -3006,7 +3138,7 @@
             <summary>
             Specifies a changed value.
             </summary>
-            <typeparam name="TKind">The kind of value.</typeparam>
+            <typeparam name="TValue">The kind of value.</typeparam>
         </member>
         <member name="P:Imagin.Common.Input.ChangedValue`1.OldValue">
             <summary>
@@ -3360,6 +3492,11 @@
             <param name="Value"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Linq.DateTimeExtensions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Imagin.Common.Linq.DateTimeExtensions.Coerce(System.DateTime,System.DateTime,System.DateTime)">
             <summary>
             
@@ -3447,6 +3584,11 @@
             </summary>
             <param name="Value"></param>
             <returns></returns>
+        </member>
+        <member name="P:Imagin.Common.Linq.DateTimeExtensions.Yesterday">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Imagin.Common.Linq.DecimalExtensions">
             <summary>
@@ -3587,17 +3729,22 @@
         </member>
         <member name="M:Imagin.Common.Linq.DoubleExtensions.ToByte(System.Double)">
             <summary>
-            Converts double to byte.
+            Converts <see cref="T:System.Double"/> to <see cref="T:System.Byte"/>.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.DoubleExtensions.ToFloat(System.Double)">
+            <summary>
+            Converts <see cref="T:System.Double"/> to <see cref="T:System.Single"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.DoubleExtensions.ToInt32(System.Double)">
             <summary>
-            Converts double to int.
+            Converts <see cref="T:System.Double"/> to <see cref="T:System.Int32"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.DoubleExtensions.ToInt64(System.Double)">
             <summary>
-            Converts double to long.
+            Converts <see cref="T:System.Double"/> to <see cref="T:System.Int64"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.DoubleExtensions.ToRadians(System.Double)">
@@ -3613,7 +3760,18 @@
             <param name="From">The unit to convert from.</param>
             <param name="To">The unit to convert to.</param>
             <param name="Ppi">Pixels per inch.</param>
-            <param name="RoundTo">Decimal places to round to.</param>
+        </member>
+        <member name="T:Imagin.Common.Linq.EncodingExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.EncodingExtensions.ToComplement(Imagin.Common.Text.Encoding)">
+            <summary>
+            
+            </summary>
+            <param name="ToConvert"></param>
+            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Linq.EnumExtensions">
             <summary>
@@ -3749,6 +3907,27 @@
             <param name="TEnum"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Linq.FloatExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.FloatExtensions.Coerce(System.Single,System.Single,System.Single)">
+            <summary>
+            Coerces <see cref="T:System.Single"/> to given maximum and minimum.
+            </summary>
+            <param name="Value">The value to coerce.</param>
+            <param name="Maximum">The maximum to coerce to.</param>
+            <param name="Minimum">The minimum to coerce to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Linq.FloatExtensions.ToInt(System.Single)">
+            <summary>
+            
+            </summary>
+            <param name="ToConvert"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Linq.IEnumerableGenericExtensions">
             <summary>
             
@@ -3815,6 +3994,22 @@
             <param name="Source"></param>
             <returns></returns>
         </member>
+        <member name="M:Imagin.Common.Linq.IEnumerableGenericExtensions.LeastCommon``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Linq.IEnumerableGenericExtensions.MostCommon``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
         <member name="M:Imagin.Common.Linq.IEnumerableGenericExtensions.Second``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Gets the second item in a sequence.
@@ -3838,15 +4033,6 @@
             <typeparam name="T"></typeparam>
             <param name="Source"></param>
             <param name="Action"></param>
-        </member>
-        <member name="M:Imagin.Common.Linq.IEnumerableGenericExtensions.WhereFirst``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Items"></param>
-            <param name="Predicate"></param>
-            <returns></returns>
         </member>
         <member name="T:Imagin.Common.Linq.IEnumerableExtensions">
             <summary>
@@ -3907,6 +4093,13 @@
             
             </summary>
             <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Linq.IListExtensions.ToList(System.Collections.IList)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Linq.IListExtensions.Sort``2(System.Collections.Generic.IList{``0},System.Func{``0,``1},Imagin.Common.Data.SortDirection)">
@@ -4355,7 +4548,6 @@
             
             </summary>
             <param name="Value"></param>
-            <param name="Predicate"></param>
             <returns></returns>
         </member>
         <member name="T:Imagin.Common.Linq.StringExtensions">
@@ -4485,39 +4677,39 @@
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.SplitCamelCase(System.String)">
             <summary>
-            Parses string to boolean.
+            
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToBool(System.String)">
             <summary>
-            Parses string to boolean (evaluates "true" and "false"; everything else is parsed to an int).
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Boolean"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToByte(System.String)">
             <summary>
-            Parses string to byte.
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Byte"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToChar(System.String)">
             <summary>
-            
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Char"/>.
             </summary>
             <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToInt16(System.String)">
             <summary>
-            Parses string to short.
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Int16"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToInt32(System.String)">
             <summary>
-            Parses string to int.
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Int32"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToInt64(System.String)">
             <summary>
-            Parses string to long.
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Int64"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToInt32Array(System.String,System.Char)">
@@ -4538,17 +4730,22 @@
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToDateTime(System.String)">
             <summary>
-            Parses string to DateTime.
+            Parses <see cref="T:System.String"/> to <see cref="T:System.DateTime"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToDecimal(System.String)">
             <summary>
-            Parses string to decimal.
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Decimal"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToDouble(System.String)">
             <summary>
-            Parses string to double.
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Double"/>.
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.StringExtensions.ToFloat(System.String)">
+            <summary>
+            Parses <see cref="T:System.String"/> to <see cref="T:System.Single"/>.
             </summary>
         </member>
         <member name="M:Imagin.Common.Linq.StringExtensions.ToTimeSpan(System.String)">
@@ -4605,6 +4802,34 @@
             <param name="IgnoreCase"></param>
             <returns></returns>
         </member>
+        <member name="T:Imagin.Common.Linq.TimeSpanExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.Linq.TimeSpanExtensions.Coerce(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <param name="Maximum"></param>
+            <param name="Minimum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Linq.TimeSpanExtensions.Months(System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.Linq.TimeSpanExtensions.Years(System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
         <member name="T:Imagin.Common.Linq.TypeExtensions">
             <summary>
             
@@ -4612,7 +4837,7 @@
         </member>
         <member name="M:Imagin.Common.Linq.TypeExtensions.Equals``1(System.Type)">
             <summary>
-            Gets whether or not the type is equal to type, <see cref="!:&lt;TType&gt;"/>.
+            Gets whether or not the type is equal to type, <see langword="TType"/>.
             </summary>
             <typeparam name="TType"></typeparam>
             <param name="Value"></param>
@@ -4628,7 +4853,7 @@
         </member>
         <member name="M:Imagin.Common.Linq.TypeExtensions.Implements``1(System.Type)">
             <summary>
-            Gets whether or not the type implements interface, <see cref="!:&lt;TType&gt;"/> (or whether <see cref="!:&lt;TType&gt;"/> is assignable from the type).
+            Gets whether or not the type implements interface, <see langword="TType"/> (or whether <see langword="TType"/> is assignable from the type).
             </summary>
             <typeparam name="TType"></typeparam>
             <param name="Value"></param>
@@ -4679,6 +4904,21 @@
         <member name="T:Imagin.Common.LeftRight">
             <summary>
             Represents a direction that can only be left or right.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.LeftRight.Unspecified">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.LeftRight.Left">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.LeftRight.Right">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Imagin.Common.Meridiem">
@@ -5039,6 +5279,84 @@
             A data type to represent a row and column pair.
             </summary>
         </member>
+        <member name="P:Imagin.Common.RowColumn.Row">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Imagin.Common.RowColumn.Column">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Imagin.Common.RowColumn.#ctor(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="column"></param>
+        </member>
+        <member name="M:Imagin.Common.RowColumn.op_Equality(Imagin.Common.RowColumn,Imagin.Common.RowColumn)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.RowColumn.op_Inequality(Imagin.Common.RowColumn,Imagin.Common.RowColumn)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.RowColumn.Equals(Imagin.Common.RowColumn)">
+            <summary>
+            
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.RowColumn.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.RowColumn.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Imagin.Common.RowColumn.InRange(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="ColumnMinimum"></param>
+            <param name="ColumnMaximum"></param>
+            <param name="RowMinimum"></param>
+            <param name="RowMaximum"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.RelativeTense">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.RelativeTense.Future">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.RelativeTense.Past">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Common.Side">
             <summary>
             
@@ -5234,6 +5552,666 @@
             A fixed-length protocol to encode Unicode code points that uses exactly 32 bits per Unicode code point.
             </summary>
         </member>
+        <member name="T:Imagin.Common.TimeZone">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.DatelineStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.UTC11">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AleutianStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.HawaiianStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MarquesasStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AlaskanStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.UTC09">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.PacificStandardTimeMexico">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.UTC08">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.PacificStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.USMountainStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MountainStandardTimeMexico">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MountainStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CentralAmericaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CentralStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.EasterIslandStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CentralStandardTimeMexico">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CanadaCentralStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SAPacificStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.EasternStandardTimeMexico">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.EasternStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.HaitiStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CubaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.USEasternStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.ParaguayStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AtlanticStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.VenezuelaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CentralBrazilianStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SAWesternStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.PacificSAStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TurksAndCaicosStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NewfoundlandStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TocantinsStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.ESouthAmericaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SAEasternStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.ArgentinaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.GreenlandStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MontevideoStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SaintPierreStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.BahiaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.UTC02">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MidAtlanticStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AzoresStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CapeVerdeStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.UTC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MoroccoStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.GMTStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.GreenwichStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.WEuropeStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CentralEuropeStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.RomanceStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CentralEuropeanStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.WCentralAfricaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NamibiaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.JordanStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.GTBStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MiddleEastStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.EgyptStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.EEuropeStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SyriaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.WestBankStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SouthAfricaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.FLEStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TurkeyStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.IsraelStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.KaliningradStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.LibyaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.ArabicStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.ArabStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.BelarusStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.RussianStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.EAfricaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.IranStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.ArabianStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AstrakhanStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AzerbaijanStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.RussiaTimeZone3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MauritiusStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.GeorgianStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CaucasusStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AfghanistanStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.WestAsiaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.EkaterinburgStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.PakistanStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.IndiaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SriLankaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NepalStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CentralAsiaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.BangladeshStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NCentralAsiaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MyanmarStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SEAsiaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AltaiStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.WMongoliaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NorthAsiaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TomskStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.ChinaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NorthAsiaEastStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SingaporeStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.WAustraliaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TaipeiStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.UlaanbaatarStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NorthKoreaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AusCentralWStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TransbaikalStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TokyoStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.KoreaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.YakutskStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CenAustraliaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AUSCentralStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.EAustraliaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.AUSEasternStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.WestPacificStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TasmaniaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.VladivostokStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.LordHoweStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.BougainvilleStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.RussiaTimeZone10">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.MagadanStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NorfolkStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SakhalinStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.CentralPacificStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.RussiaTimeZone11">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.NewZealandStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.UTC12">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.FijiStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.KamchatkaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.ChathamIslandsStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.TongaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.SamoaStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.TimeZone.LineIslandsStandardTime">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Imagin.Common.UDouble">
             <summary>
             
@@ -5348,6 +6326,26 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Imagin.Common.UpDown">
+            <summary>
+            Represents a direction that can only be up or down.
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.UpDown.Unspecified">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.UpDown.Down">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Imagin.Common.UpDown.Up">
+            <summary>
+            
+            </summary>
         </member>
     </members>
 </doc>

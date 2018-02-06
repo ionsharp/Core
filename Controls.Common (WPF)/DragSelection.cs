@@ -8,7 +8,7 @@ namespace Imagin.Controls.Common
     /// <summary>
     /// 
     /// </summary>
-    public class DragSelection : UserControl
+    public class DragSelection : System.Windows.Controls.UserControl
     {
         Border PART_Rectangle
         {

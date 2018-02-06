@@ -1,7 +1,7 @@
 ﻿namespace Imagin.Controls.Common
 {
     /// <summary>
-    /// 
+    /// Specifies the action to make when a token is clicked by the mouse.
     /// </summary>
     public enum TokenMouseAction
     {

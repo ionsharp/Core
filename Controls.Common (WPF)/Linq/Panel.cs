@@ -1,18 +1,20 @@
 ﻿using Imagin.Common.Linq;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Imagin.Controls.Common.Extensions
+namespace Imagin.Controls.Common.Linq
 {
     /// <summary>
     /// 
     /// </summary>
     public static class PanelExtensions
     {
+
         #region HorizontalContentAlignment
 
         /// <summary>
-        /// 
+        /// Applies <see cref="HorizontalAlignment"/> to all children except those that define <see cref="FrameworkElementExtensions.HorizontalAlignmentProperty"/>.
         /// </summary>
         public static readonly DependencyProperty HorizontalContentAlignmentProperty = DependencyProperty.RegisterAttached("HorizontalContentAlignment", typeof(HorizontalAlignment), typeof(PanelExtensions), new FrameworkPropertyMetadata(HorizontalAlignment.Left, OnHorizontalContentAlignmentChanged));
         /// <summary>
@@ -44,11 +46,15 @@ namespace Imagin.Controls.Common.Extensions
         }
         static void OnHorizontalContentAlignmentUpdated(object sender, SizeChangedEventArgs e)
         {
-            var p = sender as Panel;
-            var a = GetHorizontalContentAlignment(p);
+            var panel = sender as Panel;
+            var value = GetHorizontalContentAlignment(panel);
 
-            for (int i = 0, Count = p.Children.Count; i < Count; i++)
-                p.Children[i].As<FrameworkElement>().HorizontalAlignment = a;
+            for (int i = 0, Count = panel.Children.Count; i < Count; i++)
+            {
+                var element = panel.Children[i].As<FrameworkElement>();
+                if (FrameworkElementExtensions.GetHorizontalAlignment(element) == null)
+                    element.HorizontalAlignment = value;
+            }
         }
 
         #endregion
@@ -56,7 +62,7 @@ namespace Imagin.Controls.Common.Extensions
         #region Spacing
 
         /// <summary>
-        /// 
+        /// Applies <see cref="Thickness"/> to all children except those that define <see cref="FrameworkElementExtensions.MarginProperty"/>.
         /// </summary>
         public static readonly DependencyProperty SpacingProperty = DependencyProperty.RegisterAttached("Spacing", typeof(Thickness), typeof(PanelExtensions), new FrameworkPropertyMetadata(default(Thickness), OnSpacingChanged));
         /// <summary>
@@ -88,21 +94,21 @@ namespace Imagin.Controls.Common.Extensions
         }
         static void OnSpacingUpdated(object sender, SizeChangedEventArgs e)
         {
-            var p = sender as Panel;
-            var s = GetSpacing(p);
+            var panel = sender as Panel;
+            var value = GetSpacing(panel);
 
-            var tf = GetTrimFirst(p);
-            var tl = GetTrimLast(p);
+            var tf = GetTrimFirst(panel);
+            var tl = GetTrimLast(panel);
 
-            for (int i = 0, Count = p.Children.Count; i < Count; i++)
+            for (int i = 0, Count = panel.Children.Count; i < Count; i++)
             {
-                var Element = p.Children[i] as FrameworkElement;
+                var element = panel.Children[i] as FrameworkElement;
                 if ((i == 0 && tf) || (i == (Count - 1) && tl))
                 {
-                    Element.Margin = new Thickness(0);
-                    continue;
+                    element.Margin = new Thickness(0);
                 }
-                Element.Margin = s;
+                else if (FrameworkElementExtensions.GetMargin(element) == null)
+                    element.Margin = value;
             }
         }
 
@@ -165,7 +171,7 @@ namespace Imagin.Controls.Common.Extensions
         #region VerticalContentAlignment
 
         /// <summary>
-        /// 
+        /// Applies <see cref="VerticalAlignment"/> to all children except those that define <see cref="FrameworkElementExtensions.VerticalAlignmentProperty"/>.
         /// </summary>
         public static readonly DependencyProperty VerticalContentAlignmentProperty = DependencyProperty.RegisterAttached("VerticalContentAlignment", typeof(VerticalAlignment), typeof(PanelExtensions), new FrameworkPropertyMetadata(VerticalAlignment.Top, OnVerticalContentAlignmentChanged));
         /// <summary>
@@ -197,11 +203,15 @@ namespace Imagin.Controls.Common.Extensions
         }
         static void OnVerticalContentAlignmentUpdated(object sender, SizeChangedEventArgs e)
         {
-            var p = sender as Panel;
-            var a = GetVerticalContentAlignment(p);
+            var panel = sender as Panel;
+            var value = GetVerticalContentAlignment(panel);
 
-            for (int i = 0, Count = p.Children.Count; i < Count; i++)
-                p.Children[i].As<FrameworkElement>().VerticalAlignment = a;
+            for (int i = 0, Count = panel.Children.Count; i < Count; i++)
+            {
+                var element = panel.Children[i].As<FrameworkElement>();
+                if (FrameworkElementExtensions.GetVerticalAlignment(element) == null)
+                    element.VerticalAlignment = value;
+            }
         }
 
         #endregion

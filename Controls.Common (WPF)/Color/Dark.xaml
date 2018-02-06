@@ -36,7 +36,7 @@
     <SolidColorBrush x:Key="Brush.TreeView.Column.Pressed.Background" Color="#007acc"/>
     <SolidColorBrush x:Key="Brush.TreeView.Column.Pressed.Foreground" Color="#FFF"/>
 
-    <SolidColorBrush x:Key="Brush.Border" Color="#282828"/>
+    <SolidColorBrush x:Key="Brush.Border" Color="#22000000"/>
     <SolidColorBrush x:Key="Brush.Border.BorderBrush" Color="#282828"/>
 
     <SolidColorBrush x:Key="Brush.Button.Foreground" Color="#FFF"/>

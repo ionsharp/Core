@@ -419,7 +419,7 @@ namespace Imagin.Controls.Common
         {
             var Parent = e.OriginalSource.As<DependencyObject>();
 
-            HandledTypes = HandledTypes == null ? Arr.New(typeof(Button), typeof(ToggleButton)) : HandledTypes;
+            HandledTypes = HandledTypes == null ? Batch.New(typeof(Button), typeof(ToggleButton)) : HandledTypes;
 
             while (!Parent.Is<TextBox>())
             {
@@ -437,8 +437,7 @@ namespace Imagin.Controls.Common
         /// <param name="e"></param>
         protected virtual void OnTripleClick(RoutedEventArgs e = null)
         {
-            if (TripleClick != null)
-                TripleClick(this, e == null ? new RoutedEventArgs() : e);
+            TripleClick?.Invoke(this, e == null ? new RoutedEventArgs() : e);
         }
 
         #endregion

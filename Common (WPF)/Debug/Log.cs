@@ -1,4 +1,4 @@
-﻿using Imagin.Common.Config;
+﻿using Imagin.Common.Configuration;
 using Imagin.Common.Linq;
 using System;
 using System.Windows;

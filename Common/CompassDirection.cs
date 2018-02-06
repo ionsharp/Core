@@ -1,5 +1,8 @@
 ﻿namespace Imagin.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum CompassPoint
     {
         /// <summary>

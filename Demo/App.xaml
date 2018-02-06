@@ -4,9 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Imagin.NET.Demo"
     xmlns:Common="http://imagin.tech/imagin/common"
-    xmlns:Controls.Common="http://imagin.tech/imagin/controls/common"
-    xmlns:Gadgets="http://imagin.tech/imagin/gadgets"
-    xmlns:System="clr-namespace:System;assembly=mscorlib"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>

@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// 
-/// </summary>
 namespace Imagin.Common.Collections
 {
     /// <summary>
