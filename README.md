@@ -43,13 +43,14 @@ AlignableWrapPanel | AlphaNumericBox | AnglePicker | BasicWindow | ByteUpDown |
 CheckerBoard | ColorChip | ColorComb | ColorDialog | ColorPicker |
 ComboBox | DataGrid | DateTimeUpDown | DecimalUpDown | DirectionPad |
 DoubleUpDown | DualColorChip | EditableLabel | FileBox | FlagCheckView |
-FontFamilyBox | FontSizeBox | GradientChip | GradientDialog | GradientPicker |
-HexBox | Int16UpDown | Int32UpDown | Int64UpDown | Line |
-Link | MaskedButton | MaskedDropDownButton | MaskedImage | MaskedToggleButton |
-PasswordBox | PropertyGrid | RadioGroup | RegexBox | ResourceDictionaryEditor |
-RippleDecorator | SelectionCanvas | StoragePicker | TabbedTree | TextBox |
-ThicknessBox | TimeSpanUpDown | ToggleSwitch | TokenView | TreeView |
-TreeViewComboBox | UInt16UpDown | UInt32UpDown | UInt64UpDown |
+FloatUpDown | FontFamilyBox | FontSizeBox | GradientChip | GradientDialog | 
+GradientPicker | HexBox | Int16UpDown | Int32UpDown | Int64UpDown | 
+Line | Link | MaskedButton | MaskedDropDownButton | MaskedImage | 
+MaskedToggleButton | PasswordBox | PropertyGrid | RadioGroup | RegexBox | 
+ResourceDictionaryEditor | RippleDecorator | SelectionCanvas | SplitView | StoragePicker | 
+TabbedTree | TextBox | ThicknessBox | TimeSpanUpDown | ToggleSwitch | 
+TokenView | TransitionalContentControl | TreeView | TreeViewComboBox | UriBox | 
+UDoubleUpDown | UInt16UpDown | UInt32UpDown | UInt64UpDown | VersionBox
 
 ### Colour
 
@@ -73,17 +74,18 @@ Defines various user interface elements for managing color in WPF.
 
   Name  |  Version  |
 --------|-----------|
-Imagin.Common.Colour | | |
+Imagin.Colour | | |
 Imagin.Common | | |
 Imagin.Common.WPF | | |
 NETStandard.Library | 2.0.1 |
 
 ##### Controls
 
-  .  |  .  |  .  |  .  |  .  |
------|-----|-----|-----|-----|
-ColorChip | ColorComb | ColorDialog | ColorPicker | DualColorChip | 
-GradientChip | GradientDialog | GradientPicker | | |
+  .  |  .  |  .  |
+-----|-----|-----|
+ColorChip | ColorComb | ColorDialog | 
+ColorPicker | ColorView | DualColorChip | 
+GradientChip | GradientDialog | GradientPicker | 
 
 ## Donate
 
