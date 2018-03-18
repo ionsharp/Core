@@ -14,24 +14,15 @@ namespace Imagin.Common.Input
     /// </summary>
     public class CheckedEventArgs : EventArgs
     {
-        readonly bool? state = null;
+        readonly bool? _state = null;
         /// <summary>
         /// 
         /// </summary>
-        public bool? State
-        {
-            get
-            {
-                return state;
-            }
-        }
+        public bool? State => _state;
 
         /// <summary>
         /// 
         /// </summary>
-        public CheckedEventArgs(bool? State) : base()
-        {
-            state = State;
-        }
+        public CheckedEventArgs(bool? state) : base() => _state = state;
     }
 }

@@ -11,8 +11,6 @@ namespace Imagin.Common.Collections
         /// <summary>
         /// 
         /// </summary>
-        public DataTemplateCollection() : base()
-        {
-        }
+        public DataTemplateCollection() : base() { }
     }
 }

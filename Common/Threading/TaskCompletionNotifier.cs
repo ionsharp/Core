@@ -10,8 +10,6 @@ namespace Imagin.Common.Threading
     /// <typeparam name="TResult"></typeparam>
     public sealed class TaskCompletionNotifier<TResult> : INotifyPropertyChanged
     {
-        #region Properties
-
         /// <summary>
         /// 
         /// </summary>
@@ -28,60 +26,27 @@ namespace Imagin.Common.Threading
         /// <summary>
         /// Gets the result of the task. Returns the default value of TResult if the task has not completed successfully.
         /// </summary>
-        public TResult Result
-        {
-            get
-            {
-                return (Task.Status == TaskStatus.RanToCompletion) ? Task.Result : default(TResult);
-            }
-        }
+        public TResult Result => (Task.Status == TaskStatus.RanToCompletion) ? Task.Result : default(TResult);
 
         /// <summary>
         /// Gets whether the task has completed.
         /// </summary>
-        public bool IsCompleted
-        {
-            get
-            {
-                return Task.IsCompleted;
-            }
-        }
+        public bool IsCompleted => Task.IsCompleted;
 
         /// <summary>
         /// Gets whether the task has completed successfully.
         /// </summary>
-        public bool IsSuccessfullyCompleted
-        {
-            get
-            {
-                return Task.Status == TaskStatus.RanToCompletion;
-            }
-        }
+        public bool IsSuccessfullyCompleted => Task.Status == TaskStatus.RanToCompletion;
 
         /// <summary>
         /// Gets whether the task has been canceled.
         /// </summary>
-        public bool IsCanceled
-        {
-            get
-            { return Task.IsCanceled;
-            }
-        }
+        public bool IsCanceled => Task.IsCanceled;
 
         /// <summary>
         /// Gets whether the task has faulted.
         /// </summary>
-        public bool IsFaulted
-        {
-            get
-            {
-                return Task.IsFaulted;
-            }
-        }
-
-        #endregion
-
-        #region TaskCompletionNotifier
+        public bool IsFaulted => Task.IsFaulted;
 
         /// <summary>
         /// 
@@ -114,7 +79,5 @@ namespace Imagin.Common.Threading
                 }
             }, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously, Scheduler);
         }
-
-        #endregion
     }
 }

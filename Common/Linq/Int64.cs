@@ -12,144 +12,93 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Increment"></param>
+        /// <param name="value"></param>
+        /// <param name="increment"></param>
         /// <returns></returns>
-        public static long Add(this long Value, long Increment)
-        {
-            return Value + Increment;
-        }
+        public static long Add(this long value, long increment) => value + increment;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static long Abs(this long Value)
-        {
-            return Math.Abs(Value);
-        }
+        public static long Absolute(this long value) => Math.Abs(value);
 
         /// <summary>
-        /// Coerces <see cref="long"/> to given maximum and minimum.
+        /// Coerces to the specified range.
         /// </summary>
-        /// <param name="Value">The value to coerce.</param>
-        /// <param name="Maximum">The maximum to coerce to.</param>
-        /// <param name="Minimum">The minimum to coerce to.</param>
+        /// <param name="value"></param>
+        /// <param name="maximum"></param>
+        /// <param name="minimum"></param>
         /// <returns></returns>
-        public static long Coerce(this long Value, long Maximum, long Minimum = 0L)
-        {
-            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
-        }
-
-        /// <summary>
-        /// Coerces <see cref="long"/> to given limit, which can be minimal or maximal.
-        /// </summary>
-        /// <param name="Value">The value to coerce.</param>
-        /// <param name="Limit">The minimum or maximum to coerce to.</param>
-        /// <param name="MinimumOrMaximum">Whether or not to coerce to minimum or maximum.</param>
-        /// <returns></returns>
-        public static long Coerce(this long Value, long Limit, bool MinimumOrMaximum)
-        {
-            if ((MinimumOrMaximum && Value < Limit) || (!MinimumOrMaximum && Value > Limit))
-                return Limit;
-
-            return Value;
-        }
+        public static long Coerce(this long value, long maximum, long minimum = 0L) => Math.Max(Math.Min(value, maximum), minimum);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ToDivide"></param>
-        /// <param name="Divisor"></param>
+        /// <param name="value"></param>
+        /// <param name="divisor"></param>
         /// <returns></returns>
-        public static long Divide(this long ToDivide, long Divisor)
-        {
-            return ToDivide / Divisor;
-        }
+        public static long Divide(this long value, long divisor) => value / divisor;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static long K(this long Value)
-        {
-            return Value * 1024L;
-        }
+        public static long K(this long value) => value * 1024L;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static long M(this long Value)
-        {
-            return Value * 1024L * 1024L;
-        }
+        public static long M(this long value) => value * 1024L * 1024L;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Scalar"></param>
+        /// <param name="value"></param>
+        /// <param name="scalar"></param>
         /// <returns></returns>
-        public static long Multiply(this long Value, long Scalar)
-        {
-            return Value * Scalar;
-        }
+        public static long Multiply(this long value, long scalar) => value * scalar;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Decrement"></param>
+        /// <param name="value"></param>
+        /// <param name="decrement"></param>
         /// <returns></returns>
-        public static long Subtract(this long Value, long Decrement)
-        {
-            return Value - Decrement;
-        }
+        public static long Subtract(this long value, long decrement) => value - decrement;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static double ToDouble(this long Value)
-        {
-            return Convert.ToDouble(Value);
-        }
+        public static double ToDouble(this long value) => Convert.ToDouble(value);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="FileSizeFormat"></param>
-        /// <param name="RoundTo"></param>
+        /// <param name="value"></param>
+        /// <param name="format"></param>
+        /// <param name="round"></param>
         /// <returns></returns>
-        public static string ToFileSize(this long Value, FileSizeFormat FileSizeFormat, int RoundTo = 1)
-        {
-            return Value.Coerce(long.MaxValue).ToUInt64().ToFileSize(FileSizeFormat, RoundTo);
-        }
+        public static string ToFileSize(this long value, FileSizeFormat format, int round = 1) => value.Coerce(long.MaxValue).ToUInt64().ToFileSize(format, round);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static double ToInt32(this long Value)
-        {
-            return Convert.ToInt32(Value);
-        }
+        public static double ToInt32(this long value) => Convert.ToInt32(value);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static ulong ToUInt64(this long Value)
-        {
-            return Convert.ToUInt64(Value);
-        }
+        public static ulong ToUInt64(this long value) => Convert.ToUInt64(value);
     }
 }

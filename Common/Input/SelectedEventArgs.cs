@@ -15,9 +15,14 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Data"></param>
-        public SelectedEventArgs(object Data) : base(Data)
-        {
-        }
+        /// <param name="value"></param>
+        public SelectedEventArgs(object value) : base(value) { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="parameter"></param>
+        public SelectedEventArgs(object value, object parameter) : base(value, parameter) { }
     }
 }

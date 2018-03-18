@@ -8,43 +8,27 @@ namespace Imagin.Common.Input
     /// <typeparam name="T"></typeparam>
     public class EventArgs<T> : EventArgs
     {
-        readonly T value;
+        readonly T _value;
         /// <summary>
         /// 
         /// </summary>
-        public T Value
-        {
-            get
-            {
-                return value;
-            }
-        }
+        public T Value => _value;
 
-        object parameter;
+        readonly object _parameter;
         /// <summary>
         /// 
         /// </summary>
-        public object Parameter
-        {
-            get
-            {
-                return parameter;
-            }
-            set
-            {
-                parameter = value;
-            }
-        }
+        public object Parameter => _parameter;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Parameter"></param>
-        public EventArgs(T Value, object Parameter = null)
+        /// <param name="value"></param>
+        /// <param name="parameter"></param>
+        public EventArgs(T value, object parameter = null)
         {
-            value = Value;
-            parameter = Parameter;
+            _value = value;
+            _parameter = parameter;
         }
     }
 }

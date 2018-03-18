@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Imagin.Common.Debug;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Automation;
@@ -14,96 +16,51 @@ namespace Imagin.Common.Linq
     /// </summary>
     public static class DependencyObjectExtensions
     {
+        #region Properties
+
+        #region IsVisible
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Property"></param>
+        public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached("IsVisible", typeof(bool), typeof(DependencyObjectExtensions), new PropertyMetadata(true));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        public static void SetIsVisible(DependencyObject d, bool value)
+        {
+            d.SetValue(IsVisibleProperty, value);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static bool GetIsVisible(DependencyObject d)
+        {
+            return (bool)d.GetValue(IsVisibleProperty);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="property"></param>
         /// <param name="Source"></param>
         /// <param name="Path"></param>
         /// <param name="Mode"></param>
         /// <param name="UpdateSourceTrigger"></param>
         /// <returns></returns>
-        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, string Path, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
-        {
-            return Value.Bind(Property, Source, new PropertyPath(Path), null, null, Mode, UpdateSourceTrigger);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Property"></param>
-        /// <param name="Source"></param>
-        /// <param name="Path"></param>
-        /// <param name="Mode"></param>
-        /// <param name="UpdateSourceTrigger"></param>
-        /// <returns></returns>
-        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, PropertyPath Path, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
-        {
-            return Value.Bind(Property, Source, new PropertyPath(Path), null, null, Mode, UpdateSourceTrigger);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Property"></param>
-        /// <param name="Source"></param>
-        /// <param name="Path"></param>
-        /// <param name="Converter"></param>
-        /// <param name="ConverterParameter"></param>
-        /// <param name="Mode"></param>
-        /// <param name="UpdateSourceTrigger"></param>
-        /// <returns></returns>
-        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, string Path, IValueConverter Converter, object ConverterParameter = null, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
-        {
-            return Value.Bind(Property, Source, new PropertyPath(Path), Converter, ConverterParameter, Mode, UpdateSourceTrigger);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Property"></param>
-        /// <param name="Source"></param>
-        /// <param name="Path"></param>
-        /// <param name="Converter"></param>
-        /// <param name="ConverterParameter"></param>
-        /// <param name="Mode"></param>
-        /// <param name="UpdateSourceTrigger"></param>
-        /// <returns></returns>
-        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, object Source, PropertyPath Path, IValueConverter Converter, object ConverterParameter = null, BindingMode Mode = BindingMode.TwoWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
-        {
-            return BindingOperations.SetBinding(Value, Property, new Binding()
-            {
-                Converter = Converter,
-                ConverterParameter = ConverterParameter,
-                Source = Source,
-                Path = Path,
-                Mode = Mode
-            });
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Property"></param>
-        /// <param name="Path"></param>
-        /// <param name="RelativeSourceMode"></param>
-        /// <param name="Mode"></param>
-        /// <param name="UpdateSourceTrigger"></param>
-        /// <returns></returns>
-        public static BindingExpressionBase Bind(this DependencyObject Value, DependencyProperty Property, string Path, RelativeSourceMode RelativeSourceMode = RelativeSourceMode.Self, BindingMode Mode = BindingMode.OneWay, UpdateSourceTrigger UpdateSourceTrigger = UpdateSourceTrigger.Default)
-        {
-            return BindingOperations.SetBinding(Value, Property, new Binding()
-            {
-                RelativeSource = new RelativeSource(RelativeSourceMode),
-                Path = new PropertyPath(Path),
-                Mode = Mode
-            });
-        }
+        public static BindingExpressionBase Bind(this DependencyObject source, DependencyProperty property, Binding binding)
+            => BindingOperations.SetBinding(source, property, binding);
 
         /// <summary>
         /// 
@@ -225,32 +182,6 @@ namespace Imagin.Common.Linq
             return null;
         }
 
-        /*
-        public static DependencyObject GetParent(this DependencyObject child)
-        {
-            if (child == null) return null;
-
-            var contentElement = child as ContentElement;
-            if (contentElement != null)
-            {
-                DependencyObject parent = ContentOperations.GetParent(contentElement);
-                if (parent != null) return parent;
-
-                FrameworkContentElement fce = contentElement as FrameworkContentElement;
-                return fce != null ? fce.Parent : null;
-            }
-
-            var frameworkElement = child as FrameworkElement;
-            if (frameworkElement != null)
-            {
-                DependencyObject parent = frameworkElement.Parent;
-                if (parent != null) return parent;
-            }
-
-            return VisualTreeHelper.GetParent(child);
-        }
-        */
-        
         /// <summary>
         /// Attempts to find parent for specified object in following order: 
         /// VisualParent -> LogicalParent -> LogicalTemplatedParent.
@@ -425,6 +356,24 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
+        /// Select the given element, if supported; element is valid if supports <see cref="Selector.SetIsSelected(DependencyObject, bool)"/> or is <see cref="TreeViewItem"/>.
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="IsSelected"></param>
+        public static void Select(this DependencyObject Value, bool IsSelected)
+        {
+            if (Value.IsAny(typeof(ListBoxItem), typeof(DataGridRow)))
+            {
+                Selector.SetIsSelected(Value, IsSelected);
+            }
+            else if (Value is TreeViewItem)
+            {
+                TreeViewItemExtensions.SetIsSelected(Value as TreeViewItem, IsSelected);
+            }
+            else throw new ArgumentException("Object doesn't support selection.");
+        }
+
+        /// <summary>
         /// Sets IsExpanded property to specified value on all TreeViewItems found.
         /// </summary>
         public static void ToggleAll(this DependencyObject Object, bool IsExpanded)
@@ -449,5 +398,26 @@ namespace Imagin.Common.Linq
                 }
             }
         }
+
+        /// <summary>
+        /// Attempt to select the given element, if supported; element is valid if supports <see cref="Selector.SetIsSelected(DependencyObject, bool)"/> or is <see cref="TreeViewItem"/>.
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <param name="IsSelected"></param>
+        /// <returns></returns>
+        public static Result TrySelect(this DependencyObject Object, bool IsSelected)
+        {
+            try
+            {
+                Object.Select(IsSelected);
+                return new Success();
+            }
+            catch (Exception e)
+            {
+                return new Error(e);
+            }
+        }
+
+        #endregion
     }
 }

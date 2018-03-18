@@ -1,7 +1,7 @@
-﻿using Imagin.Common.Linq;
-using Imagin.Controls.Common;
+﻿using Imagin.Common;
+using Imagin.Common.Input;
+using Imagin.Common.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Imagin.NET.Demo
@@ -10,87 +10,56 @@ namespace Imagin.NET.Demo
     {
         #region Properties
 
-        Fruits fruits = Fruits.Kiwi;
+        Fruits _fruits = Fruits.Kiwi;
         public Fruits Fruits
         {
-            get
-            {
-                return fruits;
-            }
-            set
-            {
-                fruits = value;
-                OnPropertyChanged("Fruits");
-            }
+            get => _fruits;
+            set => Property.Set(this, ref _fruits, value);
         }
         
-        public static DependencyProperty HierarchialCollectionProperty = DependencyProperty.Register("HierarchialCollection", typeof(HierarchialCollection), typeof(MainWindow), new FrameworkPropertyMetadata(default(HierarchialCollection), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty HierarchialCollectionProperty = DependencyProperty.Register(nameof(HierarchialCollection), typeof(HierarchialCollection), typeof(MainWindow), new FrameworkPropertyMetadata(default(HierarchialCollection)));
         public HierarchialCollection HierarchialCollection
         {
-            get
-            {
-                return (HierarchialCollection)GetValue(HierarchialCollectionProperty);
-            }
-            set
-            {
-                SetValue(HierarchialCollectionProperty, value);
-            }
+            get => (HierarchialCollection)GetValue(HierarchialCollectionProperty);
+            set => SetValue(HierarchialCollectionProperty, value);
         }
 
-        public static DependencyProperty ListViewProperty = DependencyProperty.Register("ListView", typeof(View), typeof(MainWindow), new FrameworkPropertyMetadata(View.Details, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ListViewProperty = DependencyProperty.Register(nameof(ListView), typeof(View), typeof(MainWindow), new FrameworkPropertyMetadata(View.Details));
         public View ListView
         {
-            get
-            {
-                return (View)GetValue(ListViewProperty);
-            }
-            set
-            {
-                SetValue(ListViewProperty, value);
-            }
+            get => (View)GetValue(ListViewProperty);
+            set => SetValue(ListViewProperty, value);
         }
 
-        public static DependencyProperty StorageCollectionProperty = DependencyProperty.Register("StorageCollection", typeof(StorageCollection), typeof(MainWindow), new FrameworkPropertyMetadata(default(StorageCollection), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty StorageCollectionProperty = DependencyProperty.Register(nameof(StorageCollection), typeof(StorageCollection), typeof(MainWindow), new FrameworkPropertyMetadata(default(StorageCollection)));
         public StorageCollection StorageCollection
         {
-            get
-            {
-                return (StorageCollection)GetValue(StorageCollectionProperty);
-            }
-            set
-            {
-                SetValue(StorageCollectionProperty, value);
-            }
+            get => (StorageCollection)GetValue(StorageCollectionProperty);
+            set => SetValue(StorageCollectionProperty, value);
         }
 
-        public static DependencyProperty StorageCollectionViewProperty = DependencyProperty.Register("StorageCollectionView", typeof(ListCollectionView), typeof(MainWindow), new FrameworkPropertyMetadata(default(ListCollectionView), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty StorageCollectionViewProperty = DependencyProperty.Register(nameof(StorageCollectionView), typeof(ListCollectionView), typeof(MainWindow), new FrameworkPropertyMetadata(default(ListCollectionView)));
         public ListCollectionView StorageCollectionView
         {
-            get
-            {
-                return (ListCollectionView)GetValue(StorageCollectionViewProperty);
-            }
-            set
-            {
-                SetValue(StorageCollectionViewProperty, value);
-            }
+            get => (ListCollectionView)GetValue(StorageCollectionViewProperty);
+            set => SetValue(StorageCollectionViewProperty, value);
         }
 
         #endregion
 
-        #region MainWindow
+        #region Constructors
 
-        public MainWindow()
+        public MainWindow() : base()
         {
             InitializeComponent();
 
-            foreach (var i in PART_ControlView.Controls)
+            foreach (var i in CommonControlView.Controls)
             {
                 if (i.Type == typeof(AlignableWrapPanel))
                 {
                     for (int j = 1; j <= 32; j++)
                     {
-                        i.Instance.As<AlignableWrapPanel>().Children.Add(new Button()
+                        i.Instance.As<AlignableWrapPanel>().Children.Add(new System.Windows.Controls.Button()
                         {
                             Content = "Button {0}".F(j)
                         });
@@ -122,10 +91,10 @@ namespace Imagin.NET.Demo
 
         void OnColorSelected(object sender, RoutedEventArgs e)
         {
-            var i = PART_ControlView.SelectedControl.Instance as ColorPicker;
+            //var i = PART_ControlView.SelectedControl.Instance as ColorPicker;
 
-            if (i != null)
-                i.InitialColor = i.SelectedColor;
+            //if (i != null)
+                //i.InitialColor = i.SelectedColor;
         }
 
         void OnMouseDoubleClick(object sender, RoutedEventArgs e)
@@ -148,18 +117,19 @@ namespace Imagin.NET.Demo
             MessageBox.Show("Clicked button!");
         }
 
-        void OnTextBoxEntered(object sender, Controls.Common.Input.TextSubmittedEventArgs e)
+        void OnTextBoxEntered(object sender, TextSubmittedEventArgs e)
         {
             MessageBox.Show("Entered text!");
         }
 
-        void OnSelectionCanvasSelected(object sender, Common.Input.EventArgs<Common.Primitives.Selection> e)
+        void OnSelectionCanvasSelected(object sender, EventArgs<Selection> e)
         {
             MessageBox.Show("Made a selection!");
         }
 
         void OnViewChanged(object sender, RoutedEventArgs e)
         {
+            /*
             foreach (var i in PART_ControlView.Controls)
             {
                 if (i.Type == typeof(System.Windows.Controls.ListView))
@@ -168,6 +138,7 @@ namespace Imagin.NET.Demo
                     break;
                 }
             }
+            */
         }
 
         #endregion

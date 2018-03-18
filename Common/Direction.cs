@@ -6,28 +6,28 @@ namespace Imagin.Common
     /// 
     /// </summary>
     [Flags]
-    public enum Direction
+    public enum RelativeDirection
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 1,
+        None = 0,
         /// <summary>
         /// 
         /// </summary>
-        Up = 2,
+        Up = 1,
         /// <summary>
         /// 
         /// </summary>
-        Down = 4,
+        Down = 2,
         /// <summary>
         /// 
         /// </summary>
-        Left = 8,
+        Left = 4,
         /// <summary>
         /// 
         /// </summary>
-        Right = 16,
+        Right = 8,
         /// <summary>
         /// 
         /// </summary>

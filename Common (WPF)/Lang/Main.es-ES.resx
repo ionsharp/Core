@@ -132,20 +132,92 @@
   <data name="AnHour" xml:space="preserve">
     <value>Una hora</value>
   </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Ascendente</value>
+  </data>
   <data name="ASecond" xml:space="preserve">
     <value>Un segundo</value>
   </data>
   <data name="AYear" xml:space="preserve">
     <value>Un año</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Espalda</value>
+  </data>
+  <data name="Background" xml:space="preserve">
+    <value>Fondo</value>
+  </data>
+  <data name="Bind" xml:space="preserve">
+    <value>Enlazar</value>
+  </data>
+  <data name="Bottom" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BottomLeft" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BottomRight" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Center" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="CollapseGroups" xml:space="preserve">
+    <value>Contraer Grupos</value>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>Colección</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Corriente</value>
+  </data>
   <data name="Days" xml:space="preserve">
     <value>Días</value>
+  </data>
+  <data name="Decrease" xml:space="preserve">
+    <value>Disminución</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Descendente</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Fuente</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Tamaño de fuente</value>
+  </data>
+  <data name="Foreground" xml:space="preserve">
+    <value>Primer plano</value>
   </data>
   <data name="FromNow" xml:space="preserve">
     <value>Desde ahora</value>
   </data>
+  <data name="HideCategories" xml:space="preserve">
+    <value>Ocultar categorías</value>
+  </data>
+  <data name="HidePassword" xml:space="preserve">
+    <value>Contraseña oculta</value>
+  </data>
   <data name="Hours" xml:space="preserve">
     <value>Horas de trabajo</value>
+  </data>
+  <data name="Increase" xml:space="preserve">
+    <value>Incrementar</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value />
   </data>
   <data name="Minutes" xml:space="preserve">
     <value>Minutos</value>
@@ -153,28 +225,88 @@
   <data name="Months" xml:space="preserve">
     <value>Meses</value>
   </data>
-  <data name="Now" xml:space="preserve">
-    <value>Ahora</value>
-  </data>
-  <data name="Seconds" xml:space="preserve">
-    <value>Segundos</value>
-  </data>
-  <data name="Tomorrow" xml:space="preserve">
-    <value>Mañana</value>
-  </data>
-  <data name="Years" xml:space="preserve">
-    <value>Años</value>
-  </data>
-  <data name="Yesterday" xml:space="preserve">
-    <value>Ayer</value>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
   </data>
   <data name="Never" xml:space="preserve">
     <value>Nunca</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="Now" xml:space="preserve">
+    <value>Ahora</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Repetir</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>Segundos</value>
+  </data>
+  <data name="ShowCategories" xml:space="preserve">
+    <value>Mostrar categorías</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Mostrar contraseña</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Ordenar</value>
+  </data>
+  <data name="SortDirection" xml:space="preserve">
+    <value>Dirección de ordenación</value>
+  </data>
+  <data name="Swap" xml:space="preserve">
+    <value>Intercambiar</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Mañana</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TopLeft" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TopRight" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Unbind" xml:space="preserve">
+    <value>Desatar</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Años</value>
+  </data>
   <data name="Yes" xml:space="preserve">
     <value>Sí</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Ayer</value>
   </data>
 </root>

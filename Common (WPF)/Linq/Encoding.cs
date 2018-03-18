@@ -10,11 +10,11 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ToConvert"></param>
+        /// <param name="encoding"></param>
         /// <returns></returns>
-        public static System.Text.Encoding GetEncoding(this Encoding ToConvert)
+        public static System.Text.Encoding GetEncoding(this Encoding encoding)
         {
-            switch (ToConvert)
+            switch (encoding)
             {
                 case Encoding.ASCII:
                     return System.Text.Encoding.ASCII;

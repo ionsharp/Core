@@ -11,8 +11,6 @@ namespace Imagin.Common.Linq
     /// </summary>
     public static class EnumExtensions
     {
-        #region Extensions
-
         /// <summary>
         /// 
         /// </summary>
@@ -63,7 +61,7 @@ namespace Imagin.Common.Linq
         public static IEnumerable<Attribute> GetAttributes(this Enum source)
         {
             var info = source.GetType().GetMember(source.ToString());
-            return info[0].GetCustomAttributes(true) ?? Enumerable.Empty<Attribute>();
+            return info[0].GetCustomAttributes(true).Cast<Attribute>() ?? Enumerable.Empty<Attribute>();
         }
 
         /// <summary>
@@ -161,10 +159,7 @@ namespace Imagin.Common.Linq
         /// <param name="type"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TEnum Remove<TEnum>(this Enum type, TEnum value) where TEnum : struct, IFormattable, IComparable, IConvertible
-        {
-            return (TEnum)Enum.ToObject(typeof(TEnum), type.To<int>() & ~value.To<int>());
-        }
+        public static TEnum Remove<TEnum>(this Enum type, TEnum value) where TEnum : struct, IFormattable, IComparable, IConvertible => (TEnum)Enum.ToObject(typeof(TEnum), type.To<int>() & ~value.To<int>());
 
         /// <summary>
         /// 
@@ -172,55 +167,6 @@ namespace Imagin.Common.Linq
         /// <param name="type"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Enum Remove(this Enum type, Enum value)
-        {
-            return Enum.ToObject(type.GetType(), type.To<int>() & ~value.To<int>()) as Enum;
-        }
-
-        #endregion
-
-        #region Utilities
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TEnum"></typeparam>
-        /// <returns></returns>
-        public static List<TEnum> GetList<TEnum>() where TEnum : struct, IFormattable, IComparable, IConvertible
-        {
-            return GetValues<TEnum>().ToList<TEnum>();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TEnum"></typeparam>
-        /// <returns></returns>
-        public static ObservableCollection<TEnum> GetObservableCollection<TEnum>() where TEnum : struct, IFormattable, IComparable, IConvertible
-        {
-            return new ObservableCollection<TEnum>(GetValues<TEnum>());
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TEnum"></typeparam>
-        /// <returns></returns>
-        public static IEnumerable<TEnum> GetValues<TEnum>() where TEnum : struct, IFormattable, IComparable, IConvertible
-        {
-            return Enum.GetValues(typeof(TEnum)).Cast<TEnum>();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="TEnum"></param>
-        /// <returns></returns>
-        public static IEnumerable<object> GetValues(Type TEnum)
-        {
-            return Enum.GetValues(TEnum).Cast<object>();
-        }
-
-        #endregion
+        public static Enum Remove(this Enum type, Enum value) => Enum.ToObject(type.GetType(), type.To<int>() & ~value.To<int>()) as Enum;
     }
 }

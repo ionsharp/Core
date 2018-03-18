@@ -1,0 +1,51 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Imagin.Common">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Border.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Calendar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.CheckBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.ComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.ContextMenu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.DataGrid.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.DirectionPad.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Expander.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.GridSplitter.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.GridView.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.GroupBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Label.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.ListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Menu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.RadioButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.ScrollViewer.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Slider.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.TabControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.TextBlock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.ToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.ToolBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.ToolTip.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Window.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.AnglePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.BasicWindow.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Decorators.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.DragSelection.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Line.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.Link.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.MaskedButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.MaskedDropDownButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.MaskedImage.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.MaskedToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.PropertyGrid.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.RadioGroup.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.StoragePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.TabbedTree.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.ToggleSwitch.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.TokenButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Common.WPF;component/Styles/Generic.TreeView.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

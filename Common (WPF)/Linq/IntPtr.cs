@@ -1,5 +1,4 @@
-﻿using Imagin.Common.Native;
-using System;
+﻿using System;
 
 namespace Imagin.Common.Linq
 {
@@ -8,14 +7,17 @@ namespace Imagin.Common.Linq
     /// </summary>
     public static class IntPtrExtensions
     {
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        internal static extern bool DeleteObject(IntPtr hObject);
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Ptr"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static bool DeleteObject(this IntPtr Ptr)
+        public static bool Dispose(this IntPtr value)
         {
-            return Utilities.DeleteObject(Ptr);
+            return DeleteObject(value);
         }
     }
 }

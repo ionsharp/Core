@@ -23,6 +23,20 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="elapsed"></param>
+        /// <param name="total"></param>
+        /// <param name="current"></param>
+        /// <returns></returns>
+        public static TimeSpan GetRemaining(this TimeSpan elapsed, long total, long current)
+        {
+            var Lines = (current.ToDouble() / total.ToDouble()).Multiply(100.0);
+            Lines = Lines == 0.0 ? 1.0 : Lines;
+            return TimeSpan.FromSeconds(elapsed.TotalSeconds.Divide(Lines).Multiply(100.0.Subtract(Lines)));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="Value"></param>
         /// <returns></returns>
         public static int Months(this TimeSpan Value)

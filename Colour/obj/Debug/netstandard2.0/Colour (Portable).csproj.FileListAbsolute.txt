@@ -1,0 +1,14 @@
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\bin\Debug\netstandard2.0\Imagin.Colour.deps.json
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\bin\Debug\netstandard2.0\Imagin.Colour.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\bin\Debug\netstandard2.0\Imagin.Colour.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\bin\Debug\netstandard2.0\Imagin.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\bin\Debug\netstandard2.0\Imagin.Common.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\bin\Debug\netstandard2.0\Imagin.Common.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\bin\Debug\netstandard2.0\es-ES\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\bin\Debug\netstandard2.0\it-IT\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\obj\Debug\netstandard2.0\Colour (Portable).csprojResolveAssemblyReference.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\obj\Debug\netstandard2.0\Colour (Portable).csproj.CoreCompileInputs.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\obj\Debug\netstandard2.0\Colour (Portable).AssemblyInfoInputs.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\obj\Debug\netstandard2.0\Colour (Portable).AssemblyInfo.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\obj\Debug\netstandard2.0\Imagin.Colour.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Color\obj\Debug\netstandard2.0\Imagin.Colour.pdb

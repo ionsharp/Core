@@ -1,4 +1,4 @@
-﻿using Imagin.Common.Data;
+﻿using Imagin.Common.Linq;
 using System;
 using System.Windows.Markup;
 
@@ -21,19 +21,13 @@ namespace Imagin.Common.Markup
         /// 
         /// </summary>
         /// <param name="type"></param>
-        public EnumerateExtension(Type type) : base()
-        {
-            Type = type;
-        }
+        public EnumerateExtension(Type type) : base() => Type = type;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="serviceProvider"></param>
         /// <returns></returns>
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return new EnumToCollectionConverter().Convert(Type);
-        }
+        public override object ProvideValue(IServiceProvider serviceProvider) => Type.GetEnumValues(Appearance.Visible);
     }
 }

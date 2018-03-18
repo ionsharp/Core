@@ -3,7 +3,5 @@
     /// <summary>
     /// Specifies the main view of an application. 
     /// </summary>
-    public interface IMainView
-    {
-    }
+    public interface IMainView { }
 }

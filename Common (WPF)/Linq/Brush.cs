@@ -8,7 +8,7 @@ namespace Imagin.Common.Linq
     public static class BrushExtensions
     {
         /// <summary>
-        /// Creates Brush from specified Brush and it's values.
+        /// Creates <see cref="Brush"/> from specified <see cref="Brush"/> and it's values.
         /// </summary>
         public static Brush Duplicate(this Brush Value)
         {

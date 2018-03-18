@@ -8,48 +8,37 @@ namespace Imagin.Common
     /// </summary>
     public class ThemeDictionary : StyleDictionary
     {
-        string sourceUri = "pack://application:,,,/{0};component/Color/{1}.xaml";
+        const string sourceUri = "pack://application:,,,/{0};component/Color/{1}.xaml";
 
-        Theme theme = Theme.Light;
+        Theme _theme = Theme.Light;
         /// <summary>
         /// 
         /// </summary>
         public Theme Theme
         {
-            get
-            {
-                return theme;
-            }
+            get => _theme;
             set
             {
-                theme = value;
-                OnThemeChanged(theme);
+                _theme = value;
+                OnThemeChanged(_theme);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public ThemeDictionary() : base()
-        {
-        }
+        public ThemeDictionary() : base() { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Value"></param>
-        protected override void OnAssemblyChanged(string Value)
-        {
-            Source = new Uri(sourceUri.F(Value, theme), UriKind.Absolute);
-        }
+        protected override void OnAssemblyChanged(string Value) => Source = new Uri(sourceUri.F(Value, _theme), UriKind.Absolute);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Value"></param>
-        protected virtual void OnThemeChanged(Theme Value)
-        {
-            Source = new Uri(sourceUri.F(Assembly, Value), UriKind.Absolute);
-        }
+        protected virtual void OnThemeChanged(Theme Value) => Source = new Uri(sourceUri.F(Assembly, Value), UriKind.Absolute);
     }
 }

@@ -9,7 +9,7 @@ namespace Imagin.Common.Linq
     /// <summary>
     /// 
     /// </summary>
-    public static class IListExtensions
+    public static partial class IListExtensions
     {
         /// <summary>
         /// 

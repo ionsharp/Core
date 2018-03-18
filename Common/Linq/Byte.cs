@@ -8,35 +8,32 @@ namespace Imagin.Common.Linq
     public static class ByteExtensions
     {
         /// <summary>
+        /// Coerces to the specified range.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="maximum"></param>
+        /// <param name="minimum"></param>
+        /// <returns></returns>
+        public static byte Coerce(this byte value, byte maximum, byte minimum = 0) => Math.Max(Math.Min(value, maximum), minimum);
+
+        /// <summary>
         /// 
         /// </summary>
-        /// <param name="ToCoerce"></param>
-        /// <param name="Maximum"></param>
-        /// <param name="Minimum"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static byte Coerce(this byte ToCoerce, byte Maximum, byte Minimum = 0)
+        public static double ToDouble(this byte value)
         {
-            return ToCoerce > Maximum ? Maximum : (ToCoerce < Minimum ? Minimum : ToCoerce);
+            return Convert.ToDouble(value);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static double ToDouble(this byte Value)
+        public static int ToInt32(this byte value)
         {
-            return Convert.ToDouble(Value);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <returns></returns>
-        public static int ToInt32(this byte Value)
-        {
-            return Convert.ToInt32(Value);
+            return Convert.ToInt32(value);
         }
     }
 }

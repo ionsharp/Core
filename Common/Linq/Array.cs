@@ -6,37 +6,19 @@ namespace Imagin.Common.Linq
     /// <summary>
     /// 
     /// </summary>
-    public static class ArrayExtensions
+    public static partial class ArrayExtensions
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="TElement"></typeparam>
-        /// <param name="Source"></param>
-        /// <param name="Element"></param>
+        /// <param name="value"></param>
+        /// <param name="predicate"></param>
         /// <returns></returns>
-        public static int IndexOf<TElement>(this TElement[] Source, TElement Element)
+        public static IEnumerable<object> Where(this Array value, Predicate<object> predicate)
         {
-            for (var i = 0; i < Source.Length; i++)
+            foreach (var i in value)
             {
-                if (Source[i].Equals(Element))
-                    return i;
-            }
-
-            return -1;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Predicate"></param>
-        /// <returns></returns>
-        public static IEnumerable<object> Where(this System.Array Value, Func<object, bool> Predicate)
-        {
-            foreach (var i in Value)
-            {
-                if (Predicate(i))
+                if (predicate(i))
                     yield return i;
             }
             yield break;

@@ -7,69 +7,57 @@ namespace Imagin.Common.Globalization
     /// </summary>
     public class Localizer : ILocalizer
     {
-        readonly string assemblyName;
+        readonly string _assemblyName;
         /// <summary>
         /// 
         /// </summary>
-        public string AssemblyName
-        {
-            get
-            {
-                return assemblyName;
-            }
-        }
+        public string AssemblyName => _assemblyName;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="AssemblyName"></param>
-        public Localizer(string AssemblyName)
-        {
-            assemblyName = AssemblyName;
-        }
+        public Localizer(string AssemblyName) => _assemblyName = AssemblyName;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Key"></param>
         /// <returns></returns>
-        public string GetValue(string Key)
+        public string GetValue(string Key) => GetValue<string>(Key, AssemblyName);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static TValue GetValue<TValue>(string key)
         {
-            return GetValue<string>(Key, AssemblyName);
+            var Result = LocalizeDictionary.Instance.GetLocalizedObject(key, null, LocalizeDictionary.Instance.Culture);
+
+            if (Result is TValue)
+                return (TValue)Result;
+
+            return default(TValue);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="Key"></param>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="assemblyName"></param>
+        /// <param name="dictionaryName"></param>
         /// <returns></returns>
-        public static T GetValue<T>(string Key)
+        public static TValue GetValue<TValue>(string key, string assemblyName, string dictionaryName = "Main")
         {
-            var Result = LocalizeDictionary.Instance.GetLocalizedObject(Key, null, LocalizeDictionary.Instance.Culture);
+            var Result = LocalizeDictionary.Instance.GetLocalizedObject(assemblyName, dictionaryName, key, LocalizeDictionary.Instance.Culture);
 
-            if (Result is T)
-                return (T)Result;
+            if (Result is TValue)
+                return (TValue)Result;
 
-            return default(T);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="Key"></param>
-        /// <param name="Source"></param>
-        /// <param name="Dictionary"></param>
-        /// <returns></returns>
-        public static T GetValue<T>(string Key, string Source, string Dictionary = "Main")
-        {
-            var Result = LocalizeDictionary.Instance.GetLocalizedObject(Source, Dictionary, Key, LocalizeDictionary.Instance.Culture);
-
-            if (Result is T)
-                return (T)Result;
-
-            return default(T);
+            return default(TValue);
         }
     }
 }

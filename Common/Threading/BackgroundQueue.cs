@@ -8,33 +8,6 @@ namespace Imagin.Common.Threading
     /// <summary>
     /// 
     /// </summary>
-    public class ResultEventArgs : EventArgs
-    {
-        readonly object result;
-        /// <summary>
-        /// 
-        /// </summary>
-        public object Result
-        {
-            get
-            {
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Result"></param>
-        public ResultEventArgs(object Result) : base()
-        {
-            result = Result;
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
     public class BackgroundQueue
     {
         object Lock = new object();

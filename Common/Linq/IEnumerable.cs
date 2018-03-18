@@ -6,7 +6,7 @@ namespace Imagin.Common.Linq
     /// <summary>
     /// 
     /// </summary>
-    public static class IEnumerableExtensions
+    public static partial class IEnumerableExtensions
     {
         /// <summary>
         /// 

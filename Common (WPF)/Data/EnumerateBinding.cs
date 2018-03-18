@@ -1,7 +1,8 @@
-﻿using Imagin.Common.Data;
+﻿using Imagin.Common.Linq;
+using System;
 using System.Windows.Data;
 
-namespace Imagin.Common.Markup
+namespace Imagin.Common.Data
 {
     /// <summary>
     /// 
@@ -14,7 +15,11 @@ namespace Imagin.Common.Markup
         /// <param name="path"></param>
         public EnumerateBinding(string path) : base(path)
         {
-            Converter = new EnumToCollectionConverter();
+            Converter = Imagin.Common.Converters.Converter<object, object>.New
+            (
+                input => input?.GetType().GetEnumValues(Appearance.Visible), 
+                input => throw new NotSupportedException()
+            );
             Mode = BindingMode.OneTime;
             UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
         }

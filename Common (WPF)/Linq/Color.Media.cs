@@ -24,6 +24,13 @@ namespace Imagin.Common.Linq
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
+        public static double GetHue(this Color color) => System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B).GetHue();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public static System.Drawing.Color ToDrawing(this Color color)
         {
             return System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);

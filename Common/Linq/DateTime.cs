@@ -171,44 +171,6 @@ namespace Imagin.Common.Linq
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <returns></returns>
-        public static string GetRelativeDifference(this DateTime Value)
-        {
-            var Result = string.Empty;
-
-            var Difference = Value - DateTime.Now;
-            if (Difference.TotalSeconds != 0)
-            {
-                Result = "{0}d {1}h {2}m {3}s".F
-                (
-                    Difference.Days.ToString("N0"),
-                    Difference.Hours,
-                    Difference.Minutes,
-                    Difference.Seconds
-                );
-            }
-            else Result = "0";
-
-            return Result;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <returns></returns>
-        public static string GetRelativeDifference(this DateTime? Value)
-        {
-            if (Value == null)
-                return string.Empty;
-
-            return GetRelativeDifference(Value.Value);
-        }
-
-        /// <summary>
         /// Checks if month, day, and year are identical to that of today (ignores time).
         /// </summary>
         public static bool IsToday(this DateTime Value)

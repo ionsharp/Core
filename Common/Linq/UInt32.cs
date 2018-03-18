@@ -10,14 +10,11 @@ namespace Imagin.Common.Linq
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Maximum"></param>
-        /// <param name="Minimum"></param>
+        /// <param name="value"></param>
+        /// <param name="maximum"></param>
+        /// <param name="minimum"></param>
         /// <returns></returns>
-        public static uint Coerce(this uint Value, uint Maximum, uint Minimum = 0)
-        {
-            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
-        }
+        public static uint Coerce(this uint value, uint maximum, uint minimum = 0) => Math.Max(Math.Min(value, maximum), minimum);
 
         /// <summary>
         /// 

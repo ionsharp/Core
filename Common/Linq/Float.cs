@@ -8,25 +8,32 @@ namespace Imagin.Common.Linq
     public static class FloatExtensions
     {
         /// <summary>
-        /// Coerces <see cref="float"/> to given maximum and minimum.
+        /// Coerces to the specified range.
         /// </summary>
-        /// <param name="Value">The value to coerce.</param>
-        /// <param name="Maximum">The maximum to coerce to.</param>
-        /// <param name="Minimum">The minimum to coerce to.</param>
+        /// <param name="value"></param>
+        /// <param name="maximum"></param>
+        /// <param name="minimum"></param>
         /// <returns></returns>
-        public static float Coerce(this float Value, float Maximum, float Minimum = 0f)
+        public static float Coerce(this float value, float maximum, float minimum = 0f) => Math.Max(Math.Min(value, maximum), minimum);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static int ToInt(this float value)
         {
-            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
+            return Convert.ToInt32(value);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ToConvert"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static int ToInt(this float ToConvert)
+        public static double ToDouble(this float value)
         {
-            return Convert.ToInt32(ToConvert);
+            return Convert.ToDouble(value);
         }
     }
 }

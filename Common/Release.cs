@@ -5,96 +5,92 @@ using System;
 namespace Imagin.Common
 {
     /// <summary>
-    /// 
+    /// A bindable variation of <see cref="System.Version"/>.
     /// </summary>
-    public class Release : BindableObject, ICloneable, IVariant<Version>
+    public class Release : ObjectBase, ICloneable, IEquatable<Release>, IVariation<Version>
     {
         #region Properties
 
         /// <summary>
         /// 
         /// </summary>
-        public const int MaxValue = int.MaxValue;
+        public const int Maximum = int.MaxValue;
 
         /// <summary>
         /// 
         /// </summary>
-        public const int MinValue = 0;
+        public const int Minimum = 0;
 
         /// <summary>
         /// 
         /// </summary>
         public event EventHandler<EventArgs<Version>> Changed;
 
-        int major = 0;
+        int _major = 0;
         /// <summary>
         /// 
         /// </summary>
         public int Major
         {
-            get
-            {
-                return major;
-            }
+            get => _major;
             set
             {
-                major = value.Coerce(MaxValue, MinValue);
-                OnChanged(default(Version));
-                OnPropertyChanged("Major");
+                if (!value.WithinRange(Minimum, Maximum))
+                    throw new ArgumentOutOfRangeException(nameof(value));
+
+                Property.Set(this, ref _major, value);
+                OnChanged(Version);
             }
         }
 
-        int minor = 0;
+        int _minor = 0;
         /// <summary>
         /// 
         /// </summary>
         public int Minor
         {
-            get
-            {
-                return minor;
-            }
+            get => _minor;
             set
             {
-                minor = value.Coerce(MaxValue, MinValue);
-                OnChanged(default(Version));
-                OnPropertyChanged("Minor");
+                if (!value.WithinRange(Minimum, Maximum))
+                    throw new ArgumentOutOfRangeException(nameof(value));
+
+                Property.Set(this, ref _minor, value);
+                OnChanged(Version);
             }
         }
 
-        int build = -1;
+        int _build = -1;
         /// <summary>
         /// 
         /// </summary>
         public int Build
         {
-            get
-            {
-                return build;
-            }
+            get => _build;
             set
             {
-                build = value.Coerce(MaxValue, MinValue);
-                OnChanged(default(Version));
-                OnPropertyChanged("Build");
+                if (!value.WithinRange(Minimum, Maximum))
+                    throw new ArgumentOutOfRangeException(nameof(value));
+
+                Property.Set(this, ref _build, value);
+                OnChanged(Version);
             }
         }
 
-        int revision = -1;
+        int _revision = -1;
         /// <summary>
         /// 
         /// </summary>
         public int Revision
         {
-            get
-            {
-                return revision;
-            }
+            get => _revision;
             set
             {
-                revision = value.Coerce(MaxValue, MinValue);
-                OnChanged(default(Version));
-                OnPropertyChanged("Revision");
+                if (!value.WithinRange(Minimum, Maximum))
+                    throw new ArgumentOutOfRangeException(nameof(value));
+
+                Property.Set(this, ref _revision, value);
+                OnChanged(Version);
             }
         }
 
@@ -105,7 +101,7 @@ namespace Imagin.Common
         {
             get
             {
-                return new Version(major, minor, build, revision);
+                return new Version(_major, _minor, _build, _revision);
             }
         }
 
@@ -116,44 +112,34 @@ namespace Imagin.Common
         /// <summary>
         /// 
         /// </summary>
-        public Release() : this(MinValue, MinValue)
-        {
-        }
+        public Release() : this(Minimum, Minimum) { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Version"></param>
-        public Release(string Version) : this(new Version(Version))
-        {
-        }
+        public Release(string Version) : this(new Version(Version)) { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="version"></param>
-        public Release(Version version) : this(version.Major, version.Minor, version.Build, version.Revision)
-        {
-        }
+        public Release(Version version) : this(version.Major, version.Minor, version.Build, version.Revision) { }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Major"></param>
-        /// <param name="Minor"></param>
-        public Release(int Major, int Minor) : this(Major, Minor, MinValue, MinValue)
-        {
-        }
+        /// <param name="major"></param>
+        /// <param name="minor"></param>
+        public Release(int major, int minor) : this(major, minor, Minimum, Minimum) { }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Major"></param>
-        /// <param name="Minor"></param>
-        /// <param name="Build"></param>
-        public Release(int Major, int Minor, int Build) : this(Major, Minor, Build, MinValue)
-        {
-        }
+        /// <param name="major"></param>
+        /// <param name="minor"></param>
+        /// <param name="build"></param>
+        public Release(int major, int minor, int build) : this(major, minor, build, Minimum) { }
 
         /// <summary>
         /// 
@@ -172,355 +158,104 @@ namespace Imagin.Common
 
         #endregion
 
+        #region Operators
+
+#pragma warning disable 1591
+        public static implicit operator Release(Version Value) => new Release(Value);
+        public static implicit operator Release(int Value) => new Release(new Version(Value.ToString()));
+
+        public static bool operator !=(Release a, Release b) => !(a == b);
+        public static bool operator !=(Release a, Version b) => !(a == b);
+        public static bool operator !=(Release a, int major) => !(a == major);
+
+        public static bool operator ==(Release a, Release b) => a.Equals_(b);
+        public static bool operator ==(Release a, Version b) => a.Version == b;
+        public static bool operator ==(Release a, int major) => a.Version.Major == major;
+
+        public static bool operator <(Release a, Release b) => a.Version < b.Version;
+        public static bool operator <(Release a, Version b) => a.Version < b;
+        public static bool operator <(Release a, int Major) => a.Version.Major < Major;
+
+        public static bool operator <=(Release a, Release b) => a.Version <= b.Version;
+        public static bool operator <=(Release a, Version b) => a.Version <= b;
+        public static bool operator <=(Release a, int major) => a.Version.Major <= major;
+
+        public static bool operator >(Release a, Release b) => a.Version < b.Version;
+        public static bool operator >(Release a, Version b) => a.Version < b;
+        public static bool operator >(Release a, int major) => a.Version.Major > major;
+
+        public static bool operator >=(Release a, Release b) => a.Version >= b.Version;
+        public static bool operator >=(Release a, Version b) => a.Version >= b;
+        public static bool operator >=(Release a, int major) => a.Version.Major >= major;
+
+        public static Release operator +(Release a, Release b) => new Release(a.Major + b.Major, a.Minor + b.Minor, a.Build + b.Build, a.Revision + b.Revision);
+        public static Release operator +(Release a, Version b) => new Release(a.Major + b.Major, a.Minor + b.Minor, a.Build + b.Build, a.Revision + b.Revision);
+        public static Release operator +(Release a, int major) => new Release(a.Major + major, a.Minor, a.Build, a.Revision);
+
+        public static Release operator -(Release a, Release b) => new Release(a.Major - b.Major, a.Minor - b.Minor, a.Build - b.Build, a.Revision - b.Revision);
+        public static Release operator -(Release a, Version b) => new Release(a.Major - b.Major, a.Minor - b.Minor, a.Build - b.Build, a.Revision - b.Revision);
+        public static Release operator -(Release a, int major) => new Release(a.Major - major, a.Minor, a.Build, a.Revision);
+#pragma warning restore 1591
+
+        #endregion
+
         #region Methods
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="o"></param>
         /// <returns></returns>
-        public override bool Equals(object Value)
-        {
-            if (Value is Release)
-            {
-                return this == (Release)Value;
-            }
-            else if (Value is Version)
-            {
-                return Version == (Version)Value;
-            }
-            return false;
-        }
+        public bool Equals(Release o) => this.Equals<Release>(o);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        public override bool Equals(object o) => Equals((Release)o);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return Version.GetHashCode();
-        }
+        public override int GetHashCode() => new [] { Version }.GetHashCode();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return Version.ToString();
-        }
+        public override string ToString() => Version.ToString();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public Release Clone()
-        {
-            return new Release(Version);
-        }
-        object ICloneable.Clone()
-        {
-            return Clone();
-        }
+        public Release Clone() => new Release(Version);
+        object ICloneable.Clone() => Clone();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public Version Get()
-        {
-            return Version;
-        }
+        public Version Get() => Version;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        public void OnChanged(Version Value)
-        {
-            Changed?.Invoke(this, new EventArgs<Version>(Version));
-        }
+        /// <param name="value"></param>
+        public void OnChanged(Version value) => Changed?.Invoke(this, new EventArgs<Version>(value));
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        public void Set(Version Value)
+        /// <param name="value"></param>
+        public void Set(Version value)
         {
-            Major = Value.Major;
-            Minor = Value.Minor;
-            Build = Value.Build;
-            Revision = Value.Revision;
-        }
-
-        #endregion
-
-        #region Operators
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        public static implicit operator Release(Version Value)
-        {
-            return new Release(Value);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Value"></param>
-        public static implicit operator Release(int Value)
-        {
-            return new Release(new Version(Value.ToString()));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator !=(Release a, Release b)
-        {
-            return a.Version != b.Version;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator !=(Release a, Version b)
-        {
-            return a.Version != b;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="Major"></param>
-        /// <returns></returns>
-        public static bool operator !=(Release a, int Major)
-        {
-            return a.Version.Major != Major;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator ==(Release a, Release b)
-        {
-            return a.Version == b.Version;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator ==(Release a, Version b)
-        {
-            return a.Version == b;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="Major"></param>
-        /// <returns></returns>
-        public static bool operator ==(Release a, int Major)
-        {
-            return a.Version.Major == Major;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator <(Release a, Release b)
-        {
-            return a.Version < b.Version;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator <(Release a, Version b)
-        {
-            return a.Version < b;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="Major"></param>
-        /// <returns></returns>
-        public static bool operator <(Release a, int Major)
-        {
-            return a.Version.Major < Major;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator <=(Release a, Release b)
-        {
-            return a.Version <= b.Version;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator <=(Release a, Version b)
-        {
-            return a.Version <= b;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="Major"></param>
-        /// <returns></returns>
-        public static bool operator <=(Release a, int Major)
-        {
-            return a.Version.Major <= Major;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator >(Release a, Release b)
-        {
-            return a.Version < b.Version;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator >(Release a, Version b)
-        {
-            return a.Version < b;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="Major"></param>
-        /// <returns></returns>
-        public static bool operator >(Release a, int Major)
-        {
-            return a.Version.Major > Major;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator >=(Release a, Release b)
-        {
-            return a.Version >= b.Version;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator >=(Release a, Version b)
-        {
-            return a.Version >= b;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="Major"></param>
-        /// <returns></returns>
-        public static bool operator >=(Release a, int Major)
-        {
-            return a.Version.Major >= Major;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static Release operator +(Release a, Release b)
-        {
-            return new Release(a.Major + b.Major, a.Minor + b.Minor, a.Build + b.Build, a.Revision + b.Revision);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static Release operator +(Release a, Version b)
-        {
-            return new Release(a.Major + b.Major, a.Minor + b.Minor, a.Build + b.Build, a.Revision + b.Revision);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="Major"></param>
-        /// <returns></returns>
-        public static Release operator +(Release a, int Major)
-        {
-            return new Release(a.Major + Major, a.Minor, a.Build, a.Revision);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static Release operator -(Release a, Release b)
-        {
-            return new Release(a.Major - b.Major, a.Minor - b.Minor, a.Build - b.Build, a.Revision - b.Revision);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static Release operator -(Release a, Version b)
-        {
-            return new Release(a.Major - b.Major, a.Minor - b.Minor, a.Build - b.Build, a.Revision - b.Revision);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="Major"></param>
-        /// <returns></returns>
-        public static Release operator -(Release a, int Major)
-        {
-            return new Release(a.Major - Major, a.Minor, a.Build, a.Revision);
+            Major = value.Major;
+            Minor = value.Minor;
+            Build = value.Build;
+            Revision = value.Revision;
         }
 
         #endregion

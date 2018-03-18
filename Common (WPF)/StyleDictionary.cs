@@ -9,37 +9,29 @@ namespace Imagin.Common
     /// </summary>
     public class StyleDictionary : ResourceDictionary
     {
-        string assembly = string.Empty;
+        string _assembly = string.Empty;
         /// <summary>
         /// 
         /// </summary>
         public string Assembly
         {
-            get
-            {
-                return assembly;
-            }
+            get => _assembly;
             set
             {
-                assembly = value;
-                OnAssemblyChanged(assembly);
+                _assembly = value;
+                OnAssemblyChanged(_assembly);
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public StyleDictionary() : base()
-        {
-        }
+        public StyleDictionary() : base() { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Value"></param>
-        protected virtual void OnAssemblyChanged(string Value)
-        {
-            Source = new Uri("pack://application:,,,/{0};component/Styles/Generic.xaml".F(Value), UriKind.Absolute);
-        }
+        protected virtual void OnAssemblyChanged(string Value) => Source = new Uri("pack://application:,,,/{0};component/Styles/Generic.xaml".F(Value), UriKind.Absolute);
     }
 }

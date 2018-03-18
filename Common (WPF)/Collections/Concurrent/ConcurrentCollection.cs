@@ -15,12 +15,12 @@ namespace Imagin.Common.Collections.Concurrent
     /// </summary>
     /// <typeparam name="T">The type of the elements in the collection.</typeparam>
     [Serializable]
-    public class ConcurrentCollection<T> : ConcurrentCollectionBase<T>, ICollection, ICollection<T>, IList, IList<T>, ITrackableCollection, ITrackableCollection<T>, INotifyPropertyChanged
+    public class ConcurrentCollection<T> : ConcurrentCollectionBase<T>, ICollection, ICollection<T>, IList, IList<T>, IPropertyChanged, IObservableCollection, IObservableCollection<T>
     {
         #region Properties
 
         event EventHandler<EventArgs<object>> itemAdded;
-        event EventHandler<EventArgs<object>> ITrackableCollection.ItemAdded
+        event EventHandler<EventArgs<object>> IObservableCollection.ItemAdded
         {
             add
             {
@@ -36,24 +36,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// </summary>
         public event EventHandler<EventArgs<T>> ItemAdded;
 
-        event EventHandler<EventArgs<IEnumerable<object>>> itemsAdded;
-        event EventHandler<EventArgs<IEnumerable<object>>> ITrackableCollection.ItemsAdded
-        {
-            add
-            {
-                itemsAdded += value;
-            }
-            remove
-            {
-                itemsAdded -= value;
-            }
-        }
-        /// <summary>
-        /// Occurs when any number of items are added.
-        /// </summary>
-        public event EventHandler<EventArgs<IEnumerable<T>>> ItemsAdded;
-
-        event EventHandler<EventArgs> ITrackableCollection.ItemsChanged
+        event EventHandler<EventArgs> IObservableCollection.ItemsChanged
         {
             add
             {
@@ -69,7 +52,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// </summary>
         public event EventHandler<EventArgs> ItemsChanged;
 
-        event EventHandler<EventArgs> ITrackableCollection.ItemsCleared
+        event EventHandler<EventArgs> IObservableCollection.ItemsCleared
         {
             add
             {
@@ -86,7 +69,7 @@ namespace Imagin.Common.Collections.Concurrent
         public event EventHandler<EventArgs> ItemsCleared;
         
         event EventHandler<EventArgs<object>> itemInserted;
-        event EventHandler<EventArgs<object>> ITrackableCollection.ItemInserted
+        event EventHandler<EventArgs<object>> IObservableCollection.ItemInserted
         {
             add
             {
@@ -103,7 +86,7 @@ namespace Imagin.Common.Collections.Concurrent
         public event EventHandler<EventArgs<T>> ItemInserted;
 
         event EventHandler<EventArgs<object>> itemRemoved;
-        event EventHandler<EventArgs<object>> ITrackableCollection.ItemRemoved
+        event EventHandler<EventArgs<object>> IObservableCollection.ItemRemoved
         {
             add
             {
@@ -119,24 +102,7 @@ namespace Imagin.Common.Collections.Concurrent
         /// </summary>
         public event EventHandler<EventArgs<T>> ItemRemoved;
 
-        event EventHandler<EventArgs<IEnumerable<object>>> itemsRemoved;
-        event EventHandler<EventArgs<IEnumerable<object>>> ITrackableCollection.ItemsRemoved
-        {
-            add
-            {
-                itemsRemoved += value;
-            }
-            remove
-            {
-                itemsRemoved -= value;
-            }
-        }
-        /// <summary>
-        /// Occurs when any number of items are removed.
-        /// </summary>
-        public event EventHandler<EventArgs<IEnumerable<T>>> ItemsRemoved;
-
-        event EventHandler<EventArgs> ITrackableCollection.PreviewItemsCleared
+        event EventHandler<EventArgs> IObservableCollection.PreviewItemsCleared
         {
             add
             {
@@ -184,7 +150,7 @@ namespace Imagin.Common.Collections.Concurrent
                 OnPropertyChanged("IsEmpty");
             }
         }
-        bool ITrackableCollection.IsEmpty
+        bool IObservableCollection.IsEmpty
         {
             get
             {
@@ -353,6 +319,20 @@ namespace Imagin.Common.Collections.Concurrent
 
         #endregion
 
+        #region IObservableCollection
+
+        void IObservableCollection.Add(object Item) => Add((T)Item);
+
+        void IObservableCollection.Clear() => Clear();
+
+        void IObservableCollection.Insert(int i, object Item) => Insert(i, (T)Item);
+
+        bool IObservableCollection.Remove(object Item) => Remove((T)Item);
+
+        void IObservableCollection.RemoveAt(int i) => RemoveAt(i);
+
+        #endregion
+
         #region Public
 
         /// <summary>
@@ -382,25 +362,6 @@ namespace Imagin.Common.Collections.Concurrent
             OnItemAdded(Item);
             OnItemsChanged();
         }
-        void ITrackableCollection.Add(object Item)
-        {
-            Add((T)Item);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Items"></param>
-        public void Add(IEnumerable<T> Items)
-        {
-            Items.ForEach(i => DoBaseWrite(() => WriteCollection.Add(i)));
-            OnItemsAdded(Items);
-            OnItemsChanged();
-        }
-        void ITrackableCollection.Add(IEnumerable<object> Items)
-        {
-            Add(Items.Cast<T>());
-        }
 
         /// <summary>
         /// 
@@ -412,23 +373,13 @@ namespace Imagin.Common.Collections.Concurrent
             OnItemsCleared();
             OnItemsChanged();
         }
-        void ITrackableCollection.Clear()
-        {
-            Clear();
-        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public bool Contains(T item)
-        {
-            return DoBaseRead(() =>
-            {
-                return ReadCollection.Contains(item);
-            });
-        }
+        public bool Contains(T item) => DoBaseRead(() => ReadCollection.Contains(item));
 
         /// <summary>
         /// 
@@ -440,7 +391,9 @@ namespace Imagin.Common.Collections.Concurrent
             DoBaseRead(() =>
             {
                 if (array.Count() >= ReadCollection.Count)
+                {
                     ReadCollection.CopyTo(array, arrayIndex);
+                }
                 else Console.Out.WriteLine("ConcurrentObservableCollection attempting to copy into wrong sized array (array.Count < ReadCollection.Count)");
             });
         }
@@ -466,10 +419,6 @@ namespace Imagin.Common.Collections.Concurrent
             OnItemInserted(Item, i);
             OnItemsChanged();
         }
-        void ITrackableCollection.Insert(int i, object Item)
-        {
-            Insert(i, (T)Item);
-        }
 
         /// <summary>
         /// 
@@ -483,48 +432,6 @@ namespace Imagin.Common.Collections.Concurrent
             OnItemsChanged();
             return Result;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Item"></param>
-        /// <returns></returns>
-        void ITrackableCollection<T>.Remove(T Item)
-        {
-            DoBaseWrite(() => ((ITrackableCollection<T>)WriteCollection).Remove(Item));
-            OnItemRemoved(Item);
-            OnItemsChanged();
-        }
-        void ITrackableCollection.Remove(object Item)
-        {
-            Remove((T)Item);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Items"></param>
-        public void Remove(IEnumerable<T> Items)
-        {
-            if (Items?.Count() > 0)
-            {
-                var Set = new HashSet<T>(Items);
-
-                var i = 0;
-                while (i < Count)
-                {
-                    if (Set.Contains(this[i]))
-                        RemoveAt(i);
-                    else i++;
-                }
-
-                OnItemsRemoved(Items);
-                OnItemsChanged();
-            }
-        }
-        void ITrackableCollection.Remove(IEnumerable<object> Items)
-        {
-            Remove(Items.Cast<T>());
-        }
 
         /// <summary>
         /// 
@@ -536,32 +443,6 @@ namespace Imagin.Common.Collections.Concurrent
             DoBaseWrite(() => WriteCollection.RemoveAt(i));
             OnItemRemoved(Item);
             OnItemsChanged();
-        }
-        void ITrackableCollection.RemoveAt(int i)
-        {
-            RemoveAt(i);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Indices"></param>
-        public void RemoveAt(params int[] Indices)
-        {
-            var Items = new List<T>();
-            var j = 0;
-            foreach (var i in Indices)
-            {
-                Items.Add(this[i]);
-                Remove(Items[j]);
-                j++;
-            }
-            OnItemsRemoved(Items);
-            OnItemsChanged();
-        }
-        void ITrackableCollection.RemoveAt(params int[] Indices)
-        {
-            RemoveAt(Indices);
         }
 
         #endregion
@@ -594,21 +475,10 @@ namespace Imagin.Common.Collections.Concurrent
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Items"></param>
-        protected virtual void OnItemsAdded(IEnumerable<T> Items)
-        {
-            itemsAdded?.Invoke(this, new EventArgs<IEnumerable<object>>(Items.As<IEnumerable>()?.Cast<object>() ?? Enumerable.Empty<object>()));
-            ItemsAdded?.Invoke(this, new EventArgs<IEnumerable<T>>(Items));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         protected virtual void OnItemsChanged()
         {
             OnPropertyChanged("Count");
             IsEmpty = Count == 0;
-
             ItemsChanged?.Invoke(this, new EventArgs());
         }
 
@@ -639,16 +509,6 @@ namespace Imagin.Common.Collections.Concurrent
         {
             itemRemoved?.Invoke(this, new EventArgs<object>(Item));
             ItemRemoved?.Invoke(this, new EventArgs<T>(Item));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="OldItems"></param>
-        protected virtual void OnItemsRemoved(IEnumerable<T> OldItems)
-        {
-            itemsRemoved?.Invoke(this, new EventArgs<IEnumerable<object>>(OldItems.As<IEnumerable>()?.Cast<object>() ?? Enumerable.Empty<object>()));
-            ItemsRemoved?.Invoke(this, new EventArgs<IEnumerable<T>>(OldItems));
         }
 
         /// <summary>

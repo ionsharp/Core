@@ -11,8 +11,6 @@ namespace Imagin.Common.Collections
         /// <summary>
         /// 
         /// </summary>
-        public FrameworkElementCollection() : base()
-        {
-        }
+        public FrameworkElementCollection() : base() { }
     }
 }

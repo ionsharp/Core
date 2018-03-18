@@ -1,0 +1,67 @@
+﻿<Common:UserControl 
+    x:Class="Imagin.Colour.Controls.ColorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Colour.Controls"
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Common.Media="clr-namespace:Imagin.Common.Media;assembly=Imagin.Common"
+    xmlns:Models="clr-namespace:Imagin.Colour.Controls.Models"
+    xmlns:System.Windows.Controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+    x:Name="PART_ColorView">
+    <Common:UserControl.Resources>
+        <Common:OrientationInverseConverter x:Key="OrientationInverseConverter"/>
+    </Common:UserControl.Resources>
+    <Grid DataContext="{Binding ElementName=PART_ColorView}">
+        <Grid.Resources>
+            <Common:BindingProxy x:Key="BindingProxy" Data="{Binding ElementName=PART_ColorView}"/>
+            
+            <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <Common:ObjectToTypeConverter x:Key="ObjectToTypeConverter"/>
+            <Common:ToStringConverter x:Key="ToStringConverter"/>
+            <Common:ValueEqualsParameterMultiValueConverter x:Key="ValueEqualsParameterMultiValueConverter"/>
+        </Grid.Resources>
+        <ItemsControl 
+            ItemsSource="{Binding Components, Mode=OneWay}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid
+                        Columns="{Binding Data.Columns, Source={StaticResource BindingProxy}}"
+                        Rows="{Binding Data.Rows, Source={StaticResource BindingProxy}}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type Models:VisualComponent}">
+                    <local:ComponentGlider
+                        BorderThickness="0"
+                        CheckerBackground="{Binding Data.CheckerBackground, Mode=OneWay, Source={StaticResource BindingProxy}}"
+                        CheckerForeground="{Binding Data.CheckerForeground, Mode=OneWay, Source={StaticResource BindingProxy}}"
+                        Color="{Binding Data.Color, Mode=TwoWay, Source={StaticResource BindingProxy}, UpdateSourceTrigger=PropertyChanged}"
+                        Component="{Binding Mode=OneWay}"
+                        Orientation="{Binding Data.Orientation, Mode=OneWay, Source={StaticResource BindingProxy}}"
+                        ToolTip="{Binding Converter={StaticResource ToStringConverter}, Mode=OneWay}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!--
+        <ContentControl
+            x:Name="PART_Alpha"
+            Content="{Binding Data.Transparency, Source={StaticResource BindingProxy}}">
+            <ContentControl.ContentTemplateSelector>
+                <Common:ContentTemplateSelector>
+                    <Common:ContentTemplateSelector.Templates>
+                        <Common:ContentTemplate Value="{x:Static Common:Transparency.Transparent}">
+                            <local:AlphaGlider
+                            BorderThickness="0"
+                            CheckerBackground="{Binding Data.CheckerBackground, Mode=OneWay, Source={StaticResource BindingProxy}}"
+                            CheckerForeground="{Binding Data.CheckerForeground, Mode=OneWay, Source={StaticResource BindingProxy}}"
+                            Color="{Binding Data.Color, Mode=TwoWay, Source={StaticResource BindingProxy}, UpdateSourceTrigger=PropertyChanged}"
+                            Orientation="{Binding Data.Orientation, Mode=OneWay, Source={StaticResource BindingProxy}}"/>
+                        </Common:ContentTemplate>
+                        <Common:ContentTemplate Value="{x:Static Common:Transparency.Opaque}"/>
+                    </Common:ContentTemplateSelector.Templates>
+                </Common:ContentTemplateSelector>
+            </ContentControl.ContentTemplateSelector>
+        </ContentControl>
+        -->
+    </Grid>
+</Common:UserControl>

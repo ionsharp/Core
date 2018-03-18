@@ -13,7 +13,7 @@ namespace Imagin.Common.Configuration
         /// </summary>
         ILanguages Languages
         {
-            get; set;
+            get;
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Imagin.Common.Configuration
         /// </summary>
         ILog Log
         {
-            get; set;
+            get;
         }
 
         /// <summary>

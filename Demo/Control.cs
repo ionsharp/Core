@@ -9,60 +9,32 @@ namespace Imagin.NET.Demo
         object instance;
         public object Instance
         {
-            get
-            {
-                return instance;
-            }
-            set
-            {
-                SetValue(ref instance, value, () => Instance);
-            }
+            get => instance;
+            set => Property.Set(this, ref instance, value, () => Instance);
         }
 
         public override string Name
         {
-            get
-            {
-                return base.Name ?? Type.Name;
-            }
-            set
-            {
-                base.Name = value;
-            }
+            get => base.Name ?? Type.Name;
+            set => base.Name = value;
         }
 
         DataTemplate options;
         public DataTemplate Options
         {
-            get
-            {
-                return options;
-            }
-            set
-            {
-                SetValue(ref options, value, () => Options);
-            }
+            get => options;
+            set => Property.Set(this, ref options, value, () => Options);
         }
 
         Type type;
         public Type Type
         {
-            get
-            {
-                return type;
-            }
-            set
-            {
-                SetValue(ref type, value, () => Type);
-            }
+            get => type;
+            set => Property.Set(this, ref type, value, () => Type);
         }
 
-        public Control() : this(null)
-        {
-        }
+        public Control() : this(null) { }
 
-        public Control(string Name) : base(Name)
-        {
-        }
+        public Control(string Name) : base(Name) { }
     }
 }

@@ -1,224 +1,72 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B834467C-92C7-4813-BD0D-A3105D53777F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Imagin.Common</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Imagin.Common</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <RootNamespace>Imagin.Common</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Imagin.Common.xml</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\Imagin.Common.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <None Include="project.json" />
-    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Compile Remove="Arithmetic\**" />
+    <Compile Remove="Lang\asdf\**" />
+    <Compile Remove="Timers\**" />
+    <Compile Remove="[Interfaces]\**" />
+    <EmbeddedResource Remove="Arithmetic\**" />
+    <EmbeddedResource Remove="Lang\asdf\**" />
+    <EmbeddedResource Remove="Timers\**" />
+    <EmbeddedResource Remove="[Interfaces]\**" />
+    <None Remove="Arithmetic\**" />
+    <None Remove="Lang\asdf\**" />
+    <None Remove="Timers\**" />
+    <None Remove="[Interfaces]\**" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Configuration\IApp.cs" />
-    <Compile Include="Configuration\IMainView.cs" />
-    <Compile Include="Property.cs" />
-    <Compile Include="Timers\ElapsedEventArgs.cs" />
-    <Compile Include="[Abstract]\BindableObject.cs" />
-    <Compile Include="[Abstract]\CheckableObject.cs" />
-    <Compile Include="[Abstract]\CheckableObject.Generic.cs" />
-    <Compile Include="[Abstract]\DisposableObject.cs" />
-    <Compile Include="[Abstract]\NamedObject.cs" />
-    <Compile Include="[Abstract]\PeriodicalObjectBase.cs" />
-    <Compile Include="[Abstract]\TaggedObject.cs" />
-    <Compile Include="[Attributes]\Category.cs" />
-    <Compile Include="[Attributes]\DisplayName.cs" />
-    <Compile Include="[Attributes]\DateFormat.cs" />
-    <Compile Include="[Attributes]\ReadOnly.cs" />
-    <Compile Include="[Attributes]\LongFormat.cs" />
-    <Compile Include="[Attributes]\Key.cs" />
-    <Compile Include="[Attributes]\Description.cs" />
-    <Compile Include="[Attributes]\Browsable.cs" />
-    <Compile Include="[Attributes]\EnumFormat.cs" />
-    <Compile Include="Dialog\ILoadingDialogHost.cs" />
-    <Compile Include="Dialog\ILoadingDialog.cs" />
-    <Compile Include="[Attributes]\SearchableAttribute.cs" />
-    <Compile Include="[Interfaces]\IChangeable.cs" />
-    <Compile Include="[Interfaces]\ICheckable.cs" />
-    <Compile Include="[Interfaces]\ICloneable.cs" />
-    <Compile Include="[Interfaces]\ICoercable.cs" />
-    <Compile Include="[Interfaces]\ICoercable.Generic.cs" />
-    <Compile Include="[Interfaces]\IDeletable.cs" />
-    <Compile Include="Dialog\IDialog.cs" />
-    <Compile Include="Dialog\IDialogHost.cs" />
-    <Compile Include="[Interfaces]\IEditable.cs" />
-    <Compile Include="[Interfaces]\IEntry.cs" />
-    <Compile Include="[Interfaces]\IExpandable.cs" />
-    <Compile Include="[Interfaces]\ILockable.cs" />
-    <Compile Include="[Interfaces]\INamable.cs" />
-    <Compile Include="[Interfaces]\IPeriodical.cs" />
-    <Compile Include="[Interfaces]\IPropertyChanged.cs" />
-    <Compile Include="[Interfaces]\ISelectable.cs" />
-    <Compile Include="[Interfaces]\ITaggable.cs" />
-    <Compile Include="[Interfaces]\IValidate.Generic.cs" />
-    <Compile Include="[Interfaces]\IVariant.cs" />
-    <Compile Include="[Attributes]\Abbreviation.cs" />
-    <Compile Include="[Attributes]\Constraint.cs" />
-    <Compile Include="[Attributes]\Featured.cs" />
-    <Compile Include="[Attributes]\Icon.cs" />
-    <Compile Include="[Attributes]\StringFormat.cs" />
-    <Compile Include="Array.cs" />
-    <Compile Include="Collections\EnumCollection.cs" />
-    <Compile Include="Lang\Main.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Remove="Collections\EnumCollection.cs" />
+    <Compile Remove="Collections\Generic\TrackableList.cs" />
+    <Compile Remove="DayOfWeek.cs" />
+    <Compile Remove="HDirection.cs" />
+    <Compile Remove="IPeriodical.cs" />
+    <Compile Remove="Linq\IColorTetrad.cs" />
+    <Compile Remove="Linq\IColorVector.cs" />
+    <Compile Remove="Percent.cs" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+    <Compile Remove="Quadruplet.cs" />
+    <Compile Remove="RowColumn.cs" />
+    <Compile Remove="Side.cs" />
+    <Compile Remove="Span.cs" />
+    <Compile Remove="TaggedObject.cs" />
+    <Compile Remove="Transmission.cs" />
+    <Compile Remove="VDirection.cs" />
+    <Compile Remove="_Interfaces\ITaggable.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="project.json" />
+    <None Remove="project.lock.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Lang\Main.Designer.cs">
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Main.resx</DependentUpon>
     </Compile>
-    <Compile Include="Lang\Main.es-ES.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Main.es-ES.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Lang\Main.it-IT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Main.it-IT.resx</DependentUpon>
-    </Compile>
-    <Compile Include="RangeValue.cs" />
-    <Compile Include="Threading\BackgroundQueue.cs" />
-    <Compile Include="Collections\Generic\ImmutableCollection.cs" />
-    <Compile Include="Collections\Generic\ImmutableCollectionBase.cs" />
-    <Compile Include="Collections\Generic\IStackableCollection.cs" />
-    <Compile Include="Collections\Generic\ITrackableCollection.cs" />
-    <Compile Include="Collections\Generic\ObservableStack.cs" />
-    <Compile Include="Collections\Generic\TrackableCollection.cs" />
-    <Compile Include="Collections\Generic\TrackableList.cs" />
-    <Compile Include="Collections\ITrackableCollection.cs" />
-    <Compile Include="CompassDirection.cs" />
-    <Compile Include="DayOfWeek.cs" />
-    <Compile Include="Debug\Error.Generic.cs" />
-    <Compile Include="Debug\InvalidTokenException.cs" />
-    <Compile Include="Debug\Success.Generic.cs" />
-    <Compile Include="Dialog\DialogAction.cs" />
-    <Compile Include="Drawing\AngularUnit.cs" />
-    <Compile Include="Drawing\Illuminant.cs" />
-    <Compile Include="Drawing\IReflectiveColor.cs" />
-    <Compile Include="Drawing\ObserverAngle.cs" />
-    <Compile Include="Time.cs" />
-    <Compile Include="Transmission.cs" />
-    <Compile Include="Globalization\ILanguages.cs" />
-    <Compile Include="Data\DateFormat.cs" />
-    <Compile Include="Data\EnumFormat.cs" />
-    <Compile Include="Data\FileSizeFormat.cs" />
-    <Compile Include="Data\SortDirection.cs" />
-    <Compile Include="Debug\Error.cs" />
-    <Compile Include="Debug\Exception.Generic.cs" />
-    <Compile Include="Debug\InvalidResultException.cs" />
-    <Compile Include="Debug\Result.cs" />
-    <Compile Include="Debug\Result.Generic.cs" />
-    <Compile Include="Debug\Success.cs" />
-    <Compile Include="Dialog\DialogButton.cs" />
-    <Compile Include="Dialog\DialogButtons.cs" />
-    <Compile Include="Dialog\DialogType.cs" />
-    <Compile Include="Direction.cs" />
-    <Compile Include="Drawing\GraphicalUnit.cs" />
-    <Compile Include="Globalization\ILocalizer.cs" />
-    <Compile Include="ImmutableSpan.cs" />
-    <Compile Include="Input\ChangedValue.cs" />
-    <Compile Include="Input\ChangedValue.Generic.cs" />
-    <Compile Include="Input\CheckedEventArgs.cs" />
-    <Compile Include="Input\WeakEvent.cs" />
-    <Compile Include="Linq\UInt32.cs" />
-    <Compile Include="Linq\UInt16.cs" />
-    <Compile Include="List.cs" />
-    <Compile Include="Linq\IList.Generic.cs" />
-    <Compile Include="Linq\UInt64.cs" />
-    <Compile Include="Input\EventArgs.Generic.cs" />
-    <Compile Include="Input\SelectedEventArgs.cs" />
-    <Compile Include="LeftRight.cs" />
-    <Compile Include="Linq\Action.cs" />
-    <Compile Include="Linq\Array.cs" />
-    <Compile Include="Linq\Boolean.cs" />
-    <Compile Include="Linq\Byte.cs" />
-    <Compile Include="Linq\DateTime.cs" />
-    <Compile Include="Linq\Decimal.cs" />
-    <Compile Include="Linq\Double.cs" />
-    <Compile Include="Linq\Encoding.cs" />
-    <Compile Include="Linq\Enum.cs" />
-    <Compile Include="Linq\Float.cs" />
-    <Compile Include="Linq\IEnumerable.Generic.cs" />
-    <Compile Include="Linq\IEnumerable.cs" />
-    <Compile Include="Linq\IList.cs" />
-    <Compile Include="Linq\Int16.cs" />
-    <Compile Include="Linq\Int32.cs" />
-    <Compile Include="Linq\Int64.cs" />
-    <Compile Include="Linq\Object.cs" />
-    <Compile Include="Linq\PropertyInfo.cs" />
-    <Compile Include="Linq\Stack.cs" />
-    <Compile Include="Linq\String.cs" />
-    <Compile Include="Linq\TimeSpan.cs" />
-    <Compile Include="Linq\Type.cs" />
-    <Compile Include="Data\LongFormat.cs" />
-    <Compile Include="Linq\Version.cs" />
-    <Compile Include="Meridiem.cs" />
-    <Compile Include="Release.cs" />
-    <Compile Include="RowColumn.cs" />
-    <Compile Include="Data\StringFormat.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelativeTense.cs" />
-    <Compile Include="Side.cs" />
-    <Compile Include="Span.cs" />
-    <Compile Include="Text\Encoding.cs" />
-    <Compile Include="Threading\TaskCompletionNotifier.cs" />
-    <Compile Include="TimeZone.cs" />
-    <Compile Include="Debug\ILog.cs" />
-    <Compile Include="Debug\ILogEntry.cs" />
-    <Compile Include="Debug\LogEntry.cs" />
-    <Compile Include="Debug\LogEntryType.cs" />
-    <Compile Include="UDouble.cs" />
-    <Compile Include="UpDown.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Lang\Main.es-ES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Main.es-ES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lang\Main.it-IT.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Main.it-IT.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lang\Main.resx">
+    <EmbeddedResource Update="Lang\Main.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Main.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

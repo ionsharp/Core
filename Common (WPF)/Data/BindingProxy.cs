@@ -1,5 +1,4 @@
 ﻿using Imagin.Common.Input;
-using Imagin.Common.Linq;
 using System;
 using System.Windows;
 
@@ -24,41 +23,26 @@ namespace Imagin.Common.Data
         /// </summary>
         public object Data
         {
-            get
-            {
-                return (object)GetValue(DataProperty);
-            }
-            set
-            {
-                SetValue(DataProperty, value);
-            }
+            get => GetValue(DataProperty);
+            set => SetValue(DataProperty, value);
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="d"></param>
+        /// <param name="element"></param>
         /// <param name="e"></param>
-        static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            d.As<BindingProxy>().OnDataChanged(e.NewValue);
-        }
+        static void OnDataChanged(DependencyObject element, DependencyPropertyChangedEventArgs e) => (element as BindingProxy).OnDataChanged(e.NewValue);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        protected override Freezable CreateInstanceCore()
-        {
-            return new BindingProxy();
-        }
+        protected override Freezable CreateInstanceCore() => new BindingProxy();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="Value"></param>
-        protected virtual void OnDataChanged(object Value)
-        {
-            DataChanged?.Invoke(this, new EventArgs<object>(Value));
-        }
+        protected virtual void OnDataChanged(object Value) => DataChanged?.Invoke(this, new EventArgs<object>(Value));
     }
 }

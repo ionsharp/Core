@@ -3,13 +3,11 @@ C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\b
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.Wpf.pdb
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\es-ES\Imagin.Common.Wpf.resources.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\it-IT\Imagin.Common.Wpf.resources.dll
-C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\WPFLocalizeExtension.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\XAMLMarkupExtensions.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.pdb
-C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.xml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.xml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\WPFLocalizeExtension.xml
@@ -17,7 +15,6 @@ C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\b
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\XAMLMarkupExtensions.xml
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\es-ES\Imagin.Common.resources.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\it-IT\Imagin.Common.resources.dll
-C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Common (WPF).csprojResolveAssemblyReference.cache
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Lang.Main.resources
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Lang.Main.es-ES.resources
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Lang.Main.it-IT.resources
@@ -27,3 +24,335 @@ C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\o
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\it-IT\Imagin.Common.Wpf.resources.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Wpf.dll
 C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.Wpf.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Common (WPF).csprojResolveAssemblyReference.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\Common (WPF).csprojResolveAssemblyReference.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\Imagin.Common.Lang.Main.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\Imagin.Common.Lang.Main.es-ES.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\Imagin.Common.Lang.Main.it-IT.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\Common (WPF).csproj.GenerateResource.Cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\Common (WPF).csproj.CoreCompileInputs.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\Imagin.Common.WPF.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\Imagin.Common.WPF.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Imagin.Common.WPF.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Imagin.Common.WPF.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Imagin.Common.WPF.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\es-ES\Imagin.Common.WPF.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\it-IT\Imagin.Common.WPF.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.Win32.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\netstandard.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.AppContext.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Collections.Concurrent.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Collections.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Collections.NonGeneric.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Collections.Specialized.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.ComponentModel.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.ComponentModel.EventBasedAsync.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.ComponentModel.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.ComponentModel.TypeConverter.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Console.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Data.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.Contracts.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.Debug.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.Process.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.StackTrace.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.TextWriterTraceListener.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.Tools.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.TraceSource.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Diagnostics.Tracing.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Drawing.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Dynamic.Runtime.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Globalization.Calendars.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Globalization.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Globalization.Extensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.Compression.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.Compression.ZipFile.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.FileSystem.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.FileSystem.DriveInfo.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.FileSystem.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.FileSystem.Watcher.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.IsolatedStorage.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.MemoryMappedFiles.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.Pipes.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.IO.UnmanagedMemoryStream.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Linq.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Linq.Expressions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Linq.Parallel.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Linq.Queryable.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.Http.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.NameResolution.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.NetworkInformation.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.Ping.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.Requests.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.Security.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.Sockets.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.WebHeaderCollection.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.WebSockets.Client.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Net.WebSockets.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.ObjectModel.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Reflection.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Reflection.Extensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Reflection.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Resources.Reader.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Resources.ResourceManager.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Resources.Writer.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.CompilerServices.VisualC.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.Extensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.Handles.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.InteropServices.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.Numerics.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.Serialization.Formatters.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.Serialization.Json.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.Serialization.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Runtime.Serialization.Xml.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Security.Claims.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Security.Cryptography.Csp.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Security.Principal.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Security.SecureString.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Text.Encoding.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Text.Encoding.Extensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Text.RegularExpressions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Threading.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Threading.Overlapped.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Threading.Tasks.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Threading.Tasks.Parallel.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Threading.Thread.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Threading.ThreadPool.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Threading.Timer.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.ValueTuple.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Xml.ReaderWriter.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Xml.XDocument.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Xml.XmlDocument.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Xml.XmlSerializer.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Xml.XPath.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\System.Xml.XPath.XDocument.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Imagin.Colour.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Imagin.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\WPFLocalizeExtension.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\XAMLMarkupExtensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Imagin.Colour.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Imagin.Common.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\WPFLocalizeExtension.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\WPFLocalizeExtension.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\XAMLMarkupExtensions.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\XAMLMarkupExtensions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\es-ES\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\bin\Debug\it-IT\Imagin.Common.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\es-ES\Imagin.Common.WPF.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Imagin.Common.WPF\obj\Debug\it-IT\Imagin.Common.WPF.resources.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.Win32.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\netstandard.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.AppContext.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Collections.Concurrent.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Collections.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Collections.NonGeneric.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Collections.Specialized.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.ComponentModel.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.ComponentModel.EventBasedAsync.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.ComponentModel.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.ComponentModel.TypeConverter.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Console.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Data.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.Contracts.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.Debug.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.Process.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.StackTrace.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.TextWriterTraceListener.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.Tools.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.TraceSource.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Diagnostics.Tracing.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Drawing.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Dynamic.Runtime.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Globalization.Calendars.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Globalization.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Globalization.Extensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.Compression.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.Compression.ZipFile.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.FileSystem.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.FileSystem.DriveInfo.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.FileSystem.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.FileSystem.Watcher.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.IsolatedStorage.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.MemoryMappedFiles.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.Pipes.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.IO.UnmanagedMemoryStream.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Linq.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Linq.Expressions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Linq.Parallel.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Linq.Queryable.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.Http.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.NameResolution.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.NetworkInformation.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.Ping.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.Requests.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.Security.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.Sockets.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.WebHeaderCollection.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.WebSockets.Client.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Net.WebSockets.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.ObjectModel.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Reflection.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Reflection.Extensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Reflection.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Resources.Reader.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Resources.ResourceManager.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Resources.Writer.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.CompilerServices.VisualC.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.Extensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.Handles.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.InteropServices.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.Numerics.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.Serialization.Formatters.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.Serialization.Json.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.Serialization.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Runtime.Serialization.Xml.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Security.Claims.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Security.Cryptography.Csp.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Security.Principal.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Security.SecureString.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Text.Encoding.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Text.Encoding.Extensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Text.RegularExpressions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Threading.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Threading.Overlapped.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Threading.Tasks.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Threading.Tasks.Parallel.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Threading.Thread.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Threading.ThreadPool.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Threading.Timer.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.ValueTuple.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Xml.ReaderWriter.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Xml.XDocument.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Xml.XmlDocument.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Xml.XmlSerializer.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Xml.XPath.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Xml.XPath.XDocument.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\WPFLocalizeExtension.pdb
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Imagin.Common.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.WPF_MarkupCompile.cache
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.WPF_MarkupCompile.lref
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.SplitView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Imagin.Common.WPF.g.resources
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Color\Dark.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Color\Light.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Border.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Button.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Calendar.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.ContextMenu.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Expander.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.GridSplitter.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.GridView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.GroupBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Label.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.RichTextBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.ScrollViewer.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Slider.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.TabControl.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.TextBlock.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.ToggleButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\ComboBox\FontFamilyBox.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\ComboBox\FontSizeBox.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\DirectionPad.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\FolderPickerDialog.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\SelectionCanvas.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\ThicknessBox.g.cs
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.AnglePicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.BasicWindow.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.CheckBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.ComboBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.DataGrid.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Decorators.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.DirectionPad.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.DragSelection.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Line.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Link.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.ListBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.MaskedButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.MaskedDropDownButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.MaskedImage.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.MaskedToggleButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Menu.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.RadioButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.RadioGroup.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.StoragePicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.TabbedTree.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.TextBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.ToggleSwitch.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.TokenButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.ToolBar.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.ToolTip.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.TreeView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.Window.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.AnglePicker.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.BasicWindow.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.ButtonChrome.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.DateTimeUpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.DragSelection.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.EditableLabel.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.FileBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.FlagCheckView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.Line.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.Link.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.MaskedButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.MaskedDropDownButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.MaskedImage.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.MaskedToggleButton.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.Menu.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.PropertyGridBase.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.RadioGroup.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.RippleDecorator.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.TextBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.TimeUpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.ToggleSwitch.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.TransitionalContentControl.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.TreeViewComboBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.UpDown.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.UserControl.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\ComboBox\FontFamilyBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\ComboBox\FontSizeBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\DirectionPad.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\FolderPickerDialog.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\SelectionCanvas.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\_Controls\ThicknessBox.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.TreeView.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Themes\Generic.TabbedTree.baml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\james\OneDrive\Development\Software\Libraries\Imagin.NET\Common (WPF)\obj\Debug\Styles\Generic.PropertyGrid.baml

@@ -8,35 +8,32 @@ namespace Imagin.Common.Linq
     public static class Int16Extensions
     {
         /// <summary>
-        /// 
+        /// Coerces to the specified range.
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static short Abs(this short Value)
+        public static short Abs(this short value)
         {
-            return Math.Abs(Value);
+            return Math.Abs(value);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
-        /// <param name="Maximum"></param>
-        /// <param name="Minimum"></param>
+        /// <param name="value"></param>
+        /// <param name="maximum"></param>
+        /// <param name="minimum"></param>
         /// <returns></returns>
-        public static short Coerce(this short Value, short Maximum, short Minimum = 0)
-        {
-            return Value > Maximum ? Maximum : (Value < Minimum ? Minimum : Value);
-        }
-        
+        public static short Coerce(this short value, short maximum, short minimum = 0) => Math.Max(Math.Min(value, maximum), minimum);
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static int ToInt32(this short Value)
+        public static int ToInt32(this short value)
         {
-            return Convert.ToInt32(Value);
+            return Convert.ToInt32(value);
         }
 
     }

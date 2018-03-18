@@ -47,7 +47,7 @@ namespace Imagin.Common.Linq
         public static IEnumerable<Attribute> GetAttributes(this MemberInfo value)
         {
             foreach (var i in value.GetCustomAttributes(true))
-                yield return i;
+                yield return (Attribute)i;
 
             yield break;
         }

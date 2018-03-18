@@ -242,8 +242,7 @@ namespace Imagin.Common.Linq
         /// </summary>
         public static byte ToByte(this string value)
         {
-            var result = default(byte);
-            byte.TryParse(value, out result);
+            byte.TryParse(value, out byte result);
             return result;
         }
 
@@ -254,8 +253,7 @@ namespace Imagin.Common.Linq
         /// <returns></returns>
         public static char ToChar(this string value)
         {
-            var result = default(char);
-            char.TryParse(value, out result);
+            char.TryParse(value, out char result);
             return result;
         }
 
@@ -264,8 +262,7 @@ namespace Imagin.Common.Linq
         /// </summary>
         public static short ToInt16(this string value)
         {
-            var result = default(short);
-            short.TryParse(value, out result);
+            short.TryParse(value, out short result);
             return result;
         }
 
@@ -274,8 +271,7 @@ namespace Imagin.Common.Linq
         /// </summary>
         public static int ToInt32(this string value)
         {
-            var result = default(int);
-            int.TryParse(value, out result);
+            int.TryParse(value, out int result);
             return result;
         }
 
@@ -284,8 +280,7 @@ namespace Imagin.Common.Linq
         /// </summary>
         public static long ToInt64(this string value)
         {
-            var result = default(long);
-            long.TryParse(value, out result);
+            long.TryParse(value, out long result);
             return result;
         }
 
@@ -328,8 +323,7 @@ namespace Imagin.Common.Linq
         /// </summary>
         public static DateTime ToDateTime(this string value)
         {
-            var result = default(DateTime);
-            DateTime.TryParse(value, out result);
+            DateTime.TryParse(value, out DateTime result);
             return result;
         }
 
@@ -338,8 +332,7 @@ namespace Imagin.Common.Linq
         /// </summary>
         public static decimal ToDecimal(this string value)
         {
-            var result = default(decimal);
-            decimal.TryParse(value, out result);
+            decimal.TryParse(value, out decimal result);
             return result;
         }
 
@@ -348,8 +341,7 @@ namespace Imagin.Common.Linq
         /// </summary>
         public static double ToDouble(this string value)
         {
-            var result = default(double);
-            double.TryParse(value, out result);
+            double.TryParse(value, out double result);
             return result;
         }
 
@@ -358,8 +350,7 @@ namespace Imagin.Common.Linq
         /// </summary>
         public static float ToFloat(this string value)
         {
-            var result = default(float);
-            float.TryParse(value, out result);
+            float.TryParse(value, out float result);
             return result;
         }
 
@@ -370,8 +361,16 @@ namespace Imagin.Common.Linq
         /// <returns></returns>
         public static TimeSpan ToTimeSpan(this string value)
         {
-            var result = default(TimeSpan);
-            TimeSpan.TryParse(value, out result);
+            TimeSpan.TryParse(value, out TimeSpan result);
+            return result;
+        }
+
+        /// <summary>
+        /// Parses <see cref="string"/> to <see cref="UDouble"/>.
+        /// </summary>
+        public static UDouble ToUDouble(this string value)
+        {
+            UDouble.TryParse(value, out UDouble result);
             return result;
         }
 
@@ -382,8 +381,7 @@ namespace Imagin.Common.Linq
         /// <returns></returns>
         public static ushort ToUInt16(this string Value)
         {
-            var Result = default(ushort);
-            ushort.TryParse(Value, out Result);
+            ushort.TryParse(Value, out ushort Result);
             return Result;
         }
 
@@ -394,8 +392,7 @@ namespace Imagin.Common.Linq
         /// <returns></returns>
         public static uint ToUInt32(this string Value)
         {
-            var Result = default(uint);
-            uint.TryParse(Value, out Result);
+            uint.TryParse(Value, out uint Result);
             return Result;
         }
 
@@ -406,8 +403,7 @@ namespace Imagin.Common.Linq
         /// <returns></returns>
         public static ulong ToUInt64(this string Value)
         {
-            var Result = default(ulong);
-            ulong.TryParse(Value, out Result);
+            ulong.TryParse(Value, out ulong Result);
             return Result;
         }
 
@@ -419,8 +415,7 @@ namespace Imagin.Common.Linq
         /// <returns></returns>
         public static Uri ToUri(this string value, UriKind kind = UriKind.RelativeOrAbsolute)
         {
-            var result = default(Uri);
-            Uri.TryCreate(value, kind, out result);
+            Uri.TryCreate(value, kind, out Uri result);
             return result;
         }
 

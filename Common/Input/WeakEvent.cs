@@ -13,15 +13,12 @@ namespace Imagin.Common.Input
     /// <typeparam name="TEventArgs"></typeparam>
     public class WeakEvent<TEventArgs>
     {
-        private readonly List<WeakDelegate> handlers;
+        readonly List<WeakDelegate> handlers;
 
         /// <summary>
         /// 
         /// </summary>
-        public WeakEvent()
-        {
-            handlers = new List<WeakDelegate>();
-        }
+        public WeakEvent() => handlers = new List<WeakDelegate>();
 
         /// <summary>
         /// 

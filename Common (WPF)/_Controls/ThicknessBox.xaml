@@ -1,0 +1,50 @@
+﻿<UserControl 
+    x:Class="Imagin.Common.ThicknessBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:Imagin.Common"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" 
+    d:DesignWidth="300"
+    x:Name="PART_ThicknessBox">
+    <Grid
+        DataContext="{Binding ElementName=PART_ThicknessBox}"
+        Linq:PanelExtensions.Spacing="{Binding FieldSpacing}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <local:DoubleUpDown
+            x:Name="PART_Left"
+            Minimum="{Binding Minimum}"
+            Maximum="{Binding Maximum}"
+            TextChanged="OnThicknessPartChanged"
+            ToolTip="Left"/>
+        <local:DoubleUpDown
+            Grid.Column="1"
+            x:Name="PART_Top"
+            Minimum="{Binding Minimum}"
+            Maximum="{Binding Maximum}"
+            TextChanged="OnThicknessPartChanged"
+            ToolTip="Top"/>
+        <local:DoubleUpDown
+            Grid.Column="2"
+            x:Name="PART_Right"
+            Minimum="{Binding Minimum}"
+            Maximum="{Binding Maximum}"
+            TextChanged="OnThicknessPartChanged"
+            ToolTip="Right"/>
+        <local:DoubleUpDown
+            Grid.Column="3"
+            x:Name="PART_Bottom"
+            Minimum="{Binding Minimum}"
+            Maximum="{Binding Maximum}"
+            TextChanged="OnThicknessPartChanged"
+            ToolTip="Bottom"/>
+    </Grid>
+</UserControl>

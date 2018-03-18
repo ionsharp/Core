@@ -2,7 +2,5 @@
 
 namespace Imagin.NET.Demo
 {
-    public partial class App : Application
-    {
-    }
+    public partial class App : Application { }
 }

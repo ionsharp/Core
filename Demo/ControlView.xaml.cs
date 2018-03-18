@@ -8,30 +8,18 @@ namespace Imagin.NET.Demo
     [ContentProperty("Controls")]
     public partial class ControlView : UserControl
     {
-        public static DependencyProperty ControlsProperty = DependencyProperty.Register("Controls", typeof(ObservableCollection<Control>), typeof(ControlView), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty ControlsProperty = DependencyProperty.Register(nameof(Controls), typeof(ObservableCollection<Control>), typeof(ControlView), new FrameworkPropertyMetadata(null));
         public ObservableCollection<Control> Controls
         {
-            get
-            {
-                return (ObservableCollection<Control>)GetValue(ControlsProperty);
-            }
-            set
-            {
-                SetValue(ControlsProperty, value);
-            }
+            get => (ObservableCollection<Control>)GetValue(ControlsProperty);
+            set => SetValue(ControlsProperty, value);
         }
 
-        public static DependencyProperty SelectedControlProperty = DependencyProperty.Register("SelectedControl", typeof(Control), typeof(ControlView), new FrameworkPropertyMetadata(default(Control), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static DependencyProperty SelectedControlProperty = DependencyProperty.Register(nameof(SelectedControl), typeof(Control), typeof(ControlView), new FrameworkPropertyMetadata(default(Control)));
         public Control SelectedControl
         {
-            get
-            {
-                return (Control)GetValue(SelectedControlProperty);
-            }
-            set
-            {
-                SetValue(SelectedControlProperty, value);
-            }
+            get => (Control)GetValue(SelectedControlProperty);
+            set => SetValue(SelectedControlProperty, value);
         }
         
         public ControlView() : base()

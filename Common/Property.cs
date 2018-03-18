@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace Imagin.Common
 {
     /// <summary>
-    /// A utility for setting properties of objects that implement <see cref="INotifyPropertyChanged"/> and <see cref="IPropertyChanged"/>.
+    /// A utility for setting properties of objects that implement both <see cref="INotifyPropertyChanged"/> and <see cref="IPropertyChanged"/>.
     /// </summary>
     public static class Property
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="TObject"></typeparam>
+        /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TValue"></typeparam>
         /// <param name="source"></param>
         /// <param name="expression"></param>
-        public static void OnChanged<TObject, TValue>(TObject source, Expression<Func<TValue>> expression) where TObject : INotifyPropertyChanged, IPropertyChanged
+        public static void Raise<TSource, TValue>(TSource source, Expression<Func<TValue>> expression) where TSource : IPropertyChanged
         {
             if (expression == null)
                 throw new ArgumentNullException("expression");
@@ -33,21 +34,49 @@ namespace Imagin.Common
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="TObject"></typeparam>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="propertyName"></param>
+        public static void Raise<TSource>(TSource source, [CallerMemberName] string propertyName = "") where TSource : IPropertyChanged
+        {
+            source.OnPropertyChanged(propertyName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TValue"></typeparam>
         /// <param name="source"></param>
         /// <param name="field"></param>
         /// <param name="value"></param>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public static bool Set<TObject, TValue>(TObject source, ref TValue field, TValue value, Expression<Func<TValue>> expression) where TObject : INotifyPropertyChanged, IPropertyChanged
+        public static bool Set<TSource, TValue>(TSource source, ref TValue field, TValue value, Expression<Func<TValue>> expression) where TSource : IPropertyChanged
         {
-            if (EqualityComparer<TValue>.Default.Equals(field, value))
-                return false;
+            if (EqualityComparer<TValue>.Default.Equals(field, value)) return false;
 
             field = value;
+            Raise(source, expression);
+            return true;
+        }
 
-            OnChanged(source, expression);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public static bool Set<TSource, TValue>(TSource source, ref TValue field, TValue value, [CallerMemberName] string propertyName = "") where TSource : IPropertyChanged
+        {
+            if (EqualityComparer<TValue>.Default.Equals(field, value)) return false;
+
+            field = value;
+            Raise(source, propertyName);
             return true;
         }
     }
