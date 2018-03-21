@@ -40,17 +40,17 @@ XAMLMarkupExtensions | 1.3.0 | http://xamlmarkupextensions.codeplex.com/ |
   .  |  .  |  .  |  .  |  .  |
 -----|-----|-----|-----|-----|
 AlignableWrapPanel | AlphaNumericBox | AnglePicker | BasicWindow | ByteUpDown |
-CheckerBoard | ColorChip | ColorComb | ColorDialog | ColorPicker |
+CheckerBoard | ComboBox | DataGrid | DateTimeUpDown | DecimalUpDown |
 ComboBox | DataGrid | DateTimeUpDown | DecimalUpDown | DirectionPad |
-DoubleUpDown | DualColorChip | EditableLabel | FileBox | FlagCheckView |
-FloatUpDown | FontFamilyBox | FontSizeBox | GradientChip | GradientDialog | 
-GradientPicker | HexBox | Int16UpDown | Int32UpDown | Int64UpDown | 
-Line | Link | MaskedButton | MaskedDropDownButton | MaskedImage | 
-MaskedToggleButton | PasswordBox | PropertyGrid | RadioGroup | RegexBox | 
-ResourceDictionaryEditor | RippleDecorator | SelectionCanvas | SplitView | StoragePicker | 
-TabbedTree | TextBox | ThicknessBox | TimeSpanUpDown | ToggleSwitch | 
-TokenView | TransitionalContentControl | TreeView | TreeViewComboBox | UriBox | 
-UDoubleUpDown | UInt16UpDown | UInt32UpDown | UInt64UpDown | VersionBox
+DoubleUpDown | EditableLabel | FileBox | FlagCheckView | FloatUpDown | 
+FontFamilyBox | FontSizeBox | GradientPicker | HexBox | Int16UpDown | 
+Int32UpDown | Int64UpDown | Line | Link | MaskedButton | 
+MaskedDropDownButton | MaskedImage | MaskedToggleButton | PasswordBox | PropertyGrid | 
+RadioGroup | RegexBox | ResourceDictionaryEditor | RippleDecorator | SelectionCanvas | 
+SplitView | StoragePicker | TabbedTree | TextBox | ThicknessBox | 
+TimeSpanUpDown | ToggleSwitch | TokenView | TransitionalContentControl | TreeView | 
+TreeViewComboBox | UriBox | UDoubleUpDown | UInt16UpDown | UInt32UpDown | 
+UInt64UpDown | VersionBox |
 
 ### Colour
 
