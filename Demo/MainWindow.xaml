@@ -1,0 +1,2504 @@
+﻿<Common:BasicWindow 
+    x:Class="Imagin.NET.Demo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Imagin.NET.Demo"
+    xmlns:Colour="http://imagin.tech/imagin/colour"
+    xmlns:Colour.Portable="clr-namespace:Imagin.Colour;assembly=Imagin.Colour"
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Common.Data="clr-namespace:Imagin.Common.Data;assembly=Imagin.Common"
+    xmlns:Common.Media="clr-namespace:Imagin.Common.Media;assembly=Imagin.Common"
+    xmlns:Common.Continuance="clr-namespace:Imagin.Common.Continuance;assembly=Imagin.Common"
+    xmlns:Common.Portable="clr-namespace:Imagin.Common;assembly=Imagin.Common"
+    mc:Ignorable="d"
+    Height="420"
+    Title="Imagin.NET Demo" 
+    Width="540"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    x:Name="PART_MainWindow">
+    <Common:BasicWindow.Resources>
+        <Common:BindingProxy x:Key="BindingProxy" Data="{Binding ElementName=PART_MainWindow}"/>
+
+        <Common:BrushToColorConverter x:Key="BrushToColorConverter"/>
+        <Common:CharacterToStringConverter x:Key="CharacterToStringConverter"/>
+        <Common:ColorToHexConverter x:Key="ColorToHexConverter"/>
+        <Common:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
+        <Common:FileNameConverter x:Key="FileNameConverter"/>
+        <Common:FileSizeConverter x:Key="FileSizeConverter"/>
+        <Common:Int32ArrayToStringConverter x:Key="Int32ArrayToStringConverter"/>
+        <Common:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
+        <Common:SolidColorBrushToColorConverter x:Key="SolidColorBrushToColorConverter"/>
+
+        <!-- ....................................................................................[Views] -->
+
+        <Common:ItemView 
+            x:Key="View.List" 
+            x:Shared="False">
+            <Common:ItemView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </Common:ItemView.ItemTemplate>
+        </Common:ItemView>
+
+        <GridView
+            x:Key="View.Details" 
+            x:Shared="False">
+            <GridViewColumn Header="Name">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="Type">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Type}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="Size">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Size, Converter={StaticResource FileSizeConverter}}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="Accessed">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="Created">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Created, Converter={StaticResource RelativeTimeConverter}}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="Modified">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+        </GridView>
+
+        <!-- ....................................................................................[Styles] -->
+
+        <Style x:Key="Style.View.Default" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="Tag" Value="{Binding Path}"/>
+            <EventSetter Event="MouseDoubleClick" Handler="OnMouseDoubleClick"/>
+        </Style>
+
+        <Style x:Key="Style.View.List" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Style.View.Default}">
+            <Setter Property="Padding" Value="7,5" />
+        </Style>
+
+        <Style x:Key="Style.View.Details" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Style.View.Default}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border 
+                            Name="PART_Border" 
+                            Padding="{TemplateBinding Padding}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            Background="{TemplateBinding Background}" 
+                            HorizontalAlignment="Stretch"
+                            SnapsToDevicePixels="true">
+                            <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#33000000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False"/>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="#11000000"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Common:BasicWindow.Resources>
+    <Grid DataContext="{Binding ElementName=PART_MainWindow}">
+        <TabControl>
+            <TabItem Header="Colour">
+                <local:ControlView>
+                    <local:ControlView.Controls>
+                        <local:Control Type="Colour:ColorChip">
+                            <local:Control.Instance>
+                                <Colour:ColorChip 
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate/>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Colour:ColorComb">
+                            <local:Control.Instance>
+                                <Colour:ColorComb
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Count (Number of cells):"/>
+                                        <Common:TextBox 
+                                            IsReadOnly="True"
+                                            Text="{Binding Instance.Count, Mode=OneWay}"/>
+
+                                        <Label 
+                                            Content="Generations:"/>
+                                        <Common:Int32UpDown 
+                                            Minimum="1"
+                                            Maximum="12"
+                                            Value="{Binding Instance.Generations}"/>
+
+                                        <Label 
+                                            Content="CellDisposition:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Colour.Portable:ColorDisposition}}"
+                                            SelectedValue="{Binding Instance.CellDisposition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="CellStrokeThickness:"/>
+                                        <Common:DoubleUpDown 
+                                            Value="{Binding Instance.CellStrokeThickness}"
+                                            Increment="0.01"
+                                            Minimum="0.01"
+                                            Maximum="5"/>
+
+                                        <Label 
+                                            Content="SelectedColor:"/>
+                                        <Common:TextBox 
+                                            BorderBrush="{Binding Instance.SelectedColor, Converter={StaticResource ColorToSolidColorBrushConverter}, Mode=OneWay}"
+                                            IsReadOnly="True"
+                                            Text="{Binding Instance.SelectedColor, Converter={StaticResource ColorToHexConverter}, ConverterParameter=0, Mode=OneWay}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Colour:ColorPicker">
+                            <local:Control.Instance>
+                                <Colour:ColorPicker
+                                    BorderBrush="#11000000"
+                                    BorderThickness="1"
+                                    NewColor="Red"
+                                    OldColor="Green"
+                                    Padding="15,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top">
+                                    <Colour:ColorPicker.ColorModels>
+                                        <Colour:RGBViewModel/>
+                                        <Colour:HCGViewModel/>
+                                        <Colour:HSBViewModel/>
+                                        <Colour:HSIViewModel/>
+                                        <Colour:HSLViewModel/>
+                                        <Colour:HSMViewModel/>
+                                        <Colour:HSPViewModel/>
+                                        <Colour:HunterLabViewModel/>
+                                        <Colour:HWBViewModel/>
+                                        <Colour:LabViewModel/>
+                                        <Colour:LChabViewModel/>
+                                        <Colour:LChuvViewModel/>
+                                        <Colour:LMSViewModel/>
+                                        <Colour:LuvViewModel/>
+                                        <Colour:TSLViewModel/>
+                                        <Colour:xyYViewModel/>
+                                        <Colour:XYZViewModel/>
+                                        <Colour:YCoCgViewModel/>
+                                        <Colour:YESViewModel/>
+                                        <Colour:YIQViewModel/>
+                                        <Colour:YUVViewModel/>
+                                        <Colour:CMYKViewModel/>
+                                    </Colour:ColorPicker.ColorModels>
+                                </Colour:ColorPicker>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Button 
+                                            Content="Select" 
+                                            HorizontalAlignment="Left"
+                                            Click="OnColorSelected"/>
+
+                                        <CheckBox 
+                                            Content="CanUpDownComponents" 
+                                            IsChecked="{Binding Instance.CanUpDownComponents}"/>
+                                        <CheckBox 
+                                            Content="IsAsync" 
+                                            IsChecked="{Binding Instance.IsAsync}"/>
+
+                                        <Label
+                                            Content="Alpha:"/>
+                                        <Common:ByteUpDown
+                                            Value="{Binding Instance.Alpha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToolTip=""/>
+
+                                        <Label
+                                            Content="ColorModels:"/>
+                                        <Common:FlagCheckView
+                                            Flags="{Binding Instance.Models}"/>
+
+                                        <Label
+                                            Content="ComponentStringFormat:"/>
+                                        <Common:TextBox
+                                            Text="{Binding Instance.ComponentStringFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="ComponentWidth:"/>
+                                        <Common:DoubleUpDown
+                                            Value="{Binding Instance.ComponentWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="InputVisibility:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Visibility}}"
+                                            SelectedValue="{Binding Instance.InputVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="InputWidth:"/>
+                                        <Common:DoubleUpDown
+                                            Value="{Binding Instance.InputWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="SelectionLength:"/>
+                                        <Common:DoubleUpDown
+                                            Maximum="64"
+                                            Minimum="1"
+                                            Value="{Binding Instance.SelectionLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="SelectionType:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Colour:ColorSelectionType}}"
+                                            SelectedValue="{Binding Instance.SelectionType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="Transparency:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Common:Transparency}}"
+                                            SelectedValue="{Binding Instance.Transparency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Colour:ColorView">
+                            <local:Control.Instance>
+                                <Colour:ColorView
+                                    Color="SeaShell"
+                                    ColorModel="RGB"
+                                    Height="256"
+                                    Margin="0,0,0,10"
+                                    Orientation="Vertical"
+                                    Transparency="Opaque">
+                                </Colour:ColorView>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+
+                                        <Label
+                                            Content="Color:"/>
+                                        <Colour:ColorChip
+                                            Color="{Binding Instance.Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="ColorSpace:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Colour.Portable:ColorModels}}"
+                                            SelectedValue="{Binding Instance.ColorSpace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="CheckerBackground:"/>
+                                        <Colour:ColorChip
+                                            Color="{Binding Instance.CheckerBackground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="CheckerForeground:"/>
+                                        <Colour:ColorChip
+                                            Color="{Binding Instance.CheckerForeground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="Orientation:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Orientation}}"
+                                            SelectedValue="{Binding Instance.Orientation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="Transparency:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Common:Transparency}}"
+                                            SelectedValue="{Binding Instance.Transparency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Colour:DualColorChip">
+                            <local:Control.Instance>
+                                <Colour:DualColorChip 
+                                    HorizontalAlignment="Left"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate/>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Colour:GradientChip">
+                            <local:Control.Instance>
+                                <Colour:GradientChip 
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Width="256">
+                                    <Colour:GradientChip.Value>
+                                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                            <GradientStop Offset="0" Color="Red"/>
+                                            <GradientStop Offset="0.5" Color="Green"/>
+                                            <GradientStop Offset="1" Color="Yellow"/>
+                                        </LinearGradientBrush>
+                                    </Colour:GradientChip.Value>
+                                </Colour:GradientChip>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Colour:GradientPicker">
+                            <local:Control.Instance>
+                                <Colour:GradientPicker>
+                                    <Colour:GradientPicker.Gradient>
+                                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                            <GradientStop Offset="0" Color="Red"/>
+                                            <GradientStop Offset="0.5" Color="Green"/>
+                                            <GradientStop Offset="1" Color="Yellow"/>
+                                        </LinearGradientBrush>
+                                    </Colour:GradientPicker.Gradient>
+                                </Colour:GradientPicker>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate/>
+                            </local:Control.Options>
+                        </local:Control>
+                    </local:ControlView.Controls>
+                </local:ControlView>
+            </TabItem>
+            <TabItem Header="Common">
+                <local:ControlView x:Name="CommonControlView">
+                    <local:ControlView.Controls>
+                        <local:Control Type="Common:AlignableWrapPanel">
+                            <local:Control.Instance>
+                                <Common:AlignableWrapPanel 
+                                    HorizontalContentAlignment="Center"
+                                    Common:PanelExtensions.Spacing="0,0,5,5"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label
+                                            Content="Horizontal content alignment:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type HorizontalAlignment}}"
+                                            SelectedValue="{Binding Instance.HorizontalContentAlignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:AlphaNumericBox">
+                            <local:Control.Instance>
+                                <Common:AlphaNumericBox 
+                                    Text="Digits and letters"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate/>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:AnglePicker">
+                            <local:Control.Instance>
+                                <Common:AnglePicker
+                                    Height="256"
+                                    HorizontalAlignment="Center"
+                                    Width="256"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Angle:"/>
+                                        <Common:DoubleUpDown
+                                            Maximum="180"
+                                            Minimum="-180"
+                                            StringFormat="N0"
+                                            Value="{Binding Instance.Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Radians:"/>
+                                        <Common:DoubleUpDown
+                                            Maximum="3.14159"
+                                            Minimum="-3.14159"
+                                            StringFormat="N6"
+                                            Value="{Binding Instance.Radians, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:ByteUpDown">
+                            <local:Control.Instance>
+                                <Common:ByteUpDown 
+                                    Increment="1" 
+                                    Minimum="0" 
+                                    Maximum="255"
+                                    StringFormat="N0" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Increment:"/>
+                                        <Common:ByteUpDown 
+                                            Value="{Binding Instance.Increment}"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:ByteUpDown 
+                                            Minimum="0"
+                                            Maximum="255"
+                                            Value="{Binding Instance.Minimum}"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:ByteUpDown 
+                                            Minimum="0"
+                                            Maximum="255"
+                                            Value="{Binding Instance.Maximum}"/>
+
+                                        <Label 
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}" Minimum="1" Maximum="2500"/>
+
+                                        <Label
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:CheckerBoard">
+                            <local:Control.Instance>
+                                <Common:CheckerBoard/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Checker background:"/>
+                                        <Colour:ColorChip
+                                            Color="{Binding Instance.CheckerBackground, Converter={StaticResource SolidColorBrushToColorConverter}, Mode=TwoWay}"/>
+
+                                        <Label 
+                                            Content="Checker foreground:"/>
+                                        <Colour:ColorChip
+                                            Color="{Binding Instance.CheckerForeground, Converter={StaticResource SolidColorBrushToColorConverter}, Mode=TwoWay}"/>
+
+                                        <Label 
+                                            Content="Checker size:"/>
+                                        <Common:DoubleUpDown
+                                            Value="{Binding Instance.CheckerSize}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:DataGrid">
+                            <local:Control.Instance>
+                                <Common:DataGrid
+                                    Common:ItemsControlExtensions.AutoSizeColumns="True"
+                                    CanUserAddRows="False"
+                                    Common:DataGridExtensions.DisplayRowNumberOffset="1"
+                                    Common:DataGridExtensions.DisplayRowNumber="True"
+                                    HeadersVisibility="All" 
+                                    ItemsSource="{Binding Data.StorageCollection, Source={StaticResource BindingProxy}}"
+                                    Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
+                                    Common:ItemsControlExtensions.CanDragSelect="True"
+                                    Common:DataGridExtensions.ScrollAddedIntoView="True">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn 
+                                            Header="Name" 
+                                            Binding="{Binding Name, Mode=OneWay}" 
+                                            SortMemberPath="Name"/>
+                                        <DataGridTextColumn 
+                                            Header="Type" 
+                                            Binding="{Binding Type, Mode=OneWay}" 
+                                            SortMemberPath="Type"/>
+                                        <DataGridTextColumn
+                                            Header="Size" 
+                                            Binding="{Binding Size, Converter={StaticResource FileSizeConverter}, Mode=OneWay}" 
+                                            SortMemberPath="Size"/>
+                                        <DataGridTextColumn 
+                                            Header="Accessed"
+                                            Binding="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}, Mode=OneWay}" 
+                                            SortMemberPath="Accessed"/>
+                                        <DataGridTextColumn
+                                            Header="Created"
+                                            Binding="{Binding Created, Converter={StaticResource RelativeTimeConverter}, Mode=OneWay}"
+                                            SortMemberPath="Created"/>
+                                        <DataGridTextColumn
+                                            Header="Modified"
+                                            Binding="{Binding Modified, Converter={StaticResource RelativeTimeConverter}, Mode=OneWay}" 
+                                            SortMemberPath="Modified"/>
+                                    </DataGrid.Columns>
+                                </Common:DataGrid>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        DataContext="{Binding Instance, Mode=OneWay}"
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox
+                                            Content="Auto size columns"
+                                            IsChecked="{Binding Path=(Common:ItemsControlExtensions.AutoSizeColumns), Mode=TwoWay}"/>
+                                        <CheckBox 
+                                            Content="Can drag select" 
+                                            IsChecked="{Binding Path=(Common:ItemsControlExtensions.CanDragSelect), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Can user add rows" 
+                                            IsChecked="{Binding CanUserAddRows, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox
+                                            Content="Display row number"
+                                            IsChecked="{Binding Path=(Common:DataGridExtensions.DisplayRowNumber), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox
+                                            Content="Is column menu enabled"
+                                            IsChecked="{Binding Path=(Common:ItemsControlExtensions.IsColumnMenuEnabled), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Scroll added into view" 
+                                            IsChecked="{Binding Path=(Common:DataGridExtensions.ScrollAddedIntoView), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Select none on empty space click" 
+                                            IsChecked="{Binding Path=(Common:ItemsControlExtensions.SelectNoneOnEmptySpaceClick), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="Display row number offset:"/>
+                                        <Common:Int32UpDown
+                                            Value="{Binding Path=(Common:DataGridExtensions.DisplayRowNumberOffset), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="Drag scroll offset:"/>
+                                        <Common:DoubleUpDown
+                                            Value="{Binding Path=(Common:ItemsControlExtensions.DragScrollOffset), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="Drag scroll tolerance:"/>
+                                        <Common:DoubleUpDown
+                                            Value="{Binding Path=(Common:ItemsControlExtensions.DragScrollTolerance), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:DateTimeUpDown">
+                            <local:Control.Instance>
+                                <Common:DateTimeUpDown
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox 
+                                            Content="Show dropdown"
+                                            IsChecked="{Binding Instance.IsDropDownOpen, Mode=TwoWay}"/>
+                                        <CheckBox 
+                                            Content="Dropdown stays open"
+                                            IsChecked="{Binding Instance.StaysOpen, Mode=TwoWay}"/>
+                                        <CheckBox 
+                                            Content="Dropdown stays open on selection"
+                                            IsChecked="{Binding Instance.StaysOpenOnSelection, Mode=TwoWay}"/>
+
+                                        <Label 
+                                            Content="Selected part:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type Common.Continuance:DateTimePart}}"
+                                            SelectedValue="{Binding Instance.SelectedPart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:DateTimeUpDown 
+                                            Value="{Binding Instance.Minimum}"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:DateTimeUpDown 
+                                            Value="{Binding Instance.Maximum}"/>
+
+                                        <Label 
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}" Minimum="1" Maximum="2500"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Dropdown animation:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type PopupAnimation}}"
+                                            SelectedValue="{Binding Instance.DropDownAnimation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Dropdown placement:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type PlacementMode}}"
+                                            SelectedValue="{Binding Instance.DropDownPlacement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Dropdown stretch:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type Stretch}}"
+                                            SelectedValue="{Binding Instance.DropDownStretch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:DecimalUpDown">
+                            <local:Control.Instance>
+                                <Common:DecimalUpDown 
+                                    Increment="10.25"
+                                    StringFormat="N3" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Increment:"/>
+                                        <Common:DecimalUpDown
+                                            Minimum="-1000000.0" 
+                                            Maximum="1000000.0"
+                                            Value="{Binding Instance.Increment}"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:DecimalUpDown
+                                            Minimum="-1000000.0" 
+                                            Maximum="1000000.0"
+                                            Value="{Binding Instance.Minimum}"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:DecimalUpDown 
+                                            Minimum="-1000000.0" 
+                                            Maximum="1000000.0"
+                                            Value="{Binding Instance.Maximum}"/>
+
+                                        <Label 
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Minimum="1"
+                                            Maximum="2500"
+                                            Value="{Binding Instance.MajorChange}"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:DirectionPad">
+                            <local:Control.Instance>
+                                <Common:DirectionPad 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Direction:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Common.Portable:CardinalDirection}}"
+                                            SelectedValue="{Binding Instance.Direction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="E label:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.ELabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="N label:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.NLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="NE label:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.NELabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="NW label:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.NWLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="S label:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.SLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="SE label:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.SELabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="SW label:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.SWLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="W label:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.WLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:DoubleUpDown">
+                            <local:Control.Instance>
+                                <Common:DoubleUpDown 
+                                    Increment="10.3" 
+                                    Minimum="-1000.0" 
+                                    Maximum="1000.0"
+                                    StringFormat="N3" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Increment:"/>
+                                        <Common:DoubleUpDown 
+                                            Value="{Binding Instance.Increment}" 
+                                            Minimum="-1000000" 
+                                            Maximum="1000000"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:DoubleUpDown 
+                                            Value="{Binding Instance.Minimum}" 
+                                            Minimum="-1000000" 
+                                            Maximum="1000000"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:DoubleUpDown 
+                                            Value="{Binding Instance.Maximum}"
+                                            Minimum="-1000000" 
+                                            Maximum="1000000"/>
+
+                                        <Label 
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}" 
+                                            Minimum="1" 
+                                            Maximum="2500"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:EditableLabel">
+                            <local:Control.Instance>
+                                <Common:EditableLabel 
+                                    Text="Edit this label" 
+                                    HorizontalAlignment="Left" 
+                                    ShowButton="True"
+                                    MouseEvent="MouseDown"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Horizontal alignment:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type HorizontalAlignment}}"
+                                            SelectedValue="{Binding Instance.HorizontalAlignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Button horizontal alignment:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type HorizontalAlignment}}"
+                                            SelectedValue="{Binding Instance.ButtonHorizontalAlignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Mouse event:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Common:MouseEvent}}"
+                                            SelectedValue="{Binding Instance.MouseEvent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <CheckBox
+                                            Content="Show button"
+                                            IsChecked="{Binding Instance.ShowButton, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Name="Extensions (ListView)"
+                            Type="ListView">
+                            <local:Control.Instance>
+                                <ListView
+                                    Common:ItemsControlExtensions.CanDragSelect="True"
+                                    ItemsSource="{Binding Data.StorageCollectionView, Source={StaticResource BindingProxy}}"
+                                    Margin="0,10,0,0"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                    SelectionMode="Multiple">
+                                    <ListView.GroupStyle>
+                                        <GroupStyle HidesIfEmpty="True">
+                                            <GroupStyle.Panel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel/>
+                                                </ItemsPanelTemplate>
+                                            </GroupStyle.Panel>
+                                            <GroupStyle.ContainerStyle>
+                                                <Style TargetType="{x:Type GroupItem}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                                <Expander IsExpanded="True" HorizontalAlignment="Stretch">
+                                                                    <Expander.Header>
+                                                                        <TextBlock FontSize="15">
+                                                                                <Run Text="{Binding Name, Mode=OneWay}" Foreground="#007acc"/>
+                                                                                <Run Text="{Binding ItemCount, Mode=OneWay, StringFormat= ({0})}"/>
+                                                                        </TextBlock>
+                                                                    </Expander.Header>
+                                                                    <ItemsPresenter/>
+                                                                </Expander>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </GroupStyle.ContainerStyle>
+                                        </GroupStyle>
+                                    </ListView.GroupStyle>
+                                    <ListView.Style>
+                                        <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListView}}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ListView, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="List">
+                                                    <Setter Property="View" Value="{DynamicResource View.List}"/>
+                                                    <Setter Property="ItemTemplate" Value="{Binding View.ItemTemplate, RelativeSource={RelativeSource Self}}"/>
+                                                    <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.List}"/>
+                                                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ListView, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="Details">
+                                                    <Setter Property="View" Value="{DynamicResource View.Details}"/>
+                                                    <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.Details}"/>
+                                                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ListView.Style>
+                                </ListView>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        DataContext="{Binding Instance, Mode=OneWay}" 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Common:RadioGroup
+                                            HorizontalAlignment="Center">
+                                            <RadioButton 
+                                                Content="Details"
+                                                IsChecked="True" 
+                                                Checked="OnViewChanged" 
+                                                GroupName="View"/>
+                                            <RadioButton 
+                                                Content="List"
+                                                Checked="OnViewChanged" 
+                                                GroupName="View"/>
+                                        </Common:RadioGroup>
+
+                                        <CheckBox 
+                                            Content="Can drag select" 
+                                            IsChecked="{Binding Path=(Common:ItemsControlExtensions.CanDragSelect), Mode=TwoWay}"/>
+                                        <CheckBox 
+                                            Content="Is directional selection enabled" 
+                                            IsChecked="{Binding Path=(Common:ListBoxExtensions.IsDirectionalSelectionEnabled), Mode=TwoWay}"/>
+                                        <CheckBox 
+                                            Content="Select none on empty space click" 
+                                            IsChecked="{Binding Path=(Common:ItemsControlExtensions.SelectNoneOnEmptySpaceClick), Mode=TwoWay}"/>
+
+                                        <Label
+                                            Content="Drag scroll offset:"/>
+                                        <Common:DoubleUpDown
+                                            Value="{Binding Path=(Common:ItemsControlExtensions.DragScrollOffset), Mode=TwoWay}"/>
+
+                                        <Label
+                                            Content="Drag scroll tolerance:"/>
+                                        <Common:DoubleUpDown
+                                            Value="{Binding Path=(Common:ItemsControlExtensions.DragScrollTolerance), Mode=TwoWay}"/>
+
+                                        <Label
+                                            Content="Selection mode:"/>
+                                        <ComboBox  
+                                            ItemsSource="{Common:Enumerate {x:Type SelectionMode}}"
+                                            SelectedValue="{Binding SelectionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Name="Extensions (MenuItem)"
+                            Type="Menu">
+                            <local:Control.Instance>
+                                <Menu>
+                                    <MenuItem Header="Options">
+                                        <MenuItem
+                                            Header="Option 1"
+                                            Common:MenuItemExtensions.GroupName="Options"
+                                            Common:MenuItemExtensions.SelectionMode="Single"
+                                            IsCheckable="True"
+                                            IsChecked="True"
+                                            StaysOpenOnClick="True"/>
+                                        <MenuItem
+                                            Header="Option 2"
+                                            Common:MenuItemExtensions.GroupName="Options"
+                                            Common:MenuItemExtensions.SelectionMode="Single"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True"/>
+                                        <MenuItem
+                                            Header="Option 3"
+                                            Common:MenuItemExtensions.GroupName="Options"
+                                            Common:MenuItemExtensions.SelectionMode="Single"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True"/>
+                                        <MenuItem
+                                            Header="Option 4"
+                                            Common:MenuItemExtensions.GroupName="Options"
+                                            Common:MenuItemExtensions.SelectionMode="Single"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True"/>
+                                        <MenuItem
+                                            Header="Option 5"
+                                            Common:MenuItemExtensions.GroupName="Options"
+                                            Common:MenuItemExtensions.SelectionMode="Single"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True"/>
+                                    </MenuItem>
+                                </Menu>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label
+                                            Content="Selection mode:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type Common:MenuItemSelectionMode}}"
+                                            SelectedValue="{Binding Path=(Common:MenuItemExtensions.SelectionMode), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Name="Extensions (Panel)"
+                            Type="StackPanel">
+                            <local:Control.Instance>
+                                <StackPanel 
+                                    Orientation="Horizontal"
+                                    Common:PanelExtensions.Spacing="0,0,10,0" 
+                                    Common:PanelExtensions.TrimLast="True" 
+                                    Common:PanelExtensions.VerticalContentAlignment="Center">
+                                    <Button 
+                                        Content="Second"
+                                        Height="32"/>
+                                    <Button 
+                                        Content="Third"
+                                        Height="48"/>
+                                    <Button 
+                                        Content="Fourth"
+                                        Height="64"/>
+                                    <Button 
+                                        Content="Fourth"
+                                        Height="80"/>
+                                </StackPanel>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        DataContext="{Binding Instance, Mode=OneWay}"
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox 
+                                            Content="Trim first"
+                                            IsChecked="{Binding Path=(Common:PanelExtensions.TrimFirst), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Trim last"
+                                            IsChecked="{Binding Path=(Common:PanelExtensions.TrimLast), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Horizontal content alignment:"/>
+                                        <ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type HorizontalAlignment}}"
+                                            SelectedValue="{Binding Path=(Common:PanelExtensions.HorizontalContentAlignment), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Spacing:"/>
+                                        <Common:ThicknessBox
+                                            Minimum="0"
+                                            Maximum="64"
+                                            Thickness="{Binding Path=(Common:PanelExtensions.Spacing), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Vertical content alignment:"/>
+                                        <ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type VerticalAlignment}}"
+                                            SelectedValue="{Binding Path=(Common:PanelExtensions.VerticalContentAlignment), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:FileBox">
+                            <local:Control.Instance>
+                                <Common:FileBox
+                                    BrowseMode="OpenFile"
+                                    BrowseTitle="Open File"
+                                    CanBrowse="True"
+                                    CanValidate="True"
+                                    ShowBrowseButton="True"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox 
+                                            Content="Can browse"
+                                            IsChecked="{Binding Instance.CanBrowse}"/>
+                                        <CheckBox 
+                                            Content="Can validate"
+                                            IsChecked="{Binding Instance.CanValidate}"/>
+                                        <CheckBox 
+                                            Content="Is valid"
+                                            IsChecked="{Binding Instance.IsValid}"
+                                            IsEnabled="False"/>
+                                        <CheckBox 
+                                            Content="Show browse button"
+                                            IsChecked="{Binding Instance.ShowBrowseButton}"/>
+
+                                        <Label 
+                                            Content="Browse button tool tip:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.BrowseButtonToolTip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Browse mode:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.BrowseMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type Common:WindowsDialogMode}}"/>
+
+                                        <Label 
+                                            Content="Browse title:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.BrowseTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:FlagCheckView">
+                            <local:Control.Instance>
+                                <Common:FlagCheckView
+                                    Flags="{Binding Data.Fruits, Mode=TwoWay, Source={StaticResource BindingProxy},UpdateSourceTrigger=PropertyChanged}">
+                                    <Common:FlagCheckView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </Common:FlagCheckView.ItemsPanel>
+                                    <Common:FlagCheckView.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox 
+                                                Content="{Binding Value, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Margin="0,0,0,10"/>
+                                        </DataTemplate>
+                                    </Common:FlagCheckView.ItemTemplate>
+                                </Common:FlagCheckView>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock 
+                                            Text="{Binding Instance.Flags, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:FontFamilyBox">
+                            <local:Control.Instance>
+                                <Common:FontFamilyBox
+                                    ShowPreview="True"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox 
+                                            Content="Show preview"
+                                            IsChecked="{Binding Instance.ShowPreview, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:FontSizeBox">
+                            <local:Control.Instance>
+                                <Common:FontSizeBox 
+                                    IsEditable="True"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label Content="Wheel tick:"/>
+                                        <Common:DoubleUpDown 
+                                            Value="{Binding Instance.WheelTick}"/>
+
+                                        <Label Content="Wheel tick (min):"/>
+                                        <Common:DoubleUpDown 
+                                            Value="{Binding Instance.WheelTickMin}"/>
+
+                                        <Label Content="Wheel tick (max):"/>
+                                        <Common:DoubleUpDown 
+                                            Value="{Binding Instance.WheelTickMax}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:HexBox">
+                            <local:Control.Instance>
+                                <Common:HexBox
+                                    Placeholder="Only hexadecimal characters"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:Int16UpDown">
+                            <local:Control.Instance>
+                                <Common:Int16UpDown
+                                    Increment="1" 
+                                    Minimum="-100" 
+                                    Maximum="100"
+                                    StringFormat="N0"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}"
+                                            IsReadOnly="True"/>
+
+                                        <Label
+                                            Content="Increment:"/>
+                                        <Common:Int16UpDown 
+                                            Value="{Binding Instance.Increment}" 
+                                            Minimum="-255" 
+                                            Maximum="255"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:Int16UpDown 
+                                            Value="{Binding Instance.Minimum}" 
+                                            Minimum="-255" 
+                                            Maximum="255"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:Int16UpDown 
+                                            Value="{Binding Instance.Maximum}" 
+                                            Minimum="-255" 
+                                            Maximum="255"/>
+
+                                        <Label
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}" 
+                                            Minimum="1" 
+                                            Maximum="2500"/>
+
+                                        <Label
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:Int32UpDown">
+                            <local:Control.Instance>
+                                <Common:Int32UpDown
+                                    Increment="10" 
+                                    Minimum="-100" 
+                                    Maximum="100"
+                                    StringFormat="N0" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Increment:"/>
+                                        <Common:Int32UpDown
+                                            Value="{Binding Instance.Increment}" 
+                                            Minimum="-10000" 
+                                            Maximum="10000"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.Minimum}"
+                                            Minimum="-10000" 
+                                            Maximum="10000"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.Maximum}"
+                                            Minimum="-10000" 
+                                            Maximum="10000"/>
+
+                                        <Label
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}"
+                                            Minimum="1" 
+                                            Maximum="2500"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:Int64UpDown">
+                            <local:Control.Instance>
+                                <Common:Int64UpDown
+                                    Increment="100"
+                                    Minimum="-1000000" 
+                                    Maximum="1000000"
+                                    StringFormat="N0" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label
+                                            Content="Increment:"/>
+                                        <Common:Int64UpDown 
+                                            Value="{Binding Instance.Increment}" 
+                                            Minimum="-1000000" 
+                                            Maximum="1000000"/>
+
+                                        <Label
+                                            Content="Minimum:"/>
+                                        <Common:Int64UpDown 
+                                            Value="{Binding Instance.Minimum}"
+                                            Minimum="-1000000" 
+                                            Maximum="1000000"/>
+
+                                        <Label
+                                            Content="Maximum:"/>
+                                        <Common:Int64UpDown 
+                                            Value="{Binding Instance.Maximum}"
+                                            Minimum="-1000000" 
+                                            Maximum="1000000"/>
+
+                                        <Label 
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}"
+                                            Minimum="1"
+                                            Maximum="2500"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:Line">
+                            <local:Control.Instance>
+                                <Common:Line
+                                    Stroke="Black" 
+                                    StrokeThickness="1"
+                                    Orientation="Vertical"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Stroke:"/>
+                                        <Colour:ColorChip
+                                            Color="{Binding Instance.Stroke, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Stroke thickness:"/>
+                                        <Common:Int32UpDown
+                                            Maximum="256"
+                                            Minimum="1"
+                                            Value="{Binding Instance.StrokeThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Orientation:"/>
+                                        <ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Orientation}}"
+                                            SelectedValue="{Binding Instance.Orientation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:Link">
+                            <local:Control.Instance>
+                                <Common:Link  
+                                    Click="OnLinkPressed"
+                                    Content="Click to open Google" 
+                                    Foreground="Blue"
+                                    Uri="http://www.google.com" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Uri:"/>
+                                        <Common:UriBox
+                                            Text="{Binding Instance.Uri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:MaskedButton">
+                            <local:Control.Instance>
+                                <Common:MaskedButton 
+                                    Click="OnMaskedButtonClick"
+                                    Content="Options"
+                                    DropDownButtonToolTip="Dropdown tip"
+                                    DropDownButtonVisibility="Visible"
+                                    HorizontalAlignment="Left"
+                                    Source="/Images/Gear.png" 
+                                    ToolTip="Button tip"
+                                    VerticalAlignment="Top">
+                                    <Common:MaskedButton.DropDown>
+                                        <ContextMenu>
+                                            <MenuItem Header="Option 1"/>
+                                            <MenuItem Header="Option 2"/>
+                                            <MenuItem Header="Option 3"/>
+                                            <MenuItem Header="Option 4"/>
+                                            <MenuItem Header="Option 5"/>
+                                            <MenuItem Header="Option 6"/>
+                                            <MenuItem Header="Option 7"/>
+                                            <MenuItem Header="Option 8"/>
+                                        </ContextMenu>
+                                    </Common:MaskedButton.DropDown>
+                                </Common:MaskedButton>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:MaskedDropDownButton">
+                            <local:Control.Instance>
+                                <Common:MaskedDropDownButton 
+                                    CheckedContent="Checked"
+                                    CheckedSource="/Images/Target.png" 
+                                    CheckedToolTip="Checked"
+                                    Content="Unchecked"
+                                    HorizontalAlignment="Left"
+                                    Source="/Images/Gear.png" 
+                                    ToolTip="Unchecked"
+                                    VerticalAlignment="Top">
+                                    <Common:MaskedDropDownButton.DropDown>
+                                        <ContextMenu>
+                                            <MenuItem Header="Option 1"/>
+                                            <MenuItem Header="Option 2"/>
+                                            <MenuItem Header="Option 3"/>
+                                            <MenuItem Header="Option 4"/>
+                                            <MenuItem Header="Option 5"/>
+                                        </ContextMenu>
+                                    </Common:MaskedDropDownButton.DropDown>
+                                </Common:MaskedDropDownButton>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:MaskedImage">
+                            <local:Control.Instance>
+                                <Common:MaskedImage 
+                                    Source="/Images/Gear.png" 
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate/>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:MaskedToggleButton">
+                            <local:Control.Instance>
+                                <Common:MaskedToggleButton 
+                                    CheckedContent="Checked"
+                                    CheckedSource="/Images/Target.png" 
+                                    CheckedToolTip="Checked"
+                                    Content="Unchecked"
+                                    DropDownButtonVisibility="Visible"
+                                    HorizontalAlignment="Left"
+                                    Source="/Images/Gear.png" 
+                                    ToolTip="Unchecked"
+                                    VerticalAlignment="Top">
+                                    <Common:MaskedToggleButton.DropDown>
+                                        <ContextMenu/>
+                                    </Common:MaskedToggleButton.DropDown>
+                                </Common:MaskedToggleButton>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate/>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:PropertyGrid">
+                            <local:Control.Instance>
+                                <Common:PropertyGrid 
+                                    HeaderVisibility="Visible"
+                                    HeadersVisibility="Column">
+                                    <Common:PropertyGrid.Source>
+                                        <local:ComplexObject Name="Untitled"/>
+                                    </Common:PropertyGrid.Source>
+                                </Common:PropertyGrid>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox 
+                                            Content="Accepts null objects"
+                                            IsChecked="{Binding Instance.AcceptsNullObjects}"/>
+                                        <CheckBox 
+                                            Content="Can resize description"
+                                            IsChecked="{Binding Instance.CanResizeDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Show type"
+                                            IsChecked="{Binding Instance.ShowType}"/>
+
+                                        <Label 
+                                            Content="Date/time format:"/>
+                                        <ComboBox/>
+
+                                        <Label 
+                                            Content="Description visibility:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.DescriptionVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type Visibility}}"/>
+
+                                        <Label 
+                                            Content="File size format:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.FileSizeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type Common.Data:FileSizeFormat}}"/>
+
+                                        <Label 
+                                            Content="Grid lines visibility:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.GridLinesVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type DataGridGridLinesVisibility}}"/>
+
+                                        <Label 
+                                            Content="Headers visibility:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.HeadersVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type DataGridHeadersVisibility}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:RadioGroup">
+                            <local:Control.Instance>
+                                <Common:RadioGroup
+                                    GroupName="Numbers"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top">
+                                    <RadioButton Content="First" IsChecked="True"/>
+                                    <RadioButton Content="Second"/>
+                                    <RadioButton Content="Third"/>
+                                    <RadioButton Content="Fourth"/>
+                                    <RadioButton Content="Fifth"/>
+                                </Common:RadioGroup>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate/>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:RegexBox">
+                            <local:Control.Instance>
+                                <Common:RegexBox
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Pattern:"/>
+                                        <Common:TextBox
+                                            Text="{Binding Instance.Pattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:ResourceDictionaryEditor">
+                            <local:Control.Instance>
+                                <Common:ResourceDictionaryEditor 
+                                    HeaderVisibility="Visible">
+                                    <Common:ResourceDictionaryEditor.Source>
+                                        <ResourceDictionary>
+                                            <SolidColorBrush
+                                                x:Key="ARedBrush"
+                                                Color="Red"/>
+                                            <SolidColorBrush 
+                                                x:Key="AGreenBrush"
+                                                Color="Green"/>
+                                            <SolidColorBrush 
+                                                x:Key="ABlueBrush"
+                                                Color="Blue"/>
+                                        </ResourceDictionary>
+                                    </Common:ResourceDictionaryEditor.Source>
+                                </Common:ResourceDictionaryEditor>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox 
+                                            Content="Accepts null objects"
+                                            IsChecked="{Binding Instance.AcceptsNullObjects}"/>
+                                        <CheckBox 
+                                            Content="Can resize description"
+                                            IsChecked="{Binding Instance.CanResizeDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Show type"
+                                            IsChecked="{Binding Instance.ShowType}"/>
+
+                                        <Label 
+                                            Content="Date/time format:"/>
+                                        <ComboBox/>
+
+                                        <Label 
+                                            Content="Description visibility:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.DescriptionVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type Visibility}}"/>
+
+                                        <Label 
+                                            Content="Grid lines visibility:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.GridLinesVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type DataGridGridLinesVisibility}}"/>
+
+                                        <Label 
+                                            Content="Headers visibility:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.HeadersVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type DataGridHeadersVisibility}}"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:SelectionCanvas">
+                            <local:Control.Instance>
+                                <Common:SelectionCanvas
+                                    ClipToBounds="True"
+                                    Selected="OnSelectionCanvasSelected"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,15"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <TextBlock
+                                            Text="X:"/>
+                                        <TextBlock
+                                            Text="{Binding Instance.Selection.X, Mode=OneWay}"/>
+
+                                        <TextBlock
+                                            Text="Y:"/>
+                                        <TextBlock
+                                            Text="{Binding Instance.Selection.Y, Mode=OneWay}"/>
+
+                                        <TextBlock
+                                            Text="Width:"/>
+                                        <TextBlock
+                                            Text="{Binding Instance.Selection.Width, Mode=OneWay}"/>
+
+                                        <TextBlock
+                                            Text="Height:"/>
+                                        <TextBlock
+                                            Text="{Binding Instance.Selection.Height, Mode=OneWay}"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:SplitView">
+                            <local:Control.Instance>
+                                <Common:SplitView
+                                    Orientation="Vertical">
+                                    <Common:SplitView.Content1>
+                                        <Grid Background="Red"/>
+                                    </Common:SplitView.Content1>
+                                    <Common:SplitView.Content2>
+                                        <Grid Background="Green"/>
+                                    </Common:SplitView.Content2>
+                                </Common:SplitView>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,15"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label
+                                            Content="Orientation:"/>
+                                        <Common:ComboBox
+                                            ItemsSource="{Common:Enumerate {x:Type Orientation}}"
+                                            SelectedValue="{Binding Instance.Orientation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:StoragePicker">
+                            <local:Control.Instance>
+                                <Common:StoragePicker>
+                                    <Common:StoragePicker.ItemContainerStyle>
+                                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </Style>
+                                    </Common:StoragePicker.ItemContainerStyle>
+                                    <Common:StoragePicker.ItemTemplate>
+                                        <HierarchicalDataTemplate ItemsSource="{Binding Children, Mode=OneWay}">
+                                            <CheckBox
+                                                Content="{Binding Path, Converter={StaticResource FileNameConverter}, Mode=OneWay}"
+                                                IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Margin="0,0,5,0"/>
+                                        </HierarchicalDataTemplate>
+                                    </Common:StoragePicker.ItemTemplate>
+                                </Common:StoragePicker>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Checked:"/>
+                                        <ListBox
+                                            Height="180"
+                                            ItemsSource="{Binding Instance.CheckedPaths, Mode=OneWay}">
+                                            <ListBox.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel/>
+                                                </ItemsPanelTemplate>
+                                            </ListBox.ItemsPanel>
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock 
+                                                        Text="{Binding Mode=OneWay}"/>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+
+                                        <Label 
+                                            Content="Root:"/>
+                                        <Common:TextBox
+                                            Text="{Binding Instance.Root, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Name="TabbedTree (Dynamic)"
+                            Type="Common:TabbedTree">
+                            <local:Control.Instance>
+                                <Common:TabbedTree 
+                                    ContentBorderBrush="#10000000" 
+                                    ContentBorderThickness="1" 
+                                    ContentPadding="10"
+                                    ContentWidth="70*" 
+                                    ItemsSource="{Binding Data.StorageCollection, Source={StaticResource BindingProxy}, UpdateSourceTrigger=PropertyChanged}" 
+                                    MenuBackground="#05000000"
+                                    MenuPadding="5"
+                                    MenuWidth="30*"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <Common:TabbedTree.ContentTemplate>
+                                        <DataTemplate>
+                                            <ScrollViewer>
+                                                <StackPanel Common:PanelExtensions.Spacing="0,0,0,10" Common:PanelExtensions.TrimLast="True">
+                                                    <Label 
+                                                    Content="Name:"
+                                                    FontWeight="Bold"/>
+                                                    <Label Content="{Binding Path, Converter={StaticResource FileNameConverter}}"/>
+
+                                                    <Label Content="Path:"
+                                                    FontWeight="Bold"/>
+                                                    <Label Content="{Binding Path}"/>
+
+                                                    <Label Content="Size:"
+                                                    FontWeight="Bold"/>
+                                                    <Label Content="{Binding Size, Converter={StaticResource FileSizeConverter}}"/>
+
+                                                    <Label Content="Accessed:"
+                                                    FontWeight="Bold"/>
+                                                    <Label Content="{Binding Accessed, Converter={StaticResource RelativeTimeConverter}}"/>
+
+                                                    <Label Content="Created:"
+                                                    FontWeight="Bold"/>
+                                                    <Label Content="{Binding Created, Converter={StaticResource RelativeTimeConverter}}"/>
+
+                                                    <Label Content="Modified:"
+                                                    FontWeight="Bold"/>
+                                                    <Label Content="{Binding Modified, Converter={StaticResource RelativeTimeConverter}}"/>
+                                                </StackPanel>
+                                            </ScrollViewer>
+                                        </DataTemplate>
+                                    </Common:TabbedTree.ContentTemplate>
+                                    <Common:TabbedTree.ItemContainerStyle>
+                                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </Style>
+                                    </Common:TabbedTree.ItemContainerStyle>
+                                    <Common:TabbedTree.ItemTemplate>
+                                        <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </HierarchicalDataTemplate>
+                                    </Common:TabbedTree.ItemTemplate>
+                                </Common:TabbedTree>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label
+                                            Content="Column resize mode:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type Common:ColumnResizeMode}}"
+                                            SelectedValue="{Binding Instance.ColumnResizeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="Content header visibility:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type Visibility}}"
+                                            SelectedValue="{Binding Instance.ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Name="TabbedTree (Static)"
+                            Type="Common:TabbedTree">
+                            <local:Control.Instance>
+                                <Common:TabbedTree 
+                                    ContentWidth="70*" 
+                                    ContentBorderThickness="1" 
+                                    ContentBorderBrush="#10000000" 
+                                    ContentHeaderVisibility="Visible"
+                                    ContentPadding="10,7"
+                                    MenuBackground="#05000000"
+                                    MenuPadding="5"
+                                    MenuWidth="30*"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <Common:TabbedTree.ItemContainerStyle>
+                                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                            <Setter Property="IsExpanded" Value="True"/>
+                                        </Style>
+                                    </Common:TabbedTree.ItemContainerStyle>
+                                    <TreeViewItem Header="Option 1">
+                                        <Common:ControlExtensions.Content>
+                                            <Grid>
+                                                <TextBlock 
+                                                FontSize="32"
+                                                Text="Content 1"/>
+                                            </Grid>
+                                        </Common:ControlExtensions.Content>
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="Option 2">
+                                        <Common:ControlExtensions.Content>
+                                            <Grid>
+                                                <TextBlock 
+                                                FontSize="32"
+                                                Text="Content 2"/>
+                                            </Grid>
+                                        </Common:ControlExtensions.Content>
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="Option 3">
+                                        <Common:ControlExtensions.Content>
+                                            <Grid>
+                                                <TextBlock 
+                                                FontSize="32"
+                                                Text="Content 3"/>
+                                            </Grid>
+                                        </Common:ControlExtensions.Content>
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="Option 4">
+                                        <Common:ControlExtensions.Content>
+                                            <Grid>
+                                                <TextBlock 
+                                                FontSize="32"
+                                                Text="Content 4"/>
+                                            </Grid>
+                                        </Common:ControlExtensions.Content>
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="Option 5">
+                                        <Common:ControlExtensions.Content>
+                                            <Grid>
+                                                <TextBlock 
+                                                FontSize="32"
+                                                Text="Content 5"/>
+                                            </Grid>
+                                        </Common:ControlExtensions.Content>
+                                    </TreeViewItem>
+                                </Common:TabbedTree>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label
+                                            Content="Column resize mode:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type Common:ColumnResizeMode}}"
+                                            SelectedValue="{Binding Instance.ColumnResizeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label
+                                            Content="Content header visibility:"/>
+                                        <ComboBox 
+                                            ItemsSource="{Common:Enumerate {x:Type Visibility}}"
+                                            SelectedValue="{Binding Instance.ContentHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:TextBox">
+                            <local:Control.Instance>
+                                <Common:TextBox
+                                    Entered="OnTextBoxEntered"
+                                    Placeholder="Enter text here"
+                                    Text="This is text"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox 
+                                            Content="Enable character masking" 
+                                            IsChecked="{Binding Instance.IsCharacterMaskingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox
+                                            Content="Enable clearing" 
+                                            IsChecked="{Binding Instance.IsClearEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Select all on focus" 
+                                            IsChecked="{Binding Instance.SelectAllOnFocus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Select all on triple click" 
+                                            IsChecked="{Binding Instance.SelectAllOnTripleClick, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox
+                                        Content="Show enter button" 
+                                        IsChecked="{Binding Instance.ShowEnterButton, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            Content="Show toggle button" 
+                                            IsChecked="{Binding Instance.ShowToggleButton, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label 
+                                            Content="Placeholder:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:ThicknessBox">
+                            <local:Control.Instance>
+                                <Common:ThicknessBox
+                                    Minimum="0"
+                                    Maximum="999"
+                                    Thickness="0,0,0,0"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel/>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:TimeSpanUpDown">
+                            <local:Control.Instance>
+                                <Common:TimeSpanUpDown
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Increment:"/>
+                                        <Common:TimeSpanUpDown
+                                            Value="{Binding Instance.Increment}"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:TimeSpanUpDown 
+                                            Value="{Binding Instance.Minimum}"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:TimeSpanUpDown 
+                                            Value="{Binding Instance.Maximum}"/>
+
+                                        <Label
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}"
+                                            Minimum="1" 
+                                            Maximum="2500"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:ToggleSwitch">
+                            <local:Control.Instance>
+                                <Common:ToggleSwitch
+                                    Content="Toggle state"
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:TokenView">
+                            <local:Control.Instance>
+                                <Common:TokenView 
+                                    VerticalAlignment="Top">
+                                    Bob;Joseph;Sally;Matilda;Ralph;Brittany;Luna;Ann;
+                                    <Common:TokenView.TokenStyle>
+                                        <Style TargetType="{x:Type Common:TokenButton}" BasedOn="{StaticResource {x:Type Common:TokenButton}}">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Common:MaskedImage
+                                                            Source="/Images/Tag.png"/>
+                                                            <TextBlock 
+                                                                Margin="10,0,0,0"
+                                                                Text="{Binding Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Common:TokenView.TokenStyle>
+                                </Common:TokenView>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Common:PanelExtensions.Spacing="0,0,0,10"
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <CheckBox 
+                                            DataContext="{Binding Instance, Mode=OneWay}"
+                                            Content="EnableContextMenu"
+                                            IsChecked="{Binding Path=(Common:FrameworkElementExtensions.EnableContextMenu), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            DataContext="{Binding Instance, Mode=OneWay}"
+                                            Content="EnableCopyCommand"
+                                            IsChecked="{Binding Path=(Common:TextBoxBaseExtensions.EnableCopyCommand), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            DataContext="{Binding Instance, Mode=OneWay}"
+                                            Content="EnableCutCommand"
+                                            IsChecked="{Binding Path=(Common:TextBoxBaseExtensions.EnableCutCommand), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <CheckBox 
+                                            DataContext="{Binding Instance, Mode=OneWay}"
+                                            Content="EnablePasteCommand"
+                                            IsChecked="{Binding Path=(Common:TextBoxBaseExtensions.EnablePasteCommand), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label Content="TokensSource:"/>
+                                        <Common:TextBox
+                                            Text="{Binding Instance.TokensSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label Content="TokenDelimiter:"/>
+                                        <Common:TextBox
+                                            MaxLength="1"
+                                            Text="{Binding Instance.TokenDelimiter, Converter={StaticResource CharacterToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label Content="TokenMouseDownAction:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Instance.TokenMouseDownAction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type Common:TokenMouseAction}}"
+                                            ToolTip="TokenMouseDownAction"/>
+
+                                        <Label Content="TokenTriggers:"/>
+                                        <Common:FlagCheckView
+                                            Flags="{Binding Instance.TokenTriggers}">
+                                            <Common:FlagCheckView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel/>
+                                                </ItemsPanelTemplate>
+                                            </Common:FlagCheckView.ItemsPanel>
+                                            <Common:FlagCheckView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox 
+                                                        Content="{Binding Value, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DataTemplate>
+                                            </Common:FlagCheckView.ItemTemplate>
+                                        </Common:FlagCheckView>
+
+                                        <Label 
+                                            Content="Tokens:"/>
+                                        <ListBox
+                                            ItemsSource="{Binding Instance.Tokens, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                            MaxHeight="225"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:TreeView">
+                            <local:Control.Instance>
+                                <Common:TreeView 
+                                    ColumnHeaderVisibility="Visible"
+                                    Common:ItemsControlExtensions.IsColumnMenuEnabled="True"
+                                    Common:TreeViewExtensions.SelectionMode="Extended"
+                                    ItemsSource="{Binding Data.StorageCollection, Source={StaticResource BindingProxy}}">
+                                    <Common:TreeView.ColumnHeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Header}"/>
+                                        </DataTemplate>
+                                    </Common:TreeView.ColumnHeaderTemplate>
+                                    <Common:TreeView.Columns>
+                                        <Common:TreeViewTextColumn 
+                                            Header="Name" 
+                                            MemberPath="Name"
+                                            MinWidth="200"
+                                            MaxWidth="325"/>
+                                        <Common:TreeViewTextColumn 
+                                            Header="Type"
+                                            MemberPath="Type"/>
+                                        <Common:TreeViewTextColumn 
+                                            Converter="{StaticResource FileSizeConverter}"
+                                            Header="Size"
+                                            MemberPath="Size"/>
+                                        <Common:TreeViewTextColumn 
+                                            Converter="{StaticResource RelativeTimeConverter}"
+                                            Header="Accessed"
+                                            MemberPath="Accessed"/>
+                                        <Common:TreeViewTextColumn 
+                                            Converter="{StaticResource RelativeTimeConverter}"
+                                            Header="Created"
+                                            MemberPath="Created"/>
+                                        <Common:TreeViewTextColumn 
+                                            Converter="{StaticResource RelativeTimeConverter}"
+                                            Header="Modified"
+                                            MemberPath="Modified"/>
+                                    </Common:TreeView.Columns>
+                                    <Common:TreeView.ItemTemplate>
+                                        <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </HierarchicalDataTemplate>
+                                    </Common:TreeView.ItemTemplate>
+                                    <Common:TreeView.ItemContainerStyle>
+                                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </Style>
+                                    </Common:TreeView.ItemContainerStyle>
+                                </Common:TreeView>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        DataContext="{Binding Instance, Mode=OneWay}"
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Columns:"/>
+                                        <Label 
+                                            Content="{Binding Columns.Count, Mode=OneWay}"/>
+
+                                        <Label 
+                                            Content="Selected items:"/>
+                                        <Label
+                                            Content="{Binding SelectedItems.Count, Mode=OneWay}"/>
+
+                                        <CheckBox
+                                            Content="Auto size columns"
+                                            IsChecked="{Binding Path=(Common:ItemsControlExtensions.AutoSizeColumns), Mode=TwoWay}"/>
+
+                                        <CheckBox
+                                            Content="Is column menu enabled"
+                                            IsChecked="{Binding Path=(Common:ItemsControlExtensions.IsColumnMenuEnabled), Mode=TwoWay}"/>
+
+                                        <Label 
+                                            Content="Selection mode:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding Path=(Common:TreeViewExtensions.SelectionMode), Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type Common:TreeViewSelectionMode}}"/>
+
+                                        <Label 
+                                            Content="Column header visibility:"/>
+                                        <ComboBox 
+                                            SelectedValue="{Binding ColumnHeaderVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            ItemsSource="{Common:Enumerate {x:Type Visibility}}"/>
+
+
+                                        <Label 
+                                            Content="Selected index:"/>
+                                        <Common:TextBox
+                                            MinWidth="75"
+                                            Text="{Binding SelectedIndex, Converter={StaticResource Int32ArrayToStringConverter}, ConverterParameter=\,, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:TreeViewComboBox">
+                            <local:Control.Instance>
+                                <Common:TreeViewComboBox 
+                                    ItemsSource="{Binding Data.HierarchialCollection, Source={StaticResource BindingProxy}}"
+                                    VerticalAlignment="Top">
+                                    <Common:TreeViewComboBox.ItemTemplate>
+                                        <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </HierarchicalDataTemplate>
+                                    </Common:TreeViewComboBox.ItemTemplate>
+                                    <Common:TreeViewComboBox.ContentTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </Common:TreeViewComboBox.ContentTemplate>
+                                </Common:TreeViewComboBox>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Common:TreeView 
+                                            ItemsSource="{Binding Instance.ItemsSource, Mode=OneWay}"
+                                            Common:TreeViewExtensions.SelectionMode="Single"
+                                            SelectedObject="{Binding Instance.SelectedItem, Mode=TwoWay}">
+                                            <Common:TreeView.ColumnHeaderTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Header}"/>
+                                                </DataTemplate>
+                                            </Common:TreeView.ColumnHeaderTemplate>
+                                            <Common:TreeView.ItemTemplate>
+                                                <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                                    <TextBlock Text="{Binding Name}"/>
+                                                </HierarchicalDataTemplate>
+                                            </Common:TreeView.ItemTemplate>
+                                        </Common:TreeView>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:UInt16UpDown">
+                            <local:Control.Instance>
+                                <Common:UInt16UpDown
+                                    Increment="1" 
+                                    StringFormat="N0" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Increment:"/>
+                                        <Common:UInt16UpDown
+                                            Value="{Binding Instance.Increment}"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:UInt16UpDown 
+                                            Value="{Binding Instance.Minimum}"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:UInt16UpDown 
+                                            Value="{Binding Instance.Maximum}"/>
+
+                                        <Label
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}"
+                                            Minimum="1" 
+                                            Maximum="2500"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:UInt32UpDown">
+                            <local:Control.Instance>
+                                <Common:UInt32UpDown
+                                    Increment="10" 
+                                    StringFormat="N0" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Increment:"/>
+                                        <Common:UInt32UpDown
+                                            Value="{Binding Instance.Increment}"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:UInt32UpDown 
+                                            Value="{Binding Instance.Minimum}"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:UInt32UpDown 
+                                            Value="{Binding Instance.Maximum}"/>
+
+                                        <Label
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}"
+                                            Minimum="1" 
+                                            Maximum="2500"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                        <local:Control Type="Common:UInt64UpDown">
+                            <local:Control.Instance>
+                                <Common:UInt64UpDown
+                                    Increment="100" 
+                                    StringFormat="N0" 
+                                    VerticalAlignment="Top"/>
+                            </local:Control.Instance>
+                            <local:Control.Options>
+                                <DataTemplate>
+                                    <StackPanel 
+                                        Common:PanelExtensions.Spacing="0,0,0,10" 
+                                        Common:PanelExtensions.TrimLast="True">
+                                        <Label 
+                                            Content="Value:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.Value, Mode=OneWay}" 
+                                            IsReadOnly="True"/>
+
+                                        <Label 
+                                            Content="Increment:"/>
+                                        <Common:UInt64UpDown
+                                            Value="{Binding Instance.Increment}"/>
+
+                                        <Label 
+                                            Content="Minimum:"/>
+                                        <Common:UInt64UpDown 
+                                            Value="{Binding Instance.Minimum}"/>
+
+                                        <Label 
+                                            Content="Maximum:"/>
+                                        <Common:UInt64UpDown 
+                                            Value="{Binding Instance.Maximum}"/>
+
+                                        <Label
+                                            Content="Major change:"/>
+                                        <Common:Int32UpDown 
+                                            Value="{Binding Instance.MajorChange}"
+                                            Minimum="1" 
+                                            Maximum="2500"/>
+
+                                        <Label 
+                                            Content="String format:"/>
+                                        <Common:TextBox 
+                                            Text="{Binding Instance.StringFormat, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:Control.Options>
+                        </local:Control>
+                    </local:ControlView.Controls>
+                </local:ControlView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Common:BasicWindow>

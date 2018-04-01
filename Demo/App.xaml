@@ -1,0 +1,20 @@
+﻿<Application 
+    x:Class="Imagin.NET.Demo.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Common="http://imagin.tech/imagin/common"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <Common:ThemeDictionary Assembly="Imagin.Colour.WPF" Theme="Light"/>
+                <Common:StyleDictionary Assembly="Imagin.Colour.WPF"/>
+
+                <Common:ThemeDictionary Assembly="Imagin.Common.WPF" Theme="Light"/>
+                <Common:StyleDictionary Assembly="Imagin.Common.WPF"/>
+
+                <Common:StyleDictionary Assembly="Imagin.NET.Demo"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

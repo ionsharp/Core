@@ -1,0 +1,37 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Imagin.Common">
+    <Style x:Key="{x:Type local:RippleDecorator}" TargetType="{x:Type local:RippleDecorator}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:RippleDecorator}">
+                    <Grid>
+                        <Canvas 
+                            x:Name="PART_Canvas" 
+                            Width="{Binding ActualWidth, ElementName=PART_Content}" 
+                            Height="{Binding ActualHeight, ElementName=PART_Content}">
+                            <Ellipse 
+                                x:Name="PART_Ellipse"
+                                Fill="{TemplateBinding Background}"
+                                Stroke="{TemplateBinding BorderBrush}"
+                                StrokeThickness="{TemplateBinding BorderThickness}"
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" 
+                                Width="0" 
+                                Height="0"
+                                Opacity="0.5"/>
+                        </Canvas>
+                        <ContentPresenter 
+                            x:Name="PART_Content"
+                            Content="{TemplateBinding Content}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

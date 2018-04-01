@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Colour.WPF;component/Themes/Generic.ChipBase.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Colour.WPF;component/Themes/Generic.ColorComb.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Colour.WPF;component/Themes/Generic.ColorSelection.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Colour.WPF;component/Themes/Generic.ComponentGliderBase.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Colour.WPF;component/Themes/Generic.ComponentSliderBase.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Colour.WPF;component/Themes/Generic.DualColorChip.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Colour.WPF;component/Themes/Generic.GradientPicker.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Imagin.Colour.WPF;component/Themes/Generic.Hexagon.xaml"/>
+    </ResourceDictionary.MergedDictionaries> 
+</ResourceDictionary> 

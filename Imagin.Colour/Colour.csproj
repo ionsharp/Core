@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Imagin.Colour</AssemblyName>
+    <RootNamespace>Imagin.Colour</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\Imagin.Colour.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Conversion\Converters %28Old%29\**" />
+    <Compile Remove="Conversion\[Base]\**" />
+    <EmbeddedResource Remove="Conversion\Converters %28Old%29\**" />
+    <EmbeddedResource Remove="Conversion\[Base]\**" />
+    <None Remove="Conversion\Converters %28Old%29\**" />
+    <None Remove="Conversion\[Base]\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Conversion\HSB.RGB.cs" />
+    <Compile Remove="Conversion\HSL.RGB.cs" />
+    <Compile Remove="Conversion\LinearRGB.RGB.cs" />
+    <Compile Remove="Conversion\RGB.CMYK.cs" />
+    <Compile Remove="Conversion\YUV.RGB.cs" />
+    <Compile Remove="Conversion\_Converters\HCY.cs" />
+    <Compile Remove="IColor.Old.cs" />
+    <Compile Remove="IPixel.cs" />
+    <Compile Remove="Pixel.cs" />
+    <Compile Remove="Primitives\HCY.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Copyright.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Imagin.Common\Common.csproj" />
+  </ItemGroup>
+
+</Project>

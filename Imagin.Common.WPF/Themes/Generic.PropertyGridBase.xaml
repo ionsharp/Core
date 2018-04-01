@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:l="http://wpflocalizeextension.codeplex.com"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Imagin.Common"
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Common.Portable="clr-namespace:Imagin.Common;assembly=Imagin.Common"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:System.2="clr-namespace:System;assembly=System"
+    xmlns:System.Collections="clr-namespace:System.Collections;assembly=mscorlib"
+    xmlns:System.ComponentModel="clr-namespace:System.ComponentModel;assembly=System"
+    xmlns:System.Net="clr-namespace:System.Net;assembly=System"
+    xmlns:System.Windows="clr-namespace:System.Windows;assembly=WindowsBase"
+    xmlns:System.Windows.Media="clr-namespace:System.Windows.Media;assembly=PresentationCore">
+    <Style TargetType="local:PropertyGridBase">
+    </Style>
+</ResourceDictionary>

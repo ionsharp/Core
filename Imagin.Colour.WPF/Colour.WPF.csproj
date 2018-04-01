@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{227A2431-A5C0-43A3-A814-6610627ABFFD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Imagin.Colour.Controls</RootNamespace>
+    <AssemblyName>Imagin.Colour.WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Imagin.Colour.WPF.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFLocalizeExtension, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFLocalizeExtension.3.1.0\lib\net35\WPFLocalizeExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="XAMLMarkupExtensions, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAMLMarkupExtensions.1.3.0\lib\net40\XAMLMarkupExtensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lang\Main.es-ES.Designer.cs">
+      <DependentUpon>Main.es-ES.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\Main.it-IT.Designer.cs">
+      <DependentUpon>Main.it-IT.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\Main.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Main.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\_Components\VisualComponent.Generic.cs" />
+    <Compile Include="_Controls\ColorPicker\ColorSelection.cs" />
+    <Compile Include="_Controls\GradientPicker.cs" />
+    <Compile Include="_Controls\_Chips\DualColorChip.cs" />
+    <Compile Include="_Controls\_Dialogs\BrushDialog.cs" />
+    <Compile Include="_Controls\_Dialogs\BrushDialog.Generic.cs" />
+    <Compile Include="_Controls\_Dialogs\ColorDialog.xaml.cs">
+      <DependentUpon>ColorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Controls\_Dialogs\GradientDialog.xaml.cs">
+      <DependentUpon>GradientDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Controls\_Dialogs\SolidColorBrushDialog.cs" />
+    <Compile Include="_Controls\ColorPicker\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Controls\ColorPicker\ColorPlane.xaml.cs">
+      <DependentUpon>ColorPlane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Controls\ColorPicker\ColorSelector.xaml.cs">
+      <DependentUpon>ColorSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Controls\ColorPicker\ColorSelectionType.cs" />
+    <Compile Include="_Controls\ColorPicker\_Sliders\AlphaSlider.cs" />
+    <Compile Include="_Controls\ColorPicker\_Sliders\ComponentSlider.cs" />
+    <Compile Include="_Controls\ColorPicker\_Sliders\ComponentSliderBase.cs" />
+    <Compile Include="_Controls\ColorPicker\_Views\ColorSpaceView.cs" />
+    <Compile Include="_Controls\ColorPicker\_Views\ColorViewBase.cs" />
+    <Compile Include="_Controls\ColorPicker\_Views\ComponentView.cs" />
+    <Compile Include="_Controls\IBrushPicker.cs" />
+    <Compile Include="_Controls\_Chips\Chip.Generic.cs" />
+    <Compile Include="_Controls\_Chips\ChipBase.cs" />
+    <Compile Include="_Controls\_Chips\ColorChip.cs" />
+    <Compile Include="_Controls\_Chips\GradientChip.cs" />
+    <Compile Include="Collections\ColorModelCollection.cs" />
+    <Compile Include="Collections\ComponentCollection.cs" />
+    <Compile Include="_Controls\ColorComb.cs" />
+    <Compile Include="_Controls\Hexagon.cs" />
+    <Compile Include="Models\_Components\Component.cs" />
+    <Compile Include="Models\_Components\VisualComponent.cs" />
+    <Compile Include="Models\_Models\.ColorModel.cs" />
+    <Compile Include="Models\_Models\.ColorModel.Generic.cs" />
+    <Compile Include="Models\_Models\CMYK.cs" />
+    <Compile Include="Models\_Models\HCG.cs" />
+    <Compile Include="Models\_Models\HSB.cs" />
+    <Compile Include="Models\_Models\HSI.cs" />
+    <Compile Include="Models\_Models\HSL.cs" />
+    <Compile Include="Models\_Models\HSM.cs" />
+    <Compile Include="Models\_Models\HSP.cs" />
+    <Compile Include="Models\_Models\HunterLab.cs" />
+    <Compile Include="Models\_Models\HWB.cs" />
+    <Compile Include="Models\_Models\Lab.cs" />
+    <Compile Include="Models\_Models\LChab.cs" />
+    <Compile Include="Models\_Models\LChuv.cs" />
+    <Compile Include="Models\_Models\LMS.cs" />
+    <Compile Include="Models\_Models\Luv.cs" />
+    <Compile Include="Models\_Models\RGB.cs" />
+    <Compile Include="Models\_Models\TSL.cs" />
+    <Compile Include="Models\_Models\xyY.cs" />
+    <Compile Include="Models\_Models\XYZ.cs" />
+    <Compile Include="Models\_Models\YCoCg.cs" />
+    <Compile Include="Models\_Models\YES.cs" />
+    <Compile Include="Models\_Models\YIQ.cs" />
+    <Compile Include="Models\_Models\YUV.cs" />
+    <Compile Include="Linq\RGB.cs" />
+    <Compile Include="_Controls\ColorView\AlphaGlider.xaml.cs">
+      <DependentUpon>AlphaGlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Controls\ColorView\ColorView.xaml.cs">
+      <DependentUpon>ColorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Controls\ColorView\ComponentGlider.xaml.cs">
+      <DependentUpon>ComponentGlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Controls\ColorView\ComponentGliderBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_Interfaces\IComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Color\Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Color\Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Generic.BrushDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.ColorSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.DualColorChip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.GradientPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.ChipBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.ColorComb.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.ComponentGliderBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.ComponentSliderBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.Hexagon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="_Controls\_Dialogs\ColorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="_Controls\_Dialogs\GradientDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="_Controls\ColorPicker\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="_Controls\ColorPicker\ColorPlane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="_Controls\ColorPicker\ColorSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="_Controls\ColorView\AlphaGlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="_Controls\ColorView\ColorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="_Controls\ColorView\ComponentGlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lang\Main.es-ES.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Main.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\Main.it-IT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Main.it-IT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\Main.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Main.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Imagin.Colour\Colour.csproj">
+      <Project>{041ec9f9-45ae-498c-a083-71e0aab532ed}</Project>
+      <Name>Colour</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Imagin.Common.WPF\Common.WPF.csproj">
+      <Project>{6bd41976-f6f8-461f-a071-fabc002761c9}</Project>
+      <Name>Common.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Imagin.Common\Common.csproj">
+      <Project>{ac9ee8c9-d6ad-4f5b-98b4-aea4a69cd54e}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

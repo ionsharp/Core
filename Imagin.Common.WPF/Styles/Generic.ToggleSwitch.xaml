@@ -1,0 +1,42 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Imagin.Common">
+    <Style x:Key="Style.ToggleSwitch.Thumb" TargetType="Thumb">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Background" Value="{DynamicResource Brush.ToggleSwitch.Thumb.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.ToggleSwitch.Thumb.Border}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type local:ToggleSwitch}" TargetType="{x:Type local:ToggleSwitch}">
+        <Setter Property="Background" Value="{DynamicResource Brush.ToggleSwitch.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.ToggleSwitch.Border}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Brush.ToggleSwitch.Foreground}"/>
+        <Setter Property="ThumbStyle" Value="{StaticResource Style.ToggleSwitch.Thumb}"/>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Brush.ToggleSwitch.Checked.Background}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.ToggleSwitch.Checked.Border}" />
+                <Setter Property="Foreground" Value="{DynamicResource Brush.ToggleSwitch.Checked.Foreground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisabledOpacity}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,110 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:local="clr-namespace:Imagin.Colour.Controls"
+    xmlns:Common="http://imagin.tech/imagin/common">
+    <Style x:Key="{x:Type local:DualColorChip}" TargetType="{x:Type local:DualColorChip}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DualColorChip}">
+                    <ControlTemplate.Resources>
+                        <Common:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+        
+                        <Grid 
+                            x:Name="PART_Reset"
+                            Background="Transparent"
+                            ToolTip="{TemplateBinding ResetToolTip}">
+                            <Common:CheckerBoard 
+                                Cursor="Hand" 
+                                BorderThickness="1"
+                                BorderBrush="Black"
+                                Margin="5,5,0,0"
+                                CheckerForeground="LightGray"
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top">
+                                <Rectangle 
+                                    Width="10" 
+                                    Height="10" 
+                                    Fill="{TemplateBinding DefaultBackground, Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
+                            </Common:CheckerBoard>
+                            <Common:CheckerBoard 
+                                Cursor="Hand" 
+                                BorderThickness="1"
+                                BorderBrush="Black"
+                                CheckerForeground="LightGray"
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top">
+                                <Rectangle
+                                    Width="10" 
+                                    Height="10" 
+                                    Fill="{TemplateBinding DefaultForeground, Converter={StaticResource ColorToSolidColorBrushConverter}}"/>
+                            </Common:CheckerBoard>
+                        </Grid>
+                        <Grid 
+                            Grid.Row="1" 
+                            Margin="0,5,0,0">
+                            <local:ColorChip  
+                                Color="{Binding BackgroundColor, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                Height="22" 
+                                HorizontalAlignment="Left"
+                                Margin="10,10,0,0" 
+                                ToolTip="{TemplateBinding BackgroundToolTip}"
+                                VerticalAlignment="Top"
+                                Width="22"/>
+                            <local:ColorChip  
+                                Color="{Binding ForegroundColor, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                Height="22" 
+                                HorizontalAlignment="Left"
+                                ToolTip="{TemplateBinding ForegroundToolTip}"
+                                VerticalAlignment="Top"
+                                Width="22"/>
+
+                            <Rectangle
+                                x:Name="PART_Switch"
+                                Cursor="Hand" 
+                                Height="15" 
+                                HorizontalAlignment="Left" 
+                                Margin="20,-10,0,0" 
+                                Stroke="{x:Null}" 
+                                ToolTip="{TemplateBinding SwitchToolTip}"
+                                VerticalAlignment="Top" 
+                                Width="16">
+                                <Rectangle.Fill>
+                                    <DrawingBrush Viewbox="0,0,11.381,12.011" ViewboxUnits="Absolute"  Stretch="Uniform">
+                                        <DrawingBrush.Drawing>
+                                            <DrawingGroup>
+                                                <GeometryDrawing Brush="#FF231F20" Geometry="M3.45,5.3119929 L-3.0517605E-06,2.6559988 3.45,4.6386617E-06 z"/>
+                                                <DrawingGroup>
+                                                    <DrawingGroup.Transform>
+                                                        <MatrixTransform Matrix="1,0,0,1,6.069,8.561"/>
+                                                    </DrawingGroup.Transform>
+                                                    <GeometryDrawing Brush="#FF231F20" Geometry="M5.3120054,0 L2.6560036,3.4499878 1.8798841E-06,0 z"/>
+                                                </DrawingGroup>
+                                                <DrawingGroup>
+                                                    <DrawingGroup.Transform>
+                                                        <MatrixTransform Matrix="1,0,0,1,2.009,2.1"/>
+                                                    </DrawingGroup.Transform>
+                                                    <GeometryDrawing Geometry="M6.5110028,6.5119882 C6.5110028,3.1890015 3.8230035,0.50001216 0.50000435,0.50001216">
+                                                        <GeometryDrawing.Pen>
+                                                            <Pen Brush="#FF231F20" DashCap="Flat" EndLineCap="Flat" LineJoin="Miter" MiterLimit="10" StartLineCap="Flat" Thickness="1"/>
+                                                        </GeometryDrawing.Pen>
+                                                    </GeometryDrawing>
+                                                </DrawingGroup>
+                                            </DrawingGroup>
+                                        </DrawingBrush.Drawing>
+                                    </DrawingBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

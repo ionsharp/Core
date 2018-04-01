@@ -1,0 +1,240 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:local="clr-namespace:Imagin.Colour.Controls"
+    xmlns:Common="http://imagin.tech/imagin/common"
+    xmlns:Common.Geometry="clr-namespace:Imagin.Common.Geometry;assembly=Imagin.Common"
+    xmlns:Common.Media="clr-namespace:Imagin.Common.Media;assembly=Imagin.Common">
+    <Style x:Key="{x:Type local:GradientPicker}" TargetType="{x:Type local:GradientPicker}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:GradientPicker">
+                    <ControlTemplate.Resources>
+                        <Common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                    </ControlTemplate.Resources>
+                    <Grid 
+                        Common:PanelExtensions.Spacing="0,0,0,10"
+                        Common:PanelExtensions.TrimLast="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Common:CheckerBoard
+                            Grid.Row="0"
+                            BorderBrush="{TemplateBinding PreviewBorderBrush}"
+                            BorderThickness="{TemplateBinding PreviewBorderThickness}"
+                            CheckerForeground="LightGray"
+                            VerticalAlignment="Stretch"
+                            Visibility="{TemplateBinding ShowPreview, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Rectangle Fill="{TemplateBinding Gradient}"/>
+                        </Common:CheckerBoard>
+
+                        <ComboBox
+                            Grid.Row="1"
+                            ItemsSource="{Common:Enumerate {x:Type Common.Media:GradientType}}"
+                            SelectedValue="{Binding GradientType, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Mode=OneWay}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <GroupBox
+                            Grid.Row="2"
+                            Header="Angle">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Common:AnglePicker
+                                    x:Name="PART_AnglePicker"
+                                    Angle="{TemplateBinding Angle}"
+                                    Height="96"
+                                    HorizontalAlignment="Center"
+                                    Radians="{TemplateBinding Radians}"
+                                    Width="96"/>
+                                <Grid
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ContentControl 
+                                            Margin="0,0,10,0"
+                                            VerticalAlignment="Top">
+                                            <ContentControl.Style>
+                                                <Style TargetType="ContentControl">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding AngularUnit, RelativeSource={RelativeSource AncestorType={x:Type local:GradientPicker}}}" Value="Degree">
+                                                            <Setter Property="Content">
+                                                                <Setter.Value>
+                                                                    <Common:DoubleUpDown
+                                                                        Minimum="-180"
+                                                                        Maximum="180"
+                                                                        StringFormat="N0"
+                                                                        Value="{Binding Angle, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding AngularUnit, RelativeSource={RelativeSource AncestorType={x:Type local:GradientPicker}}}" Value="Radian">
+                                                            <Setter Property="Content">
+                                                                <Setter.Value>
+                                                                    <Common:DoubleUpDown
+                                                                        Minimum="-180"
+                                                                        Maximum="180"
+                                                                        StringFormat="N6"
+                                                                        Value="{Binding Radians, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ContentControl.Style>
+                                        </ContentControl>
+                                        <ComboBox
+                                            Grid.Column="1"
+                                            ItemsSource="{Common:Enumerate {x:Type Common.Geometry:AngularUnit}}"
+                                            SelectedValue="{Binding AngularUnit, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                            VerticalAlignment="Top">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Mode=OneWay}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </Grid>
+                                    <ComboBox
+                                        Grid.Row="1"
+                                        ItemsSource="{Common:Enumerate {x:Type Common.Media:GradientPosition}}"
+                                        Margin="0,10,0,0"
+                                        SelectedValue="{Binding GradientPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        VerticalAlignment="Top">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Mode=OneWay}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </Grid>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox 
+                            Grid.Row="3"
+                            Header="Bands"
+                            Margin="0,10,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Slider 
+                                    Grid.ColumnSpan="2" 
+                                    Height="22" 
+                                    Name="PART_BandsSlider" 
+                                    Margin="10,0"
+                                    IsSnapToTickEnabled="True"
+                                    VerticalAlignment="Center" 
+                                    TickPlacement="BottomRight" 
+                                    TickFrequency="1" 
+                                    Value="{TemplateBinding SelectedBand}"
+                                    SmallChange="1" 
+                                    Minimum="1"
+                                    Maximum="{Binding Bands, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Common:Int32UpDown
+                                    Grid.Column="2"
+                                    Minimum="1"
+                                    Maximum="25"
+                                    Value="{Binding Bands, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                    Width="75"
+                                    VerticalAlignment="Center"/>
+
+                                <local:ColorChip 
+                                    Grid.Row="1" 
+                                    x:Name="PART_ColorChip"
+                                    Color="{Binding SelectedColor, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="Center"/>
+                                <Slider
+                                    Grid.Column="1" 
+                                    Grid.Row="1"
+                                    Height="22" 
+                                    Margin="10"
+                                    IsSnapToTickEnabled="True"
+                                    TickPlacement="BottomRight" 
+                                    TickFrequency="0.01" 
+                                    SmallChange="0.01" 
+                                    LargeChange="0.05" 
+                                    Value="{TemplateBinding Offset}"
+                                    Maximum="1.0"
+                                    Minimum="0"
+                                    VerticalAlignment="Center"/>
+                                <Common:DoubleUpDown
+                                    Grid.Column="2"
+                                    Grid.Row="1"
+                                    Width="75"
+                                    Minimum="0"
+                                    Maximum="1.0"
+                                    Increment="0.01"
+                                    StringFormat="N2"
+                                    Value="{Binding Offset, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                    VerticalAlignment="Center"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox
+                            Grid.Row="4"
+                            Header="Opacity"
+                            Margin="0,10,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Slider 
+                                    Height="22" 
+                                    Margin="10,0"
+                                    IsSnapToTickEnabled="True"
+                                    VerticalAlignment="Center" 
+                                    TickPlacement="BottomRight" 
+                                    TickFrequency="0.01" 
+                                    Value="{Binding Gradient.Opacity, RelativeSource={RelativeSource TemplatedParent}}"
+                                    SmallChange="0.05" 
+                                    Minimum="0"
+                                    Maximum="1"/>
+                                <Common:DoubleUpDown
+                                    Grid.Column="1"
+                                    Increment="0.01"
+                                    Minimum="0"
+                                    Maximum="1"
+                                    Value="{Binding Gradient.Opacity, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                    VerticalAlignment="Center"
+                                    Width="75"/>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
