@@ -253,7 +253,7 @@ namespace Imagin.Common.Linq
             var Result = new ContextMenu();
             foreach (var Column in DataGrid.Columns)
             {
-                if (Column is DataGridTextColumn || Column is DataGridTemplateColumn)
+                if (Column is DataGridTextColumn || Column is DataGridTemplateColumn || Column is DataGridComboBoxColumn || Column is DataGridCheckBoxColumn)
                 {
                     if (Column.Header != null && !Column.Header.ToString().IsNullOrEmpty() && !Column.SortMemberPath.IsNullOrEmpty())
                     {
