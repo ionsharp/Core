@@ -7,7 +7,7 @@ Apps
 **[Color](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Color)** | **[Desktop](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Desktop)** | **[Paint](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Paint)** |
 -|-|-|
 <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Apps.Color/Images/Splash.png?raw=true"/> | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Apps.Desktop/Images/Splash.png?raw=true"/>  | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Apps.Paint/Images/Splash.png?raw=true"/> |
-*Color picker with multiple windows* | *Display tiles on the desktop.* | *Raster graphics editor* |
+*Color picker with multiple windows* | *Display tiles on the desktop* | *Raster graphics editor* |
 ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=) | ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=) | ![](https://img.shields.io/badge/style-Unstable-red.svg?style=flat&label=) |
 
 Projects
