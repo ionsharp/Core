@@ -6,9 +6,8 @@ Apps
 ---
 **[Color](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Color)** | **[Desktop](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Desktop)** | **[Paint](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Paint)** |
 -|-|-|
-<img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Color.png?raw=true"/> | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Desktop.png?raw=true"/>  | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Paint.png?raw=true"/> |
-*Pick and save colors and gradients.* | *Draw and display tiles on the desktop.* | *Open, edit, and save photos.* |
-<ul><li>Includes 7 color models.</li><li>Convert to *hexadecimal*.</li><li>Multiple windows.</li><li>Save colors.</li><li>Supports transparency.</li><li>Uses *DirectX* to maximize performance.</li></ul> | <ul><li>Display notes, count downs, clocks, images, slideshows, and folders.</li><li>Resize, move, and customize the background of tiles.</li><li>Snap tiles while moving.</li><li>Create multiple screens.</li></ul> | <ul><li>20+ tools.</li><li>25+ blending modes.</li><li>Uses *DirectX*.</li></ul> |
+<img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Color.png?raw=true" width="64"/> | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Desktop.png?raw=true" width="64"/>  | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Paint.png?raw=true" width="64"/> |
+*Color picker with multiple windows* | *Draw and display tiles on the desktop.* | *Raster graphics editor* |
 ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=) | ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=) | ![](https://img.shields.io/badge/style-Unstable-red.svg?style=flat&label=) |
 
 Projects
