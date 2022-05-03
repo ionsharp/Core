@@ -1,0 +1,32 @@
+﻿<ToolBar x:Class="Imagin.Common.Controls.FavoriteBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    xmlns:Storage="clr-namespace:Imagin.Common.Storage">
+    <ToolBar.ItemTemplate>
+        <DataTemplate DataType="{x:Type Storage:Favorite}">
+            <local:FolderButton 
+                Command="{Data:Ancestor ClickCommand, {x:Type local:FavoriteBar}}"
+                CommandParameter="{Binding Path}"
+                Margin="0,0,2,0"
+                Linq:XExplorer.Path="{Binding Path}">
+                <local:FolderButton.Content>
+                    <Grid Linq:XGrid.Columns="Auto,Auto">
+                        <local:Thumbnail
+                            Grid.Column="0"
+                            Height="16"
+                            Margin="0,0,5,0"
+                            Path="{Binding Path}"
+                            Width="16"/>
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Path, Converter={x:Static Converters:FileNameConverter.Default}}"/>
+                    </Grid>
+                </local:FolderButton.Content>
+            </local:FolderButton>
+        </DataTemplate>
+    </ToolBar.ItemTemplate>
+</ToolBar>

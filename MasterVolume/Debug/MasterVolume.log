@@ -1,0 +1,6 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  MasterVolume.cpp
+c1xx : warning C4199: two-phase name lookup is not supported for C++/CLI, C++/CX, or OpenMP; use /Zc:twoPhase-
+  MasterVolume.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+     Creating library .\Debug\MasterVolume.lib and object .\Debug\MasterVolume.exp
+  MasterVolume.vcxproj -> C:\Users\james\OneDrive\Development\Software\Library\Imagin.NET\MasterVolume\.\Debug\MasterVolume.dll

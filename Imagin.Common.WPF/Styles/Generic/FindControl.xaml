@@ -1,0 +1,232 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:l="clr-namespace:Imagin.Common.Local.Extensions"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    xmlns:Markup="clr-namespace:Imagin.Common.Markup"
+    xmlns:Models="clr-namespace:Imagin.Common.Models">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{local:StyleKey Key=FrameworkElement}"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="{x:Type local:FindControl}" TargetType="{x:Type local:FindControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FindControl}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding Border.CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                        <ScrollViewer>
+                            <Grid Linq:XGrid.AutoRows="True" Linq:XGrid.Rows="Auto,Auto,Auto,Auto"
+                                Margin="10"
+                                Linq:XPanel.Spacing="0,0,0,5"
+                                Linq:XPanel.SpacingExcept="Last">
+                                <GroupBox>
+                                    <Grid Linq:XGrid.AutoRows="True" Linq:XGrid.Rows="Auto,Auto,Auto"
+                                        Linq:XPanel.Spacing="0,0,0,5"
+                                        Linq:XPanel.SpacingExcept="Last">
+                                        <ComboBox
+                                            ItemsSource="{Markup:Enumerate Models:FindSource}"
+                                            SelectedItem="{Data:TwoWay Source, Relative=TemplatedParent}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Converter={x:Static Converters:CamelCaseConverter.Default}}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBox
+                                            Linq:XTextBox.ClearButtonVisibility="Visible"
+                                            Linq:XTextBoxBase.Placeholder="{l:Loc Find, Suffix=...}"
+                                            Text="{Data:TwoWay FindText, Relative=TemplatedParent, Trigger=PropertyChanged}"/>
+                                        <TextBox
+                                            Linq:XTextBox.ClearButtonVisibility="Visible"
+                                            Linq:XTextBoxBase.Placeholder="{l:Loc Replace, Suffix=...}"
+                                            Text="{Data:TwoWay ReplaceText, Relative=TemplatedParent, Trigger=PropertyChanged}"/>
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Header="{l:Loc Match}">
+                                    <StackPanel
+                                        Linq:XPanel.Spacing="0,0,5,0"
+                                        Linq:XPanel.SpacingExcept="Last"
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Top">
+                                        <CheckBox
+                                            Content="{l:Loc Case}"
+                                            IsChecked="{Data:TwoWay MatchCase, Relative=TemplatedParent}"/>
+                                        <CheckBox
+                                            Content="{l:Loc Word}"
+                                            IsChecked="{Data:TwoWay MatchWord, Relative=TemplatedParent}"/>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="{l:Loc Find}">
+                                    <StackPanel
+                                        Grid.Row="4"
+                                        Linq:XPanel.Spacing="0,0,0,2"
+                                        Linq:XPanel.SpacingExcept="Last"
+                                        VerticalAlignment="Top">
+                                        <Button
+                                            Command="{Data:TemplatedParent FindNextCommand}"
+                                            Content="{l:Loc Next}"/>
+                                        <Button
+                                            Command="{Data:TemplatedParent FindPreviousCommand}"
+                                            Content="{l:Loc Previous}"/>
+                                        <Button
+                                            Command="{Data:TemplatedParent FindAllCommand}"
+                                            Content="{l:Loc All}"/>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="{l:Loc Replace}">
+                                    <StackPanel
+                                        Grid.Row="4"
+                                        Linq:XPanel.Spacing="0,0,0,2"
+                                        Linq:XPanel.SpacingExcept="Last"
+                                        VerticalAlignment="Top">
+                                        <Button
+                                            Command="{Data:TemplatedParent ReplaceNextCommand}"
+                                            Content="{l:Loc Next}"/>
+                                        <Button
+                                            Command="{Data:TemplatedParent ReplacePreviousCommand}"
+                                            Content="{l:Loc Previous}"/>
+                                        <Button
+                                            Command="{Data:TemplatedParent ReplaceAllCommand}"
+                                            Content="{l:Loc All}"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type local:FindBox}" TargetType="{x:Type local:FindBox}">
+        <Setter Property="Background" Value="#EEE"/>
+        <Setter Property="BorderBrush" Value="#DDD"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="7"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FindBox}">
+                    <Grid>
+                        <Border 
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding Border.CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                            <Grid Linq:XGrid.AutoRows="True" Linq:XGrid.Rows="Auto,Auto,Auto,Auto">
+                                <Grid Linq:XGrid.AutoColumns="True" Linq:XGrid.Columns="*,Auto,Auto"
+                                    Margin="0,0,0,5">
+                                    <ComboBox
+                                        ItemsSource="{Markup:Enumerate Models:FindSource}"
+                                        Margin="0,0,5,0"
+                                        SelectedItem="{Data:TwoWay Source, Relative=TemplatedParent}"
+                                        ToolTip="{l:Loc Source}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Converter={x:Static Converters:CamelCaseConverter.Default}}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <local:ImageToggleButton
+                                        IsChecked="{Data:TwoWay MatchCase, Relative=TemplatedParent}"
+                                        Margin="0,0,5,0"
+                                        Source="{Markup:InternalImage MatchCase.png}"
+                                        ToolTip="{l:Loc MatchCase}"/>
+                                    <local:ImageToggleButton
+                                        IsChecked="{Data:TwoWay MatchWord, Relative=TemplatedParent}"
+                                        Source="{Markup:InternalImage MatchWord.png}"
+                                        ToolTip="{l:Loc MatchWord}"/>
+                                </Grid>
+                                <Grid Linq:XGrid.AutoColumns="True" Linq:XGrid.Columns="*,Auto,Auto"
+                                    Margin="0,0,0,5">
+                                    <TextBox
+                                        Linq:XTextBoxBase.Placeholder="{l:Loc Find, Suffix=...}"
+                                        Linq:XTextBoxBase.TextTrimming="CharacterEllipsis"
+                                        Text="{Data:TwoWay FindText, Relative=TemplatedParent, Trigger=PropertyChanged}"/>
+                                    <local:ImageButton DataContext="{Data:TemplatedParent}"
+                                        ButtonVisibility="Visible"
+                                        Margin="2,0"
+                                        Source="{Markup:InternalImage Image=FindNext}">
+                                        <local:ImageButton.Menu>
+                                            <ContextMenu DataContext="{Data:Self PlacementTarget.DataContext}">
+                                                <MenuItem Header="{l:Loc FindNext}"
+                                                    Command="{Binding FindNextCommand}"
+                                                    Icon="{Markup:InternalImage Image=FindNext}"/>
+                                                <MenuItem Header="{l:Loc FindPrevious}"
+                                                    Command="{Binding FindPreviousCommand}"
+                                                    Icon="{Markup:InternalImage Image=FindPrevious}"/>
+                                                <MenuItem Header="{l:Loc FindAll}"
+                                                    Command="{Binding FindAllCommand}"
+                                                    Icon="{Markup:InternalImage Image=FindAll}"/>
+                                            </ContextMenu>
+                                        </local:ImageButton.Menu>
+                                    </local:ImageButton>
+                                    <local:ImageButton
+                                        Command="{TemplateBinding CloseCommand}"
+                                        Source="{Markup:InternalImage Image=XRound}"
+                                        ToolTip="{l:Loc Close}"/>
+                                </Grid>
+                                <Grid Linq:XGrid.AutoColumns="True" Linq:XGrid.Columns="*,Auto,Auto">
+                                    <TextBox
+                                        Linq:XTextBoxBase.Placeholder="{l:Loc Replace, Suffix=...}"
+                                        Linq:XTextBoxBase.TextTrimming="CharacterEllipsis"
+                                        Text="{Data:TwoWay ReplaceText, Relative=TemplatedParent, Trigger=PropertyChanged}"/>
+                                    <local:ImageButton
+                                        Command="{Data:TemplatedParent ReplaceNextCommand}"
+                                        Margin="5,0,0,0"
+                                        Source="{Markup:InternalImage Image=ReplaceNext}"
+                                        ToolTip="{l:Loc ReplaceNext}"/>
+                                    <local:ImageButton
+                                        Command="{Data:TemplatedParent ReplaceAllCommand}"
+                                        Margin="5,0,0,0"
+                                        Source="{Markup:InternalImage Image=ReplaceAll}"
+                                        ToolTip="{l:Loc ReplaceAll}"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <local:FillElement Fill="{TemplateBinding BorderBrush}"
+                            Height="4"
+                            Margin="0,0,0,-3"
+                            VerticalAlignment="Bottom"/>
+                        <!-- Grip -->
+                        <Path Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3"
+                            Height="12"
+                            HorizontalAlignment="Left"
+                            IsHitTestVisible="False"
+                            Margin="2,0,0,2"
+                            RenderTransformOrigin="0.5,0.5"
+                            Stroke="{TemplateBinding Foreground}"
+                            StrokeThickness="1"
+                            Stretch="None"
+                            VerticalAlignment="Bottom"
+                            Width="12">
+                            <Path.RenderTransform>
+                                <RotateTransform Angle="90"/>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" Value="#007acc" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocused" Value="False"/>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="#CCC" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

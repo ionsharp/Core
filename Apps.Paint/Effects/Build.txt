@@ -1,0 +1,1 @@
+fxc /O0 /Fc /Zi /T ps_3_0 /Fo Blend.ps Blend.fx

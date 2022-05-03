@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="Imagin.Common.Controls">
+  <Top/>
+  <Left/>
+  <Right>
+    <Panel Name="NotificationsPanel"/>
+    <Panel Name="ThemePanel"/>
+    <Panel Name="OptionsPanel"/>
+  </Right>
+  <Bottom/>
+  <Root xsi:type="DockLayoutGroup" Orientation="Horizontal">
+    <Elements>
+      <Element xsi:type="DockLayoutGroup" Orientation="Vertical" Width="70*">
+        <Elements>
+          <Element xsi:type="DockLayoutPanelGroup" Height="70*">
+            <Panels>
+              <DockLayoutPanel IsSelected="true" Name="ControlsPanel"/>
+              <DockLayoutPanel Name="TestPanel"/>
+            </Panels>
+          </Element>
+          <Element xsi:type="DockLayoutPanelGroup" Height="30*">
+            <Panels>
+              <DockLayoutPanel IsSelected="true" Name="LogPanel"/>
+            </Panels>
+          </Element>
+        </Elements>
+      </Element>
+      <Element xsi:type="DockLayoutGroup" Orientation="Vertical" Width="30*">
+        <Elements>
+          <Element xsi:type="DockLayoutPanelGroup" Height="30*">
+            <Panels>
+              <DockLayoutPanel IsSelected="true" Name="InheritsPanel"/>
+            </Panels>
+          </Element>
+          <Element xsi:type="DockLayoutPanelGroup" Height="70*">
+            <Panels>
+              <DockLayoutPanel IsSelected="true" Name="PropertiesPanel"/>
+            </Panels>
+          </Element>
+        </Elements>
+      </Element>
+    </Elements>
+  </Root>
+</Layout>

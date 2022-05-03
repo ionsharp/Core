@@ -1,0 +1,106 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{local:StyleKey Key=FrameworkElement}"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="{x:Type Label}" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Foreground" Value="{local:ThemeKey ActualKey=Text}"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding Border.CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                        <ContentPresenter
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            RecognizesAccessKey="True"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ...-->
+
+    <Style x:Key="{x:Type local:AccentLabel}" TargetType="{x:Type local:AccentLabel}" BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Foreground" Value="{local:ThemeKey Key=AccentForeground}"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Padding" Value="6,3"/>
+        <Style.Triggers>
+            <Trigger Property="Shade" Value="Light">
+                <Setter Property="Background" Value="{local:ThemeKey Key=AccentLight}"/>
+            </Trigger>
+            <Trigger Property="Shade" Value="LightMedium">
+                <Setter Property="Background" Value="{local:ThemeKey Key=Accent}"/>
+            </Trigger>
+            <Trigger Property="Shade" Value="MediumLight">
+                <Setter Property="Background" Value="{local:ThemeKey Key=Accent}"/>
+            </Trigger>
+            <Trigger Property="Shade" Value="Medium">
+                <Setter Property="Background" Value="{local:ThemeKey Key=Accent}"/>
+            </Trigger>
+            <Trigger Property="Shade" Value="MediumDark">
+                <Setter Property="Background" Value="{local:ThemeKey Key=Accent}"/>
+            </Trigger>
+            <Trigger Property="Shade" Value="DarkMedium">
+                <Setter Property="Background" Value="{local:ThemeKey Key=Accent}"/>
+            </Trigger>
+            <Trigger Property="Shade" Value="Dark">
+                <Setter Property="Background" Value="{local:ThemeKey Key=AccentDark}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type local:ShadeLabel}" TargetType="{x:Type local:ShadeLabel}" BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="Background" Value="#11000000"/>
+        <Setter Property="Foreground" Value="{local:ThemeKey Key=Text}"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Padding" Value="6,3"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:TitleLabel}" TargetType="{x:Type local:TitleLabel}" BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="BorderBrush" Value="#11000000"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{local:ThemeKey ActualKey=Accent}"/>
+        <Setter Property="Padding" Value="0,0,0,5"/>
+        <Style.Triggers>
+            <Trigger Property="Step" Value="1">
+                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                <Setter Property="FontSize" Value="32"/>
+            </Trigger>
+            <Trigger Property="Step" Value="2">
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="FontStyle" Value="Italic"/>
+            </Trigger>
+            <Trigger Property="Step" Value="3">
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontStyle" Value="Italic"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Trigger>
+            <Trigger Property="Step" Value="4">
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="FontStyle" Value="Italic"/>
+            </Trigger>
+            <Trigger Property="Step" Value="5">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontStyle" Value="Italic"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Trigger>
+            <Trigger Property="Step" Value="6">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontStyle" Value="Italic"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

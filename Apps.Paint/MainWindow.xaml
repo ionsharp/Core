@@ -1,0 +1,2099 @@
+﻿<i:MainWindow x:Class="Imagin.Apps.Paint.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://imagin.tech/imagin/wpf"
+    i:LocalizeDictionary.DesignCulture="en"
+    i:ResxLocalizationProvider.DefaultAssembly="{i:DefaultAssemblyName}"
+    i:ResxLocalizationProvider.DefaultDictionary="Main"
+    xmlns:local="clr-namespace:Imagin.Apps.Paint"
+    xmlns:Effects="clr-namespace:Imagin.Apps.Paint.Effects"
+    xmlns:Hardcodet="http://www.hardcodet.net/taskbar"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    Height="{i:Options WindowHeight, Mode=TwoWay}"
+    Padding="5"
+    i:XWindow.TitleIcon="{i:ProjectImage Logo.png}"
+    Title="{i:TranslateBinding Title}"
+    Width="{i:Options WindowWidth, Mode=TwoWay}"
+    WindowState="{i:Options WindowState, Mode=TwoWay}">
+    <i:MainWindow.Resources>
+        <i:Reference x:Key="MainViewModel" Data="{Binding}"/>
+
+        <!-- ... -->
+
+        <Style x:Key="ChannelStyle" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+            <Setter Property="BorderBrush" Value="#1A000000" />
+            <Setter Property="Foreground" Value="{i:ThemeKey Key=Text}" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+            <Setter Property="Margin" Value="0,-1,0,0"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Panel.ZIndex" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="0,1">
+                            <Grid i:XGrid.AutoColumns="True" i:XGrid.Columns="Auto,*">
+                                <Border Background="#11000000"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0,0,1,0">
+                                    <i:ImageToggleButton
+                                        CheckedSource="{i:ProjectImage Show.png}"
+                                        IsChecked="{Binding IsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Margin="2.5,0"
+                                        Source="{i:ProjectImage Hide.png}"/>
+                                </Border>
+                                <ContentPresenter ContentSource="Content"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Panel.ZIndex" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Panel.ZIndex" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PathStyle" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ChannelStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="0,1"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter ContentSource="Content"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ... -->
+
+        <DataTemplate x:Key="ImageEffectTemplate" DataType="{x:Type Effects:ImageEffect}">
+            <Grid i:XGrid.AutoColumns="True" i:XGrid.Columns="Auto,*,Auto,Auto"
+                i:XPanel.Spacing="0,0,5,0"
+                i:XPanel.SpacingExcept="Last"
+                VerticalAlignment="Center">
+                <i:ImageToggleButton
+                    CheckedSource="{i:ProjectImage Show.png}"
+                    IsChecked="{Binding IsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Source="{i:ProjectImage Hide.png}"/>
+                <TextBlock
+                    HorizontalAlignment="Left"
+                    Text="{Binding Name}"/>
+                <i:ImageButton
+                    Command="{i:Ancestor DataContext.EditEffectCommand, Expander}"
+                    CommandParameter="{Binding}"
+                    Source="{i:InternalImage Image=Pencil}"/>
+                <i:ImageButton
+                    Command="{i:Ancestor DataContext.DeleteEffectCommand, Expander}"
+                    CommandParameter="{Binding}"
+                    Source="{i:InternalImage Image=Trash}"/>
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="LayerStyle" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+            <Setter Property="BorderBrush" Value="#1A000000" />
+            <Setter Property="Foreground" Value="{i:ThemeKey Key=Text}" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="i:XTreeViewItem.IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+            <Setter Property="Margin" Value="0,0,0,-1" />
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TreeViewItem">
+                        <Grid i:XGrid.Columns="Auto,Auto,*" i:XGrid.Rows="Auto,Auto,*">
+                            <Border x:Name="Border0"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0,0,1,0"
+                                Grid.RowSpan="2">
+                                <ContentControl Background="#11000000">
+                                    <i:ImageToggleButton
+                                        CheckedSource="{i:ProjectImage Show.png}"
+                                        IsChecked="{Binding IsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Margin="2.5,0"
+                                        Source="{i:ProjectImage Hide.png}"/>
+                                </ContentControl>
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="0,1" />
+
+                            <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" x:Name="Border1" 
+                                Background="{TemplateBinding Background}" 
+                                SnapsToDevicePixels="True">
+                            </Border>
+
+                            <Grid Grid.Column="1" 
+                                Margin="{Binding IndexThickness, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ToggleButton 
+                                    x:Name="PART_Expander" 
+                                    Background="{TemplateBinding Foreground}" 
+                                    ClickMode="Press"
+                                    Focusable="False" 
+                                    Height="16" 
+                                    HorizontalAlignment="Left"
+                                    IsChecked="{i:TemplatedParent IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    Margin="5,0,0,0"
+                                    Width="16">
+                                    <ToggleButton.Style>
+                                        <Style TargetType="{x:Type ToggleButton}">
+                                            <Setter Property="OverridesDefaultStyle" Value="True"/>
+                                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                        <i:ImageElement 
+                                                            x:Name="PART_ImageElement"
+                                                            Foreground="{TemplateBinding Background}"
+                                                            Source="{i:InternalImage ArrowDownSmall.png}"
+                                                            Width="{TemplateBinding Width}" 
+                                                            Height="{TemplateBinding Height}" 
+                                                            RenderTransformOrigin="0.5, 0.5"
+                                                            SnapsToDevicePixels="True">
+                                                            <i:ImageElement.RenderTransform>
+                                                                <RotateTransform Angle="-90"/>
+                                                            </i:ImageElement.RenderTransform>
+                                                        </i:ImageElement>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsChecked" Value="True">
+                                                                <Trigger.EnterActions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation Storyboard.TargetName="PART_ImageElement" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="0" Duration="0:0:0.4"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </Trigger.EnterActions>
+                                                                <Trigger.ExitActions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation Storyboard.TargetName="PART_ImageElement" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="-90" Duration="0:0:0.4"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </Trigger.ExitActions>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ToggleButton.Style>
+                                </ToggleButton>
+                            </Grid>
+
+                            <Grid x:Name="Grid" Grid.Column="2" i:XGrid.AutoColumns="True" i:XGrid.Columns="*,Auto,Auto,Auto"
+                                Background="Transparent">
+                                <ContentPresenter
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <i:ImageToggleButton
+                                    CheckedSource="{i:ProjectImage Lock.png}"
+                                    IsChecked="{i:TwoWay IsLocked, UpdateSourceTrigger=PropertyChanged}"
+                                    Margin="5,0"
+                                    Source="{i:ProjectImage Unlock.png}"/>
+                                <i:ImageToggleButton Source="{i:ProjectImage Fx.png}"
+                                    IsChecked="{Binding Style.Effects.IsVisible, Mode=TwoWay}"
+                                    Margin="0,0,5,0">
+                                    <i:ImageToggleButton.Visibility>
+                                        <MultiBinding Converter="{x:Static i:BooleanToVisibilityMultiConverter.Default}" Mode="OneWay">
+                                            <i:VisibilityBinding Path="Style.Effects.IsEmpty" Invert="True"/>
+                                            <i:IsBinding Path="." Type="{x:Type local:StyleLayer}"/>
+                                        </MultiBinding>
+                                    </i:ImageToggleButton.Visibility>
+                                </i:ImageToggleButton>
+                                <i:ImageToggleButton x:Name="ImageToggleButton"
+                                    BorderThickness="0"
+                                    ButtonSource="{i:InternalImage Image=TriangleDown}"
+                                    ButtonVisibility="Visible"
+                                    HasMenu="True"
+                                    Margin="0,1"
+                                    VerticalAlignment="Stretch">
+                                    <i:ImageToggleButton.Visibility>
+                                        <MultiBinding Converter="{x:Static i:BooleanToVisibilityMultiConverter.Default}" Mode="OneWay">
+                                            <i:VisibilityBinding Path="Style.Effects.IsEmpty" Invert="True"/>
+                                            <i:IsBinding Path="." Type="{x:Type local:StyleLayer}"/>
+                                        </MultiBinding>
+                                    </i:ImageToggleButton.Visibility>
+                                </i:ImageToggleButton>
+                            </Grid>
+
+                            <Border Grid.Column="2" Grid.Row="1"
+                                Margin="5">
+                                <Border.Visibility>
+                                    <MultiBinding Converter="{x:Static i:BooleanToVisibilityMultiConverter.Default}" Mode="OneWay">
+                                        <i:IsBinding Path="." Type="{x:Type local:StyleLayer}"/>
+                                        <i:VisibilityBinding Path="IsChecked" ElementName="ImageToggleButton"/>
+                                        <i:VisibilityBinding Path="Style.Effects.IsEmpty" Invert="True"/>
+                                    </MultiBinding>
+                                </Border.Visibility>
+                                <ItemsControl ItemsSource="{Binding Style.Effects}"
+                                    ItemTemplate="{StaticResource ImageEffectTemplate}"/>
+                            </Border>
+
+                            <ItemsPresenter Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" x:Name="ItemsHost"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasItems" Value="True"/>
+                                    <Condition Property="IsExpanded" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="ItemsHost" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasItems" Value="True"/>
+                                    <Condition Property="IsExpanded" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasItems" Value="False"/>
+                                    <Condition Property="IsExpanded" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="ItemsHost" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="PART_Expander" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasItems" Value="False"/>
+                                    <Condition Property="IsExpanded" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="PART_Expander" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="i:XTreeViewItem.IsSelected" Value="False" />
+                                    <Condition SourceName="Grid" Property="IsMouseOver" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Border0" Property="Background" Value="Transparent"/>
+                                <Setter TargetName="Border0" Property="i:ImageElement.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter TargetName="Border1" Property="Background" Value="Transparent"/>
+                                <Setter TargetName="Grid" Property="i:ImageElement.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter TargetName="Grid" Property="TextBlock.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter Property="BorderBrush" Value="#DDD"/>
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="i:XTreeViewItem.IsSelected" Value="False"/>
+                                    <Condition SourceName="Grid" Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Border0" Property="Background" Value="#EEE"/>
+                                <Setter TargetName="Border0" Property="i:ImageElement.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter TargetName="Border1" Property="Background" Value="#EEE"/>
+                                <Setter TargetName="Grid" Property="i:ImageElement.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter TargetName="Grid" Property="TextBlock.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter Property="BorderBrush" Value="#CCC"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="i:XTreeViewItem.IsSelected" Value="True"/>
+                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Border0" Property="Background" Value="{i:ThemeKey ActualKey=Accent}"/>
+                                <Setter TargetName="Border0" Property="i:ImageElement.Foreground" Value="White"/>
+                                <Setter TargetName="Border1" Property="Background" Value="Transparent"/>
+                                <Setter TargetName="Grid" Property="i:ImageElement.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter TargetName="Grid" Property="TextBlock.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter Property="BorderBrush" Value="{i:ThemeKey ActualKey=Accent}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="i:XTreeViewItem.IsSelected" Value="True"/>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Border0" Property="Background" Value="#BBB"/>
+                                <Setter TargetName="Border0" Property="i:ImageElement.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter TargetName="Border1" Property="Background" Value="#BBB"/>
+                                <Setter TargetName="Grid" Property="i:ImageElement.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter TargetName="Grid" Property="TextBlock.Foreground" Value="{i:ThemeKey ActualKey=Text}"/>
+                                <Setter Property="BorderBrush" Value="#BBB"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Style.Triggers>
+                <Trigger Property="i:XTreeViewItem.IsSelected" Value="True">
+                    <Setter Property="Panel.ZIndex" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ... -->
+        
+        <ContextMenu x:Key="LayerContextMenu" x:Shared="False" DataContext="{i:Self PlacementTarget.DataContext}">
+            <MenuItem Header="{i:Loc Edit}"
+                Command="{i:PanelBinding EditCommand, local:LayersPanel}"
+                CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="{i:Loc Clip}"
+                IsCheckable="True"
+                IsChecked="{Binding Style.Clip, Mode=TwoWay}"/>
+            <Separator/>
+            <MenuItem Header="{i:Loc Rasterize}"
+                Command="{i:PanelBinding RasterizeCommand, local:LayersPanel}"
+                CommandParameter="{Binding}"/>
+            <MenuItem Header="{i:Loc RasterizeStyle}"
+                Command="{i:PanelBinding RasterizeStyleCommand, local:LayersPanel}"
+                CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="{i:Loc EditStyle}"
+                Command="{i:PanelBinding EditStyleCommand, local:LayersPanel}"
+                CommandParameter="{Binding}"/>
+            <MenuItem Header="{i:Loc ClearStyle}"
+                Command="{i:PanelBinding ClearStyleCommand, local:LayersPanel}"
+                CommandParameter="{Binding}"/>
+            <MenuItem Header="{i:Loc CopyStyle}"
+                Command="{i:PanelBinding CopyStyleCommand, local:LayersPanel}"
+                CommandParameter="{Binding}"/>
+            <MenuItem Header="{i:Loc PasteStyle}"
+                Command="{i:PanelBinding PasteStyleCommand, local:LayersPanel}"
+                CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="{i:Loc Flatten}"
+                Command="{i:PanelBinding FlattenCommand, local:LayersPanel}"/>
+            <Separator/>
+            <MenuItem Header="{i:Loc MergeDown}"
+                Command="{i:PanelBinding MergeDownCommand, local:LayersPanel}"/>
+            <MenuItem Header="{i:Loc MergeUp}"
+                Command="{i:PanelBinding MergeUpCommand, local:LayersPanel}"/>
+            <MenuItem Header="{i:Loc MergeVisible}"
+                Command="{i:PanelBinding MergeVisibleCommand, local:LayersPanel}"/>
+            <Separator/>
+            <MenuItem Header="{i:Loc MoveInside}"
+                Command="{i:PanelBinding MoveInsideCommand, local:LayersPanel}"/>
+            <MenuItem Header="{i:Loc MoveOutside}"
+                Command="{i:PanelBinding MoveOutsideCommand, local:LayersPanel}"/>
+            <Separator/>
+            <MenuItem Header="{i:Loc MoveDown}"
+                Command="{i:PanelBinding MoveDownCommand, local:LayersPanel}"/>
+            <MenuItem Header="{i:Loc MoveUp}"
+                Command="{i:PanelBinding MoveUpCommand, local:LayersPanel}"/>
+            <Separator/>
+            <MenuItem Header="{i:Loc Clone}"
+                Command="{i:PanelBinding CloneCommand, local:LayersPanel}"/>
+            <MenuItem Header="{i:Loc Delete}"
+                Command="{i:PanelBinding DeleteCommand, local:LayersPanel}"/>
+        </ContextMenu>
+
+        <!-- ... -->
+
+        <DataTemplate x:Key="EffectLayerTemplate">
+            <Grid i:XGrid.AutoColumns="True" i:XGrid.Columns="Auto,*"
+                i:XPanel.VerticalContentAlignment="Center"
+                Margin="2,3">
+                <i:ImageElement
+                    Source="{i:ProjectImage Fx.png}"/>
+                <TextBlock 
+                    Margin="5,0,0,0"
+                    Text="{Binding Effect.Name, Mode=OneWay}"
+                    TextTrimming="CharacterEllipsis"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="GroupLayerTemplate">
+            <Grid i:XGrid.AutoColumns="True" i:XGrid.Columns="Auto,*"
+                i:XPanel.VerticalContentAlignment="Center"
+                Margin="2,3">
+                <i:ImageElement
+                    Source="{i:InternalImage Image=Folder}"/>
+                <TextBlock
+                    Margin="5,0,0,0"
+                    Text="{Binding Name}"
+                    TextTrimming="CharacterEllipsis"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="StaticLayerTemplate">
+            <Grid i:XGrid.AutoColumns="True" i:XGrid.Columns="Auto,*"
+                i:XPanel.VerticalContentAlignment="Center">
+                <Border
+                    Background="{x:Static i:CheckerBrush.Default}"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Height="{i:PanelBinding PreviewSize, local:LayersPanel}"
+                    Width="{i:PanelBinding PreviewSize, local:LayersPanel}">
+                    <Viewbox>
+                        <Image 
+                            Opacity="{Binding Opacity}"
+                            RenderOptions.BitmapScalingMode="NearestNeighbor"
+                            Source="{Binding Source, Mode=OneWay}"/>
+                    </Viewbox>
+                </Border>
+                <TextBlock
+                    Margin="5,0,0,0"
+                    Text="{Binding Name}"
+                    TextTrimming="CharacterEllipsis"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="VisualLayerTemplate">
+            <Grid i:XGrid.AutoColumns="True" i:XGrid.Columns="Auto,Auto,*,Auto"
+                i:XPanel.VerticalContentAlignment="Center">
+                <StackPanel Margin="0,0,5,0" Orientation="Horizontal"
+                    Visibility="{i:VisibilityBinding Style.HasMask}">
+                    <i:ImageElement
+                        Margin="0,0,5,0" 
+                        Source="{i:InternalImage Image=ArrowLeftDown}"/>
+                    <i:ImageElement
+                        Source="{i:ProjectImage Clip.png}"
+                        Visibility="{i:VisibilityBinding Style.Clip}"/>
+                    <i:ImageElement
+                        Source="{i:ProjectImage KnockOut.png}"
+                        Visibility="{i:VisibilityBinding Style.KnockOut}"/>
+                </StackPanel>
+                <ContentPresenter Content="{Binding}"
+                    Height="{i:PanelBinding PreviewSize, local:LayersPanel}"
+                    Width="{i:PanelBinding PreviewSize, local:LayersPanel}">
+                    <ContentPresenter.Resources>
+                        <DataTemplate DataType="{x:Type local:PixelLayer}">
+                            <Border
+                                Background="{x:Static i:CheckerBrush.Default}"
+                                BorderBrush="Black"
+                                BorderThickness="1">
+                                <Viewbox>
+                                    <Image Source="{Binding Pixels}"
+                                        RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                </Viewbox>
+                            </Border>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:ShapeLayer}">
+                            <Border
+                                Background="{x:Static i:CheckerBrush.Default}"
+                                BorderBrush="Black"
+                                BorderThickness="1">
+                                <Grid>
+                                    <Viewbox>
+                                        <Image Source="{Binding Pixels}"
+                                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                    </Viewbox>
+                                    <Image Source="{i:ProjectImage ShapeLayer.png}"
+                                        Height="16" Width="16"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:TextLayer}">
+                            <i:ImageElement
+                                Foreground="{i:Ancestor Foreground, {x:Type TreeViewItem}}"
+                                Source="{i:InternalImage Image=Rename}"/>
+                        </DataTemplate>
+                    </ContentPresenter.Resources>
+                </ContentPresenter>
+                <TextBlock
+                    Margin="5,0,0,0"
+                    Text="{Binding Name}"
+                    TextTrimming="CharacterEllipsis"/>
+            </Grid>
+        </DataTemplate>
+
+        <!-- ... -->
+
+        <i:PanelTemplateSelector x:Key="PanelTemplateSelector">
+            <!-- Groups -->
+            <DataTemplate DataType="{x:Type local:BrushesPanel}">
+                <local:GroupControl Source="{i:Options Brushes}"
+                    Panel="{Binding}"
+                    SelectedGroup="{Binding SelectedGroup}" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    View="{Binding View}">
+                    <local:GroupControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:Brush}">
+                            <Grid i:XGrid.AutoColumns="True" i:XGrid.Columns="2*,8*">
+                                <Viewbox VerticalAlignment="Center">
+                                    <local:BrushView Brush="{Binding}" 
+                                        PreviewColor="{i:Options ForegroundColor, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}"
+                                        PreviewHeight="32"
+                                        PreviewLength="32"
+                                        PreviewWidth="32"/>
+                                </Viewbox>
+                                <Viewbox>
+                                    <local:BrushView Brush="{Binding}"
+                                        Margin="5,0,0,0"
+                                        PreviewColor="{i:Options ForegroundColor, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}"
+                                        PreviewHeight="64"
+                                        PreviewLength="20"
+                                        PreviewSimulate="True"
+                                        PreviewWidth="256"/>
+                                </Viewbox>
+                            </Grid>
+                        </DataTemplate>
+                    </local:GroupControl.ItemTemplate>
+                </local:GroupControl>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:CurvesPanel}">
+                <local:GroupControl Source="{i:Options Curves}"
+                    Panel="{Binding}"
+                    SelectedGroup="{Binding SelectedGroup}" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    View="{Binding View}">
+                    <local:GroupControl.ItemTemplate>
+                        <DataTemplate>
+                            <Viewbox>
+                                <Grid>
+                                    <Polygon Points="{Binding PreviewX}">
+                                        <Polygon.Fill>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Offset="0" Color="#11000000"/>
+                                                <GradientStop Offset="1" Color="#22000000"/>
+                                            </LinearGradientBrush>
+                                        </Polygon.Fill>
+                                    </Polygon>
+                                    <Polygon Points="{Binding PreviewY}">
+                                        <Polygon.Fill>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Offset="0" Color="#02c307"/>
+                                                <GradientStop Offset="1" Color="#029000"/>
+                                            </LinearGradientBrush>
+                                        </Polygon.Fill>
+                                    </Polygon>
+                                </Grid>
+                            </Viewbox>
+                        </DataTemplate>
+                    </local:GroupControl.ItemTemplate>
+                </local:GroupControl>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:GradientsPanel}">
+                <local:GroupControl Source="{i:Options Gradients}"
+                    Panel="{Binding}"
+                    SelectedGroup="{Binding SelectedGroup}" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    View="{Binding View}">
+                    <local:GroupControl.ItemTemplate>
+                        <DataTemplate>
+                            <i:GradientBox 
+                                HorizontalAlignment="Stretch"
+                                Margin="0,0,0,5"
+                                Value="{Binding ., Mode=TwoWay}"
+                                Width="Auto">
+                                <i:GradientBox.ValueTemplate>
+                                    <DataTemplate>
+                                        <Rectangle Fill="{i:GradientBinding}"/>
+                                    </DataTemplate>
+                                </i:GradientBox.ValueTemplate>
+                            </i:GradientBox>
+                        </DataTemplate>
+                    </local:GroupControl.ItemTemplate>
+                </local:GroupControl>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:MatricesPanel}">
+                <local:GroupControl Source="{i:Options Matrices}"
+                    Panel="{Binding}"
+                    SelectedGroup="{Binding SelectedGroup}" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    View="{Binding View}">
+                    <local:GroupControl.ItemTemplate>
+                        <DataTemplate>
+                            <i:ChildElement>
+                                <i:MatrixControl Matrix="{Binding Value}"
+                                    IsEditable="False"
+                                    LabelVisibility="Collapsed"
+                                    Zoom="{i:Ancestor ActualWidth, i:ChildElement}"/>
+                            </i:ChildElement>
+                        </DataTemplate>
+                    </local:GroupControl.ItemTemplate>
+                </local:GroupControl>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:PathsPanel}">
+                <local:GroupControl Source="{i:Options Paths}"
+                    Panel="{Binding}"
+                    SelectedGroup="{Binding SelectedGroup}" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    View="{Binding View}">
+                    <local:GroupControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type i:Shape}">
+                            <Viewbox>
+                                <Grid>
+                                    <Polygon Points="{Binding Points}" Stroke="#000">
+                                        <Polygon.StrokeThickness>
+                                            <MultiBinding Converter="{x:Static i:ZoomMultiConverter.Default}" Mode="OneWay">
+                                                <Binding>
+                                                    <Binding.Source>
+                                                        <System:Double>20.0</System:Double>
+                                                    </Binding.Source>
+                                                </Binding>
+                                                <i:PanelBinding Path="PreviewSize" Type="local:PathsPanel"/>
+                                            </MultiBinding>
+                                        </Polygon.StrokeThickness>
+                                    </Polygon>
+                                    <Polygon Points="{Binding Points}" Stroke="#FFF">
+                                        <Polygon.StrokeThickness>
+                                            <MultiBinding Converter="{x:Static i:ZoomMultiConverter.Default}" Mode="OneWay">
+                                                <Binding>
+                                                    <Binding.Source>
+                                                        <System:Double>10.0</System:Double>
+                                                    </Binding.Source>
+                                                </Binding>
+                                                <i:PanelBinding Path="PreviewSize" Type="local:PathsPanel"/>
+                                            </MultiBinding>
+                                        </Polygon.StrokeThickness>
+                                    </Polygon>
+                                </Grid>
+                            </Viewbox>
+                        </DataTemplate>
+                    </local:GroupControl.ItemTemplate>
+                </local:GroupControl>
+                <!--
+                <ListBox
+                    BorderThickness="0"
+                    i:XItemsControl.SelectNoneOnEmptySpaceClick="True"
+                    ItemsSource="{i:RemoteBinding ActiveDocument.Paths, RemoteSource=MainViewModel}"
+                    Padding="0"
+                    SelectedItem="{i:TwoWay SelectedPath}"
+                    SelectionMode="Single">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource PathStyle}">
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:PathGroup}">
+                            <Grid i:XGrid.AutoColumns="True" i:XGrid.Columns="Auto,*"
+                                i:XPanel.VerticalContentAlignment="Center">
+                                <Border
+                                    Background="{x:Static i:CheckerBrush.Default}"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    Height="{i:PanelBinding PreviewSize, local:PathsPanel}"
+                                    Width="{i:PanelBinding PreviewSize, local:PathsPanel}">
+                                    <Viewbox>
+                                        <ItemsControl ItemsSource="{Binding Paths}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <Canvas/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type i:CustomShape}">
+                                                    <i:XOrPolygon 
+                                                        Canvas.Left="{Binding X}"
+                                                        Canvas.Top="{Binding Y}"
+                                                        Points="{Binding Points}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Viewbox>
+                                </Border>
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    Text="{Binding Name}"
+                                    TextTrimming="CharacterEllipsis"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                -->
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:SelectionsPanel}">
+                <local:GroupControl Source="{i:Options Selections}"
+                    Panel="{Binding}"
+                    SelectedGroup="{Binding SelectedGroup}" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    View="{Binding View}">
+                    <local:GroupControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:Selection}">
+                            <Viewbox>
+                                <Border Height="{i:RemoteBinding ActiveDocument.Height, RemoteSource=MainViewModel}" Width="{i:RemoteBinding ActiveDocument.Width, RemoteSource=MainViewModel}">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Offset="0" Color="#555"/>
+                                            <GradientStop Offset="1" Color="#111"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Polygon Points="{Binding Path.Points}">
+                                        <Polygon.Fill>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Offset="0" Color="#FAFAFA"/>
+                                                <GradientStop Offset="1" Color="#CACACA"/>
+                                            </LinearGradientBrush>
+                                        </Polygon.Fill>
+                                    </Polygon>
+                                </Border>
+                            </Viewbox>
+                        </DataTemplate>
+                    </local:GroupControl.ItemTemplate>
+                </local:GroupControl>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ShapesPanel}">
+                <local:GroupControl Source="{i:Options Shapes}"
+                    Panel="{Binding}"
+                    SelectedGroup="{Binding SelectedGroup}" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    View="{Binding View}">
+                    <local:GroupControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type i:Shape}">
+                            <Viewbox>
+                                <Polygon Points="{Binding Points}">
+                                    <Polygon.Fill>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Offset="0" Color="#11000000"/>
+                                            <GradientStop Offset="1" Color="#33000000"/>
+                                        </LinearGradientBrush>
+                                    </Polygon.Fill>
+                                </Polygon>
+                            </Viewbox>
+                        </DataTemplate>
+                    </local:GroupControl.ItemTemplate>
+                </local:GroupControl>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:StylesPanel}">
+                <local:GroupControl Source="{i:Options Styles}"
+                    Panel="{Binding}"
+                    SelectedGroup="{Binding SelectedGroup}" 
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    View="{Binding View}">
+                    <local:GroupControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:LayerStyle}">
+                            <StackPanel>
+                                <Border
+                                    Background="{x:Static i:CheckerBrush.Default}"
+                                    BorderBrush="#22000000"
+                                    BorderThickness="1"
+                                    SnapsToDevicePixels="True">
+                                    <Viewbox Stretch="UniformToFill" StretchDirection="Both">
+                                        <local:LayerStyleView LayerStyle="{Binding}" Image="{i:PanelBinding SelectedLayer.Pixels, local:LayersPanel}"/>
+                                    </Viewbox>
+                                </Border>
+                                <TextBlock Text="{Binding Name}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </local:GroupControl.ItemTemplate>
+                </local:GroupControl>
+            </DataTemplate>
+            <!-- ... -->
+            <DataTemplate DataType="{x:Type local:CharacterPanel}">
+                <i:PropertyGrid
+                    BorderThickness="0"
+                    HeaderVisibility="Collapsed"
+                    Source="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ColorPanel}">
+                <Grid i:XGrid.Columns="*,Auto">
+                    <i:ComponentSelector Grid.Column="0"
+                        Alpha="255"
+                        Component="{Binding Component}"
+                        Model="{Binding Model}"
+                        X="{Binding Color.X, Mode=TwoWay}"
+                        Y="{Binding Color.Y, Mode=TwoWay}"
+                        Z="{Binding Color.Z}"/>
+                    <i:ComponentSlider Grid.Column="1"
+                        Alpha="255"
+                        Component="{Binding Component}"
+                        Model="{Binding Model}"
+                        VerticalAlignment="Stretch"
+                        Width="32"
+                        X="{Binding Color.X}"
+                        Y="{Binding Color.Y}"
+                        Z="{Binding Color.Z, Mode=TwoWay}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:HistogramPanel}">
+                <local:HistogramControl x:Name="HistogramControl" Image="{i:PanelBinding SelectedLayer.Pixels, local:LayersPanel}">
+                    <local:HistogramControl.ContextMenu>
+                        <ContextMenu DataContext="{i:Self PlacementTarget}">
+                            <MenuItem Header="{i:Loc Red}"
+                                IsCheckable="True"
+                                IsChecked="{i:PanelBinding ShowRed, local:HistogramPanel, Mode=TwoWay}"/>
+                            <MenuItem Header="{i:Loc Green}"
+                                IsCheckable="True"
+                                IsChecked="{i:PanelBinding ShowGreen, local:HistogramPanel, Mode=TwoWay}"/>
+                            <MenuItem Header="{i:Loc Blue}"
+                                IsCheckable="True"
+                                IsChecked="{i:PanelBinding ShowBlue, local:HistogramPanel, Mode=TwoWay}"/>
+                            <Separator/>
+                            <MenuItem Header="{i:Loc Luminance}"
+                                IsCheckable="True"
+                                IsChecked="{i:PanelBinding ShowLuminance, local:HistogramPanel, Mode=TwoWay}"/>
+                            <MenuItem Header="{i:Loc Saturation}"
+                                IsCheckable="True"
+                                IsChecked="{i:PanelBinding ShowSaturation, local:HistogramPanel, Mode=TwoWay}"/>
+                            <Separator/>
+                            <MenuItem Header="{i:Loc Refresh}"
+                                Command="{Binding RefreshCommand}"/>
+                        </ContextMenu>
+                    </local:HistogramControl.ContextMenu>
+                    <Grid Background="{Binding Background, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}">
+                        <Polygon 
+                            Fill="{Binding Blue, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}" 
+                            Opacity="{Binding Opacity}" 
+                            Points="{i:Ancestor Histogram.BluePoints, local:HistogramControl}"
+                            Stretch="Fill"
+                            Visibility="{i:VisibilityBinding ShowBlue}"/>
+                        <Polygon 
+                            Fill="{Binding Green, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}" 
+                            Opacity="{Binding Opacity}" 
+                            Points="{i:Ancestor Histogram.GreenPoints, local:HistogramControl}"
+                            Stretch="Fill"
+                            Visibility="{i:VisibilityBinding ShowGreen}"/>
+                        <Polygon 
+                            Fill="{Binding Red, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}" 
+                            Opacity="{Binding Opacity}" 
+                            Points="{i:Ancestor Histogram.RedPoints, local:HistogramControl}"
+                            Stretch="Fill"
+                            Visibility="{i:VisibilityBinding ShowRed}"/>
+                        <Polygon 
+                            Fill="{Binding Luminance, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}" 
+                            Opacity="{Binding Opacity}" 
+                            Points="{i:Ancestor Histogram.LuminancePoints, local:HistogramControl}"
+                            Stretch="Fill"
+                            Visibility="{i:VisibilityBinding ShowLuminance}"/>
+                        <Polygon 
+                            Fill="{Binding Saturation, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}" 
+                            Opacity="{Binding Opacity}" 
+                            Points="{i:Ancestor Histogram.SaturationPoints, local:HistogramControl}"
+                            Stretch="Fill"
+                            Visibility="{i:VisibilityBinding ShowSaturation}"/>
+                    </Grid>
+                </local:HistogramControl>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:HistoryPanel}">
+                <Grid i:XGrid.AutoRows="True" i:XGrid.Rows="Auto,*">
+                    <ComboBox x:Name="ComboBox"
+                        IsEnabled="{i:RemoteBinding ActiveDocument, Converter={x:Static i:IsNullConverter.Default}, ConverterParameter=1, RemoteSource=MainViewModel}"
+                        Margin="1">
+                        <ComboBoxItem Content="{i:Loc Undo}"/>
+                        <ComboBoxItem Content="{i:Loc Redo}"/>
+                    </ComboBox>
+                    <i:TopBorder>
+                        <i:TransitionControl x:Name="TransitionControl" Transition="LeftReplace">
+                            <i:TransitionControl.ContentTemplate>
+                                <DataTemplate>
+                                    <ListBox 
+                                        BorderThickness="0"
+                                        ItemsSource="{Binding}"
+                                        SelectedIndex="0"
+                                        SelectionMode="Single">
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                                <Setter Property="ContextMenu">
+                                                    <Setter.Value>
+                                                        <ContextMenu DataContext="{i:Self PlacementTarget.DataContext}">
+                                                            <MenuItem Header="{i:Loc Execute}" 
+                                                                Command="{Binding ExecuteCommand}"/>
+                                                        </ContextMenu>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{i:DisplayNameBinding}"/>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </DataTemplate>
+                            </i:TransitionControl.ContentTemplate>
+                        </i:TransitionControl>
+                    </i:TopBorder>
+                </Grid>
+                <DataTemplate.Triggers>
+                    <Trigger SourceName="ComboBox" Property="SelectedIndex" Value="0">
+                        <Setter TargetName="TransitionControl" Property="Content" Value="{i:RemoteBinding ActiveDocument.History.U, RemoteSource=MainViewModel}"/>
+                    </Trigger>
+                    <Trigger SourceName="ComboBox" Property="SelectedIndex" Value="1">
+                        <Setter TargetName="TransitionControl" Property="Content" Value="{i:RemoteBinding ActiveDocument.History.R, RemoteSource=MainViewModel}"/>
+                    </Trigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:LayersPanel}">
+                <Grid i:XGrid.AutoRows="True" i:XGrid.Rows="Auto,*">
+                    <ComboBox x:Name="ComboBox"
+                        ItemsSource="{i:Enumerate local:BlendModes}"
+                        Margin="1"/>
+                    <TreeView
+                        BorderThickness="0"
+                        i:XItemsControl.SelectNoneOnEmptySpaceClick="True"
+                        i:XTreeView.CollapseSiblingsOnClick="False"
+                        i:XTreeView.SelectedItem="{i:TwoWay SelectedLayer}"
+                        i:XTreeView.SelectOnRightClick="True"
+                        i:XTreeView.SelectionMode="Multiple"
+                        ItemsSource="{Binding Layers, Mode=OneWay}"
+                        Padding="0">
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource LayerStyle}">
+                                <Setter Property="ContextMenu" Value="{StaticResource LayerContextMenu}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Converter={x:Static i:ObjectToTypeConverter.Default}}" Value="{x:Type local:GroupLayer}">
+                                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type local:EffectLayer}">
+                                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource EffectLayerTemplate}"/>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type local:GroupLayer}" ItemsSource="{Binding Layers}">
+                                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource GroupLayerTemplate}"/>
+                            </HierarchicalDataTemplate> 
+                            <HierarchicalDataTemplate DataType="{x:Type local:StaticLayer}">
+                                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource StaticLayerTemplate}"/>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type local:VisualLayer}">
+                                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource VisualLayerTemplate}"/>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{i:IsBinding SelectedLayer, local:StyleLayer}" Value="True">
+                        <Setter TargetName="ComboBox" Property="IsEnabled" Value="True"/>
+                        <Setter TargetName="ComboBox" Property="SelectedItem" Value="{Binding SelectedLayer.BlendMode, Mode=TwoWay}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{i:IsBinding SelectedLayer, local:StyleLayer}" Value="False">
+                        <Setter TargetName="ComboBox" Property="IsEnabled" Value="False"/>
+                        <Setter TargetName="ComboBox" Property="SelectedIndex" Value="-1"/>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:NotesPanel}">
+                <TextBox 
+                    AcceptsReturn="True" 
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Height="Auto"
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Left"
+                    IsEnabled="{Binding Note, Converter={x:Static i:IsNullConverter.Default}, ConverterParameter=1}"
+                    i:XTextBoxBase.Placeholder="Write something..."
+                    Text="{Binding Note.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    TextAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Top"
+                    Width="Auto">
+                </TextBox>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ParagraphPanel}">
+                <i:PropertyGrid
+                    BorderThickness="0"
+                    HeaderVisibility="Collapsed"
+                    Source="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:PropertiesPanel}">
+                <TabControl ItemsSource="{Binding Sources}"
+                    BorderThickness="0"
+                    Margin="5"
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <i:PropertyGrid x:Name="PropertyGrid"
+                                BorderThickness="0"
+                                GroupName="Category"
+                                Margin="-5,0"
+                                Source="{Binding}">
+                                <i:PropertyGrid.OverrideTemplates>
+                                    <i:KeyTemplate DataKey="FileName">
+                                        <Grid 
+                                            i:XGrid.Columns="*,Auto"
+                                            i:XPanel.Spacing="0,0,5,0"
+                                            i:XPanel.SpacingExcept="Last"
+                                            i:XPanel.VerticalContentAlignment="Center">
+                                            <TextBox
+                                                Grid.Column="0"
+                                                HorizontalAlignment="Stretch"
+                                                i:XTextBox.ClearButtonVisibility="Visible"
+                                                Text="{i:RemoteBinding RemoteSource=MainViewModel, Path=ActiveDocument.FileName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                                            <TextBlock 
+                                                Grid.Column="1"
+                                                Text="{i:RemoteBinding RemoteSource=MainViewModel, Path=ActiveDocument.FileExtension, StringFormat={}.{0}}"/>
+                                        </Grid>
+                                    </i:KeyTemplate>
+                                    <i:KeyTemplate DataKey="{x:Type Effects:ImageEffect}">
+                                        <Grid x:Name="Grid" i:XGrid.AutoColumns="True" i:XGrid.Columns="Auto,*,Auto"
+                                            i:XPanel.Spacing="0,0,5,0"
+                                            i:XPanel.SpacingExcept="Last"
+                                            i:XPanel.VerticalContentAlignment="Center">
+                                            <i:ImageToggleButton
+                                                CheckedSource="{i:ProjectImage Show.png}"
+                                                IsChecked="{Binding Value.IsVisible, Mode=TwoWay}"
+                                                Source="{i:ProjectImage Hide.png}"
+                                                VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Value.Name}"
+                                                TextTrimming="CharacterEllipsis"/>
+                                            <i:ImageButton 
+                                                Command="{i:Ancestor EditCommand, {x:Type i:PropertyGrid}}"
+                                                CommandParameter="{Binding}"
+                                                Source="{i:ProjectImage Pen.png}"
+                                                ToolTip="{i:Loc Edit}"/>
+                                        </Grid>
+                                        <i:KeyTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding CanApply}" Value="False">
+                                                <Setter TargetName="Grid" Property="IsEnabled" Value="False"/>
+                                                <Setter TargetName="Grid" Property="Opacity" Value="0.5"/>
+                                            </DataTrigger>
+                                        </i:KeyTemplate.Triggers>
+                                    </i:KeyTemplate>
+                                </i:PropertyGrid.OverrideTemplates>
+                            </i:PropertyGrid>
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <i:ImageElement
+                                        Margin="0,0,5,0"
+                                        Source="{i:IconBinding}"/>
+                                <TextBlock Text="{i:DisplayNameBinding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                </TabControl>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ToolPanel}">
+                <i:PropertyGrid Source="{Binding Tool}"
+                    BorderThickness="0"
+                    HeaderVisibility="Visible"
+                    Margin="5,0"
+                    MemberOptionsVisibility="Collapsed"
+                    Orientation="Horizontal">
+                    <i:PropertyGrid.OverrideTemplates>
+                        <i:KeyTemplate DataKey="Brush">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="ComboBox"
+                                    ItemsSource="{i:Options Brushes}"
+                                    SelectedIndex="{i:PanelBinding Tool.SelectedGroupIndex, local:ToolPanel, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <ComboBox
+                                    ItemsSource="{Binding SelectedItem, ElementName=ComboBox}"
+                                    Margin="5,0,0,0"
+                                    MinWidth="64"
+                                    SelectionChanged="OnBrushSelected">
+                                    <ComboBox.ItemTemplateSelector>
+                                        <i:ComboBoxTemplateSelector>
+                                            <i:ComboBoxTemplateSelector.ItemTemplate>
+                                                <DataTemplate>
+                                                    <local:BrushView Brush="{Binding}" 
+                                                        PreviewColor="{i:Options ForegroundColor, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}"
+                                                        PreviewHeight="20"
+                                                        PreviewLength="20"
+                                                        PreviewWidth="20"/>
+                                                </DataTemplate>
+                                            </i:ComboBoxTemplateSelector.ItemTemplate>
+                                            <i:ComboBoxTemplateSelector.SelectedItemTemplate>
+                                                <DataTemplate>
+                                                    <local:BrushView Brush="{i:PanelBinding Tool.Brush, local:ToolPanel}" 
+                                                        PreviewColor="{i:Options ForegroundColor, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}"
+                                                        PreviewHeight="20"
+                                                        PreviewLength="20"
+                                                        PreviewWidth="20"/>
+                                                </DataTemplate>
+                                            </i:ComboBoxTemplateSelector.SelectedItemTemplate>
+                                        </i:ComboBoxTemplateSelector>
+                                    </ComboBox.ItemTemplateSelector>
+                                </ComboBox>
+                            </StackPanel>
+                        </i:KeyTemplate>
+                        <i:KeyTemplate DataKey="Gradient">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox
+                                    x:Name="ComboBox"
+                                    ItemsSource="{i:Options Gradients}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <ComboBox
+                                    ItemsSource="{Binding SelectedItem, ElementName=ComboBox}"
+                                    Margin="5,0,0,0"
+                                    MinWidth="180">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <i:GradientBox 
+                                                IsEnabled="False" 
+                                                Value="{Binding}"
+                                                Width="150">
+                                                <i:GradientBox.ValueTemplate>
+                                                    <DataTemplate>
+                                                        <Rectangle Fill="{i:GradientBinding}"/>
+                                                    </DataTemplate>
+                                                </i:GradientBox.ValueTemplate>
+                                            </i:GradientBox>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                        </i:KeyTemplate>
+                    </i:PropertyGrid.OverrideTemplates>
+                    <i:XItemsControl.EmptyTemplate>
+                        <DataTemplate>
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                i:XPanel.VerticalContentAlignment="Center"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                                <i:ImageElement
+                                    Margin="0,0,5,0"
+                                    Opacity="0.3"
+                                    Source="{i:InternalImage Image=XRound}"/>
+                                <TextBlock Text="{i:Loc NoToolSelected, Suffix=...}"
+                                    FontStyle="Italic" 
+                                    Foreground="{i:ThemeKey ActualKey=Text}" 
+                                    Opacity="0.5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </i:XItemsControl.EmptyTemplate>
+                </i:PropertyGrid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ToolsPanel}">
+                <Grid i:XGrid.Rows="Auto,Auto,*"
+                    i:XPanel.HorizontalContentAlignment="Center">
+                    <ItemsControl ItemsSource="{i:Options Tools}"
+                        Margin="1,5">
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="FrameworkElement">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Hidden}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:ToolButton
+                                    Count="{Binding Tools.Count}"
+                                    IsChecked="{i:TwoWay SelectedTool.IsSelected}"
+                                    IsMenuVisible="{i:TwoWay IsMenuVisible}"
+                                    ItemsSource="{Binding Tools}"
+                                    Margin="1"
+                                    SelectedItem="{i:TwoWay SelectedTool}"
+                                    ToolTip="{Binding SelectedTool, Converter={x:Static i:DisplayNameConverter.Default}}">
+                                    <local:ToolButton.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={x:Static i:DisplayNameConverter.Default}}"/>
+                                        </DataTemplate>
+                                    </local:ToolButton.ItemTemplate>
+                                    <local:ToolButton.SelectedItemTemplate>
+                                        <DataTemplate>
+                                            <i:ImageElement Source="{Binding Icon}"/>
+                                        </DataTemplate>
+                                    </local:ToolButton.SelectedItemTemplate>
+                                </local:ToolButton>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <i:DualColorControl
+                        Grid.Row="1"
+                        BackgroundColor="{i:Options BackgroundColor, Mode=TwoWay}"
+                        ForegroundColor="{i:Options ForegroundColor, Mode=TwoWay}"
+                        Margin="0,5,0,0"/>
+                </Grid>
+            </DataTemplate>
+        </i:PanelTemplateSelector>
+    </i:MainWindow.Resources>
+    <i:MainWindow.InputBindings>
+        <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CopyCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="O" Command="{Binding OpenCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="N" Command="{Binding NewCommand}" CommandParameter="{x:Type local:ImageDocument}"/>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="T" Command="{Binding TransformCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="V" Command="{Binding PasteCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Y" Command="{Binding RedoCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Z" Command="{Binding UndoCommand}"/>
+    </i:MainWindow.InputBindings>
+    <i:XWindow.HeaderButtons>
+        <i:WindowButtons>
+            <i:WindowButton
+                Command="{Binding ShowAboutWindowCommand}"
+                Content="{i:InternalImage Image=Info}"
+                ContentSize="12,12"
+                IsCheckable="False"
+                ToolTip="{i:Loc About}"/>
+            <i:WindowButton
+                Content="{i:InternalImage Image=Options}"
+                ContentSize="12,12"
+                IsCheckable="True"
+                IsChecked="{i:PanelBinding IsVisible, {x:Type i:OptionsPanel}, Mode=TwoWay}"
+                ToolTip="{i:Loc Options}"/>
+        </i:WindowButtons>
+    </i:XWindow.HeaderButtons>
+    <i:XWindow.Menu>
+        <Menu 
+            Grid.Row="0"
+            Margin="0,5,0,0">
+            <Menu.Resources>
+                <CollectionViewSource x:Key="RecentFiles" Source="{i:Options RecentFiles}"/>
+            </Menu.Resources>
+            <MenuItem Header="{i:Loc File}">
+                <Separator i:XSeparator.Header="{i:Loc New}"/>
+                <MenuItem Header="{i:Loc Image, Suffix=...}"
+                    Command="{Binding NewCommand}"
+                    CommandParameter="{x:Type local:ImageDocument}"
+                    InputGestureText="Ctrl + N"
+                    Icon="{i:ProjectImage DocumentImage.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Animation, Suffix=...}"
+                    Command="{Binding NewCommand}"
+                    CommandParameter="{x:Type local:AnimationDocument}"
+                    Icon="{i:ProjectImage DocumentAnimation.png}"/>
+                <MenuItem Header="{i:Loc Layout, Suffix=...}"
+                    Command="{Binding NewCommand}"
+                    CommandParameter="{x:Type local:LayoutDocument}"
+                    Icon="{i:ProjectImage DocumentLayout.png}"/>
+                <MenuItem Header="{i:Loc Stack, Suffix=...}"
+                    Command="{Binding NewCommand}"
+                    CommandParameter="{x:Type local:StackDocument}"
+                    Icon="{i:ProjectImage DocumentStack.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Template}"
+                    Icon="{i:ProjectImage Template.png}">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                            <Setter Property="ToolTip" Value="{Binding Mode=OneWay}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Converter={x:Static i:ObjectToTypeConverter.Default}}" Value="{x:Type System:String}">
+                                    <Setter Property="Command" Value="{Binding Data.NewFromTemplateCommand, Source={StaticResource MainViewModel}}"/>
+                                    <Setter Property="CommandParameter" Value="{Binding}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={x:Static i:FileNameConverter.Default}, ConverterParameter=0, Mode=OneWay}"/>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                    <MenuItem.ItemsSource>
+                        <CompositeCollection>
+                            <CollectionContainer Collection="{i:Options Templates}"/>
+                            <MenuItem
+                                FontStyle="Italic"
+                                Header="None"
+                                IsEnabled="False"
+                                Visibility="{i:Options Templates.IsEmpty, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"/>
+                        </CompositeCollection>
+                    </MenuItem.ItemsSource>
+                </MenuItem>
+                <Separator i:XSeparator.Header="{i:Loc Open}"/>
+                <MenuItem Header="{i:Loc Open, Suffix=...}"
+                    Command="{Binding OpenCommand}"
+                    InputGestureText="Ctrl + O"
+                    Icon="{i:InternalImage Image=Open}"/>
+                <MenuItem Header="{i:Loc OpenRecent}"
+                    Icon="{i:InternalImage Image=OpenRecent}">
+                    <MenuItem.Resources>
+                        <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Converter={x:Static i:ObjectToTypeConverter.Default}}" Value="{x:Type System:String}">
+                                    <Setter Property="Command" Value="{Binding Data.OpenRecentFileCommand, Source={StaticResource MainViewModel}}"/>
+                                    <Setter Property="CommandParameter" Value="{Binding}"/>
+                                    <Setter Property="Icon" Value="{Binding}"/>
+                                    <Setter Property="i:XMenuItem.IconTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <i:Thumbnail
+                                                    Height="16"
+                                                    Path="{Binding}"
+                                                    Width="16"/>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="ToolTip" Value="{Binding}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Resources>
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={x:Static i:FileNameConverter.Default}, Mode=OneWay}"/>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                    <MenuItem.ItemsSource>
+                        <CompositeCollection>
+                            <CollectionContainer Collection="{Binding Source={StaticResource RecentFiles}}"/>
+                            <MenuItem
+                                FontStyle="Italic"
+                                Header="None"
+                                IsEnabled="False"
+                                Visibility="{i:Options RecentFiles.IsEmpty, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"/>
+                            <Separator/>
+                            <MenuItem
+                                CommandParameter="{i:Options RecentFiles}"
+                                Header="{i:Loc Clear}"/>
+                        </CompositeCollection>
+                    </MenuItem.ItemsSource>
+                </MenuItem>
+                <Separator i:XSeparator.Header="{i:Loc Save}"/>
+                <MenuItem Header="{i:Loc Save}"
+                    Command="{i:RemoteBinding RemoteSource=MainViewModel, Path=ActiveDocument.SaveCommand}"
+                    InputGestureText="Ctrl+S"
+                    Icon="{i:InternalImage Image=Save}"/>
+                <MenuItem Header="{i:Loc SaveAs, Suffix=...}"
+                    Command="{i:RemoteBinding RemoteSource=MainViewModel, Path=ActiveDocument.SaveAsCommand}"
+                    Icon="{i:InternalImage Image=SaveAs}"/>
+                <MenuItem Header="{i:Loc SaveAsTemplate, Suffix=...}"
+                    Command="{i:RemoteBinding RemoteSource=MainViewModel, Path=ActiveDocument.SaveAsTemplateCommand}"
+                    Icon="{i:ProjectImage SaveAsTemplate.png}"/>
+                <MenuItem Header="{i:Loc SaveAll}"
+                    Command="{Binding SaveAllCommand}"
+                    Icon="{i:InternalImage Image=SaveAll}"
+                    InputGestureText="Ctrl+Shift+S"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Delete}"
+                    Command="{Binding DeleteFileCommand}"
+                    Icon="{i:InternalImage Image=Trash}"/>
+                <MenuItem Header="{i:Loc Recycle}"
+                    Command="{Binding RecycleFileCommand}"
+                    Icon="{i:InternalImage Image=Recycle}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Properties, Suffix=...}"
+                    Command="{Binding PropertiesCommand}"
+                    Icon="{i:InternalImage Image=Properties}"/>
+                <MenuItem Header="{i:Loc ShowInWindowsExplorer, Suffix=...}"
+                    Command="{Binding ShowInWindowsExplorerCommand}"
+                    Icon="{i:InternalImage Image=WindowsExplorer}"/>
+                <Separator i:XSeparator.Header="{i:Loc Close}"/>
+                <MenuItem Header="{i:Loc Close}"
+                    Command="{Binding CloseCommand}"
+                    Icon="{i:InternalImage Image=Close}"/>
+                <MenuItem Header="{i:Loc CloseAll}"
+                    Command="{Binding CloseAllCommand}"
+                    Icon="{i:InternalImage Image=CloseAll}"/>
+                <MenuItem Header="{i:Loc CloseAllButThis}"
+                    Command="{Binding CloseAllButThisCommand}"
+                    Icon="{i:InternalImage Image=CloseAllButThis}"/>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Edit}">
+                <MenuItem Header="{i:Loc Undo}"
+                    Command="{Binding UndoCommand}"
+                    InputGestureText="Ctrl + Z"
+                    Icon="{i:InternalImage Image=Undo}"/>
+                <MenuItem Header="{i:Loc Redo}"
+                    Command="{Binding RedoCommand}"
+                    InputGestureText="Ctrl + Y"
+                    Icon="{i:InternalImage Image=Redo}"/>
+                <MenuItem Header="{i:Loc Repeat}"
+                    Command="{Binding RepeatCommand}"
+                    Icon="{i:ProjectImage Repeat.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Copy}"
+                    Icon="{i:InternalImage Image=Copy}"
+                    InputGestureText="Ctrl + C" 
+                    Command="{Binding CopyCommand}"
+                    ToolTip="Copies selected layer to clipboard."/>
+                <MenuItem Header="{i:Loc CopyMerged}"
+                    Command="{Binding CopyMergedCommand}" 
+                    Icon="{i:InternalImage Image=Copy}"
+                    ToolTip="Copies all layers (merged) to clipboard."/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Cut}"
+                    Command="{Binding CutCommand}"
+                    Icon="{i:InternalImage Image=Cut}"
+                    ToolTip="Cuts selected layer to clipboard."/>
+                <MenuItem Header="{i:Loc CutMerged}"
+                    Command="{Binding CutMergedCommand}"
+                    Icon="{i:InternalImage Image=Cut}"
+                    ToolTip="Cuts all layers (merged) to clipboard."/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Paste}"
+                    Command="{Binding PasteCommand}"
+                    Icon="{i:InternalImage Image=Paste}"
+                    InputGestureText="Ctrl + V" 
+                    ToolTip="Pastes clipboard content to selected layer.">
+                </MenuItem>
+                <MenuItem Header="{i:Loc PasteNewLayer}"
+                    Command="{Binding PasteNewLayerCommand}"
+                    Icon="{i:ProjectImage PasteLayer.png}"
+                    ToolTip="Pastes clipboard content to a new layer."/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Clear}"
+                    Command="{Binding ClearCommand}" 
+                    InputGestureText="Delete">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Capture}">
+                <MenuItem Header="{i:Loc CurrentWindow}"
+                    Command="{Binding CaptureWindowCommand}"
+                    Icon="{i:ProjectImage CaptureCurrent.png}"/>
+                <MenuItem Header="{i:Loc ForegroundWindow}" 
+                    Command="{Binding CaptureForegroundWindowCommand}"
+                    Icon="{i:ProjectImage CaptureForeground.png}"/>
+                <MenuItem Header="{i:Loc Screen}" 
+                    Command="{Binding CaptureScreenCommand}"
+                    Icon="{i:ProjectImage CaptureScreen.png}"/>
+                <Separator i:XSeparator.Header="{i:Loc To}"/>
+                <MenuItem Header="{i:Loc File}"
+                    IsCheckable="True"
+                    IsChecked="{i:Options CaptureFile, Mode=TwoWay}" 
+                    StaysOpenOnClick="True" 
+                    i:XMenuItem.GroupName="Capture type"/>
+                <MenuItem Header="{i:Loc Layer}"
+                    IsCheckable="True"
+                    IsChecked="{i:Options CaptureLayer, Mode=TwoWay}" 
+                    StaysOpenOnClick="True" 
+                    i:XMenuItem.GroupName="Capture type"/>
+                <MenuItem Header="{i:Loc Clipboard}" 
+                    IsCheckable="True"
+                    IsChecked="{i:Options CaptureClipboard, Mode=TwoWay}"
+                    StaysOpenOnClick="True" 
+                    i:XMenuItem.GroupName="Capture type"/>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Effect}" 
+                ItemsSource="{i:RemoteBinding Effects, RemoteSource=MainViewModel}"
+                i:XItemsControl.GroupsItself="True"
+                i:XItemsControl.GroupStyle="{StaticResource {x:Static i:XItemsControl.MenuGroupStyleKey}}">
+                <i:XItemsControl.GroupContainerStyle>
+                    <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                        <Setter Property="Command" Value="{i:RemoteBinding AddEffectCommand, RemoteSource=MainViewModel}"/>
+                        <Setter Property="CommandParameter" Value="{Binding}"/>
+                        <Setter Property="Header" Value="{i:DisplayNameBinding}"/>
+                    </Style>
+                </i:XItemsControl.GroupContainerStyle>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Image}">
+                <MenuItem Header="{i:Loc Mode}"
+                    Icon="{i:ProjectImage ImageMode.png}">
+                    <MenuItem.Resources>
+                        <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{i:IsBinding local:ImageMode}" Value="True">
+                                    <Setter Property="Header" Value="{Binding}"/>
+                                    <Setter Property="i:XMenuItem.Equals" Value="{i:ActiveDocumentBinding Mode, Mode=TwoWay}"/>
+                                    <Setter Property="i:XMenuItem.EqualsParameter" Value="{Binding}"/>
+                                    <Setter Property="i:XMenuItem.GroupName" Value="Mode"/>
+                                    <Setter Property="i:XMenuItem.SelectionMode" Value="Single"/>
+                                    <Setter Property="IsCheckable" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{i:IsBinding local:ImageModeDepth}" Value="True">
+                                    <Setter Property="Header" Value="{i:DisplayNameBinding}"/>
+                                    <Setter Property="i:XMenuItem.Equals" Value="{i:ActiveDocumentBinding ModeDepth, Mode=TwoWay}"/>
+                                    <Setter Property="i:XMenuItem.EqualsParameter" Value="{Binding}"/>
+                                    <Setter Property="i:XMenuItem.GroupName" Value="ModeDepth"/>
+                                    <Setter Property="i:XMenuItem.SelectionMode" Value="Single"/>
+                                    <Setter Property="IsCheckable" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                    </Style>
+                    </MenuItem.Resources>
+                    <MenuItem.ItemsSource>
+                        <CompositeCollection>
+                            <Separator i:XSeparator.Header="Mode"/>
+                            <CollectionContainer Collection="{i:Enumerate local:ImageMode}"/>
+                            <Separator i:XSeparator.Header="Bits/Channel"/>
+                            <CollectionContainer Collection="{i:Enumerate local:ImageModeDepth}"/>
+                        </CompositeCollection>
+                    </MenuItem.ItemsSource>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="{i:Loc Resize, Suffix=...}"
+                    Command="{Binding ImageResizeCommand}"
+                    Icon="{i:ProjectImage ImageResize.png}"/>
+                <MenuItem Header="{i:Loc Rotate, Suffix=...}"
+                    Command="{Binding ImageRotateCommand}"
+                    Icon="{i:ProjectImage ImageRotate.png}"/>
+                <MenuItem Header="{i:Loc Trim, Suffix=...}"
+                    Command="{Binding ImageTrimCommand}"
+                    Icon="{i:ProjectImage ImageTrim.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Clone, Suffix=...}"
+                    Command="{Binding ImageCloneCommand}"
+                    Icon="{i:ProjectImage CloneImage.png}"/>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Layer}">
+                <MenuItem Header="{i:Loc Edit}"
+                    Command="{i:PanelBinding EditCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=Pencil}"/>
+                <MenuItem Header="{i:Loc EditStyle}" 
+                    Command="{i:PanelBinding EditStyleCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage EditLayerStyle.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc InsertAbove}"
+                    Command="{i:PanelBinding InsertAboveCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=InsertAbove}"/>
+                <MenuItem Header="{i:Loc InsertBelow}" 
+                    Command="{i:PanelBinding InsertBelowCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=InsertBelow}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Rasterize}" 
+                    Command="{i:PanelBinding RasterizeCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage RasterizeLayer.png}"/>
+                <MenuItem Header="{i:Loc RasterizeStyle}" 
+                    Command="{i:PanelBinding RasterizeStyleCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage RasterizeLayerStyle.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc ClearStyle}" 
+                    Command="{i:PanelBinding ClearStyleCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage ClearStyle.png}"/>
+                <MenuItem Header="{i:Loc CopyStyle}" 
+                    Command="{i:PanelBinding CopyStyleCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage CopyStyle.png}"/>
+                <MenuItem Header="{i:Loc PasteStyle}" 
+                    Command="{i:PanelBinding PasteStyleCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage PasteStyle.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc MergeAll}" 
+                    Command="{i:PanelBinding FlattenCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage MergeAll.png}"/>
+                <MenuItem Header="{i:Loc MergeVisible}"
+                    Command="{i:PanelBinding MergeVisibleCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage MergeVisible.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc MergeUp}" 
+                    Command="{i:PanelBinding MergeUpCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage MergeUp.png}"/>
+                <MenuItem Header="{i:Loc MergeDown}" 
+                    Command="{i:PanelBinding MergeDownCommand, local:LayersPanel}"
+                    Icon="{i:ProjectImage MergeDown.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc MoveInside}" 
+                    Command="{i:PanelBinding MoveInsideCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=ArrowLeftDownRound}"/>
+                <MenuItem Header="{i:Loc MoveOutside}" 
+                    Command="{i:PanelBinding MoveOutsideCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=ArrowLeftUpRound}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc MoveUp}" 
+                    Command="{i:PanelBinding MoveUpCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=ArrowUpRound}"/>
+                <MenuItem Header="{i:Loc MoveDown}"
+                    Command="{i:PanelBinding MoveDownCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=ArrowDownRound}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Clone}"
+                    Command="{i:PanelBinding CloneCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=Clone}"/>
+                <MenuItem Header="{i:Loc Delete}" 
+                    Command="{i:PanelBinding DeleteCommand, local:LayersPanel}"
+                    Icon="{i:InternalImage Image=Trash}"/>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Select}">
+                <MenuItem Header="{i:Loc All}" 
+                    Icon="{i:InternalImage Image=SelectAll}"
+                    InputGestureText="Ctrl + A"
+                    Command="{Binding SelectAllCommand}"/>
+                <MenuItem Header="{i:Loc Invert}"
+                    Icon="{i:InternalImage Image=SelectInvert}"
+                    InputGestureText="Ctrl + Shift + I" 
+                    Command="{Binding InvertSelectionCommand}"/>
+                <MenuItem Header="{i:Loc Clear}"
+                    Command="{i:Options Selections.ClearCommand}"
+                    Icon="{i:InternalImage Image=SelectNone}"
+                    InputGestureText="Ctrl + D"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Export, Suffix=...}" 
+                    Command="{i:Options Selections.ExportCommand}"
+                    Icon="{i:InternalImage Image=Export}"/>
+                <MenuItem Header="{i:Loc ExportAll, Suffix=...}" 
+                    Command="{i:Options Selections.ExportAllCommand}"
+                    Icon="{i:InternalImage Image=ExportAll}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Import, Suffix=...}" 
+                    Command="{i:Options Selections.ImportCommand}"
+                    Icon="{i:InternalImage Image=Import}"/>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Style}">
+                <MenuItem.Resources>
+                    <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{i:IsBinding local:LayerStyle}" Value="True">
+                                <Setter Property="Command" Value="{i:PanelBinding ApplyCommand, {x:Type local:StylesPanel}}"/>
+                                <Setter Property="CommandParameter" Value="{Binding}"/>
+                                <Setter Property="Header" Value="{Binding Name}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </MenuItem.Resources>
+                <MenuItem.ItemsSource>
+                    <CompositeCollection>
+                        <MenuItem Header="{i:Loc New}"
+                            Command="{i:PanelBinding NewCommand, {x:Type local:StylesPanel}}"
+                            Icon="{i:InternalImage Image=Plus}"/>
+                        <Separator/>
+                        <MenuItem Header="{i:Loc Export, Suffix=...}" 
+                            Command="{i:Options Styles.ExportCommand}"
+                            Icon="{i:InternalImage Image=Export}"/>
+                        <MenuItem Header="{i:Loc ExportAll, Suffix=...}" 
+                            Command="{i:Options Styles.ExportAllCommand}"
+                            Icon="{i:InternalImage Image=ExportAll}"/>
+                        <Separator/>
+                        <MenuItem Header="{i:Loc Import, Suffix=...}" 
+                            Command="{i:Options Styles.ImportCommand}"
+                            Icon="{i:InternalImage Image=Import}"/>
+                        <Separator/>
+                        <CollectionContainer Collection="{i:Options Styles}"/>
+                    </CompositeCollection>
+                </MenuItem.ItemsSource>
+                <MenuItem.ItemTemplateSelector>
+                    <local:StyleTemplateSelector>
+                        <local:StyleTemplateSelector.Default>
+                            <DataTemplate DataType="local:LayerStyle">
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </local:StyleTemplateSelector.Default>
+                        <local:StyleTemplateSelector.Group>
+                            <HierarchicalDataTemplate DataType="local:StyleGroup" ItemsSource="{Binding}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </HierarchicalDataTemplate>
+                        </local:StyleTemplateSelector.Group>
+                    </local:StyleTemplateSelector>
+                </MenuItem.ItemTemplateSelector>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Transform}">
+                <MenuItem Header="{i:Loc Rotate}" 
+                    Command="{Binding RotateTransformCommand}"
+                    Icon="{i:ProjectImage TransformRotate.png}"/>
+                <MenuItem Header="{i:Loc Scale}" 
+                    Command="{Binding ScaleTransformCommand}"
+                    Icon="{i:ProjectImage TransformScale.png}"/>
+                <MenuItem Header="{i:Loc Skew}" 
+                    Command="{Binding SkewTransformCommand}"
+                    Icon="{i:ProjectImage TransformSkew.png}"/>
+                <MenuItem Header="{i:Loc Distort}" 
+                    Command="{Binding DistortTransformCommand}"
+                    Icon="{i:ProjectImage TransformDistort.png}"/>
+                <MenuItem Header="{i:Loc Perspective}" 
+                    Command="{Binding PerspectiveTransformCommand}"
+                    Icon="{i:ProjectImage TransformPerspective.png}"/>
+                <MenuItem Header="{i:Loc Warp}" 
+                    Command="{Binding WarpTransformCommand}"
+                    Icon="{i:ProjectImage TransformWarp.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc Rotate45Clockwise}"
+                    Command="{Binding RotateCommand}"
+                    CommandParameter="45"
+                    Icon="{i:ProjectImage Rotate45Right.png}"/>
+                <MenuItem Header="{i:Loc Rotate45Counterclockwise}" 
+                    Command="{Binding RotateCommand}"
+                    CommandParameter="-45"
+                    Icon="{i:ProjectImage Rotate45Left.png}"/>
+                <MenuItem Header="{i:Loc Rotate90Clockwise}" 
+                    Command="{Binding RotateCommand}"
+                    CommandParameter="90"
+                    Icon="{i:ProjectImage Rotate90Right.png}"/>
+                <MenuItem Header="{i:Loc Rotate90Counterclockwise}"
+                    Command="{Binding RotateCommand}"
+                    CommandParameter="-90"
+                    Icon="{i:ProjectImage Rotate90Left.png}"/>
+                <MenuItem Header="{i:Loc Rotate180, Suffix=°}" 
+                    Command="{Binding RotateCommand}"
+                    CommandParameter="180"
+                    Icon="{i:ProjectImage Rotate180.png}"/>
+                <Separator/>
+                <MenuItem Header="{i:Loc FlipHorizontal}" 
+                    Command="{Binding FlipHorizontalCommand}"
+                    Icon="{i:ProjectImage FlipHorizontal.png}"/>
+                <MenuItem Header="{i:Loc FlipVertical}" 
+                    Command="{Binding FlipVerticalCommand}"
+                    Icon="{i:ProjectImage FlipVertical.png}"/>
+            </MenuItem>
+            <MenuItem Header="{i:Loc View}">
+                <MenuItem Header="{i:Loc GridLines}"
+                    Icon="{i:ProjectImage GridLines.png}"
+                    IsCheckable="True"
+                    IsChecked="{i:Options ViewGridLines, Mode=TwoWay}"/>
+                <MenuItem Header="{i:Loc Rulers}"
+                    Icon="{i:InternalImage Image=Ruler}"
+                    IsCheckable="True"
+                    IsChecked="{i:Options ViewRulers, Mode=TwoWay}"/>
+            </MenuItem>
+            <MenuItem Header="{i:Loc Window}" 
+                ItemsSource="{Binding Panels}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
+                        <Setter Property="Icon" Value="{Binding Icon}"/>
+                        <Setter Property="StaysOpenOnClick" Value="True"/>
+                        <Setter Property="IsCheckable" Value="True"/>
+                        <Setter Property="IsChecked" Value="{Binding IsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+                <MenuItem.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{i:TranslateBinding Title}"/>
+                    </DataTemplate>
+                </MenuItem.ItemTemplate>
+            </MenuItem>
+        </Menu>
+    </i:XWindow.Menu>
+    <Grid>
+        <Hardcodet:TaskbarIcon
+            Visibility="{i:Options WindowShowInTaskBar, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"
+            ToolTipText="{i:AssemblyProduct}"
+            IconSource="{i:Image Imagin.Apps.Paint, Logo.ico}"
+            MenuActivation="LeftOrRightClick">
+            <Hardcodet:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem 
+                        Command="{i:RemoteBinding RemoteSource=MainViewModel, Path=HideShowCommand}"
+                        Header="{i:Loc HideShow}"/>
+                    <Separator/>
+                    <MenuItem Header="About"
+                        Command="{i:RemoteBinding RemoteSource=MainViewModel, Path=ShowAboutWindowCommand}"
+                        Icon="{i:InternalImage Image=Info}"/>
+                    <MenuItem Header="Options"
+                        Command="{i:RemoteBinding RemoteSource=MainViewModel, Path=ShowOptionsWindowCommand}"
+                        Icon="{i:InternalImage Image=Options}"/>
+                    <Separator/>
+                    <MenuItem 
+                        Command="{i:RemoteBinding RemoteSource=MainViewModel, Path=ForceExitCommand}"
+                        Header="{i:Loc Exit}"/>
+                </ContextMenu>
+            </Hardcodet:TaskbarIcon.ContextMenu>
+        </Hardcodet:TaskbarIcon>
+        <i:DockControl
+            ActiveContent="{Binding ActiveContent, Mode=TwoWay}"
+            ActiveDocument="{Binding ActiveDocument, Mode=TwoWay}"
+            ActivePanel="{Binding ActivePanel, Mode=TwoWay}"
+            AutoSave="{i:Options AutoSaveLayout}"
+            Documents="{Binding Documents}"
+            DocumentToolTipTemplate="{DynamicResource {x:Static i:XExplorer.ToolTipTemplateKey}}"
+            Layouts="{i:Options Layouts}"
+            Panels="{Binding Panels}"
+            PanelTemplateSelector="{StaticResource PanelTemplateSelector}">
+            <i:DockControl.DocumentTemplateSelector>
+                <i:TypeTemplateSelector Strict="True">
+                    <DataTemplate DataType="{x:Type local:ImageDocument}">
+                        <local:ImageViewer
+                            Background="{i:Options CanvasBackground, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}, Mode=TwoWay}"
+                            CanvasAngle="{Binding Angle, Mode=OneWay}"
+                            ImageHeight="{Binding Height, Mode=OneWay}"
+                            ImageWidth="{Binding Width, Mode=OneWay}"
+                            CompassVisibility="{i:PanelBinding Tool.ShowCompass, {x:Type local:ToolsPanel}, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"
+                            Document="{Binding}"
+                            i:XElement.Reference="{Binding}"
+                            i:XElement.ReferenceKey="{x:Static local:Document.ViewerKey}"
+                            Layers="{Binding Layers}"
+                            LinesVisibility="{i:Options ViewGridLines, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"
+                            Resolution="{Binding Resolution}"
+                            RulerVisibility="{i:Options ViewRulers, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"
+                            Selections="{Binding Selections}"
+                            Tool="{i:PanelBinding Tool, {x:Type local:ToolsPanel}}"
+                            Unit="{i:Options GraphicUnit}"
+                            Zoom="{i:TwoWay Zoom}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type local:LayoutDocument}">
+                        <local:Viewer                             
+                            Background="{i:Options CanvasBackground, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}, Mode=TwoWay}"
+                            CanvasAngle="{Binding Angle, Mode=OneWay}"
+                            CompassVisibility="{i:PanelBinding Tool.ShowCompass, local:ToolsPanel, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"
+                            Cursor="{i:PanelBinding Tool.Cursor, local:ToolsPanel}"
+                            i:XElement.Reference="{Binding}"
+                            i:XElement.ReferenceKey="{x:Static local:Document.ViewerKey}"
+                            Resolution="{Binding Resolution}"
+                            RulerVisibility="{i:Options ViewRulers, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"
+                            Unit="{i:Options GraphicUnit}"
+                            Zoom="{i:TwoWay Zoom}">
+                            <local:Viewer.Resources>
+                                <i:Reference x:Key="LayoutDocument" Data="{Binding}"/>
+                            </local:Viewer.Resources>
+                            <Border Height="{Binding Height}" Width="{Binding Width}">
+                                <ContentPresenter Content="{Binding}">
+                                    <ContentPresenter.ContentTemplate>
+                                        <DataTemplate>
+                                            <Border x:Name="Border"
+                                                Background="{Binding Background.Value, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}" 
+                                                Height="{Binding Height}" Width="{Binding Width}"
+                                                RenderTransformOrigin="0.5,0.5">
+                                                <ContentPresenter Content="{Binding LayoutType}">
+                                                    <ContentPresenter.ContentTemplateSelector>
+                                                        <i:KeyTemplateSelector>
+                                                            <i:KeyTemplate DataKey="{x:Static local:LayoutTypes.Circle}">
+                                                            </i:KeyTemplate>
+                                                            <i:KeyTemplate DataKey="{x:Static local:LayoutTypes.DiagonalLeft}">
+                                                                <ItemsControl 
+                                                                    ItemsSource="{Binding Data.Images, Source={StaticResource LayoutDocument}}">
+                                                                    <ItemsControl.ItemsPanel>
+                                                                        <ItemsPanelTemplate>
+                                                                            <UniformGrid Columns="{Binding Data.Columns, Source={StaticResource LayoutDocument}}"/>
+                                                                        </ItemsPanelTemplate>
+                                                                    </ItemsControl.ItemsPanel>
+                                                                    <ItemsControl.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <Canvas ClipToBounds="True" i:XCanvas.CanDrag="True" Margin="{Binding Data.Spacing, Source={StaticResource LayoutDocument}}">
+                                                                                <Image Source="{Binding Source}"
+                                                                                    RenderTransformOrigin="0.5,0.5">
+                                                                                    <Image.LayoutTransform>
+                                                                                        <RotateTransform Angle="-45"/>
+                                                                                    </Image.LayoutTransform>
+                                                                                </Image>
+                                                                            </Canvas>
+                                                                        </DataTemplate>
+                                                                    </ItemsControl.ItemTemplate>
+                                                                </ItemsControl>
+                                                            </i:KeyTemplate>
+                                                            <i:KeyTemplate DataKey="{x:Static local:LayoutTypes.DiagonalRight}">
+                                                                <ItemsControl 
+                                                                    ItemsSource="{Binding Data.Images, Source={StaticResource LayoutDocument}}">
+                                                                    <ItemsControl.ItemsPanel>
+                                                                        <ItemsPanelTemplate>
+                                                                            <UniformGrid Columns="{Binding Data.Columns, Source={StaticResource LayoutDocument}}"/>
+                                                                        </ItemsPanelTemplate>
+                                                                    </ItemsControl.ItemsPanel>
+                                                                    <ItemsControl.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <Canvas ClipToBounds="True" i:XCanvas.CanDrag="True" Margin="{Binding Data.Spacing, Source={StaticResource LayoutDocument}}">
+                                                                                <Image Source="{Binding Source}"
+                                                                                    RenderTransformOrigin="0.5,0.5">
+                                                                                    <Image.LayoutTransform>
+                                                                                        <RotateTransform Angle="45"/>
+                                                                                    </Image.LayoutTransform>
+                                                                                </Image>
+                                                                            </Canvas>
+                                                                        </DataTemplate>
+                                                                    </ItemsControl.ItemTemplate>
+                                                                </ItemsControl>
+                                                            </i:KeyTemplate>
+                                                            <i:KeyTemplate DataKey="{x:Static local:LayoutTypes.StripesHorizontal}">
+                                                                <ItemsControl ItemsSource="{Binding Data.Images, Source={StaticResource LayoutDocument}}">
+                                                                    <ItemsControl.ItemsPanel>
+                                                                        <ItemsPanelTemplate>
+                                                                            <UniformGrid Rows="{Binding Data.Rows, Source={StaticResource LayoutDocument}}"/>
+                                                                        </ItemsPanelTemplate>
+                                                                    </ItemsControl.ItemsPanel>
+                                                                    <ItemsControl.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <Canvas ClipToBounds="True" i:XCanvas.CanDrag="True" Margin="{Binding Data.Spacing, Source={StaticResource LayoutDocument}}">
+                                                                                <Image Source="{Binding Source}"/>
+                                                                            </Canvas>
+                                                                        </DataTemplate>
+                                                                    </ItemsControl.ItemTemplate>
+                                                                </ItemsControl>
+                                                            </i:KeyTemplate>
+                                                            <i:KeyTemplate DataKey="{x:Static local:LayoutTypes.StripesVertical}">
+                                                                <ItemsControl ItemsSource="{Binding Data.Images, Source={StaticResource LayoutDocument}}">
+                                                                    <ItemsControl.ItemsPanel>
+                                                                        <ItemsPanelTemplate>
+                                                                            <UniformGrid Columns="{Binding Data.Columns, Source={StaticResource LayoutDocument}}"/>
+                                                                        </ItemsPanelTemplate>
+                                                                    </ItemsControl.ItemsPanel>
+                                                                    <ItemsControl.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <Canvas ClipToBounds="True" i:XCanvas.CanDrag="True" Margin="{Binding Data.Spacing, Source={StaticResource LayoutDocument}}">
+                                                                                <Image Source="{Binding Source}"/>
+                                                                            </Canvas>
+                                                                        </DataTemplate>
+                                                                    </ItemsControl.ItemTemplate>
+                                                                </ItemsControl>
+                                                            </i:KeyTemplate>
+                                                            <i:KeyTemplate DataKey="{x:Static local:LayoutTypes.Table}">
+                                                                <Grid/>
+                                                            </i:KeyTemplate>
+                                                            <i:KeyTemplate DataKey="{x:Static local:LayoutTypes.ZigZag}">
+                                                            </i:KeyTemplate>
+                                                        </i:KeyTemplateSelector>
+                                                    </ContentPresenter.ContentTemplateSelector>
+                                                </ContentPresenter>
+                                            </Border>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding LayoutType}" Value="{x:Static local:LayoutTypes.DiagonalLeft}">
+                                                    <Setter TargetName="Border" Property="RenderTransform">
+                                                        <Setter.Value>
+                                                            <RotateTransform Angle="45"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding LayoutType}" Value="{x:Static local:LayoutTypes.DiagonalRight}">
+                                                    <Setter TargetName="Border" Property="RenderTransform">
+                                                        <Setter.Value>
+                                                            <RotateTransform Angle="-45"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ContentPresenter.ContentTemplate>
+                                </ContentPresenter>
+                            </Border>
+                        </local:Viewer>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type local:StackDocument}">
+                        <local:Viewer                             
+                            Background="{i:Options CanvasBackground, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}, Mode=TwoWay}"
+                            CanvasAngle="{Binding Angle, Mode=OneWay}"
+                            CompassVisibility="{i:PanelBinding Tool.ShowCompass, local:ToolsPanel, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"
+                            Cursor="{i:PanelBinding Tool.Cursor, local:ToolsPanel}"
+                            i:XElement.Reference="{Binding}"
+                            i:XElement.ReferenceKey="{x:Static local:Document.ViewerKey}"
+                            Resolution="{Binding Resolution}"
+                            RulerVisibility="{i:Options ViewRulers, Converter={x:Static i:BooleanToVisibilityConverter.Default}}"
+                            Unit="{i:Options GraphicUnit}"
+                            Zoom="{i:TwoWay Zoom}">
+                            <local:Viewer.Resources>
+                                <i:Reference x:Key="StackDocument" Data="{Binding}"/>
+                            </local:Viewer.Resources>
+                            <Border Background="{Binding Background.Value, Converter={x:Static i:ColorToSolidColorBrushConverter.Default}}"
+                                Padding="{Binding Margin}">
+                                <Border.LayoutTransform>
+                                    <ScaleTransform ScaleX="{Binding Zoom}" ScaleY="{Binding Zoom}"/>
+                                </Border.LayoutTransform>
+                                <ContentPresenter Content="{Binding}">
+                                    <ContentPresenter.ContentTemplate>
+                                        <DataTemplate>
+                                            <ContentPresenter x:Name="ContentPresenter" Content="{Binding}"/>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Wrap}" Value="True">
+                                                    <Setter TargetName="ContentPresenter" Property="ContentTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <i:StackControl
+                                                                    ColumnsOrRows="{Binding ColumnsOrRows}"
+                                                                    HorizontalContentAlignment="{Binding HorizontalAlignment}"
+                                                                    Orientation="{Binding Orientation}"
+                                                                    Source="{Binding Layers}"
+                                                                    VerticalContentAlignment="{Binding VerticalAlignment}">
+                                                                    <i:StackControl.ItemContainerStyle>
+                                                                        <Style TargetType="ContentPresenter">
+                                                                            <Setter Property="Visibility" Value="{i:VisibilityBinding IsVisible}"/>
+                                                                        </Style>
+                                                                    </i:StackControl.ItemContainerStyle>
+                                                                    <i:StackControl.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <Image Height="{Binding DisplayHeight}" Width="{Binding DisplayWidth}"
+                                                                                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                                                Opacity="{Binding Opacity}"
+                                                                                SnapsToDevicePixels="True"
+                                                                                Source="{Binding Source}">
+                                                                                <!--
+                                                                                <Image.Effect>
+                                                                                    <Effects:BlendEffect Alpha="{Binding Opacity}" Blend="{Binding BlendMode}" Color="{Binding Data.Background.Value, Source={StaticResource StackDocument}}"/>
+                                                                                </Image.Effect>
+                                                                                -->
+                                                                            </Image>
+                                                                        </DataTemplate>
+                                                                    </i:StackControl.ItemTemplate>
+                                                                </i:StackControl>
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Wrap}" Value="False">
+                                                    <Setter TargetName="ContentPresenter" Property="ContentTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <ItemsControl ItemsSource="{Binding Layers, Mode=OneWay}">
+                                                                    <ItemsControl.ItemContainerStyle>
+                                                                        <Style TargetType="ContentPresenter">
+                                                                            <Setter Property="HorizontalAlignment" Value="{Binding Data.HorizontalAlignment, Source={StaticResource StackDocument}}"/>
+                                                                            <Setter Property="VerticalAlignment" Value="{Binding Data.VerticalAlignment, Source={StaticResource StackDocument}}"/>
+                                                                            <Setter Property="Visibility" Value="{i:VisibilityBinding IsVisible}"/>
+                                                                        </Style>
+                                                                    </ItemsControl.ItemContainerStyle>
+                                                                    <ItemsControl.ItemsPanel>
+                                                                        <ItemsPanelTemplate>
+                                                                            <StackPanel Orientation="{Binding Data.Orientation, Source={StaticResource StackDocument}}"/>
+                                                                        </ItemsPanelTemplate>
+                                                                    </ItemsControl.ItemsPanel>
+                                                                    <ItemsControl.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <Image Height="{Binding DisplayHeight}" Width="{Binding DisplayWidth}"
+                                                                                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                                                Opacity="{Binding Opacity}"
+                                                                                SnapsToDevicePixels="True"
+                                                                                Source="{Binding Source}">
+                                                                                <!--
+                                                                                <Image.Effect>
+                                                                                    <Effects:BlendEffect Alpha="{Binding Opacity}" Blend="{Binding BlendMode}" Color="{Binding Data.Background.Value, Source={StaticResource StackDocument}}"/>
+                                                                                </Image.Effect>
+                                                                                -->
+                                                                            </Image>
+                                                                        </DataTemplate>
+                                                                    </ItemsControl.ItemTemplate>
+                                                                </ItemsControl>
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ContentPresenter.ContentTemplate>
+                                </ContentPresenter>
+                            </Border>
+                        </local:Viewer>
+                    </DataTemplate>
+                </i:TypeTemplateSelector>
+            </i:DockControl.DocumentTemplateSelector>
+            <i:DockControl.DocumentIconTemplate>
+                <DataTemplate DataType="{x:Type local:Document}">
+                    <i:Thumbnail Path="{Binding Path}"
+                        Height="16" Width="16"/>
+                </DataTemplate>
+            </i:DockControl.DocumentIconTemplate>
+            <i:DockControl.DocumentTitleTemplate>
+                <DataTemplate DataType="{x:Type local:Document}">
+                    <StackPanel 
+                        Margin="5,0,0,0"
+                        Orientation="Horizontal"
+                        i:XPanel.Spacing="0,0,5,0"
+                        i:XPanel.SpacingExcept="Last">
+                        <TextBlock
+                            x:Name="TextBlock"
+                            Text="{Binding Name}"/>
+                        <i:AccentLabel
+                            x:Name="Label"
+                            Content="{Binding Extension}"
+                            Shade="Light"/>
+                    </StackPanel>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding FileName}" Value="">
+                            <Setter TargetName="TextBlock" Property="FontStyle" Value="Italic"/>
+                            <Setter TargetName="TextBlock" Property="Text" Value="Untitled"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </i:DockControl.DocumentTitleTemplate>
+            <i:DockControl.PanelHeaderTemplateSelector>
+                <i:TypeTemplateSelector Strict="True">
+                    <i:TypeTemplateSelector.Default>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {x:Static i:DockControl.PanelHeaderTemplateKey}}"/>
+                        </DataTemplate>
+                    </i:TypeTemplateSelector.Default>
+                    <DataTemplate DataType="{x:Type local:ToolsPanel}">
+                        <i:ImageButton
+                            Command="{Binding CollapseCommand}"
+                            HorizontalAlignment="Center"
+                            Source="{i:ProjectImage ArrowLeftRound.png}"/>
+                    </DataTemplate>
+                </i:TypeTemplateSelector>
+            </i:DockControl.PanelHeaderTemplateSelector>
+        </i:DockControl>
+    </Grid>
+</i:MainWindow>

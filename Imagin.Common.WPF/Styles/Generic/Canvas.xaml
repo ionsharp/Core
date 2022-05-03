@@ -1,0 +1,16 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq">
+    <Style x:Key="{x:Type Canvas}" TargetType="{x:Type Canvas}">
+        <Setter Property="Linq:XCanvas.DragSnap" Value="16"/>
+        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Style.Triggers>
+            <Trigger Property="Linq:XCanvas.CanDrag" Value="True">
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Type InkCanvas}" TargetType="{x:Type InkCanvas}"/>
+</ResourceDictionary>

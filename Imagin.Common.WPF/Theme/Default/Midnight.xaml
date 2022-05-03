@@ -1,0 +1,483 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="Accent" Color="#ecb610"/>
+    <SolidColorBrush x:Key="AccentLight" Color="#FFEC9C10"/>
+    <SolidColorBrush x:Key="AccentDark" Color="#FFCD9F12"/>
+    <!-- ... -->
+    <SolidColorBrush x:Key="AccentForeground" Color="#365A7A"/>
+    <!-- ... -->
+    <SolidColorBrush x:Key="Green" Color="#74AA68"/>
+    <SolidColorBrush x:Key="Red" Color="#CB3C3C"/>
+    <!-- ... -->
+    <SolidColorBrush x:Key="ResultError" Color="#C00"/>
+    <SolidColorBrush x:Key="ResultMessage" Color="#007acc"/>
+    <SolidColorBrush x:Key="ResultSuccess" Color="Green"/>
+    <SolidColorBrush x:Key="ResultWarning" Color="Orange"/>
+    <!-- ... -->
+    <SolidColorBrush x:Key="AngleControlBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="AngleControlNeedleStroke" Color="#ecb610"/>
+    <SolidColorBrush x:Key="AngleControlOriginFill" Color="#ecb610"/>
+    <SolidColorBrush x:Key="AngleControlOriginStroke" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="Border" Color="#22000000"/>
+
+    <LinearGradientBrush x:Key="ButtonCancelBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#c43916"/>
+        <GradientStop Offset="1" Color="#b23314"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ButtonCancelBorder" Color="#a93012"/>
+    <SolidColorBrush x:Key="ButtonCancelForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ButtonCancelMouseOverBackground" Color="#800000"/>
+    <SolidColorBrush x:Key="ButtonCancelMouseOverBorder" Color="#a93012"/>
+    <SolidColorBrush x:Key="ButtonCancelMouseOverForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ButtonCancelPressedBackground" Color="#700000"/>
+    <SolidColorBrush x:Key="ButtonCancelPressedBorder" Color="#a93012"/>
+    <SolidColorBrush x:Key="ButtonCancelPressedForeground" Color="#FFF"/>
+
+    <LinearGradientBrush x:Key="ButtonDefaultBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#64ac4f"/>
+        <GradientStop Offset="1" Color="#568b40"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ButtonDefaultBorder" Color="#396f1c"/>
+    <SolidColorBrush x:Key="ButtonDefaultForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ButtonDefaultMouseOverBackground" Color="#2a8c0b"/>
+    <SolidColorBrush x:Key="ButtonDefaultMouseOverBorder" Color="#396f1c"/>
+    <SolidColorBrush x:Key="ButtonDefaultMouseOverForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ButtonDefaultPressedBackground" Color="#1b6e01"/>
+    <SolidColorBrush x:Key="ButtonDefaultPressedBorder" Color="#396f1c"/>
+    <SolidColorBrush x:Key="ButtonDefaultPressedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ButtonBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ButtonBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ButtonForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ButtonMouseOverBackground" Color="#FF1A578D"/>
+    <SolidColorBrush x:Key="ButtonMouseOverBorder" Color="#FF1A578D"/>
+    <SolidColorBrush x:Key="ButtonMouseOverForeground" Color="#FFF"/>
+    
+    <SolidColorBrush x:Key="ButtonMouseDownBackground" Color="#FF284C6B"/>
+    <SolidColorBrush x:Key="ButtonMouseDownBorder" Color="#FF284C6B"/>
+    <SolidColorBrush x:Key="ButtonMouseDownForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="CalendarButtonOver" Color="#11000000"/>
+    <SolidColorBrush x:Key="CalendarButtonSelected" Color="#006DCC"/>
+    <SolidColorBrush x:Key="CalendarButtonToday" Color="#44000000"/>
+
+    <SolidColorBrush x:Key="CheckBoxBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="CheckBoxBorder" Color="#44000000"/>
+    <SolidColorBrush x:Key="CheckBoxTickFill" Color="#ecb610"/>
+    <SolidColorBrush x:Key="CheckBoxTickStroke" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="ClockAStroke" Color="#74AA68"/>
+    <SolidColorBrush x:Key="ClockBStroke" Color="#CB3C3C"/>
+    <SolidColorBrush x:Key="ClockCenterStroke" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ClockHourStroke" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ClockMinuteStroke" Color="#CCecb610"/>
+    <SolidColorBrush x:Key="ClockSecondStroke" Color="#AAecb610"/>
+    <SolidColorBrush x:Key="ClockIntermediateTickStroke" Color="#11000000"/>
+    <SolidColorBrush x:Key="ClockMajorTickStroke" Color="#55000000"/>
+    <SolidColorBrush x:Key="ClockMinorTickStroke" Color="#33000000"/>
+
+    <SolidColorBrush x:Key="ComboBoxBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBoxBorder" Color="#25000000"/>
+    <SolidColorBrush x:Key="ComboBoxForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ComboBoxFocusBorder" Color="#007acc"/>
+
+    <SolidColorBrush x:Key="ComboBoxMouseOverBackground" Color="#25000000"/>
+    <SolidColorBrush x:Key="ComboBoxMouseOverBorder" Color="#44000000"/>
+    <SolidColorBrush x:Key="ComboBoxMouseOverForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="ComboBoxCheckedBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ComboBoxCheckedBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ComboBoxCheckedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ComboBoxItemForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="ComboBoxItemSelectedBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ComboBoxItemSelectedForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="ComboBoxItemMouseOverBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="ComboBoxItemEvenBackground" Color="#05000000"/>
+    <SolidColorBrush x:Key="ComboBoxItemOddBackground" Color="#10000000"/>
+
+    <SolidColorBrush x:Key="DataGridBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="DataGridBorder" Color="#FF006DCC"/>
+
+    <SolidColorBrush x:Key="DataGridGridLinesHorizontal" Color="Transparent"/>
+    <SolidColorBrush x:Key="DataGridGridLinesVertical" Color="Transparent"/>
+
+    <SolidColorBrush x:Key="DataGridSelectAllForeground" Color="#33000000"/>
+    <SolidColorBrush x:Key="DataGridSelectAllMouseOverForeground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DataGridSelectAllPressedForeground" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="DataGridColumnHeaderBackground" Color="#364E6F"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderBorder" Color="#1A000000"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderMouseOverBackground" Color="#FF5B7C99"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderMouseOverBorder" Color="#1A000000"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderMouseOverForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderPressedBackground" Color="#FF7997B2"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderPressedBorder" Color="#1A000000"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderPressedForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderThumb" Color="#22000000"/>
+
+    <SolidColorBrush x:Key="DataGridRowForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DataGridRowSelectedBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DataGridRowSelectedBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DataGridRowSelectedForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DataGridRowSelectedActiveBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DataGridRowSelectedActiveBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DataGridRowSelectedActiveForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DataGridRowEvenBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="DataGridRowEvenBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="DataGridRowOddBackground" Color="#22000000"/>
+    <SolidColorBrush x:Key="DataGridRowOddBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="DataGridRowMouseOverBackground" Color="#FF83A0B9"/>
+    <SolidColorBrush x:Key="DataGridRowMouseOverBorder" Color="#FF83A0B9"/>
+
+    <SolidColorBrush x:Key="DialogBackground" Color="#AA000000"/>
+    <LinearGradientBrush x:Key="DialogBodyBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FCFCFC"/>
+        <GradientStop Offset="1" Color="#F5F5F5"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="DialogFooterBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="DialogTitleBackground" Color="#007acc"/>
+    <SolidColorBrush x:Key="DialogTitleForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="DockControlEmptyMarkerSourceColor" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DockControlPrimaryMarkerBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DockControlPrimaryMarkerSourceColor" Color="#FFF"/>
+    <SolidColorBrush x:Key="DockControlSecondaryMarkerSourceColor" Color="#FFF"/>
+    <SolidColorBrush x:Key="DockControlSelectionBackground" Color="#AAecb610"/>
+    <SolidColorBrush x:Key="DockControlSelectionBorder" Color="#33000000"/>
+
+    <SolidColorBrush x:Key="DockDocumentButtonBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="DockDocumentButtonBorder" Color="#22000000"/>
+    <SolidColorBrush x:Key="DockDocumentButtonForeground" Color="#333"/>
+
+    <SolidColorBrush x:Key="DockPanelButtonBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="DockPanelButtonBorder" Color="#33000000"/>
+    <SolidColorBrush x:Key="DockPanelButtonForeground" Color="#333"/>
+    <SolidColorBrush x:Key="DockPanelButtonCheckedBackground" Color="#007acc"/>
+    <SolidColorBrush x:Key="DockPanelButtonCheckedBorder" Color="#007acc"/>
+    <SolidColorBrush x:Key="DockPanelButtonCheckedForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DockPanelButtonMouseOverBackground" Color="#33000000"/>
+    <SolidColorBrush x:Key="DockPanelButtonMouseOverBorder" Color="#33000000"/>
+    <SolidColorBrush x:Key="DockPanelButtonMouseOverForeground" Color="#333"/>
+
+    <SolidColorBrush x:Key="DockPanelHeaderBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="DockPanelHeaderBorder" Color="#22000000"/>
+    <SolidColorBrush x:Key="DockPanelHeaderForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DockPanelHeaderMouseDownBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DockPanelHeaderMouseDownBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="DockPanelHeaderMouseDownForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="DockPanelHeaderMouseOverBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="DockPanelHeaderMouseOverBorder" Color="#22000000"/>
+    <SolidColorBrush x:Key="DockPanelHeaderMouseOverForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="DropTargetBorder" Color="#FF006DCC"/>
+
+    <SolidColorBrush x:Key="ExpanderBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="ExpanderBorder" Color="Transparent"/>
+
+    <SolidColorBrush x:Key="GridSplitterBackground" Color="#11000000"/>
+
+    <SolidColorBrush x:Key="GridViewBackground" Color="#364E6F"/>
+    <SolidColorBrush x:Key="GridViewBorder" Color="#1A000000"/>
+
+    <SolidColorBrush x:Key="GroupBoxBorder" Color="#22000000"/>
+    <SolidColorBrush x:Key="GroupBoxForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ImageElement" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="ImageButtonBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="ImageButtonBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="ImageButtonForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ImageButtonCheckedBackground" Color="#3B5C78"/>
+    <SolidColorBrush x:Key="ImageButtonCheckedBorder" Color="#3B5C78"/>
+    <SolidColorBrush x:Key="ImageButtonCheckedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ImageButtonMouseOverBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="ImageButtonMouseOverBorder" Color="#33000000"/>
+    <SolidColorBrush x:Key="ImageButtonMouseOverForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ImageButtonPressedBackground" Color="#174063"/>
+    <SolidColorBrush x:Key="ImageButtonPressedBorder" Color="#174063"/>
+    <SolidColorBrush x:Key="ImageButtonPressedForeground" Color="#FFF"/>
+
+    <LinearGradientBrush x:Key="ImageToggleButtonCheckedBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#AAecb610"/>
+        <GradientStop Offset="1" Color="#FFecb610"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ImageToggleButtonCheckedBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ImageToggleButtonCheckedForeground" Color="#FFF"/>
+
+    <LinearGradientBrush x:Key="ImageToggleButtonMouseOverBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#11000000"/>
+        <GradientStop Offset="1" Color="#22000000"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ImageToggleButtonMouseOverBorder" Color="#88000000"/>
+    <SolidColorBrush x:Key="ImageToggleButtonMouseOverForeground" Color="#FFF"/>
+
+    <LinearGradientBrush x:Key="ImageToggleButtonPressedBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#22000000"/>
+        <GradientStop Offset="1" Color="#33000000"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ImageToggleButtonPressedBorder" Color="#88000000"/>
+    <SolidColorBrush x:Key="ImageToggleButtonPressedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="Link" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="LineStroke" Color="#22000000"/>
+
+    <SolidColorBrush x:Key="ListBoxBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="ListBoxBorder" Color="#33000000"/>
+    <SolidColorBrush x:Key="ListBoxIsFocusedBorderBrush" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="ListBoxItemBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="ListBoxItemBorder" Color="Transparent"/>
+
+    <SolidColorBrush x:Key="ListBoxItemMouseOverBackground" Color="#FFDEA800"/>
+    <SolidColorBrush x:Key="ListBoxItemMouseOverBorder" Color="#FFDEA800"/>
+    <SolidColorBrush x:Key="ListBoxItemMouseOverForeground" Color="#FF1A578D"/>
+
+    <SolidColorBrush x:Key="ListBoxItemSelectedBackground" Color="#FF435B70"/>
+    <SolidColorBrush x:Key="ListBoxItemSelectedBorder" Color="#FF435B70"/>
+    <SolidColorBrush x:Key="ListBoxItemSelectedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ListBoxItemSelectedActiveBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ListBoxItemSelectedActiveBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="ListBoxItemSelectedActiveForeground" Color="#FF1A578D"/>
+    
+    <SolidColorBrush x:Key="ListBoxItemMatchedBackground" Color="#2996dc"/>
+    <SolidColorBrush x:Key="ListBoxItemMatchedBorder" Color="#187cbc"/>
+    <SolidColorBrush x:Key="ListBoxItemMatchedForeground" Color="#187cbc"/>
+
+    <SolidColorBrush x:Key="ListBoxItemEvenBackground" Color="#05000000"/>
+    <SolidColorBrush x:Key="ListBoxItemEvenBorder" Color="#05000000"/>
+    <SolidColorBrush x:Key="ListBoxItemOddBackground" Color="#10000000"/>
+    <SolidColorBrush x:Key="ListBoxItemOddBorder" Color="#10000000"/>
+
+    <SolidColorBrush x:Key="MenuBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="MenuForeground" Color="#FF365A7A"/>
+
+    <SolidColorBrush x:Key="MenuItemBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="MenuItemBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="MenuItemForeground" Color="#FF1E3244"/>
+
+    <SolidColorBrush x:Key="MenuItemCheckedBulletBackground" Color="#006DCC"/>
+    <SolidColorBrush x:Key="MenuItemCheckedMouseOverBulletBackground" Color="#0070BB"/>
+
+    <LinearGradientBrush x:Key="MenuItemTopLevelHeaderMouseOverBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FF316EA3"/>
+        <GradientStop Offset="1" Color="#FF214D73"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="MenuItemTopLevelHeaderMouseOverBorder" Color="#FF15314A"/>
+    <SolidColorBrush x:Key="MenuItemTopLevelHeaderMouseOverForeground" Color="#FFF"/>
+    <LinearGradientBrush x:Key="MenuItemTopLevelHeaderPressedBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#006DCC"/>
+        <GradientStop Offset="1" Color="#006DCC"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="MenuItemTopLevelHeaderPressedBorder" Color="#006DCC"/>
+    <SolidColorBrush x:Key="MenuItemTopLevelHeaderPressedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="MenuItemSubmenuHeaderBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuHeaderBorder" Color="#11000000"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuHeaderForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuHeaderMouseOverBackground" Color="#006DCC"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuHeaderMouseOverBorder" Color="#006DCC"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuHeaderMouseOverForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="MenuItemSubmenuItemBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuItemBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuItemForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuItemMouseOverBackground" Color="#22000000"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuItemMouseOverBorder" Color="#22000000"/>
+    <SolidColorBrush x:Key="MenuItemSubmenuItemMouseOverForeground" Color="#FFF"/>
+
+    <LinearGradientBrush x:Key="PopupBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FF316EA3"/>
+        <GradientStop Offset="1" Color="#FF214D73"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="PopupBorder" Color="#FF15314A"/>
+    <Color x:Key="PopupDropShadow">#808080</Color>
+
+    <SolidColorBrush x:Key="ProgressBarForeground" Color="#FFCD33"/>
+    <SolidColorBrush x:Key="ProgressBarBackground" Color="#11000000"/>
+
+    <SolidColorBrush x:Key="ProgressCircleForeground" Color="#FFCD33"/>
+
+    <SolidColorBrush x:Key="PropertyGridDescriptionBackground" Color="#10000000"/>
+    <SolidColorBrush x:Key="PropertyGridDescriptionBorder" Color="#22000000"/>
+
+    <SolidColorBrush x:Key="RadioButtonBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="RadioButtonBorder" Color="#44000000"/>
+    <SolidColorBrush x:Key="RadioButtonForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="RadioButtonTickStroke" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="RadioGroupMouseOverBackground" Color="#22000000"/>
+    <SolidColorBrush x:Key="RadioGroupMouseOverForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="RadioGroupCheckedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="RichTextBoxBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="RichTextBoxBorder" Color="#282828"/>
+    <SolidColorBrush x:Key="RichTextBoxForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="RippleDecoratorBorder" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="RulerBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="RulerBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="RulerForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="RulerTickStroke" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="ScrollBarBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="ScrollBarMouseOverBackground" Color="#22000000"/>
+    <SolidColorBrush x:Key="ScrollBarDraggingBackground" Color="#33000000"/>
+
+    <SolidColorBrush x:Key="SelectionCanvasBorder" Color="#FF006DCC"/>
+    <SolidColorBrush x:Key="SelectionCanvasBackground" Color="#552B8CE0"/>
+
+    <SolidColorBrush x:Key="SliderThumbBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="SliderThumbBorder" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="SliderDecreaseButtonBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="SliderDecreaseButtonBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="SliderIncreaseButtonBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="SliderIncreaseButtonBorder" Color="#11000000"/>
+
+    <SolidColorBrush x:Key="StatusBarBackground" Color="#007acc"/>
+    <SolidColorBrush x:Key="StatusBarBorder" Color="#007acc"/>
+    <SolidColorBrush x:Key="StatusBarForeground" Color="#FFF"/>
+
+    <LinearGradientBrush x:Key="SwipeButtonBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FF316EA3"/>
+        <GradientStop Offset="1" Color="#FF214D73"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="SwipeButtonBorder" Color="#FF214D73"/>
+    <SolidColorBrush x:Key="SwipeButtonForeground" Color="#FFF"/>
+    <LinearGradientBrush x:Key="SwipeButtonCheckedBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#ecb610"/>
+        <GradientStop Offset="1" Color="#ecb610"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="SwipeButtonCheckedForeground" Color="#FFF"/>
+    <LinearGradientBrush x:Key="SwipeButtonMouseDownBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#ecb610"/>
+        <GradientStop Offset="1" Color="#ecb610"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="SwipeButtonMouseDownForeground" Color="#FFF"/>
+    <LinearGradientBrush x:Key="SwipeButtonMouseOverBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FF316EA3"/>
+        <GradientStop Offset="1" Color="#FF214D73"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="SwipeButtonMouseOverForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="SwitchButtonBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="SwitchButtonBorder" Color="#11000000"/>
+    <SolidColorBrush x:Key="SwitchButtonForeground" Color="#11000000"/>
+    <SolidColorBrush x:Key="SwitchButtonThumbBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="SwitchButtonThumbBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="SwitchButtonCheckedBackground" Color="#40C722"/>
+    <SolidColorBrush x:Key="SwitchButtonCheckedBorder" Color="#44A030"/>
+    <SolidColorBrush x:Key="SwitchButtonCheckedForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="SwitchButtonCheckedThumbBackground" Color="#42AE2A"/>
+    <SolidColorBrush x:Key="SwitchButtonCheckedThumbBorder" Color="#42AE2A"/>
+    <SolidColorBrush x:Key="SwitchButtonNullBackground" Color="#EEC92A"/>
+    <SolidColorBrush x:Key="SwitchButtonNullBorder" Color="#E4BB12"/>
+    <SolidColorBrush x:Key="SwitchButtonNullForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="SwitchButtonNullThumbBackground" Color="#E6BB04"/>
+    <SolidColorBrush x:Key="SwitchButtonNullThumbBorder" Color="#E6BB04"/>
+
+    <SolidColorBrush x:Key="TabControlBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="TabControlBorder" Color="#22000000"/>
+    <SolidColorBrush x:Key="TabControlBorderActive" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="TabItemBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="TabItemBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="TabItemForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#006DCC"/>
+    <SolidColorBrush x:Key="TabItemSelectedBorder" Color="#006DCC"/>
+    <SolidColorBrush x:Key="TabItemSelectedForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="TabItemMouseOverBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="TabItemMouseOverBorder" Color="#11000000"/>
+    <SolidColorBrush x:Key="TabItemMouseOverForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="Text" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="TextBoxBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="TextBoxBorder" Color="#25000000"/>
+    <SolidColorBrush x:Key="TextBoxMouseOverBorder" Color="#44000000"/>
+    <LinearGradientBrush x:Key="TextBoxFocusedBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FFF"/>
+        <GradientStop Offset="1" Color="#FCFCFC"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TextBoxFocusedBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="TextBoxCaret" Color="#33000000"/>
+    <SolidColorBrush x:Key="TextBoxSelection" Color="#ecb610"/>
+    <SolidColorBrush x:Key="TextBoxSelectionInactive" Color="#88000000"/>
+    <SolidColorBrush x:Key="TextBoxDisabledSelection" Color="#22000000"/>
+
+    <SolidColorBrush x:Key="ToolBarBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="ToolBarBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="ToolBarTrayBackground" Color="Transparent"/>
+
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#FF2E699C"/>
+    <SolidColorBrush x:Key="ToolTipBorder" Color="#FF2E699C"/> 
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="TreeViewBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="TreeViewBorder" Color="#22000000"/>
+    <SolidColorBrush x:Key="TreeViewFocusBorder" Color="#ecb610"/>
+
+    <SolidColorBrush x:Key="TreeViewColumnHeaderBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="TreeViewColumnMouseOverBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="TreeViewColumnMouseOverForeground" Color="#444"/>
+    <SolidColorBrush x:Key="TreeViewColumnPressedBackground" Color="#006DCC"/>
+    <SolidColorBrush x:Key="TreeViewColumnPressedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="TreeViewLineStroke" Color="#33000000"/>
+
+    <SolidColorBrush x:Key="TreeViewItemToggleButtonEmptyFill" Color="#333"/>
+    <SolidColorBrush x:Key="TreeViewItemToggleButtonFilledFill" Color="#CCC"/>
+    <SolidColorBrush x:Key="TreeViewItemToggleButtonFilledCheckedFill" Color="#006DCC"/>
+
+    <SolidColorBrush x:Key="TreeViewItemEvenBackground" Color="#05000000"/>
+    <SolidColorBrush x:Key="TreeViewItemEvenBorder" Color="#05000000"/>
+    <SolidColorBrush x:Key="TreeViewItemOddBackground" Color="#10000000"/>
+    <SolidColorBrush x:Key="TreeViewItemOddBorder" Color="#10000000"/>
+
+    <SolidColorBrush x:Key="TreeViewItemForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="TreeViewItemMouseOverBackground" Color="#FF2E699D"/>
+    <SolidColorBrush x:Key="TreeViewItemMouseOverForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="TreeViewItemMouseOverToggleButtonStroke" Color="#FF2E699D"/>
+    <SolidColorBrush x:Key="TreeViewItemSelectedBackground" Color="#006DCC"/>
+    <SolidColorBrush x:Key="TreeViewItemSelectedForeground" Color="#AAFFFFFF"/>
+
+    <LinearGradientBrush x:Key="WindowBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FF316EA3"/>
+        <GradientStop Offset="1" Color="#FF214D73"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="WindowBorder" Color="#FF15314A"/>
+    <SolidColorBrush x:Key="WindowActiveBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="WindowOverlayBackground" Color="#66000000"/>
+    <SolidColorBrush x:Key="WindowContentBorder" Color="#10000000"/>
+
+    <SolidColorBrush x:Key="WindowButtonBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="WindowButtonBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="WindowButtonForeground" Color="#FF365A7A"/>
+    <SolidColorBrush x:Key="WindowButtonCheckedBorder" Color="#ecb610"/>
+    <SolidColorBrush x:Key="WindowButtonCheckedBackground" Color="#ecb610"/>
+    <SolidColorBrush x:Key="WindowButtonCheckedForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="WindowButtonMouseOverBorder" Color="#11000000"/>
+    <SolidColorBrush x:Key="WindowButtonMouseOverBackground" Color="#11000000"/>
+    <SolidColorBrush x:Key="WindowButtonMouseOverForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="WindowButtonPressedBorder" Color="#FF1E6099"/>
+    <SolidColorBrush x:Key="WindowButtonPressedBackground" Color="#FF1E6099"/>
+    <SolidColorBrush x:Key="WindowButtonPressedForeground" Color="#FFF"/>
+
+    <SolidColorBrush x:Key="WindowFooterBackground" Color="#10000000"/>
+    <SolidColorBrush x:Key="WindowFooterBorder" Color="#1a000000"/>
+</ResourceDictionary>

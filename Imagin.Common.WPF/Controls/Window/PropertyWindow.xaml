@@ -1,0 +1,13 @@
+﻿<Window x:Class="Imagin.Common.Controls.PropertyWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq">
+    <local:PropertyGrid DataContext="{Data:Ancestor {x:Type local:PropertyWindow}}" 
+        Linq:XElement.Name="{x:Static local:PropertyWindow.PropertyGridKey}"
+        BorderThickness="0"
+        GroupName="Category"
+        HeaderVisibility="Visible"
+        Source="{Binding Source}"/>
+</Window>

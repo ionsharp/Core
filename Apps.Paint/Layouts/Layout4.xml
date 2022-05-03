@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="Imagin.Common.Controls">
+  <Top/>
+  <Left/>
+  <Right>
+    <Panel Name="NotificationsPanel"/>
+    <Panel Name="OptionsPanel"/>
+    <Panel Name="ThemePanel"/>
+  </Right>
+  <Bottom/>
+  <Root xsi:type="DockLayoutGroup" Orientation="Vertical">
+    <Elements>
+      <Element xsi:type="DockLayoutPanelGroup" MinHeight="36" MaxHeight="36">
+        <Panels>
+          <DockLayoutPanel Name="ToolPanel"/>
+        </Panels>
+      </Element>
+      <Element xsi:type="DockLayoutGroup" Orientation="Horizontal">
+        <Elements>
+          <Element xsi:type="DockLayoutPanelGroup" MinWidth="48" MaxWidth="64" Width="64">
+            <Panels>
+              <DockLayoutPanel Name="ToolsPanel"/>
+            </Panels>
+          </Element>
+          <Element xsi:type="DockLayoutGroup" Orientation="Vertical" Width="55*">
+            <Elements>
+              <Element xsi:type="DockLayoutDocumentGroup" Height="65*"/>
+              <Element xsi:type="DockLayoutPanelGroup" Height="55*">
+                <Panels>
+                  <DockLayoutPanel IsSelected="true" Name="LogPanel"/>
+                </Panels>
+              </Element>
+            </Elements>
+          </Element>
+          <Element xsi:type="DockLayoutGroup" Orientation="Horizontal" Width="45*">
+            <Elements>
+              <Element xsi:type="DockLayoutPanelGroup" Collapse="true">
+                <Panels>
+                  <DockLayoutPanel Name="CharacterPanel"/>
+                  <DockLayoutPanel Name="ColorPanel"/>
+                  <DockLayoutPanel Name="ColorsPanel"/>
+                  <DockLayoutPanel Name="HexagonPanel"/>
+                  <DockLayoutPanel Name="ParagraphPanel"/>
+                  <DockLayoutPanel Name="HistogramPanel"/>
+                </Panels>
+              </Element>
+              <Element xsi:type="DockLayoutPanelGroup" Width="5*">
+                <Panels>
+                  <DockLayoutPanel IsSelected="true" Name="PropertiesPanel"/>
+                </Panels>
+              </Element>
+              <Element xsi:type="DockLayoutPanelGroup" Width="5*">
+                <Panels>
+                  <DockLayoutPanel IsSelected="true" Name="LayersPanel"/>
+                  <DockLayoutPanel Name="MatricesPanel"/>
+                  <DockLayoutPanel Name="ShapesPanel"/>
+                  <DockLayoutPanel Name="PathsPanel"/>
+                  <DockLayoutPanel Name="SelectionsPanel"/>
+                  <DockLayoutPanel Name="BrushesPanel"/>
+                  <DockLayoutPanel Name="GradientsPanel"/>
+                  <DockLayoutPanel Name="CurvesPanel"/>
+                  <DockLayoutPanel Name="StylesPanel"/>
+                  <DockLayoutPanel Name="BrowsePanel"/>
+                  <DockLayoutPanel Name="HistoryPanel"/>
+                  <DockLayoutPanel Name="NotesPanel"/>
+                </Panels>
+              </Element>
+            </Elements>
+          </Element>
+        </Elements>
+      </Element>
+    </Elements>
+  </Root>
+</Layout>

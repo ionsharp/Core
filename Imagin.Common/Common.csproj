@@ -1,0 +1,143 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Imagin.Common</AssemblyName>
+    <RootNamespace>Imagin.Common</RootNamespace>
+    <Configurations>Debug</Configurations>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>6.6.1.0</AssemblyVersion>
+    <FileVersion>6.6.1.0</FileVersion>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Copyright>No rights reserved.</Copyright>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <RepositoryType></RepositoryType>
+    <PackageTags>imagin;common;net;wpf;windows</PackageTags>
+    <RepositoryUrl>https://github.com/imagin-tech/Imagin.NET</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/imagin-tech/Imagin.NET</PackageProjectUrl>
+    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
+    <Authors>imagin-tech</Authors>
+    <Company>Imagin</Company>
+    <Version>3.0.0</Version>
+    <Description>Common elements for shared projects.</Description>
+    <PackageIcon>Logo.png</PackageIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Arithmetic\**" />
+    <Compile Remove="Configuration\**" />
+    <Compile Remove="Media\Adaptation\**" />
+    <Compile Remove="Media\Compression\**" />
+    <Compile Remove="Media\Conversion\**" />
+    <Compile Remove="Media\Linq\**" />
+    <Compile Remove="Media\Models\**" />
+    <Compile Remove="Text\**" />
+    <Compile Remove="Timers\**" />
+    <Compile Remove="[Interfaces]\**" />
+    <EmbeddedResource Remove="Arithmetic\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <EmbeddedResource Remove="Media\Adaptation\**" />
+    <EmbeddedResource Remove="Media\Compression\**" />
+    <EmbeddedResource Remove="Media\Conversion\**" />
+    <EmbeddedResource Remove="Media\Linq\**" />
+    <EmbeddedResource Remove="Media\Models\**" />
+    <EmbeddedResource Remove="Text\**" />
+    <EmbeddedResource Remove="Timers\**" />
+    <EmbeddedResource Remove="[Interfaces]\**" />
+    <None Remove="Arithmetic\**" />
+    <None Remove="Configuration\**" />
+    <None Remove="Media\Adaptation\**" />
+    <None Remove="Media\Compression\**" />
+    <None Remove="Media\Conversion\**" />
+    <None Remove="Media\Linq\**" />
+    <None Remove="Media\Models\**" />
+    <None Remove="Text\**" />
+    <None Remove="Timers\**" />
+    <None Remove="[Interfaces]\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Attributes\Key.cs" />
+    <Compile Remove="Attributes\Searchable.cs" />
+    <Compile Remove="Collections\EnumCollection.cs" />
+    <Compile Remove="Collections\Generic\BaseCollection.cs" />
+    <Compile Remove="Collections\Generic\TrackableList.cs" />
+    <Compile Remove="Collections\ObjectModel\ObservableStack.cs" />
+    <Compile Remove="Data\DateFormat.cs" />
+    <Compile Remove="DayOfWeek.cs" />
+    <Compile Remove="Analytics\ILogEntry.cs" />
+    <Compile Remove="HDirection.cs" />
+    <Compile Remove="Interfaces\ICloneable.cs" />
+    <Compile Remove="IPeriodical.cs" />
+    <Compile Remove="Linq\Encoding.cs" />
+    <Compile Remove="Linq\IColorTetrad.cs" />
+    <Compile Remove="Linq\IColorVector.cs" />
+    <Compile Remove="Numbers\BLine.cs" />
+    <Compile Remove="Numbers\BRange.cs" />
+    <Compile Remove="Numbers\BRegion.cs" />
+    <Compile Remove="Numbers\BVector2.cs" />
+    <Compile Remove="Numbers\BVector3.cs" />
+    <Compile Remove="Media\ChromacityPoint.cs" />
+    <Compile Remove="Media\ChromaticityCoordinates.cs" />
+    <Compile Remove="Media\CIE.cs" />
+    <Compile Remove="Media\ColorDisposition.cs" />
+    <Compile Remove="Media\ColorModels.cs" />
+    <Compile Remove="Media\ComponentType.cs" />
+    <Compile Remove="Media\ComponentUnit.cs" />
+    <Compile Remove="Media\Display.cs" />
+    <Compile Remove="Media\GradientPosition.cs" />
+    <Compile Remove="Media\GradientType.cs" />
+    <Compile Remove="Media\IColor.cs" />
+    <Compile Remove="Media\IModel.cs" />
+    <Compile Remove="Media\LinearColor.cs" />
+    <Compile Remove="Media\ReferenceWhite.cs" />
+    <Compile Remove="Media\Vector3.cs" />
+    <Compile Remove="Media\WorkingSpace.cs" />
+    <Compile Remove="Media\WorkingSpaces.cs" />
+    <Compile Remove="Percent.cs" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+    <Compile Remove="Quadruplet.cs" />
+    <Compile Remove="RowColumn.cs" />
+    <Compile Remove="Side.cs" />
+    <Compile Remove="Span.cs" />
+    <Compile Remove="TaggedObject.cs" />
+    <Compile Remove="Transmission.cs" />
+    <Compile Remove="VDirection.cs" />
+    <Compile Remove="Interfaces\ITaggable.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="project.json" />
+    <None Remove="project.lock.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="InheritDoc" Version="2.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

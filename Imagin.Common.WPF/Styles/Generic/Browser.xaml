@@ -1,0 +1,771 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:g="urn:gong-wpf-dragdrop"
+    xmlns:l="clr-namespace:Imagin.Common.Local.Extensions"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    xmlns:Markup="clr-namespace:Imagin.Common.Markup"
+    xmlns:Storage="clr-namespace:Imagin.Common.Storage"
+    xmlns:SharedStorage="clr-namespace:Imagin.Common.Storage;assembly=Imagin.Common">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{local:StyleKey Key=Explorer}"/>
+        <ResourceDictionary Source="{local:StyleKey Key=ListBox}"/>
+        <ResourceDictionary Source="{local:StyleKey Key=TextBox}"/>
+        <ResourceDictionary Source="{local:StyleKey Key=ToggleButton}"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="{x:Type local:Browser}" TargetType="{x:Type local:Browser}">
+        <Setter Property="DragTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="Storage:Item">
+                    <Grid Linq:XGrid.Rows="Auto,Auto">
+                        <local:Thumbnail 
+                            Margin="0,0,10,0" 
+                            Path="{Binding Path}"
+                            Height="64" 
+                            Width="64" 
+                            VerticalAlignment="Center"/>
+                        <TextBlock
+                            Grid.Row="1"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            Margin="0,5,0,0"
+                            Text="{Binding Path, Converter={x:Static Converters:FileNameConverter.Default}, ConverterParameter=0}"
+                            TextWrapping="NoWrap"
+                            TextTrimming="CharacterEllipsis"
+                            Width="64"/>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FooterVisibility" Value="Collapsed"/>
+        <Setter Property="Foreground" Value="{local:ThemeKey ActualKey=Text}"/>
+        <Setter Property="GroupStyle">
+            <Setter.Value>
+                <GroupStyle HidesIfEmpty="True">
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
+                </GroupStyle>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Linq:XElement.Wheel" Value="True"/>
+        <Setter Property="Linq:XElement.WheelIncrement" Value="{Data:Self ItemSizeIncrement}"/>
+        <Setter Property="Linq:XElement.WheelMaximum" Value="{Data:Self ItemSizeMaximum}"/>
+        <Setter Property="Linq:XElement.WheelMinimum" Value="{Data:Self ItemSizeMinimum}"/>
+        <Setter Property="Linq:XElement.WheelValue" Value="{Data:Self ViewSize, Mode=TwoWay}"/>
+        <Setter Property="Linq:XExplorer.CopyWarningTitle" Value="{l:Loc Copy}"/>
+        <Setter Property="Linq:XExplorer.CopyWarningMessage" Value="{l:Loc Continue, Suffix=?}"/>
+        <Setter Property="Linq:XExplorer.InvalidPathAlertMessage" Value="{l:Loc FolderDoesNotExist}"/>
+        <Setter Property="Linq:XExplorer.InvalidPathAlertTitle" Value="{l:Loc FolderNotFound}"/>
+        <Setter Property="Linq:XExplorer.MoveWarningTitle" Value="{l:Loc Move}"/>
+        <Setter Property="Linq:XExplorer.MoveWarningMessage" Value="{l:Loc Continue, Suffix=?}"/>
+        <Setter Property="Linq:XExplorer.WarnBeforeDrop" Value="True"/>
+        <Setter Property="local:ImageElement.Foreground" Value="{local:ThemeKey ActualKey=Text}"/>
+        <Setter Property="ShortcutArrowTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image
+                        Height="18"
+                        HorizontalAlignment="Left"
+                        Source="{Markup:InternalImage Shortcut.png}"
+                        VerticalAlignment="Bottom"
+                        Width="19"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Browser">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding Border.CornerRadius}">
+                        <Border.Resources>
+                            <Data:Reference x:Key="Browser" Data="{Data:TemplatedParent}"/>
+
+                            <!-- ... Styles -->
+
+                            <Style x:Key="Style.CheckBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                                <Setter Property="IsChecked" Value="{Data:Ancestor IsSelected, {x:Type ListViewItem}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Setter Property="Margin" Value="0,0,5,0"/>
+                                <Setter Property="Visibility" Value="{Binding Data.ViewCheckBoxes, Converter={x:Static Converters:BooleanToVisibilityConverter.Default}, Source={StaticResource Browser}}"/>
+                            </Style>
+
+                            <Style x:Key="Style.TextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                <Setter Property="Foreground" Value="{Data:Ancestor Foreground, {x:Type ListViewItem}}"/>
+                                <Setter Property="Linq:XTextBox.CanLabel" Value="True"/>
+                                <Setter Property="Linq:XTextBox.EditMouseEvent" Value="DelayedMouseDown"/>
+                                <Setter Property="Linq:XTextBoxBase.Ignore" Value="{x:Static SharedStorage:StoragePath.InvalidFileNameCharacters}"/>
+                                <Setter Property="Linq:XTextBox.IsEditable" Value="False"/>
+                                <Setter Property="Linq:XTextBox.Label" Value="{Binding Path, Converter={x:Static Converters:FileNameConverter.Default}, ConverterParameter=1}"/>
+                                <Setter Property="Linq:XTextBoxBase.TextTrimming" Value="CharacterEllipsis"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Text" Value="{Binding Path, Converter={x:Static Converters:FileNameConverter.Default}, ConverterParameter=1}"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Type}" Value="File"/>
+                                            <Condition Binding="{Data:Ancestor ViewFileExtensions, {x:Type local:Browser}}" Value="False"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Linq:XTextBox.Label" Value="{Binding Path, Converter={x:Static Converters:FileNameConverter.Default}, ConverterParameter=0}"/>
+                                        <Setter Property="Text" Value="{Binding Path, Converter={x:Static Converters:FileNameConverter.Default}, ConverterParameter=0}"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+
+                            <!-- ... -->
+
+                            <Style x:Key="Style.View.Thumbnails" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                                <Setter Property="AllowDrop" Value="True"/>
+                                <Setter Property="g:DragDrop.DropHandler" Value="{Binding Data.DropHandler, Source={StaticResource Browser}}"/>
+                                <Setter Property="g:DragDrop.IsDragSource" Value="True"/>
+                                <Setter Property="g:DragDrop.IsDropTarget" Value="True"/>
+                                <Setter Property="g:DragDrop.UseDefaultDragAdorner" Value="True"/>
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+
+                                <Setter Property="Linq:XElement.MouseDownCommand" Value="{Binding Data.ClickCommand, Source={StaticResource Browser}}"/>
+                                <Setter Property="Linq:XElement.MouseDownCommandButton" Value="Left"/>
+                                <Setter Property="Linq:XElement.MouseDownCommandParameter" Value="{Binding}"/>
+
+                                <Setter Property="Linq:XControl.MouseDoubleClickCommand" Value="{Binding Data.DoubleClickCommand, Source={StaticResource Browser}}"/>
+                                <Setter Property="Linq:XControl.MouseDoubleClickCommandButton" Value="Left"/>
+                                <Setter Property="Linq:XControl.MouseDoubleClickCommandParameter" Value="{Binding}"/>
+                                
+                                <Setter Property="Linq:XElement.FadeIn" Value="True"/>
+                                <Setter Property="Linq:XElement.FadeOut" Value="True"/>
+                                <Setter Property="Linq:XElement.ToolTipTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource {x:Static Linq:XExplorer.ToolTipTemplateKey}}"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" Value="0,0,10,10"/>
+                                <Setter Property="Padding" Value="5" />
+                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                                <Setter Property="Tag" Value="{Binding Data, Source={StaticResource Browser}}" />
+                                <Setter Property="ToolTip" Value="{Binding Path}"/>
+                                <Setter Property="Visibility">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{x:Static local:ItemVisibilityConverter.Default}">
+                                            <Binding/>
+                                            <Binding 
+                                                Path="Data.FileAttributes" 
+                                                Source="{StaticResource Browser}"/>
+                                            <Binding 
+                                                Path="Data.FileExtensions" 
+                                                Source="{StaticResource Browser}"/>
+                                            <Binding 
+                                                Path="Data.FolderAttributes" 
+                                                Source="{StaticResource Browser}"/>
+                                            <Binding
+                                                Path="Data.ViewFiles" 
+                                                Source="{StaticResource Browser}"/>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsHidden}" Value="True">
+                                        <Setter Property="Opacity" Value="{x:Static local:Explorer.HiddenOpacity}"/>
+                                    </DataTrigger>
+                                    <!--
+                                    <DataTrigger Binding="{Binding IsChanged}" Value="True">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation AccelerationRatio="0.2" DecelerationRatio="0.8" AutoReverse="True" Duration="0:0:3" FillBehavior="Stop" Storyboard.TargetProperty="Background.Color" To="#55000000"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                    </DataTrigger>
+                                    -->
+                                </Style.Triggers>
+                            </Style>
+
+                            <Style x:Key="Style.View.Details" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Style.View.Thumbnails}">
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Margin" Value="0" />
+                                <Setter Property="Padding" Value="1" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="{TemplateBinding Border.CornerRadius}"
+                                                Padding="{TemplateBinding Padding}"
+                                                SnapsToDevicePixels="true">
+                                                <GridViewRowPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+
+                            <Style x:Key="Style.View.Content" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Style.View.Thumbnails}">
+                                <Setter Property="Margin" Value="10,0,0,0" />
+                                <Setter Property="Padding" Value="5,4" />
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+
+                            <Style x:Key="Style.View.List" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Style.View.Thumbnails}">
+                                <Setter Property="Margin" Value="10,0,0,0" />
+                                <Setter Property="Padding" Value="7,5" />
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+
+                            <Style x:Key="Style.View.Tiles" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource Style.View.Thumbnails}">
+                                <Setter Property="Margin" Value="10,0,0,0" />
+                                <Setter Property="Padding" Value="7,5" />
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+
+                            <!-- ... Templates -->
+
+                            <DataTemplate x:Key="Template.View.Content" 
+                                DataType="{x:Type Storage:Item}">
+                                <Grid x:Name="PART_Grid"
+                                    Linq:XGrid.Columns="Auto,Auto,*,*"
+                                    Linq:XGrid.Rows="*,*">
+                                    <CheckBox Grid.RowSpan="2" 
+                                        Style="{StaticResource Style.CheckBox}"/>
+
+                                    <local:Thumbnail
+                                        x:Name="PART_Thumbnail"
+                                        Grid.Column="1"
+                                        Grid.RowSpan="2"
+                                        Height="42"
+                                        Margin="0,0,10,0"
+                                        Path="{Binding Path}"
+                                        Width="42"/>
+
+                                    <TextBox
+                                        x:Name="PART_Name"
+                                        Grid.Column="2"
+                                        FontSize="15"
+                                        Style="{StaticResource Style.TextBox}"
+                                        VerticalAlignment="Center"/>
+                                    <ContentPresenter x:Name="PART_Type"
+                                        Grid.Column="2"
+                                        Grid.Row="1"
+                                        Content="{Binding}"
+                                        Margin="0,0,5,0"
+                                        VerticalAlignment="Center">
+                                        <ContentPresenter.ContentTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextTrimming="CharacterEllipsis">
+                                                    <Run 
+                                                        FontSize="12"
+                                                        Foreground="#66000000"
+                                                        Text="Type:"/>
+                                                    <Run 
+                                                        FontSize="12"
+                                                        Text="{Binding Path, Converter={x:Static Converters:ItemDescriptionConverter.Default}}"/>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ContentPresenter.ContentTemplate>
+                                    </ContentPresenter>
+
+                                    <ContentPresenter x:Name="PART_Modified"
+                                        Grid.Column="3"
+                                        Grid.Row="0"
+                                        Content="{Binding}"
+                                        VerticalAlignment="Center">
+                                        <ContentPresenter.ContentTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextTrimming="CharacterEllipsis">
+                                                    <Run 
+                                                        FontSize="12"
+                                                        Foreground="#66000000"
+                                                        Text="Date modified:"/>
+                                                    <Run 
+                                                        FontSize="12"
+                                                        Text="{Binding Modified, Converter={x:Static Converters:RelativeTimeConverter.Default}}"/>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ContentPresenter.ContentTemplate>
+                                    </ContentPresenter>
+                                    <ContentPresenter x:Name="PART_Size"
+                                        Grid.Column="3"
+                                        Grid.Row="1"
+                                        Content="{Binding}"
+                                        VerticalAlignment="Center">
+                                        <ContentPresenter.ContentTemplate>
+                                            <DataTemplate>
+                                                <TextBlock 
+                                                    TextTrimming="CharacterEllipsis">
+                                                    <Run 
+                                                        FontSize="12"
+                                                        Foreground="#66000000"
+                                                        Text="Size:"/>
+                                                    <Run 
+                                                        FontSize="12"
+                                                        Text="{Binding Size, Converter={x:Static Converters:FileSizeConverter.Default}}"/>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ContentPresenter.ContentTemplate>
+                                    </ContentPresenter>
+                                </Grid>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Type}" Value="Drive">
+                                        <Setter TargetName="PART_Type" Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <ProgressBar 
+                                                        HorizontalAlignment="Stretch"
+                                                        Height="14"
+                                                        Maximum="{Binding TotalSize, Converter={x:Static Converters:Int64ToDoubleConverter.Default}}"
+                                                        Minimum="0"
+                                                        Value="{Binding AvailableFreeSpace, Converter={x:Static Converters:Int64ToDoubleConverter.Default}}"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+
+                                        <Setter TargetName="PART_Modified" Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock 
+                                                        FontSize="12"
+                                                        Text="{Binding Format}"
+                                                        TextTrimming="CharacterEllipsis"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter TargetName="PART_Size" Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock 
+                                                        FontSize="12"
+                                                        TextTrimming="CharacterEllipsis">
+                                                        <Run Text="{Binding AvailableFreeSpace, Converter={x:Static Converters:FileSizeConverter.Default}}"/>
+                                                        <Run 
+                                                            Foreground="#66000000"
+                                                            Text="free of"/>
+                                                        <Run Text="{Binding TotalSize, Converter={x:Static Converters:FileSizeConverter.Default}}"/>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Type}" Value="Folder">
+                                        <Setter TargetName="PART_Name" Property="Grid.RowSpan" Value="2"/>
+                                        <Setter TargetName="PART_Modified" Property="Grid.RowSpan" Value="2"/>
+                                        <Setter TargetName="PART_Size" Property="Visibility" Value="Collapsed"/>
+                                        <Setter TargetName="PART_Type" Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="Template.View.List" 
+                                DataType="{x:Type Storage:Item}">
+                                <Grid 
+                                    x:Name="PART_Grid"
+                                    Linq:XGrid.Columns="Auto,Auto,*">
+                                    <CheckBox Style="{StaticResource Style.CheckBox}"/>
+                                    <local:Thumbnail 
+                                        Grid.Column="1"
+                                        x:Name="PART_Thumbnail" 
+                                        Height="24"
+                                        Margin="0,0,10,0"
+                                        Path="{Binding Path}"
+                                        Width="24"/>
+                                    <TextBox
+                                        Grid.Column="2"
+                                        x:Name="PART_Name"
+                                        Style="{StaticResource Style.TextBox}"
+                                        VerticalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="Template.View.Thumbnails" 
+                                DataType="{x:Type Storage:Item}">
+                                <Grid x:Name="PART_Grid"
+                                    Linq:XGrid.Rows="*,Auto">
+                                    <local:Thumbnail 
+                                        x:Name="PART_Thumbnail"
+                                        Height="{Binding Data.ViewSize, Source={StaticResource Browser}}"
+                                        Path="{Binding Path}"
+                                        Width="{Binding Data.ViewSize, Source={StaticResource Browser}}"/>
+                                    <ContentPresenter x:Name="PART_ShortcutArrow"
+                                        ContentTemplate="{Data:Ancestor ShortcutArrowTemplate, {x:Type local:Browser}}"
+                                        Visibility="Collapsed"/>
+
+                                    <TextBox Grid.Row="1" x:Name="PART_Name"
+                                        HorizontalContentAlignment="Center" 
+                                        Margin="0,5,0,0"
+                                        Style="{StaticResource Style.TextBox}"
+                                        VerticalAlignment="Center"
+                                        Width="{Binding Data.ViewSize, Mode=OneWay, Source={StaticResource Browser}}"/>
+                                    <CheckBox
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource Style.CheckBox}"
+                                        VerticalAlignment="Top"/>
+                                </Grid>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Type}" Value="Shortcut">
+                                        <Setter TargetName="PART_ShortcutArrow" Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+
+                            <DataTemplate x:Key="Template.View.Tiles" 
+                                DataType="{x:Type Storage:Item}">
+                                <Grid 
+                                    x:Name="PART_Grid"
+                                    Linq:XGrid.Columns="Auto,Auto,*">
+                                    <CheckBox Style="{StaticResource Style.CheckBox}"/>
+
+                                    <local:Thumbnail 
+                                        Grid.Column="1"
+                                        x:Name="PART_Thumbnail" 
+                                        Height="48"
+                                        Margin="0,0,10,0"
+                                        Path="{Binding Path}"
+                                        Width="48"/>
+
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        VerticalAlignment="Center">
+                                        <TextBox
+                                            Grid.Column="2"
+                                            x:Name="PART_Name"
+                                            Style="{StaticResource Style.TextBox}"
+                                            VerticalAlignment="Center"/>
+                                        <ContentPresenter Grid.Column="2" Grid.Row="1" x:Name="PART_Type"
+                                            Content="{Binding}">
+                                            <ContentPresenter.ContentTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock 
+                                                        Foreground="#66000000"
+                                                        Text="{Binding Path, Converter={x:Static Converters:ItemDescriptionConverter.Default}}" 
+                                                        TextTrimming="CharacterEllipsis"/>
+                                                </DataTemplate>
+                                            </ContentPresenter.ContentTemplate>
+                                        </ContentPresenter>
+                                        <ContentPresenter Grid.Column="2" Grid.Row="2" x:Name="PART_Size"
+                                            Content="{Binding}">
+                                            <ContentPresenter.ContentTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock 
+                                                        Foreground="#66000000"
+                                                        TextTrimming="CharacterEllipsis">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding Converter="{x:Static Converters:FileSizeMultiConverter.Default}">
+                                                                <Binding Path="Size"/>
+                                                                <Data:Ancestor Path="FileSizeFormat" Type="{x:Type local:Browser}"/>
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ContentPresenter.ContentTemplate>
+                                        </ContentPresenter>
+                                    </StackPanel>
+                                </Grid>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Type}" Value="Drive">
+                                        <Setter TargetName="PART_Size" Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock 
+                                                        FontSize="12"
+                                                        TextTrimming="CharacterEllipsis">
+                                                        <Run Text="{Binding AvailableFreeSpace, Converter={x:Static Converters:FileSizeConverter.Default}}"/>
+                                                        <Run 
+                                                            Foreground="#66000000"
+                                                            Text="free of"/>
+                                                        <Run Text="{Binding TotalSize, Converter={x:Static Converters:FileSizeConverter.Default}}"/>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter TargetName="PART_Type" Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <ProgressBar 
+                                                        HorizontalAlignment="Stretch"
+                                                        Height="12"
+                                                        Margin="0,2"
+                                                        Maximum="{Binding TotalSize, Converter={x:Static Converters:Int64ToDoubleConverter.Default}}"
+                                                        Minimum="0"
+                                                        Value="{Binding AvailableFreeSpace, Converter={x:Static Converters:Int64ToDoubleConverter.Default}}"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Type}" Value="Folder">
+                                        <Setter TargetName="PART_Size" Property="Visibility" Value="Collapsed"/>
+                                        <Setter TargetName="PART_Type" Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </Border.Resources>
+                        <Grid Linq:XGrid.Rows="*,Auto">
+                            <ListView Linq:XElement.Name="{x:Static local:Browser.ListViewKey}"
+                                AllowDrop="True"
+                                g:DragDrop.DropHandler="{Data:TemplatedParent DropHandler}"
+                                g:DragDrop.IsDropTarget="True"
+                                BorderThickness="0"
+                                Linq:XItemsControl.CanDragSelect="True"
+                                Linq:XItemsControl.EnableColumnMenu="True"
+                                Linq:XItemsControl.ColumnVisibility="{TemplateBinding ColumnVisibility}"
+                                Linq:XItemsControl.GroupConverterSelector="{x:Static local:BrowserGroupConverterSelector.Default}"
+                                Linq:XItemsControl.GroupDirection="{TemplateBinding GroupDirection}"
+                                Linq:XItemsControl.GroupName="{TemplateBinding GroupName, Converter={x:Static Converters:ToStringConverter.Default}}"
+                                Linq:XItemsControl.GroupNameDisable="None"
+                                Linq:XItemsControl.GroupStyle="{Data:Ancestor GroupStyle, local:Browser}"
+                                Linq:XItemsControl.SortDirection="{TemplateBinding SortDirection}"
+                                Linq:XItemsControl.SortName="{TemplateBinding SortName, Converter={x:Static Converters:ToStringConverter.Default}}"
+                                Linq:XItemsControl.KeySelect="True"
+                                Linq:XItemsControl.KeySelectProperty="Name"
+                                ItemsSource="{TemplateBinding Items}"
+                                SelectionMode="{TemplateBinding SelectionMode}">
+                                <ListView.Style>
+                                    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListView}}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Data:Ancestor View, {x:Type local:Browser}}" Value="Content">
+                                                <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.Content}"/>
+                                                <Setter Property="ItemsPanel">
+                                                    <Setter.Value>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ItemTemplate" Value="{Data:Self View.ItemTemplate}"/>
+                                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                                                <Setter Property="View">
+                                                    <Setter.Value>
+                                                        <local:ItemView ItemTemplate="{StaticResource Template.View.Content}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Data:Ancestor View, {x:Type local:Browser}}" Value="Details">
+                                                <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.Details}"/>
+                                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                                                <Setter Property="View">
+                                                    <Setter.Value>
+                                                        <GridView>
+                                                            <GridViewColumn>
+                                                                <GridViewColumn.Header>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <CheckBox
+                                                                            Linq:XCheckBox.CheckedCommand="{Binding Data.SelectAllCommand, Source={StaticResource Browser}}"
+                                                                            Linq:XCheckBox.UncheckedCommand="{Binding Data.UnselectAllCommand, Source={StaticResource Browser}}"
+                                                                            Margin="0,0,5,0"/>
+                                                                        <TextBlock Text="{l:Loc Name}"/>
+                                                                    </StackPanel>
+                                                                </GridViewColumn.Header>
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <Grid Linq:XGrid.Columns="Auto,Auto,*">
+                                                                            <CheckBox Grid.Column="0"
+                                                                                Style="{StaticResource Style.CheckBox}"/>
+                                                                            <local:Thumbnail Grid.Column="1"
+                                                                                Height="24"
+                                                                                Margin="0,0,5,0"
+                                                                                Path="{Binding Path}"
+                                                                                VerticalAlignment="Center"
+                                                                                Width="24"/>
+                                                                            <TextBox Grid.Column="2" x:Name="PART_Name"
+                                                                                Linq:XTextBox.EditedCommand="{Binding Data.RenameCommand, Source={StaticResource Browser}}"
+                                                                                Linq:XTextBox.EditedCommandParameter="{Binding}"
+                                                                                Style="{StaticResource Style.TextBox}"
+                                                                                VerticalAlignment="Center"/>
+                                                                        </Grid>
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                            <GridViewColumn Header="{l:Loc Type}">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock 
+                                                                            Text="{Binding Path, Converter={x:Static Converters:ItemDescriptionConverter.Default}}" 
+                                                                            TextTrimming="CharacterEllipsis"/>
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                            <GridViewColumn Header="{l:Loc Size}">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock 
+                                                                            TextTrimming="CharacterEllipsis">
+                                                                            <TextBlock.Text>
+                                                                                <MultiBinding Converter="{x:Static Converters:FileSizeMultiConverter.Default}">
+                                                                                    <Binding Path="Size"/>
+                                                                                    <Binding Path="Data.FileSizeFormat" Source="{StaticResource Browser}"/>
+                                                                                </MultiBinding>
+                                                                            </TextBlock.Text>
+                                                                        </TextBlock>
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                            <GridViewColumn Header="{l:Loc Accessed}">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock 
+                                                                            Text="{Binding Accessed, Converter={x:Static Converters:RelativeTimeConverter.Default}}"
+                                                                            TextTrimming="CharacterEllipsis"/>
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                            <GridViewColumn Header="{l:Loc Created}">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock 
+                                                                            Text="{Binding Created, Converter={x:Static Converters:RelativeTimeConverter.Default}}" 
+                                                                            TextTrimming="CharacterEllipsis"/>
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                            <GridViewColumn Header="{l:Loc Modified}">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock 
+                                                                            Text="{Binding Modified, Converter={x:Static Converters:RelativeTimeConverter.Default}}" 
+                                                                            TextTrimming="CharacterEllipsis"/>
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                        </GridView>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Data:Ancestor View, {x:Type local:Browser}}" Value="List">
+                                                <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.List}"/>
+                                                <Setter Property="ItemsPanel">
+                                                    <Setter.Value>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Orientation="Horizontal"
+                                                                ItemWidth="{Data:Ancestor View.ItemWidth, {x:Type ListView}}"
+                                                                ItemHeight="{Data:Ancestor View.ItemHeight, {x:Type ListView}}"
+                                                                Width="{Data:Ancestor ActualWidth, {x:Type ScrollContentPresenter}}"/>
+                                                        </ItemsPanelTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ItemTemplate" Value="{Data:Self View.ItemTemplate}"/>
+                                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                                                <Setter Property="View">
+                                                    <Setter.Value>
+                                                        <local:ItemView
+                                                            ItemTemplate="{StaticResource Template.View.List}"
+                                                            ItemWidth="280"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Data:Ancestor View, {x:Type local:Browser}}" Value="Thumbnails">
+                                                <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.Thumbnails}"/>
+                                                <Setter Property="ItemTemplate" Value="{Data:Self View.ItemTemplate}"/>
+                                                <Setter Property="Padding" Value="10,10,0,0"/>
+                                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                                                <Setter Property="View">
+                                                    <Setter.Value>
+                                                        <local:ItemView ItemTemplate="{StaticResource Template.View.Thumbnails}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Data:Ancestor View, {x:Type local:Browser}}" Value="Tiles">
+                                                <Setter Property="ItemContainerStyle" Value="{StaticResource Style.View.Tiles}"/>
+                                                <Setter Property="ItemsPanel">
+                                                    <Setter.Value>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Orientation="Horizontal"
+                                                                ItemWidth="{Data:Ancestor View.ItemWidth, {x:Type ListView}}"
+                                                                ItemHeight="{Data:Ancestor View.ItemHeight, {x:Type ListView}}"
+                                                                Width="{Data:Ancestor ActualWidth, {x:Type ScrollContentPresenter}}"/>
+                                                        </ItemsPanelTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="ItemTemplate" Value="{Data:Self View.ItemTemplate}"/>
+                                                <Setter Property="Padding" Value="10,10,0,0"/>
+                                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                                                <Setter Property="View">
+                                                    <Setter.Value>
+                                                        <local:ItemView
+                                                            ItemTemplate="{StaticResource Template.View.Tiles}"
+                                                            ItemWidth="300"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Data.Layout, Source={StaticResource Browser}}" Value="{x:Static local:BrowserLayout.Dynamic}"/>
+                                                    <Condition Binding="{Binding Data.View, Source={StaticResource Browser}}" Value="{x:Static local:BrowserView.Thumbnails}"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="ItemsPanel">
+                                                    <Setter.Value>
+                                                        <ItemsPanelTemplate>
+                                                            <Canvas Linq:XCanvas.CanDrag="True"/>
+                                                        </ItemsPanelTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </MultiDataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Data.Layout, Source={StaticResource Browser}}" Value="{x:Static local:BrowserLayout.Static}"/>
+                                                    <Condition Binding="{Binding Data.View, Source={StaticResource Browser}}" Value="{x:Static local:BrowserView.Thumbnails}"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="ItemsPanel">
+                                                    <Setter.Value>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Orientation="Horizontal"
+                                                                ItemWidth="{Data:Ancestor View.ItemWidth, {x:Type ListView}}"
+                                                                ItemHeight="{Data:Ancestor View.ItemHeight, {x:Type ListView}}"
+                                                                Width="{Data:Ancestor ActualWidth, {x:Type ScrollContentPresenter}}" />
+                                                        </ItemsPanelTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListView.Style>
+                            </ListView>
+                            <local:TopBorder Grid.Row="1"
+                                Margin="10,5,10,2.5"
+                                Visibility="{TemplateBinding FooterVisibility}">
+                                <Grid Linq:XGrid.AutoColumns="True" Linq:XGrid.Columns="Auto,Auto,*,Auto,Auto">
+                                    <local:ImageElement Source="{Markup:InternalImage Folder.png}"
+                                        Margin="0,0,5,0"/>
+                                    <TextBlock
+                                        Margin="0,7.5,0,5"
+                                        Opacity="0.4"
+                                        TextTrimming="CharacterEllipsis">
+                                        <Run Text="{Data:TemplatedParent Items.Count, Mode=OneWay, StringFormat={} {0} item}"/><Run Text="{Data:TemplatedParent Items.Count, Converter={x:Static Converters:PluralConverter.Default}, Mode=OneWay}"/>
+                                        (<Run Text="{Data:TemplatedParent Length, Converter={x:Static Converters:FileSizeConverter.Default}, Mode=OneWay}"/>)
+                                    </TextBlock>
+                                    <local:ProgressCircle
+                                        Height="20"
+                                        HorizontalAlignment="Center"
+                                        Visibility="{Data:TemplatedParent Items.IsRefreshing, Converter={x:Static Converters:BooleanToVisibilityConverter.Default}}"
+                                        Width="20"/>
+                                    <TextBlock
+                                        Margin="0,7.5,0,5"
+                                        Opacity="0.4"
+                                        TextTrimming="CharacterEllipsis"
+                                        Visibility="{TemplateBinding SelectionCount, Converter={x:Static Converters:Int32ToVisibilityConverter.Default}}">
+                                        <Run Text="{Data:TemplatedParent SelectionCount, Mode=OneWay, StringFormat={} {0} item}"/><Run Text="{Data:TemplatedParent SelectionCount, Converter={x:Static Converters:PluralConverter.Default}, Mode=OneWay}"/> <Run Text="selected"/>
+                                        (<Run Text="{Data:TemplatedParent SelectionLength, Converter={x:Static Converters:FileSizeConverter.Default}, Mode=OneWay}"/>)
+                                    </TextBlock>
+                                    <local:ImageElement Source="{Markup:InternalImage Selection.png}"
+                                        Margin="5,0,0,0"
+                                        Visibility="{TemplateBinding SelectionCount, Converter={x:Static Converters:Int32ToVisibilityConverter.Default}}"/>
+                                </Grid>
+                            </local:TopBorder>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

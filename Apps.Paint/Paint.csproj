@@ -1,0 +1,706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50373482-8119-4FF8-AD67-C5487F7851A2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Imagin.Apps.Paint</RootNamespace>
+    <AssemblyName>Imagin.Apps.Paint</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <LangVersion>latest</LangVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification">
+      <HintPath>..\Library\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+    </Reference>
+    <Reference Include="Imagin.Common">
+      <HintPath>..\Imagin.Common\bin\Debug\netstandard2.0\Imagin.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Imagin.Common.WPF">
+      <HintPath>..\Imagin.Common.WPF\bin\Debug\Imagin.Common.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET-Q16-AnyCPU">
+      <HintPath>..\Library\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\Library\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="XAMLMarkupExtensions, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\XAMLMarkupExtensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\BlendDirections.cs" />
+    <Compile Include="Common\Brushes\ShapeBrush.cs" />
+    <Compile Include="Common\Brushes\VectorBrush.cs" />
+    <Compile Include="Common\BrushToCursorConverter.cs" />
+    <Compile Include="Common\Copy.cs" />
+    <Compile Include="Common\ImageMode.cs" />
+    <Compile Include="Common\ImageModeDepth.cs" />
+    <Compile Include="Common\ImageResizeOptions.cs" />
+    <Compile Include="Common\ImageRotateOptions.cs" />
+    <Compile Include="Common\ImageTrimOptions.cs" />
+    <Compile Include="Common\ImageTrimSource.cs" />
+    <Compile Include="Common\ImageTrimTarget.cs" />
+    <Compile Include="Common\Matrix.cs" />
+    <Compile Include="Common\Path.cs" />
+    <Compile Include="Common\Preset.cs" />
+    <Compile Include="Common\BinaryValue.cs" />
+    <Compile Include="Common\StyleTemplateSelector.cs" />
+    <Compile Include="Controls\LayerArranger.cs" />
+    <Compile Include="Layers\LayerMasks.cs" />
+    <Compile Include="Panels\Properties.cs" />
+    <Compile Include="Tools\Brush\Eraser.cs" />
+    <Compile Include="Tools\ToolPreset.cs" />
+    <Compile Include="Controls\BrushView.cs" />
+    <Compile Include="Controls\GroupControl.cs" />
+    <Compile Include="Controls\LayerStyleView.cs" />
+    <Compile Include="Common\Curve.cs" />
+    <Compile Include="Effects\Blend\Blend.cs" />
+    <Compile Include="Effects\Image\Color\Quantify.cs" />
+    <Compile Include="Effects\Image\Color\Saturation.cs" />
+    <Compile Include="Common\BlendModes.cs" />
+    <Compile Include="Controls\HistogramControl.cs" />
+    <Compile Include="Controls\LayerView.cs" />
+    <Compile Include="Controls\Viewer\Viewer.cs" />
+    <Compile Include="Documents\Animation.cs" />
+    <Compile Include="Documents\Stack.cs" />
+    <Compile Include="Documents\Image.cs" />
+    <Compile Include="Documents\Layout.cs" />
+    <Compile Include="Effects\Image\Blend\ColorOverlay.cs" />
+    <Compile Include="Effects\Image\Blur\DirectionalBlur.cs" />
+    <Compile Include="Effects\EffectCollection.cs" />
+    <Compile Include="Effects\Rotate\Rotate.cs" />
+    <Compile Include="Effects\Image\Stroke\Emboss.cs" />
+    <Compile Include="Effects\Image\Color\Gamma.cs" />
+    <Compile Include="Effects\Image\Distort\Tiles.cs" />
+    <Compile Include="Effects\Image\Color\Gloom.cs" />
+    <Compile Include="Effects\Image\Noise\Noise.cs" />
+    <Compile Include="Effects\Image\Sketch\StainedGlass.cs" />
+    <Compile Include="Effects\Image\Color\Equalize.cs" />
+    <Compile Include="Effects\Image\Blur\Blur.cs" />
+    <Compile Include="Effects\Image\Stroke\Stroke.cs" />
+    <Compile Include="Effects\Image\Sketch\OilPainting.cs" />
+    <Compile Include="Effects\Image\Distort\Pinch.cs" />
+    <Compile Include="Effects\Image\Distort\Pixelate.cs" />
+    <Compile Include="Effects\Image\Color\Replace.cs" />
+    <Compile Include="Effects\Image\Distort\Ripple.cs" />
+    <Compile Include="Effects\Image\Color\Adjust.cs" />
+    <Compile Include="Effects\Image\Sharpen\Sharpen.cs" />
+    <Compile Include="Effects\Image\Sketch\SketchGranite.cs" />
+    <Compile Include="Effects\Image\Sketch\SketchPencil.cs" />
+    <Compile Include="Effects\Image\Distort\Magnify.cs" />
+    <Compile Include="Effects\Image\Distort\Swirl.cs" />
+    <Compile Include="Effects\Image\Color\Tone.cs" />
+    <Compile Include="Effects\Image\Distort\Waves.cs" />
+    <Compile Include="Effects\Image\Blur\ZoomBlur.cs" />
+    <Compile Include="Effects\Effect.cs" />
+    <Compile Include="Controls\Viewer\ImageViewer.xaml.cs">
+      <DependentUpon>ImageViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolPreview.cs" />
+    <Compile Include="Controls\TransformView.xaml.cs">
+      <DependentUpon>TransformView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Groups\Matrices.cs" />
+    <Compile Include="Panels\Groups\Curves.cs" />
+    <Compile Include="Panels\Groups\Brushes.cs" />
+    <Compile Include="Panels\Groups\Shapes.cs" />
+    <Compile Include="Tools\SpongeToolModes.cs" />
+    <Compile Include="Effects\Image\Stroke\DropShadow.cs" />
+    <Compile Include="Effects\Image\Blend\GradientOverlay.cs" />
+    <Compile Include="Effects\Image\Stroke\InnerGlow.cs" />
+    <Compile Include="Effects\Image\Stroke\InnerShadow.cs" />
+    <Compile Include="Effects\Image\Stroke\OuterGlow.cs" />
+    <Compile Include="Effects\Image\Blend\PatternOverlay.cs" />
+    <Compile Include="Effects\Image\Stroke\Satin.cs" />
+    <Compile Include="Effects\Polygon\Polygon.cs" />
+    <Compile Include="Layers\Layers\Effect.cs" />
+    <Compile Include="Effects\Extensions.cs" />
+    <Compile Include="Layers\Layers\Static.cs" />
+    <Compile Include="Linq\WriteableBitmap\ClearTypeLetterGlyph.cs" />
+    <Compile Include="Linq\Color.cs" />
+    <Compile Include="Linq\WriteableBitmap\DpiDetector.cs" />
+    <Compile Include="Linq\WriteableBitmap\GrayScaleLetterGlyph.cs" />
+    <Compile Include="Linq\WriteableBitmap\IntGeometry.cs" />
+    <Compile Include="Linq\WriteableBitmap\LetterGlyphTool.cs" />
+    <Compile Include="Linq\WriteableBitmap\PortableFontDesc.cs" />
+    <Compile Include="Linq\WriteableBitmap\ScrollingTool.cs" />
+    <Compile Include="Panels\Groups\Selections.cs" />
+    <Compile Include="Panels\Groups\Styles.cs" />
+    <Compile Include="Panels\Groups\Paths.cs" />
+    <Compile Include="Panels\Groups\Gradients.cs" />
+    <Compile Include="Panels\Character.cs" />
+    <Compile Include="Panels\Color.cs" />
+    <Compile Include="Panels\LocalGroup.cs" />
+    <Compile Include="Panels\Paragraph.cs" />
+    <Compile Include="Documents\DocumentPreset.cs" />
+    <Compile Include="Layers\Layers\Group.cs" />
+    <Compile Include="Panels\Histogram.cs" />
+    <Compile Include="Panels\History.cs" />
+    <Compile Include="Panels\Notes.cs" />
+    <Compile Include="Panels\Tool.cs" />
+    <Compile Include="Effects\Image\Color\Balance.cs" />
+    <Compile Include="Effects\Image\Color\Brightness.cs" />
+    <Compile Include="Effects\Image\Sharpen\Contrast.cs" />
+    <Compile Include="Effects\Channels\Channels.cs" />
+    <Compile Include="Effects\Image\Color\Difference.cs" />
+    <Compile Include="Effects\Image\Color\Hue.cs" />
+    <Compile Include="Effects\Channels\OneChannel.cs" />
+    <Compile Include="Effects\Image\Color\Posterize.cs" />
+    <Compile Include="Effects\Image\Color\Shading.cs" />
+    <Compile Include="Effects\Image\Color\Threshold.cs" />
+    <Compile Include="Effects\Image\Color\Tint.cs" />
+    <Compile Include="Common\PathGroup.cs" />
+    <Compile Include="Common\Selection.cs" />
+    <Compile Include="Controls\ToolButton.cs" />
+    <Compile Include="Tools\Path\Path.cs" />
+    <Compile Include="Tools\Other\Transform.cs" />
+    <Compile Include="Tools\ToolCollection.cs" />
+    <Compile Include="Tools\ToolGroup.cs" />
+    <Compile Include="Layers\Layer.cs" />
+    <Compile Include="Layers\LayerCollection.cs" />
+    <Compile Include="Layers\LayerType.cs" />
+    <Compile Include="Layers\Layers\Pixel.cs" />
+    <Compile Include="Layers\Layers\Shape.cs" />
+    <Compile Include="Layers\Layers\Text.cs" />
+    <Compile Include="Layers\LayerStyle.cs" />
+    <Compile Include="Common\History\Base.cs" />
+    <Compile Include="Common\History\History.cs" />
+    <Compile Include="Common\History\Actions.cs" />
+    <Compile Include="Tools\ShapeToolModes.cs" />
+    <Compile Include="Tools\Selection\EllipseSelection.cs" />
+    <Compile Include="Tools\Selection\ColumnSelection.cs" />
+    <Compile Include="Tools\Selection\PreviewSelection.cs" />
+    <Compile Include="Tools\Selection\PolygonalLasso.cs" />
+    <Compile Include="Tools\Selection\Lasso.cs" />
+    <Compile Include="Tools\Selection\Selection.cs" />
+    <Compile Include="Tools\Hand\RotateHand.cs" />
+    <Compile Include="Tools\Hand\Hand.cs" />
+    <Compile Include="Tools\Brush\Brush.cs" />
+    <Compile Include="Tools\Other\Bucket.cs" />
+    <Compile Include="Tools\Other\Count.cs" />
+    <Compile Include="Tools\Other\Crop.cs" />
+    <Compile Include="Tools\Shape\CustomShape.cs" />
+    <Compile Include="Tools\Brush\MagicBrush.cs" />
+    <Compile Include="Tools\Shape\Ellipse.cs" />
+    <Compile Include="Tools\Other\Eye.cs" />
+    <Compile Include="Tools\Other\Gradient.cs" />
+    <Compile Include="Tools\Shape\Line.cs" />
+    <Compile Include="Tools\Selection\MagicWand.cs" />
+    <Compile Include="Tools\Other\Move.cs" />
+    <Compile Include="Tools\Other\Note.cs" />
+    <Compile Include="Tools\Shape\Polygon.cs" />
+    <Compile Include="Tools\Shape\Rectangle.cs" />
+    <Compile Include="Tools\Shape\RoundedRectangle.cs" />
+    <Compile Include="Tools\Other\Ruler.cs" />
+    <Compile Include="Tools\Other\Text.cs" />
+    <Compile Include="Tools\Other\Zoom.cs" />
+    <Compile Include="Tools\Shape\Shape.cs" />
+    <Compile Include="Tools\Tool.cs" />
+    <Compile Include="Tools\Selection\RowSelection.cs" />
+    <Compile Include="Common\Brushes\CircleBrush.cs" />
+    <Compile Include="Common\Brushes\Brush.cs" />
+    <Compile Include="Common\Brushes\SquareBrush.cs" />
+    <Compile Include="Windows\NewWindow.xaml.cs">
+      <DependentUpon>NewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\WriteableBitmap\BitmapContext.cs" />
+    <Compile Include="Linq\WriteableBitmap\NativeMethods.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Antialiasing.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Base.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Blit.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Context.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Convert.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Fill.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Filter.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Line.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Shape.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Spline.cs" />
+    <Compile Include="Linq\WriteableBitmap\WriteableBitmap\Transformation.cs" />
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Viewer\ImageViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TransformView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\NewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Panels\Tools.cs" />
+    <Compile Include="Panels\Layers.cs" />
+    <Compile Include="Documents\Document.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Effects\Channels\Channels.ps" />
+    <Resource Include="Effects\Image\Blur\DirectionalBlur.ps" />
+    <Resource Include="Effects\Image\Stroke\Emboss.ps" />
+    <Resource Include="Effects\Image\Distort\Tiles.ps" />
+    <Resource Include="Effects\Image\Color\Gloom.ps" />
+    <Resource Include="Effects\Image\Stroke\Stroke.ps" />
+    <Resource Include="Effects\Image\Distort\Pinch.ps" />
+    <Resource Include="Effects\Image\Distort\Pixelate.ps" />
+    <Resource Include="Effects\Image\Distort\Ripple.ps" />
+    <Resource Include="Effects\Image\Color\Adjust.ps" />
+    <Resource Include="Effects\Image\Sharpen\Sharpen.ps" />
+    <Resource Include="Effects\Image\Sketch\SketchGranite.ps" />
+    <Resource Include="Effects\Image\Sketch\SketchPencil.ps" />
+    <Resource Include="Effects\Image\Distort\Magnify.ps" />
+    <Resource Include="Effects\Image\Distort\Swirl.ps" />
+    <Resource Include="Effects\Image\Color\Tone.ps" />
+    <Resource Include="Effects\Image\Distort\Waves.ps" />
+    <Resource Include="Effects\Image\Blur\ZoomBlur.ps" />
+    <Resource Include="Effects\Image\Color\Gamma.ps" />
+    <Resource Include="Effects\Image\Color\Replace.ps" />
+    <Resource Include="Effects\Image\Blend\ColorOverlay.ps" />
+    <Resource Include="Effects\Polygon\Polygon.ps" />
+    <Resource Include="Effects\Image\Color\Equalize.ps" />
+    <Resource Include="Effects\Image\Stroke\InnerGlow.ps" />
+    <Resource Include="Effects\Image\Stroke\InnerShadow.ps" />
+    <Resource Include="Effects\Image\Noise\Noise.ps" />
+    <Resource Include="Effects\Image\Sketch\OilPainting.ps" />
+    <Resource Include="Effects\Image\Stroke\OuterGlow.ps" />
+    <Resource Include="Effects\Image\Blend\PatternOverlay.ps" />
+    <Resource Include="Effects\Image\Stroke\Satin.ps" />
+    <Resource Include="Effects\Image\Sketch\StainedGlass.ps" />
+    <Resource Include="Effects\Image\Stroke\DropShadow.ps" />
+    <Resource Include="Effects\Image\Blur\Blur.ps" />
+    <Resource Include="Effects\Image\Blend\GradientOverlay.ps" />
+    <Resource Include="Effects\Image\Color\Saturation.ps" />
+    <Resource Include="Effects\Image\Color\Quantify.ps" />
+    <Resource Include="Effects\Blend\Blend.ps" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Effects\Image\Color\Balance.ps" />
+    <Resource Include="Effects\Image\Color\Brightness.ps" />
+    <Resource Include="Effects\Image\Color\Hue.ps" />
+    <Resource Include="Effects\Image\Color\Threshold.ps" />
+    <Resource Include="Effects\Image\Color\Difference.ps" />
+    <Resource Include="Effects\Image\Color\Posterize.ps" />
+    <Resource Include="Effects\Image\Color\Shading.ps" />
+    <Resource Include="Effects\Image\Color\Tint.ps" />
+    <Resource Include="Effects\Image\Sharpen\Contrast.ps" />
+    <Resource Include="Effects\Channels\OneChannel.ps" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Layouts\Layout2.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Eye.png" />
+    <Resource Include="Images\Lock.png" />
+    <Resource Include="Images\Unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Brush.png" />
+    <Resource Include="Images\Bucket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ColumnSelection.png" />
+    <Resource Include="Images\Ellipse.png" />
+    <Resource Include="Images\EllipseSelection.png" />
+    <Resource Include="Images\Eraser.png" />
+    <Resource Include="Images\EyeDrop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Lasso.png" />
+    <Resource Include="Images\Line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Polygon.png" />
+    <Resource Include="Images\PolygonalLasso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Rectangle.png" />
+    <Resource Include="Images\RoundedRectangle.png" />
+    <Resource Include="Images\RowSelection.png" />
+    <Resource Include="Images\Selection.png" />
+    <Resource Include="Images\ZoomIn.png" />
+    <Resource Include="Images\ZoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Hide.png" />
+    <Resource Include="Images\Layers.png" />
+    <Resource Include="Images\Show.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PolygonFilled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CompassBackground.png" />
+    <Resource Include="Images\CompassForeground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RightTriangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Hand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Burn.png" />
+    <Resource Include="Images\Dodge.png" />
+    <Resource Include="Images\Smudge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sponge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sharpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CloneStamp.png" />
+    <Resource Include="Images\Crop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Count.png" />
+    <Resource Include="Images\Note.png" />
+    <Resource Include="Images\Ruler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MagicWand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CustomShape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Blur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AlignBottomEdges.png" />
+    <Resource Include="Images\AlignHorizontalCenters.png" />
+    <Resource Include="Images\AlignLeftEdges.png" />
+    <Resource Include="Images\AlignRightEdges.png" />
+    <Resource Include="Images\AlignTopEdges.png" />
+    <Resource Include="Images\AlignVerticalCenters.png" />
+    <Resource Include="Images\AutoAlignLayers.png" />
+    <Resource Include="Images\DistributeBottomEdges.png" />
+    <Resource Include="Images\DistributeHorizontalCenters.png" />
+    <Resource Include="Images\DistributeLeftEdges.png" />
+    <Resource Include="Images\DistributeRightEdges.png" />
+    <Resource Include="Images\DistributeTopEdges.png" />
+    <Resource Include="Images\DistributeVerticalCenters.png" />
+    <Resource Include="Images\Fx.png" />
+    <Resource Include="Images\ShapeLayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ColorReplacement.png" />
+    <Resource Include="Images\ColorSwap.png" />
+    <Resource Include="Images\PaintBrush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Histogram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Layer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Channels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AlignCenter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Transform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditLayerStyle.png" />
+    <Resource Include="Images\ConvertToFilter.png" />
+    <Resource Include="Images\ApplyFilter.png" />
+    <Resource Include="Images\ConvertToBrush.png" />
+    <Resource Include="Images\ConvertToMatrix.png" />
+    <Resource Include="Images\ConvertToPath.png" />
+    <Resource Include="Images\ConvertToShape.png" />
+    <Resource Include="Images\Rasterize.png" />
+    <Resource Include="Images\RasterizeLayer.png" />
+    <Resource Include="Images\RasterizeLayerStyle.png" />
+    <Resource Include="Images\FxRound.png" />
+    <Resource Include="Images\CopyStyle.png" />
+    <Resource Include="Images\PasteStyle.png" />
+    <Resource Include="Images\CopyEffects.png" />
+    <Resource Include="Images\PasteEffects.png" />
+    <Resource Include="Images\Curve.png" />
+    <Resource Include="Images\LinearCurve.png" />
+    <Resource Include="Layouts\Layout4.xml" />
+    <Resource Include="Images\Pattern1.png" />
+    <Resource Include="Images\Splash.png" />
+    <Resource Include="Images\Character.png" />
+    <Resource Include="Layouts\Layout3.xml" />
+    <Resource Include="Images\LayoutCircle.png" />
+    <Resource Include="Images\LayoutDiagonalLeft.png" />
+    <Resource Include="Images\LayoutDiagonalRight.png" />
+    <Resource Include="Images\LayoutHorizontal.png" />
+    <Resource Include="Images\LayoutTable.png" />
+    <Resource Include="Images\LayoutVertical.png" />
+    <Resource Include="Images\LayoutZigZag.png" />
+    <Resource Include="Images\Repeat.png" />
+    <Resource Include="Images\CaptureCurrent.png" />
+    <Resource Include="Images\CaptureForeground.png" />
+    <Resource Include="Images\CaptureScreen.png" />
+    <Resource Include="Images\SaveAsTemplate.png" />
+    <Resource Include="Images\Template.png" />
+    <Resource Include="Images\ArrowLeftRound.png" />
+    <Resource Include="Images\TriangleUp.png" />
+    <Resource Include="Images\TriangleDown.png" />
+    <Resource Include="Images\Pen.png" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\Paragraph.png" />
+    <Resource Include="Images\Color.png" />
+    <Resource Include="Logo.ico" />
+    <Resource Include="Images\Path.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\KnockOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Clip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ClearStyle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ClearEffects.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\GridLines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Rotate180.png" />
+    <Resource Include="Images\Rotate45Left.png" />
+    <Resource Include="Images\Rotate45Right.png" />
+    <Resource Include="Images\Rotate90Left.png" />
+    <Resource Include="Images\Rotate90Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FlipHorizontal.png" />
+    <Resource Include="Images\FlipVertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TransformPerspective.png" />
+    <Resource Include="Images\TransformScale.png" />
+    <Resource Include="Images\TransformSkew.png" />
+    <Resource Include="Images\TransformWarp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TransformDistort.png" />
+    <Resource Include="Images\TransformRotate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Tool.png" />
+    <Resource Include="Images\Tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LayerStyle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CopyLayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Matrix.png" />
+    <Resource Include="Images\PasteLayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CloneImage.png" />
+    <Resource Include="Images\ImageMode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ImageResize.png" />
+    <Resource Include="Images\ImageRotate.png" />
+    <Resource Include="Images\ImageTrim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MergeAll.png" />
+    <Resource Include="Images\MergeDown.png" />
+    <Resource Include="Images\MergeUp.png" />
+    <Resource Include="Images\MergeVisible.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HandRotate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BrushFx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LayerEffect.png" />
+    <Resource Include="Images\LayerGroup.png" />
+    <Resource Include="Images\LayerShape.png" />
+    <Resource Include="Images\LayerText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LayerPixel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DocumentAnimation.png" />
+    <Resource Include="Images\DocumentImage.png" />
+    <Resource Include="Images\DocumentLayout.png" />
+    <Resource Include="Images\DocumentStack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BrushCircle.png" />
+    <Resource Include="Images\BrushShape.png" />
+    <Resource Include="Images\BrushSquare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PathFree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Layouts\Layout1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BucketCursor.png" />
+    <Resource Include="Images\EyeCursor.png" />
+    <Resource Include="Images\HandCursor.png" />
+    <Resource Include="Images\HandRotateCursor.png" />
+    <Resource Include="Images\MagicWandCursor.png" />
+    <Resource Include="Images\Zoom.png" />
+    <Resource Include="Images\ZoomCursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CropCursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Move.png" />
+    <Resource Include="Images\MoveCursor.png" />
+    <Resource Include="Images\TransformCursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NoteCursor.png" />
+    <Resource Include="Images\PathCursor.png" />
+    <Resource Include="Images\PathOld.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CountCursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FreePathCursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BlurCursor.png" />
+    <Resource Include="Images\BurnCursor.png" />
+    <Resource Include="Images\CloneStampCursor.png" />
+    <Resource Include="Images\DodgeCursor.png" />
+    <Resource Include="Images\EraserCursor.png" />
+    <Resource Include="Images\SharpenCursor.png" />
+    <Resource Include="Images\SmudgeCursor.png" />
+    <Resource Include="Images\SpongeCursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EffectBrushCursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Stock\1.jpg" />
+    <Resource Include="Stock\2.jpg" />
+    <Resource Include="Stock\3.jpg" />
+    <Resource Include="Stock\4.jpg" />
+    <Resource Include="Stock\5.jpg" />
+    <Resource Include="Stock\6.jpg" />
+    <Resource Include="Stock\7.jpg" />
+    <Resource Include="Stock\8.jpg" />
+    <Resource Include="Stock\9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zoom100.png" />
+    <Resource Include="Images\ZoomFill.png" />
+    <Resource Include="Images\ZoomFit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SaveTool.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

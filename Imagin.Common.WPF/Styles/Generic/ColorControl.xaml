@@ -1,0 +1,217 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:e="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:l="clr-namespace:Imagin.Common.Local.Extensions"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Behavior="clr-namespace:Imagin.Common.Behavior"
+    xmlns:Colors="clr-namespace:Imagin.Common.Colors"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    xmlns:Media="clr-namespace:Imagin.Common.Media"
+    xmlns:Models="clr-namespace:Imagin.Common.Models">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{local:StyleKey Key=Control}"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="{x:Type local:ColorControl}" TargetType="{x:Type local:ColorControl}" BasedOn="{StaticResource {x:Type Control}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ColorControl">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding Border.CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                        <Border.Resources>
+                            <Data:Reference x:Key="ColorControl" Data="{Data:TemplatedParent}"/>
+                        
+                            <local:PanelTemplateSelector x:Key="{x:Static local:ColorControl.PanelTemplateSelectorKey}">
+                                <DataTemplate DataType="{x:Type local:AlphaPanel}">
+                                    <local:AlphaSlider x:Name="AlphaSlider"
+                                        Color="{Binding Data.ActiveDocument.Color.ActualColor, Source={StaticResource ColorControl}}"
+                                        Value="{Binding Data.ActiveDocument.Alpha, Mode=TwoWay, Source={StaticResource ColorControl}}"/>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Data.ActiveDocument, Source={StaticResource ColorControl}}" Value="{x:Null}">
+                                            <Setter TargetName="AlphaSlider" Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type local:ComponentPanel}">
+                                    <local:ComponentSlider x:Name="ComponentSlider" DataContext="{Binding Data.ActiveDocument, Source={StaticResource ColorControl}}"
+                                        Component="{Binding Color.Component}"
+                                        Model="{Binding Color.Model}"
+                                        X="{Binding Color.X}"
+                                        Y="{Binding Color.Y}"
+                                        Z="{Binding Color.Z, Mode=TwoWay}"/>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Data.ActiveDocument, Source={StaticResource ColorControl}}" Value="{x:Null}">
+                                            <Setter TargetName="ComponentSlider" Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Data.AlphaPanel.IsVisible, Source={StaticResource ColorControl}}" Value="True">
+                                            <Setter TargetName="ComponentSlider" Property="Alpha" Value="{Binding ActiveDocument.Alpha}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Data.AlphaPanel.IsVisible, Source={StaticResource ColorControl}}" Value="False">
+                                            <Setter TargetName="ComponentSlider" Property="Alpha" Value="255"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type Models:OptionsPanel}">
+                                    <local:PropertyGrid Source="{Binding Data.Options, Source={StaticResource ColorControl}}"
+                                        BorderThickness="0"
+                                        GroupName="Category"/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type Models:PropertiesPanel}">
+                                    <Grid Linq:XGrid.AutoRows="True" Linq:XGrid.Rows="Auto,*,Auto">
+                                        <StackPanel DataContext="{Binding Data.ActiveDocument, Source={StaticResource ColorControl}}"
+                                            Margin="2"
+                                            Visibility="{Data:VisibilityBinding}">
+                                            <Border 
+                                                Background="{x:Static Media:CheckerBrush.Default}"
+                                                Height="32"
+                                                Linq:XElement.ToolTipTemplate="{StaticResource {x:Static Linq:XColor.ToolTipTemplateKey}}"
+                                                ToolTip="{Binding OldColor}">
+                                                <Border.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="{l:Loc Save}"
+                                                            Command="{Binding Data.SaveOldColorCommand, Source={StaticResource ColorControl}}"/>
+                                                    </ContextMenu>
+                                                </Border.ContextMenu>
+                                                <Grid Background="{Binding OldColor, Converter={x:Static Converters:ColorToSolidColorBrushConverter.Default}, ConverterParameter=0}"/>
+                                            </Border>
+                                            <Border 
+                                                Background="{x:Static Media:CheckerBrush.Default}"
+                                                Height="32"
+                                                Linq:XElement.ToolTipTemplate="{StaticResource {x:Static Linq:XColor.ToolTipTemplateKey}}"
+                                                ToolTip="{Binding Color.ActualColor}">
+                                                <Border.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="{l:Loc Save}"
+                                                            Command="{Binding Data.SaveNewColorCommand, Source={StaticResource ColorControl}}"/>
+                                                    </ContextMenu>
+                                                </Border.ContextMenu>
+                                                <Grid x:Name="Grid"/>
+                                            </Border>
+                                        </StackPanel>
+                                        <local:PropertyGrid x:Name="PropertyGrid"
+                                            BorderThickness="0"
+                                            GroupName="Category"
+                                            HeaderVisibility="Collapsed"
+                                            MemberOptionsVisibility="Collapsed"
+                                            Source="{Binding Data.ActiveDocument.Color, Source={StaticResource ColorControl}}">
+                                            <local:PropertyGrid.OverrideTemplates>
+                                                <local:KeyTemplate DataKey="{x:Type Colors:Components}">
+                                                    <ComboBox
+                                                        ItemsSource="{Data:EnumerateBinding Value}"
+                                                        Style="{DynamicResource {x:Static local:PropertyGrid.ComboBoxStyleKey}}">
+                                                        <ComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock>
+                                                                    <TextBlock.Text>
+                                                                        <MultiBinding Converter="{x:Static Converters:ComponentMultiConverter.Default}">
+                                                                            <Binding/>
+                                                                            <Binding Path="Data.ActiveDocument.Color.Model" Source="{StaticResource ColorControl}"/>
+                                                                        </MultiBinding>
+                                                                    </TextBlock.Text>
+                                                                </TextBlock>
+                                                            </DataTemplate>
+                                                        </ComboBox.ItemTemplate>
+                                                        <e:Interaction.Behaviors>
+                                                            <Behavior:ManualBindingBehavior Property="{x:Static ComboBox.SelectedItemProperty}" 
+                                                                Mode="TwoWay" Path="Value" Source="{Binding}" UpdateSourceTrigger="{Binding UpdateSourceTrigger}" />
+                                                        </e:Interaction.Behaviors>
+                                                    </ComboBox>
+                                                </local:KeyTemplate>
+                                            </local:PropertyGrid.OverrideTemplates>
+                                        </local:PropertyGrid>
+                                        <local:TopBorder Padding="2">
+                                            <StackPanel Linq:XPanel.Spacing="0,0,0,2">
+                                                <Button Content="{l:Loc Save}"
+                                                     Command="{Binding Data.ActiveDocument.SaveCommand, Source={StaticResource ColorControl}}"/>
+                                                <Button Content="{l:Loc Revert}"
+                                                     Command="{Binding Data.ActiveDocument.RevertCommand, Source={StaticResource ColorControl}}"/>
+                                            </StackPanel>
+                                        </local:TopBorder>
+                                    </Grid>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Data.ActiveDocument, Source={StaticResource ColorControl}}" Value="{x:Null}">
+                                            <Setter TargetName="PropertyGrid" Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Data.AlphaPanel.IsVisible, Source={StaticResource ColorControl}}" Value="True">
+                                            <Setter TargetName="Grid" Property="Background" Value="{Binding Data.ActiveDocument.Color.ActualColor, Converter={x:Static Converters:ColorToSolidColorBrushConverter.Default}, ConverterParameter=0, Source={StaticResource ColorControl}}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Data.AlphaPanel.IsVisible, Source={StaticResource ColorControl}}" Value="False">
+                                            <Setter TargetName="Grid" Property="Background" Value="{Binding Data.ActiveDocument.Color.ActualColor, Converter={x:Static Converters:ColorToSolidColorBrushConverter.Default}, ConverterParameter=1, Source={StaticResource ColorControl}}"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </local:PanelTemplateSelector>
+                        </Border.Resources>
+                        <local:DockControl
+                            ActiveDocument="{Data:TemplatedParent ActiveDocument, Converter={x:Static Converters:ColorDocumentConverter.Default}, Mode=TwoWay}"
+                            AutoSave="{Data:TemplatedParent Options.AutoSaveLayout}"
+                            Documents="{TemplateBinding Documents}"
+                            DocumentToolTipTemplate="{DynamicResource {x:Static Linq:XColor.ToolTipTemplateKey}}"
+                            Layouts="{Data:TemplatedParent Options.Layouts}"
+                            Panels="{TemplateBinding Panels}"
+                            PanelTemplateSelector="{StaticResource {x:Static local:ColorControl.PanelTemplateSelectorKey}}">
+                            <local:DockControl.DocumentTemplate>
+                                <DataTemplate DataType="{x:Type local:ColorDocument}">
+                                    <local:ComponentSelector x:Name="ComponentSelector"
+                                        Component="{Binding Color.Component}"
+                                        Model="{Binding Color.Model}"
+                                        X="{Binding Color.X, Mode=TwoWay}"
+                                        Y="{Binding Color.Y, Mode=TwoWay}"
+                                        Z="{Binding Color.Z}"/>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Data.AlphaPanel.IsVisible, Source={StaticResource ColorControl}}" Value="True">
+                                            <Setter TargetName="ComponentSelector" Property="Alpha" Value="{Binding Alpha}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Data.AlphaPanel.IsVisible, Source={StaticResource ColorControl}}" Value="False">
+                                            <Setter TargetName="ComponentSelector" Property="Alpha" Value="255"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </local:DockControl.DocumentTemplate>
+                            <local:DockControl.DocumentIconTemplate>
+                                <DataTemplate DataType="{x:Type local:ColorDocument}">
+                                    <local:ClipBorder
+                                        Background="{x:Static Media:CheckerBrush.Default}"
+                                        BorderBrush="Black"
+                                        BorderThickness="1"
+                                        CornerRadius="999"
+                                        Height="16"
+                                        Margin="0,0,5,0"
+                                        Width="16">
+                                        <local:FillElement x:Name="FillElement"/>
+                                    </local:ClipBorder>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Data.AlphaPanel.IsVisible, Source={StaticResource ColorControl}}" Value="True">
+                                            <Setter TargetName="FillElement" Property="Fill" Value="{Binding Color.ActualColor, Converter={x:Static Converters:ColorToSolidColorBrushConverter.Default}, ConverterParameter=0, Mode=OneWay}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Data.AlphaPanel.IsVisible, Source={StaticResource ColorControl}}" Value="False">
+                                            <Setter TargetName="FillElement" Property="Fill" Value="{Binding Color.ActualColor, Converter={x:Static Converters:ColorToSolidColorBrushConverter.Default}, ConverterParameter=1, Mode=OneWay}"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </local:DockControl.DocumentIconTemplate>
+                            <local:DockControl.DocumentTitleTemplate>
+                                <DataTemplate DataType="{x:Type local:ColorDocument}">
+                                    <StackPanel 
+                                        Linq:XPanel.Spacing="0,0,5,0"
+                                        Linq:XPanel.SpacingExcept="Last"
+                                        Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Title}"/>
+                                        <local:AccentLabel Shade="Light"
+                                            Content="{Binding Color.Model, Converter={x:Static Converters:ToStringConverter.Default}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:DockControl.DocumentTitleTemplate>
+                        </local:DockControl>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

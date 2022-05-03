@@ -1,0 +1,677 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:l="clr-namespace:Imagin.Common.Local.Extensions" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Analytics="clr-namespace:Imagin.Common.Analytics"
+    xmlns:Common="clr-namespace:Imagin.Common"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    xmlns:Markup="clr-namespace:Imagin.Common.Markup"
+    xmlns:Storage="clr-namespace:Imagin.Common.Storage"
+    xmlns:SharedAnalytics="clr-namespace:Imagin.Common.Analytics;assembly=Imagin.Common"
+    xmlns:SharedStorage="clr-namespace:Imagin.Common.Storage;assembly=Imagin.Common">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{local:StyleKey Key=Button}"/>
+        <ResourceDictionary Source="{local:StyleKey Key=ComboBox}"/>
+        <ResourceDictionary Source="{local:StyleKey Key=TextBox}"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="{x:Static Linq:XWindow.GripTemplateKey}">
+        <Path Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3"
+            Height="12"
+            Stroke="{Binding}"
+            StrokeThickness="1"
+            Stretch="None"
+            Width="12"/>
+    </DataTemplate>
+
+    <!-- ... -->
+
+    <Style x:Key="{x:Type Window}" TargetType="{x:Type Window}">
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Background" Value="{local:ThemeKey Key=Window.Background}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{local:ThemeKey Key=Text}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Linq:XWindow.ContentStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderBrush" Value="{local:ThemeKey Key=Window.Content.Border}"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Margin" Value="2"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Linq:XWindow.DialogTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="{x:Type Common:DialogReference}">
+                    <local:DialogControl Content="{Binding}" Visibility="{Binding Converter={x:Static Converters:ObjectToVisibilityConverter.Default}}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Linq:XWindow.Extend" Value="True"/>
+        <Setter Property="Linq:XWindow.Footer" Value="{Data:Self Path=(Linq:XWindow.FooterButtons)}"/>
+        <Setter Property="Linq:XWindow.FooterTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border
+                        Background="{local:ThemeKey ActualKey=WindowFooterBackground}"
+                        BorderBrush="{local:ThemeKey ActualKey=WindowFooterBorder}"
+                        BorderThickness="0,1,0,0"
+                        Padding="10">
+                        <local:ButtonPresenter Content="{Data:Ancestor Window, Path=(Linq:XWindow.FooterButtons)}"/>
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Linq:XWindow.NotificationTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="Analytics:Notification">
+                    <local:ResultControl Content="{Binding Result}"
+                        Margin="0,5,0,0">
+                        <local:ResultControl.Resources>
+                            <Data:Reference x:Key="Notification" Data="{Binding}"/>
+                        </local:ResultControl.Resources>
+                        <local:ResultControl.ContentTemplate>
+                            <DataTemplate DataType="SharedAnalytics:Result">
+                                <Grid Linq:XGrid.Columns="*,Auto">
+                                    <StackPanel
+                                        Linq:XPanel.Spacing="0,0,0,5"
+                                        Linq:XPanel.SpacingExcept="Last">
+                                        <TextBlock
+                                            FontWeight="Bold"
+                                            Text="{Binding Data.Title, Source={StaticResource Notification}}"
+                                            TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock 
+                                            Opacity="0.5"
+                                            Text="{Binding Text}"
+                                            TextWrapping="Wrap"/>
+                                        <local:ShadeLabel HorizontalAlignment="Left">
+                                            <TextBlock FontStyle="Italic" Opacity="0.8" Text="{Data:RelativeTimeBinding Data.Created, Source={StaticResource Notification}}"/>
+                                        </local:ShadeLabel>
+                                    </StackPanel>
+                                    <local:ImageButton Grid.Column="1"
+                                        Command="{x:Static Linq:XWindow.MarkNotificationCommand}"
+                                        CommandParameter="{Binding Data, Source={StaticResource Notification}}"
+                                        CommandTarget="{Data:Ancestor Window}"
+                                        Margin="5,0,0,0"
+                                        Source="{Markup:InternalImage Image=XRound}"
+                                        ToolTip="{l:Loc Close}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </local:ResultControl.ContentTemplate>
+                    </local:ResultControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Linq:XWindow.StartupLocation" Value="CenterScreen"/>
+        <Setter Property="Linq:XWindow.TitleTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="local:ImageElement.Foreground" Value="{local:ThemeKey ActualKey=Text}"/>
+        <Setter Property="Opacity" Value="0"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="ShowInTaskbar" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border Linq:XElement.Name="{x:Static Linq:XWindow.BorderKey}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Border.Resources>
+                            <Data:Reference x:Key="Window" Data="{Data:Ancestor Window}"/>
+                        </Border.Resources>
+                        <Grid Linq:XGrid.Rows="Auto,*,Auto">
+                            <!-- ... Header -->
+                            <Grid Linq:XGrid.AutoRows="True" Linq:XGrid.Rows="Auto,Auto"
+                                Visibility="{Data:TemplatedParent Path=(Linq:XWindow.HeaderVisibility)}">
+                                <Grid Linq:XGrid.Columns="Auto,Auto,*,Auto"
+                                    Height="32">
+                                    <ContentPresenter Grid.Column="0"
+                                        x:Name="PART_Icon"
+                                        Content="{Markup:True}"
+                                        Margin="10,0,0,0"/>
+
+                                    <ContentPresenter Grid.Column="1"
+                                        x:Name="PART_Title"
+                                        Content="{TemplateBinding Title}"
+                                        ContentTemplate="{Data:TemplatedParent Path=(Linq:XWindow.TitleTemplate)}"
+                                        Margin="10,0,0,0"
+                                        Visibility="Collapsed"/>
+                                    <ContentPresenter Grid.Column="1"
+                                        x:Name="PART_Menu"
+                                        Content="{Data:TemplatedParent Path=(Linq:XWindow.Menu)}"
+                                        Margin="2,0,0,0"
+                                        VerticalAlignment="Center"
+                                        WindowChrome.IsHitTestVisibleInChrome="True"/>
+
+                                    <Grid Grid.Column="3"
+                                        WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Linq:XGrid.Columns="Auto,Auto,Auto,Auto"
+                                        Linq:XPanel.VerticalContentAlignment="Top"
+                                        Visibility="{Data:TemplatedParent Path=(Linq:XWindow.ButtonVisibility)}">
+                                        <ItemsControl Grid.Column="0"
+                                            ItemsSource="{Data:TemplatedParent Path=(Linq:XWindow.HeaderButtons)}"
+                                            WindowChrome.IsHitTestVisibleInChrome="True">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                        <local:WindowButton Grid.Column="1"
+                                            x:Name="PART_Minimize"
+                                            Command="{x:Static Linq:XWindow.MinimizeCommand}"
+                                            CommandTarget="{Data:TemplatedParent}"
+                                            Content="{Markup:InternalImage Minus.png}"
+                                            ToolTip="{l:Loc Minimize}"/>
+                                        <local:WindowButton Grid.Column="2"
+                                            x:Name="PART_Maximize"
+                                            Command="{x:Static Linq:XWindow.MaximizeCommand}"
+                                            CommandTarget="{Data:TemplatedParent}"
+                                            Content="{Markup:InternalImage Maximize.png}"
+                                            ToolTip="{l:Loc Maximize}"/>
+                                        <local:WindowButton Grid.Column="2"
+                                            x:Name="PART_Restore"
+                                            Command="{x:Static Linq:XWindow.RestoreCommand}"
+                                            CommandTarget="{Data:TemplatedParent}"
+                                            Content="{Markup:InternalImage Restore.png}"
+                                            ToolTip="{l:Loc Restore}"/>
+                                        <local:WindowButton Grid.Column="3"
+                                            x:Name="PART_Close"
+                                            Command="{x:Static Linq:XWindow.CloseCommand}"
+                                            CommandTarget="{Data:TemplatedParent}"
+                                            Content="{Markup:InternalImage X.png}"
+                                            ToolTip="{l:Loc Close}"/>
+                                    </Grid>
+                                </Grid>
+                                <ContentPresenter
+                                    Content="{Data:TemplatedParent Path=(Linq:XWindow.Header)}"
+                                    ContentTemplate="{Data:TemplatedParent Path=(Linq:XWindow.HeaderTemplate)}"
+                                    ContentTemplateSelector="{Data:TemplatedParent Path=(Linq:XWindow.HeaderTemplateSelector)}"/>
+                            </Grid>
+
+                            <!-- ... Content -->
+                            <AdornerDecorator Grid.Row="1">
+                                <Border
+                                    Padding="{TemplateBinding Padding}"
+                                    Style="{Data:TemplatedParent Path=(Linq:XWindow.ContentStyle)}">
+                                    <ContentPresenter ContentSource="Content"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </AdornerDecorator>
+                                
+                            <!-- ... Footer -->
+                            <ContentPresenter Grid.Row="2"
+                                Content="{Data:TemplatedParent Path=(Linq:XWindow.Footer)}"
+                                ContentTemplate="{Data:TemplatedParent Path=(Linq:XWindow.FooterTemplate)}"
+                                ContentTemplateSelector="{Data:TemplatedParent Path=(Linq:XWindow.FooterTemplateSelector)}"
+                                Visibility="{Data:TemplatedParent Path=(Linq:XWindow.FooterVisibility)}"/>
+
+                            <!-- ... -->
+                            <ContentPresenter Grid.Row="1" x:Name="PART_ResizeGrip"
+                                Content="{TemplateBinding Foreground}"
+                                ContentTemplate="{StaticResource {x:Static Linq:XWindow.GripTemplateKey}}"
+                                HorizontalAlignment="Right"
+                                IsHitTestVisible="False"
+                                Margin="0,0,2,2"
+                                VerticalAlignment="Bottom"
+                                Visibility="Collapsed"/>
+
+                            <local:NotificationPresenter Content="{Data:TemplatedParent Path=(Linq:XWindow.Notifications)}"
+                                Grid.Row="1" Grid.RowSpan="2"/>
+                            <local:DialogPresenter Content="{Data:TemplatedParent Path=(Linq:XWindow.Dialogs)}"
+                                Grid.Row="0" Grid.RowSpan="3"
+                                Linq:XElement.Name="{x:Static Linq:XWindow.DialogPresenterKey}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanMinimize"/>
+                                <Condition Property="WindowState" Value="Maximized"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Visible"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanMinimize"/>
+                                <Condition Property="WindowState" Value="Normal"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanResize"/>
+                                <Condition Property="WindowState" Value="Maximized"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Visible"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanResize"/>
+                                <Condition Property="WindowState" Value="Normal"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
+                                <Condition Property="WindowState" Value="Maximized"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Visible"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
+                                <Condition Property="WindowState" Value="Normal"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_ResizeGrip" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Icon" Value="{x:Null}"/>
+                                <Condition Property="Linq:XWindow.TitleIcon" Value="{x:Null}"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed"/>
+                        </MultiTrigger>
+                        
+                        <Trigger Property="Icon" Value="{x:Null}">
+                            <Setter TargetName="PART_Icon" Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:ImageElement
+                                            Source="{Data:Ancestor {x:Type Window}, Path=(Linq:XWindow.TitleIcon)}"
+                                            SourceSize="16,16"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="Linq:XWindow.TitleIcon" Value="{x:Null}">
+                            <Setter TargetName="PART_Icon" Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <Image
+                                            Height="16"
+                                            Source="{Data:Ancestor Icon, {x:Type Window}}"
+                                            Width="16"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <Trigger Property="Linq:XWindow.Menu" Value="{x:Null}">
+                            <Setter TargetName="PART_Menu" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_Title" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Linq:XWindow.CanMaximize" Value="False"/>
+                                <Condition Property="WindowStyle" Value="None"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="WindowState" Value="Maximized"/>
+                                <Condition Property="WindowStyle" Value="ToolWindow"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="WindowState" Value="Normal"/>
+                                <Condition Property="WindowStyle" Value="ToolWindow"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_Restore" Property="Visibility" Value="Collapsed"/>
+                        </MultiTrigger>
+                        
+                        <Trigger Property="Linq:XWindow.FooterVisibility" Value="Collapsed">
+                            <Setter TargetName="PART_ResizeGrip" Property="Grid.Row" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="Linq:XWindow.FooterVisibility" Value="Visible">
+                            <Setter TargetName="PART_ResizeGrip" Property="Grid.Row" Value="2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome
+                    CaptionHeight="32"
+                    CornerRadius="0"
+                    GlassFrameThickness="0,0,0,1"
+                    ResizeBorderThickness="5"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.6" From="0" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                            <DoubleAnimation.EasingFunction>
+                                <SineEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Duration="0:0:0.6" From="0" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                            <DoubleAnimation.EasingFunction>
+                                <SineEase EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Duration="0:0:0.8" From="0" To="1" Storyboard.TargetProperty="Opacity"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <Trigger Property="IsActive" Value="True">
+                <Setter Property="BorderBrush" Value="{local:ThemeKey Key=Window.Active.Border}"/>
+            </Trigger>
+            <Trigger Property="IsActive" Value="False">
+                <Setter Property="BorderBrush" Value="{local:ThemeKey Key=Window.Border}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ... -->
+
+    <Style x:Key="{x:Type local:MainWindow}" TargetType="{x:Type local:MainWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Linq:XWindow.FooterVisibility" Value="Collapsed"/>
+        <Setter Property="Linq:XWindow.Header" Value="{Data:RemoteBinding RemoteSource=MainViewModel}"/>
+        <Setter Property="Linq:XWindow.HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <local:PropertyGrid x:Name="PropertyGrid" MaxHeight="32"
+                        BorderThickness="0"
+                        GroupName="Category"
+                        HeaderVisibility="Collapsed"
+                        Margin="10,2"
+                        MemberOptionsVisibility="Collapsed"
+                        Orientation="Horizontal"
+                        Source="{local:SourceFilterBinding Common:ToolAttribute}"
+                        VerticalAlignment="Center"/>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Converter={x:Static local:AnyMemberHasAttributeConverter.Default}, ConverterParameter={x:Type Common:ToolAttribute}}" Value="False">
+                            <Setter TargetName="PropertyGrid" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Linq:XWindow.HeaderVisibility" Value="Visible"/>
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+    </Style>
+
+    <!-- ... -->
+
+    <Style x:Key="{x:Type local:DialogWindow}" TargetType="{x:Type local:DialogWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Linq:XWindow.CanMaximize" Value="False"/>
+        <Setter Property="Linq:XWindow.FooterVisibility" Value="Visible"/>
+        <Setter Property="Linq:XWindow.IsChild" Value="True"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="SizeToContent" Value="Height"/>
+        <Setter Property="Width" Value="512"/>
+    </Style>
+
+    <!-- ... -->
+
+    <Style x:Key="{x:Type local:AboutWindow}" TargetType="{x:Type local:AboutWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Linq:XWindow.CanMaximize" Value="False"/>
+        <Setter Property="Linq:XWindow.FooterVisibility" Value="Visible"/>
+        <Setter Property="Linq:XWindow.IsChild" Value="True"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="SizeToContent" Value="Height"/>
+        <Setter Property="Title" Value="{l:Loc About}"/>
+        <Setter Property="Width" Value="420"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:ComboWindow}" TargetType="{x:Type local:ComboWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Linq:XWindow.CanMaximize" Value="False"/>
+        <Setter Property="Linq:XWindow.FooterVisibility" Value="Visible"/>
+        <Setter Property="Linq:XWindow.IsChild" Value="True"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Placeholder" Value="{l:Loc Prefix=(, Key=NoSelection, Suffix=)}"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="SizeToContent" Value="Height"/>
+        <Setter Property="Width" Value="420"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:DownloadWindow}" TargetType="{x:Type local:DownloadWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="AutoClose" Value="True"/>
+        <Setter Property="AutoStart" Value="True"/>
+        <Setter Property="MessageTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Margin="10" Text="{Binding}" TextWrapping="Wrap"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type local:InputWindow}" TargetType="{x:Type local:InputWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Linq:XWindow.CanMaximize" Value="False"/>
+        <Setter Property="Linq:XWindow.FooterVisibility" Value="Visible"/>
+        <Setter Property="Linq:XWindow.IsChild" Value="True"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="SizeToContent" Value="Height"/>
+        <Setter Property="Width" Value="420"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:LoadWindow}" TargetType="{x:Type local:LoadWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Delay" Value="0:0:3"/>
+        <Setter Property="Linq:XWindow.CanMaximize" Value="False"/>
+        <Setter Property="Linq:XWindow.HeaderVisibility" Value="Collapsed"/>
+        <Setter Property="Linq:XWindow.IsChild" Value="True"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="SizeToContent" Value="Height"/>
+        <Setter Property="Width" Value="540"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:LogWindow}" TargetType="{x:Type local:LogWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Height" Value="420"/>
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+        <Setter Property="Title" Value="{l:Loc Log}"/>
+        <Setter Property="Width" Value="720"/>
+    </Style>
+
+    <!-- ... -->
+
+    <DropShadowEffect x:Key="{x:Static local:SplashWindow.DropShadowEffectKey}"
+        BlurRadius="20" Color="{local:ThemeKey ActualKey=PopupDropShadow}" Opacity="0.9" ShadowDepth="0"/>
+    
+    <Style x:Key="{x:Type local:SplashWindow}" TargetType="{x:Type local:SplashWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SplashWindow}">
+                    <Border Padding="{TemplateBinding Padding}">
+                        <ContentPresenter ContentSource="Content" Effect="{StaticResource {x:Static local:SplashWindow.DropShadowEffectKey}}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SizeToContent" Value="WidthAndHeight"/>
+        <Setter Property="WindowState" Value="Normal"/>
+        <Setter Property="WindowStyle" Value="None"/>
+    </Style>
+
+    <!-- ... -->
+
+    <Style x:Key="{x:Type local:PropertyWindow}" TargetType="{x:Type local:PropertyWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Height" Value="600"/>
+        <Setter Property="Linq:XWindow.CanMaximize" Value="False"/>
+        <Setter Property="Linq:XWindow.FooterVisibility" Value="Visible"/>
+        <Setter Property="Linq:XWindow.IsChild" Value="True"/>
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+        <Setter Property="Width" Value="400"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:OptionsWindow}" TargetType="{x:Type local:OptionsWindow}" BasedOn="{StaticResource {x:Type local:PropertyWindow}}">
+        <Setter Property="Linq:XWindow.CanMaximize" Value="True"/>
+        <Setter Property="Source" Value="{Data:RemoteBinding RemoteSource=Options}"/>
+        <Setter Property="Title" Value="{l:Loc Options}"/>
+    </Style>
+
+    <!-- ... -->
+
+    <Style x:Key="{x:Type local:StorageWindow}" TargetType="{x:Type local:StorageWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.Resources>
+                            <Data:Reference x:Key="StorageWindow" Data="{Data:Ancestor {x:Type local:StorageWindow}}"/>
+                        </Grid.Resources>
+                        <Grid Linq:XGrid.Rows="*,Auto"
+                            Visibility="{Binding Data.ViewOptions, Converter={x:Static Converters:BooleanToVisibilityConverter.Default}, ConverterParameter=1, Source={StaticResource StorageWindow}}">
+                            <ContentPresenter Content="{Binding}"/>
+                            <local:TopBorder Grid.Row="1"
+                                Padding="5">
+                                <Grid Linq:XGrid.AutoColumns="True" Linq:XGrid.Columns="*,Auto"
+                                    DataContext="{Binding Data, Source={StaticResource StorageWindow}}"
+                                    Linq:XPanel.VerticalContentAlignment="Center">
+                                    <TextBox x:Name="TextBox"
+                                        Linq:XTextBoxBase.Ignore="{x:Static SharedStorage:StoragePath.InvalidFileNameCharacters}"
+                                        Padding="5"
+                                        Text="{Binding FileNames, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <ComboBox x:Name="ComboBox"
+                                        ItemsSource="{Binding FileExtensionGroups}"
+                                        Margin="5,0,0,0"
+                                        MaxWidth="180"
+                                        SelectedIndex="{Binding FileExtension, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type Storage:FileExtensionGroup}">
+                                                <ContentPresenter x:Name="ContentPresenter" Content="{Binding}"/>
+                                                <DataTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding IsWild}" Value="False">
+                                                        <Setter TargetName="ContentPresenter" Property="ContentTemplate">
+                                                            <Setter.Value>
+                                                                <DataTemplate>
+                                                                    <TextBlock 
+                                                                        Text="{Binding FileExtensions, Converter={x:Static Converters:ListToStringConverter.Default}}"
+                                                                        TextTrimming="CharacterEllipsis"/>
+                                                                </DataTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsWild}" Value="True">
+                                                        <Setter TargetName="ContentPresenter" Property="ContentTemplate">
+                                                            <Setter.Value>
+                                                                <DataTemplate>
+                                                                    <TextBlock TextTrimming="CharacterEllipsis"><Run Text="(*)"/> <Run FontStyle="Italic" Text="All"/></TextBlock>
+                                                                </DataTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </Grid>
+                            </local:TopBorder>
+                        </Grid>
+                        <local:PropertyGrid
+                            DataContext="{Binding Data, Source={StaticResource StorageWindow}}"
+                            BorderThickness="0"
+                            GroupName="Category"
+                            HeaderVisibility="Visible"
+                            Margin="0,0,0,10"
+                            Source="{Binding Options}"
+                            Visibility="{Binding ViewOptions, Converter={x:Static Converters:BooleanToVisibilityConverter.Default}}"/>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Data:Ancestor Mode, local:StorageWindow}" Value="Open">
+                            <Setter TargetName="ComboBox" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="TextBox" Property="IsReadOnly" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Data:Ancestor Mode, local:StorageWindow}" Value="OpenFile">
+                            <Setter TargetName="ComboBox" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="TextBox" Property="IsReadOnly" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Data:Ancestor Mode, local:StorageWindow}" Value="OpenFolder">
+                            <Setter TargetName="ComboBox" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="TextBox" Property="IsReadOnly" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Data:Ancestor Mode, local:StorageWindow}" Value="SaveFile">
+                            <Setter TargetName="ComboBox" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="TextBox" Property="IsReadOnly" Value="False"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Height" Value="{Data:Self Options.WindowHeight, Mode=TwoWay}"/>
+        <Setter Property="Linq:XWindow.FooterVisibility" Value="Visible"/>
+        <Setter Property="Linq:XWindow.IsChild" Value="True"/>
+        <Setter Property="Linq:XWindow.TitleIcon" Value="{Markup:InternalImage Folder.png}"/>
+        <Setter Property="OverwriteMessage" Value="'{0}' already exists. Do you want to replace it?"/>
+        <Setter Property="OverwriteTitle" Value="{l:Loc Confirm}"/>
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+        <Setter Property="Title" Value="{Data:TranslateBinding TitleLabel, Relative=Self}"/>
+        <Setter Property="Width" Value="{Data:Self Options.WindowWidth, Mode=TwoWay}"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:ExplorerWindow}" TargetType="{x:Type local:ExplorerWindow}" BasedOn="{StaticResource {x:Type local:StorageWindow}}"/>
+
+    <Style x:Key="{x:Type local:NavigatorWindow}" TargetType="{x:Type local:NavigatorWindow}" BasedOn="{StaticResource {x:Type local:StorageWindow}}"/>
+
+    <!-- ... -->
+
+    <Style x:Key="{x:Type local:PickerWindow}" TargetType="{x:Type local:PickerWindow}" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Linq:XWindow.FooterVisibility" Value="Visible"/>
+        <Setter Property="Linq:XWindow.IsChild" Value="True"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:ColorWindow}" TargetType="{x:Type local:ColorWindow}" BasedOn="{StaticResource {x:Type local:PickerWindow}}">
+        <Setter Property="Height" Value="540"/>
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+        <Setter Property="Title" Value="{l:Loc Color}"/>
+        <Setter Property="Width" Value="800"/>
+    </Style>
+
+    <Style x:Key="{x:Type local:GradientWindow}" TargetType="{x:Type local:GradientWindow}" BasedOn="{StaticResource {x:Type local:PickerWindow}}">
+        <Setter Property="Padding" Value="0,5,0,0"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="SizeToContent" Value="Height"/>
+        <Setter Property="Title" Value="{l:Loc Gradient}"/>
+        <Setter Property="Width" Value="625"/>
+    </Style>
+</ResourceDictionary>

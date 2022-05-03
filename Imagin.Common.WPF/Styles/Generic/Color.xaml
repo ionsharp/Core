@@ -1,0 +1,28 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    xmlns:Media="clr-namespace:Imagin.Common.Media">
+    <DataTemplate x:Key="{x:Static Linq:XColor.ToolTipTemplateKey}">
+        <Grid Linq:XGrid.AutoColumns="True" Linq:XGrid.Columns="Auto,*" Linq:XPanel.VerticalContentAlignment="Center">
+            <local:ClipBorder
+                Background="{x:Static Media:CheckerBrush.Default}"
+                BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="999"
+                Height="32"
+                Margin="0,0,10,0"
+                Width="32">
+                <local:FillElement Fill="{Binding Converter={x:Static Converters:ColorToSolidColorBrushConverter.Default}}"/>
+            </local:ClipBorder>
+            <StackPanel Linq:XPanel.Spacing="0,0,0,5" Linq:XPanel.SpacingExcept="Last">
+                <TextBlock FontWeight="Bold"><Run Text="#"/><Run Text="{Binding Converter={x:Static Converters:ColorToStringConverter.Default}, Mode=OneWay}"/></TextBlock>
+                <local:AccentLabel>
+                    <TextBlock><Run Text="{Binding R, Mode=OneWay}"/>, <Run Text="{Binding G, Mode=OneWay}"/>, <Run Text="{Binding B, Mode=OneWay}"/></TextBlock>
+                </local:AccentLabel>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

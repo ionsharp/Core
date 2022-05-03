@@ -1,0 +1,66 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Text="clr-namespace:Imagin.Common.Text">
+    <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
+        <!--<Setter Property="FontFamily" Value="{Markup:DefaultFont Swis721.ttf#Swis721 Cn BT}"/>-->
+        <!--<Setter Property="FontFamily" Value="{Markup:DefaultFont Lucida.ttf#Lucida Grande}"/>-->
+        <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="{x:Type local:BulletElement}" TargetType="{x:Type local:BulletElement}" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="Text">
+            <Setter.Value>
+                <MultiBinding Converter="{x:Static Converters:BulletMultiConverter.Default}">
+                    <Data:Self Path="Bullet"/>
+                    <Data:Self Path="Value"/>
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.Dash1}">
+                <Setter Property="Text" Value="▰"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.Dash2}">
+                <Setter Property="Text" Value="▱"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.Diamond}">
+                <Setter Property="Text" Value="◆"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.DiamondOutline1}">
+                <Setter Property="Text" Value="◇"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.DiamondOutline2}">
+                <Setter Property="Text" Value="◈"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.RightTriangle1}">
+                <Setter Property="Text" Value="►"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.RightTriangle2}">
+                <Setter Property="Text" Value="▶"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.Square}">
+                <Setter Property="Text" Value="■"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.SquareOutline1}">
+                <Setter Property="Text" Value="□"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.SquareOutline2}">
+                <Setter Property="Text" Value="▣"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.Circle}">
+                <Setter Property="Text" Value="●"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.CircleOutline1}">
+                <Setter Property="Text" Value="○"/>
+            </Trigger>
+            <Trigger Property="Bullet" Value="{x:Static Text:Bullets.CircleOutline2}">
+                <Setter Property="Text" Value="◉"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

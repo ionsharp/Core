@@ -1,0 +1,14 @@
+﻿<i:SingleApplication x:Class="Imagin.Apps.Color.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://imagin.tech/imagin/wpf"
+    xmlns:local="clr-namespace:Imagin.Apps.Color">
+    <i:SingleApplication.Resources>
+        <Style x:Key="{x:Type local:MainWindow}" TargetType="{x:Type local:MainWindow}" BasedOn="{StaticResource {x:Type i:MainWindow}}"/>
+
+        <Style x:Key="{x:Static i:BaseApplication.SplashWindowStyleKey}" TargetType="{x:Type i:SplashWindow}" BasedOn="{StaticResource {x:Type i:SplashWindow}}">
+            <Setter Property="Accent" Value="#44000000"/>
+            <Setter Property="Image" Value="{i:ProjectImage Splash.png}"/>
+        </Style>
+    </i:SingleApplication.Resources>
+</i:SingleApplication>

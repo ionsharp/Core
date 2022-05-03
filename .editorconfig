@@ -1,0 +1,20 @@
+﻿[*.cs]
+
+# IDE0022: Use block body for methods
+csharp_style_expression_bodied_methods =true:silent
+csharp_style_expression_bodied_local_functions=true:silent
+csharp_style_expression_bodied_lambdas=true:silent
+csharp_style_expression_bodied_operators=true:silent
+csharp_style_expression_bodied_constructors=true:silent
+
+# IDE0011: Add braces
+csharp_prefer_braces = false
+
+# IDE0036: Order modifiers
+dotnet_diagnostic.IDE0036.severity = none
+
+[*.{cs,vb}]
+dotnet_style_predefined_type_for_locals_parameters_members=true:silent
+
+# IDE0040: Add accessibility modifiers
+dotnet_style_require_accessibility_modifiers = never

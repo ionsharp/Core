@@ -1,0 +1,33 @@
+﻿<UserControl 
+    x:Class="Imagin.Apps.Paint.TransformView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://imagin.tech/imagin/wpf"
+    xmlns:local="clr-namespace:Imagin.Apps.Paint"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <Grid DataContext="{i:Ancestor local:TransformView}">
+        <i:XOrPolygon Closed="True" Points="{Binding Bounds}">
+            <i:XOrPolygon.StrokeThickness1>
+                <MultiBinding Converter="{x:Static i:ZoomMultiConverter.Default}" Mode="OneWay">
+                    <Binding>
+                        <Binding.Source>
+                            <System:Double>1.0</System:Double>
+                        </Binding.Source>
+                    </Binding>
+                    <Binding Path="Zoom"/>
+                </MultiBinding>
+            </i:XOrPolygon.StrokeThickness1>
+            <i:XOrPolygon.StrokeThickness2>
+                <MultiBinding Converter="{x:Static i:ZoomMultiConverter.Default}" Mode="OneWay">
+                    <Binding>
+                        <Binding.Source>
+                            <System:Double>0.5</System:Double>
+                        </Binding.Source>
+                    </Binding>
+                    <Binding Path="Zoom"/>
+                </MultiBinding>
+            </i:XOrPolygon.StrokeThickness2>
+        </i:XOrPolygon>
+        <Canvas x:Name="Thumbs"/>
+    </Grid>
+</UserControl>

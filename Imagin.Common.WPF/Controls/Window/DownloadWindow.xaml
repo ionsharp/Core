@@ -1,0 +1,16 @@
+﻿<Window x:Class="Imagin.Common.Controls.DownloadWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq">
+    <Grid DataContext="{Data:Ancestor {x:Type local:DownloadWindow}}" Linq:XGrid.AutoRows="True" Linq:XGrid.Rows="Auto,*">
+        <ContentPresenter
+            Content="{Binding Message}"
+            ContentTemplate="{Binding MessageTemplate}"/>
+        <local:DownloadControl Linq:XElement.Name="{x:Static local:DownloadWindow.DownloadControlKey}" 
+            AutoStart="{Binding AutoStart}"
+            Destination="{Binding Destination}"
+            Source="{Binding Source}"/>
+    </Grid>
+</Window>

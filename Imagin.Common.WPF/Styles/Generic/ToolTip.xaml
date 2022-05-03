@@ -1,0 +1,63 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Imagin.Common.Controls"
+    xmlns:Converters="clr-namespace:Imagin.Common.Converters"
+    xmlns:Data="clr-namespace:Imagin.Common.Data"
+    xmlns:Linq="clr-namespace:Imagin.Common.Linq"
+    xmlns:Markup="clr-namespace:Imagin.Common.Markup">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{local:StyleKey Key=Popup}"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}">
+        <Setter Property="Background" Value="{local:ThemeKey ActualKey=ToolTipBackground}" />
+        <Setter Property="BorderBrush" Value="{local:ThemeKey ActualKey=ToolTipBorder}" />
+        <Setter Property="Border.CornerRadius" Value="3" />
+        <Setter Property="ContentTemplate" Value="{Data:Self Path=PlacementTarget.(Linq:XElement.ToolTipTemplate)}" />
+        <Setter Property="ContentTemplateSelector" Value="{Data:Self Path=PlacementTarget.(Linq:XElement.ToolTipTemplateSelector)}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{local:ThemeKey ActualKey=ToolTipForeground}" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalOffset">
+            <Setter.Value>
+                <MultiBinding Converter="{x:Static Converters:CenterToolTipMultiConverter.Default}">
+                    <Data:Self Path="PlacementTarget.ActualWidth"/>
+                    <Data:Self Path="ActualWidth"/>
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MaxWidth" Value="425" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Padding" Value="12,10" />
+        <Setter Property="Placement" Value="Bottom" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Grid Linq:XGrid.Rows="Auto,*" 
+                        Effect="{StaticResource {x:Static Linq:XPopup.DropShadowEffectKey}}"
+                        Margin="10">
+                        <local:ImageElement Grid.Row="0" 
+                            HorizontalAlignment="Center" 
+                            Margin="0,0,0,-5"
+                            Source="{Markup:InternalImage Triangle.png}" 
+                            Foreground="{TemplateBinding Background}"/>
+                        <Border Grid.Row="1"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding Border.CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="{local:ThemeKey ActualKey=PopupDropShadow}" Opacity="0.25" BlurRadius="15" ShadowDepth="3"/>
+                            </Border.Effect>
+                            <ContentPresenter ContentSource="Content"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+</ResourceDictionary>
