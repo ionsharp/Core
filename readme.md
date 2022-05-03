@@ -1,4 +1,4 @@
-Imagin .NET ![](https://img.shields.io/badge/style-6.6-blue.svg?style=flat&label=Version)
+Imagin .NET ![](https://img.shields.io/badge/style-7.0-blue.svg?style=flat&label=Version)
 ---
 A framework for developing WPF apps.
 
