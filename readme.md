@@ -6,7 +6,7 @@ Apps
 ---
 **[Color](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Color)** | **[Desktop](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Desktop)** | **[Paint](https://github.com/imagin-tech/Imagin.NET/tree/master/Apps.Paint)** |
 -|-|-|
-<img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Color.png?raw=true" width="64"/> | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Desktop.png?raw=true" width="64"/>  | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Paint.png?raw=true" width="64"/> |
+<img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Color.png?raw=true" width="256"/> | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Desktop.png?raw=true" width="256"/>  | <img src="https://github.com/imagin-tech/Imagin.NET/blob/master/Images/Logos/Paint.png?raw=true" width="256"/> |
 *Color picker with multiple windows* | *Draw and display tiles on the desktop.* | *Raster graphics editor* |
 ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=) | ![](https://img.shields.io/badge/style-Stable-green.svg?style=flat&label=) | ![](https://img.shields.io/badge/style-Unstable-red.svg?style=flat&label=) |
 
