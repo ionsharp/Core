@@ -1,0 +1,100 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Imagin.Core</AssemblyName>
+    <RootNamespace>Imagin.Core</RootNamespace>
+    <Configurations>Debug</Configurations>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>6.6.1.0</AssemblyVersion>
+    <FileVersion>6.6.1.0</FileVersion>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Copyright>No rights reserved.</Copyright>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <RepositoryType></RepositoryType>
+    <PackageTags>imagin;core;net;wpf;windows</PackageTags>
+    <RepositoryUrl>https://github.com/imagin-tech/Imagin.NET</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/imagin-tech/Imagin.NET</PackageProjectUrl>
+    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
+    <Authors>imagin-tech</Authors>
+    <Company>Imagin</Company>
+    <Version>3.0.0</Version>
+    <Description>Common elements for shared projects.</Description>
+    <PackageIcon>Logo.png</PackageIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Arithmetic\**" />
+    <Compile Remove="Configuration\**" />
+    <Compile Remove="Text\**" />
+    <Compile Remove="Timers\**" />
+    <Compile Remove="[Interfaces]\**" />
+    <EmbeddedResource Remove="Arithmetic\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <EmbeddedResource Remove="Text\**" />
+    <EmbeddedResource Remove="Timers\**" />
+    <EmbeddedResource Remove="[Interfaces]\**" />
+    <None Remove="Arithmetic\**" />
+    <None Remove="Configuration\**" />
+    <None Remove="Text\**" />
+    <None Remove="Timers\**" />
+    <None Remove="[Interfaces]\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Collections\EnumCollection.cs" />
+    <Compile Remove="Collections\Generic\BaseCollection.cs" />
+    <Compile Remove="Collections\Generic\TrackableList.cs" />
+    <Compile Remove="Collections\ObjectModel\ObservableStack.cs" />
+    <Compile Remove="Data\DateFormat.cs" />
+    <Compile Remove="DayOfWeek.cs" />
+    <Compile Remove="Analytics\ILogEntry.cs" />
+    <Compile Remove="HDirection.cs" />
+    <Compile Remove="IPeriodical.cs" />
+    <Compile Remove="Linq\Encoding.cs" />
+    <Compile Remove="Linq\IColorTetrad.cs" />
+    <Compile Remove="Linq\IColorVector.cs" />
+    <Compile Remove="Numerics\BLine.cs" />
+    <Compile Remove="Numerics\BRange.cs" />
+    <Compile Remove="Numerics\BRegion.cs" />
+    <Compile Remove="Numerics\BVector2.cs" />
+    <Compile Remove="Numerics\BVector3.cs" />
+    <Compile Remove="Percent.cs" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+    <Compile Remove="Quadruplet.cs" />
+    <Compile Remove="RowColumn.cs" />
+    <Compile Remove="Side.cs" />
+    <Compile Remove="Span.cs" />
+    <Compile Remove="TaggedObject.cs" />
+    <Compile Remove="Transmission.cs" />
+    <Compile Remove="VDirection.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="project.json" />
+    <None Remove="project.lock.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="InheritDoc" Version="2.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

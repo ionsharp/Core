@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InheritDoc</name>
+    </assembly>
+    <members>
+        <member name="M:InheritDocLib.InheritDocUtil.Run(System.String,System.String,System.String,System.String,System.Boolean,System.Action{InheritDocLib.LogLevel,System.String})">
+            <summary>
+            Call to post process XML documentation files to replace &lt;inheritdoc/&gt; tags in XML comments (see https://www.inheritdoc.io)
+            </summary>
+            <param name="basePath">Leave blank to use current directory. Will scan for any project files under base path, determine assemblies from project files, and determine XML documentation files from project assemblies.</param>
+            <param name="xmlDocFileNamePatterns">Set to a comma delimited list of XML documentation file names to process (may use wild cards like 'Butterfly.*', leave blank to scan for assemblies in project files, do not include paths). Example: 'Butterfly.Database.xml,Butterfly.Channel.*'</param>
+            <param name="overwriteExisting">Set to false to create new .new.xml files.  Set to true to replace the existing .xml files.</param>
+            <param name="logger">Set to optional callback to receive log messages.</param>
+            <returns>List of XML documentation files modified (relative to base path).</returns>
+        </member>
+    </members>
+</doc>

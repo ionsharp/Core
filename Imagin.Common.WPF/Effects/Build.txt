@@ -1,1 +1,0 @@
-fxc /O0 /Fc /Zi /T ps_3_0 /Fo ColorModel.ps ColorModel.fx

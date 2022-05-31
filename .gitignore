@@ -13,6 +13,9 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+# Other
+Core.sln
 .vs
 
 # Windows shortcuts
