@@ -15,8 +15,9 @@ $RECYCLE.BIN/
 *.msp
 
 # Other
-Core.sln
 .vs
+bin
+obj
 
 # Windows shortcuts
 *.lnk

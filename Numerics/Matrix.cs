@@ -184,7 +184,7 @@ public struct Matrix : IEquatable<Matrix>, IMatrix
     /// Gets an absolute <see cref="Matrix"/>.
     /// </summary>
     /// <returns></returns>
-    public Matrix Absolute() => Each((row, column, value) => value.Absolute());
+    public Matrix Absolute() => Each((row, column, value) => value.Abs());
 
     /// <summary>
     /// Adds the given <see cref="Matrix"/> (throws <see cref="ArgumentOutOfRangeException"/> if the dimensions aren't identical).

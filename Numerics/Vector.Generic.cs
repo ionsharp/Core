@@ -80,7 +80,7 @@ public struct Vector2<T> : IEquatable<Vector2<T>>
     public readonly T Y;
 
     public static implicit operator T[](Vector2<T> input)
-        => Array<T>.New(input.X, input.Y);
+        => XArray.New<T>(input.X, input.Y);
 
     public static bool operator ==(Vector2<T> left, Vector2<T> right)
         => left.EqualsOverload(right);
@@ -103,7 +103,7 @@ public struct Vector2<T> : IEquatable<Vector2<T>>
         => Equals((Vector2<T>)o);
 
     public override int GetHashCode()
-        => Array<T>.New(X, Y).GetHashCode();
+        => XArray.New<T>(X, Y).GetHashCode();
 
     public override string ToString()
         => $"x = {X}, y = {Y}";
@@ -134,7 +134,7 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
     public T B => Z;
 
     public static implicit operator T[](Vector3<T> input)
-        => Array<T>.New(input.X, input.Y, input.Z);
+        => XArray.New<T>(input.X, input.Y, input.Z);
 
     public static bool operator ==(Vector3<T> left, Vector3<T> right)
         => left.EqualsOverload(right);
@@ -158,7 +158,7 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
         => Equals((Vector3<T>)o);
 
     public override int GetHashCode()
-        => Array<T>.New(X, Y, Z).GetHashCode();
+        => XArray.New<T>(X, Y, Z).GetHashCode();
 
     public override string ToString()
         => $"x = {X}, y = {Y}, z = {Z}";
@@ -194,7 +194,7 @@ public struct Vector4<T> : IEquatable<Vector4<T>>
     public T B => Z;
 
     public static implicit operator T[](Vector4<T> input)
-        => Array<T>.New(input.X, input.Y, input.Z);
+        => XArray.New<T>(input.X, input.Y, input.Z);
 
     public static bool operator ==(Vector4<T> left, Vector4<T> right)
         => left.EqualsOverload(right);
@@ -219,7 +219,7 @@ public struct Vector4<T> : IEquatable<Vector4<T>>
         => Equals((Vector4<T>)o);
 
     public override int GetHashCode()
-        => Array<T>.New(W, X, Y, Z).GetHashCode();
+        => XArray.New<T>(W, X, Y, Z).GetHashCode();
 
     public override string ToString()
         => $"w = {W}, x = {X}, y = {Y}, z = {Z}";

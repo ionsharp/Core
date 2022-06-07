@@ -1,6 +1,7 @@
 ﻿using Imagin.Core.Linq;
 using System;
 using System.Text;
+using static Imagin.Core.Numerics.M;
 
 namespace Imagin.Core.Numerics;
 
@@ -47,9 +48,9 @@ public struct Vector : IEquatable<Vector>, IVector
     /// <param name="input"></param>
     public Vector(params double[] input) : this(input, DefaultType) { }
 
-    public Vector(Vector2<double> input) : this(Array<double>.New(input.X, input.Y), DefaultType) { }
+    public Vector(Vector2<double> input) : this(XArray.New<double>(input.X, input.Y), DefaultType) { }
 
-    public Vector(Vector3<double> input) : this(Array<double>.New(input.X, input.Y, input.Z), DefaultType) { }
+    public Vector(Vector3<double> input) : this(XArray.New<double>(input.X, input.Y, input.Z), DefaultType) { }
 
     public Vector(VectorType type, params double[] input) : this(input, type) { }
 
@@ -118,10 +119,10 @@ public struct Vector : IEquatable<Vector>, IVector
     //...
 
     /// <summary>Gets an absolute <see cref="Vector"/>.</summary>
-    public Vector Absolute() => Transform((i, j) => j.Absolute());
+    public Vector Absolute() => Transform((i, j) => j.Abs());
 
     /// <summary>Coerces the range of the <see cref="Vector"/> based on the specified range.</summary>
-    public Vector Coerce(double minimum, double maximum) => Transform((i, j) => j.Clamp(maximum, minimum));
+    public Vector Coerce(double minimum, double maximum) => Transform((i, j) => Clamp(j, maximum, minimum));
 
     /// <summary>Coerces the range of the <see cref="Vector"/> based on the specified range.</summary>
     public Vector Coerce(Vector minimum, Vector maximum)
@@ -132,7 +133,7 @@ public struct Vector : IEquatable<Vector>, IVector
         if (maximum.Length != Length)
             throw new ArgumentOutOfRangeException(nameof(maximum));
 
-        return Transform((index, value) => value.Clamp(maximum[index], minimum[index]));
+        return Transform((index, value) => Clamp(value, maximum[index], minimum[index]));
     }
 
     /// <summary>Gets a rounded copy.</summary>
@@ -248,7 +249,7 @@ public struct Vector2 : IEquatable<Vector2>, IVector
     //...
 
     public static implicit operator double[](Vector2 input)
-        => Array<double>.New(input.X, input.Y);
+        => XArray.New<double>(input.X, input.Y);
 
     public static implicit operator Vector(Vector2 input) => new(input);
 
@@ -287,7 +288,7 @@ public struct Vector2 : IEquatable<Vector2>, IVector
         => Equals((Vector2)o);
 
     public override int GetHashCode()
-        => Array<double>.New(X, Y).GetHashCode();
+        => XArray.New<double>(X, Y).GetHashCode();
 
     public override string ToString()
         => $"x = {X}, y = {Y}";
@@ -345,7 +346,7 @@ public struct Vector3 : IEquatable<Vector3>, IVector
     //...
 
     public static implicit operator double[](Vector3 input)
-        => Array<double>.New(input.X, input.Y, input.Z);
+        => XArray.New<double>(input.X, input.Y, input.Z);
 
     public static implicit operator Vector(Vector3 input) => new(input);
 
@@ -384,7 +385,7 @@ public struct Vector3 : IEquatable<Vector3>, IVector
         => Equals((Vector3<double>)o);
 
     public override int GetHashCode()
-        => Array<double>.New(X, Y, Z).GetHashCode();
+        => XArray.New<double>(X, Y, Z).GetHashCode();
 
     public override string ToString()
         => $"x = {X}, y = {Y}, z = {Z}";
@@ -448,7 +449,7 @@ public struct Vector4 : IEquatable<Vector4>, IVector
     //...
 
     public static implicit operator double[](Vector4 input)
-        => Array<double>.New(input.X, input.Y, input.Z);
+        => XArray.New<double>(input.X, input.Y, input.Z);
 
     public static implicit operator Vector(Vector4 input) => new(input);
 
@@ -487,7 +488,7 @@ public struct Vector4 : IEquatable<Vector4>, IVector
         => Equals((Vector4<double>)o);
 
     public override int GetHashCode()
-        => Array<double>.New(W, X, Y, Z).GetHashCode();
+        => XArray.New<double>(W, X, Y, Z).GetHashCode();
 
     public override string ToString()
         => $"w = {W}, x = {X}, y = {Y}, z = {Z}";

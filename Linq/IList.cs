@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using static Imagin.Core.Numerics.M;
 
 namespace Imagin.Core.Linq
 {
@@ -128,7 +129,7 @@ namespace Imagin.Core.Linq
                 if (i.Count > 0)
                 {
                     var lastIndex = input.Count - 1;
-                    var actualIndex = (lastIndex - index).Clamp(lastIndex, 0);
+                    var actualIndex = Clamp(lastIndex - index, lastIndex);
                     return i[actualIndex];
                 }
             }
@@ -140,7 +141,7 @@ namespace Imagin.Core.Linq
             if (input?.Count > 0)
             {
                 var lastIndex = input.Count - 1;
-                var actualIndex = (lastIndex - index).Clamp(lastIndex, 0);
+                var actualIndex = Clamp(lastIndex - index, lastIndex);
                 return input[actualIndex];
             }
             return default;

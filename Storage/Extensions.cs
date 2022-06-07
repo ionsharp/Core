@@ -21,7 +21,7 @@ public struct Extensions
         value
             = input;
         values
-            = input.Split(Array<char>.New(';'), StringSplitOptions.RemoveEmptyEntries);
+            = input.Split(XArray.New<char>(';'), StringSplitOptions.RemoveEmptyEntries);
     }
 
     /// <summary>Initializes an instance of the <see cref="Extensions"/> structure.</summary>

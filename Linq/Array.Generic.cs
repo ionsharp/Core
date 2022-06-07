@@ -1,4 +1,7 @@
-﻿namespace Imagin.Core.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Imagin.Core.Linq;
 
 public static partial class XArray
 {
@@ -12,6 +15,8 @@ public static partial class XArray
 
         return input;
     }
+
+    //...
 
     public static T[,] Duplicate<T>(this T[,] input)
     {
@@ -40,6 +45,12 @@ public static partial class XArray
         return result;
     }
 
+    //...
+
+    public static T[] Empty<T>() => new T[0];
+
+    //...
+
     public static int IndexOf<T>(this T[] input, T element)
     {
         for (int i = 0, length = input.Length; i < length; i++)
@@ -49,6 +60,26 @@ public static partial class XArray
         }
         return -1;
     }
+
+    //...
+
+    public static T[] New<T>(params T[] input) => input ?? new T[0];
+
+    public static T[] New<T>(IEnumerable<T> input)
+    {
+        var count = input?.Count() ?? 0;
+        var result = new T[count];
+
+        if (count == 0)
+            return result;
+
+        for (var i = 0; i < count; i++)
+            result[i] = input.ElementAtOrDefault(i);
+
+        return result;
+    }
+
+    //...
 
     public static T[][] Project<T>(this T[,] input)
     {
@@ -78,6 +109,8 @@ public static partial class XArray
 
         return result;
     }
+
+    //...
 
     public static void Remove<T>(this T[] input, params T[] elements)
     {

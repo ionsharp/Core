@@ -3,6 +3,7 @@ using Imagin.Core.Serialization;
 using Imagin.Core.Storage;
 using System;
 using System.Collections;
+using static System.Math;
 
 namespace Imagin.Core.Collections
 {
@@ -44,7 +45,7 @@ namespace Imagin.Core.Collections
             if (input.Count > Value)
             {
                 //Always >= 1
-                var blocks = new string[(input.Count.Double() / Value.Double()).Floor().Int32()];
+                var blocks = new string[Floor(input.Count.Double() / Value.Double()).Int32()];
                 switch (Action)
                 {
                     case Actions.Clear:

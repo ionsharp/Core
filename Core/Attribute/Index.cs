@@ -2,7 +2,7 @@
 
 namespace Imagin.Core
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Field | AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Field | AttributeTargets.Property)]
     public class IndexAttribute : Attribute
     {
         public readonly int Index;

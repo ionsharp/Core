@@ -1,5 +1,5 @@
-﻿using Imagin.Core.Linq;
-using System;
+﻿using System;
+using static Imagin.Core.Numerics.M;
 
 namespace Imagin.Core.Numerics;
 
@@ -15,7 +15,7 @@ public struct One
 
     //...
 
-    public One(double value) => Value = value.Clamp(1);
+    public One(double value) => Value = Clamp(value, 1);
 
     //...
 

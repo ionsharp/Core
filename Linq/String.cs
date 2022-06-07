@@ -257,7 +257,7 @@ namespace Imagin.Core.Linq
         public static int Words(this string input)
         {
             var result = 0;
-            Try.Invoke(() => result = input.Split(Array<char>.New(' ', '\r', '\n'), StringSplitOptions.RemoveEmptyEntries).Length);
+            Try.Invoke(() => result = input.Split(XArray.New<char>(' ', '\r', '\n'), StringSplitOptions.RemoveEmptyEntries).Length);
             return result;
         }
 

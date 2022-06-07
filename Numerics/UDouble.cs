@@ -1,4 +1,4 @@
-﻿using Imagin.Core.Linq;
+﻿using Imagin.Core.Numerics;
 using System;
 
 namespace Imagin.Core;
@@ -44,7 +44,7 @@ public struct UDouble
         if (double.IsNegativeInfinity(input))
             throw new NotSupportedException();
 
-        value = input.Clamp(double.MaxValue);
+        value = M.Clamp(input, double.MaxValue);
     }
 
     public static implicit operator double(UDouble d) => d.value;
@@ -70,6 +70,8 @@ public struct UDouble
     public static UDouble operator /(UDouble a, UDouble b) => a.value / b.value;
 
     public static UDouble operator *(UDouble a, UDouble b) => a.value * b.value;
+
+    public UDouble Clamp(UDouble maximum, UDouble minimum = default) => value > maximum ? maximum : (value < minimum ? minimum : value);
 
     public override bool Equals(object a) => a is UDouble b ? this == b : false;
 

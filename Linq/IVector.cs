@@ -6,10 +6,10 @@ namespace Imagin.Core.Linq;
 public static class XVector
 {
     /// <summary>Gets an absolute <see cref="Vector"/>.</summary>
-    public static Vector Absolute(this IVector input) => input.Transform((i, j) => j.Absolute());
+    public static Vector Absolute(this IVector input) => input.Transform((i, j) => j.Abs());
 
     /// <summary>Coerces the range of the <see cref="Vector"/> based on the specified range.</summary>
-    public static Vector Clamp(this IVector input, double minimum, double maximum) => input.Transform((i, j) => j.Clamp(maximum, minimum));
+    public static Vector Clamp(this IVector input, double minimum, double maximum) => input.Transform((i, j) => M.Clamp(j, maximum, minimum));
 
     /// <summary>Coerces the range of the <see cref="Vector"/> based on the specified range.</summary>
     public static Vector Clamp(this IVector input, Vector minimum, Vector maximum)
@@ -20,7 +20,7 @@ public static class XVector
         if (maximum.Length != input.Length)
             throw new ArgumentOutOfRangeException(nameof(maximum));
 
-        return input.Transform((index, value) => value.Clamp(maximum[index], minimum[index]));
+        return input.Transform((index, value) => M.Clamp(value, maximum[index], minimum[index]));
     }
 
     /// <summary>Performs dot multiplication on both given vectors.</summary>
