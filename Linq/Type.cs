@@ -9,9 +9,7 @@ namespace Imagin.Core.Linq
 {
     public static class XType
     {
-        /// <summary>
-        /// Create a new instance of the given type using <see cref="Activator.CreateInstance()"/>.
-        /// </summary>
+        /// <summary>Create a new instance of the given type using <see cref="Activator.CreateInstance()"/>.</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="input"></param>
         /// <returns></returns>

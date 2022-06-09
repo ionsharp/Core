@@ -124,6 +124,8 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
 
     public readonly T Z;
 
+    public Vector2<T> XY => new(X, Y);
+
     /// <summary>(0) <see cref="R"/> = <see cref="X"/></summary>
     public T R => X;
 
@@ -180,6 +182,8 @@ public struct Vector4<T> : IEquatable<Vector4<T>>
     public readonly T Y;
 
     public readonly T Z;
+
+    public Vector3<T> XYZ => new(X, Y, Z);
 
     /// <summary>(0) <see cref="A"/> = <see cref="W"/></summary>
     public T A => W;

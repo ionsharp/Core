@@ -50,7 +50,6 @@ public static class M
     //...
 
     /// <summary>Compute cosine of angle in degrees.</summary>
-    /// <param name="x">Given angle.</param>
     public static double CosDeg(in double x)
     {
         var x_rad = Angle.GetRadian(x);
@@ -59,7 +58,6 @@ public static class M
     }
 
     /// <summary>Compute sine of angle in degrees.</summary>
-    /// <param name="x">Given angle.</param>
     public static double SinDeg(in double x)
     {
         var x_rad = Angle.GetRadian(x);
@@ -117,49 +115,109 @@ public static class M
 
     //...
 
-    public static double Normalize(in byte a) => a.Double() / 255;
+    public static double Normalize(in byte i) => i.Double() / 255;
 
-    public static byte Denormalize(in double a) => Clamp((a * 255).Round(), 255).Byte();
+    public static Vector Normalize(in Vector input, Vector min, Vector max)
+    {
+        var result = new double[input.Length];
+        for (var i = 0; i < input.Length; i++)
+            result[i] = new DoubleRange(min[i], max[i]).Convert(0, 1, input[i]);
+
+        return new(result);
+    }
+
+    public static Vector2 Normalize(in Vector2 input, Vector2 min, Vector2 max)
+    {
+        var result = new double[2];
+        for (var i = 0; i < 2; i++)
+            result[i] = new DoubleRange(min[i], max[i]).Convert(0, 1, input[i]);
+
+        return new(result[0], result[1]);
+    }
+
+    public static Vector3 Normalize(in Vector3 input, Vector3 min, Vector3 max)
+    {
+        var result = new double[3];
+        for (var i = 0; i < 3; i++)
+            result[i] = new DoubleRange(min[i], max[i]).Convert(0, 1, input[i]);
+
+        return new(result[0], result[1], result[2]);
+    }
+
+    public static Vector4 Normalize(in Vector4 input, Vector4 min, Vector4 max)
+    {
+        var result = new double[4];
+        for (var i = 0; i < 4; i++)
+            result[i] = new DoubleRange(min[i], max[i]).Convert(0, 1, input[i]);
+
+        return new(result[0], result[1], result[2], result[3]);
+    }
+
+    //...
+
+    public static byte Denormalize(in double i) => Clamp((i * 255).Round(), 255).Byte();
+
+    public static Vector Denormalize(in Vector input, Vector min, Vector max)
+    {
+        var result = new double[input.Length];
+        for (var i = 0; i < input.Length; i++)
+            result[i] = new DoubleRange(0, 1).Convert(min[i], max[i], input[i]);
+
+        return new(result);
+    }
+
+    public static Vector2 Denormalize(in Vector2 input, Vector2 min, Vector2 max)
+    {
+        var result = new double[2];
+        for (var i = 0; i < 2; i++)
+            result[i] = new DoubleRange(0, 1).Convert(min[i], max[i], input[i]);
+
+        return new(result[0], result[1]);
+    }
+
+    public static Vector3 Denormalize(in Vector3 input, Vector3 min, Vector3 max)
+    {
+        var result = new double[3];
+        for (var i = 0; i < 3; i++)
+            result[i] = new DoubleRange(0, 1).Convert(min[i], max[i], input[i]);
+
+        return new(result[0], result[1], result[2]);
+    }
+
+    public static Vector4 Denormalize(in Vector4 input, Vector4 min, Vector4 max)
+    {
+        var result = new double[4];
+        for (var i = 0; i < 4; i++)
+            result[i] = new DoubleRange(0, 1).Convert(min[i], max[i], input[i]);
+
+        return new(result[0], result[1], result[2], result[3]);
+    }
 
     //...
 
     /// <summary>Compute x^2.</summary>
-    /// <param name="x">Base.</param>
-    /// <returns>Result of the exponentiation.</returns>
     public static double Pow2(in double x) => x * x;
 
     /// <summary>Compute x^3.</summary>
-    /// <param name="x">Base.</param>
-    /// <returns>Result of the exponentiation.</returns>
     public static double Pow3(in double x) => x * x * x;
 
     /// <summary>Compute x^4.</summary>
-    /// <param name="x">Base.</param>
-    /// <returns>Result of the exponentiation.</returns>
     public static double Pow4(in double x) => x * x * (x * x);
 
     /// <summary>Compute x^7.</summary>
-    /// <param name="x">Base.</param>
-    /// <returns>Result of the exponentiation.</returns>
     public static double Pow7(in double x) => x * x * x * (x * x * x) * x;
 
     //...
 
     /// <summary>Compute x^1/y.</summary>
-    /// <param name="x">Base.</param>
-    /// <returns>Result of the root.</returns>
     public static double Root(in double x, in double y) => Pow(x, (1.0 / y));
 
     //...
 
     /// <summary>Compute x^1/3.</summary>
-    /// <param name="x">Base.</param>
-    /// <returns>Result of the cubed root.</returns>
     public static double Cbrt(in double x) => Root(x, 3);
 
     /// <summary>Compute x^1/4.</summary>
-    /// <param name="x">Base.</param>
-    /// <returns>Result of the quadric root.</returns>
     public static double Qdrt(in double x) => Root(x, 4);
 
     //...

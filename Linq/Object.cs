@@ -14,7 +14,11 @@ public static partial class XObject
     public static object GetFieldValue(this object input, string fieldName) => input.GetType().GetField(fieldName).GetValue(input);
 
     /// <summary>Get the value of the given property.</summary>
-    public static object GetPropertyValue(this object input, string propertyName) => input.GetType().GetProperty(propertyName).GetValue(input, null);
+    public static object GetPropertyValue(this object input, string propertyName)
+    {
+        var result = input.GetType().GetProperty(propertyName);
+        return result.GetValue(input, null);
+    }
 
     /// <summary>Calls the given action if the object is not <see langword="null"/>.</summary>
     public static void If<T>(this object input, Action<T> action)

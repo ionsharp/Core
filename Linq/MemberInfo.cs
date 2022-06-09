@@ -29,6 +29,9 @@ public static class XMemberInfo
 
     public static IEnumerable<Attribute> GetAttributes(this MemberInfo input) => input.GetAttributes<Attribute>();
 
+    public static string GetDisplayName(this MemberInfo input)
+        => input.GetAttribute<DisplayNameAttribute>()?.DisplayName ?? input.GetAttribute<System.ComponentModel.DisplayNameAttribute>()?.DisplayName ?? input.Name;
+
     public static bool HasAttribute<T>(this MemberInfo input) => input.HasAttribute(typeof(T));
 
     public static bool HasAttribute(this MemberInfo input, Type type)

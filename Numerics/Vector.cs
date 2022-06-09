@@ -225,6 +225,8 @@ public struct Vector2 : IEquatable<Vector2>, IVector
     public const uint Length = 2;
     int IVector.Length => (int)Length;
 
+    public static Vector2 One => new(1);
+
     public static Vector2 Zero => new(0);
 
     public double X { get; private set; }
@@ -310,6 +312,8 @@ public struct Vector3 : IEquatable<Vector3>, IVector
     public const uint Length = 3;
     int IVector.Length => (int)Length;
 
+    public static Vector3 One => new(1);
+
     public static Vector3 Zero => new(0);
 
     public double X { get; private set; }
@@ -317,6 +321,8 @@ public struct Vector3 : IEquatable<Vector3>, IVector
     public double Y { get; private set; }
 
     public double Z { get; private set; }
+
+    public Vector2 XY => new(X, Y);
 
     /// <summary>(0) <see cref="R"/> = <see cref="X"/></summary>
     public double R => X;
@@ -407,6 +413,8 @@ public struct Vector4 : IEquatable<Vector4>, IVector
     public const uint Length = 4;
     int IVector.Length => (int)Length;
 
+    public static Vector4 One => new(1);
+
     public static Vector4 Zero => new(0);
 
     public double W { get; private set; }
@@ -416,6 +424,8 @@ public struct Vector4 : IEquatable<Vector4>, IVector
     public double Y { get; private set; }
 
     public double Z { get; private set; }
+
+    public Vector3 XYZ => new(X, Y, Z);
 
     /// <summary>(0) <see cref="A"/> = <see cref="W"/></summary>
     public double A => W;
