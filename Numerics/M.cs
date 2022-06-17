@@ -117,7 +117,7 @@ public static class M
 
     public static double Normalize(in byte i) => i.Double() / 255;
 
-    public static Vector Normalize(in Vector input, Vector min, Vector max)
+    public static Vector Normalize(Vector input, Vector min, Vector max)
     {
         var result = new double[input.Length];
         for (var i = 0; i < input.Length; i++)
@@ -126,7 +126,7 @@ public static class M
         return new(result);
     }
 
-    public static Vector2 Normalize(in Vector2 input, Vector2 min, Vector2 max)
+    public static Vector2 Normalize(Vector2 input, Vector2 min, Vector2 max)
     {
         var result = new double[2];
         for (var i = 0; i < 2; i++)
@@ -135,7 +135,7 @@ public static class M
         return new(result[0], result[1]);
     }
 
-    public static Vector3 Normalize(in Vector3 input, Vector3 min, Vector3 max)
+    public static Vector3 Normalize(Vector3 input, Vector3 min, Vector3 max)
     {
         var result = new double[3];
         for (var i = 0; i < 3; i++)
@@ -144,7 +144,7 @@ public static class M
         return new(result[0], result[1], result[2]);
     }
 
-    public static Vector4 Normalize(in Vector4 input, Vector4 min, Vector4 max)
+    public static Vector4 Normalize(Vector4 input, Vector4 min, Vector4 max)
     {
         var result = new double[4];
         for (var i = 0; i < 4; i++)
@@ -157,7 +157,7 @@ public static class M
 
     public static byte Denormalize(in double i) => Clamp((i * 255).Round(), 255).Byte();
 
-    public static Vector Denormalize(in Vector input, Vector min, Vector max)
+    public static Vector Denormalize(Vector input, Vector min, Vector max)
     {
         var result = new double[input.Length];
         for (var i = 0; i < input.Length; i++)
@@ -166,7 +166,7 @@ public static class M
         return new(result);
     }
 
-    public static Vector2 Denormalize(in Vector2 input, Vector2 min, Vector2 max)
+    public static Vector2 Denormalize(Vector2 input, Vector2 min, Vector2 max)
     {
         var result = new double[2];
         for (var i = 0; i < 2; i++)
@@ -175,7 +175,7 @@ public static class M
         return new(result[0], result[1]);
     }
 
-    public static Vector3 Denormalize(in Vector3 input, Vector3 min, Vector3 max)
+    public static Vector3 Denormalize(Vector3 input, Vector3 min, Vector3 max)
     {
         var result = new double[3];
         for (var i = 0; i < 3; i++)
@@ -184,7 +184,7 @@ public static class M
         return new(result[0], result[1], result[2]);
     }
 
-    public static Vector4 Denormalize(in Vector4 input, Vector4 min, Vector4 max)
+    public static Vector4 Denormalize(Vector4 input, Vector4 min, Vector4 max)
     {
         var result = new double[4];
         for (var i = 0; i < 4; i++)
@@ -231,4 +231,6 @@ public static class M
 
         return input;
     }
+
+    public static double Sum(double[] input) => new Vector(input).Sum();
 }

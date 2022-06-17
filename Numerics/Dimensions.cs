@@ -2,9 +2,13 @@
 
 namespace Imagin.Core.Numerics;
 
+/// <summary>Specifies a dimension with <i>n</i> [1, 3] axes.</summary>
 [Serializable]
 public enum Dimensions
 {
+    /// <summary>Specifies a dimension with 1 axis (X).</summary>
+    [DisplayName("1D")]
+    One,
     /// <summary>Specifies a dimension with 2 axes (X|Y).</summary>
     [DisplayName("2D")]
     Two,

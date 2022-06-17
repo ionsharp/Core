@@ -33,17 +33,14 @@
   <ItemGroup>
     <Compile Remove="Arithmetic\**" />
     <Compile Remove="Configuration\**" />
-    <Compile Remove="Text\**" />
     <Compile Remove="Timers\**" />
     <Compile Remove="[Interfaces]\**" />
     <EmbeddedResource Remove="Arithmetic\**" />
     <EmbeddedResource Remove="Configuration\**" />
-    <EmbeddedResource Remove="Text\**" />
     <EmbeddedResource Remove="Timers\**" />
     <EmbeddedResource Remove="[Interfaces]\**" />
     <None Remove="Arithmetic\**" />
     <None Remove="Configuration\**" />
-    <None Remove="Text\**" />
     <None Remove="Timers\**" />
     <None Remove="[Interfaces]\**" />
   </ItemGroup>
@@ -88,6 +85,10 @@
 
   <ItemGroup>
     <PackageReference Include="InheritDoc" Version="2.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="readme.md" pack="true" PackagePath="." />
   </ItemGroup>
 
   <ItemGroup>

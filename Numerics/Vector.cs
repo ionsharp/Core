@@ -30,16 +30,33 @@ public struct Vector : IEquatable<Vector>, IVector
     /// </summary>
     public VectorType Type => type;
 
-    public int Length => values.Length;
+    public int Length
+    {
+        get
+        {
+            if (values == null)
+                throw new NotImplementedException("What happened?");
 
-    public double this[int index] => values[index];
+            return values?.Length ?? 0;
+        }
+    }
+
+    public double this[int index]
+    {
+        get
+        {
+            if (values == null)
+                throw new NotImplementedException("What happened?");
+
+            return values[index];
+        }
+    }
 
     //...
 
     Vector(double[] input, VectorType type) 
     {
-        this.values = input;
-        this.type = type;
+        this.values = input ?? throw new NullReferenceException("A vector cannot be empty."); this.type = type;
     }
 
     /// <summary>
@@ -48,9 +65,7 @@ public struct Vector : IEquatable<Vector>, IVector
     /// <param name="input"></param>
     public Vector(params double[] input) : this(input, DefaultType) { }
 
-    public Vector(Vector2<double> input) : this(XArray.New<double>(input.X, input.Y), DefaultType) { }
-
-    public Vector(Vector3<double> input) : this(XArray.New<double>(input.X, input.Y, input.Z), DefaultType) { }
+    public Vector(Vector2<double> input) : this(XArray.New(input.X, input.Y), DefaultType) { }
 
     public Vector(VectorType type, params double[] input) : this(input, type) { }
 
@@ -91,12 +106,6 @@ public struct Vector : IEquatable<Vector>, IVector
     public static implicit operator double[](Vector input) => input.values;
 
     public static explicit operator Vector(Matrix input) => new(input);
-
-    //...
-
-    public static bool operator ==(Vector a, Vector b) => a.EqualsOverload(b);
-
-    public static bool operator !=(Vector a, Vector b) => !(a == b);
 
     //...
 
@@ -174,12 +183,6 @@ public struct Vector : IEquatable<Vector>, IVector
 
     //...
 
-    public bool Equals(Vector o) => this.Equals<Vector>(o) && values == o.values;
-
-    public override bool Equals(object o) => Equals((Vector)o);
-
-    public override int GetHashCode() => values.GetHashCode();
-
     public override string ToString()
     {
         var result = new StringBuilder();
@@ -213,6 +216,20 @@ public struct Vector : IEquatable<Vector>, IVector
         }
         return result.ToString();
     }
+
+    #region ==
+
+    public static bool operator ==(Vector a, Vector b) => a.EqualsOverload(b);
+
+    public static bool operator !=(Vector a, Vector b) => !(a == b);
+
+    public bool Equals(Vector i) => this.Equals<Vector>(i) && values == i.values;
+
+    public override bool Equals(object i) => i is Vector j && Equals(j);
+
+    public override int GetHashCode() => values.GetHashCode();
+
+    #endregion
 }
 
 #endregion
@@ -257,14 +274,6 @@ public struct Vector2 : IEquatable<Vector2>, IVector
 
     //...
 
-    public static bool operator ==(Vector2 a, Vector2 b)
-        => a.EqualsOverload(b);
-
-    public static bool operator !=(Vector2 a, Vector2 b)
-        => !(a == b);
-
-    //...
-
     public static Vector2 operator +(Vector2 a, double b) => a.Transform((i, j) => j + b);
 
     public static Vector2 operator -(Vector2 a, double b) => a.Transform((i, j) => j - b);
@@ -283,15 +292,6 @@ public struct Vector2 : IEquatable<Vector2>, IVector
 
     //...
 
-    public bool Equals(Vector2 i)
-        => this.Equals<Vector2>(i) && X.Equals(i.X) && Y.Equals(i.Y);
-
-    public override bool Equals(object o)
-        => Equals((Vector2)o);
-
-    public override int GetHashCode()
-        => XArray.New<double>(X, Y).GetHashCode();
-
     public override string ToString()
         => $"x = {X}, y = {Y}";
 
@@ -300,6 +300,25 @@ public struct Vector2 : IEquatable<Vector2>, IVector
     /// <summary>Gets a new <see cref="Vector2"/> based on the given transformation.</summary>
     public Vector2 Transform(Func<int, double, double> action) => new(action(0, X), action(1, Y));
     Vector IVector.Transform(Func<int, double, double> action) => Transform(action);
+
+    #region ==
+
+    public static bool operator ==(Vector2 a, Vector2 b)
+        => a.EqualsOverload(b);
+
+    public static bool operator !=(Vector2 a, Vector2 b)
+        => !(a == b);
+
+    public bool Equals(Vector2 i)
+        => this.Equals<Vector2>(i) && X.Equals(i.X) && Y.Equals(i.Y);
+
+    public override bool Equals(object i)
+        => i is Vector2 j && Equals(j);
+
+    public override int GetHashCode()
+        => XArray.New<double>(X, Y).GetHashCode();
+
+    #endregion
 }
 
 #endregion
@@ -322,15 +341,19 @@ public struct Vector3 : IEquatable<Vector3>, IVector
 
     public double Z { get; private set; }
 
+    [Hidden]
     public Vector2 XY => new(X, Y);
 
     /// <summary>(0) <see cref="R"/> = <see cref="X"/></summary>
+    [Hidden]
     public double R => X;
 
     /// <summary>(1) <see cref="G"/> = <see cref="Y"/></summary>
+    [Hidden]
     public double G => Y;
 
     /// <summary>(2) <see cref="B"/> = <see cref="Z"/></summary>
+    [Hidden]
     public double B => Z;
 
     double[] IVector.Values => Values;
@@ -358,14 +381,6 @@ public struct Vector3 : IEquatable<Vector3>, IVector
 
     //...
 
-    public static bool operator ==(Vector3 a, Vector3 b)
-        => a.EqualsOverload(b);
-
-    public static bool operator !=(Vector3 a, Vector3 b)
-        => !(a == b);
-
-    //...
-
     public static Vector3 operator +(Vector3 a, double b) => a.Transform((i, j) => j + b);
 
     public static Vector3 operator -(Vector3 a, double b) => a.Transform((i, j) => j - b);
@@ -384,15 +399,6 @@ public struct Vector3 : IEquatable<Vector3>, IVector
 
     //...
 
-    public bool Equals(Vector3 i)
-        => this.Equals<Vector3>(i) && X.Equals(i.X) && Y.Equals(i.Y) && Z.Equals(i.Z);
-
-    public override bool Equals(object o)
-        => Equals((Vector3<double>)o);
-
-    public override int GetHashCode()
-        => XArray.New<double>(X, Y, Z).GetHashCode();
-
     public override string ToString()
         => $"x = {X}, y = {Y}, z = {Z}";
 
@@ -401,6 +407,25 @@ public struct Vector3 : IEquatable<Vector3>, IVector
     /// <summary>Gets a new <see cref="Vector3"/> based on the given transformation.</summary>
     public Vector3 Transform(Func<int, double, double> action) => new(action(0, X), action(1, Y), action(2, Z));
     Vector IVector.Transform(Func<int, double, double> action) => Transform(action);
+
+    #region ==
+
+    public static bool operator ==(Vector3 a, Vector3 b)
+        => a.EqualsOverload(b);
+
+    public static bool operator !=(Vector3 a, Vector3 b)
+        => !(a == b);
+
+    public bool Equals(Vector3 i)
+        => this.Equals<Vector3>(i) && X.Equals(i.X) && Y.Equals(i.Y) && Z.Equals(i.Z);
+
+    public override bool Equals(object i)
+        => i is Vector3 j && Equals(j);
+
+    public override int GetHashCode()
+        => XArray.New<double>(X, Y, Z).GetHashCode();
+
+    #endregion
 }
 
 #endregion
@@ -417,59 +442,53 @@ public struct Vector4 : IEquatable<Vector4>, IVector
 
     public static Vector4 Zero => new(0);
 
-    public double W { get; private set; }
-
     public double X { get; private set; }
 
     public double Y { get; private set; }
 
     public double Z { get; private set; }
 
+    public double W { get; private set; }
+
+    [Hidden]
     public Vector3 XYZ => new(X, Y, Z);
 
-    /// <summary>(0) <see cref="A"/> = <see cref="W"/></summary>
-    public double A => W;
-
-    /// <summary>(1) <see cref="R"/> = <see cref="X"/></summary>
+    /// <summary>(0) <see cref="R"/> = <see cref="X"/></summary>
+    [Hidden]
     public double R => X;
 
-    /// <summary>(2) <see cref="G"/> = <see cref="Y"/></summary>
+    /// <summary>(1) <see cref="G"/> = <see cref="Y"/></summary>
+    [Hidden]
     public double G => Y;
 
-    /// <summary>(3) <see cref="B"/> = <see cref="Z"/></summary>
+    /// <summary>(2) <see cref="B"/> = <see cref="Z"/></summary>
+    [Hidden]
     public double B => Z;
 
+    /// <summary>(3) <see cref="A"/> = <see cref="W"/></summary>
+    [Hidden]
+    public double A => W;
+
     double[] IVector.Values => Values;
-    internal double[] Values => new double[] { W, X, Y, Z };
+    internal double[] Values => new double[] { X, Y, Z, W };
 
     public double this[int index] => Values[index];
 
     //...
 
-    public Vector4(double wxyz) : this(wxyz, wxyz, wxyz, wxyz) { }
+    public Vector4(double xyzw) : this(xyzw, xyzw, xyzw, xyzw) { }
 
-    public Vector4(double w, double x, double y, double z)
+    public Vector4(double x, double y, double z, double w)
     {
-        W = w;
-        X = x;
-        Y = y;
-        Z = z;
+        X = x; Y = y; Z = z; W = w;
     }
 
     //...
 
     public static implicit operator double[](Vector4 input)
-        => XArray.New<double>(input.X, input.Y, input.Z);
+        => XArray.New(input.X, input.Y, input.Z, input.W);
 
     public static implicit operator Vector(Vector4 input) => new(input);
-
-    //...
-
-    public static bool operator ==(Vector4 a, Vector4 b)
-        => a.EqualsOverload(b);
-
-    public static bool operator !=(Vector4 a, Vector4 b)
-        => !(a == b);
 
     //...
 
@@ -491,24 +510,33 @@ public struct Vector4 : IEquatable<Vector4>, IVector
 
     //...
 
-    public bool Equals(Vector4 i)
-        => this.Equals<Vector4>(i) && W.Equals(i.W) && X.Equals(i.X) && Y.Equals(i.Y) && Z.Equals(i.Z);
-
-    public override bool Equals(object o)
-        => Equals((Vector4<double>)o);
-
-    public override int GetHashCode()
-        => XArray.New<double>(W, X, Y, Z).GetHashCode();
-
     public override string ToString()
-        => $"w = {W}, x = {X}, y = {Y}, z = {Z}";
+        => $"x = {X}, y = {Y}, z = {Z}, w = {W}";
 
     //...
 
     /// <summary>Gets a new <see cref="Vector4"/> based on the given transformation.</summary>
-    public Vector4 Transform(Func<int, double, double> action) => new(action(0, W), action(1, X), action(2, Y), action(3, Z));
+    public Vector4 Transform(Func<int, double, double> action) => new(action(0, X), action(1, Y), action(2, Z), action(3, W));
     Vector IVector.Transform(Func<int, double, double> action) => Transform(action);
 
+    #region ==
+
+    public static bool operator ==(Vector4 a, Vector4 b)
+        => a.EqualsOverload(b);
+
+    public static bool operator !=(Vector4 a, Vector4 b)
+        => !(a == b);
+
+    public bool Equals(Vector4 i)
+        => this.Equals<Vector4>(i) && X.Equals(i.X) && Y.Equals(i.Y) && Z.Equals(i.Z) && W.Equals(i.W);
+
+    public override bool Equals(object i)
+        => i is Vector4 j && Equals(j);
+
+    public override int GetHashCode()
+        => XArray.New(X, Y, Z, W).GetHashCode();
+
+    #endregion
 }
 
 #endregion

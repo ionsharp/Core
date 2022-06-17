@@ -25,12 +25,6 @@ public struct Vector<T> : IEquatable<Vector<T>>
     public static implicit operator T[] (Vector<T> input)
         => input.values;
 
-    public static bool operator ==(Vector<T> left, Vector<T> right)
-        => left.EqualsOverload(right);
-
-    public static bool operator !=(Vector<T> left, Vector<T> right)
-        => !(left == right);
-
     public Vector(params T[] values)
     {
         this.values = values;
@@ -56,14 +50,24 @@ public struct Vector<T> : IEquatable<Vector<T>>
         return new Vector<T>(result);
     }
 
-    public bool Equals(Vector<T> o) 
-        => this.Equals<Vector<T>>(o) && values == o.values;
+    #region ==
 
-    public override bool Equals(object o)
-        => Equals((Vector<T>)o);
+    public static bool operator ==(Vector<T> left, Vector<T> right)
+        => left.EqualsOverload(right);
 
-    public override int GetHashCode() 
+    public static bool operator !=(Vector<T> left, Vector<T> right)
+        => !(left == right);
+
+    public bool Equals(Vector<T> i)
+        => this.Equals<Vector<T>>(i) && values == i.values;
+
+    public override bool Equals(object i)
+        => i is Vector<T> j && Equals(j);
+
+    public override int GetHashCode()
         => values.GetHashCode();
+
+    #endregion
 }
 
 #endregion
@@ -82,12 +86,6 @@ public struct Vector2<T> : IEquatable<Vector2<T>>
     public static implicit operator T[](Vector2<T> input)
         => XArray.New<T>(input.X, input.Y);
 
-    public static bool operator ==(Vector2<T> left, Vector2<T> right)
-        => left.EqualsOverload(right);
-
-    public static bool operator !=(Vector2<T> left, Vector2<T> right)
-        => !(left == right);
-
     public Vector2(T xy) : this(xy, xy) { }
 
     public Vector2(T x, T y)
@@ -96,17 +94,27 @@ public struct Vector2<T> : IEquatable<Vector2<T>>
         Y = y;
     }
 
-    public bool Equals(Vector2<T> o)
-        => this.Equals<Vector2<T>>(o) && X.Equals(o.X) && Y.Equals(o.Y);
+    public override string ToString()
+        => $"x = {X}, y = {Y}";
 
-    public override bool Equals(object o)
-        => Equals((Vector2<T>)o);
+    #region ==
+
+    public static bool operator ==(Vector2<T> left, Vector2<T> right)
+        => left.EqualsOverload(right);
+
+    public static bool operator !=(Vector2<T> left, Vector2<T> right)
+        => !(left == right);
+
+    public bool Equals(Vector2<T> i)
+        => this.Equals<Vector2<T>>(i) && X.Equals(i.X) && Y.Equals(i.Y);
+
+    public override bool Equals(object i)
+        => i is Vector2<T> j && Equals(j);
 
     public override int GetHashCode()
         => XArray.New<T>(X, Y).GetHashCode();
 
-    public override string ToString()
-        => $"x = {X}, y = {Y}";
+    #endregion
 }
 
 #endregion
@@ -138,12 +146,6 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
     public static implicit operator T[](Vector3<T> input)
         => XArray.New<T>(input.X, input.Y, input.Z);
 
-    public static bool operator ==(Vector3<T> left, Vector3<T> right)
-        => left.EqualsOverload(right);
-
-    public static bool operator !=(Vector3<T> left, Vector3<T> right)
-        => !(left == right);
-
     public Vector3(T xyz) : this(xyz, xyz, xyz) { }
 
     public Vector3(T x, T y, T z)
@@ -153,17 +155,27 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
         Z = z;
     }
 
-    public bool Equals(Vector3<T> o)
-        => this.Equals<Vector3<T>>(o) && X.Equals(o.X) && Y.Equals(o.Y) && Z.Equals(o.Z);
+    public override string ToString()
+        => $"x = {X}, y = {Y}, z = {Z}";
 
-    public override bool Equals(object o)
-        => Equals((Vector3<T>)o);
+    #region ==
+
+    public static bool operator ==(Vector3<T> left, Vector3<T> right)
+        => left.EqualsOverload(right);
+
+    public static bool operator !=(Vector3<T> left, Vector3<T> right)
+        => !(left == right);
+
+    public bool Equals(Vector3<T> i)
+        => this.Equals<Vector3<T>>(i) && X.Equals(i.X) && Y.Equals(i.Y) && Z.Equals(i.Z);
+
+    public override bool Equals(object i)
+        => i is Vector3<T> j && Equals(j);
 
     public override int GetHashCode()
         => XArray.New<T>(X, Y, Z).GetHashCode();
 
-    public override string ToString()
-        => $"x = {X}, y = {Y}, z = {Z}";
+    #endregion
 }
 
 #endregion
@@ -175,30 +187,45 @@ public struct Vector4<T> : IEquatable<Vector4<T>>
 {
     public const uint Length = 4;
 
-    public readonly T W;
-
     public readonly T X;
 
     public readonly T Y;
 
     public readonly T Z;
 
+    public readonly T W;
+
     public Vector3<T> XYZ => new(X, Y, Z);
 
-    /// <summary>(0) <see cref="A"/> = <see cref="W"/></summary>
-    public T A => W;
-
-    /// <summary>(1) <see cref="R"/> = <see cref="X"/></summary>
+    /// <summary>(0) <see cref="R"/> = <see cref="X"/></summary>
     public T R => X;
 
-    /// <summary>(2) <see cref="G"/> = <see cref="Y"/></summary>
+    /// <summary>(1) <see cref="G"/> = <see cref="Y"/></summary>
     public T G => Y;
 
-    /// <summary>(3) <see cref="B"/> = <see cref="Z"/></summary>
+    /// <summary>(2) <see cref="B"/> = <see cref="Z"/></summary>
     public T B => Z;
 
+    /// <summary>(3) <see cref="A"/> = <see cref="W"/></summary>
+    public T A => W;
+
     public static implicit operator T[](Vector4<T> input)
-        => XArray.New<T>(input.X, input.Y, input.Z);
+        => XArray.New(input.X, input.Y, input.Z, input.W);
+
+    public Vector4(T xyzw) : this(xyzw, xyzw, xyzw, xyzw) { }
+
+    public Vector4(T x, T y, T z, T w)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+        W = w;
+    }
+
+    public override string ToString()
+        => $"x = {X}, y = {Y}, z = {Z}, w = {W}";
+
+    #region ==
 
     public static bool operator ==(Vector4<T> left, Vector4<T> right)
         => left.EqualsOverload(right);
@@ -206,27 +233,16 @@ public struct Vector4<T> : IEquatable<Vector4<T>>
     public static bool operator !=(Vector4<T> left, Vector4<T> right)
         => !(left == right);
 
-    public Vector4(T wxyz) : this(wxyz, wxyz, wxyz, wxyz) { }
+    public bool Equals(Vector4<T> i)
+        => this.Equals<Vector4<T>>(i) && X.Equals(i.X) && Y.Equals(i.Y) && Z.Equals(i.Z) && W.Equals(i.W);
 
-    public Vector4(T w, T x, T y, T z)
-    {
-        W = w;
-        X = x;
-        Y = y;
-        Z = z;
-    }
-
-    public bool Equals(Vector4<T> o)
-        => this.Equals<Vector4<T>>(o) && W.Equals(o.W) && X.Equals(o.X) && Y.Equals(o.Y) && Z.Equals(o.Z);
-
-    public override bool Equals(object o)
-        => Equals((Vector4<T>)o);
+    public override bool Equals(object i)
+        => i is Vector4<T> j && Equals(j);
 
     public override int GetHashCode()
-        => XArray.New<T>(W, X, Y, Z).GetHashCode();
+        => XArray.New(X, Y, Z, W).GetHashCode();
 
-    public override string ToString()
-        => $"w = {W}, x = {X}, y = {Y}, z = {Z}";
+    #endregion
 }
 
 #endregion
