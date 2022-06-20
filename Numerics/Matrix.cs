@@ -125,6 +125,8 @@ public struct Matrix : IEquatable<Matrix>, IMatrix
 
     public static Vector operator *(Matrix left, Vector right) => left.Multiply(right);
 
+    public static Vector3 operator *(Matrix left, Vector3 right) => left.Multiply(right);
+
     public static implicit operator Matrix(double[][] input) => new Matrix(input);
 
     public static implicit operator double[][] (Matrix input) => input._values;
@@ -268,16 +270,10 @@ public struct Matrix : IEquatable<Matrix>, IMatrix
         return result;
     }
 
-    /// <summary>
-    /// Multiplies by the given <see cref="double"/>.
-    /// </summary>
-    /// <param name="scalar"></param>
+    /// <summary>Multiplies by the given <see cref="double"/>.</summary>
     public Matrix Multiply(double scalar) => Each((row, column, value) => value * scalar);
 
-    /// <summary>
-    /// Multiplies by the given <see cref="Matrix"/> (throws <see cref="ArgumentOutOfRangeException"/> if <see cref="Columns"/> != <paramref langword="scalar"/>.Rows or <see cref="Rows"/> != <see langword="scalar"/>.Columns).
-    /// </summary>
-    /// <param name="scalar"></param>
+    /// <summary>Multiplies by the given <see cref="Matrix"/> (throws <see cref="ArgumentOutOfRangeException"/> if <see cref="Columns"/> != <paramref langword="scalar"/>.Rows or <see cref="Rows"/> != <see langword="scalar"/>.Columns).</summary>
     public Matrix Multiply(Matrix scalar)
     {
         if (Columns != scalar.Rows)
@@ -295,11 +291,7 @@ public struct Matrix : IEquatable<Matrix>, IMatrix
         });
     }
 
-    /// <summary>
-    /// Multiplies by the given <see cref="Vector"/>.
-    /// </summary>
-    /// <param name="scalar"></param>
-    /// <returns></returns>
+    /// <summary>Multiplies by the given <see cref="Vector"/>.</summary>
     public Vector Multiply(Vector scalar)
     {
         if (Columns != scalar.Length)
@@ -312,6 +304,13 @@ public struct Matrix : IEquatable<Matrix>, IMatrix
                 result[y] += _values[y][x] * scalar[x];
         }
         return result;
+    }
+
+    /// <summary>Multiplies by the given <see cref="Vector3"/>.</summary>
+    public Vector3 Multiply(Vector3 scalar)
+    {
+        var result = Multiply(new Vector(scalar.X, scalar.Y, scalar.Z));
+        return new(result[0], result[1], result[2]);
     }
 
     /// <summary>
