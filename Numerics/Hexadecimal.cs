@@ -63,7 +63,7 @@ public struct Hexadecimal : IEquatable<Hexadecimal>
         var r = Parse(rgb.Substring(2, 2));
         var g = Parse(rgb.Substring(4, 2));
         var b = Parse(rgb.Substring(6, 2));
-        return new(M.Normalize(a), M.Normalize(r), M.Normalize(g), M.Normalize(b));
+        return new(M.Normalize(r), M.Normalize(g), M.Normalize(b), M.Normalize(a));
     }
 
     static byte Parse(string input) => int.Parse(input, NumberStyles.HexNumber).Byte();

@@ -27,25 +27,25 @@ public static class M
 
     //...
 
-    public static byte Clamp(byte i, byte m, byte n = 0) => Max(Min(i, m), n);
+    public static byte Clamp(byte i, byte max, byte min = 0) => Max(Min(i, max), min);
 
-    public static decimal Clamp(decimal i, decimal m, decimal n = 0) => Max(Min(i, m), n);
+    public static decimal Clamp(decimal i, decimal max, decimal min = 0) => Max(Min(i, max), min);
 
-    public static double Clamp(double i, double m, double n = 0) => Max(Min(i, m), n);
+    public static double Clamp(double i, double max, double min = 0) => Max(Min(i, max), min);
 
-    public static short Clamp(short i, short m, short n = 0) => Max(Min(i, m), n);
+    public static short Clamp(short i, short max, short min = 0) => Max(Min(i, max), min);
 
-    public static int Clamp(int i, int m, int n = 0) => Max(Min(i, m), n);
+    public static int Clamp(int i, int max, int min = 0) => Max(Min(i, max), min);
 
-    public static long Clamp(long i, long m, long n = 0) => Max(Min(i, m), n);
+    public static long Clamp(long i, long max, long min = 0) => Max(Min(i, max), min);
 
-    public static float Clamp(float i, float m, float n = 0) => Max(Min(i, m), n);
+    public static float Clamp(float i, float max, float min = 0) => Max(Min(i, max), min);
 
-    public static ushort Clamp(ushort i, ushort m, ushort n = 0) => Max(Min(i, m), n);
+    public static ushort Clamp(ushort i, ushort max, ushort min = 0) => Max(Min(i, max), min);
 
-    public static uint Clamp(uint i, uint m, uint n = 0) => Max(Min(i, m), n);
+    public static uint Clamp(uint i, uint max, uint min = 0) => Max(Min(i, max), min);
 
-    public static ulong Clamp(ulong i, ulong m, ulong n = 0) => Max(Min(i, m), n);
+    public static ulong Clamp(ulong i, ulong max, ulong min = 0) => Max(Min(i, max), min);
 
     //...
 

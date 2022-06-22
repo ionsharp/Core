@@ -79,9 +79,11 @@ public struct Vector2<T> : IEquatable<Vector2<T>>
 {
     public const uint Length = 2;
 
-    public readonly T X;
+    [Object(ObjectLayout.Horizontal)]
+    public T X { get; private set; }
 
-    public readonly T Y;
+    [Object(ObjectLayout.Horizontal)]
+    public T Y { get; private set; }
 
     public static implicit operator T[](Vector2<T> input)
         => XArray.New<T>(input.X, input.Y);
@@ -126,11 +128,14 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
 {
     public const uint Length = 3;
 
-    public readonly T X;
+    [Object(ObjectLayout.Horizontal)]
+    public T X { get; private set; }
 
-    public readonly T Y;
+    [Object(ObjectLayout.Horizontal)]
+    public T Y { get; private set; }
 
-    public readonly T Z;
+    [Object(ObjectLayout.Horizontal)]
+    public T Z { get; private set; }
 
     public Vector2<T> XY => new(X, Y);
 
@@ -187,13 +192,17 @@ public struct Vector4<T> : IEquatable<Vector4<T>>
 {
     public const uint Length = 4;
 
-    public readonly T X;
+    [Object(ObjectLayout.Horizontal)]
+    public T X { get; private set; }
 
-    public readonly T Y;
+    [Object(ObjectLayout.Horizontal)]
+    public T Y { get; private set; }
 
-    public readonly T Z;
+    [Object(ObjectLayout.Horizontal)]
+    public T Z { get; private set; }
 
-    public readonly T W;
+    [Object(ObjectLayout.Horizontal)]
+    public T W { get; private set; }
 
     public Vector3<T> XYZ => new(X, Y, Z);
 

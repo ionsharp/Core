@@ -1,21 +1,11 @@
 ﻿using System;
 
-namespace Imagin.Core.Collections.Generic
+namespace Imagin.Core.Collections.ObjectModel;
+
+[Serializable]
+public class GroupCollection<T> : NamableCollection<T>, IGroup
 {
-    [Serializable]
-    public class GroupCollection<T> : ObservableCollection<T>, IGroup
-    {
-        string name = string.Empty;
-        public string Name
-        {
-            get => name;
-            set => this.Change(ref name, value);
-        }
+    public GroupCollection() : base() { }
 
-        public GroupCollection() : base() { }
-
-        public GroupCollection(string name) : base() => Name = name;
-
-        public override string ToString() => Name;
-    }
+    public GroupCollection(string name) : base(name) { }
 }

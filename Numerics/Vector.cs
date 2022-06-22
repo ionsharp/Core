@@ -206,12 +206,14 @@ public struct Vector : IEquatable<Vector>, IVector
                 */
 
             case VectorType.Row:
+                result.Append("(");
                 for (int i = 0, length = values.Length; i < length; i++)
                 {
                     result.Append(values[i]);
                     if (i < length - 1)
                         result.Append(separator);
                 }
+                result.Append(")");
                 break;
         }
         return result.ToString();

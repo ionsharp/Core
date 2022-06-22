@@ -238,6 +238,9 @@ namespace Imagin.Core.Linq
             return false;
         }
 
+        public static bool IsHidden(this Type input)
+            => input.GetAttribute<System.ComponentModel.BrowsableAttribute>()?.Browsable == false || input.GetAttribute<HiddenAttribute>()?.Hidden == true || input.GetAttribute<VisibleAttribute>()?.Visible == false;
+
         /// <summary>
         /// Gets whether or not the type is <see cref="Nullable{T}"/>.
         /// </summary>

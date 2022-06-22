@@ -14,7 +14,7 @@ namespace Imagin.Core.Collections.Generic
     /// <remarks>
     /// Extended version of <see cref="System.Collections.ObjectModel.ObservableCollection{T}"/>.
     /// </remarks>
-    [Serializable]
+    [Ignore(nameof(Count)), Serializable]
     public class ObservableCollection<T> : Collection<T>, ICollectionChanged, IPropertyChanged
     {
         #region (class) SimpleMonitor
@@ -84,8 +84,10 @@ namespace Imagin.Core.Collections.Generic
 
         #region Properties
 
+        [Hidden]
         public bool IsEmpty => Count == 0;
 
+        [Hidden]
         public bool IsNotEmpty => !IsEmpty;
 
         #endregion

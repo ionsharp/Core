@@ -13,7 +13,7 @@ namespace Imagin.Core
         }
 
         T value = default;
-        public T Value
+        public virtual T Value
         {
             get => value;
             set => this.Change(ref this.value, value);
@@ -24,5 +24,22 @@ namespace Imagin.Core
         public Namable(string name) : this() => Name = name;
 
         public Namable(string name, T value) : this(name) => Value = value;
+    }
+
+    [Serializable]
+    public class NamableCategory<T> : Namable<T>
+    {
+        string category = default;
+        public string Category
+        {
+            get => category;
+            set => this.Change(ref category, value);
+        }
+
+        public NamableCategory() : base() { }
+
+        public NamableCategory(string name, string category = default) : base(name) => Category = category;
+
+        public NamableCategory(string name, string category, T value) : base(name, value) => Category = category;
     }
 }
