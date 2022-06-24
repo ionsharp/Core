@@ -1,5 +1,7 @@
 ﻿using Imagin.Core.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Imagin.Core.Collections.ObjectModel;
 
@@ -13,9 +15,11 @@ public class NamableCollection<T> : ObservableCollection<T>
         set => this.Change(ref name, value);
     }
 
-    public NamableCollection() : base() { }
+    public NamableCollection() : this(default, default) { }
 
-    public NamableCollection(string name) : base() => Name = name;
+    public NamableCollection(string name) : this(name, default) { }
+
+    public NamableCollection(string name, IEnumerable<T> items) : base(items ?? Enumerable.Empty<T>()) => Name = name;
 
     public override string ToString() => Name;
 }
