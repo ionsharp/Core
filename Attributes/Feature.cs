@@ -3,17 +3,17 @@
 namespace Imagin.Core
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public class FeaturedAttribute : Attribute
+    public class FeatureAttribute : Attribute
     {
         public readonly bool Featured;
 
         public readonly AboveBelow Where;
 
-        public FeaturedAttribute() : this(true) { }
+        public FeatureAttribute() : this(true) { }
 
-        public FeaturedAttribute(AboveBelow where) : this(true, where) { }
+        public FeatureAttribute(AboveBelow where) : this(true, where) { }
 
-        public FeaturedAttribute(bool featured, AboveBelow where = AboveBelow.Above) : base()
+        public FeatureAttribute(bool featured, AboveBelow where = AboveBelow.Above) : base()
         {
             Featured = featured;
             Where = where;

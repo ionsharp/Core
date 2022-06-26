@@ -79,10 +79,10 @@ public struct Vector2<T> : IEquatable<Vector2<T>>
 {
     public const uint Length = 2;
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T X { get; private set; }
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T Y { get; private set; }
 
     public static implicit operator T[](Vector2<T> input)
@@ -97,7 +97,7 @@ public struct Vector2<T> : IEquatable<Vector2<T>>
     }
 
     public override string ToString()
-        => $"x = {X}, y = {Y}";
+        => $"X = {X}, Y = {Y}";
 
     #region ==
 
@@ -128,13 +128,13 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
 {
     public const uint Length = 3;
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T X { get; private set; }
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T Y { get; private set; }
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T Z { get; private set; }
 
     public Vector2<T> XY => new(X, Y);
@@ -161,7 +161,7 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
     }
 
     public override string ToString()
-        => $"x = {X}, y = {Y}, z = {Z}";
+        => $"X = {X}, Y = {Y}, Z = {Z}";
 
     #region ==
 
@@ -192,16 +192,16 @@ public struct Vector4<T> : IEquatable<Vector4<T>>
 {
     public const uint Length = 4;
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T X { get; private set; }
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T Y { get; private set; }
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T Z { get; private set; }
 
-    [Object(ObjectLayout.Horizontal)]
+    [Horizontal]
     public T W { get; private set; }
 
     public Vector3<T> XYZ => new(X, Y, Z);
@@ -232,7 +232,7 @@ public struct Vector4<T> : IEquatable<Vector4<T>>
     }
 
     public override string ToString()
-        => $"x = {X}, y = {Y}, z = {Z}, w = {W}";
+        => $"X = {X}, Y = {Y}, Z = {Z}, W = {W}";
 
     #region ==
 

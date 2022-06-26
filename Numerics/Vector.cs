@@ -295,7 +295,7 @@ public struct Vector2 : IEquatable<Vector2>, IVector
     //...
 
     public override string ToString()
-        => $"x = {X}, y = {Y}";
+        => $"X = {X}, Y = {Y}";
 
     //...
 
@@ -402,7 +402,7 @@ public struct Vector3 : IEquatable<Vector3>, IVector
     //...
 
     public override string ToString()
-        => $"x = {X}, y = {Y}, z = {Z}";
+        => $"X = {X}, Y = {Y}, Z = {Z}";
 
     //...
 
@@ -513,7 +513,7 @@ public struct Vector4 : IEquatable<Vector4>, IVector
     //...
 
     public override string ToString()
-        => $"x = {X}, y = {Y}, z = {Z}, w = {W}";
+        => $"X = {X}, Y = {Y}, Z = {Z}, W = {W}";
 
     //...
 
