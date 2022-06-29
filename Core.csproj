@@ -63,6 +63,7 @@
     <Compile Remove="Numerics\BRegion.cs" />
     <Compile Remove="Numerics\BVector2.cs" />
     <Compile Remove="Numerics\BVector3.cs" />
+    <Compile Remove="Numerics\Hexadecimal.cs" />
     <Compile Remove="Percent.cs" />
     <Compile Remove="Properties\AssemblyInfo.cs" />
     <Compile Remove="Quadruplet.cs" />
