@@ -9,6 +9,8 @@ public struct ByteVector4 : IEquatable<ByteVector4>
 {
     public const uint Length = 4;
 
+    readonly Guid id = Guid.NewGuid();
+
     #region Properties
 
     public static ByteVector4 Black => new(0, 0, 0, 255);
@@ -123,7 +125,7 @@ public struct ByteVector4 : IEquatable<ByteVector4>
         => i is ByteVector4 j && Equals(j);
 
     public override int GetHashCode()
-        => XArray.New(X, Y, Z, W).GetHashCode();
+        => id.GetHashCode();
 
     #endregion
 }

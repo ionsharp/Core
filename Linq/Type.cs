@@ -19,7 +19,7 @@ namespace Imagin.Core.Linq
 
         //...
 
-        public static T GetDefault<T>() => default(T);
+        public static T GetDefault<T>() => default;
 
         public static object GetDefaultValue(this Type input)
             => typeof(XType).GetMethod(nameof(GetDefault)).MakeGenericMethod(input).Invoke(null, null);

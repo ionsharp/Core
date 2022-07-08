@@ -152,8 +152,10 @@ namespace Imagin.Core.Linq
             T result = default;
             Try.Invoke(() =>
             {
-                result = typeof(T).Create<T>();
-                foreach (var i in typeof(T).GetMembers(BindingFlags.Instance | BindingFlags.Public, MemberTypes.Field | MemberTypes.Property, null, true, true))
+                var type = input.GetType();
+                result = type.Create<T>();
+
+                foreach (var i in type.GetMembers(BindingFlags.Instance | BindingFlags.Public, MemberTypes.Field | MemberTypes.Property, null, true, true))
                 {
                     object CloneValue(object x)
                     {

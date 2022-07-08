@@ -3,7 +3,7 @@
 namespace Imagin.Core;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-public class OptionAttribute : Attribute
+public class NullableAttribute : Attribute
 {
-    public OptionAttribute() { }
+    public NullableAttribute() { }
 }

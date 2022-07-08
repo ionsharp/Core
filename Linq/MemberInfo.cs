@@ -29,6 +29,12 @@ public static class XMemberInfo
 
     public static IEnumerable<Attribute> GetAttributes(this MemberInfo input) => input.GetAttributes<Attribute>();
 
+    public static string GetCategory(this MemberInfo input, string empty = "Other")
+        => input.GetAttribute<CategoryAttribute>()?.Category ?? input.GetAttribute<System.ComponentModel.CategoryAttribute>()?.Category ?? empty;
+
+    public static string GetDescription(this MemberInfo input)
+        => input.GetAttribute<DescriptionAttribute>()?.Description ?? input.GetAttribute<System.ComponentModel.DescriptionAttribute>()?.Description ?? "";
+
     public static string GetDisplayName(this MemberInfo input)
         => input.GetAttribute<DisplayNameAttribute>()?.DisplayName ?? input.GetAttribute<System.ComponentModel.DisplayNameAttribute>()?.DisplayName ?? input.Name;
 

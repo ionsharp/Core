@@ -3,7 +3,7 @@
 namespace Imagin.Core;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-public class CollectionAttribute : Attribute
+public class BelowAttribute : Attribute
 {
-    public CollectionAttribute() : base() { }
+    public BelowAttribute() : base() { }
 }

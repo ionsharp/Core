@@ -1,4 +1,5 @@
-﻿using Imagin.Core.Serialization;
+﻿using Imagin.Core.Analytics;
+using Imagin.Core.Serialization;
 
 namespace Imagin.Core;
 
@@ -15,5 +16,12 @@ public class BaseSavable : Base
         OnSaving();
         BinarySerializer.Serialize(FilePath, this);
         OnSaved();
+    }
+
+    public virtual Result Load(out BaseSavable output)
+    {
+        var result = BinarySerializer.Deserialize(FilePath, out object options);
+        output = options as BaseSavable ?? this;
+        return result;
     }
 }
