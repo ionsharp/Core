@@ -3,9 +3,7 @@ using System;
 
 namespace Imagin.Core
 {
-    /// <summary>
-    /// Specifies an <see cref="object"/> that implements <see cref="IName"/>.
-    /// </summary>
+    /// <summary>Specifies an <see cref="object"/> that implements <see cref="IName"/>.</summary>
     [Serializable]
     public class BaseNamable : Base, IName
     {

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 namespace Imagin.Core
 {
+    [Serializable]
     public class Handle
     {
         public delegate Task AsyncDelegate();

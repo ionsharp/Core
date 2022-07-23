@@ -5,7 +5,7 @@ namespace Imagin.Core
     /// <summary>
     /// An alternative for <see langword="System.ComponentModel.DescriptionAttribute"/>, which isn't available in some frameworks.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Field | AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Struct)]
     public class DescriptionAttribute : Attribute
     {
         public readonly string Description;

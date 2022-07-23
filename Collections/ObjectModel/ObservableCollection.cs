@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 
 namespace Imagin.Core.Collections.Generic
 {
@@ -19,9 +20,7 @@ namespace Imagin.Core.Collections.Generic
     {
         #region (class) SimpleMonitor
 
-        /// <summary>
-        /// This helps prevent reentrant calls.
-        /// </summary>
+        /// <summary>This helps prevent reentrant calls.</summary>
         class SimpleMonitor : IDisposable
         {
             int _busyCount;
@@ -75,10 +74,11 @@ namespace Imagin.Core.Collections.Generic
 
         #region Fields
 
-        //This must agree with Binding.IndexerName.  It is declared separately here so as to avoid a dependency on PresentationFramework.dll.
-        private const string IndexerName = "Item[]";
+        /// <summary>This must agree with <b>Binding.IndexerName</b>. It is declared separately here so as to avoid a dependency on <b>PresentationFramework.dll</b>.</summary>
+        const string IndexerName = "Item[]";
 
-        private SimpleMonitor _monitor = new SimpleMonitor();
+        [NonSerialized]
+        SimpleMonitor _monitor = new();
 
         #endregion
 
@@ -92,7 +92,7 @@ namespace Imagin.Core.Collections.Generic
 
         #endregion
 
-        #region BindableCollection
+        #region ObservableCollection
 
         /// <summary>
         /// Initializes a new instance of <see cref="ObservableCollection{T}"/> that is empty and has default initial capacity.
@@ -323,6 +323,14 @@ namespace Imagin.Core.Collections.Generic
                 if ((CollectionChanged != null) && (CollectionChanged.GetInvocationList().Length > 1))
                     throw new InvalidOperationException();
             }
+        }
+
+        //...
+
+        [OnDeserialized]
+        protected void OnDeserialized(StreamingContext input)
+        {
+            _monitor ??= new();
         }
 
         #endregion

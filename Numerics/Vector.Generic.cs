@@ -8,7 +8,7 @@ namespace Imagin.Core.Numerics;
 /// <summary>
 /// Represents a quantity with both a magnitude and a direction.
 /// </summary>
-[Serializable]
+[Horizontal, Serializable]
 public struct Vector<T> : IEquatable<Vector<T>> 
 {
     readonly T[] values;
@@ -74,7 +74,7 @@ public struct Vector<T> : IEquatable<Vector<T>>
 
 #region (struct) Vector(2)<T>
 
-[Serializable]
+[Horizontal, Serializable]
 public struct Vector2<T> : IEquatable<Vector2<T>>
 {
     public const uint Length = 2;
@@ -123,7 +123,7 @@ public struct Vector2<T> : IEquatable<Vector2<T>>
 
 #region (struct) Vector(3)<T>
 
-[Serializable]
+[Horizontal, Serializable]
 public struct Vector3<T> : IEquatable<Vector3<T>>
 {
     public const uint Length = 3;
@@ -187,7 +187,7 @@ public struct Vector3<T> : IEquatable<Vector3<T>>
 
 #region (struct) Vector(4)<T>
 
-[Serializable]
+[Horizontal, Serializable]
 public struct Vector4<T> : IEquatable<Vector4<T>>
 {
     public const uint Length = 4;

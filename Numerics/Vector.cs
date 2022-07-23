@@ -10,7 +10,7 @@ namespace Imagin.Core.Numerics;
 /// <summary>
 /// Represents a quantity with both a magnitude and a direction.
 /// </summary>
-[Serializable]
+[Horizontal, Serializable]
 public struct Vector : IEquatable<Vector>, IVector
 {
     public static Vector Zero2 => new Vector(0.0, 0);
@@ -238,7 +238,7 @@ public struct Vector : IEquatable<Vector>, IVector
 
 #region (struct) Vector(2)
 
-[Serializable]
+[Horizontal, Serializable]
 public struct Vector2 : IEquatable<Vector2>, IVector
 {
     public const uint Length = 2;
@@ -327,7 +327,7 @@ public struct Vector2 : IEquatable<Vector2>, IVector
 
 #region (struct) Vector(3)
 
-[Serializable]
+[Horizontal, Serializable]
 public struct Vector3 : IEquatable<Vector3>, IVector
 {
     public const uint Length = 3;
@@ -434,7 +434,7 @@ public struct Vector3 : IEquatable<Vector3>, IVector
 
 #region (struct) Vector(4)
 
-[Serializable]
+[Horizontal, Serializable]
 public struct Vector4 : IEquatable<Vector4>, IVector
 {
     public const uint Length = 4;

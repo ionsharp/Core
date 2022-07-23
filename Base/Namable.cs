@@ -5,7 +5,7 @@ namespace Imagin.Core;
 [Serializable]
 public class Namable<T> : BaseNamable
 {
-    [Feature, Horizontal, Index(-1)]
+    [Above, Horizontal, Index(-1)]
     public override string Name
     {
         get => base.Name;

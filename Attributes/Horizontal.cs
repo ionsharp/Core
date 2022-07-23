@@ -2,7 +2,7 @@
 
 namespace Imagin.Core;
 
-[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Struct)]
 public class HorizontalAttribute : Attribute
 {
     public HorizontalAttribute() : base() { }

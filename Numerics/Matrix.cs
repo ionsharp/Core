@@ -11,6 +11,8 @@ namespace Imagin.Core;
 [Serializable]
 public struct Matrix : IEquatable<Matrix>, IMatrix
 {
+    public static Matrix Zero3x3 => new(new[] { new[] { .0, 0, 0 }, new[] { .0, 0, 0 }, new[] { .0, 0, 0 } });
+
     readonly double[][] _values;
     double[][] IMatrix.Values => _values;
 

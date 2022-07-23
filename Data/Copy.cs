@@ -22,4 +22,6 @@ public static class XClipboard
     }
 
     public static object Paste(Type type) => data.ContainsKey(type) ? data[type] : null;
+
+    public static T Paste<T>() => (T)Paste(typeof(T));
 }

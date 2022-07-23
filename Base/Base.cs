@@ -4,9 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Imagin.Core;
 
-/// <summary>
-/// Specifies an <see cref="object"/> that implements <see cref="IPropertyChanged"/>.
-/// </summary>
+/// <summary>Specifies an <see cref="object"/> that implements <see cref="IPropertyChanged"/>.</summary>
 [Serializable]
 public abstract class Base : object, IPropertyChanged
 {
