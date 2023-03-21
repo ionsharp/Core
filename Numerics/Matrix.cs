@@ -129,15 +129,15 @@ public struct Matrix : IEquatable<Matrix>, IMatrix
 
     public static Vector3 operator *(Matrix left, Vector3 right) => left.Multiply(right);
 
-    public static implicit operator Matrix(double[][] input) => new Matrix(input);
+    public static implicit operator Matrix(double[][] input) => new(input);
 
     public static implicit operator double[][] (Matrix input) => input._values;
 
-    public static implicit operator Matrix(double[,] input) => new Matrix(input.Project());
+    public static implicit operator Matrix(double[,] input) => new(input.Project());
 
     public static implicit operator double[,] (Matrix input) => input._values.Project();
 
-    public static explicit operator Matrix(Vector input) => new Matrix(input);
+    public static explicit operator Matrix(Vector input) => new(input);
 
     public bool Equals(Matrix o)
     {
@@ -485,5 +485,5 @@ public struct Matrix : IEquatable<Matrix>, IMatrix
     /// <param name="rows"></param>
     /// <param name="columns"></param>
     /// <returns></returns>
-    public static Matrix New(int rows, int columns) => new Matrix(rows, columns);
+    public static Matrix New(int rows, int columns) => new(rows, columns);
 }

@@ -1,11 +1,10 @@
-﻿namespace Imagin.Core.Input
+﻿namespace Imagin.Core.Input;
+
+public delegate void SelectedEventHandler(object sender, SelectedEventArgs e);
+
+public class SelectedEventArgs : EventArgs<object>
 {
-    public delegate void SelectedEventHandler(object sender, SelectedEventArgs e);
+    public SelectedEventArgs(object value) : base(value) { }
 
-    public class SelectedEventArgs : EventArgs<object>
-    {
-        public SelectedEventArgs(object value) : base(value) { }
-
-        public SelectedEventArgs(object value, object parameter) : base(value, parameter) { }
-    }
+    public SelectedEventArgs(object value, object parameter) : base(value, parameter) { }
 }

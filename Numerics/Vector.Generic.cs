@@ -20,7 +20,7 @@ public struct Vector<T> : IEquatable<Vector<T>>
         => values[index];
 
     public static implicit operator Vector<T>(T[] input)
-        => new Vector<T>(input);
+        => new(input);
 
     public static implicit operator T[] (Vector<T> input)
         => input.values;

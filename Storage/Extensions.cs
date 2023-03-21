@@ -6,7 +6,7 @@ namespace Imagin.Core.Storage;
 /// <summary>Specifies a semi-colon (;) separated list of file or folder extensions.</summary>
 public struct Extensions
 {
-    public static Extensions Empty = new Extensions(string.Empty);
+    public static Extensions Empty = new(string.Empty);
 
     public int Count => values.Length;
 
@@ -29,7 +29,7 @@ public struct Extensions
 
     public static implicit operator string(Extensions i) => i.value;
 
-    public static implicit operator Extensions(string i) => new Extensions(i);
+    public static implicit operator Extensions(string i) => new(i);
 
     public static bool operator <(Extensions a, Extensions b) => a.Count < b.Count;
 

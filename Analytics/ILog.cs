@@ -1,15 +1,14 @@
-﻿namespace Imagin.Core.Analytics
+﻿namespace Imagin.Core.Analytics;
+
+public interface ILog
 {
-    public interface ILog
-    {
-        int Count { get; }
+    int Count { get; }
 
-        bool Enabled { get; }
+    bool Enabled { get; }
 
-        void Clear();
+    void Clear();
 
-        void Add(LogEntry input);
+    void Add(LogEntry input);
 
-        Result Save();
-    }
+    Result Save();
 }

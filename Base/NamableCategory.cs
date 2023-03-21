@@ -2,15 +2,11 @@
 
 namespace Imagin.Core;
 
+///<inheritdoc/>
 [Serializable]
 public class NamableCategory<T> : Namable<T>
 {
-    string category = default;
-    public string Category
-    {
-        get => category;
-        set => this.Change(ref category, value);
-    }
+    public string Category { get => Get(""); set => Set(value); }
 
     public NamableCategory() : base() { }
 

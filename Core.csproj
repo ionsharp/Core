@@ -49,7 +49,6 @@
     <Compile Remove="Collections\EnumCollection.cs" />
     <Compile Remove="Collections\Generic\BaseCollection.cs" />
     <Compile Remove="Collections\Generic\TrackableList.cs" />
-    <Compile Remove="Collections\ObjectModel\ObservableStack.cs" />
     <Compile Remove="Data\DateFormat.cs" />
     <Compile Remove="DayOfWeek.cs" />
     <Compile Remove="Analytics\ILogEntry.cs" />

@@ -7,7 +7,13 @@ public static class XDouble
     public static double Abs(this double value)
         => System.Math.Abs(value);
 
+    public static double Ceiling(this double value)
+        => System.Math.Ceiling(value);
+
     public static double NaN(this double input, double j) => double.IsNaN(input) ? j : input;
+
+    public static double Floor(this double value)
+        => System.Math.Floor(value);
 
     public static double Round(this double value, int digits = 0)
         => System.Math.Round(value, digits);

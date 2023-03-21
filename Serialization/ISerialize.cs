@@ -1,15 +1,14 @@
 ﻿using Imagin.Core.Analytics;
 
-namespace Imagin.Core.Serialization
+namespace Imagin.Core.Serialization;
+
+public interface ISerialize
 {
-    public interface ISerialize
-    {
-        string FilePath { get; }
+    string FilePath { get; }
 
-        Result Deserialize(string filePath, out object data);
+    Result Deserialize(string filePath, out object data);
 
-        Result Serialize(object data);
+    Result Serialize(object data);
 
-        Result Serialize(string filePath, object data);
-    }
+    Result Serialize(string filePath, object data);
 }

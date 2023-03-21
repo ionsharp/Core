@@ -1,10 +1,11 @@
 ﻿using Imagin.Core.Linq;
+using Imagin.Core.Reflection;
 using System;
 using System.Globalization;
 
 namespace Imagin.Core.Numerics;
 
-[Serializable]
+[Image(AssemblyType.Core, "Color.png"), Name("Color"), Serializable]
 public struct ByteVector4 : IEquatable<ByteVector4>
 {
     public const uint Length = 4;
@@ -19,7 +20,7 @@ public struct ByteVector4 : IEquatable<ByteVector4>
 
     public static ByteVector4 Transparent => new(0);
 
-    //...
+    ///
 
     public byte X { get; private set; }
 
@@ -29,23 +30,23 @@ public struct ByteVector4 : IEquatable<ByteVector4>
 
     public byte W { get; private set; }
 
-    [Hidden]
+    [Hide]
     public Vector3 XYZ => new(X, Y, Z);
 
     /// <summary>(0) <see cref="R"/> = <see cref="X"/></summary>
-    [Hidden]
+    [Hide]
     public byte R => X;
 
     /// <summary>(1) <see cref="G"/> = <see cref="Y"/></summary>
-    [Hidden]
+    [Hide]
     public byte G => Y;
 
     /// <summary>(2) <see cref="B"/> = <see cref="Z"/></summary>
-    [Hidden]
+    [Hide]
     public byte B => Z;
 
     /// <summary>(3) <see cref="A"/> = <see cref="W"/></summary>
-    [Hidden]
+    [Hide]
     public byte A => W;
 
     public byte this[int index] => new byte[] { X, Y, Z, W }[index];
@@ -87,7 +88,7 @@ public struct ByteVector4 : IEquatable<ByteVector4>
         W = Parse(hexadecimal.Substring(0, 2));
     }
 
-    //...
+    ///
 
     public static implicit operator byte[](ByteVector4 input)
         => XArray.New(input.X, input.Y, input.Z, input.W);
@@ -104,7 +105,18 @@ public struct ByteVector4 : IEquatable<ByteVector4>
     public string ToString(bool alpha)
         => alpha ? ToString() : R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
 
-    //...
+    public string ToShortString()
+    {
+        var result = ToString(false);
+        if (result?.Length == 6)
+        {
+            if (result[0] == result[1] && result[2] == result[3] && result[4] == result[5])
+                return $"{result[0]}{result[2]}{result[4]}";
+        }
+        return result;
+    }
+
+    ///
 
     public static byte Parse(string input) => int.Parse(input, NumberStyles.HexNumber).Byte();
 

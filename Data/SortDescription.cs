@@ -1,29 +1,23 @@
-﻿using Imagin.Core.Collections.Generic;
+﻿using Imagin.Core.Collections.ObjectModel;
 using System;
 
-namespace Imagin.Core.Data
+namespace Imagin.Core.Data;
+
+[Serializable]
+public class SortDescription : Namable
 {
-    [Serializable]
-    public class SortDescription : BaseNamable
+    public SortDirection Direction { get => Get(SortDirection.Ascending); set => Set(value); }
+
+    public SortDescription() : this(default, default) { }
+
+    public SortDescription(string name, SortDirection direction) : base(name)
     {
-        SortDirection direction;
-        public SortDirection Direction
-        {
-            get => direction;
-            set => this.Change(ref direction, value);
-        }
-
-        public SortDescription() : this(default, default) { }
-
-        public SortDescription(string name, SortDirection direction) : base(name)
-        {
-            Direction = direction;
-        }
+        Direction = direction;
     }
+}
 
-    [Serializable]
-    public class SortDescriptionCollection : ObservableCollection<SortDescription>
-    {
-        public SortDescriptionCollection() : base() { }
-    }
+[Serializable]
+public class SortDescriptionCollection : ObservableCollection<SortDescription>
+{
+    public SortDescriptionCollection() : base() { }
 }

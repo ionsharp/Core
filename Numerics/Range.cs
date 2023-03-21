@@ -6,9 +6,9 @@ namespace Imagin.Core;
 [Serializable]
 public struct Range<T> : IEquatable<Range<T>>, IRange<T>
 {
-    public static Range<T> Default = new Range<T>(default, default);
+    public static Range<T> Default = new(default, default);
 
-    //...
+    ///
 
     public readonly T Minimum;
     T IRange<T>.Minimum => Minimum;
@@ -16,7 +16,7 @@ public struct Range<T> : IEquatable<Range<T>>, IRange<T>
     public readonly T Maximum;
     T IRange<T>.Maximum => Minimum;
 
-    //...
+    ///
 
     public Range(T minimum, T maximum)
     {
@@ -26,7 +26,7 @@ public struct Range<T> : IEquatable<Range<T>>, IRange<T>
 
     public override string ToString() => $"{nameof(Minimum)} = {Minimum}, {nameof(Maximum)} = {Maximum}";
 
-    //...
+    ///
 
     public static bool operator ==(Range<T> left, Range<T> right) => left.EqualsOverload(right);
 

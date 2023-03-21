@@ -6,7 +6,7 @@ namespace Imagin.Core.Numerics;
 
 public static class Random
 {
-    public static readonly System.Random Current = new System.Random();
+    public static readonly System.Random Current = new();
 
     public static bool NextBoolean()
         => NextInt32(0, 2) == 1;

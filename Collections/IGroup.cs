@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 
-namespace Imagin.Core.Collections
+namespace Imagin.Core.Collections;
+
+public interface IGroup : IList 
 {
-    public interface IGroup : IList 
-    {
-        string Name { get; set; }
-    }
+    string Name { get; set; }
 }

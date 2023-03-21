@@ -1,17 +1,18 @@
 ﻿using System;
 
-namespace Imagin.Core.Analytics
+namespace Imagin.Core.Analytics;
+
+[Flags, Serializable]
+public enum ResultLevel
 {
-    [Flags]
-    [Serializable]
-    public enum ResultLevel
-    {
-        [Hidden]
-        None = 0,
-        Low = 1,
-        Normal = 2,
-        High = 4,
-        [Hidden]
-        All = Low | Normal | High
-    }
+    [Hide]
+    None = 0,
+    [Color("3A3")]
+    Low = 1,
+    [Color("FC0")]
+    Normal = 2,
+    [Color("C30")]
+    High = 4,
+    [Hide]
+    All = Low | Normal | High
 }

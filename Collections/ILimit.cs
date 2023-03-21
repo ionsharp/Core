@@ -1,7 +1,6 @@
-﻿namespace Imagin.Core.Collections
+﻿namespace Imagin.Core.Collections;
+
+public interface ILimit
 {
-    public interface ILimit
-    {
-        Limit Limit { get; }
-    }
+    Limit Limit { get; }
 }

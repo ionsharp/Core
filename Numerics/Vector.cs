@@ -7,17 +7,15 @@ namespace Imagin.Core.Numerics;
 
 #region (struct) Vector(*)
 
-/// <summary>
-/// Represents a quantity with both a magnitude and a direction.
-/// </summary>
-[Horizontal, Serializable]
+/// <summary>Represents a quantity with a magnitude and a direction.</summary>
+[Categorize(false), Horizontal, Serializable]
 public struct Vector : IEquatable<Vector>, IVector
 {
-    public static Vector Zero2 => new Vector(0.0, 0);
+    public static Vector Zero2 => new(0.0, 0);
 
-    public static Vector Zero3 => new Vector(0.0, 0, 0);
+    public static Vector Zero3 => new(0.0, 0, 0);
 
-    public static Vector Zero4 => new Vector(0.0, 0, 0, 0);
+    public static Vector Zero4 => new(0.0, 0, 0, 0);
 
     public const VectorType DefaultType = VectorType.Column;
 
@@ -52,7 +50,7 @@ public struct Vector : IEquatable<Vector>, IVector
         }
     }
 
-    //...
+    ///
 
     Vector(double[] input, VectorType type) 
     {
@@ -99,15 +97,15 @@ public struct Vector : IEquatable<Vector>, IVector
         });
     }
 
-    //...
+    ///
 
-    public static implicit operator Vector(double[] input) => new Vector(input);
+    public static implicit operator Vector(double[] input) => new(input);
 
     public static implicit operator double[](Vector input) => input.values;
 
     public static explicit operator Vector(Matrix input) => new(input);
 
-    //...
+    ///
 
     public static Vector operator +(Vector a, double b) => a.Transform((i, j) => j + b);
 
@@ -125,7 +123,7 @@ public struct Vector : IEquatable<Vector>, IVector
 
     public static Vector operator /(Vector a, Vector b) => a.Transform((i, j) => j / b[i]);
 
-    //...
+    ///
 
     /// <summary>Gets an absolute <see cref="Vector"/>.</summary>
     public Vector Absolute() => Transform((i, j) => j.Abs());
@@ -181,7 +179,7 @@ public struct Vector : IEquatable<Vector>, IVector
         return new Vector(type, result);
     }
 
-    //...
+    ///
 
     public override string ToString()
     {
@@ -238,7 +236,8 @@ public struct Vector : IEquatable<Vector>, IVector
 
 #region (struct) Vector(2)
 
-[Horizontal, Serializable]
+/// <summary>Represents a quantity with a magnitude and a direction.</summary>
+[Categorize(false), Horizontal, Serializable]
 public struct Vector2 : IEquatable<Vector2>, IVector
 {
     public const uint Length = 2;
@@ -257,7 +256,7 @@ public struct Vector2 : IEquatable<Vector2>, IVector
 
     public double this[int index] => Values[index];
 
-    //...
+    ///
 
     public Vector2(double xy) : this(xy, xy) { }
 
@@ -267,14 +266,14 @@ public struct Vector2 : IEquatable<Vector2>, IVector
         Y = y;
     }
 
-    //...
+    ///
 
     public static implicit operator double[](Vector2 input)
         => XArray.New<double>(input.X, input.Y);
 
     public static implicit operator Vector(Vector2 input) => new(input);
 
-    //...
+    ///
 
     public static Vector2 operator +(Vector2 a, double b) => a.Transform((i, j) => j + b);
 
@@ -292,12 +291,12 @@ public struct Vector2 : IEquatable<Vector2>, IVector
 
     public static Vector2 operator /(Vector2 a, Vector2 b) => a.Transform((i, j) => j / b[i]);
 
-    //...
+    ///
 
     public override string ToString()
         => $"X = {X}, Y = {Y}";
 
-    //...
+    ///
 
     /// <summary>Gets a new <see cref="Vector2"/> based on the given transformation.</summary>
     public Vector2 Transform(Func<int, double, double> action) => new(action(0, X), action(1, Y));
@@ -327,7 +326,8 @@ public struct Vector2 : IEquatable<Vector2>, IVector
 
 #region (struct) Vector(3)
 
-[Horizontal, Serializable]
+/// <summary>Represents a quantity with a magnitude and a direction.</summary>
+[Categorize(false), Horizontal, Serializable]
 public struct Vector3 : IEquatable<Vector3>, IVector
 {
     public const uint Length = 3;
@@ -343,19 +343,19 @@ public struct Vector3 : IEquatable<Vector3>, IVector
 
     public double Z { get; private set; }
 
-    [Hidden]
+    [Hide]
     public Vector2 XY => new(X, Y);
 
     /// <summary>(0) <see cref="R"/> = <see cref="X"/></summary>
-    [Hidden]
+    [Hide]
     public double R => X;
 
     /// <summary>(1) <see cref="G"/> = <see cref="Y"/></summary>
-    [Hidden]
+    [Hide]
     public double G => Y;
 
     /// <summary>(2) <see cref="B"/> = <see cref="Z"/></summary>
-    [Hidden]
+    [Hide]
     public double B => Z;
 
     double[] IVector.Values => Values;
@@ -363,7 +363,7 @@ public struct Vector3 : IEquatable<Vector3>, IVector
 
     public double this[int index] => Values[index];
 
-    //...
+    ///
 
     public Vector3(double xyz) : this(xyz, xyz, xyz) { }
 
@@ -374,14 +374,14 @@ public struct Vector3 : IEquatable<Vector3>, IVector
         Z = z;
     }
 
-    //...
+    ///
 
     public static implicit operator double[](Vector3 input)
         => XArray.New<double>(input.X, input.Y, input.Z);
 
     public static implicit operator Vector(Vector3 input) => new(input);
 
-    //...
+    ///
 
     public static Vector3 operator +(Vector3 a, double b) => a.Transform((i, j) => j + b);
 
@@ -399,12 +399,12 @@ public struct Vector3 : IEquatable<Vector3>, IVector
 
     public static Vector3 operator /(Vector3 a, Vector3 b) => a.Transform((i, j) => j / b[i]);
 
-    //...
+    ///
 
     public override string ToString()
         => $"X = {X}, Y = {Y}, Z = {Z}";
 
-    //...
+    ///
 
     /// <summary>Gets a new <see cref="Vector3"/> based on the given transformation.</summary>
     public Vector3 Transform(Func<int, double, double> action) => new(action(0, X), action(1, Y), action(2, Z));
@@ -434,7 +434,8 @@ public struct Vector3 : IEquatable<Vector3>, IVector
 
 #region (struct) Vector(4)
 
-[Horizontal, Serializable]
+/// <summary>Represents a quantity with a magnitude and a direction.</summary>
+[Categorize(false), Horizontal, Serializable]
 public struct Vector4 : IEquatable<Vector4>, IVector
 {
     public const uint Length = 4;
@@ -452,23 +453,23 @@ public struct Vector4 : IEquatable<Vector4>, IVector
 
     public double W { get; private set; }
 
-    [Hidden]
+    [Hide]
     public Vector3 XYZ => new(X, Y, Z);
 
     /// <summary>(0) <see cref="R"/> = <see cref="X"/></summary>
-    [Hidden]
+    [Hide]
     public double R => X;
 
     /// <summary>(1) <see cref="G"/> = <see cref="Y"/></summary>
-    [Hidden]
+    [Hide]
     public double G => Y;
 
     /// <summary>(2) <see cref="B"/> = <see cref="Z"/></summary>
-    [Hidden]
+    [Hide]
     public double B => Z;
 
     /// <summary>(3) <see cref="A"/> = <see cref="W"/></summary>
-    [Hidden]
+    [Hide]
     public double A => W;
 
     double[] IVector.Values => Values;
@@ -476,7 +477,7 @@ public struct Vector4 : IEquatable<Vector4>, IVector
 
     public double this[int index] => Values[index];
 
-    //...
+    ///
 
     public Vector4(double xyzw) : this(xyzw, xyzw, xyzw, xyzw) { }
 
@@ -485,14 +486,14 @@ public struct Vector4 : IEquatable<Vector4>, IVector
         X = x; Y = y; Z = z; W = w;
     }
 
-    //...
+    ///
 
     public static implicit operator double[](Vector4 input)
         => XArray.New(input.X, input.Y, input.Z, input.W);
 
     public static implicit operator Vector(Vector4 input) => new(input);
 
-    //...
+    ///
 
     public static Vector4 operator +(Vector4 a, double b) => a.Transform((i, j) => j + b);
 
@@ -510,12 +511,12 @@ public struct Vector4 : IEquatable<Vector4>, IVector
 
     public static Vector4 operator /(Vector4 a, Vector4 b) => a.Transform((i, j) => j / b[i]);
 
-    //...
+    ///
 
     public override string ToString()
         => $"X = {X}, Y = {Y}, Z = {Z}, W = {W}";
 
-    //...
+    ///
 
     /// <summary>Gets a new <see cref="Vector4"/> based on the given transformation.</summary>
     public Vector4 Transform(Func<int, double, double> action) => new(action(0, X), action(1, Y), action(2, Z), action(3, W));

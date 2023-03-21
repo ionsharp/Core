@@ -1,17 +1,16 @@
 ﻿using System;
 
-namespace Imagin.Core
+namespace Imagin.Core;
+
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+public class FileAttribute : Attribute
 {
-    public class FileAttribute : Attribute
+    public string Extension { get; set; }
+
+    public string Name { get; set; }
+
+    public FileAttribute(string name = "", string extension = "")
     {
-        public string Extension { get; set; }
-
-        public readonly string Name;
-
-        public FileAttribute(string name = "", string extension = "")
-        {
-            Name = name;
-            Extension = extension;
-        }
+        Name = name; Extension = extension;
     }
 }

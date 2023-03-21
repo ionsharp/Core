@@ -1,5 +1,4 @@
 ﻿using Imagin.Core.Linq;
-using Imagin.Core.Numerics;
 using System;
 using System.Collections.Generic;
 using System.Linq;

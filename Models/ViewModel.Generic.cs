@@ -6,11 +6,10 @@ namespace Imagin.Core.Models;
 [Serializable]
 public class ViewModel<T> : ViewModel
 {
-    T view = default;
     public virtual T View
     {
-        get => view;
-        set => this.Change(ref view, value, () => View);
+        get => Get<T>(default);
+        set => Set(value);
     }
 
     protected ViewModel() : base() { }

@@ -6,19 +6,9 @@ namespace Imagin.Core.Numerics;
 [Serializable]
 public class Point2 : Base, ICloneable, IEquatable<Point2>
 {
-    double x = 0;
-    public double X
-    {
-        get => x;
-        set => this.Change(ref x, value);
-    }
+    public double X { get => Get(.0); set => Set(value); }
 
-    double y = 0;
-    public double Y
-    {
-        get => y;
-        set => this.Change(ref y, value);
-    }
+    public double Y { get => Get(.0); set => Set(value); }
 
     public Point2() : base() { }
 
@@ -27,10 +17,10 @@ public class Point2 : Base, ICloneable, IEquatable<Point2>
         X = x; Y = y;
     }
 
-    public Point2 Clone() => new(x, y);
+    public Point2 Clone() => new(X, Y);
     object ICloneable.Clone() => Clone();
 
-    public override string ToString() => $"X => {x}, Y => {y}";
+    public override string ToString() => $"X => {X}, Y => {Y}";
 
     #region ==
 
@@ -40,7 +30,7 @@ public class Point2 : Base, ICloneable, IEquatable<Point2>
 
     public override bool Equals(object i) => Equals(i as Point2);
 
-    public bool Equals(Point2 right) => this.Equals<Point2>(right) && x == right.x && y == right.y;
+    public bool Equals(Point2 right) => this.Equals<Point2>(right) && X == right.X && Y == right.Y;
 
     public override int GetHashCode() => XArray.New(X, Y).GetHashCode();
 

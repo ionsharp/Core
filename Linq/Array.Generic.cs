@@ -16,7 +16,7 @@ public static partial class XArray
         return input;
     }
 
-    //...
+    ///
 
     public static T[,] Duplicate<T>(this T[,] input)
     {
@@ -45,11 +45,11 @@ public static partial class XArray
         return result;
     }
 
-    //...
+    ///
 
     public static T[] Empty<T>() => new T[0];
 
-    //...
+    ///
 
     public static int IndexOf<T>(this T[] input, T element)
     {
@@ -61,7 +61,7 @@ public static partial class XArray
         return -1;
     }
 
-    //...
+    ///
 
     public static T[] New<T>(params T[] input) => input ?? new T[0];
 
@@ -79,7 +79,7 @@ public static partial class XArray
         return result;
     }
 
-    //...
+    ///
 
     public static T[][] Project<T>(this T[,] input)
     {
@@ -110,7 +110,7 @@ public static partial class XArray
         return result;
     }
 
-    //...
+    ///
 
     public static void Remove<T>(this T[] input, params T[] elements)
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagin.Core.Reflection;
+using System;
 
 namespace Imagin.Core.Numerics;
 
@@ -7,12 +8,12 @@ namespace Imagin.Core.Numerics;
 public enum Dimensions
 {
     /// <summary>Specifies a dimension with 1 axis (X).</summary>
-    [DisplayName("1D")]
+    [Image("Dimension1.png", AssemblyType.Core), Name("1D")]
     One,
     /// <summary>Specifies a dimension with 2 axes (X|Y).</summary>
-    [DisplayName("2D")]
+    [Image("Dimension2.png", AssemblyType.Core), Name("2D")]
     Two,
     /// <summary>Specifies a dimension with 3 axes (X|Y|Z).</summary>
-    [DisplayName("3D")]
+    [Image("Dimension3.png", AssemblyType.Core), Name("3D")]
     Three
 }

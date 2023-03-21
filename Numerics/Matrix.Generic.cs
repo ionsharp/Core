@@ -1,29 +1,33 @@
 ﻿using Imagin.Core.Linq;
+using Imagin.Core.Reflection;
 using System;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Imagin.Core.Numerics;
 
 #region (class) Matrix<Value>
 
-[Serializable]
-public class Matrix<Value> : IEquatable<Matrix<Value>> where Value : struct
+[Categorize(false), Serializable]
+public class Matrix<Value> : Base, IEquatable<Matrix<Value>> where Value : struct
 {
     [Serializable]
     public enum Orientation { Horizontal, Vertical }
 
     #region Fields
 
-    protected readonly Value[][] values;
+    protected Value[][] values;
 
     #endregion
 
     #region Properties
 
+    [Hide]
     public uint Columns 
         => (uint)values[0].Length;
 
+    [Hide]
     public uint Rows 
         => (uint)values.Length;
 
@@ -78,13 +82,13 @@ public class Matrix<Value> : IEquatable<Matrix<Value>> where Value : struct
         => !(left == right);
 
     public static implicit operator Matrix<Value>(Value[][] input)
-        => new Matrix<Value>(input);
+        => new(input);
 
     public static implicit operator Value[][] (Matrix<Value> input)
         => input.values;
 
     public static implicit operator Matrix<Value>(Value[,] input) 
-        => new Matrix<Value>(input);
+        => new(input);
 
     public static implicit operator Value[,] (Matrix<Value> input) 
         => input.values.Project();
@@ -373,13 +377,14 @@ public class Matrix<Value> : IEquatable<Matrix<Value>> where Value : struct
 
 #region (class) DoubleMatrix : Matrix<double>
 
-[Serializable]
+[Description("A rectangular table of numbers arranged in rows and columns.")]
+[Name("Matrix"), Image(AssemblyType.Core, "Matrix.png"), Serializable]
 public class DoubleMatrix : Matrix<double>, IMatrix
 {
     /// <summary>
     /// Convert all values into range of 0 and 1 based on smallest and largest value.
     /// </summary>
-    [Hidden]
+    [Hide]
     public ObservableCollection<double> Normalized
     {
         get
@@ -401,11 +406,15 @@ public class DoubleMatrix : Matrix<double>, IMatrix
 
     public DoubleMatrix() : base() { }
 
+    public DoubleMatrix(DoubleMatrix input) : base() { }
+
     public DoubleMatrix(uint rows, uint columns) : base(rows, columns) { }
 
     public DoubleMatrix(double[][] values) : base(values) { }
 
     public DoubleMatrix(double[,] input) : base(input) { }
+
+    public DoubleMatrix(Matrix input) : this((double[][])input) { }
 
     public DoubleMatrix(Matrix<double> input) : base(input) { }
 }

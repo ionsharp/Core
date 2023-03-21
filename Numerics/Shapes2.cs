@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Imagin.Core.Reflection;
 
 namespace Imagin.Core.Numerics;
 
 [Serializable]
 public enum Shapes2
 {
-    Square,
-    Circle
+    [Image("Square.png", AssemblyType.Core)] Square,
+    [Image("Circle.png", AssemblyType.Core)] Circle
 }

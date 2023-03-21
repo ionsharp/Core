@@ -6,19 +6,9 @@ namespace Imagin.Core.Numerics;
 [Serializable]
 public class Point2<T> : Base, ICloneable, IEquatable<Point2<T>>
 {
-    T x = default;
-    public T X
-    {
-        get => x;
-        set => this.Change(ref x, value);
-    }
+    public T X { get => Get<T>(); set => Set(value); }
 
-    T y = default;
-    public T Y
-    {
-        get => y;
-        set => this.Change(ref y, value);
-    }
+    public T Y { get => Get<T>(); set => Set(value); }
 
     public Point2() : base() { }
 
@@ -27,10 +17,10 @@ public class Point2<T> : Base, ICloneable, IEquatable<Point2<T>>
         X = x; Y = y;
     }
 
-    public Point2<T> Clone() => new(x, y);
+    public Point2<T> Clone() => new(X, Y);
     object ICloneable.Clone() => Clone();
 
-    public override string ToString() => $"X => {x}, Y => {y}";
+    public override string ToString() => $"X => {X}, Y => {Y}";
 
     #region ==
 
@@ -40,7 +30,7 @@ public class Point2<T> : Base, ICloneable, IEquatable<Point2<T>>
 
     public override bool Equals(object i) => i is Point2<T> j && Equals(j);
 
-    public bool Equals(Point2<T> right) => this.Equals<Point2<T>>(right) && x?.Equals(right.x) == true && y?.Equals(right.y) == true;
+    public bool Equals(Point2<T> right) => this.Equals<Point2<T>>(right) && X?.Equals(right.X) == true && Y?.Equals(right.Y) == true;
 
     public override int GetHashCode() => XArray.New(X, Y).GetHashCode();
 

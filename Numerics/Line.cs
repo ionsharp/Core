@@ -8,7 +8,7 @@ public struct Line<T> : IEquatable<Line<T>>
 {
     public static Line<T> Default = new(default);
 
-    //...
+    ///
 
     public readonly T X1;
 
@@ -18,7 +18,7 @@ public struct Line<T> : IEquatable<Line<T>>
 
     public readonly T Y2;
 
-    //...
+    ///
 
     public Line(T i) : this(i, i, i, i) { }
 
@@ -30,11 +30,11 @@ public struct Line<T> : IEquatable<Line<T>>
         Y2 = y2;
     }
 
-    //...
+    ///
 
     public override string ToString() => $"{nameof(X1)} = {X1}, {nameof(Y1)} = {Y1}, {nameof(X2)} = {X2}, {nameof(Y2)} = {Y2}";
 
-    //...
+    ///
 
     public static bool operator ==(Line<T> left, Line<T> right) => left.EqualsOverload(right);
 

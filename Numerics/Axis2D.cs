@@ -2,9 +2,7 @@
 
 namespace Imagin.Core.Numerics;
 
-/// <summary>
-/// Specifies an axis in 2-dimensional space.
-/// </summary>
+/// <summary>Specifies an axis in 2-dimensional space.</summary>
 [Serializable]
 public enum Axis2D
 {

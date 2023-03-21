@@ -88,7 +88,7 @@ public class MathParser
     /// <summary>
     /// Contains supported operators
     /// </summary>
-    readonly Dictionary<string, string> supportedOperators = new Dictionary<string, string>
+    readonly Dictionary<string, string> supportedOperators = new()
     {
         { "+", Plus },
         { "-", Minus },
@@ -102,7 +102,7 @@ public class MathParser
     /// <summary>
     /// Contains supported functions
     /// </summary>
-    readonly Dictionary<string, string> supportedFunctions = new Dictionary<string, string>
+    readonly Dictionary<string, string> supportedFunctions = new()
     {
         { "sqrt", Sqrt },
         { "√", Sqrt },
@@ -118,7 +118,7 @@ public class MathParser
         { "abs", Abs }
     };
 
-    readonly Dictionary<string, string> supportedConstants = new Dictionary<string, string>
+    readonly Dictionary<string, string> supportedConstants = new()
     {
         {"pi", NumberMaker + System.Math.PI.ToString() },
         {"e", NumberMaker + System.Math.E.ToString() }
@@ -216,7 +216,7 @@ public class MathParser
             throw new ArgumentNullException("Expression is null or empty");
         }
 
-        StringBuilder formattedString = new StringBuilder();
+        StringBuilder formattedString = new();
         int balanceOfParenth = 0; // Check number of parenthesis
 
         // Format string in one iteration and check number of parenthesis
@@ -267,8 +267,8 @@ public class MathParser
     private string ConvertToRPN(string expression)
     {
         int pos = 0; // Current position of lexical analysis
-        StringBuilder outputString = new StringBuilder();
-        Stack<string> stack = new Stack<string>();
+        StringBuilder outputString = new();
+        Stack<string> stack = new();
 
         // While there is unhandled char in expression
         while (pos < expression.Length)
@@ -305,7 +305,7 @@ public class MathParser
     private string LexicalAnalysisInfixNotation(string expression, ref int pos)
     {
         // Receive first char
-        StringBuilder token = new StringBuilder();
+        StringBuilder token = new();
         token.Append(expression[pos]);
 
         // If it is a operator
@@ -570,7 +570,7 @@ public class MathParser
     /// <returns>Token</returns>
     private string LexicalAnalysisRPN(string expression, ref int pos)
     {
-        StringBuilder token = new StringBuilder();
+        StringBuilder token = new();
 
         // Read token from marker to next marker
 

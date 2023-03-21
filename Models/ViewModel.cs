@@ -11,7 +11,14 @@ public class ViewModel : Base
 
 /// <inheritdoc/>
 [Serializable]
-public class LockableViewModel : BaseLockable
+public class NamableViewModel : Namable
+{
+    public NamableViewModel() : base() { }
+}
+
+/// <inheritdoc/>
+[Serializable]
+public class LockableViewModel : Lockable
 {
     public LockableViewModel() : base() { }
 }

@@ -12,23 +12,23 @@ public struct FileSize : IEquatable<FileSize>
     /// <summary>Specifies the smallest possible value (<see cref="ulong.MinValue"/>).</summary>
     public readonly static double MinValue = ulong.MinValue;
 
-    //...
+    ///
 
     public ulong Value { get; private set; }
 
-    //...
+    ///
 
     public FileSize(long input) => Value = input.UInt64();
 
     public FileSize(ulong input) => Value = input;
 
-    //...
+    ///
 
     public static bool operator ==(FileSize a, FileSize b) => a.EqualsOverload(b);
 
     public static bool operator !=(FileSize a, FileSize b) => !(a == b);
 
-    //...
+    ///
 
     public bool Equals(FileSize i)
         => this.Equals<FileSize>(i) && Value.Equals(i.Value);
@@ -39,7 +39,7 @@ public struct FileSize : IEquatable<FileSize>
     public override int GetHashCode()
         => Value.GetHashCode();
 
-    //...
+    ///
 
     public override string ToString() => ToString(FileSizeFormat.BinaryUsingSI, 1);
 

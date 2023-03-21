@@ -3,167 +3,166 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Imagin.Core.Threading
+namespace Imagin.Core.Threading;
+
+public class TaskQueue
 {
-    public class TaskQueue
+    readonly object Lock = new();
+
+    Task previousTask = Task.FromResult(true);
+
+    CancellationTokenSource tokenSource = new();
+
+    ///
+
+    /// <summary>
+    /// Occurs when all tasks have cancelled.
+    /// </summary>
+    public event EventHandler<EventArgs> Cancelled;
+
+    /// <summary>
+    /// Occurs when all tasks have completed.
+    /// </summary>
+    public event EventHandler<EventArgs> Completed;
+
+    /// <summary>
+    /// Occurs when a task has completed.
+    /// </summary>
+    public event DefaultEventHandler<object> TaskCompleted;
+
+    ///
+
+    int count = 0;
+    public int Count
     {
-        readonly object Lock = new object();
-
-        Task previousTask = Task.FromResult(true);
-
-        CancellationTokenSource tokenSource = new CancellationTokenSource();
-
-        //...
-
-        /// <summary>
-        /// Occurs when all tasks have cancelled.
-        /// </summary>
-        public event EventHandler<EventArgs> Cancelled;
-
-        /// <summary>
-        /// Occurs when all tasks have completed.
-        /// </summary>
-        public event EventHandler<EventArgs> Completed;
-
-        /// <summary>
-        /// Occurs when a task has completed.
-        /// </summary>
-        public event GenericEventHandler<object> TaskCompleted;
-
-        //...
-
-        int count = 0;
-        public int Count
+        get
         {
-            get
+            return count;
+        }
+    }
+
+    bool isCancellationRequested = false;
+    public bool IsCancellationRequested
+    {
+        get
+        {
+            return isCancellationRequested;
+        }
+    }
+
+    ///
+
+    public TaskQueue()
+    {
+    }
+
+    ///
+
+    public Task Add(Action Action)
+    {
+        lock (Lock)
+        {
+            count++;
+            previousTask = previousTask.ContinueWith(i =>
             {
-                return count;
-            }
+                Action();
+                OnTaskCompleted(default(object));
+            }, 
+            tokenSource.Token, TaskContinuationOptions.NotOnCanceled, TaskScheduler.Default);
+            return previousTask;
         }
+    }
 
-        bool isCancellationRequested = false;
-        public bool IsCancellationRequested
+    public Task Add(Action<CancellationToken> Action)
+    {
+        lock (Lock)
         {
-            get
+            count++;
+            previousTask = previousTask.ContinueWith(i =>
             {
-                return isCancellationRequested;
-            }
+                Action(tokenSource.Token);
+                OnTaskCompleted(default(object));
+            }, 
+            tokenSource.Token, TaskContinuationOptions.NotOnCanceled, TaskScheduler.Default);
+            return previousTask;
         }
+    }
 
-        //...
-
-        public TaskQueue()
+    public Task Add<T>(Func<T> Action)
+    {
+        lock (Lock)
         {
-        }
-
-        //...
-
-        public Task Add(Action Action)
-        {
-            lock (Lock)
+            previousTask = previousTask.ContinueWith(i =>
             {
-                count++;
-                previousTask = previousTask.ContinueWith(i =>
-                {
-                    Action();
-                    OnTaskCompleted(default(object));
-                }, 
-                tokenSource.Token, TaskContinuationOptions.NotOnCanceled, TaskScheduler.Default);
-                return previousTask;
-            }
+                var result = Action();
+                OnTaskCompleted(result);
+            },
+            tokenSource.Token, TaskContinuationOptions.NotOnCanceled, TaskScheduler.Default);
+            return previousTask;
         }
+    }
 
-        public Task Add(Action<CancellationToken> Action)
+    public Task Add<T>(Func<CancellationToken, T> Action)
+    {
+        lock (Lock)
         {
-            lock (Lock)
+            count++;
+            previousTask = previousTask.ContinueWith(i =>
             {
-                count++;
-                previousTask = previousTask.ContinueWith(i =>
-                {
-                    Action(tokenSource.Token);
-                    OnTaskCompleted(default(object));
-                }, 
-                tokenSource.Token, TaskContinuationOptions.NotOnCanceled, TaskScheduler.Default);
-                return previousTask;
-            }
+                var result = Action(tokenSource.Token);
+                OnTaskCompleted(result);
+            },
+            tokenSource.Token, TaskContinuationOptions.NotOnCanceled, TaskScheduler.Default);
+            return previousTask;
         }
+    }
 
-        public Task Add<T>(Func<T> Action)
+    ///
+
+    protected virtual void OnCancelled()
+    {
+        count = 0;
+        previousTask = Task.FromResult(true);
+        tokenSource = new CancellationTokenSource();
+
+        Cancelled?.Invoke(this, new EventArgs());
+    }
+    
+    protected virtual void OnCompleted()
+    {
+        Completed?.Invoke(this, new EventArgs());
+    }
+
+    protected virtual void OnTaskCompleted<T>(T input)
+    {
+        count--;
+        TaskCompleted?.Invoke(this, new EventArgs<object>(input));
+        if (count == 0)
+            OnCompleted();
+    }
+
+    ///
+
+    public void CancelAll()
+    {
+        if (!IsCancellationRequested)
         {
-            lock (Lock)
+            isCancellationRequested = true;
+            tokenSource?.Cancel();
+
+            try
             {
-                previousTask = previousTask.ContinueWith(i =>
-                {
-                    var result = Action();
-                    OnTaskCompleted(result);
-                },
-                tokenSource.Token, TaskContinuationOptions.NotOnCanceled, TaskScheduler.Default);
-                return previousTask;
+                previousTask?.Wait();
             }
-        }
-
-        public Task Add<T>(Func<CancellationToken, T> Action)
-        {
-            lock (Lock)
+            catch
             {
-                count++;
-                previousTask = previousTask.ContinueWith(i =>
-                {
-                    var result = Action(tokenSource.Token);
-                    OnTaskCompleted(result);
-                },
-                tokenSource.Token, TaskContinuationOptions.NotOnCanceled, TaskScheduler.Default);
-                return previousTask;
+                //System.Diagnostics.Debug.WriteLine("Cancelled");
             }
-        }
-
-        //...
-
-        protected virtual void OnCancelled()
-        {
-            count = 0;
-            previousTask = Task.FromResult(true);
-            tokenSource = new CancellationTokenSource();
-
-            Cancelled?.Invoke(this, new EventArgs());
-        }
-        
-        protected virtual void OnCompleted()
-        {
-            Completed?.Invoke(this, new EventArgs());
-        }
-
-        protected virtual void OnTaskCompleted<T>(T input)
-        {
-            count--;
-            TaskCompleted?.Invoke(this, new EventArgs<object>(input));
-            if (count == 0)
-                OnCompleted();
-        }
-
-        //...
-
-        public void CancelAll()
-        {
-            if (!IsCancellationRequested)
+            finally
             {
-                isCancellationRequested = true;
-                tokenSource?.Cancel();
-
-                try
-                {
-                    previousTask?.Wait();
-                }
-                catch
-                {
-                    //System.Diagnostics.Debug.WriteLine("Cancelled");
-                }
-                finally
-                {
-                    OnCancelled();
-                }
-                isCancellationRequested = false;
+                OnCancelled();
             }
+            isCancellationRequested = false;
         }
     }
 }

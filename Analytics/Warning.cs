@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace Imagin.Core.Analytics
+namespace Imagin.Core.Analytics;
+
+[Serializable]
+public class Warning : Result
 {
-    [Serializable]
-    public class Warning : Result
-    {
-        [XmlIgnore]
-        public override ResultTypes Type => ResultTypes.Warning;
+    [XmlIgnore]
+    public override ResultTypes Type => ResultTypes.Warning;
 
-        protected Warning() : base() { }
+    protected Warning() : base() { }
 
-        public Warning(object message = null) : base(message) { }
-    }
+    public Warning(object message = null) : base(message) { }
 }

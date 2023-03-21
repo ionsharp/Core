@@ -11,7 +11,7 @@ public static class M
 
     public const double PI3 = 3 * PI;
 
-    //...
+    ///
 
     /// <summary>a ≤ <see cref="AB(double, double, double)">input</see> ≤ b</summary>
     public static bool AB(double input, double a, double b)
@@ -25,7 +25,7 @@ public static class M
     public static bool aB(double input, double a, double b)
         => input > a && input <= b;
 
-    //...
+    ///
 
     public static byte Clamp(byte i, byte max, byte min = 0) => Max(Min(i, max), min);
 
@@ -47,7 +47,7 @@ public static class M
 
     public static ulong Clamp(ulong i, ulong max, ulong min = 0) => Max(Min(i, max), min);
 
-    //...
+    ///
 
     /// <summary>Compute cosine of angle in degrees.</summary>
     public static double CosDeg(in double x)
@@ -65,13 +65,13 @@ public static class M
         return y;
     }
 
-    //...
+    ///
 
     public static bool Even(in double input) => input == 0 ? true : input % 2 == 0;
 
     public static bool Odd(in double input) => !Even(input);
 
-    //...
+    ///
 
     public static double GetDistance(double x, double y) => GetDistance(0.5, x, y);
 
@@ -79,7 +79,7 @@ public static class M
 
     public static double GetDistance(double x1, double y1, double x2, double y2) => Sqrt(Pow(Abs(x1 - x2), 2) + Pow(Abs(y1 - y2), 2));
 
-    //...
+    ///
 
     public static double Modulo(double input, double left, double? right = null)
     {
@@ -113,7 +113,7 @@ public static class M
     public static double NearestFactor(in double input, in double factor)
         => Round(input / factor, MidpointRounding.AwayFromZero) * factor;
 
-    //...
+    ///
 
     public static double Normalize(in byte i) => i.Double() / 255;
 
@@ -153,7 +153,7 @@ public static class M
         return new(result[0], result[1], result[2], result[3]);
     }
 
-    //...
+    ///
 
     public static byte Denormalize(in double i) => Clamp((i * 255).Round(), 255).Byte();
 
@@ -193,7 +193,7 @@ public static class M
         return new(result[0], result[1], result[2], result[3]);
     }
 
-    //...
+    ///
 
     /// <summary>Compute x^2.</summary>
     public static double Pow2(in double x) => x * x;
@@ -207,12 +207,12 @@ public static class M
     /// <summary>Compute x^7.</summary>
     public static double Pow7(in double x) => x * x * x * (x * x * x) * x;
 
-    //...
+    ///
 
     /// <summary>Compute x^1/y.</summary>
     public static double Root(in double x, in double y) => Pow(x, (1.0 / y));
 
-    //...
+    ///
 
     /// <summary>Compute x^1/3.</summary>
     public static double Cbrt(in double x) => Root(x, 3);
@@ -220,7 +220,7 @@ public static class M
     /// <summary>Compute x^1/4.</summary>
     public static double Qdrt(in double x) => Root(x, 4);
 
-    //...
+    ///
 
     public static double Shift(this double input, int shifts = 1)
     {

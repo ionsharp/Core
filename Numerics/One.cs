@@ -13,23 +13,23 @@ public struct One
 
     public readonly double Value;
 
-    //...
+    ///
 
     public One(double value) => Value = Clamp(value, 1);
 
-    //...
+    ///
 
-    public static implicit operator One(double input) => new One(input);
+    public static implicit operator One(double input) => new(input);
 
     public static implicit operator double(One input) => input.Value;
 
-    //...
+    ///
 
     public static bool operator <(One a, One b) => a.Value < b.Value;
 
     public static bool operator >(One a, One b) => a.Value > b.Value;
 
-    //...
+    ///
 
     public static bool operator ==(One a, One b) => a.Value == b.Value;
 
@@ -39,7 +39,7 @@ public struct One
 
     public static bool operator >=(One a, One b) => a.Value >= b.Value;
 
-    //...
+    ///
 
     public static double operator +(One a, One b) => a.Value + b.Value;
 
@@ -49,7 +49,7 @@ public struct One
 
     public static double operator *(One a, One b) => a.Value * b.Value;
 
-    //...
+    ///
 
     public static double operator +(One a, double b) => a.Value + b;
 
@@ -59,13 +59,13 @@ public struct One
 
     public static double operator *(One a, double b) => a.Value * b;
 
-    //...
+    ///
 
     public override bool Equals(object i) => i is One one ? this == one : (i is double || i is float || i is int) && this == new One(System.Convert.ToDouble(i));
 
     public override int GetHashCode() => Value.GetHashCode();
 
-    //...
+    ///
 
     public static One Parse(string input) => double.Parse(input);
 
@@ -76,7 +76,7 @@ public struct One
         return r;
     }
 
-    //...
+    ///
 
     public string ToString(string format) => Value.ToString(format);
 

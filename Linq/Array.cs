@@ -16,7 +16,7 @@ public static partial class XArray
         return result;
     }
 
-    //...
+    ///
 
     /// <summary>Gets the largest value.</summary>
     public static decimal Largest(this decimal[] input) => Compare(input, (i, j) => i > j, decimal.MinValue);
@@ -45,7 +45,7 @@ public static partial class XArray
     /// <summary>Gets the largest value.</summary>
     public static float Largest(this float[] input) => Compare(input, (i, j) => i > j, float.MinValue);
 
-    //...
+    ///
 
     /// <summary>Gets the largest value.</summary>
     public static decimal Smallest(this decimal[] input) => Compare(input, (i, j) => i < j, decimal.MaxValue);
@@ -74,7 +74,7 @@ public static partial class XArray
     /// <summary>Gets the largest value.</summary>
     public static float Smallest(this float[] input) => Compare(input, (i, j) => i < j, float.MaxValue);
 
-    //...
+    ///
 
     public static string SplitWith(this Array input, string separator)
     {

@@ -11,15 +11,15 @@ public class StoragePath
 
     public const string RootName = "This PC";
 
-    //...
+    ///
 
     public static char[] InvalidFileNameCharacters => Path.GetInvalidFileNameChars();
 
-    //...
+    ///
 
     public static string CleanName(string fileName) => Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
 
-    //...
+    ///
 
     public const string DefaultCloneFormat = "{0} [{1}]";
 
@@ -46,7 +46,7 @@ public class StoragePath
         return result();
     }
 
-    //...
+    ///
     /// <summary>
     /// Enumerates the given <see cref="string"/> starting with the last <see cref="char"/>; gets everything after first period, if one is found.
     /// </summary>

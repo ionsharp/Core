@@ -3,9 +3,7 @@ using System;
 
 namespace Imagin.Core;
 
-/// <summary>
-/// Represents an unsigned double-precision floating-point number.
-/// </summary>
+/// <summary>Represents an unsigned double-precision floating-point number.</summary>
 [Serializable]
 public struct UDouble
 {
@@ -49,7 +47,7 @@ public struct UDouble
 
     public static implicit operator double(UDouble d) => d.value;
 
-    public static implicit operator UDouble(double d) => new UDouble(d);
+    public static implicit operator UDouble(double d) => new(d);
 
     public static bool operator <(UDouble a, UDouble b) => a.value < b.value;
 

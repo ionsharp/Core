@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace Imagin.Core.Data
+namespace Imagin.Core.Data;
+
+[Serializable]
+public enum SortDirection
 {
-    [Serializable]
-    public enum SortDirection
-    {
-        Ascending,
-        Descending
-    }
+    Ascending,
+    Descending
 }

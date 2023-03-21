@@ -14,7 +14,7 @@ public struct Angle : IEquatable<Angle>
 
     readonly double Value;
 
-    //...
+    ///
 
     /// <summary>
     /// Initializes an instance of the <see cref="Angle"/> structure.
@@ -28,13 +28,13 @@ public struct Angle : IEquatable<Angle>
         Value = input;
     }
 
-    //...
+    ///
 
     public static implicit operator double(Angle i) => i.Value;
 
     public static implicit operator Angle(double i) => new(i);
 
-    //...
+    ///
 
     public static bool operator <(Angle a, Angle b) => a.Value < b.Value;
 
@@ -52,13 +52,13 @@ public struct Angle : IEquatable<Angle>
 
     public static Angle operator *(Angle a, Angle b) => a.Value * b.Value;
 
-    //...
+    ///
 
     public static bool operator ==(Angle a, Angle b) => a.EqualsOverload(b);
 
     public static bool operator !=(Angle a, Angle b) => !(a == b);
 
-    //...
+    ///
 
     public bool Equals(Angle i)
         => this.Equals<Angle>(i) && Value.Equals(i.Value);
@@ -68,7 +68,7 @@ public struct Angle : IEquatable<Angle>
 
     public override int GetHashCode() => Value.GetHashCode();
 
-    //...
+    ///
 
     public static Angle Parse(string input) => double.Parse(input);
 
@@ -79,19 +79,19 @@ public struct Angle : IEquatable<Angle>
         return r;
     }
 
-    //...
+    ///
 
     public string ToString(string format) => Value.ToString(format);
 
     public override string ToString() => Value.ToString();
 
-    //...
+    ///
 
     public static double GetDegree(double radian) => radian * (180.0 / Math.PI);
 
     public static double GetRadian(double degree) => (Math.PI / 180.0) * degree;
 
-    //...
+    ///
 
     public static double NormalizeDegree(double degree)
     {

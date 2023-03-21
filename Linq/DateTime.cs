@@ -21,7 +21,7 @@ public static class XDateTime
         return default;
     }
 
-    public static DateTime Milliseconds(this DateTime input, int milliseconds) => new DateTime(input.Year, input.Month, input.Day, input.Hour, input.Minute, input.Second, milliseconds);
+    public static DateTime Milliseconds(this DateTime input, int milliseconds) => new(input.Year, input.Month, input.Day, input.Hour, input.Minute, input.Second, milliseconds);
 
     public static string Relative(this DateTime input)
     {
